@@ -9,6 +9,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- <script src="js/Fetch.js"></script> -->
 	<script src="https://svn12.github.io/js/Fetch.js"></script>
+	<script>
+		const Sel_url = 'https://docs.google.com/spreadsheets/d/1yAzRYRATSorA0CkK81mSMKxQ0oQ3EBBVKTnBVW8YHOg/edit?usp=sharing';
+
+		// const shtUrl = 'https://docs.google.com/spreadsheets/d/1fGKQ0_qvBo53VNh8PizzydL5NahORghfkwmcQFfUmZ8/edit?usp=sharing';
+		const Title_Name = '夫婦團契'
+	</script>
 </head>
 
 <body>
@@ -187,11 +193,10 @@
 	<script>
 		const RSheet2Json_APIV6 = 'https://script.google.com/macros/s/AKfycbz-Q9lP3QXasQwyCT6pegSR7eu23AQUKTkd3iv5WcZLvoxIaH0m41_W0av5Ncc3LTwoQw/exec';
 		// const Sel_url = 'https://docs.google.com/spreadsheets/u/8/d/1Zp89c0hKdDnzW23nMVL2URXrsULvu0MEnTdIjx6yIzw/edit?usp=sharing';
-		const Sel_url = 'https://docs.google.com/spreadsheets/d/1yAzRYRATSorA0CkK81mSMKxQ0oQ3EBBVKTnBVW8YHOg/edit?usp=sharing';
-
+	
 		$(document).ready(function () {
 
-			//R_Url();
+			
 			Google_sht_R();
 
 		});
@@ -311,30 +316,7 @@
 			// GSname(document.getElementById("select_url").value);
 			// document.getElementById("file_href").href = document.getElementById("select_url").value;
 		}
-		function R_Url() {
-			const fmain = 'https://docs.google.com/spreadsheets/d/1SoMEYJbCHBd3FDl8gjaiQMZ1WBCkDTazGHALGnKgMpk/edit#gid=2114459986';
-			var a = {
-				sheetUrl: fmain,
-				sheetTag: 'Main' //'Test'
-			};
-
-			$.get(RSheet2Json_APIV6, a, function (data) {
-
-				//	console.log(data);
-				$("#select_url").empty();
-
-				$.each(data, function (i, item) {
-					if (i != 0) {
-						$('#select_url').append($('<option>', {
-							value: item[1],
-							text: item[0]
-						}));
-					}
-				});
-				Google_sht_R();
-			});
-
-		}
+		
 	</script>
 </body>
 
