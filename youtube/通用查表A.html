@@ -6,8 +6,9 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-		const shtUrl = 'https://docs.google.com/spreadsheets/d/1fGKQ0_qvBo53VNh8PizzydL5NahORghfkwmcQFfUmZ8/edit?usp=sharing';
-		const Title_Name = '家庭記帳'
+		const shtUrl = 'https://docs.google.com/spreadsheets/d/1TDJwL95Ct15rM6basOgdHN6VR_T93pYMmv0sXEp7Vk0/edit?usp=sharing';
+		// const Title_Name = '家庭記帳'
+		// Document title will use first sheet name 20230501
 	</script>
 
 
@@ -205,7 +206,7 @@
 
 			GSname();
 			//  R_Url();
-			document.title = Title_Name;
+			// document.title = Title_Name;
 
 		});
 		const RSheet2Json_APIV6 = 'https://script.google.com/macros/s/AKfycbz-Q9lP3QXasQwyCT6pegSR7eu23AQUKTkd3iv5WcZLvoxIaH0m41_W0av5Ncc3LTwoQw/exec';
@@ -374,6 +375,7 @@
 						*/
 
 					data = JSON.parse(data);
+					document.title = data[0].Sname
 					$.each(data, function (i, item) {
 						$('#select_sh').append($('<option>', {
 							value: item.Sname,
