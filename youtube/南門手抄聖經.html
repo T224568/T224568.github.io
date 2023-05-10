@@ -1,354 +1,374 @@
-<!DOCTYPE html><html lang="zh"">
+<!DOCTYPE html>
+<html lang="zh"">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<script src="https://svn12.github.io/js/Fetch.js"></script>
-        <title>手抄聖經</title>
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-        <!-- <script src="https://code.jquery.com/jquery-1.9.1.js"></script> -->
-        <!-- <link rel="stylesheet" href="reset.css"> -->
-		<link rel="stylesheet" href="link_P.css">
-        <style type="text/css">
-            
-            form{margin:0px; display:inline;font-size:16px; }
-            button{margin:0px; display:inline;font-size:16px; }
-            /* label {display:inline;} */
-            /* input {display:inline;} */
-            select {font-size:18px;}
-                  
-            .container1 {
-                max-width: 850px;
-				position: absolute;
-      			top: 0%;
-      			left:0%;
-            }
-            iframe {
-				position: absolute;
-      			top: 20%;
-      			left:0%;
-				max-width: 100%;
-			}
-        </style>
-     
+        <meta charset=" UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://svn12.github.io/js/Fetch.js"></script>
+<title>手抄聖經</title>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-1.9.1.js"></script> -->
+<!-- <link rel="stylesheet" href="reset.css"> -->
+<link rel="stylesheet" href="link_P.css">
+<style type="text/css">
+	form {
+		margin: 0px;
+		display: inline;
+		font-size: 16px;
+	}
+
+	button {
+		margin: 0px;
+		display: inline;
+		font-size: 16px;
+	}
+
+	/* label {display:inline;} */
+	/* input {display:inline;} */
+	select {
+		font-size: 18px;
+	}
+
+	.container1 {
+		max-width: 850px;
+		position: absolute;
+		top: 0%;
+		left: 0%;
+	}
+
+	iframe {
+		position: absolute;
+		top: 20%;
+		left: 0%;
+		max-width: 100%;
+	}
+</style>
+
 </head>
-<body  > 
-    
-<div class="container1">
+
+<body>
+
+	<div class="container1">
 
 
-<h2>
-和修本聖經 - 南門手抄版
-</h2>
-    
-    <select id="SelTitle" onchange="fSelTitle()">
+		<h2>
+			和修本聖經 - 南門手抄版
+		</h2>
 
-    </select>
-   
-    <select id="SelChap" onchange="fselChap()">
+		<select id="SelTitle" onchange="fSelTitle()">
+
+		</select>
+
+		<select id="SelChap" onchange="fselChap()">
 
 
-    </select>章
- <!--	<button type="submit" onclick="n_chap()">></button>
+		</select>章
+		<!--	<button type="submit" onclick="n_chap()">></button>
 -->
 
-<button onclick="p_page()"><</button>
+		<button onclick="p_page()">
+			< </button>
 
 
-<input type="number" class="form-inline" placeholder="頁數" id="location-input" min="1" max="1873">
-<!-- <div id="writer" class="form-inline" >AA</div> -->
+				<input type="number" class="form-inline" placeholder="頁數" id="location-input" min="1" max="1873">
+				<!-- <div id="writer" class="form-inline" >AA</div> -->
 
 
-<button type="submit" onclick="fChgPage()">頁</button>
+				<button type="submit" onclick="fChgPage()">頁</button>
 
-<button type="submit" onclick="n_page()">></button>
-<select id="writer" onchange="fSelwriter()">
-</select>
-<br>
+				<button type="submit" onclick="n_page()">></button>
+				<select id="writer" onchange="fSelwriter()">
+				</select>
+				<br>
 
 
 
-<!-- <img id="img"   src="" ><br> -->
+				<!-- <img id="img"   src="" ><br> -->
 
-<!-- <button type="submit" onclick="p_page()"><</button>
+				<!-- <button type="submit" onclick="p_page()"><</button>
 <button type="submit" onclick="n_page()">></button> -->
 
 
 
 
-</div> 
-<iframe id="pdf" src="https://docs.google.com/viewer?srcid=1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA&hl&pid=explorer&efh=false&a=v&chrome=false&embedded=true" style=" width:100% ;height:600px;" ></iframe>
+	</div>
+	<iframe id="pdf"
+		src="https://docs.google.com/viewer?srcid=1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA&hl&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
+		style=" width:100% ;height:600px;"></iframe>
 
-<!--  <p id="test">original</p> 
+	<!--  <p id="test">original</p> 
 
 
 
 -->
 
 
-<!-- <p id="test2">audio2</p> -->
-<script>
-let bible_info=[],bible_detail=[],writers=[],cpage=0;
+	<!-- <p id="test2">audio2</p> -->
+	<script>
+		let bible_info = [], bible_detail = [], writers = [], cpage = 0;
 
-fileId='1mYsuKSyv3-PR-4XrgAI4LKWrRvTol-So'
+		fileId = '1mYsuKSyv3-PR-4XrgAI4LKWrRvTol-So';
 
-// document.getElementById("pdf").src=src;
-//SetPdf(fileId);
+		// document.getElementById("pdf").src=src;
+		//SetPdf(fileId);
 
-$(document).ready(function() {
-  //GSname();
-  Read_Bible();
-  })
-  
-  const RSheet2Json_APIV6='https://script.google.com/macros/s/AKfycbz-Q9lP3QXasQwyCT6pegSR7eu23AQUKTkd3iv5WcZLvoxIaH0m41_W0av5Ncc3LTwoQw/exec'
-  function  Read_Bible(){
-  const fmain='https://docs.google.com/spreadsheets/d/1yt3EfSIVBi-NOvoeqwEtp-DcnIODM9LK84alJLh9JJI/edit?usp=sharing';
-  let a = {
-		sheetUrl:fmain,
-		sheetTag: '手抄聖經' //'Test'
-		};
-	
-	$.get(RSheet2Json_APIV6, a, function (data) {    
-	   
-	//	console.log(data);
-		$("#SelTitle").empty();
-		
-		$.each(data, function (i, item) {
-			if(i!=0){
-				$('#SelTitle').append($('<option>', { 
-				  value: item[0],
-				  text : item[1] 
-				}));
-				bible_info.push({
-					ptr:item[0],
-					Name:item[1],
-					S_page:item[2],	E_page:item[3],	T_page:item[4],	T_chap:item[5]
-				})
-			}
+		$(document).ready(function () {
+			//GSname();
+			Read_Bible();
 		});
-		//Google_sht_R();
-		console.log(`bible_info ---- ${bible_info.length}`);
-		let selT=0;
-		addOption(bible_info[selT].T_chap,"SelChap");
-		
-	});
-	a = {
-		sheetUrl:fmain,
-		sheetTag: '手抄簡聖經' //'Test'
-		};
-	
-	$.get(RSheet2Json_APIV6, a, function (data) {    
-	   
-	//	console.log(data);
-	
-		
-		$.each(data, function (i, item) {
-			if(i!=0){
-				
-				bible_detail.push({
-					title_idx:item[0],
-					pdfURL:item[1],
-					Lchap:item[2],	Ichap:item[3],
-					
-					writer:item[4],	Page:item[5]
 
-				})
-			}
-		});
-		//Google_sht_R();
-		console.log(`bible_detail ---- ${bible_detail.length}`);
-		writers=[... new Set(bible_detail.map(
-		// function (img) {
-		// 	if(img.writer === ""){ // if extension is .json
-		// 		return null; // skip
-		// 	}
-		// 	else{
-		// 		return img.writer;
-		// 	}
-		// }
-		data=>data.writer
-		)
-		.sort(function(a,b) { return a.localeCompare(b, "zh-TW"); }))]
-		CreatOption('#writer', writers, writers);
-		//document.getElementById("pdf").src =
-		SetPdf(bible_detail[cpage].pdfURL);
-		document.getElementById("location-input").value=1;
-		changePage(1);
-		});
-	}
-	function SetPdf(fileId){
-		let Old_fileId=document.getElementById("pdf").src.match(/[-\w]{25,}/)
-		if(fileId!=Old_fileId){
-  let file_src=`https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`
-//   $("#iframe_div").empty();
-//   $('<iframe>')   
-//     .attr('id','pdf')// Creates the element
-//     .attr('src',file_src) // Sets the attribute spry:region="myDs"
-//     .attr('height',500)
-//     .attr('width','100%')
-//     .appendTo('#iframe_div');
-  document.getElementById("pdf").src=file_src;
- }
-}
-    function show_page(){
-		if(cpage<=1450){
-		document.getElementById("location-input").value=cpage;
-		}else{
-			document.getElementById("location-input").value=cpage-1450;
+		const RSheet2Json_APIV6 = 'https://script.google.com/macros/s/AKfycbz-Q9lP3QXasQwyCT6pegSR7eu23AQUKTkd3iv5WcZLvoxIaH0m41_W0av5Ncc3LTwoQw/exec';
+		function Read_Bible() {
+			const fmain = 'https://docs.google.com/spreadsheets/d/1yt3EfSIVBi-NOvoeqwEtp-DcnIODM9LK84alJLh9JJI/edit?usp=sharing';
+			let a = {
+				sheetUrl: fmain,
+				sheetTag: '手抄聖經' //'Test'
+			};
+
+			$.get(RSheet2Json_APIV6, a, function (data) {
+
+				//	console.log(data);
+				$("#SelTitle").empty();
+
+				$.each(data, function (i, item) {
+					if (i != 0) {
+						$('#SelTitle').append($('<option>', {
+							value: item[0],
+							text: item[1]
+						}));
+						bible_info.push({
+							ptr: item[0],
+							Name: item[1],
+							S_page: item[2], E_page: item[3], T_page: item[4], T_chap: item[5]
+						});
+					}
+				});
+				//Google_sht_R();
+				console.log(`bible_info ---- ${bible_info.length}`);
+				let selT = 0;
+				addOption(bible_info[selT].T_chap, "SelChap");
+
+			});
+			a = {
+				sheetUrl: fmain,
+				sheetTag: '手抄簡聖經' //'Test'
+			};
+
+			$.get(RSheet2Json_APIV6, a, function (data) {
+
+				//	console.log(data);
+
+
+				$.each(data, function (i, item) {
+					if (i != 0) {
+
+						bible_detail.push({
+							title_idx: item[0],
+							pdfURL: item[1],
+							Lchap: item[2], Ichap: item[3],
+
+							writer: item[4], Page: item[5]
+
+						});
+					}
+				});
+				//Google_sht_R();
+				console.log(`bible_detail ---- ${bible_detail.length}`);
+				writers = [... new Set(bible_detail.map(
+					// function (img) {
+					// 	if(img.writer === ""){ // if extension is .json
+					// 		return null; // skip
+					// 	}
+					// 	else{
+					// 		return img.writer;
+					// 	}
+					// }
+					data => data.writer
+				)
+					.sort(function (a, b) { return a.localeCompare(b, "zh-TW"); }))];
+				writers_cnt = writers.map(item => `${item} (${bible_detail.filter(x => x.writer == item).length})  `);
+				CreatOption('#writer', writers, writers_cnt);
+				//document.getElementById("pdf").src =
+				// SetPdf(bible_detail[cpage].pdfURL);
+				// document.getElementById("location-input").value = 1;
+				changePage(1);
+			});
 		}
-	}
-    function n_page() {
-            if(cpage<1873){
-				changePage(cpage+1);
+		function SetPdf(fileId) {
+			let Old_fileId = document.getElementById("pdf").src.match(/[-\w]{25,}/);
+			if (fileId != Old_fileId) {
+				let file_src = `https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
+				//   $("#iframe_div").empty();
+				//   $('<iframe>')   
+				//     .attr('id','pdf')// Creates the element
+				//     .attr('src',file_src) // Sets the attribute spry:region="myDs"
+				//     .attr('height',500)
+				//     .attr('width','100%')
+				//     .appendTo('#iframe_div');
+				document.getElementById("pdf").src = file_src;
 			}
-        }
-	function p_page() {
-            if(cpage>0){
-				changePage(cpage-1);
+		}
+		function show_page() {
+			if (cpage <= 1450) {
+				document.getElementById("location-input").value = cpage;
+			} else {
+				document.getElementById("location-input").value = cpage - 1450;
 			}
-        }
-    
-    function n_chap(){
-		 const select = document.getElementById("SelChap");
-		 if(select.options.length-1==select.selectedIndex){
-			if(document.getElementById("SelTitle").options.length-1
-					!=document.getElementById("SelTitle").selectedIndex){
+		}
+		function n_page() {
+			if (cpage < 1873) {
+				changePage(cpage + 1);
+			}
+		}
+		function p_page() {
+			if (cpage > 0) {
+				changePage(cpage - 1);
+			}
+		}
+
+		function n_chap() {
+			const select = document.getElementById("SelChap");
+			if (select.options.length - 1 == select.selectedIndex) {
+				if (document.getElementById("SelTitle").options.length - 1
+					!= document.getElementById("SelTitle").selectedIndex) {
 					document.getElementById("SelTitle").selectedIndex++;
 					IniChap();
 				}
-		 }else{
-			select.selectedIndex++;
+			} else {
+				select.selectedIndex++;
+				fselChap();
+			}
+
+		}
+		function p_chap() {
+			const select = document.getElementById("SelChap");
+			if (0 == select.selectedIndex) {
+				if (document.getElementById("SelTitle").selectedIndex > 0) {
+					document.getElementById("SelTitle").selectedIndex--;
+					IniChap();
+					select.selectedIndex = select.options.length - 1;
+				}
+			} else {
+				select.selectedIndex--;
+
+			}
 			fselChap();
-		 }
-         
-    }
-	function p_chap(){
-          const select = document.getElementById("SelChap");
-		 if(0==select.selectedIndex){
-			if(document.getElementById("SelTitle").selectedIndex>0){
-			document.getElementById("SelTitle").selectedIndex--;
+		}
+		function addOption(n, id) {
+			//根據id查詢物件，
+
+			let select = document.getElementById(id);
+			select.options.length = 0;
+
+			for (var i = 1; i <= n; i++) {
+				// var opt = options[i];
+				var el = document.createElement("option");
+				el.textContent = i;
+				el.value = i;
+				select.appendChild(el);
+
+			}
+
+		}
+
+
+		function IniChap() {
+
+
+			let select = document.getElementById("SelTitle").selectedIndex;
+
+			// document.getElementById("SelChap").options.length = 0;
+
+			addOption(bible_info[select].T_chap, "SelChap");
+			cpage = bible_info[select].S_page;
+			// document.getElementById("pdf").src =
+			SetPdf(bible_detail[cpage - 1].pdfURL);
+			// show_page();
+			changePage(cpage);
+
+		}
+		function fSelwriter() {
+
+			// alert(get_Title_Chap_Cnt());
+			// IniChap();
+			changePage(bible_detail.find(elem => elem.writer == document.querySelector('#writer').value).Page);
+		}
+		function fSelTitle() {
+
+			// alert(get_Title_Chap_Cnt());
 			IniChap();
-			select.selectedIndex=select.options.length-1;
+		}
+		function fselChap() {
+
+			let sel_C = document.getElementById("SelChap").selectedIndex;
+			cpage = changeSrc(sel_C);
+			// document.getElementById("pdf").src =
+			SetPdf(bible_detail[cpage - 1].pdfURL);
+			// show_page();
+			changePage(cpage);
+
+		}
+
+
+		function changeSrc(sel_C) {
+			const sel_T = document.getElementById("SelTitle").selectedIndex;
+			for (let ptr = bible_info[sel_T].S_page; ptr <= bible_info[sel_T].E_page; ptr++) {
+				if (bible_detail[ptr - 1].Lchap > sel_C) {
+					return ptr;
+				}
 			}
-		 }else{
-			select.selectedIndex--;
-			
-		 }
-		 fselChap();
-    }
-    function addOption(n,id) {
-        //根據id查詢物件，
-		
-        let select = document.getElementById(id);
-        select.options.length = 0;
 
-        for (var i = 1; i <= n; i++) {
-            // var opt = options[i];
-            var el = document.createElement("option");
-            el.textContent = i;
-            el.value = i;
-            select.appendChild(el);
-            
-        }
-      
-    }
-    
-   
-    function IniChap(){
-              
-
-        let select = document.getElementById("SelTitle").selectedIndex;
-        
-       // document.getElementById("SelChap").options.length = 0;
-        
-		addOption(bible_info[select].T_chap, "SelChap");
-		cpage=bible_info[select].S_page;
-		// document.getElementById("pdf").src =
-		SetPdf(bible_detail[cpage-1].pdfURL);
-		// show_page();
-		changePage(cpage);
-       
-    }
-    function fSelwriter(){
-        
-        // alert(get_Title_Chap_Cnt());
-        // IniChap();
-		changePage(bible_detail.find(elem=>elem.writer==document.querySelector('#writer').value).Page);
-    }
-    function fSelTitle(){
-        
-        // alert(get_Title_Chap_Cnt());
-        IniChap();
-    }
-	function fselChap() {
-		
-		let sel_C = document.getElementById("SelChap").selectedIndex;
-		cpage=changeSrc(sel_C);
-		// document.getElementById("pdf").src =
-		SetPdf(bible_detail[cpage-1].pdfURL);
-		// show_page();
-		changePage(cpage);
-		
-    }
-
-    
-    function changeSrc(sel_C) {
-        const sel_T = document.getElementById("SelTitle").selectedIndex;
-        for(let ptr= bible_info[sel_T].S_page;ptr<=bible_info[sel_T].E_page;ptr++){
-			if(bible_detail[ptr-1].Lchap>sel_C){
-			return ptr;
+		}
+		function fChgPage() {
+			sel_p = Number(document.getElementById("location-input").value);
+			if (document.getElementById("SelTitle").selectedIndex > 39) {
+				sel_p = sel_p + 1450;
 			}
+			changePage(sel_p);
 		}
-       
-    } 
-	function fChgPage(){
-		sel_p=Number(document.getElementById("location-input").value);
-		if(document.getElementById("SelTitle").selectedIndex>39){
-			sel_p=sel_p+1450;
+		function changePage(page) {
+
+			document.getElementById("SelTitle").value = bible_detail[page - 1].title_idx - 1;
+			let select = document.getElementById("SelTitle").selectedIndex;
+			addOption(bible_info[select].T_chap, "SelChap");
+			document.getElementById("SelChap").value = bible_detail[page - 1].Ichap;
+			document.getElementById("writer").value = bible_detail[page - 1].writer;
+			cpage = page;
+			// document.getElementById("pdf").src =
+			SetPdf(bible_detail[cpage - 1].pdfURL);
+
+			show_page();
+
+
 		}
-		changePage(sel_p);
-	}
-	function changePage(page) {
-	
-        document.getElementById("SelTitle").value=bible_detail[page-1].title_idx-1;
-		let select = document.getElementById("SelTitle").selectedIndex;
-		addOption(bible_info[select].T_chap, "SelChap");
-		document.getElementById("SelChap").value=bible_detail[page-1].Ichap;
-		document.getElementById("writer").value=bible_detail[page-1].writer;
-		cpage=page;
-		// document.getElementById("pdf").src =
-		SetPdf(bible_detail[cpage-1].pdfURL);
-		
-		show_page();
-		
-       
-    } 
-	
-	async function getJSON(url) {
-	try {
-		  const response = await fetch(url);
-		  //let myText = await response.json();//JSON.parse(myObject);// myObject.text();JSON.parse(data)
-		  return response.json();// myObject.text();JSON.parse(data)
-		} catch (error) {
-		return(error);
+
+		async function getJSON(url) {
+			try {
+				const response = await fetch(url);
+				//let myText = await response.json();//JSON.parse(myObject);// myObject.text();JSON.parse(data)
+				return response.json();// myObject.text();JSON.parse(data)
+			} catch (error) {
+				return (error);
+			}
+
 		}
-  
-	}
 
-  
-    
- 
-  
-  
-        /**
-     *
-     *  sticky navigation
-     *
-            */
 
- 
-</script>
 
- </body> </html>
+
+
+
+		/**
+	 *
+	 *  sticky navigation
+	 *
+			*/
+
+
+	</script>
+
+</body>
+
+</html>
