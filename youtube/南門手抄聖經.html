@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="https://svn12.github.io/js/Fetch.js"></script>
         <title>手抄聖經</title>
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
         <!-- <script src="https://code.jquery.com/jquery-1.9.1.js"></script> -->
@@ -27,7 +28,7 @@
             select {font-size:18px;}
                   
             .container1 {
-                max-width: 800px;
+                max-width: 850px;
             }
             
         </style>
@@ -74,11 +75,15 @@
 <button onclick="p_page()"><</button>
 
 
-<input type="number" class="form-inline" placeholder="頁數" id="location-input" min="1" max="1361">
+<input type="number" class="form-inline" placeholder="頁數" id="location-input" min="1" max="1875">
+<!-- <div id="writer" class="form-inline" >AA</div> -->
+
 
 <button type="submit" onclick="fChgPage()">頁</button>
 
 <button type="submit" onclick="n_page()">></button>
+<select id="writer" onchange="fSelwriter()">
+</select>
 <br>
 <div id="iframe_div">
 
@@ -103,7 +108,8 @@
 
 <!-- <p id="test2">audio2</p> -->
 <script>
-let bible_info=[],bible_detail=[],cpage=0;
+let bible_info=[],bible_detail=[],writers=[],cpage=0;
+
 fileId='1mYsuKSyv3-PR-4XrgAI4LKWrRvTol-So'
 
 // document.getElementById("pdf").src=src;
@@ -162,15 +168,32 @@ $(document).ready(function() {
 				bible_detail.push({
 					title_idx:item[0],
 					pdfURL:item[1],
-					Lchap:item[2],	Ichap:item[3]
+					Lchap:item[2],	Ichap:item[3],
+					
+					writer:item[4],	Page:item[5]
+
 				})
 			}
 		});
 		//Google_sht_R();
 		console.log(`bible_detail ---- ${bible_detail.length}`);
+		writers=[... new Set(bible_detail.map(
+		// function (img) {
+		// 	if(img.writer === ""){ // if extension is .json
+		// 		return null; // skip
+		// 	}
+		// 	else{
+		// 		return img.writer;
+		// 	}
+		// }
+		data=>data.writer
+		)
+		.sort(function(a,b) { return a.localeCompare(b, "zh-TW"); }))]
+		CreatOption('#writer', writers, writers);
 		//document.getElementById("pdf").src =
 		SetPdf(bible_detail[cpage].pdfURL);
 		document.getElementById("location-input").value=1;
+		changePage(1);
 		});
 	}
 	function SetPdf(fileId){
@@ -188,14 +211,14 @@ $(document).ready(function() {
  }
 }
     function show_page(){
-		if(cpage<=1059){
+		if(cpage<=1450){
 		document.getElementById("location-input").value=cpage;
 		}else{
-			document.getElementById("location-input").value=cpage-1059;
+			document.getElementById("location-input").value=cpage-1450;
 		}
 	}
     function n_page() {
-            if(cpage<1361){
+            if(cpage<1874){
 				changePage(cpage+1);
 			}
         }
@@ -262,8 +285,15 @@ $(document).ready(function() {
 		cpage=bible_info[select].S_page;
 		// document.getElementById("pdf").src =
 		SetPdf(bible_detail[cpage-1].pdfURL);
-		show_page();
+		// show_page();
+		changePage(cpage);
        
+    }
+    function fSelwriter(){
+        
+        // alert(get_Title_Chap_Cnt());
+        // IniChap();
+		changePage(bible_detail.find(elem=>elem.writer==document.querySelector('#writer').value).Page);
     }
     function fSelTitle(){
         
@@ -276,7 +306,8 @@ $(document).ready(function() {
 		cpage=changeSrc(sel_C);
 		// document.getElementById("pdf").src =
 		SetPdf(bible_detail[cpage-1].pdfURL);
-		show_page();
+		// show_page();
+		changePage(cpage);
 		
     }
 
@@ -293,7 +324,7 @@ $(document).ready(function() {
 	function fChgPage(){
 		sel_p=Number(document.getElementById("location-input").value);
 		if(document.getElementById("SelTitle").selectedIndex>39){
-			sel_p=sel_p+1059;
+			sel_p=sel_p+1450;
 		}
 		changePage(sel_p);
 	}
@@ -303,6 +334,7 @@ $(document).ready(function() {
 		let select = document.getElementById("SelTitle").selectedIndex;
 		addOption(bible_info[select].T_chap, "SelChap");
 		document.getElementById("SelChap").value=bible_detail[page-1].Ichap;
+		document.getElementById("writer").value=bible_detail[page-1].writer;
 		cpage=page;
 		// document.getElementById("pdf").src =
 		SetPdf(bible_detail[cpage-1].pdfURL);
