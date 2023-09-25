@@ -7,35 +7,51 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://svn12.github.io/js/Fetch.js"></script>
-<title>手抄聖經</title>
+<!-- <title>手抄聖經</title> -->
+<title>和修本聖經 - 南門手抄版</title>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-1.9.1.js"></script> -->
 <!-- <link rel="stylesheet" href="reset.css"> -->
 <link rel="stylesheet" href="https://svn12.github.io/youtube/link_P.css">
 <style type="text/css">
-	form {
+	button:focus{ background-color: #ff0;}
+	form1 {
 		margin: 0px;
 		display: inline;
-		font-size: 16px;
+		/* font-size: 16px; */
 	}
+	h41{
+		display: inline;
 
-	button {
+	}
+	button1 {
 		margin: 0px;
 		display: inline;
-		font-size: 16px;
+		/* font-size: 16px; */
 	}
-
+	
 	/* label {display:inline;} */
 	/* input {display:inline;} */
-	select {
-		font-size: 18px;
+	select1 {
+		/* font-size: 18px; */
+		display: inline;
+
 	}
 
 	.container1 {
-		max-width: 850px;
-		position: absolute;
-		top: 0%;
-		left: 0%;
+		max-width: 100%;
+		/* position: absolute;
+		top: 0; */
+		position: fixed;
+		display: flex;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 5%);
+		/* left: 0;
+		right:0;
+		bottom:0;
+		margin: auto; */
+
 	}
 
 	iframe {
@@ -52,10 +68,10 @@
 
 	<div class="container1">
 
-
-		<h2>
+<!-- 
+		<h4>
 			和修本聖經 - 南門手抄版
-		</h2>
+		</h4> -->
 
 		<select id="SelTitle" onchange="fSelTitle()">
 
