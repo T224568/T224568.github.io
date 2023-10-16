@@ -14,27 +14,34 @@
 <!-- <link rel="stylesheet" href="reset.css"> -->
 <link rel="stylesheet" href="https://svn12.github.io/youtube/link_P.css">
 <style type="text/css">
+    @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 	button:focus{ background-color: #ff0;}
-	form1 {
-		margin: 0px;
+	.form {
+		margin: 5px;
 		display: inline;
-		/* font-size: 16px; */
+		 font-size: 2rem;
 	}
-	h41{
-		display: inline;
+	.form-inline{
+		/* 
+        display: inline;
+        */
+        width: 4em;
+
+        border-radius: 5px;
 		
 	}
-	button1 {
+	button {
 		margin: 0px;
 		display: inline;
+        border-radius: 5px;
 		/* font-size: 16px; */
 	}
 	
 	/* label {display:inline;} */
 	/* input {display:inline;} */
-	select1 {
+	select {
 		/* font-size: 18px; */
-		display: inline;
+		border-radius: 10px;
 		
 	}
 	
@@ -79,34 +86,40 @@
 			和修本聖經 - 南門手抄版
 		</h4> -->
 
-		<select id="SelTitle" onchange="fSelTitle()">
+<div class="form">
 
-		</select>
-
-		<select id="SelChap" onchange="fselChap()">
-
-
-		</select>章
-		<!--	<button type="submit" onclick="n_chap()">></button>
--->
-
-		<button onclick="p_page()">
-			< </button>
-
-
-				<input type="number" class="form-inline" placeholder="頁數" id="location-input" min="1" max="1873">
-				<!-- <div id="writer" class="form-inline" >AA</div> -->
-
-
-				<button type="submit" onclick="fChgPage()">頁</button>
-
-				<button type="submit" onclick="n_page()">></button>
-				<select id="writer" onchange="fSelwriter()">
-				</select>
-				<br>
-
-
-
+    <select id="SelTitle" onchange="fSelTitle()">
+        
+    </select>
+    
+    <select id="SelChap" onchange="fselChap()">
+        
+        
+    </select>章
+    <!--	<button type="submit" onclick="n_chap()">></button>
+    -->
+    
+    <button onclick="p_page()">
+        <i class="fa fa-caret-left" aria-hidden="true"></i>
+    </button>
+    
+    <input type="number" min="1" max="1451" class="form-inline" placeholder="頁數" id="location-input" min="1" max="1873">
+    <!-- <div id="writer" class="form-inline" >AA</div> -->
+    
+    
+    <button type="submit" onclick="fChgPage()">
+        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+    </button>
+    <button type="submit" onclick="n_page()">
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </button>
+    <select id="writer" onchange="fSelwriter()">
+    </select>
+    
+</div>
+    
+    
+    
 				<!-- <img id="img"   src="" ><br> -->
 
 				<!-- <button type="submit" onclick="p_page()"><</button>
@@ -345,9 +358,12 @@
 		}
 		function fChgPage() {
 			sel_p = Number(document.getElementById("location-input").value);
-			if (document.getElementById("SelTitle").selectedIndex > 39) {
-				sel_p = sel_p + 1450;
+            let sel_titleidx=document.getElementById("SelTitle").selectedIndex;
+            console.log(`sel_titleidx:${sel_titleidx} sel_p:${sel_p}`);
+			if (document.getElementById("SelTitle").selectedIndex >= 39) {
+                sel_p = sel_p + 1450;
 			}
+            console.log(`After sel_titleidx:${sel_titleidx} sel_p:${sel_p}`);
 			changePage(sel_p);
 		}
 		function changePage(page) {
