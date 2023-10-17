@@ -15,26 +15,56 @@
 <link rel="stylesheet" href="https://svn12.github.io/youtube/link_P.css">
 <style type="text/css">
     @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-	button:focus{ background-color: #ff0;}
+	.container1 {
+		max-width: 100%;
+		/* position: absolute;
+		top: 4%;
+		left: 50%;
+		position: fixed;
+		transform: translate(-50%, 5%);
+		top: 0; */
+		/* left: 0;
+		right:0;
+		bottom:0;
+		margin: auto; */
+		justify-content: center;
+		display: flex;
+		
+	}
 	.form {
 		margin: 5px;
 		display: flex;
-		 font-size: 2rem;
+		font-size: 1.5rem;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 	.form-inline{
 		/* 
         display: inline;
         */
         width: 4em;
-
+		
         border-radius: 5px;
 		
 	}
+	iframe {
+		/*
+		position: absolute;
+		top: 16%;
+		left: 0%;
+		*/
+		max-width: 100%;
+		width:100%;
+		height: 90vh;
+		
+	}
+	button:focus{ background-color: #ff0;}
 	button {
 		margin: 0px;
-		display: inline;
         border-radius: 5px;
-		/* font-size: 16px; */
+		/* font-size: 16px; 
+		display: inline;
+		*/
 	}
 	
 	/* label {display:inline;} */
@@ -45,29 +75,7 @@
 		
 	}
 	
-	.container1 {
-		max-width: 100%;
-		/* position: absolute;
-		top: 0; */
-		position: fixed;
-		display: flex;
-		top: 4%;
-		left: 50%;
-		transform: translate(-50%, 5%);
-		/* left: 0;
-		right:0;
-		bottom:0;
-		margin: auto; */
-		
-	}
 	
-	iframe {
-		 position: absolute;
-		
-		top: 16%;
-		left: 0%;
-		max-width: 100%;
-	}
 	h1{
 		text-align: center;
 	}
@@ -131,8 +139,7 @@
 
 	</div>
 	<iframe id="pdf"
-		src="https://drive.google.com/file/d/1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA/preview"
-		style=" width:100% ;height:600px;"></iframe>
+		src="https://drive.google.com/file/d/1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA/preview"></iframe>
 	<!-- <iframe id="pdf"
 		src="https://docs.google.com/viewer?srcid=1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA&hl&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
 		style=" width:100% ;height:600px;"></iframe> -->
