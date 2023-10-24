@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,7 +33,22 @@
           id="location-input"
         />
       </div>
+      <form onclick="setWebtype()">
+        <label class="radio-inline">
+          <input type="radio" name="optradio" checked="" />New Web
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" />Iframe Web
+        </label>
+      </form>
     </div>
+    <iframe
+    src="https://www.youtube.com/embed/videoseries?list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo&si=k9QYLsFDc61LQlmX"
+    frameborder="0"
+    style="overflow: hidden; width: 60%; height: 500px; margin: 0 auto ;display:none"
+    name="iframe_a"
+    >
+  </iframe>
     <div class="main">
       <ul id="li_list"></ul>
     </div>
@@ -98,30 +112,35 @@
         display: flex;
       }
 
+      /*
       form {
         display: float;
       }
-
+      */
       input,
       select {
         margin: 0px;
-        display: inline;
         font-size: 18px;
       }
-
-      /* label {display:inline;} */
+      
+      /* label {display:inline;} 
+      display: inline;
+      */
       /* input {display:inline;} */
       button {
         font-size: 16px;
       }
 
-      #fixed-div {
+      #fixed-div1 {
+        display: flex;
+        margin: 10px auto;
+        /*  height: 60px;
         position: fixed;
         top: 100;
         left: 0;
         right: 0;
         overflow-x: auto;
-        /*  height: 60px;*/
+        */
       }
 
       table {
@@ -180,7 +199,7 @@
 
       input[type="text"] {
         background-color: #f1f1f1;
-        width: 100%;
+        width: 8rem;
       }
 
       input[type="submit"] {
@@ -219,6 +238,7 @@
         background-color: DodgerBlue !important;
         color: #ffffff;
       }
+      
     </style>
     <script>
       const RSheet2Json_APIV6 =
@@ -229,6 +249,7 @@
         Google_sht_R();
       });
       let All_data = [];
+      let webType='_blank'
       var input = document.getElementById("location-input");
       input.addEventListener("keydown", function (event) {
         // event.preventDefault();
@@ -276,6 +297,22 @@
         TableShow(res, "#myTable1");
         document.querySelector("#myTable1").style.display = "";
       }
+      function setWebtype(){
+        const uls = document.querySelectorAll('li a');
+        if(document.querySelector('input[name="optradio"]').checked){
+           webType = "_blank"
+           document.querySelector("iframe[name='iframe_a']").style.display =  "none"
+           
+          }else{
+            document.querySelector("iframe[name='iframe_a']").style.display = "block"
+            webType = "iframe_a"
+        }
+        for (const value of uls) {
+          value.setAttribute('target',webType);
+        }
+        //alink.setAttribute("target","iframe_a");
+
+      }
       async function testRD() {
         $('input[type="text"]').val("");
         document.getElementById("show").innerHTML = "";
@@ -286,16 +323,17 @@
         const shURL = Sel_url; //document.getElementById("select_url").value;
         const sheetTag = document.getElementById("select_sh").value; //'Test'
 
+        let uls = document.querySelector("#li_list");
+        uls.innerHTML = "";
         await RsheetData(shURL, sheetTag)
           .then((data) => {
-            console.log(data);
+            //console.log(data);
 
-            let uls = document.querySelector("#li_list");
-            uls.innerHTML = "";
             let liarr = data.shift();
 
             data.map((elem, index) => {
               alink = document.createElement("a");
+              alink.setAttribute("target", webType);
               li = document.createElement("li");
               const fragment = document.createDocumentFragment();
               if (elem[0] != "") {
@@ -308,8 +346,8 @@
                 uls.appendChild(li);
               }
             });
-            console.log(uls.innerHTML);
-
+            <!-- console.log(uls.innerHTML); -->
+            document.querySelector("iframe[name='iframe_a']").src=document.querySelector("li a").href 
             TableShow(data, "#myTable1");
             All_data = [...data];
             data.shift();
@@ -329,52 +367,53 @@
               arr,
               Query_Data,
               document.querySelector("#myTable1")
-            );
-            // autocomplete_CH(document.getElementById("location-input"), arr, Query_Data);
-          });
-      }
-
-      function GSname(shtUrl) {
-        var select_sh = $("#select_sh").val();
-        var a = {
-          sheetUrl: shtUrl,
-        };
-        $("#select_sh").empty();
-        // document.getElementById("query").style.display = "none";
-        document.getElementById("show").innerHTML = "";
-        $.get(
-          "https://script.google.com/macros/s/AKfycby2wc_EZaX2pcqBgCApZz5C2ZfYX09GNGJ6IFygOaxsTtYeBgnKmkpJqeNhAo8-A-pVnQ/exec",
-          a,
-          function (data) {
-            //	if (document.getElementById("select_url").value == a.sheetUrl) {
-            /*  $('#select_sh').append($('<option>', { 
-						value: '',
-						text : `---請選擇---- ${$("#select_url option:selected").text()} `
-					}));
-					*/
-            data = JSON.parse(data.replace(/\n/g, " "));
-
-            //  data = JSON.parse(data);
-            document.title = data[0].Sname;
-            $.each(data, function (i, item) {
-              $("#select_sh").append(
-                $("<option>", {
-                  value: item.Sname,
-                  text: item.Sname,
-                })
               );
+              // autocomplete_CH(document.getElementById("location-input"), arr, Query_Data);
             });
-            RGsheet();
-            //}
           }
-        );
-      }
-      function Google_sht_R() {
-        GSname(Sel_url);
-        document.getElementById("file_href").href = Sel_url;
-        // GSname(document.getElementById("select_url").value);
-        // document.getElementById("file_href").href = document.getElementById("select_url").value;
-      }
-    </script>
-  </body>
-</html>
+          
+          function GSname(shtUrl) {
+            var select_sh = $("#select_sh").val();
+            var a = {
+              sheetUrl: shtUrl,
+            };
+            $("#select_sh").empty();
+            // document.getElementById("query").style.display = "none";
+            document.getElementById("show").innerHTML = "";
+            $.get(
+              "https://script.google.com/macros/s/AKfycby2wc_EZaX2pcqBgCApZz5C2ZfYX09GNGJ6IFygOaxsTtYeBgnKmkpJqeNhAo8-A-pVnQ/exec",
+              a,
+              function (data) {
+                //	if (document.getElementById("select_url").value == a.sheetUrl) {
+                  /*  $('#select_sh').append($('<option>', { 
+                    value: '',
+                    text : `---請選擇---- ${$("#select_url option:selected").text()} `
+                  }));
+                  */
+                  data = JSON.parse(data.replace(/\n/g, " "));
+                  
+                  //  data = JSON.parse(data);
+                  document.title = data[0].Sname;
+                  $.each(data, function (i, item) {
+                    $("#select_sh").append(
+                      $("<option>", {
+                        value: item.Sname,
+                        text: item.Sname,
+                      })
+                      );
+                    });
+                    RGsheet();
+                    //}
+                  }
+                  );
+                }
+                function Google_sht_R() {
+                  GSname(Sel_url);
+                  document.getElementById("file_href").href = Sel_url;
+                  // GSname(document.getElementById("select_url").value);
+                  // document.getElementById("file_href").href = document.getElementById("select_url").value;
+                }
+              </script>
+            </body>
+            </html>
+            
