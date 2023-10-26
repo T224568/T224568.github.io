@@ -17,6 +17,16 @@
   </head>
 
   <body>
+    <iframe id="fixed-div2" class="split1"
+      src="https://www.youtube.com/embed/videoseries?list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo&si=k9QYLsFDc61LQlmX"
+      frameborder="0"
+      
+      name="iframe_a"
+    >
+    </iframe>
+    <div class="container split" >
+
+    
     <div id="fixed-div1">
       <a href="" id="file_href" target="_blank"></a>
       <!-- <a href="" id="file_href" target="_blank">File</a> -->
@@ -42,31 +52,72 @@
         </label>
       </form>
     </div>
-    <iframe
-    src="https://www.youtube.com/embed/videoseries?list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo&si=k9QYLsFDc61LQlmX"
-    frameborder="0"
-    style="overflow: hidden; width: 60%; height: 500px; margin: 0 auto ;display:none"
-    name="iframe_a"
-    >
-  </iframe>
     <div class="main">
       <ul id="li_list"></ul>
     </div>
-
     <div class="table-responsive table-striped">
       <p id="show"></p>
       <table id="myTable1" style="width: 90%" class="table"></table>
     </div>
+  </div>
 
     <style>
       @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
       /* @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"); 
-        */
+      */
       * {
         margin: 0;
         padding: 0;
         list-style: none;
         font-family: "Noto Sans TC", sans-serif;
+      }
+      .container11 {
+        top:40vh;
+        background-color: #ccc;
+      }
+      #fixed-div1 {
+        margin: 10px auto;
+        display: flex;
+        /*  height: 60px;
+        display: flex;
+        position:fixed;
+        overflow-x:hidden;
+        top: 40vh;
+        position: relative;
+        overflow: scroll;
+        height: 300px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        overflow-x: auto;
+        position: sticky;
+        overflow: hidden;
+        overflow-x: hidden;
+        */
+      }
+      iframe {
+        width:100%;
+        min-height: 40vh;
+        margin: 0 auto;
+        display: none;
+        top: 0em;
+        z-index: 1;
+        position: sticky;
+        background: #aa0;
+      }
+      
+      iframe::after{
+        content:'12331231231';
+        position: absolute;
+        top: -20px;
+        right: 10px;
+        display: flex;
+        color: rgb(80, 207, 142);
+
+        
+        
+        background-color: pink;
+        
       }
       .main {
         margin: auto;
@@ -108,9 +159,6 @@
         display: flex;
         color: rgb(80, 207, 142);
       }
-      .container {
-        display: flex;
-      }
 
       /*
       form {
@@ -122,25 +170,13 @@
         margin: 0px;
         font-size: 18px;
       }
-      
+
       /* label {display:inline;} 
       display: inline;
       */
       /* input {display:inline;} */
       button {
         font-size: 16px;
-      }
-
-      #fixed-div1 {
-        display: flex;
-        margin: 10px auto;
-        /*  height: 60px;
-        position: fixed;
-        top: 100;
-        left: 0;
-        right: 0;
-        overflow-x: auto;
-        */
       }
 
       table {
@@ -238,9 +274,23 @@
         background-color: DodgerBlue !important;
         color: #ffffff;
       }
-      
     </style>
     <script>
+      /*
+      javascript:javascript: (function () 
+      { var e = document.createElement('script'); 
+      e.setAttribute('src', 'https://nytimes.github.io/svg-crowbar/svg-crowbar.js');
+       e.setAttribute('class', 'svg-crowbar'); 
+       document.body.appendChild(e); })();
+      javascript:(function()
+       { function R(a){ona ="on"+a; 
+       if(window.addEventListener)
+        window.addEventListener(a, function (e)
+         { for(var n=e.originalTarget; n; n=n.parentNode) n[ona]=null; }, true); 
+         window[ona]=null; document[ona]=null; document.onkeydown=null;
+          if(document.body) document.body[ona]=null; document.body.oncopy=null; } 
+          R("contextmenu"); R("click"); R("mousedown"); R("mouseup"); R("selectstart");})()
+          */
       const RSheet2Json_APIV6 =
         "https://script.google.com/macros/s/AKfycbz-Q9lP3QXasQwyCT6pegSR7eu23AQUKTkd3iv5WcZLvoxIaH0m41_W0av5Ncc3LTwoQw/exec";
       // const Sel_url = 'https://docs.google.com/spreadsheets/u/8/d/1Zp89c0hKdDnzW23nMVL2URXrsULvu0MEnTdIjx6yIzw/edit?usp=sharing';
@@ -249,7 +299,7 @@
         Google_sht_R();
       });
       let All_data = [];
-      let webType='_blank'
+      let webType = "_blank";
       var input = document.getElementById("location-input");
       input.addEventListener("keydown", function (event) {
         // event.preventDefault();
@@ -297,21 +347,21 @@
         TableShow(res, "#myTable1");
         document.querySelector("#myTable1").style.display = "";
       }
-      function setWebtype(){
-        const uls = document.querySelectorAll('li a');
-        if(document.querySelector('input[name="optradio"]').checked){
-           webType = "_blank"
-           document.querySelector("iframe[name='iframe_a']").style.display =  "none"
-           
-          }else{
-            document.querySelector("iframe[name='iframe_a']").style.display = "block"
-            webType = "iframe_a"
+      function setWebtype() {
+        const uls = document.querySelectorAll("li a");
+        if (document.querySelector('input[name="optradio"]').checked) {
+          webType = "_blank";
+          document.querySelector("iframe[name='iframe_a']").style.display =
+            "none";
+        } else {
+          document.querySelector("iframe[name='iframe_a']").style.display =
+            "block";
+          webType = "iframe_a";
         }
         for (const value of uls) {
-          value.setAttribute('target',webType);
+          value.setAttribute("target", webType);
         }
         //alink.setAttribute("target","iframe_a");
-
       }
       async function testRD() {
         $('input[type="text"]').val("");
@@ -347,7 +397,8 @@
               }
             });
             <!-- console.log(uls.innerHTML); -->
-            document.querySelector("iframe[name='iframe_a']").src=document.querySelector("li a").href 
+            document.querySelector("iframe[name='iframe_a']").src =
+              document.querySelector("li a").href;
             TableShow(data, "#myTable1");
             All_data = [...data];
             data.shift();
@@ -367,53 +418,52 @@
               arr,
               Query_Data,
               document.querySelector("#myTable1")
-              );
-              // autocomplete_CH(document.getElementById("location-input"), arr, Query_Data);
-            });
-          }
-          
-          function GSname(shtUrl) {
-            var select_sh = $("#select_sh").val();
-            var a = {
-              sheetUrl: shtUrl,
-            };
-            $("#select_sh").empty();
-            // document.getElementById("query").style.display = "none";
-            document.getElementById("show").innerHTML = "";
-            $.get(
-              "https://script.google.com/macros/s/AKfycby2wc_EZaX2pcqBgCApZz5C2ZfYX09GNGJ6IFygOaxsTtYeBgnKmkpJqeNhAo8-A-pVnQ/exec",
-              a,
-              function (data) {
-                //	if (document.getElementById("select_url").value == a.sheetUrl) {
-                  /*  $('#select_sh').append($('<option>', { 
+            );
+            // autocomplete_CH(document.getElementById("location-input"), arr, Query_Data);
+          });
+      }
+
+      function GSname(shtUrl) {
+        var select_sh = $("#select_sh").val();
+        var a = {
+          sheetUrl: shtUrl,
+        };
+        $("#select_sh").empty();
+        // document.getElementById("query").style.display = "none";
+        document.getElementById("show").innerHTML = "";
+        $.get(
+          "https://script.google.com/macros/s/AKfycby2wc_EZaX2pcqBgCApZz5C2ZfYX09GNGJ6IFygOaxsTtYeBgnKmkpJqeNhAo8-A-pVnQ/exec",
+          a,
+          function (data) {
+            //	if (document.getElementById("select_url").value == a.sheetUrl) {
+            /*  $('#select_sh').append($('<option>', { 
                     value: '',
                     text : `---請選擇---- ${$("#select_url option:selected").text()} `
                   }));
                   */
-                  data = JSON.parse(data.replace(/\n/g, " "));
-                  
-                  //  data = JSON.parse(data);
-                  document.title = data[0].Sname;
-                  $.each(data, function (i, item) {
-                    $("#select_sh").append(
-                      $("<option>", {
-                        value: item.Sname,
-                        text: item.Sname,
-                      })
-                      );
-                    });
-                    RGsheet();
-                    //}
-                  }
-                  );
-                }
-                function Google_sht_R() {
-                  GSname(Sel_url);
-                  document.getElementById("file_href").href = Sel_url;
-                  // GSname(document.getElementById("select_url").value);
-                  // document.getElementById("file_href").href = document.getElementById("select_url").value;
-                }
-              </script>
-            </body>
-            </html>
-            
+            data = JSON.parse(data.replace(/\n/g, " "));
+
+            //  data = JSON.parse(data);
+            document.title = data[0].Sname;
+            $.each(data, function (i, item) {
+              $("#select_sh").append(
+                $("<option>", {
+                  value: item.Sname,
+                  text: item.Sname,
+                })
+              );
+            });
+            RGsheet();
+            //}
+          }
+        );
+      }
+      function Google_sht_R() {
+        GSname(Sel_url);
+        document.getElementById("file_href").href = Sel_url;
+        // GSname(document.getElementById("select_url").value);
+        // document.getElementById("file_href").href = document.getElementById("select_url").value;
+      }
+    </script>
+  </body>
+</html>
