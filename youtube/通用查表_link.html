@@ -398,7 +398,8 @@
             });
             <!-- console.log(uls.innerHTML); -->
             document.querySelector("iframe[name='iframe_a']").src =
-              document.querySelector("li a").href;
+            document.querySelector("li a").href;
+            data.unshift(liarr);
             TableShow(data, "#myTable1");
             All_data = [...data];
             data.shift();
@@ -444,7 +445,7 @@
             data = JSON.parse(data.replace(/\n/g, " "));
 
             //  data = JSON.parse(data);
-            document.title = data[0].Sname;
+            //document.title = data[0].Sname;
             $.each(data, function (i, item) {
               $("#select_sh").append(
                 $("<option>", {
