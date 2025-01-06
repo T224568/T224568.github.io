@@ -2,4 +2,5 @@
 .git/._*
 youtube/._*
 .tmp.*
+.gitignore
 .DS_Store
