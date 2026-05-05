@@ -141,8 +141,12 @@
 
 	</div>
 	<iframe id="pdf"
-		src="https://drive.google.com/file/d/1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA/preview"></iframe>
-	<!-- <iframe id="pdf"
+	
+	src="https://drive.google.com/file/d/1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA/preview">
+</iframe> 
+<!-- <iframe id="pdf"
+src="https://docs.google.com/viewer?srcid=1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA&pid=explorer&efh=false&a=v&chrome=false&embedded=true">
+src="https://docs.google.com/viewer?srcid=1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA&pid=explorer&efh=false&a=v&chrome=false&embedded=true">
 		src="https://docs.google.com/viewer?srcid=1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA&hl&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
 		style=" width:100% ;height:600px;"></iframe> -->
 
@@ -250,7 +254,12 @@
 		function SetPdf(fileId) {
 			let Old_fileId = document.getElementById("pdf").src.match(/[-\w]{25,}/);
 			if (fileId != Old_fileId) {
-				let file_src = `https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
+				//let file_src = `https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
+				//let file_src = `https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
+				let file_src = `https://drive.google.com/file/d/${fileId}/preview`;
+				//src="https://drive.google.com/file/d/1Of_5QRbOg2gNj7VqR2Me4g6GmlAMUTFA/preview"
+         		document.getElementById("pdf").src = file_src;
+				//let file_src = `https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
 				//   $("#iframe_div").empty();
 				//   $('<iframe>')   
 				//     .attr('id','pdf')// Creates the element
