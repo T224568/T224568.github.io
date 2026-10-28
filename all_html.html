@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>512G Antigravity | HTML 總目錄導覽清單</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0b0f19;
+      --bg-card: rgba(22, 30, 49, 0.75);
+      --bg-card-hover: rgba(33, 45, 74, 0.9);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-cyan: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-pink: #ec4899;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+      background-attachment: fixed;
+      padding-bottom: 60px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 32px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 9999px;
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .path-pill {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      font-size: 0.85rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-glass);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-accent);
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Controls Bar */
+    .controls-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-glass);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 1.1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .search-hint {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .control-selects {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .select-box {
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: #fff;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .view-toggles {
+      display: flex;
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 4px;
+    }
+
+    .view-btn {
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .view-btn.active {
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    /* Category Filter Pills */
+    .pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .pill.active {
+      background: var(--accent-cyan);
+      color: #0b0f19;
+      border-color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .pill-count {
+      font-size: 0.75rem;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .pill.active .pill-count {
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    /* Card Grid View */
+    .grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: var(--shadow-glass);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--cat-color, var(--accent-cyan));
+      opacity: 0.8;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .card-title-box {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-category-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-bottom: 6px;
+      color: var(--cat-color, var(--accent-cyan));
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .card-filename {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: var(--radius-sm);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-open {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-cyan);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-open:hover {
+      background: var(--accent-cyan);
+      color: #0b0f19;
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    /* Table / List View */
+    .list-view {
+      display: none;
+      width: 100%;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      box-shadow: var(--shadow-glass);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    th {
+      padding: 14px 18px;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    td {
+      padding: 12px 18px;
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    .tbl-title {
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tbl-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .tbl-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tbl-btn {
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .tbl-btn:hover {
+      background: var(--accent-cyan);
+      color: #0b0f19;
+      border-color: var(--accent-cyan);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      border: 1px solid var(--accent-cyan);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      font-size: 0.9rem;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-badge">
+        <span>⚡</span> Antigravity Storage Explorer
+      </div>
+      <div class="title-row">
+        <h1>/Volumes/512G/Antigravity HTML 總目錄</h1>
+      </div>
+      <div class="subtitle">
+        <span>目前檢視目錄：</span>
+        <span class="path-pill">/Volumes/512G/Antigravity</span>
+        <span>• 快速導覽與線上檢索入口</span>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📑</div>
+          <div>
+            <div class="stat-label">總 HTML 檔案</div>
+            <div class="stat-value" id="stat-total">95</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💾</div>
+          <div>
+            <div class="stat-label">檔案總體積</div>
+            <div class="stat-value">6.22 MB</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏷️</div>
+          <div>
+            <div class="stat-label">分類類別數</div>
+            <div class="stat-value">8 類</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🕒</div>
+          <div>
+            <div class="stat-label">最後掃描同步</div>
+            <div class="stat-value" style="font-size: 1rem;">2026-10-28</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Controls Panel -->
+    <section class="controls-panel">
+      <div class="search-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="輸入關鍵字搜尋檔名、標題、路徑或分類..." autocomplete="off">
+          <span class="search-hint">按 / 聚焦</span>
+        </div>
+        <div class="control-selects">
+          <select id="sortSelect" class="select-box">
+            <option value="mtime_desc">最新更新時間 (新 → 舊)</option>
+            <option value="mtime_asc">最早更新時間 (舊 → 新)</option>
+            <option value="title_asc">標題 / 檔名 (A → Z)</option>
+            <option value="size_desc">檔案大小 (大 → 小)</option>
+            <option value="size_asc">檔案大小 (小 → 大)</option>
+          </select>
+          <div class="view-toggles">
+            <button class="view-btn active" id="btnGrid" onclick="setViewMode('grid')">
+              <span>⊞</span> 卡片
+            </button>
+            <button class="view-btn" id="btnList" onclick="setViewMode('list')">
+              <span>☰</span> 清單
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pills Container -->
+      <div class="pills-bar" id="pillsBar"></div>
+    </section>
+
+    <!-- Card Grid View -->
+    <div class="grid-view" id="gridView"></div>
+
+    <!-- Table List View -->
+    <div class="list-view" id="listView">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 50px;">圖示</th>
+            <th>網頁標題與路徑</th>
+            <th style="width: 140px;">分類</th>
+            <th style="width: 110px;">檔案大小</th>
+            <th style="width: 160px;">最後修改</th>
+            <th style="width: 180px; text-align: right;">操作</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast">已複製路徑至剪貼簿！</div>
+
+  <script>
+    const items = [
+  {
+    "filename": "20261028_湖內停電醫療備案與租借手冊.html",
+    "title": "湖內停電 8 小時：長輩醫療器材應變與儲能租借／選購全手冊",
+    "desc": "",
+    "rel": "20261028_湖內停電醫療備案與租借手冊.html",
+    "full_path": "/Volumes/512G/Antigravity/20261028_湖內停電醫療備案與租借手冊.html",
+    "file_url": "file:///Volumes/512G/Antigravity/20261028_湖內停電醫療備案與租借手冊.html",
+    "size_bytes": 11203,
+    "size_str": "10.9 KB",
+    "mtime": "2026-10-28 20:55",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "台中日月潭悠閒三天兩夜_地圖導覽.html",
+    "title": "台中・日月潭 悠閒三天兩夜 互動地圖導覽",
+    "desc": "",
+    "rel": "台中日月潭悠閒三天兩夜_地圖導覽.html",
+    "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜_地圖導覽.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜_地圖導覽.html",
+    "size_bytes": 11678,
+    "size_str": "11.4 KB",
+    "mtime": "2026-10-28 11:10",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
+    "title": "台中・日月潭 悠閒三天兩夜行程指南（終極定案版）",
+    "desc": "",
+    "rel": "台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
+    "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
+    "size_bytes": 22195,
+    "size_str": "21.7 KB",
+    "mtime": "2026-10-28 11:09",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "台中龍井茄投段265地號_375租約土地處分全指南.html",
+    "title": "臺中市龍井區茄投段 265 / 266 地號：三七五租約雙筆農地處分全指南",
+    "desc": "",
+    "rel": "台中龍井茄投段265地號_375租約土地處分全指南.html",
+    "full_path": "/Volumes/512G/Antigravity/台中龍井茄投段265地號_375租約土地處分全指南.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中龍井茄投段265地號_375租約土地處分全指南.html",
+    "size_bytes": 6892,
+    "size_str": "6.7 KB",
+    "mtime": "2026-10-28 10:34",
+    "category": "時事財經",
+    "icon": "📈",
+    "color": "#eab308"
+  },
+  {
+    "filename": "台中行_完整版_地圖預覽.html",
+    "title": "台中行・精選景點與草悟道美食地圖",
+    "desc": "",
+    "rel": "台中行_完整版_地圖預覽.html",
+    "full_path": "/Volumes/512G/Antigravity/台中行_完整版_地圖預覽.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中行_完整版_地圖預覽.html",
+    "size_bytes": 19783,
+    "size_str": "19.3 KB",
+    "mtime": "2026-10-26 06:34",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "台中草悟道公益路CP值美食_地圖預覽.html",
+    "title": "台中草悟道・公益路高 CP 值美食地圖",
+    "desc": "",
+    "rel": "台中草悟道公益路CP值美食_地圖預覽.html",
+    "full_path": "/Volumes/512G/Antigravity/台中草悟道公益路CP值美食_地圖預覽.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中草悟道公益路CP值美食_地圖預覽.html",
+    "size_bytes": 10507,
+    "size_str": "10.3 KB",
+    "mtime": "2026-10-26 06:34",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "全電腦MP3音樂目錄清單_20261025.html",
+    "title": "全電腦 MP3 音樂目錄統計清單",
+    "desc": "",
+    "rel": "全電腦MP3音樂目錄清單_20261025.html",
+    "full_path": "/Volumes/512G/Antigravity/全電腦MP3音樂目錄清單_20261025.html",
+    "file_url": "file:///Volumes/512G/Antigravity/全電腦MP3音樂目錄清單_20261025.html",
+    "size_bytes": 302591,
+    "size_str": "295.5 KB",
+    "mtime": "2026-10-25 10:29",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
+    "title": "台中・日月潭 悠閒三天兩夜行程指南（雙人慢活・水蛙步道版）",
+    "desc": "",
+    "rel": "台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
+    "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
+    "size_bytes": 16680,
+    "size_str": "16.3 KB",
+    "mtime": "2026-10-24 11:40",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
+    "title": "台中・日月潭 悠閒三天兩夜行程指南（雙人慢活・水蛙步道版）",
+    "desc": "",
+    "rel": "台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
+    "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
+    "size_bytes": 16680,
+    "size_str": "16.3 KB",
+    "mtime": "2026-10-24 11:40",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261023.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-23)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261023.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261023.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261023.html",
+    "size_bytes": 7253,
+    "size_str": "7.1 KB",
+    "mtime": "2026-10-23 23:44",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "台中日月潭慢活行程與乘車指南_方案B.html",
+    "title": "台中・日月潭 悠閒三天兩夜（方案 B 慢活款＆全程公車指南）",
+    "desc": "",
+    "rel": "台中日月潭慢活行程與乘車指南_方案B.html",
+    "full_path": "/Volumes/512G/Antigravity/台中日月潭慢活行程與乘車指南_方案B.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中日月潭慢活行程與乘車指南_方案B.html",
+    "size_bytes": 22185,
+    "size_str": "21.7 KB",
+    "mtime": "2026-10-23 11:52",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "台中日月潭長輩悠閒三天兩夜行程表.html",
+    "title": "台中・日月潭 悠閒三天兩夜行程指南",
+    "desc": "",
+    "rel": "台中日月潭長輩悠閒三天兩夜行程表.html",
+    "full_path": "/Volumes/512G/Antigravity/台中日月潭長輩悠閒三天兩夜行程表.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台中日月潭長輩悠閒三天兩夜行程表.html",
+    "size_bytes": 17211,
+    "size_str": "16.8 KB",
+    "mtime": "2026-10-23 11:46",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261022.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-22)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261022.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261022.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261022.html",
+    "size_bytes": 6838,
+    "size_str": "6.7 KB",
+    "mtime": "2026-10-22 19:33",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "scenes_preview.html",
+    "title": "微波系廚神極致用法 - 白板動畫成片檢視台",
+    "desc": "",
+    "rel": "srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
+    "full_path": "/Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
+    "file_url": "file:///Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
+    "size_bytes": 4943,
+    "size_str": "4.8 KB",
+    "mtime": "2026-10-22 15:17",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "scenes_preview.html",
+    "title": "日本人有效除濕防霉 - 白板手繪動畫 (右側高級主標題 + 活潑鮮明章節標籤 + 說明字幕)",
+    "desc": "",
+    "rel": "srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
+    "full_path": "/Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
+    "file_url": "file:///Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
+    "size_bytes": 10659,
+    "size_str": "10.4 KB",
+    "mtime": "2026-10-22 14:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "preview.html",
+    "title": "SRT 白板动画 · 区域编辑器（无需服务器）",
+    "desc": "",
+    "rel": "srt-whiteboard-animation/assets/preview.html",
+    "full_path": "/Volumes/512G/Antigravity/srt-whiteboard-animation/assets/preview.html",
+    "file_url": "file:///Volumes/512G/Antigravity/srt-whiteboard-animation/assets/preview.html",
+    "size_bytes": 28411,
+    "size_str": "27.7 KB",
+    "mtime": "2026-10-22 12:57",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261021.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-21)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261021.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261021.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261021.html",
+    "size_bytes": 7788,
+    "size_str": "7.6 KB",
+    "mtime": "2026-10-21 21:51",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "index.html",
+    "title": "God's Eye View",
+    "desc": "",
+    "rel": "gods-eye-view/dist/index.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/dist/index.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/dist/index.html",
+    "size_bytes": 85117,
+    "size_str": "83.1 KB",
+    "mtime": "2026-10-21 11:57",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "index.html",
+    "title": "God's Eye View",
+    "desc": "",
+    "rel": "gods-eye-view/index.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/index.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/index.html",
+    "size_bytes": 2707,
+    "size_str": "2.6 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "cesium-render.html",
+    "title": "cesium-render",
+    "desc": "",
+    "rel": "gods-eye-view/tools/cesium-render.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/tools/cesium-render.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/tools/cesium-render.html",
+    "size_bytes": 11413,
+    "size_str": "11.1 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "display-controls.html",
+    "title": "display-controls",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/display-controls.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/display-controls.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/display-controls.html",
+    "size_bytes": 14186,
+    "size_str": "13.9 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "cockpit.html",
+    "title": "cockpit",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/cockpit.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/cockpit.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/cockpit.html",
+    "size_bytes": 22196,
+    "size_str": "21.7 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "provider-settings.html",
+    "title": "provider-settings",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/provider-settings.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/provider-settings.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/provider-settings.html",
+    "size_bytes": 2285,
+    "size_str": "2.2 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "context.html",
+    "title": "context",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/context.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/context.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/context.html",
+    "size_bytes": 18402,
+    "size_str": "18.0 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "hud-loading.html",
+    "title": "hud-loading",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/hud-loading.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/hud-loading.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/hud-loading.html",
+    "size_bytes": 475,
+    "size_str": "475 B",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "layer-panels.html",
+    "title": "layer-panels",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/layer-panels.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/layer-panels.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/layer-panels.html",
+    "size_bytes": 11792,
+    "size_str": "11.5 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "command-dock.html",
+    "title": "command-dock",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/command-dock.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/command-dock.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/command-dock.html",
+    "size_bytes": 6133,
+    "size_str": "6.0 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "welcome.html",
+    "title": "welcome",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/welcome.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/welcome.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/welcome.html",
+    "size_bytes": 3781,
+    "size_str": "3.7 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "scene-chrome.html",
+    "title": "scene-chrome",
+    "desc": "",
+    "rel": "gods-eye-view/src/ui/templates/scene-chrome.html",
+    "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/scene-chrome.html",
+    "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/scene-chrome.html",
+    "size_bytes": 3329,
+    "size_str": "3.3 KB",
+    "mtime": "2026-10-21 11:50",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261020.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-20)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261020.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261020.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261020.html",
+    "size_bytes": 7186,
+    "size_str": "7.0 KB",
+    "mtime": "2026-10-20 23:46",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
+    "title": "韓國瑜談反滲透法與民主本質 - 9:16 手機黑板教學資訊圖卡",
+    "desc": "",
+    "rel": "2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
+    "full_path": "/Volumes/512G/Antigravity/2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
+    "file_url": "file:///Volumes/512G/Antigravity/2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
+    "size_bytes": 3435,
+    "size_str": "3.4 KB",
+    "mtime": "2026-10-20 21:38",
+    "category": "時事財經",
+    "icon": "📈",
+    "color": "#eab308"
+  },
+  {
+    "filename": "南門教會直播片頭_v2.html",
+    "title": "南門教會台語禮拜直播片頭",
+    "desc": "",
+    "rel": "南門教會直播片頭_v2.html",
+    "full_path": "/Volumes/512G/Antigravity/南門教會直播片頭_v2.html",
+    "file_url": "file:///Volumes/512G/Antigravity/南門教會直播片頭_v2.html",
+    "size_bytes": 39863,
+    "size_str": "38.9 KB",
+    "mtime": "2026-10-20 08:22",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "南門教會華語禮拜直播片頭_v2.html",
+    "title": "南門教會華語禮拜直播片頭",
+    "desc": "",
+    "rel": "南門教會華語禮拜直播片頭_v2.html",
+    "full_path": "/Volumes/512G/Antigravity/南門教會華語禮拜直播片頭_v2.html",
+    "file_url": "file:///Volumes/512G/Antigravity/南門教會華語禮拜直播片頭_v2.html",
+    "size_bytes": 39720,
+    "size_str": "38.8 KB",
+    "mtime": "2026-10-20 08:22",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "早安圖主標題統計分析報告.html",
+    "title": "早安圖主標題統計分析報告",
+    "desc": "",
+    "rel": "早安圖主標題統計分析報告.html",
+    "full_path": "/Volumes/512G/Antigravity/早安圖主標題統計分析報告.html",
+    "file_url": "file:///Volumes/512G/Antigravity/早安圖主標題統計分析報告.html",
+    "size_bytes": 16835,
+    "size_str": "16.4 KB",
+    "mtime": "2026-10-20 07:28",
+    "category": "時事財經",
+    "icon": "📈",
+    "color": "#eab308"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261019.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-19)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261019.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261019.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261019.html",
+    "size_bytes": 7632,
+    "size_str": "7.5 KB",
+    "mtime": "2026-10-19 23:13",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "新屋室內櫃子_尺寸清冊.html",
+    "title": "新屋室內櫃子尺寸與位置對照手冊",
+    "desc": "",
+    "rel": "新屋室內櫃子_尺寸清冊.html",
+    "full_path": "/Volumes/512G/Antigravity/新屋室內櫃子_尺寸清冊.html",
+    "file_url": "file:///Volumes/512G/Antigravity/新屋室內櫃子_尺寸清冊.html",
+    "size_bytes": 53570,
+    "size_str": "52.3 KB",
+    "mtime": "2026-10-19 11:52",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261018.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-18)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261018.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261018.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261018.html",
+    "size_bytes": 4665,
+    "size_str": "4.6 KB",
+    "mtime": "2026-10-18 23:04",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261017.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要 (2026-10-17)",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261017.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261017.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261017.html",
+    "size_bytes": 6885,
+    "size_str": "6.7 KB",
+    "mtime": "2026-10-17 23:09",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "南門教會直播片頭_使用說明.html",
+    "title": "南門教會直播片頭 (v2) 與排版助手操作使用手冊",
+    "desc": "",
+    "rel": "南門教會直播片頭_使用說明.html",
+    "full_path": "/Volumes/512G/Antigravity/南門教會直播片頭_使用說明.html",
+    "file_url": "file:///Volumes/512G/Antigravity/南門教會直播片頭_使用說明.html",
+    "size_bytes": 10966,
+    "size_str": "10.7 KB",
+    "mtime": "2026-10-17 08:35",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "sermon_ppt_index.html",
+    "title": "南門教會主日排版助手",
+    "desc": "",
+    "rel": "sermon_ppt_index.html",
+    "full_path": "/Volumes/512G/Antigravity/sermon_ppt_index.html",
+    "file_url": "file:///Volumes/512G/Antigravity/sermon_ppt_index.html",
+    "size_bytes": 351438,
+    "size_str": "343.2 KB",
+    "mtime": "2026-10-17 08:27",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261016.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要（2026-10-16）",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261016.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261016.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261016.html",
+    "size_bytes": 7748,
+    "size_str": "7.6 KB",
+    "mtime": "2026-10-16 23:07",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "南門教會每週愛餐便當統計報告.html",
+    "title": "南門教會每週主日愛餐／便當準備統計報告",
+    "desc": "",
+    "rel": "南門教會每週愛餐便當統計報告.html",
+    "full_path": "/Volumes/512G/Antigravity/南門教會每週愛餐便當統計報告.html",
+    "file_url": "file:///Volumes/512G/Antigravity/南門教會每週愛餐便當統計報告.html",
+    "size_bytes": 30862,
+    "size_str": "30.1 KB",
+    "mtime": "2026-10-16 17:33",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "長鑫4F超車記憶體崩盤_圖卡預覽.html",
+    "title": "長鑫4F²超車三星？記憶體巨頭崩盤 9:16 手機圖卡畫廊",
+    "desc": "",
+    "rel": "長鑫4F超車記憶體崩盤_圖卡預覽.html",
+    "full_path": "/Volumes/512G/Antigravity/長鑫4F超車記憶體崩盤_圖卡預覽.html",
+    "file_url": "file:///Volumes/512G/Antigravity/長鑫4F超車記憶體崩盤_圖卡預覽.html",
+    "size_bytes": 4193,
+    "size_str": "4.1 KB",
+    "mtime": "2026-10-16 09:15",
+    "category": "時事財經",
+    "icon": "📈",
+    "color": "#eab308"
+  },
+  {
+    "filename": "品陽大苑社區LINE每日掃描摘要_20261015.html",
+    "title": "品陽大苑社區 LINE 每日掃描摘要（2026-10-15）",
+    "desc": "",
+    "rel": "品陽大苑社區LINE每日掃描摘要_20261015.html",
+    "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261015.html",
+    "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261015.html",
+    "size_bytes": 11142,
+    "size_str": "10.9 KB",
+    "mtime": "2026-10-15 23:19",
+    "category": "社區日常",
+    "icon": "🏢",
+    "color": "#3b82f6"
+  },
+  {
+    "filename": "台積電法說10大重點_圖卡預覽.html",
+    "title": "台積電 2026 Q3 法說會 10 大重點 9:16 手機圖卡畫廊",
+    "desc": "",
+    "rel": "台積電法說10大重點_圖卡預覽.html",
+    "full_path": "/Volumes/512G/Antigravity/台積電法說10大重點_圖卡預覽.html",
+    "file_url": "file:///Volumes/512G/Antigravity/台積電法說10大重點_圖卡預覽.html",
+    "size_bytes": 4636,
+    "size_str": "4.5 KB",
+    "mtime": "2026-10-15 16:50",
+    "category": "時事財經",
+    "icon": "📈",
+    "color": "#eab308"
+  },
+  {
+    "filename": "0_往伯利恆之路_首調簡譜總目錄.html",
+    "title": "《往伯利恆之路》全曲 1~8 首 SATB 首調簡譜總目錄",
+    "desc": "",
+    "rel": "0_往伯利恆之路_首調簡譜總目錄.html",
+    "full_path": "/Volumes/512G/Antigravity/0_往伯利恆之路_首調簡譜總目錄.html",
+    "file_url": "file:///Volumes/512G/Antigravity/0_往伯利恆之路_首調簡譜總目錄.html",
+    "size_bytes": 24589,
+    "size_str": "24.0 KB",
+    "mtime": "2026-10-15 08:37",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "1_往伯利恆之路_B_首調簡譜.html",
+    "title": "1. 往伯利恆之路 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "1_往伯利恆之路_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/1_往伯利恆之路_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/1_往伯利恆之路_B_首調簡譜.html",
+    "size_bytes": 5793,
+    "size_str": "5.7 KB",
+    "mtime": "2026-10-15 08:16",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "2_為咱之上帝開大路_B_首調簡譜.html",
+    "title": "2. 為咱之上帝開大路 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "2_為咱之上帝開大路_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_B_首調簡譜.html",
+    "size_bytes": 6430,
+    "size_str": "6.3 KB",
+    "mtime": "2026-10-15 08:16",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "8_基督降生伯利恆_T_首調簡譜.html",
+    "title": "8. 基督降生伯利恆 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "8_基督降生伯利恆_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_T_首調簡譜.html",
+    "size_bytes": 5929,
+    "size_str": "5.8 KB",
+    "mtime": "2026-10-15 08:15",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "8_基督降生伯利恆_B_首調簡譜.html",
+    "title": "8. 基督降生伯利恆 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "8_基督降生伯利恆_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_B_首調簡譜.html",
+    "size_bytes": 5921,
+    "size_str": "5.8 KB",
+    "mtime": "2026-10-15 08:15",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "7_旅程_T_首調簡譜.html",
+    "title": "7. 旅程 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "7_旅程_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/7_旅程_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/7_旅程_T_首調簡譜.html",
+    "size_bytes": 5393,
+    "size_str": "5.3 KB",
+    "mtime": "2026-10-15 08:13",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "7_旅程_B_首調簡譜.html",
+    "title": "7. 旅程 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "7_旅程_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/7_旅程_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/7_旅程_B_首調簡譜.html",
+    "size_bytes": 5386,
+    "size_str": "5.3 KB",
+    "mtime": "2026-10-15 08:13",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "6_牧者之搖籃詩_T_首調簡譜.html",
+    "title": "6. 牧者之搖籃詩 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "6_牧者之搖籃詩_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_T_首調簡譜.html",
+    "size_bytes": 5431,
+    "size_str": "5.3 KB",
+    "mtime": "2026-10-15 08:11",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "6_牧者之搖籃詩_B_首調簡譜.html",
+    "title": "6. 牧者之搖籃詩 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "6_牧者之搖籃詩_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_B_首調簡譜.html",
+    "size_bytes": 5423,
+    "size_str": "5.3 KB",
+    "mtime": "2026-10-15 08:11",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "5_佇曠野之牧者_T_首調簡譜.html",
+    "title": "5. 佇曠野之牧者 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "5_佇曠野之牧者_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_T_首調簡譜.html",
+    "size_bytes": 6217,
+    "size_str": "6.1 KB",
+    "mtime": "2026-10-15 08:10",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "5_佇曠野之牧者_B_首調簡譜.html",
+    "title": "5. 佇曠野之牧者 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "5_佇曠野之牧者_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_B_首調簡譜.html",
+    "size_bytes": 6207,
+    "size_str": "6.1 KB",
+    "mtime": "2026-10-15 08:10",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "4_伯利恆之聖嬰兒_B_首調簡譜.html",
+    "title": "4. 伯利恆之聖嬰兒 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "4_伯利恆之聖嬰兒_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_B_首調簡譜.html",
+    "size_bytes": 7097,
+    "size_str": "6.9 KB",
+    "mtime": "2026-10-15 08:08",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "4_伯利恆之聖嬰兒_T_首調簡譜.html",
+    "title": "4. 伯利恆之聖嬰兒 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "4_伯利恆之聖嬰兒_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_T_首調簡譜.html",
+    "size_bytes": 7104,
+    "size_str": "6.9 KB",
+    "mtime": "2026-10-15 08:08",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "3_請來彌賽亞_B_首調簡譜.html",
+    "title": "3. 請來，彌賽亞 (Bass 男低音) - 首調簡譜",
+    "desc": "",
+    "rel": "3_請來彌賽亞_B_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_B_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_B_首調簡譜.html",
+    "size_bytes": 12262,
+    "size_str": "12.0 KB",
+    "mtime": "2026-10-15 08:06",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "3_請來彌賽亞_T_首調簡譜.html",
+    "title": "3. 請來，彌賽亞 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "3_請來彌賽亞_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_T_首調簡譜.html",
+    "size_bytes": 12264,
+    "size_str": "12.0 KB",
+    "mtime": "2026-10-15 08:05",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "2_為咱之上帝開大路_T_首調簡譜.html",
+    "title": "2. 為咱之上帝開大路 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "2_為咱之上帝開大路_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_T_首調簡譜.html",
+    "size_bytes": 8921,
+    "size_str": "8.7 KB",
+    "mtime": "2026-10-15 08:02",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "8_基督降生伯利恆_A_首調簡譜.html",
+    "title": "8. 基督降生伯利恆 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "8_基督降生伯利恆_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_A_首調簡譜.html",
+    "size_bytes": 12724,
+    "size_str": "12.4 KB",
+    "mtime": "2026-10-15 08:01",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "1_往伯利恆之路_T_首調簡譜.html",
+    "title": "1. 往伯利恆之路 (Tenor 男高音) - 首調簡譜",
+    "desc": "",
+    "rel": "1_往伯利恆之路_T_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/1_往伯利恆之路_T_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/1_往伯利恆之路_T_首調簡譜.html",
+    "size_bytes": 9579,
+    "size_str": "9.4 KB",
+    "mtime": "2026-10-15 08:01",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "7_旅程_A_首調簡譜.html",
+    "title": "7. 旅程 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "7_旅程_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/7_旅程_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/7_旅程_A_首調簡譜.html",
+    "size_bytes": 6064,
+    "size_str": "5.9 KB",
+    "mtime": "2026-10-15 08:00",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "6_牧者之搖籃詩_A_首調簡譜.html",
+    "title": "6. 牧者之搖籃詩 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "6_牧者之搖籃詩_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_A_首調簡譜.html",
+    "size_bytes": 6702,
+    "size_str": "6.5 KB",
+    "mtime": "2026-10-15 07:58",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "5_佇曠野之牧者_A_首調簡譜.html",
+    "title": "5. 佇曠野之牧者 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "5_佇曠野之牧者_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_A_首調簡譜.html",
+    "size_bytes": 6746,
+    "size_str": "6.6 KB",
+    "mtime": "2026-10-15 07:57",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "4_伯利恆之聖嬰兒_A_首調簡譜.html",
+    "title": "4. 伯利恆之聖嬰兒 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "4_伯利恆之聖嬰兒_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_A_首調簡譜.html",
+    "size_bytes": 6835,
+    "size_str": "6.7 KB",
+    "mtime": "2026-10-15 07:55",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "3_請來彌賽亞_A_首調簡譜.html",
+    "title": "3. 請來，彌賽亞 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "3_請來彌賽亞_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_A_首調簡譜.html",
+    "size_bytes": 7369,
+    "size_str": "7.2 KB",
+    "mtime": "2026-10-15 07:54",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "2_為咱之上帝開大路_A_首調簡譜.html",
+    "title": "2. 為咱之上帝開大路 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "2_為咱之上帝開大路_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_A_首調簡譜.html",
+    "size_bytes": 8444,
+    "size_str": "8.2 KB",
+    "mtime": "2026-10-15 07:52",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "1_往伯利恆之路_A_首調簡譜.html",
+    "title": "1. 往伯利恆之路 (Alto 女低音) - 首調簡譜",
+    "desc": "",
+    "rel": "1_往伯利恆之路_A_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/1_往伯利恆之路_A_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/1_往伯利恆之路_A_首調簡譜.html",
+    "size_bytes": 8006,
+    "size_str": "7.8 KB",
+    "mtime": "2026-10-15 07:51",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "8_基督降生伯利恆_首調簡譜.html",
+    "title": "8. 基督降生伯利恆 - 首調簡譜",
+    "desc": "",
+    "rel": "8_基督降生伯利恆_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_首調簡譜.html",
+    "size_bytes": 13134,
+    "size_str": "12.8 KB",
+    "mtime": "2026-10-15 06:28",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "7_旅程_首調簡譜.html",
+    "title": "7. 旅程 (THE JOURNEY) - 首調簡譜 (Soprano)",
+    "desc": "",
+    "rel": "7_旅程_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/7_旅程_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/7_旅程_首調簡譜.html",
+    "size_bytes": 5950,
+    "size_str": "5.8 KB",
+    "mtime": "2026-10-15 06:23",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "6_牧者之搖籃詩_首調簡譜.html",
+    "title": "6. 牧者之搖籃詩 (SHEPHERDS' CRADLE SONG) - 首調簡譜 (Soprano)",
+    "desc": "",
+    "rel": "6_牧者之搖籃詩_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_首調簡譜.html",
+    "size_bytes": 5982,
+    "size_str": "5.8 KB",
+    "mtime": "2026-10-15 06:20",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "5_佇曠野之牧者_首調簡譜.html",
+    "title": "5. 佇曠野之牧者 (SHEPHERDS IN THE FIELD) - 首調簡譜 (Soprano)",
+    "desc": "",
+    "rel": "5_佇曠野之牧者_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_首調簡譜.html",
+    "size_bytes": 6462,
+    "size_str": "6.3 KB",
+    "mtime": "2026-10-15 06:17",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "4_伯利恆之聖嬰兒_首調簡譜.html",
+    "title": "伯利恆之聖嬰兒 (Holy Child of Bethlehem) - 首調簡譜",
+    "desc": "",
+    "rel": "4_伯利恆之聖嬰兒_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_首調簡譜.html",
+    "size_bytes": 11761,
+    "size_str": "11.5 KB",
+    "mtime": "2026-10-15 06:11",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "3_請來彌賽亞_首調簡譜.html",
+    "title": "請來，彌賽亞 (Come, Messiah!) - 首調簡譜",
+    "desc": "",
+    "rel": "3_請來彌賽亞_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_首調簡譜.html",
+    "size_bytes": 12155,
+    "size_str": "11.9 KB",
+    "mtime": "2026-10-15 06:01",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "2_為咱之上帝開大路_首調簡譜.html",
+    "title": "為咱之上帝開大路 (A Highway for Our God) - 首調簡譜",
+    "desc": "",
+    "rel": "2_為咱之上帝開大路_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_首調簡譜.html",
+    "size_bytes": 13130,
+    "size_str": "12.8 KB",
+    "mtime": "2026-10-15 05:55",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "往伯利恆之路_首調簡譜.html",
+    "title": "往伯利恆之路 (The Road to Bethlehem) - 首調簡譜",
+    "desc": "",
+    "rel": "往伯利恆之路_首調簡譜.html",
+    "full_path": "/Volumes/512G/Antigravity/往伯利恆之路_首調簡譜.html",
+    "file_url": "file:///Volumes/512G/Antigravity/往伯利恆之路_首調簡譜.html",
+    "size_bytes": 10266,
+    "size_str": "10.0 KB",
+    "mtime": "2026-10-15 05:40",
+    "category": "聖樂簡譜",
+    "icon": "🎵",
+    "color": "#ec4899"
+  },
+  {
+    "filename": "index.html",
+    "title": "運動部 500 揮汗有禮一鍵自動登入小工具",
+    "desc": "",
+    "rel": "sport500-auto-login/index.html",
+    "full_path": "/Volumes/512G/Antigravity/sport500-auto-login/index.html",
+    "file_url": "file:///Volumes/512G/Antigravity/sport500-auto-login/index.html",
+    "size_bytes": 5517,
+    "size_str": "5.4 KB",
+    "mtime": "2026-10-14 11:23",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "login_page.html",
+    "title": "會員登入｜揮汗有禮・全民動起來",
+    "desc": "",
+    "rel": "sport500-auto-login/login_page.html",
+    "full_path": "/Volumes/512G/Antigravity/sport500-auto-login/login_page.html",
+    "file_url": "file:///Volumes/512G/Antigravity/sport500-auto-login/login_page.html",
+    "size_bytes": 8978,
+    "size_str": "8.8 KB",
+    "mtime": "2026-10-14 11:14",
+    "category": "系統模組",
+    "icon": "⚙️",
+    "color": "#06b6d4"
+  },
+  {
+    "filename": "路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
+    "title": "路線二：湳仔溝至浮洲親水公園長程線 - GPX 路線軌跡地圖",
+    "desc": "",
+    "rel": "路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
+    "full_path": "/Volumes/512G/Antigravity/路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
+    "file_url": "file:///Volumes/512G/Antigravity/路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
+    "size_bytes": 18226,
+    "size_str": "17.8 KB",
+    "mtime": "2026-10-13 17:32",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "身分證_正反面合一_最新20260918.html",
+    "title": "身分證正反面預覽 (最新 2026-09-18)",
+    "desc": "",
+    "rel": "證件/身分證_正反面合一_最新20260918.html",
+    "full_path": "/Volumes/512G/Antigravity/證件/身分證_正反面合一_最新20260918.html",
+    "file_url": "file:///Volumes/512G/Antigravity/證件/身分證_正反面合一_最新20260918.html",
+    "size_bytes": 4777862,
+    "size_str": "4.56 MB",
+    "mtime": "2026-10-12 10:04",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "Exoskeleton_Guide.html",
+    "title": "AI 外骨骼與無動力輔具：採購與應用完全指南",
+    "desc": "",
+    "rel": "Exoskeleton_Guide.html",
+    "full_path": "/Volumes/512G/Antigravity/Exoskeleton_Guide.html",
+    "file_url": "file:///Volumes/512G/Antigravity/Exoskeleton_Guide.html",
+    "size_bytes": 4263,
+    "size_str": "4.2 KB",
+    "mtime": "2026-10-10 23:39",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
+    "title": "基隆海岸岬角健行一日遊攻略（免開車大眾運輸版）",
+    "desc": "",
+    "rel": "基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
+    "full_path": "/Volumes/512G/Antigravity/基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
+    "file_url": "file:///Volumes/512G/Antigravity/基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
+    "size_bytes": 10036,
+    "size_str": "9.8 KB",
+    "mtime": "2026-10-07 23:29",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "Yale_YDM3109A_一般模式操作設定指南.html",
+    "title": "Yale YDM3109A 智慧電子鎖一般模式操作設定指南",
+    "desc": "",
+    "rel": "Yale_YDM3109A_一般模式操作設定指南.html",
+    "full_path": "/Volumes/512G/Antigravity/Yale_YDM3109A_一般模式操作設定指南.html",
+    "file_url": "file:///Volumes/512G/Antigravity/Yale_YDM3109A_一般模式操作設定指南.html",
+    "size_bytes": 10424,
+    "size_str": "10.2 KB",
+    "mtime": "2026-10-07 20:38",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
+    "title": "大溪月眉・山豬湖・五甲生態健行攻略（鶯歌反向最佳走法與交通時刻指南）",
+    "desc": "",
+    "rel": "大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
+    "full_path": "/Volumes/512G/Antigravity/大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
+    "file_url": "file:///Volumes/512G/Antigravity/大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
+    "size_bytes": 9731,
+    "size_str": "9.5 KB",
+    "mtime": "2026-10-07 11:34",
+    "category": "健行旅遊",
+    "icon": "🗺️",
+    "color": "#10b981"
+  },
+  {
+    "filename": "20261004_每日靈修_普世價值沒有國界.html",
+    "title": "每日靈修 9:16 手機視覺圖卡 | 2026-10-04 普世價值沒有國界",
+    "desc": "",
+    "rel": "20261004_每日靈修_普世價值沒有國界.html",
+    "full_path": "/Volumes/512G/Antigravity/20261004_每日靈修_普世價值沒有國界.html",
+    "file_url": "file:///Volumes/512G/Antigravity/20261004_每日靈修_普世價值沒有國界.html",
+    "size_bytes": 5202,
+    "size_str": "5.1 KB",
+    "mtime": "2026-10-04 11:29",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "index.html",
+    "title": "每日靈修 9:16 手機視覺圖卡 | 2026-10-04 普世價值沒有國界",
+    "desc": "",
+    "rel": "output/devotion-cards/index.html",
+    "full_path": "/Volumes/512G/Antigravity/output/devotion-cards/index.html",
+    "file_url": "file:///Volumes/512G/Antigravity/output/devotion-cards/index.html",
+    "size_bytes": 5202,
+    "size_str": "5.1 KB",
+    "mtime": "2026-10-04 11:29",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
+    "title": "20260927 主日華語禮拜｜明月光｜杜崇信牧師",
+    "desc": "",
+    "rel": "20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
+    "full_path": "/Volumes/512G/Antigravity/20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
+    "file_url": "file:///Volumes/512G/Antigravity/20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
+    "size_bytes": 5496,
+    "size_str": "5.4 KB",
+    "mtime": "2026-10-04 10:50",
+    "category": "教會靈修",
+    "icon": "⛪",
+    "color": "#8b5cf6"
+  },
+  {
+    "filename": "步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
+    "title": "步行燃脂的底層邏輯：跨越這個時間點，內臟脂肪瘋狂掉！",
+    "desc": "",
+    "rel": "步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
+    "full_path": "/Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
+    "file_url": "file:///Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
+    "size_bytes": 10220,
+    "size_str": "10.0 KB",
+    "mtime": "2026-10-04 08:58",
+    "category": "健康運動",
+    "icon": "💪",
+    "color": "#f97316"
+  },
+  {
+    "filename": "步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
+    "title": "步行燃脂的底層邏輯：跨越這個時間點，內臟脂肪瘋狂掉！",
+    "desc": "",
+    "rel": "步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
+    "full_path": "/Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
+    "file_url": "file:///Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
+    "size_bytes": 9133,
+    "size_str": "8.9 KB",
+    "mtime": "2026-10-04 08:55",
+    "category": "健康運動",
+    "icon": "💪",
+    "color": "#f97316"
+  },
+  {
+    "filename": "深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
+    "title": "深蹲革命：隔天做效率增220%、停3秒深層肌增300%科學實踐指南",
+    "desc": "",
+    "rel": "深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
+    "full_path": "/Volumes/512G/Antigravity/深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
+    "file_url": "file:///Volumes/512G/Antigravity/深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
+    "size_bytes": 16438,
+    "size_str": "16.1 KB",
+    "mtime": "2026-10-04 08:32",
+    "category": "健康運動",
+    "icon": "💪",
+    "color": "#f97316"
+  },
+  {
+    "filename": "Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
+    "title": "Google Gemini 全能使用手冊：9大核心用法與17個功能實測（含自動化Tool工具操作說明）",
+    "desc": "",
+    "rel": "Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
+    "full_path": "/Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
+    "file_url": "file:///Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
+    "size_bytes": 20965,
+    "size_str": "20.5 KB",
+    "mtime": "2026-10-04 08:30",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
+    "title": "Google Gemini 全能使用手冊：9大核心用法與17個功能實測",
+    "desc": "",
+    "rel": "Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
+    "full_path": "/Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
+    "file_url": "file:///Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
+    "size_bytes": 17162,
+    "size_str": "16.8 KB",
+    "mtime": "2026-10-04 07:35",
+    "category": "生活手冊",
+    "icon": "📑",
+    "color": "#14b8a6"
+  },
+  {
+    "filename": "Retirement_Portfolio_Update_v2.html",
+    "title": "退休資產優化升級計畫",
+    "desc": "",
+    "rel": "Retirement_Portfolio_Update_v2.html",
+    "full_path": "/Volumes/512G/Antigravity/Retirement_Portfolio_Update_v2.html",
+    "file_url": "file:///Volumes/512G/Antigravity/Retirement_Portfolio_Update_v2.html",
+    "size_bytes": 4564,
+    "size_str": "4.5 KB",
+    "mtime": "2026-10-02 18:00",
+    "category": "時事財經",
+    "icon": "📈",
+    "color": "#eab308"
+  }
+];
+
+    let activeCategory = '全部';
+    let currentSearch = '';
+    let currentSort = 'mtime_desc';
+    let currentView = 'grid';
+
+    function init() {
+      renderPills();
+      bindEvents();
+      renderContent();
+    }
+
+    function getFilteredItems() {
+      return items.filter(item => {
+        const matchesCat = (activeCategory === '全部') || (item.category === activeCategory);
+        if (!matchesCat) return false;
+        if (!currentSearch) return true;
+        const q = currentSearch.toLowerCase();
+        return item.title.toLowerCase().includes(q) ||
+               item.filename.toLowerCase().includes(q) ||
+               item.rel.toLowerCase().includes(q) ||
+               item.category.toLowerCase().includes(q);
+      }).sort((a, b) => {
+        if (currentSort === 'mtime_desc') return b.mtime.localeCompare(a.mtime);
+        if (currentSort === 'mtime_asc') return a.mtime.localeCompare(b.mtime);
+        if (currentSort === 'title_asc') return a.title.localeCompare(b.title, 'zh-Hant');
+        if (currentSort === 'size_desc') return b.size_bytes - a.size_bytes;
+        if (currentSort === 'size_asc') return a.size_bytes - b.size_bytes;
+        return 0;
+      });
+    }
+
+    function renderPills() {
+      const catCounts = { '全部': items.length };
+      items.forEach(it => {
+        catCounts[it.category] = (catCounts[it.category] || 0) + 1;
+      });
+
+      const pillsBar = document.getElementById('pillsBar');
+      pillsBar.innerHTML = Object.keys(catCounts).map(cat => {
+        const isActive = cat === activeCategory ? 'active' : '';
+        return `
+          <div class="pill ${isActive}" onclick="setCategory('${cat}')">
+            <span>${cat}</span>
+            <span class="pill-count">${catCounts[cat]}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      renderPills();
+      renderContent();
+    }
+
+    function setViewMode(mode) {
+      currentView = mode;
+      document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+      document.getElementById('btnList').classList.toggle('active', mode === 'list');
+      document.getElementById('gridView').style.display = mode === 'grid' ? 'grid' : 'none';
+      document.getElementById('listView').style.display = mode === 'list' ? 'block' : 'none';
+      renderContent();
+    }
+
+    function renderContent() {
+      const list = getFilteredItems();
+      const gridView = document.getElementById('gridView');
+      const tableBody = document.getElementById('tableBody');
+
+      if (list.length === 0) {
+        const emptyHtml = `
+          <div class="empty-state">
+            <div class="empty-icon">🍃</div>
+            <div style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 6px;">找不到相符的 HTML 檔案</div>
+            <div style="font-size: 0.85rem; color: var(--text-dim);">請嘗試縮小關鍵字或重設分類篩選</div>
+          </div>
+        `;
+        if (currentView === 'grid') {
+          gridView.innerHTML = emptyHtml;
+        } else {
+          tableBody.innerHTML = `<tr><td colspan="6">${emptyHtml}</td></tr>`;
+        }
+        return;
+      }
+
+      if (currentView === 'grid') {
+        gridView.innerHTML = list.map(item => {
+          return `
+            <div class="card" style="--cat-color: ${item.color}">
+              <div>
+                <div class="card-top">
+                  <div class="card-icon">${item.icon}</div>
+                  <div class="card-title-box">
+                    <span class="card-category-tag">${escapeHtml(item.category)}</span>
+                    <div class="card-title" title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</div>
+                    <div class="card-filename">${escapeHtml(item.rel)}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="card-meta">
+                  <span>📦 ${item.size_str}</span>
+                  <span>🕒 ${item.mtime}</span>
+                </div>
+                <div class="card-actions" style="margin-top: 12px;">
+                  <a href="${item.file_url}" target="_blank" class="btn btn-open">
+                    <span>開啟檔案</span> ↗
+                  </a>
+                  <button onclick="copyToClipboard('${escapeJs(item.full_path)}', '已複製本地絕對路徑')" class="btn btn-copy" title="複製本地路徑">
+                    <span>路徑</span> 📋
+                  </button>
+                  <button onclick="copyToClipboard('${escapeJs(item.file_url)}', '已複製 file:// 連結')" class="btn btn-copy" title="複製 file:// 連結">
+                    <span>URL</span> 🔗
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } else {
+        tableBody.innerHTML = list.map(item => {
+          return `
+            <tr>
+              <td style="font-size: 1.3rem;">${item.icon}</td>
+              <td>
+                <div class="tbl-title">${escapeHtml(item.title)}</div>
+                <div class="tbl-path">${escapeHtml(item.rel)}</div>
+              </td>
+              <td>
+                <span class="card-category-tag" style="--cat-color: ${item.color}">${escapeHtml(item.category)}</span>
+              </td>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted);">${item.size_str}</td>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted);">${item.mtime}</td>
+              <td>
+                <div class="tbl-actions" style="justify-content: flex-end;">
+                  <a href="${item.file_url}" target="_blank" class="tbl-btn" style="color: var(--accent-cyan);">開啟 ↗</a>
+                  <button onclick="copyToClipboard('${escapeJs(item.full_path)}', '已複製路徑')" class="tbl-btn">路徑 📋</button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    function bindEvents() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value.trim();
+        renderContent();
+      });
+
+      document.getElementById('sortSelect').addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        renderContent();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+          searchInput.value = '';
+          currentSearch = '';
+          searchInput.blur();
+          renderContent();
+        }
+      });
+    }
+
+    function copyToClipboard(text, msg) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(msg || '已成功複製至剪貼簿！');
+      }).catch(() => {
+        showToast('複製失敗');
+      });
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    function escapeJs(str) {
+      if (!str) return '';
+      return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
