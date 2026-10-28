@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLUETTI EB3A vs AC70P 停電備援與設備累加用電評估</title>
+<style>
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #eff6ff;
+    --accent: #0284c7;
+    --text: #1f2937;
+    --text-muted: #4b5563;
+    --border: #e2e8f0;
+    --success: #059669;
+    --warning: #b45309;
+    --danger: #dc2626;
+    --bg-light: #f8fafc;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    color: var(--text);
+    background-color: #f1f5f9;
+    margin: 0;
+    padding: 16px;
+    line-height: 1.45;
+    font-size: 13px;
+  }
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 22px 26px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 20px;
+    color: var(--primary);
+    margin: 0;
+  }
+  .header-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 11.5px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .section-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 10px 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 3px solid var(--accent);
+    padding-left: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 11px;
+    font-size: 12px;
+  }
+  th, td {
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background: #fafafa;
+  }
+  .highlight-row {
+    background: #eff6ff !important;
+    font-weight: 600;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 10px;
+    margin-bottom: 11px;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 9px 12px;
+    background: var(--bg-light);
+  }
+  .card h4 {
+    margin: 0 0 5px 0;
+    font-size: 13px;
+    color: var(--primary);
+  }
+  .alert-box {
+    background: #fef2f2;
+    border-left: 3px solid var(--danger);
+    padding: 8px 12px;
+    font-size: 11.8px;
+    margin-bottom: 10px;
+    border-radius: 0 4px 4px 0;
+  }
+  .alert-box strong {
+    color: var(--danger);
+  }
+  .subsidy-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    color: #94a3b8;
+    border-top: 1px solid var(--border);
+    padding-top: 6px;
+    margin-top: 8px;
+  }
+  @media print {
+    body {
+      background: #ffffff;
+      padding: 0;
+    }
+    .page {
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="header">
+    <h1>BLUETTI EB3A vs AC70P 停電備援與設備用電評估</h1>
+    <div class="header-badge">8小時停電實戰評估・單頁手冊</div>
+  </div>
+
+  <div class="section-title">一、 兩款儲能電源核心規格與價格對照</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%;">比較項目</th>
+        <th style="width:30%;">BLUETTI EB3A（小鋼砲）</th>
+        <th style="width:30%;">BLUETTI AC70P（主力款）</th>
+        <th>關鍵差異說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td><strong>市面特惠價格</strong></td>
+        <td><strong>約 $6,990 ~ $7,990</strong></td>
+        <td><strong>約 $16,900</strong></td>
+        <td>價差近 1 萬元，預算考量分水嶺</td>
+      </tr>
+      <tr>
+        <td><strong>電池容量</strong></td>
+        <td><strong>268 Wh</strong></td>
+        <td><strong>864 Wh</strong> (約 EB3A 的 3.2 倍)</td>
+        <td>決定多台設備能否全天同時開</td>
+      </tr>
+      <tr>
+        <td><strong>輸出功率 / 電芯</strong></td>
+        <td>600W / 磷酸鐵鋰 (2500+循環)</td>
+        <td>1000W / 磷酸鐵鋰 (3500+循環)</td>
+        <td>皆具備高安全性，壽命長達 8~10 年</td>
+      </tr>
+      <tr>
+        <td><strong>機身重量 / 保固</strong></td>
+        <td>4.6 kg (單手輕鬆提) / 2 年保固</td>
+        <td>10.7 kg (雙手搬運) / 5 年保固</td>
+        <td>EB3A 輕巧好移；AC70P 定點備援且保固長</td>
+      </tr>
+      <tr>
+        <td><strong>不斷電 (UPS)</strong></td>
+        <td>&lt;20ms 瞬間切換</td>
+        <td>&lt;20ms 瞬間切換</td>
+        <td>平時當延長線插著，停電自動無感接軌</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">二、 核心問題：設備耗電是「1+2+3+4 累加」還是單獨一項？</div>
+  <div class="card-grid">
+    <div class="card">
+      <h4>⚡ 停電實務是【1 + 2 + 3 累加運作】</h4>
+      <div style="font-size:11.8px; line-height:1.5;">
+        • <strong>抽痰機</strong>：約 70W（有痰才抽每次 30 秒，消耗極微）<br>
+        • <strong>氣墊床幫浦</strong>：約 12W（長時間連續運轉）<br>
+        • <strong>直流 DC 電風扇</strong>：約 15W（長時間散熱）<br>
+        ➔ <strong>持續負載合計約 27W ~ 30W</strong>：<br>
+        • <strong>EB3A (268Wh)</strong>：約可同時撐 <strong>7.3 小時</strong>（應付 8 小時停電極為緊繃）。<br>
+        • <strong>AC70P (864Wh)</strong>：可同時撐 <strong>24 小時以上</strong>（綽綽有餘，零焦慮）。
+      </div>
+    </div>
+    <div class="card">
+      <h4>🎯 決策建議總結</h4>
+      <div style="font-size:11.8px; line-height:1.5;">
+        • <strong>選 EB3A ($6,990)</strong>：<br>
+        預算有限、只要求停電時<strong>抽痰機絕對有電</strong>，風扇/氣墊床僅短暫輪流插。<br><br>
+        • <strong>選 AC70P ($16,900) 👑</strong>：<br>
+        希望停電 8 小時期間，<strong>抽痰機＋氣墊床＋電風扇全開不關機</strong>，一次到位且享 5 年保固。
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <strong>⚠️ 致命地雷提醒（第 4 項：氧氣製造機 350W）：</strong><br>
+    製氧機是高功耗連續運轉設備，<strong>絕對不能用中小型儲能電源長時間推</strong>（EB3A 僅撐 40 分鐘，AC70P 也只能撐 2 小時）。<br>
+    👉 <strong>正確停電 SOP：</strong>停電期間請直接切換至<strong>「氧氣鋼瓶」</strong>（純機械物理出氣、零耗電）；儲能電源專門留給抽痰機、氣墊床與風扇。
+  </div>
+
+  <div class="subsidy-box">
+    <strong>💡 台電電費補助計算：是【1 ＋ 2 ＋ 3 完全累計相加】！</strong><br>
+    台電補助並非二選一，只要經核定且實際在家使用，各項度數直接合併累加於每期電費單：<br>
+    <strong>氧氣製造機 (238度) ＋ 抽痰機 (6度) ＋ 氣墊床 (8度) ＝ 每月折抵 252 度（每期 2 個月直接少扣 504 度電費）</strong>。
+  </div>
+
+  <div class="footer">
+    <span>產出日期：2026 年 10 月 29 日</span>
+    <span>BLUETTI 儲能備援與居家醫療電費整合指南</span>
+  </div>
+</div>
+
+</body>
+</html>
