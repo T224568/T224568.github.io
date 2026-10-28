@@ -463,34 +463,9 @@
       font-size: 0.8rem;
       color: var(--text-dim);
       font-family: 'JetBrains Mono', monospace;
-      padding: 7px 12px;
-      background: rgba(0, 0, 0, 0.28);
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.25);
       border-radius: var(--radius-sm);
-    }
-
-    /* 紅框處的短網址膠囊按鈕 */
-    .btn-share-pill {
-      padding: 3px 10px;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      font-family: inherit;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.3) 100%);
-      border: 1px solid rgba(16, 185, 129, 0.45);
-      color: #6ee7b7;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .btn-share-pill:hover {
-      background: #10b981;
-      color: #0b0f19;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
-      transform: scale(1.03);
     }
 
     .card-actions {
@@ -989,9 +964,9 @@
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_2026Q4.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_2026Q4.html",
     "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_2026Q4.html",
-    "gdrive_url": "https://drive.google.com/drive/search?q=%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_2026Q4.html",
-    "gdrive_id": "",
-    "has_direct_gdrive": false,
+    "gdrive_url": "https://drive.google.com/file/d/1GY3J1AmnpAKatFW9aI2GzrQ4mOAltijn/view",
+    "gdrive_id": "1GY3J1AmnpAKatFW9aI2GzrQ4mOAltijn",
+    "has_direct_gdrive": true,
     "size_bytes": 66252,
     "size_str": "64.7 KB",
     "mtime": "2026-10-29 07:12",
@@ -2837,9 +2812,6 @@
               <div>
                 <div class="card-meta">
                   <span>📦 ${item.size_str}</span>
-                  <button onclick="copyShareText(event, ${itemIndex})" class="btn-share-pill" title="一鍵轉成短網址加標題到剪貼簿，方便轉發 LINE">
-                    <span>🔗 轉發短網址</span>
-                  </button>
                   <span>🕒 ${item.mtime}</span>
                 </div>
                 <div class="card-actions" style="margin-top: 12px;">
