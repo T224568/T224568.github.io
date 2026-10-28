@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>512G Antigravity | HTML 總目錄 (支援 HTML Viewer 線上渲染)</title>
+  <title>512G Antigravity | HTML 總目錄 (支援短網址一鍵轉發)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
       background-image: 
         radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
       background-attachment: fixed;
       padding-bottom: 60px;
     }
@@ -55,7 +55,6 @@
       padding: 32px 24px;
     }
 
-    /* Header */
     header {
       margin-bottom: 32px;
     }
@@ -77,6 +76,19 @@
       border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: 9999px;
       color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .header-badge-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 9999px;
+      color: #6ee7b7;
       font-size: 0.85rem;
       font-weight: 600;
     }
@@ -447,24 +459,50 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 8px;
       font-size: 0.8rem;
       color: var(--text-dim);
       font-family: 'JetBrains Mono', monospace;
-      padding: 8px 12px;
-      background: rgba(0, 0, 0, 0.25);
+      padding: 7px 12px;
+      background: rgba(0, 0, 0, 0.28);
       border-radius: var(--radius-sm);
+    }
+
+    /* 紅框處的短網址膠囊按鈕 */
+    .btn-share-pill {
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: inherit;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.3) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-share-pill:hover {
+      background: #10b981;
+      color: #0b0f19;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+      transform: scale(1.03);
     }
 
     .card-actions {
       display: flex;
-      gap: 8px;
+      gap: 7px;
       flex-wrap: wrap;
     }
 
     .btn {
-      padding: 9px 12px;
+      padding: 8px 11px;
       border-radius: var(--radius-md);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-decoration: none;
       display: inline-flex;
@@ -477,7 +515,7 @@
     }
 
     .btn-viewer {
-      flex: 1.2;
+      flex: 1.1;
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: #ffffff;
       border-color: rgba(56, 189, 248, 0.4);
@@ -491,7 +529,7 @@
     }
 
     .btn-preview {
-      flex: 1;
+      flex: 0.9;
       background: rgba(255, 255, 255, 0.08);
       color: #e2e8f0;
       border-color: var(--border-subtle);
@@ -502,8 +540,23 @@
       color: #fff;
     }
 
+    .btn-share-main {
+      flex: 1.1;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.35) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #a7f3d0;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+    }
+
+    .btn-share-main:hover {
+      background: #10b981;
+      color: #0b0f19;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+      transform: translateY(-1px);
+    }
+
     .btn-gdrive {
-      flex: 1;
+      flex: 0.8;
       background: rgba(66, 133, 244, 0.15);
       color: #93c5fd;
       border-color: rgba(66, 133, 244, 0.35);
@@ -519,7 +572,7 @@
       color: var(--text-muted);
       border-color: var(--border-subtle);
       flex: 0 0 auto;
-      padding: 9px 10px;
+      padding: 8px 10px;
     }
 
     .btn-copy:hover {
@@ -608,6 +661,18 @@
       white-space: nowrap;
     }
 
+    .tbl-btn-share {
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.4);
+      font-weight: 600;
+    }
+
+    .tbl-btn-share:hover {
+      background: #10b981;
+      color: #0b0f19;
+    }
+
     .tbl-btn-viewer {
       background: rgba(56, 189, 248, 0.18);
       color: var(--accent-cyan);
@@ -675,7 +740,7 @@
     .modal-header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
     }
 
@@ -688,11 +753,25 @@
       font-size: 0.82rem;
       text-decoration: none;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       transition: all 0.2s;
     }
 
     .modal-act-btn:hover {
       background: var(--accent-cyan);
+      color: #0b0f19;
+    }
+
+    .modal-act-share {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    .modal-act-share:hover {
+      background: #10b981;
       color: #0b0f19;
     }
 
@@ -729,18 +808,25 @@
       background: #0f172a;
       border: 1px solid var(--accent-cyan);
       color: #fff;
-      padding: 12px 20px;
+      padding: 14px 22px;
       border-radius: var(--radius-md);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      font-size: 0.92rem;
       z-index: 3000;
       opacity: 0;
       transform: translateY(20px);
       pointer-events: none;
       transition: all 0.3s ease;
       display: flex;
-      align-items: center;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      max-width: 450px;
+      line-height: 1.45;
+    }
+
+    .toast.toast-success {
+      border-color: #10b981;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
     }
 
     .toast.show {
@@ -770,6 +856,9 @@
         <div class="header-badge">
           <span>⚡</span> HTML Viewer 網頁原生渲染
         </div>
+        <div class="header-badge-share">
+          <span>🔗</span> 支援一鍵短網址加標題轉發
+        </div>
         <a href="https://drive.google.com/drive/folders/1TNgUnWeb1dwXLaj10brnJNgsGftVnV_r" target="_blank" class="gdrive-link-badge">
           <span>☁️</span> 開啟 Google Drive 雲端資料夾 ↗
         </a>
@@ -780,7 +869,7 @@
       <div class="subtitle">
         <span>全量 HTML 索引：</span>
         <span class="path-pill">/Volumes/512G/Antigravity</span>
-        <span>• 點擊【HTML Viewer 開啟】或【👁️ 即時預覽】直接以網頁渲染呈現，不顯示原始碼！</span>
+        <span>• 點擊【🔗 轉發】自動生成短網址並將「短網址 標題」複製到剪貼簿，直接貼到 LINE 轉發！</span>
       </div>
 
       <!-- Stats Grid -->
@@ -793,10 +882,10 @@
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">🌐</div>
+          <div class="stat-icon">🔗</div>
           <div>
-            <div class="stat-label">HTML Viewer 渲染</div>
-            <div class="stat-value" style="color: #38bdf8;">100% 支援</div>
+            <div class="stat-label">短網址轉發</div>
+            <div class="stat-value" style="color: #6ee7b7;">一鍵複製</div>
           </div>
         </div>
         <div class="stat-card">
@@ -857,10 +946,10 @@
           <tr>
             <th style="width: 50px;">圖示</th>
             <th>網頁標題與路徑</th>
-            <th style="width: 130px;">分類</th>
-            <th style="width: 100px;">大小</th>
+            <th style="width: 120px;">分類</th>
+            <th style="width: 90px;">大小</th>
             <th style="width: 140px;">最後修改</th>
-            <th style="width: 260px; text-align: right;">網頁渲染 / 預覽 / 雲端</th>
+            <th style="width: 320px; text-align: right;">轉發 / 預覽 / 網頁 / 雲端</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -877,6 +966,9 @@
           <span>👁️ HTML Viewer 即時預覽</span>
         </div>
         <div class="modal-header-actions">
+          <button id="modalShareBtn" class="modal-act-btn modal-act-share" title="轉成短網址加標題到剪貼簿">
+            <span>🔗 轉發短網址</span>
+          </button>
           <a href="#" target="_blank" id="modalOpenExternal" class="modal-act-btn">新分頁開啟 ↗</a>
           <button onclick="closeViewer()" class="modal-close-btn" title="關閉預覽 (Esc)">×</button>
         </div>
@@ -2605,6 +2697,10 @@
     let currentSearch = '';
     let currentSort = 'mtime_desc';
     let currentView = 'grid';
+    let currentModalItem = null;
+
+    // 短網址快取字典：避免重覆請求 API
+    const shortUrlCache = {};
 
     function init() {
       renderPills();
@@ -2688,6 +2784,7 @@
 
       if (currentView === 'grid') {
         gridView.innerHTML = list.map(item => {
+          const itemIndex = items.indexOf(item);
           return `
             <div class="card" style="--cat-color: ${item.color}">
               <div>
@@ -2704,19 +2801,25 @@
               <div>
                 <div class="card-meta">
                   <span>📦 ${item.size_str}</span>
+                  <button onclick="copyShareText(event, ${itemIndex})" class="btn-share-pill" title="一鍵轉成短網址加標題到剪貼簿，方便轉發 LINE">
+                    <span>🔗 轉發短網址</span>
+                  </button>
                   <span>🕒 ${item.mtime}</span>
                 </div>
                 <div class="card-actions" style="margin-top: 12px;">
                   <a href="${item.online_url}" target="_blank" class="btn btn-viewer" title="直接以原生 HTML 渲染模式開啟">
                     <span>🌐 網頁開啟</span> ↗
                   </a>
-                  <button onclick="openViewer('${escapeJs(item.online_url)}', '${escapeJs(item.title)}')" class="btn btn-preview" title="在頁面內即時彈出 HTML Viewer 預覽">
+                  <button onclick="openViewer('${escapeJs(item.online_url)}', ${itemIndex})" class="btn btn-preview" title="在頁面內即時彈出 HTML Viewer 預覽">
                     <span>👁️ 預覽</span>
+                  </button>
+                  <button onclick="copyShareText(event, ${itemIndex})" class="btn btn-share-main" title="轉成短網址加標題到剪貼簿">
+                    <span>🔗 轉發</span>
                   </button>
                   <a href="${item.gdrive_url}" target="_blank" class="btn btn-gdrive" title="Google Drive 雲端檢視">
                     <span>☁️ 雲端</span>
                   </a>
-                  <button onclick="copyToClipboard('${escapeJs(item.full_path)}', '已複製本地絕對路徑')" class="btn btn-copy" title="複製 512G 本地路徑">
+                  <button onclick="copyToClipboard('${escapeJs(item.full_path)}', '已複製 512G 本地絕對路徑')" class="btn btn-copy" title="複製 512G 本地路徑">
                     <span>📋</span>
                   </button>
                 </div>
@@ -2726,6 +2829,7 @@
         }).join('');
       } else {
         tableBody.innerHTML = list.map(item => {
+          const itemIndex = items.indexOf(item);
           return `
             <tr>
               <td style="font-size: 1.3rem;">${item.icon}</td>
@@ -2740,8 +2844,9 @@
               <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted);">${item.mtime}</td>
               <td>
                 <div class="tbl-actions" style="justify-content: flex-end;">
+                  <button onclick="copyShareText(event, ${itemIndex})" class="tbl-btn tbl-btn-share" title="複製短網址與標題">🔗 轉發</button>
                   <a href="${item.online_url}" target="_blank" class="tbl-btn tbl-btn-viewer">🌐 網頁 ↗</a>
-                  <button onclick="openViewer('${escapeJs(item.online_url)}', '${escapeJs(item.title)}')" class="tbl-btn">👁️ 預覽</button>
+                  <button onclick="openViewer('${escapeJs(item.online_url)}', ${itemIndex})" class="tbl-btn">👁️ 預覽</button>
                   <a href="${item.gdrive_url}" target="_blank" class="tbl-btn" style="color: #93c5fd;">☁️ 雲端</a>
                 </div>
               </td>
@@ -2751,15 +2856,89 @@
       }
     }
 
-    function openViewer(url, title) {
+    // 核心短網址生成函式 (支援多重 API 容錯備援)
+    async function fetchShortUrl(longUrl) {
+      if (shortUrlCache[longUrl]) {
+        return shortUrlCache[longUrl];
+      }
+
+      // 1. 首選 is.gd (原生開放 CORS)
+      try {
+        const resp = await fetch(`https://is.gd/create.php?format=json&url=${encodeURIComponent(longUrl)}`);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && data.shorturl) {
+            shortUrlCache[longUrl] = data.shorturl;
+            return data.shorturl;
+          }
+        }
+      } catch (e) {
+        console.warn('is.gd failed, fallback to v.gd', e);
+      }
+
+      // 2. 備援 v.gd (同團隊開放 CORS)
+      try {
+        const resp2 = await fetch(`https://v.gd/create.php?format=json&url=${encodeURIComponent(longUrl)}`);
+        if (resp2.ok) {
+          const data2 = await resp2.json();
+          if (data2 && data2.shorturl) {
+            shortUrlCache[longUrl] = data2.shorturl;
+            return data2.shorturl;
+          }
+        }
+      } catch (e2) {
+        console.warn('v.gd failed', e2);
+      }
+
+      // 3. 兜底回傳原始線上網址
+      return longUrl;
+    }
+
+    // 一鍵轉成短網址加標題並複製到剪貼簿
+    async function copyShareText(event, itemIndex) {
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>⏳ 縮網址中...</span>';
+      btn.disabled = true;
+
+      const item = items[itemIndex];
+      const origin = window.location.origin.includes('http') ? window.location.origin : 'https://fun.jktai123.com';
+      const fullUrl = `${origin}/${item.online_url}`;
+
+      try {
+        const shortUrl = await fetchShortUrl(fullUrl);
+        // 格式：標題 (換行) 短網址
+        const shareContent = `${item.title}\n${shortUrl}`;
+
+        await navigator.clipboard.writeText(shareContent);
+        btn.innerHTML = '<span>✅ 已複製！</span>';
+        showToast(`已複製轉發內容至剪貼簿：<br><b style="color:#fff;">${escapeHtml(item.title)}</b><br><span style="color:var(--accent-cyan); font-family:monospace;">${escapeHtml(shortUrl)}</span>`, true);
+      } catch (err) {
+        console.error(err);
+        btn.innerHTML = '<span>❌ 失敗</span>';
+        showToast('複製失敗，請手動複製');
+      } finally {
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 2000);
+      }
+    }
+
+    function openViewer(url, itemIndex) {
+      currentModalItem = items[itemIndex];
       const modal = document.getElementById('modalViewer');
       const frame = document.getElementById('modalFrame');
       const titleElem = document.getElementById('modalTitle');
       const extBtn = document.getElementById('modalOpenExternal');
+      const shareBtn = document.getElementById('modalShareBtn');
 
-      titleElem.innerHTML = `<span>👁️ HTML Viewer 預覽:</span> <span style="color:var(--accent-cyan); font-weight:600; margin-left:6px;">${escapeHtml(title)}</span>`;
+      titleElem.innerHTML = `<span>👁️ HTML Viewer 預覽:</span> <span style="color:var(--accent-cyan); font-weight:600; margin-left:6px;">${escapeHtml(currentModalItem.title)}</span>`;
       extBtn.href = url;
       frame.src = url;
+
+      shareBtn.onclick = (e) => copyShareText(e, itemIndex);
+
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
@@ -2769,6 +2948,7 @@
       const frame = document.getElementById('modalFrame');
       modal.style.display = 'none';
       frame.src = '';
+      currentModalItem = null;
       document.body.style.overflow = 'auto';
     }
 
@@ -2809,13 +2989,14 @@
       });
     }
 
-    function showToast(text) {
+    function showToast(text, isSuccess) {
       const toast = document.getElementById('toast');
-      toast.textContent = text;
+      toast.innerHTML = text;
+      toast.classList.toggle('toast-success', !!isSuccess);
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 2500);
+      }, 3500);
     }
 
     function escapeHtml(str) {
