@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品陽大苑社區 LINE 每日掃描與裝修追蹤（2026 Q4）</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #151d2e;
+      --card-border: #23314d;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --code-bg: #0f172a;
+      --sidebar-width: 260px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* 側邊導航欄 */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: #0d1424;
+      border-right: 1px solid var(--card-border);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+    }
+    .sidebar-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .sidebar-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-subtitle {
+      font-size: 12px;
+      color: var(--accent);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+    .nav-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 8px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 4px;
+      transition: all 0.2s;
+    }
+    .nav-item:hover {
+      background: var(--card-bg);
+      color: var(--text);
+    }
+    .nav-item.active {
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-weight: 600;
+      border-left: 3px solid var(--accent);
+    }
+    .nav-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .badge-latest {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: var(--accent);
+      color: #0b0f19;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-left: auto;
+    }
+
+    /* 主內容區 */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      max-width: 1050px;
+      padding: 32px 40px;
+    }
+    
+    /* 頂部看板 */
+    .dashboard-header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .main-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .main-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* 搜尋過濾 */
+    .search-bar {
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* 每日摘要卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      margin-bottom: 32px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      scroll-margin-top: 30px;
+    }
+    .card-latest {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.1);
+    }
+    .card-header {
+      background: #111a2d;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-date {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .btn-copy {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-copy:hover {
+      background: var(--accent);
+      color: #0b0f19;
+      border-color: var(--accent);
+    }
+    .card-body {
+      padding: 24px;
+      font-size: 14.5px;
+      color: #cbd5e1;
+    }
+    
+    .entry-title {
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 16px;
+      font-weight: 700;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    .section-title {
+      font-size: 16px;
+      color: #e2e8f0;
+      margin: 20px 0 12px 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-title {
+      font-size: 15px;
+      color: #93c5fd;
+      margin: 16px 0 10px 0;
+      font-weight: 600;
+    }
+    .info-list {
+      list-style: none;
+      margin-bottom: 16px;
+      background: #0f172a;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+    }
+    .info-list li {
+      margin-bottom: 6px;
+      font-size: 13.5px;
+    }
+    .info-list li:last-child { margin-bottom: 0; }
+    .numbered-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .item-num {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--card-border);
+      margin: 20px 0;
+    }
+    .para {
+      margin-bottom: 12px;
+    }
+    code {
+      background: var(--code-bg);
+      color: #38bdf8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+    strong {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 左側時間軸導航 -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">🏢 品陽大苑巡檢</div>
+      <div class="sidebar-subtitle">2026 第四季 (Q4) 彙整長存檔</div>
+    </div>
+    <nav class="nav-list" id="navList">
+      
+    <a href="#entry-20261029" class="nav-item active" onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-29</span>
+      <span class="badge-latest">LATEST 最新</span>
+    </a>
+    
+    <a href="#entry-20261023" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-23</span>
+      
+    </a>
+    
+    <a href="#entry-20261022" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-22</span>
+      
+    </a>
+    
+    <a href="#entry-20261021" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-21</span>
+      
+    </a>
+    
+    <a href="#entry-20261020" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-20</span>
+      
+    </a>
+    
+    <a href="#entry-20261019" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-19</span>
+      
+    </a>
+    
+    <a href="#entry-20261018" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-18</span>
+      
+    </a>
+    
+    <a href="#entry-20261017" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-17</span>
+      
+    </a>
+    
+    <a href="#entry-20261016" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-16</span>
+      
+    </a>
+    
+    <a href="#entry-20261015" class="nav-item " onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-10-15</span>
+      
+    </a>
+    
+    </nav>
+  </aside>
+
+  <!-- 右側內容 -->
+  <main class="main-content">
+    <header class="dashboard-header">
+      <h1 class="main-title">📊 品陽大苑社區 LINE 每日掃描與公設裝修追蹤</h1>
+      <p class="main-desc">本系統採用單一檔案季累加 (Push) 架構，所有定時巡檢、重大水電缺失與管委會進度自動歸檔於 2026Q4 專冊。</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">當季累計巡檢</div>
+          <div class="stat-value">10 <span style="font-size:14px; color:var(--text-muted)">期</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">系統總立案數</div>
+          <div class="stat-value">82 <span style="font-size:14px; color:var(--text-muted)">筆 (DEF-082)</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">最新巡檢日期</div>
+          <div class="stat-value" style="font-size:20px;">2026-10-29</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">重大公設議題</div>
+          <div class="stat-value" style="font-size:18px; color:var(--warning);">全棟水錘聲列管</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 快速搜尋關鍵字（例如：水錘、崁燈、電梯、主委、謝先生、車道...）" onkeyup="filterCards()">
+    </div>
+
+    <section id="cardsContainer">
+      
+    <article id="entry-20261029" class="summary-card card-latest">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-29</span>
+          <span class="badge-latest">LATEST 最新</span>
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261029')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-28 ~ 2026-10-29)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-29 07:10</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：2026-10-24 00:00 至 2026-10-29 07:00（橫跨 5 日深度巡檢）</li>
+<li><strong>關鍵事件分類</strong>：全棟水錘聲嚴重衝擊立案、颱風車道防撞欄杆電焊搶修完成、梯廳地面晶化作業、管委會第五次會議開會通知、客梯與崁燈列管進度更新</li>
+</ul>
+<hr class="divider">
+<h4 class="section-title">一、重大公設與水電缺失全新立案【DEF-082】</h4>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>【DEF-082】全棟給水管路衝擊與馬桶水錘聲嚴重問題</strong></div></div>
+<ul class="info-list">
+<li><strong>提報人</strong>：14F-3 廖小姐、15F-5 謝先生、Max、17F-3 李主委</li>
+<li><strong>問題現況</strong>：</li>
+<li><strong>Max (10/28 15:07)</strong>：水錘聲非常明顯，特別是馬桶沖水止水時產生劇烈撞擊震動，但其他水龍頭用水較不明顯。</li>
+<li><strong>14F-3 廖小姐 (10/28 16:15)</strong>：建議品陽全棟馬桶旁應全面加裝水錘吸收器。</li>
+<li><strong>15F-5 謝先生 (10/28 16:17)</strong>：15-5 也是同樣情況，擔心長時間下去對管道結構與接頭產生不可逆破壞。其實之前交屋時沒有水錘聲，近兩個月才開始出現。</li>
+<li><strong>專業分析報告 (15F-5 提供)</strong>：水管高壓震動將導致牆內及軟管接頭鬆脫滲水、甚至爆管風險；同時加速進水閥、三角止水閥等設備老化損壞。建議全面檢測門外減壓閥水壓（靜態水壓應在 1.5~2.5 kg/cm²）、加固管道間管夾與防震墊、更換緩降靜音進水閥或加裝水錘吸收器。</li>
+<li><strong>管委會處理決策</strong>：</li>
+<li><strong>17F-3 李主委 (10/28 14:05 公告)</strong> 明確指示：「<strong>3. 住戶反映水錘聲問題，將另行與國霖約定時間，討論後續檢查及處理方式。</strong>」已正式列入管委會列管缺失，將由國霖機電進場量測水壓並提出全棟改善對策。</li>
+</ul>
+<hr class="divider">
+<h4 class="section-title">二、既有重大公設案件追蹤進度更新</h4>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>【DEF-078 停車場車道設施與一樓側門保護】</strong></div></div>
+<ul class="info-list">
+<li><strong>颱風災情搶修</strong>：10/27(二) 21F A1 BL 回報車道黃色防撞欄杆一側基座受颱風強風拉扯斷裂傾倒；10/28(三) 秘書通報品陽蘇主任，下午總幹事隋志宏回報工班已完成切除與重新電焊修繕復歸。</li>
+<li><strong>側門保護工程</strong>：10/28 主委公告廠商預計 10/29 到場現勘，後續提供正式報價。</li>
+<li><strong>梯廳地面晶化作業</strong>：10/28 總幹事發布建商通知，10/29(四) 08:00 進行 B1 梯廳及迴廊地面晶化作業（工期約 4 小時），已提醒住戶留意濕滑。</li>
+</ul>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>【DEF-080 客梯群控連動責任釐清】</strong></div></div>
+<p class="para">- 10/28 主委李先生正式公告：已請日立永大電梯與建商配合提供電梯連動及叫車邏輯之完整法規條文與技術說明。</p>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>【DEF-081 公共區域照明崁燈滲水與電氣安全】</strong></div></div>
+<p class="para">- 10/28 主委李先生正式公告：已請國霖機電正式列入初驗缺失追蹤表，列管建商於初驗檢討會議出具外牆與穿牆管線徹底防水改善方案。</p>
+<hr class="divider">
+<h4 class="section-title">三、管委會重大行政公告與會議排程</h4>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>第一屆第五次管理委員會會議（開會通知單發布）</strong>：</div></div>
+<ul class="info-list">
+<li><strong>時間</strong>：115年10月30日（本週五）晚上 19:30</li>
+<li><strong>地點</strong>：本社區二樓媽媽教室</li>
+<li><strong>核心審議議題</strong>：</li>
+</ul>
+<div class="numbered-item"><span class="item-num">1. </span><div>社區電梯保養合約到期續約二年案（115年12月31日到期）</div></div>
+<div class="numbered-item"><span class="item-num">2. </span><div>B1防災中心消防主機訊號延伸至一樓消防副機案</div></div>
+<div class="numbered-item"><span class="item-num">3. </span><div>審議 #11509 財務收支報表</div></div>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>國霖公設初驗報告檢討會議</strong>：預計下週五（11/06）與國霖召開，針對全區初驗缺失逐項檢討改善時程。</div></div>
+<hr class="divider">
+<h4 class="section-title">四、三端系統同步紀錄</h4>
+<ul class="info-list">
+<li><strong>Google Sheet 主表</strong>：總筆數推進至 82 筆（新增 DEF-082，追加 DEF-078, DEF-080, DEF-081 最新進度）。</li>
+<li><strong>Google Sheet 鏡像備份</strong>：完成 82 筆全量備份至「公設缺失備份」工作表。</li>
+<li><strong>GitHub Pages 線上系統</strong>：最新原始碼與 JSON 已更新並推送至 GitHub（commit <code>1767616</code> / <code>d088cc6</code>）。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261023" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-23</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261023')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-23)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-23 23:42</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-22 19:30 ~ 2026-10-23 23:42）</li>
+<li><strong>發言概況</strong>：本日社群核心重大事件為<strong>颱風強降雨期間，15F 及 16F 連續爆發公共照明崁燈內部漏水滴水災情，引發電氣短路及觸電安全高度警戒</strong>，住戶專業指陳外牆與穿牆管線防水瑕疵，主委實勘並承諾於上班日諮詢國霖機電查驗。系統已正式立案建檔【DEF-081】。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 住戶討論與重大進展核心要點</h3>
+<h4 class="section-title">1. 【高樓層公共崁燈漏水與電氣短路危機】（下午 14:22 ~ 16:04）</h4>
+<ul class="info-list">
+<li><strong>15F-5 謝先生（14:22）</strong>：</li>
+</ul>
+<p class="para">- 「發現公共照明的坎燈會滴水出來，會不會有電線短路的風險？」</p>
+<p class="para">- 附 00:11 現場影片：15F 天花板公共照明崁燈邊緣雨水不斷持續滴落。</p>
+<ul class="info-list">
+<li><strong>16F-3 楊小姐（16:04）</strong>：</li>
+</ul>
+<p class="para">- 「我們這層也有此情形」</p>
+<p class="para">- 附 00:13 現場影片：16F 同一位置天花板崁燈內部同樣出現漏水滴落，證實為跨樓層共通性系統瑕疵。</p>
+<hr class="divider">
+<h4 class="section-title">2. 【防水技術協會專業研判與建商查驗訴求】（下午 16:11）</h4>
+<ul class="info-list">
+<li><strong>16之一 陳宅 發表專業研判與安全警示</strong>：</li>
+<li><strong>外牆穿牆管線滲漏根因剖析</strong>：</li>
+</ul>
+<p class="para">「日前社團法人台灣防水工程技術協會秘書長有至本社群查看漏水情形，16-2電視牆插座孔僅在下大雨時漏水，研判可能與<strong>外牆防水措施未確實施作</strong>，以及<strong>管線穿越牆體處未做好防水封堵</strong>有關，雨水可能沿著電線導管外側與牆體之間的縫隙滲入室內，因此漏水位置不一定就是實際進水位置。」</p>
+<ul class="info-list">
+<li><strong>電氣安全急迫風險</strong>：</li>
+</ul>
+<p class="para">「如今15樓及16樓又有住戶反映公共照明嵌燈滴水，除防水問題外，也<strong>涉及潛在的電氣安全風險</strong>。」</p>
+<ul class="info-list">
+<li><strong>具體管理訴求</strong>：</li>
+</ul>
+<div class="numbered-item"><span class="item-num">1. </span><div>建議管委會及物業儘速安排合格電氣人員確認公共照明安全性。</div></div>
+<div class="numbered-item"><span class="item-num">2. </span><div>請品陽建設針對<strong>外牆防水、管線穿越牆處及相關接縫進行完整查驗</strong>，釐清真正進水原因，提出具體改善方式及修繕時程。</div></div>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>嚴格要求避免僅針對出水位置表面修補</strong>，導致問題反覆發生。</div></div>
+<hr class="divider">
+<h4 class="section-title">3. 【主委實勘現場與後續諮詢國霖承諾】（下午 18:20）</h4>
+<ul class="info-list">
+<li><strong>17F-3 李先生（主委）</strong>：</li>
+</ul>
+<p class="para">- 親自巡查 17 樓現況並拍照回報：</p>
+<p class="para">「17樓目前看到的燈是正常，我們戶外燈也經歷了幾次颱風，看起來比較像是雨水沿著牆面滴下來。<strong>實際狀況等上班日再和國霖諮詢此現象，謝謝。</strong>」</p>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態（新增立案 DEF-081）</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>新立案案件【DEF-081】15F、16F 公共照明崁燈漏水與電氣短路風險</strong>：</div></div>
+<ul class="info-list">
+<li><strong>區域空間</strong>：公共梯廳/陽台</li>
+<li><strong>具體位置</strong>：15F、16F 公共照明崁燈及戶外燈</li>
+<li><strong>系統分類</strong>：漏水滲水 / 電氣安全</li>
+<li><strong>缺失描述</strong>：颱風強降雨期間，15F 及 16F 公共照明崁燈連續發生內部滲水滴漏現象，存在電路受潮短路與用電安全風險。住戶專業研判疑似外牆防水不良及電氣管線穿牆處未施作有效防水封堵，雨水沿導管及結構縫隙滲入燈具。</li>
+<li><strong>處理狀態</strong>：管委會處理中</li>
+<li><strong>處理進度</strong>：主委實勘 17F 燈具尚正常但牆面有水滴；主委承諾將於上班日向國霖機電諮詢查驗；住戶要求建商徹底查驗外牆防水與穿牆管線封堵，提出具體修繕方案，禁止僅作表面修補。</li>
+</ul>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>DEF-080 客梯群控連動</strong>：持續列管日立永大電梯與建商出具法規依據與連動改善方案。</div></div>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>DEF-078 側門保護工程</strong>：颱風期間暫停施工，待颱風後重新安排進場。</div></div>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：<strong>81 筆</strong>（新增立案 DEF-081）</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/23 23:42 成功全量備份 81 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 已成功編譯並推送最新版本（commit <code>3d338a4</code>）。</li>
+<li><strong>常駐排程狀態</strong>：✅ 每日 23:00 LINE 定時掃描排程已重新常駐掛載（<code>task-8576</code>）。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261022" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-22</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261022')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-22)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-22 19:30</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-21 23:00 ~ 2026-10-22 19:30）</li>
+<li><strong>發言概況</strong>：本日社群核心焦點為<strong>因應颱風來襲暫停一樓側門保護工程之管委會重大公告</strong>，以及<strong>物業防颱溫馨提示與門禁巡視管理</strong>。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 管委會公告與工程進度核心要點</h3>
+<h4 class="section-title">1. 【管委會公告：側門保護工程暫停通知】（下午 13:49）</h4>
+<ul class="info-list">
+<li><strong>17F-3 李先生（主委）正式發布</strong>：</li>
+</ul>
+<p class="para">- 「<strong>各位住戶您好：</strong></p>
+<p class="para">因應颱風即將來襲，考量側門保護工程若於颱風前完成，可能因強風及雨勢造成保護材料移位或損壞，因此決定<strong>暫停本次側門保護作業</strong>。</p>
+<p class="para">待颱風過後，將再安排廠商進場，完整施作側門保護措施，確保公共區域安全。（時間待確認）</p>
+<p class="para">下週如有裝潢廠商進料需求，請相關住戶及施工人員於進出側門時特別留意，避免碰撞或損壞側門及周邊設施。</p>
+<p class="para">也請總幹事協助提醒保全同仁，加強側門進出管理及現場巡視，留意裝潢進料過程，並適時提醒施工人員注意安全及公共設施保護。</p>
+<p class="para">造成不便，敬請見諒，感謝各位住戶的理解與配合。」</p>
+<hr class="divider">
+<h4 class="section-title">2. 【物業管理與防颱部署】（下午 14:15 ~ 18:15）</h4>
+<ul class="info-list">
+<li><strong>總幹事隋志宏即時承諾（14:15）</strong>：</li>
+</ul>
+<p class="para">- 「收到並謝謝主委！」，將責成現場保全加強側門動線巡視與進出管理。</p>
+<ul class="info-list">
+<li><strong>發布防颱溫馨提示（18:15）</strong>：</li>
+</ul>
+<p class="para">- 發布記事本「<strong>防颱公告-良福提供</strong>」，提醒住戶加強門窗緊閉、陽台盆栽固定移置與排水孔巡檢，做好防颱準備。</p>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>DEF-078 社區公設總檢與側門進料工程</strong>：</div></div>
+<p class="para">- 系統已於 DEF-078 追加「【10/22 防颱暫停進度】」，完整記錄因應颱風防護暫停側門保護作業，待颱風後重新安排施作日期；進料管制配套由現場保全加強巡檢防護。</p>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>DEF-080 客梯群控連動責任釐清</strong>：</div></div>
+<p class="para">- 持續列管日立永大電梯與建商出具法規依據與連動改善方案。</p>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：<strong>80 筆</strong>（DEF-078 補充進度）</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/22 19:32 成功全量備份 80 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 已成功編譯並推送最新版本（commit <code>e6c5fa0</code>）。</li>
+<li><strong>常駐排程狀態</strong>：✅ 每日 23:00 LINE 定時掃描排程已重新掛載（<code>task-8525</code>）。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261021" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-21</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261021')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-21)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-21 21:45</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-20 23:45 ~ 2026-10-21 21:45）</li>
+<li><strong>發言概況</strong>：本日社群討論高度熱烈，涵蓋<strong>電梯群控連動責任釐清</strong>、<strong>5個樓層逃生出口燈待修清單</strong>、<strong>屋頂漏水查驗質疑與機房門禁複查</strong>，以及<strong>裝潢廠商進料改由側門進入順延公文</strong>。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 住戶討論與重大進展核心要點</h3>
+<h4 class="section-title">1. 【重大機電爭議・新立案 DEF-080】客梯未群控連動之責任追究與法規查證（晚間 20:15 ~ 21:36）</h4>
+<ul class="info-list">
+<li><strong>16F-高小姐 正式質詢（20:15）</strong>：</li>
+</ul>
+<p class="para">- 「總幹事您好：先前您提到電梯無法連動是因為法規限制，惟兩台電梯未連動可能造成重複停靠及空跑，不僅影響住戶搭乘效率，也可能增加耗電及零件磨耗，長期增加維護成本。想請您協助向建商及電梯原廠確認：</p>
+<div class="numbered-item"><span class="item-num">1. </span><div>若確實是法規限制，請提供具體法規條文作為依據。</div></div>
+<div class="numbered-item"><span class="item-num">2. </span><div>若並非法規限制，而是設備配置或系統設定問題，請建商於驗收完成前確認並負責改善，不應由社區自行負擔費用。</div></div>
+<p class="para">目前社區仍在此建商驗收階段，建議趁此時釐清原因及責任，以保障全體住戶權益。」</p>
+<ul class="info-list">
+<li><strong>4F-6 劉先生 專業反饋（21:27）</strong>：</li>
+</ul>
+<p class="para">- 「法規限制應該是錯誤的認知，我住的舊大樓早就已經是連動很多年了。」</p>
+<ul class="info-list">
+<li><strong>總幹事隋志宏 正面承諾（21:36）</strong>：</li>
+</ul>
+<p class="para">- 「<strong>收到！將會積極要求日立永大電梯配合提供！</strong>」</p>
+<hr class="divider">
+<h4 class="section-title">2. 【公設待修清單彙整】A區逃生梯出口指示燈多樓層故障（中午 12:12）</h4>
+<ul class="info-list">
+<li><strong>總幹事隋志宏回報</strong>：</li>
+</ul>
+<p class="para">- 針對 16-1 陳宅反映「8樓安全指示燈壞了」，物業已全面巡檢並轉知品陽蘇主任（蘇稟森），品陽回覆將儘速安排工班修繕。</p>
+<ul class="info-list">
+<li><strong>待修繕樓層清單</strong>：<strong>A區逃生梯 8F、12F、13F、14F、15F 之逃生出口燈</strong>。</li>
+</ul>
+<hr class="divider">
+<h4 class="section-title">3. 【屋頂漏水查驗延宕質疑與機房門禁複查】（上午 10:00 ~ 中午 12:16）</h4>
+<ul class="info-list">
+<li><strong>R2 水箱門與機房門禁安全複查</strong>：</li>
+</ul>
+<p class="para">- 16-1 陳宅關切國霖總檢後的 R2 安全門是否復原。主委李先生（17F-3）指示保全巡查，總幹事於 12:16 回報：「<strong>已將 R層以及 B1層~B4層，重要機房之門禁上鎖關閉，全部複查完成！</strong>」</p>
+<ul class="info-list">
+<li><strong>屋頂漏水查驗質疑（10:38）</strong>：</li>
+</ul>
+<p class="para">- 16-1 陳宅引述國霖吳副總對話：「既然建商能夠安排外牆清洗作業，為何遲遲無法安排屋頂漏水及防水工程的相關查驗，以確認是否存在施工瑕疵？」</p>
+<hr class="divider">
+<h4 class="section-title">4. 【管委會正式公文】裝潢廠商改由一樓側門進入事宜順延（下午 17:34）</h4>
+<ul class="info-list">
+<li><strong>17F-3 主委李先生發布公文（具管委會大印）</strong>：</li>
+</ul>
+<p class="para">- 因一樓裝潢側門工程順延一天至 10/22 完成，裝潢廠商進料改由一樓側門進入之管制時程，順延一日至 <strong>10/23</strong> 起正式實施。</p>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態（新增立案 DEF-080）</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>新立案案件【DEF-080】A 棟兩部客梯未設定群控連動</strong>：</div></div>
+<ul class="info-list">
+<li><strong>區域空間</strong>：公共電梯</li>
+<li><strong>具體位置</strong>：A棟兩部客梯</li>
+<li><strong>系統分類</strong>：電梯機電系統</li>
+<li><strong>缺失描述</strong>：兩部客梯未設定群控連動，造成重複停靠、電梯空跑、耗電及零件磨耗。先前物業稱係法規限制，住戶要求出具具體法規依據；若非條文限制，建商應於驗收前負責改善連動設定，不應由社區負擔費用。</li>
+<li><strong>處理進度</strong>：總幹事已承諾積極要求日立永大電梯與建商出具法規依據並研議連動改善方案。</li>
+</ul>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>DEF-078 補充進度</strong>：</div></div>
+<p class="para">- 記錄 A區逃生梯 8F/12F/13F/14F/15F 出口指示燈故障通報品陽、重要機房門禁上鎖複查完成，以及裝潢側門進料順延至 10/23 實施。</p>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：<strong>80 筆</strong>（新增 DEF-080，DEF-078 更新）</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/21 21:49 成功全量備份 80 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 已成功編譯並推送最新版本（commit <code>8fbeed8</code>）。</li>
+<li><strong>常駐排程狀態</strong>：✅ 每日 23:00 LINE 定時掃描排程已重新掛載（<code>task-8457</code>）。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261020" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-20</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261020')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-20)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-20 23:42</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-19 23:00 ~ 2026-10-20 23:42）</li>
+<li><strong>發言概況</strong>：本日為「國霖全區公設總檢全面驗收」第二日（重大機電/停電/消防測試日），下午 15:00 總檢順利結束點交；隨後住戶提出 B1 下坡車道透明落地玻璃之全新安全議題，物業迅速應變，系統已正式立案建檔。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 住戶討論與重大進展核心要點</h3>
+<h4 class="section-title">1. 【國霖公設總檢驗收第二日】車道閘門測試與圓滿結束點交</h4>
+<ul class="info-list">
+<li><strong>住戶肯定管委會辛勞（上午 9:18）</strong>：</li>
+<li><strong>S Lin</strong>：「謝謝 你們辛苦了」，感謝管委會與工程團隊連日來的查驗付出。</li>
+<li><strong>車道防水閘門作動測試（下午 14:15 ~ 14:31）</strong>：</li>
+<li><strong>1F-秘書</strong>通報國霖與品陽現場實施車道防水閘門啟閉測試，短暫管制車輛通行，於 14:31 順利完成測試並全面恢復通行（對應 DEF-077 閘門機電連動驗收）。</li>
+<li><strong>國霖全區總檢正式結束點交（下午 15:23）</strong>：</li>
+<li><strong>1F-秘書公告</strong>：「<strong>今日 15:00 國霖已經結束點交 ～ 已將門禁、電梯管制復歸，謝謝各位住戶 ～</strong>」</li>
+</ul>
+<p class="para">- 為期兩天（10/19~10/20）的國霖機電全區公設總檢全面驗收正式完成現場查驗！後續將由國霖整理出具正式查驗報告，作為管委會向建商要求限期改善及安排複驗之法律依據。</p>
+<hr class="divider">
+<h4 class="section-title">2. 【全新公設安全議題】B1 開往 B2 車道旁透明落地玻璃防撞與會車視線安全（下午 16:21 ~ 18:07）</h4>
+<ul class="info-list">
+<li><strong>8F-1 翁小姐反映載貨防撞風險（下午 4:21）</strong>：</li>
+</ul>
+<p class="para">- 「總幹事您好！剛開車時下車庫經過B1，發現出入口牆壁拆了保護貼後是透明玻璃，因為那裡是裝潢師傅載運貨出入口，擔心會不小心撞擊破損，是否可以請品陽加強那裡照明或者安裝警示標語？麻煩您了！謝謝！」</p>
+<ul class="info-list">
+<li><strong>1F-秘書即時處置與回報（下午 4:59）</strong>：</li>
+</ul>
+<p class="para">- 「您好，我剛剛已經放了兩個三角錐在透明玻璃前方當臨時警示標誌，之後會再跟廠商討論是否有更好的方案，維護我們社區的公共區域及安全，謝謝🙏」（附 2 張現場三角錐警示照片）。</p>
+<ul class="info-list">
+<li><strong>4F-6 劉先生提出重大延伸會車盲點（下午 6:07）</strong>：</li>
+</ul>
+<p class="para">- 「<strong>之前還是白板牆時，我從B1開往B2時都會刻意與白板牆保持距離，可是也要保持警覺以免同時有從B2開往B1的車輛，會有會車的困擾，這個問題值得重視。</strong>」</p>
+<p class="para">- 指出該轉角處車道下坡會車視線盲區與緊迫寬度，伴隨透明玻璃的易碎風險，亟需建商與管委會全面評估安全防護。</p>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態（新增立案 DEF-079）</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>新立案案件【DEF-079】B1 開往 B2 車道旁透明落地玻璃防撞與會車安全盲點</strong>：</div></div>
+<ul class="info-list">
+<li><strong>區域空間</strong>：地下室</li>
+<li><strong>具體位置</strong>：B1開往B2車道旁（裝潢貨運出入口）</li>
+<li><strong>系統分類</strong>：安全防護/車道動線</li>
+<li><strong>缺失描述</strong>：B1下B2車道旁出入口牆面保護拆除後為全透明落地玻璃，因該處為裝潢進出載貨動線，住戶反映易生推車碰撞破損危險；且轉角會車視線受阻，有會車困擾與行車安全疑慮，建議加強照明、防撞標語或會車改善方案。</li>
+<li><strong>處理進度</strong>：物業已先放置 2 個橘色三角錐作臨時警示；後續將與品陽建設及廠商討論加裝防撞標語/防爆膜、強化照明及評估會車反射鏡/警示防撞設施。</li>
+</ul>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>DEF-078 補充進度</strong>：</div></div>
+<p class="para">- 記錄 10/20 完成車道防水閘門作動測試、下午 15:00 國霖總檢結束點交並復歸門禁電梯管制。</p>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：<strong>79 筆</strong>（新增 DEF-079，DEF-078 追加總檢二日進度）</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/20 23:44 成功全量備份 79 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 已成功編譯並推送最新版本（commit <code>b828fad</code>）。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261019" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-19</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261019')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-19)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-19 23:05</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-18 23:00 ~ 2026-10-19 23:00）</li>
+<li><strong>發言概況</strong>：本日為「國霖全區公設總檢驗收」進場首日，管委會、物業與多位住戶熱烈討論，互動涵蓋檢驗進度、現場修繕與重要公告。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 住戶討論與總檢進度核心要點</h3>
+<h4 class="section-title">1. 【國霖公設總檢進場首日】供水排水異常與戶內檢測評估（上午 10:02 ~ 11:11）</h4>
+<ul class="info-list">
+<li><strong>16之一 陳宅</strong>：</li>
+</ul>
+<p class="para">- 於樓梯間巧遇國霖機電吳副總，主動向其補充說明從上次會議至今社區供水系統陸續發生的異常狀況、住戶端實際遇到的跳泵震動問題，以及品陽建設過去將供水及排水異常歸類為「體感問題」的相關回應。</p>
+<p class="para">- 過程中主委剛好經過搭乘電梯，現場進行三方交流。國霖機電後續將再向管委會提出報價，<strong>評估增加住戶戶內供水及排水系統的檢測項目</strong>！陳宅期盼管委會持續追蹤第三方的檢測範圍、報價及執行時程，讓查驗更加完整透明。</p>
+<ul class="info-list">
+<li><strong>Sharon（上午 11:11）</strong>：引用陳宅發言致謝，並期盼「止水閥噪音能有所改善」。</li>
+<li><strong>15F-5 謝先生（上午 11:11）</strong>：詢問 15F 梯廳是否安排點交，並提醒現場裝修保護板尚未拆除，請總幹事協助督促施作中住戶。</li>
+</ul>
+<h4 class="section-title">2. 【公設修繕完成回報】9F 安全梯指示牌修繕結案（下午 4:09）</h4>
+<ul class="info-list">
+<li><strong>1F-秘書</strong>：回報「9F 安全梯內的指示牌 蘇主任已經修繕完成✅ 謝謝🙏」，並附上綠色避難方向指示燈修繕復原完工照。</li>
+</ul>
+<h4 class="section-title">3. 【梯廳保護拆除與清潔成果】（下午 5:36）</h4>
+<ul class="info-list">
+<li><strong>總幹事隋志宏</strong>：發布記事本（共 11 件照片），正式回報各樓層梯廳裝修保護拆除與大理石地面清潔作業已如期完工備檢。</li>
+</ul>
+<h4 class="section-title">4. 【B1 資源回收室回收桶失蹤排查】（下午 7:43 ~ 8:23）</h4>
+<ul class="info-list">
+<li><strong>16之一 陳宅</strong>（19:43）：反映「回收電池的桶子不見了耶」，附現場空角照片。</li>
+<li><strong>4F-2 鄭先生</strong>（19:57）：詢問「紙類回收桶也收起來了，是以後都不會有嗎？」。</li>
+<li><strong>17F-3 李先生（主委）</strong>（20:23）：親自到場巡視並手動推回！回覆：「紙類回收箱不知道為何被收到裡面，我剛剛先推出來了，明天再請總幹事一同和清潔公司確認。」附上綠色紙類回收箱已擺回定點的照片。住戶紛紛按讚感謝主委辛勞。</li>
+</ul>
+<h4 class="section-title">5. 【重大公告：明日 10/20 停電發電機與消防測試】（下午 8:28 ~ 8:30）</h4>
+<ul class="info-list">
+<li><strong>17F-3 李先生（主委）</strong>：</li>
+</ul>
+<p class="para">- 發布「公設點交項目及排程公告」記事本（共 8 件，附國霖機電總檢公告）。</p>
+<ul class="info-list">
+<li><strong>重要提醒</strong>：「<strong>提醒住戶明天會有多項機電設備測試，包含停電發電機/消防等。詳細項目和時間請參考記事本。請大家安排時間如有影響可提早出門。謝謝。</strong>」</li>
+<li><strong>8F-1 翁小姐</strong>（22:33）：「辛苦您們了！謝謝！」</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>DEF-078 社區公設總檢驗收進度更新</strong>：</div></div>
+<p class="para">- 系統已於 DEF-078 追加「【10/19 總檢首日進度】」，完整收錄梯廳拆保護清潔完成、9F指示牌修復、國霖戶內檢測評估報價及 10/20 停電測試公告。</p>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>明日重點工程與生活提醒（10/20 週一）</strong>：</div></div>
+<p class="para">- 國霖總檢第二日，全社區將進行重大機電測試（包含停電發電機切換、消防系統測試等）。</p>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：78 筆</li>
+<li><strong>進度更新筆數</strong>：DEF-078 追加 10/19 總檢首日完整紀錄。</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/19 23:12 成功備份全量 78 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 已成功編譯並推送最新版本（commit <code>6c8dbec</code>）。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261018" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-18</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261018')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-18)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-18 23:05</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-17 23:00 ~ 2026-10-18 23:00）</li>
+<li><strong>發言概況</strong>：本日有 1 位住戶反映公共設施管理問題（16F-高小姐 反映水管久置問題），另有新住戶「寬」加入社群；管委會與物業團隊本日尚無公開回覆。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 住戶討論核心要點</h3>
+<h4 class="section-title">【16F-高小姐】公共空間水管未依約撤除反映（10/17 傍晚）</h4>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>問題緣起與現場實況</strong>：</div></div>
+<p class="para">- 16F-高小姐上傳社區現場照片（水管懸掛/放置於公共通道），幽默反諷為「<strong>社區水管裝置藝術XD</strong>」。</p>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>對管委會與物業之具體質疑</strong>：</div></div>
+<p class="para">- 發言：「*總幹事您好～想問一下這水管是準備要在這裡長期當裝置藝術了嗎？之前說要收，結果現在好像變成『國王的水管』一樣，只有住戶看得到、物業團隊都看不見，它存在感明明超強的啊😅*」</p>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>管理意涵</strong>：</div></div>
+<p class="para">- 點出物業管理團隊在公共設施現場清理之執行落差（曾承諾要收卻長期延宕），影響公共空間整潔與觀感。</p>
+<h4 class="section-title">【社群成員變動】</h4>
+<p class="para">- 新住戶以「寬」名義正式加入社群聊天室，目前社群成員維持 101 人。</p>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>梯廳裝修保護板拆除期限屆期（10/18 17:00 截止）</strong>：</div></div>
+<p class="para">- 管委會原通知 9 個受規範樓層（2F, 3F, 4F, 8F, 11F, 15F, 16F, 18F, 19F）裝修保護拆除期限為今日 10/18 17:00 前。</p>
+<p class="para">- 本日社群未見管委會發布各樓層梯廳巡檢確認報告，預計明日配合總檢一併勘驗。</p>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>全區公設總檢全面驗收即刻展開（10/19～10/20）</strong>：</div></div>
+<p class="para">- 明日 10/19（週一）起正式由第三方專業機構「國霖機電」進場，展開為期兩天的全區公共設施總檢驗收作業。</p>
+<p class="para">- 包含高樓層供水系統、機電設備、頂樓防水、消防設施與全區公設瑕疵進行全面查驗。</p>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>DEF-077 汽車道防水閘門石材更換工程</strong>：</div></div>
+<p class="para">- 原訂 10/17 施工，目前社群尚未公布驗收與完工成果，維持「修繕排程中」列管。</p>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：78 筆（DEF-001 ~ DEF-078）</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/18 23:04 成功備份全量 78 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 資料保持 100% 同步最新狀態。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261017" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-17</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261017')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-10-17)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-10-17 23:05</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：過去 24 小時（2026-10-16 23:00 ~ 2026-10-17 23:00）</li>
+<li><strong>發言概況</strong>：本日有重要住戶發言（共 1 位住戶，發布重大公開訴求聲明）。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">📌 一、 住戶討論核心要點</h3>
+<h4 class="section-title">【16之一 陳宅】公開聲明（上午 9:47）</h4>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>肯定管委會與基層付出</strong>：</div></div>
+<p class="para">- 特別感謝副主委積極向里長反映，順利促成社區外圍新路燈完工點亮，有效提升社區夜間照明與周邊安全。</p>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>點名建商、營造與機電三大高層負責人</strong>：</div></div>
+<ul class="info-list">
+<li><strong>品陽建設負責人</strong>：李鴻漢 董事長</li>
+<li><strong>營造單位</strong>：台灣大林組股份有限公司</li>
+<li><strong>機電工程單位</strong>：鐘鎰水電工程股份有限公司 林顯源 副總</li>
+</ul>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>直指社區三大核心工程缺失</strong>：</div></div>
+<ul class="info-list">
+<li><strong>高樓層供水異常</strong>：高樓層水壓不穩、跳泵或異常震動現象（對應案號：DEF-072、DEF-043 等）。</li>
+<li><strong>嚴重複雜滲漏水</strong>：頂樓天花板及共用牆面多處出現滲漏水現象。</li>
+<li><strong>公設瑕疵與驗收</strong>：各項公共設施瑕疵亟待改善，即將迎來國霖全區總檢驗收。</li>
+</ul>
+<div class="numbered-item"><span class="item-num">4. </span><div><strong>明確訴求與期待</strong>：</div></div>
+<p class="para">- 強烈呼籲相關負責單位必須勇於面對、儘速釐清確切原因。</p>
+<p class="para">- 正式提出<strong>檢測報告</strong>、<strong>具體改善方案</strong>及<strong>明確修繕時程</strong>，並持續追蹤直至改善完成。</p>
+<p class="para">- 強調「住戶所期待的並不是一再反映問題，而是問題能夠真正獲得解決」。</p>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 二、 工程進度與公設缺失追蹤動態</h3>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>DEF-077 汽車道防水閘門石材更換工程</strong>：</div></div>
+<p class="para">- 原訂施工排程為今日（10/17 08:00~12:00）。</p>
+<p class="para">- 今日 LINE 社群未見管委會或總幹事發布完工成果照片或驗收報告，系統維持「修繕排程中」，待管委會回報後更新結案狀態。</p>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>各樓層梯廳保護板拆除倒數</strong>：</div></div>
+<p class="para">- 9 個受通知樓層（2F, 3F, 4F, 8F, 11F, 15F, 16F, 18F, 19F）裝修保護拆除期限為明日（10/18 17:00 前）。</p>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>公設總檢全面驗收</strong>：</div></div>
+<p class="para">- 預定 10/19（週日）～ 10/20（週一）由國霖機電進場執行全區公設總檢驗收。</p>
+<hr class="divider">
+<h3 class="sub-title">📊 三、 系統數據與維護狀態</h3>
+<ul class="info-list">
+<li><strong>目前列管案件總數</strong>：78 筆</li>
+<li><strong>Google Sheet 鏡像備份</strong>：✅ 10/17 23:08 成功備份全量 78 筆至「公設缺失備份」工作表。</li>
+<li><strong>線上查詢系統同步</strong>：✅ GitHub Pages 資料保持 100% 同步最新狀態。</li>
+</ul>
+      </div>
+    </article>
+    
+    <article id="entry-20261016" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-16</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261016')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要（2026-10-16）</h2>
+<p class="para">> <strong>檢閱區間</strong>：2026-10-15 23:00 ～ 2026-10-16 23:00</p>
+<p class="para">> <strong>檢閱社群</strong>：LINE「品陽大苑社區｜公告與通知」</p>
+<p class="para">> <strong>系統狀態</strong>：全系統維持 <strong>78 筆</strong>案件（<code>DEF-001</code> ～ <code>DEF-078</code>），三端（Google Sheet 主表、鏡像備份表、GitHub Pages 系統）已 100% 同步完成。</p>
+<hr class="divider">
+<h3 class="sub-title">📌 今日社群討論重點摘要</h3>
+<h4 class="section-title">1. 1F大廳與B1梯廳保護拆除及清潔完成（下午 18:13 總幹事回報）</h4>
+<ul class="info-list">
+<li><strong>發布人</strong>：總幹事 隋志宏</li>
+<li><strong>進度說明</strong>：呼應 10/15 主委公告之「10/16 拆除 B1 梯廳保護」排程，10/16 下午已如期順利拆除 1F 大廳及 B1 梯廳之裝潢保護木板/瓦楞板，並徹底完成大理石地面清潔，發布 4 張實景照片備存，全力備戰 <strong>10/19～10/20 國霖機電全區公設總檢驗收</strong>。</li>
+<li><strong>缺失關聯</strong>：已同步更新至 <strong><code>DEF-078</code></strong>（社區公共設施總檢驗收與梯廳/動線配套）最新進度。</li>
+</ul>
+<h4 class="section-title">2. 訪客臨停規則與身障車位管理（下午 18:36～19:29 住戶提問與主委回覆）</h4>
+<ul class="info-list">
+<li><strong>提問住戶</strong>：TT（下午 18:36）</li>
+</ul>
+<p class="para">- 詢問 B1 兩格身障停車位使用規定、社區是否有提供訪客臨時停車位及大樓停車管理制度。</p>
+<ul class="info-list">
+<li><strong>主委回覆</strong>：17F-3 李先生（下午 19:01、19:23）</li>
+</ul>
+<p class="para">- 貼出社區規約「肆、停車管理」條文。</p>
+<ul class="info-list">
+<li><strong>臨時停車證</strong>：目前管委會尚未印製準備好，若住戶親友有訪客臨停需求，請先親洽大廳管理員登記開放借停。</li>
+<li><strong>車道哨警衛</strong>：針對住戶 21F A1 BL 追問「是否有車道哨警衛」，主委說明目前物業人力配置<strong>沒有車道哨警衛</strong>，請住戶統一聯絡管理中心保全大哥處理。</li>
+<li><strong>住戶回饋</strong>：TT 感謝主委即時清楚釋疑。</li>
+</ul>
+<h4 class="section-title">3. 大樓外圍周邊路燈完工點亮（下午 19:41～20:01 社區公共改善成果）</h4>
+<ul class="info-list">
+<li><strong>發布人</strong>：5F-3 簡良瓚（下午 19:41 上傳路燈實景照片）</li>
+<li><strong>內容重點</strong>：大樓旁邊巷道新路燈工程已正式完工大放光明，特別發文感謝里長督促完成（獲得 10 位住戶熱烈按讚回響）。</li>
+<li><strong>住戶致謝</strong>：TT（下午 19:55）特別感謝副主委持續向里長反應需求、一路追蹤工程進度並更新照片，也盛讚陳里長辦事效率極高，讓社區周邊夜間行走更加安全光明。5F-3 簡良瓚與 happy 等住戶陸續留言比讚肯定。</li>
+<li><strong>夜間動態</strong>：20:01 後至 23:00 社群無其他新發言。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 公設缺失資料庫重大追蹤更新</h3>
+<p class="para">| 系統編號 | 區域空間 | 具體位置 | 系統分類 | 處理狀態 | 本日最新進度更新 |</p>
+<p class="para">| :--- | :--- | :--- | :--- | :--- | :--- |</p>
+<p class="para">| <strong>DEF-078</strong> | 全區公設 | 梯廳、B1梯廳、1F側門動線 | 公設總檢 | <strong>排程驗收中</strong> | <strong>【10/16 18:13 總幹事回報】</strong>：1F 大廳及 B1 梯廳保護拆除與現場大理石地面清潔已如期順利完工，並發布 4 張照片備存，全力配合 10/19-20 總檢驗收。 |</p>
+<p class="para">| <strong>DEF-077</strong> | 車道/外圍 | 汽車道旁防水閘門周遭 | 土建石材 | <strong>修繕排程中</strong> | 提醒明日 <strong>10/17（六）08:00～12:00</strong> 施工更換破損石材，車道不封閉維持通行。 |</p>
+<hr class="divider">
+<p class="para">*報告產生時間：2026-10-16 23:07*</p>
+<p class="para">*線上系統即時檢視：[品陽大苑公設缺失線上追蹤系統](https://www.jktai123.com/Gemini/pinyang_defect_tracker/index.html)*</p>
+      </div>
+    </article>
+    
+    <article id="entry-20261015" class="summary-card ">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-10-15</span>
+          
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261015')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要（2026-10-15）</h2>
+<p class="para">> <strong>檢閱區間</strong>：2026-10-14 23:00 ～ 2026-10-15 23:00</p>
+<p class="para">> <strong>檢閱社群</strong>：LINE「品陽大苑社區｜公告與通知」</p>
+<p class="para">> <strong>系統狀態</strong>：案件總數更新至 <strong>78 筆</strong>（<code>DEF-001</code> ～ <code>DEF-078</code>），三端（Google Sheet 主表、鏡像備份表、GitHub Pages 系統）已 100% 同步完成。</p>
+<hr class="divider">
+<h3 class="sub-title">📌 今日社群討論重點摘要</h3>
+<h4 class="section-title">1. 裝潢施工防護宣導（上午 8:16）</h4>
+<ul class="info-list">
+<li><strong>發布人</strong>：管委會管理中心</li>
+<li><strong>內容重點</strong>：提醒各戶裝潢施工廠商，施工期間務必緊閉玄關門與大門，以防粉塵擴散至公共梯廳及噪音干擾鄰居。</li>
+<li><strong>住戶回饋</strong>：5F-2 等住戶呼應落實公德心，維護梯廳整潔。</li>
+</ul>
+<h4 class="section-title">2. 消防安全設備複查（上午 9:20）</h4>
+<ul class="info-list">
+<li><strong>執行單位</strong>：國霖機電</li>
+<li><strong>內容重點</strong>：進場執行 115 年度消防安全設備複測作業，針對社區全區警報器、排煙設備及廣播系統進行測試。</li>
+</ul>
+<h4 class="section-title">3. 車道防水閘門石材更換工程（下午 6:18 總幹事施工公告）</h4>
+<ul class="info-list">
+<li><strong>發布人</strong>：總幹事 隋志宏（蓋管理中心公告章）</li>
+<li><strong>施工內容</strong>：車道旁防水閘門周遭石材破損，安排拆除並更換大、小石材各一片。</li>
+<li><strong>施工時程</strong>：<strong>115 年 10 月 17 日（星期六）08:00 ～ 12:00</strong></li>
+<li><strong>交通配套</strong>：施工期間車道<strong>不封閉</strong>，車輛可正常進出，行經施工區請減速慢行並聽從現場工人引導。</li>
+<li><strong>系統建檔</strong>：已立案為 <strong><code>DEF-077</code></strong>（土建石材 / 修繕排程中）。</li>
+</ul>
+<h4 class="section-title">4. 社區公共設施總檢驗收重大公文（下午 7:20 主委正式公文）</h4>
+<ul class="info-list">
+<li><strong>發布人</strong>：主任委員 17F-3 李先生（蓋品陽大苑管委會大印）</li>
+<li><strong>公文重點</strong>：</li>
+</ul>
+<div class="numbered-item"><span class="item-num">1. </span><div><strong>總檢驗收排程</strong>：定於 <strong>10/19、10/20（日、一）08:30 集合</strong>，09:00 由國霖機電正式開始檢測。</div></div>
+<div class="numbered-item"><span class="item-num">2. </span><div><strong>梯廳保護拆除配合</strong>：為確認梯廳現況，目前尚有保護的 <strong>9 個樓層</strong>（<code>2F</code>、<code>4F</code>、<code>5F</code>、<code>7F</code>、<code>12F</code>、<code>16F</code>、<code>18F</code>、<code>19F</code>、<code>21F</code>），請住戶於 <strong>10/18 17:00 前</strong>提前拆除保護；待 10/20 完成驗收後再施作新保護。</div></div>
+<div class="numbered-item"><span class="item-num">3. </span><div><strong>裝潢暫停進料管制</strong>：為避免影響驗收，所有裝潢工班自 <strong>10/16 12:00 起至 10/21 17:00 止全面暫停進料</strong>，預計 <strong>10/22 恢復進料</strong>。</div></div>
+<div class="numbered-item"><span class="item-num">4. </span><div><strong>B1 保護拆除與側門動線配套</strong>：</div></div>
+<p class="para">- B1 梯廳保護於 10/16 拆除，10/19-20 總檢。</p>
+<p class="para">- 要求品陽建設於 <strong>10/16 前</strong>優先修補完成「一樓客梯至側門（含鐵門段）」動線。</p>
+<p class="para">- 10/19-20 檢驗若確認一樓至側門無缺失，預計 10/21 重新施作保護，<strong>10/22 起裝潢進料改由一樓側門進出</strong>。</p>
+<div class="numbered-item"><span class="item-num">5. </span><div><strong>缺失佐證與複驗</strong>：驗收當天由國霖機電現場拍照存證並列冊，作為後續修繕與複驗時程依據。</div></div>
+<ul class="info-list">
+<li><strong>系統建檔</strong>：已立案為 <strong><code>DEF-078</code></strong>（公設總檢 / 排程驗收中）。</li>
+</ul>
+<h4 class="section-title">5. 裝潢管制補充提醒（下午 7:22）</h4>
+<ul class="info-list">
+<li><strong>發布人</strong>：主委 17F-3 李先生</li>
+<li><strong>內容重點</strong>：再次提醒住戶 10/16 下午 B1 拆除保護，10/16 12:00 ～ 10/21 暫停進料，請裝潢戶配合。</li>
+<li><strong>夜間動態</strong>：19:22 至 23:00 社群無其他新發言。</li>
+</ul>
+<hr class="divider">
+<h3 class="sub-title">🛠️ 公設缺失系統同步清單</h3>
+<p class="para">| 系統編號 | 區域空間 | 具體位置 | 系統分類 | 處理狀態 | 缺失描述 / 重大進度 |</p>
+<p class="para">| :--- | :--- | :--- | :--- | :--- | :--- |</p>
+<p class="para">| <strong>DEF-074</strong> | 專有部份 | 85號3F | 給排水系統 | 建商查勘中 | 馬桶排水問題（補正立案編號） |</p>
+<p class="para">| <strong>DEF-075</strong> | 地下室 | B4安全門 | 土建五金 | 已立案待修 | B4安全門因漏水潮濕導致無法正常關閉（補正立案編號） |</p>
+<p class="para">| <strong>DEF-076</strong> | 1F後花園 | 後花園地面 | 給排水系統 | 待處理 | 後花園雨後積水，需將地面鋪平防積水（序號順延校正） |</p>
+<p class="para">| <strong>DEF-077</strong> | 車道/外圍 | 汽車道旁防水閘門周遭 | 土建石材 | <strong>修繕排程中</strong> | <strong>今日新增</strong>：車道防水閘門破損石材更換，排定 10/17（六）08:00~12:00 施工 |</p>
+<p class="para">| <strong>DEF-078</strong> | 全區公設 | 梯廳、B1梯廳、1F側門動線 | 公設總檢 | <strong>排程驗收中</strong> | <strong>今日新增</strong>：10/19~10/20 國霖公設總檢驗收，列管 9 樓層拆保護與 10/16~21 暫停進料 |</p>
+<hr class="divider">
+<p class="para">*報告產生時間：2026-10-15 23:18*</p>
+<p class="para">*線上系統即時檢視：[品陽大苑公設缺失追蹤系統](https://www.jktai123.com/Gemini/pinyang_defect_tracker/index.html)*</p>
+      </div>
+    </article>
+    
+    </section>
+  </main>
+
+  <script>
+    function selectNav(elem) {
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      elem.classList.add('active');
+    }
+
+    function filterCards() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.summary-card');
+      cards.forEach(c => {
+        const text = c.innerText.toLowerCase();
+        c.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    function copyCardText(cardId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        navigator.clipboard.writeText(card.innerText).then(() => {
+          alert('已成功複製該日摘要內容！');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
