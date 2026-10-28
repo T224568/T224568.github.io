@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南門教會每週主日愛餐／便當準備統計報告</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --badge-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    p.meta {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 35px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-val {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      margin-bottom: 35px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 14px 16px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s ease;
+    }
+    tbody tr:hover {
+      background: #f8fafc;
+    }
+    tbody td {
+      padding: 12px 16px;
+    }
+    .count-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--badge-bg);
+      color: #475569;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>南門教會主日愛餐／便當每週準備數量統計報告</h1>
+      <p class="meta">資料來源：[LINE]南門教會服務組.txt ｜ 統計區間：2024.05 ～ 2026.10</p>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val">83 週</div>
+        <div class="stat-label">統計週數</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">9,015 個</div>
+        <div class="stat-label">累計預備便當總數</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">108.6 個</div>
+        <div class="stat-label">每週平均預備數量</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">105 ~ 110</div>
+        <div class="stat-label">常態準備基數</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">5 份</div>
+        <div class="stat-label">外勞/移工無豬肉常備</div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>主日日期</th>
+            <th>準備數量</th>
+            <th>菜色品項 / 便當廠商</th>
+            <th>輪值服事團契</th>
+            <th>備註與加訂說明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>2024-05-12</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>外訂便當</td>
+            <td><span class="tag">服務組（陳振光長老統籌）</span></td>
+            <td style="color:#64748b;">麗紅姊請假，外訂便當另煮蔬菜湯</td>
+          </tr>
+          <tr>
+            <td><strong>2024-08-25</strong></td>
+            <td><span class="count-badge">95 個</span></td>
+            <td>外訂便當</td>
+            <td><span class="tag">服務組（陳振光長老統籌）</span></td>
+            <td style="color:#64748b;">麗紅姊請假，外訂便當另煮蘿蔔雞翅湯</td>
+          </tr>
+          <tr>
+            <td><strong>2024-12-15</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>現做愛餐</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">主日學開會預留2個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2024-12-22</strong></td>
+            <td><span class="count-badge">107 個</span></td>
+            <td>滷肉飯／雞肉飯便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">聖誕主日，預訂100個+外加5個+幹事2個=107個</td>
+          </tr>
+          <tr>
+            <td><strong>2024-12-29</strong></td>
+            <td><span class="count-badge">95 個</span></td>
+            <td>現做愛餐</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">天冷且磐石團契及牧師外出聚餐，準備95份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-01-05</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>外訂餐盒</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">外訂餐盒105個，另附陳哥熱麥茶</td>
+          </tr>
+          <tr>
+            <td><strong>2025-01-19</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>主廚燴飯＋熱湯</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">和會主日，主廚先盛裝110碗燴飯與熱湯</td>
+          </tr>
+          <tr>
+            <td><strong>2025-01-26</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>紅糟雞（蒸）／紅糟豬片（炸）</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">現做愛餐健康便當105份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-02-16</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>黑胡椒洋蔥豬／日式唐揚炸雞</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">主日學預留11個，松年例會另預留</td>
+          </tr>
+          <tr>
+            <td><strong>2025-02-23</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>福菜豬肉／咖哩雞／鮮炸巴郎魚</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">三種主菜健康餐盒</td>
+          </tr>
+          <tr>
+            <td><strong>2025-03-02</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>啤酒燉豬肉／彩椒鹽酥魚</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">聖歌隊預留20個</td>
+          </tr>
+          <tr>
+            <td><strong>2025-03-16</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>現做健康餐盒</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">松年團契預留30-35個</td>
+          </tr>
+          <tr>
+            <td><strong>2025-03-23</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>現做健康餐盒</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">少年團契預留6個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2025-03-30</strong></td>
+            <td><span class="count-badge">115 個</span></td>
+            <td>肉絲炒飯/炒麵＋綜合滷味＋濃湯</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">春季主日愛餐</td>
+          </tr>
+          <tr>
+            <td><strong>2025-04-13</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>現做愛餐餐盒</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">愛餐105份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-04-27</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>粉絲餐盒／愛餐</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">主日中午愛餐120份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-05-11</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>現做愛餐</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">母親節主日愛餐110份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-05-18</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>現做愛餐</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">主日中午愛餐100份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-06-08</strong></td>
+            <td><span class="count-badge">95 個</span></td>
+            <td>現做愛餐</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預定90-95份（採計95份）</td>
+          </tr>
+          <tr>
+            <td><strong>2025-06-15</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>現做愛餐</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">主日中午愛餐100份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-06-22</strong></td>
+            <td><span class="count-badge">90 個</span></td>
+            <td>正常現做餐盒</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預定90份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-06-29</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>正常現做餐盒</td>
+            <td><span class="tag">少年團契</span></td>
+            <td style="color:#64748b;">少契服事，另剝切70顆茶葉蛋加菜</td>
+          </tr>
+          <tr>
+            <td><strong>2025-07-20</strong></td>
+            <td><span class="count-badge">91 個</span></td>
+            <td>正常現做餐盒</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">預定85份，實發85+6=91份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-07-27</strong></td>
+            <td><span class="count-badge">95 個</span></td>
+            <td>正常現做餐盒</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預定95份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-08-10</strong></td>
+            <td><span class="count-badge">85 個</span></td>
+            <td>正常現做餐盒</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">暑期主日愛餐85份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-08-17</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>外訂便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">訂110個（松年預留48份、兒主8份）</td>
+          </tr>
+          <tr>
+            <td><strong>2025-08-24</strong></td>
+            <td><span class="count-badge">95 個</span></td>
+            <td>雞肉便當(30)＋雞滷便當(65)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">外訂便當共95份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-08-31</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>外訂便當</td>
+            <td><span class="tag">少年團契</span></td>
+            <td style="color:#64748b;">外訂便當無須打菜</td>
+          </tr>
+          <tr>
+            <td><strong>2025-09-21</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>雞腿飯便當</td>
+            <td><span class="tag">辦公室／服務組</span></td>
+            <td style="color:#64748b;">外訂雞腿飯120份（辦公室4個，B1留116個）</td>
+          </tr>
+          <tr>
+            <td><strong>2025-09-28</strong></td>
+            <td><span class="count-badge">170 個</span></td>
+            <td>主日愛餐大份數</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">全教會大型愛餐日預訂170份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-10-19</strong></td>
+            <td><span class="count-badge">112 個</span></td>
+            <td>雞腿飯便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">松年46、聖歌隊19、長執會24、幹事2</td>
+          </tr>
+          <tr>
+            <td><strong>2025-10-26</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>外訂愛餐便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預訂120份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-11-02</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>油雞飯便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂120份油雞便當</td>
+          </tr>
+          <tr>
+            <td><strong>2025-11-09</strong></td>
+            <td><span class="count-badge">115 個</span></td>
+            <td>招牌飯(110)＋雞肉飯(5)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">5份雞肉飯優先保留外籍幫傭</td>
+          </tr>
+          <tr>
+            <td><strong>2025-11-16</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>雞肉飯便當</td>
+            <td><span class="tag">辦公室／服務組</span></td>
+            <td style="color:#64748b;">外訂110份，麗凰姐提供沙琪瑪</td>
+          </tr>
+          <tr>
+            <td><strong>2025-11-23</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>招牌便當(105)＋鯛魚便當(5)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">5份鯛魚便當優先保留外籍幫傭</td>
+          </tr>
+          <tr>
+            <td><strong>2025-11-30</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>雞肉飯便當</td>
+            <td><span class="tag">少年團契</span></td>
+            <td style="color:#64748b;">預訂120份雞肉飯</td>
+          </tr>
+          <tr>
+            <td><strong>2025-12-07</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>主餐便當(105)＋雞肉便當(5)</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">5份雞肉保留給外籍幫傭</td>
+          </tr>
+          <tr>
+            <td><strong>2025-12-14</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>滷排骨飯(102)＋魚排飯(8)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">8份魚排飯保留外籍幫傭</td>
+          </tr>
+          <tr>
+            <td><strong>2025-12-21</strong></td>
+            <td><span class="count-badge">140 個</span></td>
+            <td>刈包＋包子</td>
+            <td><span class="tag">辦公室／服務組</span></td>
+            <td style="color:#64748b;">聖誕季預訂刈包包子140份</td>
+          </tr>
+          <tr>
+            <td><strong>2025-12-28</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>魚便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預訂110個魚便當＋小蛋糕</td>
+          </tr>
+          <tr>
+            <td><strong>2026-01-04</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>蝦卷便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂110份蝦卷便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-01-11</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>招牌便當(105)＋非豬肉便當(5)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">5份非豬肉保留外籍幫傭</td>
+          </tr>
+          <tr>
+            <td><strong>2026-01-18</strong></td>
+            <td><span class="count-badge">105 個</span></td>
+            <td>滷棒腿便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">預訂滷棒腿105個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-01-25</strong></td>
+            <td><span class="count-badge">55 個</span></td>
+            <td>香煎排骨便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">寒假/過年前夕特殊調整預訂55個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-02-01</strong></td>
+            <td><span class="count-badge">95 個</span></td>
+            <td>蝦卷便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">95份（含5份無豬肉滷汁）</td>
+          </tr>
+          <tr>
+            <td><strong>2026-02-08</strong></td>
+            <td><span class="count-badge">155 個</span></td>
+            <td>刈包包子(150)＋雞肉便當(5)</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">三層肉100+瘦肉50+雞肉5=155份</td>
+          </tr>
+          <tr>
+            <td><strong>2026-02-15</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>精選粽子</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">農曆新春期間預訂肉粽100個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-02-22</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>鮭魚便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預訂100個鮭魚便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-03-01</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>「吉利」招牌便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">含5份不含豬肉（留給外勞）</td>
+          </tr>
+          <tr>
+            <td><strong>2026-03-08</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>精選雞肉便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">預訂110份雞肉便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-03-15</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>叉燒特餐(105)＋雞排特餐(5)</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">5份雞排留給外勞</td>
+          </tr>
+          <tr>
+            <td><strong>2026-03-22</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>竹林雞胸肉便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預訂120個竹林雞胸便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-03-29</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>蝦捲便當</td>
+            <td><span class="tag">少年團契</span></td>
+            <td style="color:#64748b;">預定120份蝦捲便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-04-05</strong></td>
+            <td><span class="count-badge">80 個</span></td>
+            <td>梁社漢玫瑰油雞便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">清明連假預訂80份梁社漢</td>
+          </tr>
+          <tr>
+            <td><strong>2026-04-12</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>吉利便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">預訂110份吉利便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-04-19</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>咖哩雞便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">預訂咖哩雞便當100個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-04-26</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>沙茶牛肉燴飯便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預訂110個沙茶牛肉燴飯</td>
+          </tr>
+          <tr>
+            <td><strong>2026-05-03</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>鮭魚便當／招牌便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂110個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-05-10</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>刈包＋包子各半</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">母親節主日刈包與包子各120個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-05-17</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>滷豬排便當(115)＋雞柳便當(5)</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">預訂120個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-05-24</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>精選雞肉便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">預訂110個雞肉便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-05-31</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>悟饕池上便當</td>
+            <td><span class="tag">磐石團契（代少契）</span></td>
+            <td style="color:#64748b;">預訂110個悟饕池上便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-06-07</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>椒麻鯛魚飯便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂110個椒麻鯛魚飯</td>
+          </tr>
+          <tr>
+            <td><strong>2026-06-14</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>福隆雞腿便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">預訂福隆雞腿便當110個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-06-21</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>梁社漢雞肉便當</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">預訂梁社漢雞肉便當110個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-06-28</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>「拎刀躁咖」滷排(105)＋蒲燒鯛魚(5)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">5個蒲燒鯛魚留給外勞</td>
+          </tr>
+          <tr>
+            <td><strong>2026-07-05</strong></td>
+            <td><span class="count-badge">130 個</span></td>
+            <td>精選雞腿便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">暑期青年主日預訂130個雞腿便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-07-12</strong></td>
+            <td><span class="count-badge">60 個</span></td>
+            <td>雞滷便當(55)＋雞肉便當(5)</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">暑期活動出遊，預訂60個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-07-19</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>招牌便當(105)＋非豬肉便當(5)</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">預訂110個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-07-26</strong></td>
+            <td><span class="count-badge">125 個</span></td>
+            <td>三峽教會油飯餐盒(120)＋雞肉飯(5)</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">三峽教會油飯餐盒合作日</td>
+          </tr>
+          <tr>
+            <td><strong>2026-08-02</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>精選雞腿便當</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂110個雞腿便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-08-09</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>鯖魚飯(60)＋鮭魚飯(50)</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">雙魚主菜搭配共110份</td>
+          </tr>
+          <tr>
+            <td><strong>2026-08-16</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>福隆招牌便當(105)＋鯛魚便當(5)</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">5個鯛魚便當給外勞</td>
+          </tr>
+          <tr>
+            <td><strong>2026-08-23</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>鬍鬚張便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">110個鬍鬚張（含5個非豬肉）</td>
+          </tr>
+          <tr>
+            <td><strong>2026-08-30</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>咖哩雞便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">110份咖哩雞（含5個非豬肉）</td>
+          </tr>
+          <tr>
+            <td><strong>2026-09-06</strong></td>
+            <td><span class="count-badge">120 個</span></td>
+            <td>三峽米粉便當餐盒</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂120份三峽米粉餐盒</td>
+          </tr>
+          <tr>
+            <td><strong>2026-09-13</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>吉利便當</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">110個吉利便當（含5個非豬肉）</td>
+          </tr>
+          <tr>
+            <td><strong>2026-09-20</strong></td>
+            <td><span class="count-badge">110 個</span></td>
+            <td>福隆招牌便當(105)＋棒腿便當(5)</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">5個棒腿便當給外勞</td>
+          </tr>
+          <tr>
+            <td><strong>2026-09-27</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>土魠魚便當</td>
+            <td><span class="tag">婦女團契</span></td>
+            <td style="color:#64748b;">100個土魠魚便當（含5個非豬肉）</td>
+          </tr>
+          <tr>
+            <td><strong>2026-10-04</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>滷香排骨(95)＋鯖魚便當(5)</td>
+            <td><span class="tag">磐石團契</span></td>
+            <td style="color:#64748b;">預訂100個便當</td>
+          </tr>
+          <tr>
+            <td><strong>2026-10-11</strong></td>
+            <td><span class="count-badge">100 個</span></td>
+            <td>寧波排骨(95)＋雞排便當(5)</td>
+            <td><span class="tag">服務組</span></td>
+            <td style="color:#64748b;">信徒培訓日預訂100個</td>
+          </tr>
+          <tr>
+            <td><strong>2026-10-18</strong></td>
+            <td><span class="count-badge">125 個</span></td>
+            <td>松岡蔥爆牛肉便當</td>
+            <td><span class="tag">夫婦團契</span></td>
+            <td style="color:#64748b;">預訂125個蔥爆牛肉便當</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

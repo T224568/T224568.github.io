@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Google Gemini 全能使用手冊：9大核心用法與17個功能實測</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 13mm;
+    @bottom-right {
+      content: counter(page);
+      font-size: 8pt;
+      color: #718096;
+    }
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: #2d3748;
+    line-height: 1.55;
+    font-size: 8.8pt;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    border-bottom: 3px solid #1a73e8;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 {
+    font-size: 17pt;
+    margin: 0 0 3px 0;
+    color: #1a73e8;
+    letter-spacing: -0.4px;
+  }
+  .header .subtitle {
+    font-size: 8.8pt;
+    color: #4a5568;
+    font-weight: 500;
+  }
+  .badge {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 8pt;
+    border: 1px solid #d2e3fc;
+    white-space: nowrap;
+  }
+  .summary-card {
+    background: #f8fafd;
+    border-left: 4px solid #1a73e8;
+    padding: 8px 12px;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 12px;
+    font-size: 8.6pt;
+  }
+  .summary-card h3 {
+    margin: 0 0 4px 0;
+    color: #174ea6;
+    font-size: 9.8pt;
+  }
+  .summary-card p {
+    margin: 0;
+  }
+  h2.sec-title {
+    font-size: 10.8pt;
+    color: #174ea6;
+    border-bottom: 1.5px solid #dadce0;
+    padding-bottom: 3px;
+    margin: 12px 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    page-break-after: avoid;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .card {
+    border: 1px solid #e8eaed;
+    border-radius: 5px;
+    padding: 8px 10px;
+    background: #ffffff;
+    page-break-inside: avoid;
+  }
+  .card.highlight {
+    border-color: #d2e3fc;
+    background-color: #fbfdff;
+  }
+  .card-title {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #1a73e8;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tag {
+    background: #f1f3f4;
+    color: #5f6368;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+    font-weight: 600;
+  }
+  .tag.blue {
+    background: #e8f0fe;
+    color: #1a73e8;
+  }
+  .tag.green {
+    background: #e6f4ea;
+    color: #137333;
+  }
+  .tag.orange {
+    background: #fef7e0;
+    color: #b06000;
+  }
+  .tag.purple {
+    background: #f3e8fd;
+    color: #7627bb;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 10px 0;
+    font-size: 8.3pt;
+  }
+  table.data-table th {
+    background-color: #1a73e8;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    padding: 5px 6px;
+    border: 1px solid #1a73e8;
+  }
+  table.data-table td {
+    padding: 4.5px 6px;
+    border: 1px solid #e8eaed;
+    text-align: center;
+  }
+  table.data-table td.left {
+    text-align: left;
+  }
+  table.data-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  .code-pill {
+    background: #f1f3f4;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 7.8pt;
+    color: #d93025;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+  .footer {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 7.5pt;
+    color: #80868b;
+    border-top: 1px solid #dadce0;
+    padding-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>Google Gemini 全能使用手冊</h1>
+      <div class="subtitle">9 大核心用法 ＋ 17 個最強實測功能 ｜ 生態整合與效率變現指南</div>
+    </div>
+    <div>
+      <span class="badge">AI 生產力實戰系列</span>
+    </div>
+  </div>
+
+  <div class="summary-card">
+    <h3>📌 核心認知升級（Core Concept）</h3>
+    <p>
+      Gemini 不只是「Google 版 ChatGPT」，其真正的護城河與爆發力在於<strong>原生深植於 Google 龐大生態圈</strong>：YouTube、Gmail、Google Drive、Docs、Sheets、Slides、Chrome 瀏覽器與 AI Studio。它不是單純的對話機器人，而是能將分散在瀏覽器、影片、雲端硬碟、郵件與表格裡的碎片資訊，自動串接成高價值、立即可用工作流的「個人 AI 超級助手」。
+    </p>
+  </div>
+
+  <h2 class="sec-title">一、 9 大核心用法全景圖解</h2>
+  <div class="grid-3">
+    <div class="card highlight">
+      <div class="card-title">
+        <span>1. 一鍵分析 YouTube</span>
+        <span class="tag red">內容提煉</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">貼上影片連結，直接生成繁中精華導讀、知識心智圖，並精準抓取分段時間戳點擊跳轉。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>2. 自定義智能體 (Gems)</span>
+        <span class="tag purple">專屬 Agent</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">自訂 System Prompt 打造專屬爆款選題助手、文案寫手或專業顧問，隨調隨用不需重複提示。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>3. Ask Gemini 瀏覽器側欄</span>
+        <span class="tag blue">邊逛邊問</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">免切換分頁，在 Chrome 側邊欄一鍵總結長文網頁、支援即時語音對話 (Live)，高效閱讀。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>4. Google 全家桶無縫整合</span>
+        <span class="tag green">Workspace</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">穿梭 Gmail、Drive、Docs、Sheets、Slides。免下載上傳，直接呼叫雲端資料並原地處理。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>5. 百萬 Token 長文檔處理</span>
+        <span class="tag orange">超大上下文</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">直接吞入數百頁英文財報、學術論文或年報（如新航年報），秒級交叉比對數據並提取結論。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>6. 深度研究 (Deep Research)</span>
+        <span class="tag blue">行業調查</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">輸入陌生產業（如銀髮經濟、低空經濟），AI 自主多輪搜索、驗證來源，輸出結構化產業分析報告。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>7. 報告一鍵轉信息圖</span>
+        <span class="tag green">可視化</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">將枯燥長文資料轉化為結構清晰、重點鮮明的信息圖（Infographic）與社群圖卡。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>8. 報告結構化轉 PPT</span>
+        <span class="tag orange">簡報產出</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">提煉研報邏輯，自動拆解為投影片章節、標題與核心點，並可原地在 Google Slides 調整排版。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>9. 研報秒變雙人對話播客</span>
+        <span class="tag purple">碎片學習</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;">透過音訊概覽（NotebookLM / TTS 功能），將艱澀報告轉為生動流暢的男女對談 Podcast，隨身聽。</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title">二、 17 個最強功能實測與操作要點對照表</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 14%;">模組領域</th>
+        <th style="width: 22%;">核心功能</th>
+        <th style="width: 44%;">實戰應用場景與操作要點</th>
+        <th style="width: 20%;">效率提升指標</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2" style="font-weight: bold; background: #fdfefe;">YouTube 學習</td>
+        <td class="left"><strong>① 影音智能轉中文導讀</strong></td>
+        <td class="left">輸入任意語言長影片網址，自動抓取字幕並轉化為結構化繁體中文重點。</td>
+        <td>節省 80% 看片時間</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>② 精準知識地圖與時間戳</strong></td>
+        <td class="left">自動建立大綱目錄與時間錨點，點擊可直接精確定位影片核心章節。</td>
+        <td>精準定位免拖進度條</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background: #fdfefe;">智能體打造</td>
+        <td class="left"><strong>③ 自定義 Gems 專屬助理</strong></td>
+        <td class="left">設定角色（如爆款 YouTube 選題分析師），固定輸出格式與思考框架，永久複用。</td>
+        <td>選題產出提速 5 倍</td>
+      </tr>
+      <tr>
+        <td rowspan="2" style="font-weight: bold; background: #fdfefe;">瀏覽器側欄</td>
+        <td class="left"><strong>④ Ask Gemini 網頁側欄</strong></td>
+        <td class="left">閱讀長篇新聞或技術文章時，隨時在側欄發問，邊看邊梳理疑點。</td>
+        <td>無干擾沉浸式閱讀</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑤ 即時語音互動 (Live)</strong></td>
+        <td class="left">支援多語言擬真語音對話，用說話方式進行腦力激盪、口說練習或即時諮詢。</td>
+        <td>自然口語零打字負擔</td>
+      </tr>
+      <tr>
+        <td rowspan="5" style="font-weight: bold; background: #fdfefe;">Google 全家桶 (Workspace)</td>
+        <td class="left"><strong>⑥ Gmail 郵件總結與擬稿</strong></td>
+        <td class="left">自動梳理多封往返的複雜長郵件，並依照語氣風格一鍵生成專業回覆草稿。</td>
+        <td>郵件回覆效率翻倍</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑦ Google Drive 全庫檢索</strong></td>
+        <td class="left">直接指定雲端資料夾，跨檔案整合 PDF、Word、試算表內容進行綜合回答。</td>
+        <td>打造個人第二大腦</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑧ Google Docs 文檔轉表格</strong></td>
+        <td class="left">長文摘要、段落精煉，將散落的文字描述一鍵轉為對比清晰的 Markdown/表格。</td>
+        <td>文檔整理時間減半</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑨ Google Sheets 數據洞察</strong></td>
+        <td class="left">輸入自然語言「幫我找出 Q3 成長前三名產品並繪製趨勢圖」，自動生成分析結論。</td>
+        <td>免寫複雜函數公式</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑩ Google Slides 簡報優化</strong></td>
+        <td class="left">在 Slides 內重寫文字頁面，精簡條列、強化視覺層次，提高專業度。</td>
+        <td>簡報視覺邏輯秒優化</td>
+      </tr>
+      <tr>
+        <td rowspan="2" style="font-weight: bold; background: #fdfefe;">長文檔研究</td>
+        <td class="left"><strong>⑪ 百萬 Context 深度透視</strong></td>
+        <td class="left">上傳 300 頁英文年報（如新加坡航空），秒級回答營收、燃油成本與利潤變動。</td>
+        <td>數小時研讀縮至數分鐘</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑫ 跨語言精準比對</strong></td>
+        <td class="left">直接閱讀原文外文報告，以精準繁體中文輸出對照表與數據摘錄，零翻譯障礙。</td>
+        <td>跨國商業情報零時差</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background: #fdfefe;">深度調查</td>
+        <td class="left"><strong>⑬ Deep Research 產業調研</strong></td>
+        <td class="left">針對陌生藍海領域（如銀髮健康產業），AI 自動規劃研究路徑並生成權威分析報告。</td>
+        <td>取代初級調研分析師</td>
+      </tr>
+      <tr>
+        <td rowspan="3" style="font-weight: bold; background: #fdfefe;">跨模態產出</td>
+        <td class="left"><strong>⑭ 研報轉信息圖草案</strong></td>
+        <td class="left">將核心調研結論轉化為條理分明、適合社群傳播的信息圖視覺腳本。</td>
+        <td>內容自媒體傳播力激增</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑮ 報告轉 PPT 大綱</strong></td>
+        <td class="left">提取核心論點，輸出 10～15 頁具備邏輯結構的簡報架構與講稿。</td>
+        <td>簡報架構一鍵生成</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>⑯ 雙人對話播客 (Podcast)</strong></td>
+        <td class="left">將任何枯燥文字轉換為極具自然抑揚頓挫的男女雙人主持播客音檔。</td>
+        <td>通勤/運動碎片化學習</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; background: #fdfefe;">專業入口</td>
+        <td class="left"><strong>⑰ Google AI Studio 免費進階</strong></td>
+        <td class="left">透過 AI Studio 免費使用頂級模型（Gemini 1.5 Pro / Flash），享受無限制上下文與參數調節。</td>
+        <td>零成本解鎖開發者威力</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <h2 class="sec-title" style="margin-top:0;">三、 典型高價值工作流實戰示範（Workflows）</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">
+        <span>工作流 A：YouTube 爆款選題到內容落地</span>
+        <span class="tag purple">自媒體創作者</span>
+      </div>
+      <div style="font-size: 8.2pt; line-height: 1.6;">
+        <div><strong>Step 1｜監控標竿：</strong>用 Gemini 一鍵分析熱門競品影片，提取核心論點與留言爭議點。</div>
+        <div><strong>Step 2｜Gems 選題：</strong>呼叫自訂「選題助手 Gems」，針對痛點生成 5 個差異化爆款切入點。</div>
+        <div><strong>Step 3｜文案擬定：</strong>利用 Docs 整合撰寫腳本，並產出吸睛標題與社群貼文。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>工作流 B：百頁產業研報到商業決策</span>
+        <span class="tag blue">職場與商業調研</span>
+      </div>
+      <div style="font-size: 8.2pt; line-height: 1.6;">
+        <div><strong>Step 1｜Deep Research：</strong>啟動深度調研產出 2 萬字陌生市場研究初稿。</div>
+        <div><strong>Step 2｜多模態分流：</strong>一鍵提煉為 10 頁 Google Slides 簡報大綱給主管匯報。</div>
+        <div><strong>Step 3｜音訊轉化：</strong>生成 10 分鐘對話播客，供團隊利用通勤時間快速同頻。</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec-title">四、 Google 官方生態三大入口選用策略</h2>
+  <div class="grid-3">
+    <div class="card highlight">
+      <div class="card-title">
+        <span>Gemini 網頁端 / App</span>
+        <span class="tag green">日常必備</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;"><strong>網址：</strong>gemini.google.com</p>
+      <p style="margin:2px 0; font-size:8pt;"><strong>優勢：</strong>介面清爽直觀，具備 Gems、Ask Gemini、YouTube 直接解析與語音對話，適合日常問答與內容發想。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>Google Workspace 側欄</span>
+        <span class="tag blue">辦公流</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;"><strong>位置：</strong>Gmail / Docs / Drive 右側面板</p>
+      <p style="margin:2px 0; font-size:8pt;"><strong>優勢：</strong>與雲端資料零距離接觸，不需要手動下載檔案再上傳，直接原地處理雲端郵件與表格。</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-title">
+        <span>Google AI Studio</span>
+        <span class="tag orange">高階極客</span>
+      </div>
+      <p style="margin:2px 0; font-size:8pt;"><strong>網址：</strong>aistudio.google.com</p>
+      <p style="margin:2px 0; font-size:8pt;"><strong>優勢：</strong>完全免費、直調 Gemini 1.5 Pro 最強模型、百萬級完整 Token 窗口、支援系統提示詞與溫度調節。</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>本報告由 Claude Code 懶人包系統 / Antigravity 自動生成 ｜ 儲存路徑：/Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.pdf</span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台中草悟道・公益路高 CP 值美食地圖</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        #map { width: 100vw; height: 100vh; }
+        .custom-popup { font-size: 14px; line-height: 1.5; min-width: 200px; }
+        .custom-popup h3 { margin: 0 0 6px 0; font-size: 16px; color: #1a73e8; }
+        .badge { display: inline-block; background: #e8f0fe; color: #1967d2; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-bottom: 6px; font-weight: 500; }
+        .info-panel {
+            position: absolute; top: 16px; right: 16px; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); padding: 14px 18px; border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15); max-width: 300px; backdrop-filter: blur(4px);
+        }
+        .info-panel h2 { margin: 0 0 6px 0; font-size: 15px; color: #202124; }
+        .info-panel p { margin: 0 0 10px 0; font-size: 12px; color: #5f6368; line-height: 1.4; }
+        .btn {
+            display: inline-block; background: #1a73e8; color: #fff; text-decoration: none;
+            padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; text-align: center;
+        }
+        .btn:hover { background: #1557b0; }
+    </style>
+</head>
+<body>
+    <div class="info-panel">
+        <h2>📍 草悟道・公益路美食地圖</h2>
+        <p>收錄 16 間精選高性價比美食地標。點擊地標標記可查看招牌必點與直達導航。</p>
+        <a href="https://www.google.com/maps/d/u/0/" target="_blank" class="btn">前往 Google 我的地圖匯入 &rarr;</a>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const places = [{"Name": "黃家園蒸餃館", "Address": "台中市西區模範街48號", "Category": "麵食點心", "Price": "$50 - $90", "Specialty": "手工蒸餃、櫻花蝦炒飯、酸辣湯", "Description": "內用紅茶無限暢飲；蒸餃一籠皮薄多汁，炒飯鑊氣十足大份量，在地排隊神店", "Area": "模範街（近勤美草悟道）", "MapURL": "https://maps.google.com/?cid=15891231739096324576", "Lat": 24.14882, "Lng": 120.66578}, {"Name": "向上水餃", "Address": "台中市西區中美街183號", "Category": "傳統小吃", "Price": "$30 - $70", "Specialty": "水餃（一顆$3.5）、酸辣湯、滷味", "Description": "全台最抗通膨傳奇水餃，銅板價飽到天靈蓋，上餐極快", "Area": "中美街（向上市場核心）", "MapURL": "https://www.google.com/maps/search/?api=1&query=向上水餃+台中市西區中美街183號", "Lat": 24.14621, "Lng": 120.66175}, {"Name": "珍品小吃", "Address": "台中市西區模範街20-1號", "Category": "台式早午餐", "Price": "$40 - $90", "Specialty": "模範街米粉芋、大腸豬血湯、炒麵", "Description": "芋頭大塊鬆軟化口，大腸洗得乾淨無腥味，老饕晨間與午餐首選", "Area": "模範街", "MapURL": "https://www.google.com/maps/search/?api=1&query=珍品小吃+台中市西區模範街20-1號", "Lat": 24.14995, "Lng": 120.66642}, {"Name": "別嗆大叔", "Address": "台中市西區模範市場一巷10號", "Category": "日式咖哩", "Price": "$180 - $260", "Specialty": "晚安炸豬排咖哩、黑椒雞咖哩", "Description": "藏身模範市場內的唱片行咖哩，厚切炸豬排肉汁滿溢，氣氛與份量雙絕", "Area": "模範市場內", "MapURL": "https://www.google.com/maps/search/?api=1&query=別嗆大叔+台中市西區模範市場一巷10號", "Lat": 24.14923, "Lng": 120.66551}, {"Name": "太初麵食", "Address": "台中市南屯區公益路二段115號", "Category": "精緻麵食", "Price": "$160 - $280", "Specialty": "太初辣子麵、滷鴨血豆腐、特選牛肉麵", "Description": "輕井澤集團氣派禪風裝潢，百元價位享受豪宅級環境與冬瓜檸檬無限喝", "Area": "公益路美食一級戰區", "MapURL": "https://maps.google.com/?cid=11287346302150940777", "Lat": 24.15234, "Lng": 120.65082}, {"Name": "金苑茶餐廳（公益店）", "Address": "台中市西區公益路147號", "Category": "港式點心", "Price": "$250 - $400", "Specialty": "冰火菠蘿油、蝦餃皇、XO醬炒蘿蔔糕", "Description": "頂級粵菜金悅軒平價品牌，點心做工細緻，勤美對面高性價比港點首選", "Area": "公益路（勤美誠品斜對面）", "MapURL": "https://maps.google.com/?cid=17242109946564100382", "Lat": 24.15098, "Lng": 120.66312}, {"Name": "富狀元豬腳", "Address": "台中市西區美村路一段203號", "Category": "台式傳統小吃", "Price": "$120 - $200", "Specialty": "狀元豬腳、滷肉飯、爽口筍絲", "Description": "連年米其林必比登推介，豬腳滷得軟嫩透亮富膠質，平價米其林滋味", "Area": "美村路一段", "MapURL": "https://maps.google.com/?cid=13560397093329266659", "Lat": 24.14815, "Lng": 120.66285}, {"Name": "主觀廚房", "Address": "台中市西區公正路126號", "Category": "美式漢堡", "Price": "$250 - $350", "Specialty": "台灣牛經典漢堡、花生醬牛肉堡", "Description": "主打台灣在地溫體牛手打漢堡，炭香肉多汁，套餐份量充足", "Area": "公正路（市民廣場旁）", "MapURL": "https://maps.google.com/?cid=4400836254104941226", "Lat": 24.1489, "Lng": 120.6619}, {"Name": "湯棧（公益店）", "Address": "台中市南屯區公益路二段248號", "Category": "個人鍋物", "Price": "$300 - $500", "Specialty": "剝皮辣椒雞鍋、燒酒雞鍋、冷藏肉盤", "Description": "台式香濃湯底附豐盛菜盤、白飯與冬瓜茶，冷藏肉質優，聚餐高CP值", "Area": "公益路二段", "MapURL": "https://maps.google.com/?cid=7240415808187134202", "Lat": 24.15285, "Lng": 120.64532}, {"Name": "嘉義廖媽媽管麵", "Address": "台中市西區中美街158號", "Category": "麵食小吃", "Price": "$45 - $90", "Specialty": "麻醬涼麵、紅油抄手、牛肉麵", "Description": "涼麵份量巨無霸，麻醬濃郁帶蒜香，平價又極具飽足感", "Area": "中美街（向上市場旁）", "MapURL": "https://www.google.com/maps/search/?api=1&query=嘉義廖媽媽管麵+台中市西區中美街158號", "Lat": 24.14682, "Lng": 120.6616}, {"Name": "信川屋博多豚骨拉麵", "Address": "台中市西區中興八巷24號", "Category": "日式拉麵", "Price": "$160 - $240", "Specialty": "濃厚豚骨拉麵、手工七彩養生麵", "Description": "標榜不加防腐劑純天然自製麵條，草悟道旁難得兩百元有找的高水準拉麵", "Area": "中興街（草悟道正旁）", "MapURL": "https://www.google.com/maps/search/?api=1&query=信川屋博多豚骨拉麵+台中市西區中興八巷24號", "Lat": 24.14732, "Lng": 120.6625}, {"Name": "飪室咖哩 Renshi（勤美店）", "Address": "台中市西區美村路一段149巷19號", "Category": "印度咖哩", "Price": "$250 - $350", "Specialty": "初次認識咖哩、堅果咖哩、現烤起司甩餅", "Description": "網美裝潢但實力扎實，香料濃郁多層次，甩餅酥脆牽絲，份量誠意十足", "Area": "公正路（近草悟道）", "MapURL": "https://www.google.com/maps/search/?api=1&query=飪室咖哩+台中市西區美村路一段149巷19號", "Lat": 24.1495, "Lng": 120.6635}, {"Name": "台北黑肉麵", "Address": "台中市西區美村路一段462號", "Category": "台式便當", "Price": "$90 - $130", "Specialty": "排骨飯、黑肉麵、蒸蛋湯", "Description": "招牌黑肉（紅燒厚切排骨）醃製入味肉質軟嫩，配菜下飯，經典老字號", "Area": "美村路一段（近公益路）", "MapURL": "https://www.google.com/maps/search/?api=1&query=台北黑肉麵+台中市西區美村路一段462號", "Lat": 24.1415, "Lng": 120.6611}, {"Name": "真味北平烤鴨", "Address": "台中市西區美村路一段214號", "Category": "燒臘外帶", "Price": "$320 - $620", "Specialty": "一鴨二吃（片皮鴨+爆炒鴨架）", "Description": "經典排隊老字號，鴨皮脆油香四溢，九層塔甜麵醬炒鴨架極下飯", "Area": "美村路一段／公正路口", "MapURL": "https://www.google.com/maps/search/?api=1&query=真味北平烤鴨+台中市西區美村路一段214號", "Lat": 24.1479, "Lng": 120.6627}, {"Name": "美村點頭冰", "Address": "台中市西區美村路一段176號", "Category": "冰品甜湯", "Price": "$80 - $100", "Specialty": "點頭冰（南洋椰奶紫米水果）、芒果牛奶冰", "Description": "冰上鋪滿厚切新鮮水果再淋煉乳椰奶，料多實在，草悟道散步解膩必備", "Area": "美村路一段", "MapURL": "https://www.google.com/maps/search/?api=1&query=美村點頭冰+台中市西區美村路一段176號", "Lat": 24.1488, "Lng": 120.6626}, {"Name": "向上豆花", "Address": "台中市西區中美街176號", "Category": "傳統甜湯", "Price": "$35 - $50", "Specialty": "綜合豆花、綠豆薏仁湯", "Description": "古早味糖水手工豆花，豆香濃郁口感滑嫩，銅板價格大碗解渴", "Area": "中美街（向上市場）", "MapURL": "https://www.google.com/maps/search/?api=1&query=向上豆花+台中市西區中美街176號", "Lat": 24.1465, "Lng": 120.66165}];
+        const map = L.map('map').setView([24.1485, 120.662], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        places.forEach(p => {
+            const marker = L.marker([p.Lat, p.Lng]).addTo(map);
+            const content = `
+                <div class="custom-popup">
+                    <h3>${p.Name}</h3>
+                    <span class="badge">${p.Category} | ${p.Price}</span>
+                    <div><b>地址：</b>${p.Address}</div>
+                    <div><b>招牌：</b>${p.Specialty}</div>
+                    <div style="margin: 4px 0; color: #444;">${p.Description}</div>
+                    <div style="margin-top: 8px;"><a href="${p.MapURL}" target="_blank" style="color:#1a73e8;font-weight:bold;text-decoration:none;">開啟 Google 地圖導航 &rarr;</a></div>
+                </div>
+            `;
+            marker.bindPopup(content);
+        });
+    </script>
+</body>
+</html>

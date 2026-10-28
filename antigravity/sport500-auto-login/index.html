@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運動部 500 揮汗有禮一鍵自動登入小工具</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f7f9fa;
+            color: #2c3e50;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 680px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 36px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        h1 {
+            font-size: 24px;
+            color: #d9531e;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-bookmarklet {
+            display: inline-block;
+            background: linear-gradient(135deg, #d9531e 0%, #b83a0a 100%);
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(217, 83, 30, 0.35);
+            margin: 20px 0;
+            cursor: move;
+            transition: transform 0.15s ease;
+        }
+        .btn-bookmarklet:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(217, 83, 30, 0.45);
+        }
+        .instruction {
+            background-color: #fff9f5;
+            border-left: 4px solid #d9531e;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        ol {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: ui-monospace, Menlo, Monaco, monospace;
+            font-size: 14px;
+            color: #0f172a;
+        }
+        .account-box {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏃 運動部 500 揮汗有禮一鍵自動登入</h1>
+        <p>為方便您在 Chrome 瀏覽器中一秒登入，請將下方按鈕直接拖曳至瀏覽器的「書籤列」：</p>
+        
+        <div style="text-align: center;">
+            <a class="btn-bookmarklet" href="javascript:(async function(){ const ID = 'M120150315'; const BIRTH = '1959-10-08'; const PHONE = '0921588876'; if (location.host !== '500.gov.tw') { alert('請先將按鈕拖曳到書籤列！ 現在將為您前往 500.gov.tw 網站，到達後再點擊書籤列即可秒登入。'); location.href = 'https://500.gov.tw/registrant/access'; return; } try { if (location.pathname.includes('/registrant/member/tasks')) { alert('已經在任務頁面囉！'); return; } if (location.pathname.includes('/registrant/login')) { const csrfEl = document.querySelector('input[name=_csrf]'); const csrf = csrfEl ? csrfEl.value : ''; const f = new URLSearchParams({ _csrf: csrf, idNo: ID, birthDate: BIRTH, phone: PHONE }); await fetch('/registrant/login', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: f.toString() }); location.href = '/registrant/member/tasks'; return; } const r1 = await fetch('/registrant/access'); const t1 = await r1.text(); const doc1 = new DOMParser().parseFromString(t1, 'text/html'); const csrf1 = doc1.querySelector('input[name=_csrf]').value; const f1 = new URLSearchParams({ _csrf: csrf1, idNo: ID }); const r2 = await fetch('/registrant/access', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: f1.toString() }); const t2 = await r2.text(); const doc2 = new DOMParser().parseFromString(t2, 'text/html'); const csrf2 = doc2.querySelector('input[name=_csrf]').value; const f2 = new URLSearchParams({ _csrf: csrf2, idNo: ID, birthDate: BIRTH, phone: PHONE }); await fetch('/registrant/login', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: f2.toString() }); location.href = '/registrant/member/tasks'; } catch(e) { alert('登入失敗: ' + e.message); } })();">
+                👉 拖曳我到書籤列：500揮汗秒登入
+            </a>
+        </div>
+
+        <div class="instruction">
+            <strong>📌 如何使用：</strong>
+            <ol>
+                <li>按住上方橘色按鈕，直接拖曳到 Chrome 瀏覽器的「書籤列」。</li>
+                <li>平常打開 <a href="https://500.gov.tw/registrant/" target="_blank">500.gov.tw 網站</a> 或任何登入步驟頁。</li>
+                <li>點一下書籤列的「500揮汗秒登入」，即會自動填入身分證號、出生日期與手機並完成登入！</li>
+            </ol>
+        </div>
+
+        <div class="account-box">
+            <strong>目前綁定帳號資訊：</strong><br>
+            • 身分證號：<code>M120150315</code><br>
+            • 出生日期：<code>民國48年 (1959) 10月 8日</code><br>
+            • 手機號碼：<code>0921588876</code>
+        </div>
+    </div>
+</body>
+</html>

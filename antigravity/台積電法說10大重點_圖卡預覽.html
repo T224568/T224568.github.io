@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台積電 2026 Q3 法說會 10 大重點 9:16 手機圖卡畫廊</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --text: #f0f6fc;
+      --accent: #58a6ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      padding: 30px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    p.sub {
+      color: #8b949e;
+      font-size: 0.95rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .card-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent);
+      font-weight: bold;
+    }
+    .img-wrap {
+      width: 100%;
+      background: #000;
+      position: relative;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      object-fit: contain;
+      display: block;
+    }
+    .card-footer {
+      padding: 12px 18px;
+      font-size: 0.85rem;
+      color: #8b949e;
+      line-height: 1.4;
+      background: #11141a;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>台積電 2026 Q3 法說 10 大重點 9:16 手機圖卡</h1>
+    <p class="sub">模型：Google Nano Banana ｜ 產出路徑：/Volumes/512G/Antigravity/</p>
+  </header>
+
+  <main class="gallery">
+    <!-- 圖卡 1 -->
+    <article class="card">
+      <div class="card-header">
+        <span class="card-title">1I 等角摘要</span>
+        <span class="tag">Isometric 3D</span>
+      </div>
+      <div class="img-wrap">
+        <img src="台積電法說10大重點_等角摘要_1I.jpg" alt="1I 等角摘要圖卡">
+      </div>
+      <div class="card-footer">
+        45度等角透視切面，呈現微縮半導體晶圓廠、AI伺服器機房與4大科技浮島數據。
+      </div>
+    </article>
+
+    <!-- 圖卡 2 -->
+    <article class="card">
+      <div class="card-header">
+        <span class="card-title">2H 3D 黏土心智圖</span>
+        <span class="tag">3D Clay</span>
+      </div>
+      <div class="img-wrap">
+        <img src="台積電法說10大重點_3D黏土心智圖_2H.jpg" alt="2H 3D黏土心智圖卡">
+      </div>
+      <div class="card-footer">
+        軟萌霧面黏土材質與柔和陰影，以中央晶圓為軸心展開四大分支立體導管。
+      </div>
+    </article>
+
+    <!-- 圖卡 3 -->
+    <article class="card">
+      <div class="card-header">
+        <span class="card-title">3B 現代講義</span>
+        <span class="tag">Modern Flat</span>
+      </div>
+      <div class="img-wrap">
+        <img src="台積電法說10大重點_現代講義_3B.jpg" alt="3B 現代講義圖卡">
+      </div>
+      <div class="card-footer">
+        極簡純白明亮背景與高階商務配色，以俐落扁平化卡片結構呈現學習要點與策略。
+      </div>
+    </article>
+
+    <!-- 圖卡 4 (3C) -->
+    <article class="card">
+      <div class="card-header">
+        <span class="card-title">3C 黑板講義</span>
+        <span class="tag">Chalkboard</span>
+      </div>
+      <div class="img-wrap">
+        <img src="台積電法說10大重點_黑板講義_3C.jpg" alt="3C 黑板講義圖卡">
+      </div>
+      <div class="card-footer">
+        黑板擦拭灰質感與多色彩粉筆手繪筆觸，手繪重點條列與晶圓圖解備課筆記。
+      </div>
+    </article>
+  </main>
+</body>
+</html>

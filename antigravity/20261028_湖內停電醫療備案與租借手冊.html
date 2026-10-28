@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>湖內停電 8 小時：長輩醫療器材應變與儲能租借／選購全手冊</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #eff6ff;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --warning: #d97706;
+      --warning-bg: #fffbeb;
+      --success: #059669;
+      --success-bg: #ecfdf5;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-600: #4b5563;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: var(--gray-900);
+      line-height: 1.6;
+      padding: 36px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 44px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 9999px;
+      background: var(--danger-bg);
+      color: var(--danger);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 25px;
+      color: var(--primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    h2 {
+      font-size: 19px;
+      color: var(--gray-900);
+      margin: 28px 0 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .alert-box {
+      background: var(--danger-bg);
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    .alert-box ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .alert-box li {
+      margin-bottom: 8px;
+      font-size: 14.5px;
+      color: #991b1b;
+      line-height: 1.5;
+    }
+
+    .alert-box li:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      border: 1px solid var(--gray-200);
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .card.highlight {
+      border-color: #93c5fd;
+      background: var(--primary-light);
+    }
+
+    .card-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      color: #334155;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .card.highlight .card-tag {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .card-detail {
+      font-size: 13.5px;
+      color: var(--gray-700);
+      margin-bottom: 4px;
+    }
+
+    .card-phone {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      font-family: monospace;
+    }
+
+    .template-box {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 18px;
+      font-size: 13.5px;
+      color: var(--gray-700);
+      line-height: 1.65;
+      white-space: pre-wrap;
+      margin-bottom: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--gray-200);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--gray-100);
+      color: var(--gray-900);
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background: #fbfbfb;
+    }
+
+    .decision-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .decision-card {
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .decision-card.plan-a {
+      background: var(--success-bg);
+      border-color: #a7f3d0;
+    }
+
+    .decision-card.plan-b {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+    }
+
+    .decision-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .plan-a .decision-title { color: var(--success); }
+    .plan-b .decision-title { color: var(--primary); }
+
+    .decision-desc {
+      font-size: 13.5px;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .container { box-shadow: none; padding: 15px; max-width: 100%; }
+      .card, .decision-card, .template-box, table { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">緊急應變 ＆ 長期選購全指南</div>
+      <h1>湖內停電 8 小時：長輩醫療器材應變與儲能租借／選購全手冊</h1>
+      <div class="meta">對象器材：製氧機、抽痰機 ｜ 建立時間：2026-10-28 ｜ 供雯欣與家屬全方位照護參考</div>
+    </header>
+
+    <h2>⚡ 第一部分：停電 8 小時緊急應變與租借</h2>
+    <div class="alert-box">
+      <ul>
+        <li>❌ <strong>嚴禁使用傳統發電機</strong>：油電機輸出電壓與頻率劇烈抖動，極易瞬間燒毀醫療精密主機板。</li>
+        <li>✅ <strong>製氧機唯一解為「氧氣鋼瓶」</strong>：純物理高壓減壓供氣，完全不耗電，是最穩定的供氧備案。</li>
+        <li>✅ <strong>抽痰機須租「大容量純正弦波儲能電站」</strong>：馬達啟動瞬間電流大，必須選標示 <code>Pure Sine Wave</code>（純正弦波）、瞬間峰值 $\ge 500\text{W}$、容量約 $1000\text{Wh}$。</li>
+        <li>🛡️ <strong>手動抽痰槍為終極保命備案</strong>：至醫療器材行現購（核對原本抽痰管管徑），無電時靠單手手動按壓。</li>
+      </ul>
+    </div>
+
+    <div class="card-grid">
+      <div class="card highlight">
+        <span class="card-tag">首選推薦・距離最近</span>
+        <div class="card-title">露營生活好物網（露營狼）</div>
+        <div class="card-detail">📍 高雄市湖內區保生路76巷29號</div>
+        <div class="card-phone">📞 07-6996786</div>
+      </div>
+      <div class="card">
+        <span class="card-tag">仁德店・車程約10~15分</span>
+        <div class="card-title">綠色工場露營裝備生活館</div>
+        <div class="card-detail">📍 台南市仁德區民安路一段142號之11</div>
+        <div class="card-phone">📞 0971-579968</div>
+      </div>
+      <div class="card">
+        <span class="card-tag">採預約制・照片店家</span>
+        <div class="card-title">Wild&Free 風格露營用品出租</div>
+        <div class="card-detail">📍 台南市南區國民路3號1樓</div>
+        <div class="card-phone">💬 LINE / IG 私訊（指名供電電站）</div>
+      </div>
+      <div class="card">
+        <span class="card-tag">專業外拍攝影・隱藏版備案</span>
+        <div class="card-title">南國影像 A.G.O Studio</div>
+        <div class="card-detail">📍 台南市北區成功路68巷45號</div>
+        <div class="card-phone">📞 0958-198020</div>
+      </div>
+    </div>
+
+    <div class="template-box"><strong>📲 私訊詢問範本：</strong>
+老闆您好，想請問【填寫停電日期】是否有大容量的「戶外儲能電源（行動電池站）」可以預約租借？
+因為高雄湖內當天有計畫性停電約 8 小時，家中長輩的「醫療抽痰機」需要接 110V 交流電維持運作，想確認是否有符合以下規格：
+1. 必須是「純正弦波（Pure Sine Wave）」輸出（醫療馬達不能用模擬正弦波，會燒壞）。
+2. 電池總容量約 1,000Wh（大約 1 度電）左右。
+3. 瞬間最大輸出功率（峰值）需大於 500W（若有 EcoFlow Delta 2 或同級機型尤佳）。
+想請教：當天這類設備還有現貨可以預約嗎？日租金與押金大約怎麼算？是否能提早一天傍晚先過去取機充飽電？非常感謝！</div>
+
+    <h2>🔋 第二部分：醫療用儲能電源選購三大鐵則與機型比較</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>🏆 BLUETTI AC70P</th>
+          <th>⚡ EcoFlow DELTA 2</th>
+          <th>🔇 Jackery 1000 Plus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>定位</strong></td>
+          <td><strong>極致 CP 值 / 實用經濟</strong></td>
+          <td><strong>市場霸主 / 快充與擴充</strong></td>
+          <td><strong>旗艦靜音 / 床邊首選</strong></td>
+        </tr>
+        <tr>
+          <td><strong>參考市價</strong></td>
+          <td><strong>約 NT$ 12,900</strong></td>
+          <td><strong>約 NT$ 22,990</strong></td>
+          <td><strong>約 NT$ 32,800</strong></td>
+        </tr>
+        <tr>
+          <td><strong>容量 / 輸出</strong></td>
+          <td>864Wh / 1000W</td>
+          <td>1,024Wh / 1800W</td>
+          <td>1,264Wh / 2000W</td>
+        </tr>
+        <tr>
+          <td><strong>電芯 / 壽命</strong></td>
+          <td>磷酸鐵鋰（3,000+次）</td>
+          <td>磷酸鐵鋰（3,000+次）</td>
+          <td>磷酸鐵鋰（4,000+次）</td>
+        </tr>
+        <tr>
+          <td><strong>UPS / EPS</strong></td>
+          <td>支援 UPS（&lt; 20ms）</td>
+          <td>支援 EPS（&lt; 30ms）</td>
+          <td>支援 EPS（&lt; 20ms）</td>
+        </tr>
+        <tr>
+          <td><strong>充電速度</strong></td>
+          <td>80% 約 45 分鐘</td>
+          <td>0~100% 約 70~80 分鐘</td>
+          <td>正常充約 1.7 小時</td>
+        </tr>
+        <tr>
+          <td><strong>原廠保固</strong></td>
+          <td>台灣原廠 5 年</td>
+          <td>台灣原廠 5 年</td>
+          <td>台灣原廠 5 年</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="decision-box">
+      <div class="decision-card plan-a">
+        <div class="decision-title">💡 方案 A：BLUETTI AC70P（NT$ 12,900）</div>
+        <div class="decision-desc">
+          <strong>最經濟實用首選</strong>：花費一萬出頭即享有 5 年保固與 UPS 毫秒自動切換，864Wh 供給抽痰機 8 小時綽綽有餘，性價比極高。
+        </div>
+      </div>
+      <div class="decision-card plan-b">
+        <div class="decision-title">💡 方案 B：EcoFlow DELTA 2（NT$ 22,990）</div>
+        <div class="decision-desc">
+          <strong>全能多用途首選</strong>：1800W 大功率、1.2 小時極速閃充、支援加掛副電池。適合常態跳電或家人休閒露營吹冷氣多工用途。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

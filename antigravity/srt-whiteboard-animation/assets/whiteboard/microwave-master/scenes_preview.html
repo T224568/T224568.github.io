@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微波系廚神極致用法 - 白板動畫成片檢視台</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; padding: 24px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #334155; }
+  h1 { font-size: 22px; color: #38bdf8; }
+  .badge { background: #0284c7; color: #fff; padding: 4px 12px; border-radius: 9999px; font-size: 13px; font-weight: 600; }
+  .main-player { background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); margin-bottom: 24px; }
+  video { width: 100%; max-height: 600px; display: block; }
+  .player-meta { padding: 16px 20px; background: #1e293b; display: flex; justify-content: space-between; align-items: center; }
+  .current-title { font-size: 16px; font-weight: 600; color: #f1f5f9; }
+  .playlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .scene-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 12px; cursor: pointer; transition: all 0.2s; }
+  .scene-card:hover { border-color: #38bdf8; transform: translateY(-2px); }
+  .card-thumb { background: #334155; height: 60px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #94a3b8; margin-bottom: 8px; }
+  .card-title { font-size: 13px; color: #cbd5e1; word-break: break-all; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🎬 微波系廚神極致用法 - 白板手繪動畫</h1>
+    <span class="badge">YouTube 隨機輕快配樂＋流式手繪</span>
+  </header>
+  
+  <div class="main-player">
+    <video id="player" controls autoplay src="microwave-master-final.mp4"></video>
+    <div class="player-meta">
+      <span class="current-title" id="now-playing">完整合成影片 (microwave-master-final.mp4)</span>
+      <button onclick="playVideo('microwave-master-final.mp4', '完整合成長片')" style="background:#38bdf8;border:none;padding:6px 14px;border-radius:6px;font-weight:600;cursor:pointer;">播放完整片</button>
+    </div>
+  </div>
+
+  <h2 style="font-size: 16px; margin-bottom: 12px; color: #94a3b8;">分幕播放列表</h2>
+  <div class="playlist">
+    
+        <div class="scene-card" onclick="playVideo('scene-01-value-whiteboard.mp4', '分幕 01')">
+          <div class="card-thumb">🎬 幕 01</div>
+          <div class="card-info">
+            <div class="card-title">scene-01-value-whiteboard</div>
+          </div>
+        </div>
+        
+        <div class="scene-card" onclick="playVideo('scene-02-principle-whiteboard.mp4', '分幕 02')">
+          <div class="card-thumb">🎬 幕 02</div>
+          <div class="card-info">
+            <div class="card-title">scene-02-principle-whiteboard</div>
+          </div>
+        </div>
+        
+        <div class="scene-card" onclick="playVideo('scene-03-veggies-whiteboard.mp4', '分幕 03')">
+          <div class="card-thumb">🎬 幕 03</div>
+          <div class="card-info">
+            <div class="card-title">scene-03-veggies-whiteboard</div>
+          </div>
+        </div>
+        
+        <div class="scene-card" onclick="playVideo('scene-04-defrost-whiteboard.mp4', '分幕 04')">
+          <div class="card-thumb">🎬 幕 04</div>
+          <div class="card-info">
+            <div class="card-title">scene-04-defrost-whiteboard</div>
+          </div>
+        </div>
+        
+        <div class="scene-card" onclick="playVideo('scene-05-crisp-pot-whiteboard.mp4', '分幕 05')">
+          <div class="card-thumb">🎬 幕 05</div>
+          <div class="card-info">
+            <div class="card-title">scene-05-crisp-pot-whiteboard</div>
+          </div>
+        </div>
+        
+        <div class="scene-card" onclick="playVideo('scene-06-garnish-whiteboard.mp4', '分幕 06')">
+          <div class="card-thumb">🎬 幕 06</div>
+          <div class="card-info">
+            <div class="card-title">scene-06-garnish-whiteboard</div>
+          </div>
+        </div>
+        
+        <div class="scene-card" onclick="playVideo('scene-07-safety-whiteboard.mp4', '分幕 07')">
+          <div class="card-thumb">🎬 幕 07</div>
+          <div class="card-info">
+            <div class="card-title">scene-07-safety-whiteboard</div>
+          </div>
+        </div>
+        
+  </div>
+</div>
+<script>
+function playVideo(src, title) {
+  const v = document.getElementById('player');
+  v.src = src;
+  v.play();
+  document.getElementById('now-playing').innerText = title + ' (' + src + ')';
+}
+</script>
+</body>
+</html>

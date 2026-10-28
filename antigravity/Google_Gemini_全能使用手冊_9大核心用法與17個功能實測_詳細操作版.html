@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Google Gemini 全能使用手冊：9大核心用法與17個功能實測（含自動化Tool工具操作說明）</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 13mm;
+    @bottom-right {
+      content: counter(page);
+      font-size: 8pt;
+      color: #718096;
+    }
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: #2d3748;
+    line-height: 1.55;
+    font-size: 8.6pt;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    border-bottom: 3px solid #1a73e8;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 {
+    font-size: 16pt;
+    margin: 0 0 3px 0;
+    color: #1a73e8;
+    letter-spacing: -0.4px;
+  }
+  .header .subtitle {
+    font-size: 8.6pt;
+    color: #4a5568;
+    font-weight: 500;
+  }
+  .badge {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 8pt;
+    border: 1px solid #d2e3fc;
+    white-space: nowrap;
+  }
+  .summary-card {
+    background: #f8fafd;
+    border-left: 4px solid #1a73e8;
+    padding: 8px 12px;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 12px;
+    font-size: 8.5pt;
+  }
+  .summary-card h3 {
+    margin: 0 0 4px 0;
+    color: #174ea6;
+    font-size: 9.6pt;
+  }
+  h2.sec-title {
+    font-size: 10.5pt;
+    color: #174ea6;
+    border-bottom: 1.5px solid #dadce0;
+    padding-bottom: 3px;
+    margin: 12px 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    page-break-after: avoid;
+  }
+  .card {
+    border: 1px solid #e8eaed;
+    border-radius: 5px;
+    padding: 8px 11px;
+    background: #ffffff;
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+  }
+  .card.highlight {
+    border-color: #d2e3fc;
+    background-color: #fbfdff;
+  }
+  .card.tool-card {
+    border-color: #34a853;
+    background-color: #f6fcf7;
+  }
+  .card-title {
+    font-size: 9.2pt;
+    font-weight: bold;
+    color: #1a73e8;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tag {
+    background: #f1f3f4;
+    color: #5f6368;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+    font-weight: 600;
+  }
+  .tag.blue { background: #e8f0fe; color: #1a73e8; }
+  .tag.green { background: #e6f4ea; color: #137333; }
+  .tag.orange { background: #fef7e0; color: #b06000; }
+  .tag.purple { background: #f3e8fd; color: #7627bb; }
+  .tag.red { background: #fce8e6; color: #c5221f; }
+
+  .step-box {
+    margin: 4px 0;
+    padding-left: 6px;
+    border-left: 2px solid #aecbfa;
+  }
+  .step-box.tool-step {
+    border-left-color: #34a853;
+  }
+  .step-title {
+    font-weight: bold;
+    color: #202124;
+    font-size: 8.3pt;
+  }
+  .step-desc {
+    color: #3c4043;
+    font-size: 8.1pt;
+    margin: 1px 0 4px 0;
+  }
+  .prompt-box {
+    background: #f1f3f4;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 7.8pt;
+    color: #202124;
+    margin: 4px 0 6px 0;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .code-cmd {
+    background: #202124;
+    color: #8ab4f8;
+    border-radius: 4px;
+    padding: 6px 9px;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 7.8pt;
+    line-height: 1.4;
+    margin: 4px 0 6px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .tip-box {
+    background: #fef7e0;
+    border-left: 3px solid #f9ab00;
+    padding: 4px 8px;
+    font-size: 7.9pt;
+    color: #7a4100;
+    margin: 4px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 10px 0;
+    font-size: 8.3pt;
+  }
+  table.data-table th {
+    background-color: #1a73e8;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    padding: 5px 6px;
+    border: 1px solid #1a73e8;
+  }
+  table.data-table td {
+    padding: 4.5px 6px;
+    border: 1px solid #e8eaed;
+    text-align: center;
+  }
+  table.data-table td.left {
+    text-align: left;
+  }
+  table.data-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+  .footer {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 7.5pt;
+    color: #80868b;
+    border-top: 1px solid #dadce0;
+    padding-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>Google Gemini 全能使用手冊（含自動化 Tool 工具操作指南）</h1>
+      <div class="subtitle">9 大核心用法 ＋ 17 個功能實測 ＋ YouTube 轉雙軌報告自動化 Tool 實作手冊</div>
+    </div>
+    <div>
+      <span class="badge">SOP 實戰 ＋ 工具代碼</span>
+    </div>
+  </div>
+
+  <div class="summary-card">
+    <h3>📌 核心升級認知：從「單純對話」跨入「Google 生態自動化工作流」</h3>
+    <p>
+      Gemini 最大價值不在於普通閒聊，而在於<strong>直接串聯 Google 軟體全家桶</strong>（YouTube、Gmail、Drive、Docs、Sheets、Slides、Chrome 瀏覽器側欄、AI Studio）。本手冊除收錄 17 個功能之「具體操作 SOP、Prompt 範本」外，<strong>特闢專章完整公開背後驅動「YouTube 自動化轉 HTML 預覽 ＋ PDF 報告」的 Python Tool 工具鏈與 CLI 調用方式</strong>。
+    </p>
+  </div>
+
+  <!-- TOOL SPECIAL SECTION -->
+  <h2 class="sec-title" style="color: #137333; border-bottom-color: #a8dab5;">🛠️ 核心自動化 Tool 工具操作說明（YouTube 轉雙軌報告工具）</h2>
+
+  <div class="card tool-card">
+    <div class="card-title" style="color: #137333;">
+      <span>專案內建 Tool：scripts/youtube_to_pdf_preview.py</span>
+      <span class="tag green">全自動化 CLI</span>
+    </div>
+    <div class="step-box tool-step">
+      <div class="step-title">【工具功能概述】</div>
+      <div class="step-desc">
+        輸入任意 YouTube 網址，工具自動調用 <code>yt-dlp</code> 提取標題、發布者、時長、章節（Chapters）及簡介，自動套用 A4 最佳排版樣式渲染出 HTML，並藉由 Google Chrome Headless 引擎秒級輸出高品質 PDF，自動雙軌存檔於 <code>/Volumes/512G/Antigravity/</code>。
+      </div>
+
+      <div class="step-title">【依賴環境與工具鏈】</div>
+      <div class="step-desc">
+        • <strong>yt-dlp</strong>：用於免登入、無防爬阻礙提取影音 JSON 元數據。<br>
+        • <strong>Google Chrome</strong>：作為無頭排版引擎（Headless Chromium Engine），保證 CSS 100% 精確渲染。<br>
+        • <strong>Python 3</strong>：自動化調度管道與動態內容組裝。
+      </div>
+
+      <div class="step-title">【CLI 指令調用方式】</div>
+      <div class="code-cmd"># 基本用法（預設自動存入 /Volumes/512G/Antigravity/）
+python3 scripts/youtube_to_pdf_preview.py "https://youtu.be/RBbvc1Ap9gk"
+
+# 自訂報告標題與輸出目錄
+python3 scripts/youtube_to_pdf_preview.py "https://youtu.be/RBbvc1Ap9gk"   -t "Gemini_全能使用手冊_最新實戰版"   -o "/Volumes/512G/Antigravity/"</div>
+
+      <div class="step-title">【產出成果雙軌特性】</div>
+      <div class="step-desc">
+        1. <strong>.html 預覽檔</strong>：在 Antigravity / Cursor 右側面板直接點擊即刻開箱預覽，無須下載。<br>
+        2. <strong>.pdf 正式檔</strong>：向量字體、A4 分頁標注，供離線列印、歸檔或外部分享。
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2 class="sec-title">模組一｜YouTube 長影音內容極限提煉（功能 1 & 2）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 1：一鍵影音轉繁體中文學習導讀</span>
+      <span class="tag red">影音提煉</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        開啟 <code>gemini.google.com</code> ➔ 於提示詞框直接貼上 YouTube 影片網址（亦可輸入 <code>@YouTube</code> 擴展插件並黏貼連結）➔ 搭配專用導讀 Prompt 發送。
+      </div>
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">請分析這部 YouTube 影片的完整內容：[貼上影片URL]
+請以繁體中文 (zh-TW) 輸出以下四個部分：
+1. 【一句話核心觀點】：影片要解決的最關鍵問題是什麼？
+2. 【300字精華導讀】：提煉影片的核心架構與主幹邏輯。
+3. 【三大實踐行動】：讀者看完後能立即落地的 3 個具體步驟。
+4. 【關鍵金句/警句】：摘錄 2～3 句具有洞察力的原話。</div>
+      <div class="tip-box">
+        💡 <strong>實戰眉角：</strong>若影片為英文、日文等外語，Gemini 能自動讀取字幕並直接輸出流暢精準的繁體中文，徹底消除語言隔閡。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span>功能 2：建立精準知識地圖與可跳轉時間戳 (Timestamps)</span>
+      <span class="tag orange">結構導覽</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        針對 1～2 小時的長篇講座、財經研報或教學影片，要求 Gemini 自動對照發言內容與秒數標記，生成索引結構。
+      </div>
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">請為這部影片建立一份高精度的「知識地圖」與「分段時間戳清單」：
+- 格式要求：
+  - [分:秒] 章節主題名稱：2 句重點說明該段講述的核心內容。
+- 標註重點：請在最具實用價值或乾貨最多的時間點加上「★ 核心必看」標籤。</div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 2 -->
+  <h2 class="sec-title" style="margin-top:0;">模組二｜自定義智能體 (Gemini Gems) 搭建專屬助理（功能 3）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 3：客製化專屬 Gems 智能體（以「YouTube爆款選題助手」為例）</span>
+      <span class="tag purple">個人 Agent</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        登入 Gemini ➔ 點擊左側欄「<strong>Gem 總管 (Gems Manager)</strong>」➔ 點擊「<strong>新增 Gem (New Gem)</strong>」➔ 設定名稱、大頭貼與 System Prompt ➔ 儲存發布。
+      </div>
+      <div class="step-title">【系統提示詞 (System Prompt) 完整範本】</div>
+      <div class="prompt-box">你是一位擁有百萬訂閱經驗的資深 YouTube 內容策略總監。
+【任務目標】：
+每當我提供一個初步想法、熱門新聞或競品影片連結時，請為我策劃具有高點擊率與高留存率的爆款選題方案。
+【思考與輸出架構】：
+1. 【3組爆款標題】：痛點懸念型、反直覺數字型、極致省時型。
+2. 【封面圖視覺畫面描述】：建議主標題文字（6字內）與視覺衝擊主體構圖。
+3. 【黃金前30秒腳本Hook】：如何在前3句話留住觀眾防止滑走。
+4. 【內容大綱（三段式）】：起承轉合要點與高潮設計。
+一律使用繁體中文，口氣專業且具備強烈自媒體敏銳度。</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2 class="sec-title">模組三｜Ask Gemini 瀏覽器側欄與即時語音對話（功能 4 & 5）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 4：Chrome 側欄邊逛邊問 (Ask Gemini)</span>
+      <span class="tag blue">沉浸閱讀</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        於 Chrome 瀏覽器右上角點擊「Gemini 側邊欄圖示」➔ 無需複製貼上，點擊「摘要本頁 (Summarize this page)」或直接發問。
+      </div>
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">「請根據當前瀏覽的這個網頁內容，快速告訴我：
+1. 作者的核心論點是什麼？
+2. 他提出了哪 3 項具體數據支持他的觀點？
+3. 文中是否存在潛在的偏見或未解答的問題？」</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span>功能 5：即時語音對話 (Gemini Live) 腦力激盪</span>
+      <span class="tag green">語音交互</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        在手機 App 或網頁端點擊右下角「<strong>波浪聲波圖示 (Live)</strong>」進入全螢幕語音模式 ➔ 直接口語對話，支援隨時插話中斷（Barge-in）。適合通勤散步進行「口語英文練習」、「面試模擬」或「副業構想討論」。
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2 class="sec-title">模組四｜Google 全家桶 (Workspace) 深度整合實戰（功能 6 ～ 10）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 6：Gmail 郵件串梳理與自動回覆擬稿</span>
+      <span class="tag red">信件提效</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        開啟 10 封以上往來的長郵件串 ➔ 點擊上方「<strong>Gemini 摘要 (Summarize)</strong>」➔ 點擊「<strong>幫我回覆 (Help me write)</strong>」輸入指令：「同意報價方案但請求將第一批出貨日提前至下週五，語氣專業委婉」。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span>功能 7：Google Drive 全庫跨文件深度檢索</span>
+      <span class="tag blue">雲端智腦</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">@Google 雲端硬碟 請檢索我「2026年專案」資料夾中的所有會議記錄與合約，幫我列出客戶目前尚未確認簽署的 3 個保留條款。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span>功能 8：Google Docs 長文轉結構化表格</span>
+      <span class="tag blue">文書整理</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">「將選取的這段專案描述文字整理成 4 欄表格：【任務項目】、【負責人】、【預計截止日】、【目前狀態】，並依時程排序。」</div>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 9：Google Sheets 自然語言數據洞察與圖表</span>
+      <span class="tag green">表格分析</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">「分析本工作表中各地區銷售數據，找出哪一個產品線在第三季衰退最嚴重？並在工作表插入一張折線圖呈現月成長趨勢。」</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span>功能 10：Google Slides 投影片文字精煉與重寫</span>
+      <span class="tag orange">簡報優化</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">「將此頁長文精煉為 3 個有張力的條列大標（每條不超過 12 字），並附上 20 字簡要說明，建議適合搭配的 Icon 類型。」</div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 5 -->
+  <h2 class="sec-title" style="margin-top:0;">模組五｜百萬 Context 超長文檔與研報深度透視（功能 11 & 12）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 11 & 12：吞入 300 頁英文年報秒級對比（以新加坡航空年報為例）</span>
+      <span class="tag blue">大上下文</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        點擊對話框「+」拖入 300 頁英文 PDF 研報 ➔ 等待檔案解析完成後發送結構化指令。
+      </div>
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">這是一份 300 頁的新加坡航空年度財報（PDF）。請以專業財務分析師角度，以繁體中文完成：
+1. 【三大核心財務數據】：2024 vs 2025 的「營業收入」、「淨利潤率」與「每股盈餘 (EPS)」對照表。
+2. 【成本變動歸因分析】：燃油成本與人力成本分別成長/衰退了多少百分比？主要原因是什麼？
+3. 【未來展望與風險因素】：管理層在報告中提及的最嚴峻 3 大外部挑戰（附頁碼引註）。</div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2 class="sec-title">模組六｜Deep Research 深度產業調查與產出（功能 13）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 13：Deep Research 陌生領域自主多輪調研</span>
+      <span class="tag purple">自主調研</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        勾選開啟「<strong>深度研究 (Deep Research)</strong>」按鈕 ➔ 輸入研究主題 ➔ 審查 AI 擬定之研究計畫並確認 ➔ 放手讓 AI 自主執行多輪爬查。
+      </div>
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">請針對「台灣與日本 2026 年銀髮照護科技（Gerontechnology）市場現況與商業機會」進行深度研究。
+重點探討：市場規模與未來 5 年複合成長率 (CAGR)、現有領先企業商業模式、一般人可切入的 3 個低成本利基點。附數據來源。</div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <h2 class="sec-title">模組七｜跨模態轉化：信息圖、PPT 與雙人播客（功能 14 ～ 16）</h2>
+
+  <div class="card">
+    <div class="card-title">
+      <span>功能 14：研報文字轉「信息圖 (Infographic) 視覺腳本」</span>
+      <span class="tag green">視覺轉換</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【實戰 Prompt 範本】</div>
+      <div class="prompt-box">請將上述調研報告濃縮為一張「社群圖卡（9:16 手機比例）」信息圖文案：1 個大標題 ＋ 3 個關鍵數據卡 ＋ 1 組對比表格 ＋ 色調建議。</div>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 15 & 16：一鍵轉 10 頁 PPT 大綱 ＋ 轉雙人對話播客 (Podcast)</span>
+      <span class="tag orange">多模態分流</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【轉 PPT 大綱操作】</div>
+      <div class="step-desc">
+        輸入指令：「將研報轉為 10 頁商業匯報 PPT 大綱，每頁標明【頁面目標】、【核心論點條列】及【演講備忘稿（逐字講稿）】。」
+      </div>
+      <div class="step-title">【轉雙人對話播客操作（NotebookLM / Audio Overview）】</div>
+      <div class="step-desc">
+        前往 <code>notebooklm.google.com</code> ➔ 建立新筆記本並上傳研報 ➔ 點擊「<strong>Generate Audio Overview (生成音訊概覽)</strong>」➔ 自動生成極為自然的男女對談 10 分鐘 Podcast。
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <h2 class="sec-title">模組八｜專業極客入口：Google AI Studio 免費解鎖（功能 17）</h2>
+
+  <div class="card highlight">
+    <div class="card-title">
+      <span>功能 17：Google AI Studio（零成本使用 Gemini 1.5 Pro 最強模型）</span>
+      <span class="tag blue">免費最強</span>
+    </div>
+    <div class="step-box">
+      <div class="step-title">【操作路徑】</div>
+      <div class="step-desc">
+        前往 <code>aistudio.google.com</code> ➔ 點擊「Create New Prompt」➔ 模型選擇「Gemini 1.5 Pro」➔ 完全免費享有百萬 Token 窗口，可手動設定 Temperature（0.2 保證數據嚴謹，0.8 激發創意）。
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>本手冊由 Claude Code 懶人包系統 / Antigravity 自動生成 ｜ 儲存路徑：/Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.pdf</span>
+  </div>
+
+</body>
+</html>

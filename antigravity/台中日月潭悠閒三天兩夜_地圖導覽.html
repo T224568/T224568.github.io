@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中・日月潭 悠閒三天兩夜 互動地圖導覽</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    color: #2d3748;
+  }
+  #sidebar {
+    width: 360px;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  }
+  .sidebar-header {
+    padding: 18px 20px;
+    background: #1a365d;
+    color: #ffffff;
+  }
+  .sidebar-header h1 {
+    font-size: 18px;
+    margin: 0 0 6px 0;
+  }
+  .sidebar-header p {
+    font-size: 12px;
+    margin: 0;
+    color: #bee3f8;
+  }
+  .btn-import {
+    display: inline-block;
+    background: #3182ce;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+    border: 1px solid #63b3ed;
+  }
+  .btn-import:hover { background: #2b6cb0; }
+  .layer-controls {
+    padding: 12px 16px;
+    background: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: 8px;
+  }
+  .btn-filter {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #4a5568;
+    transition: all 0.2s;
+  }
+  .btn-filter.active-all { background: #2d3748; color: #fff; border-color: #2d3748; }
+  .btn-filter.active-d1 { background: #3182ce; color: #fff; border-color: #3182ce; }
+  .btn-filter.active-d2 { background: #38a169; color: #fff; border-color: #38a169; }
+  .btn-filter.active-d3 { background: #dd6b20; color: #fff; border-color: #dd6b20; }
+
+  .place-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 14px;
+  }
+  .place-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .place-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+  }
+  .place-card.d1 { border-left-color: #3182ce; }
+  .place-card.d2 { border-left-color: #38a169; }
+  .place-card.d3 { border-left-color: #dd6b20; }
+  .place-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 3px;
+  }
+  .place-desc {
+    font-size: 12px;
+    color: #718096;
+    line-height: 1.4;
+  }
+  #map { flex: 1; height: 100%; }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  .popup-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+  }
+  .popup-desc {
+    font-size: 12.5px;
+    color: #4a5568;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div class="sidebar-header">
+    <h1>🎒 台中・日月潭 悠閒三天兩夜</h1>
+    <p>長輩慢活路線・全大眾運輸・平緩無階梯</p>
+    <a href="https://www.google.com/maps/d/u/0/" target="_blank" class="btn-import">
+      📍 開啟 Google 我的地圖 (匯入 KML)
+    </a>
+  </div>
+
+  <div class="layer-controls">
+    <button class="btn-filter active-all" onclick="filterDay('all')">全部</button>
+    <button class="btn-filter" onclick="filterDay(1)">DAY 1</button>
+    <button class="btn-filter" onclick="filterDay(2)">DAY 2</button>
+    <button class="btn-filter" onclick="filterDay(3)">DAY 3</button>
+  </div>
+
+  <div class="place-list" id="placeList"></div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const places = [
+    // DAY 1
+    { day: 1, name: "🏨 中華電信黎明會館 (D1 住宿)", lat: 24.15729, lng: 120.63439, color: "#805ad5", desc: "09:15 抵達放行李（高鐵 07:36 發車，高鐵 1 樓搭 160 公車 08:55 班次）。環境清幽好走。" },
+    { day: 1, name: "1. 國立自然科學博物館植物園", lat: 24.15812, lng: 120.66818, color: "#3182ce", desc: "09:50-10:55 40米挑高雨林溫室，全無障礙緩坡，平路冷氣不曬日，室內瀑布與象魚池。" },
+    { day: 1, name: "🍴 莆田 PUTIEN (已預訂11:00・生日宴)", lat: 24.15438, lng: 120.66223, color: "#e53e3e", desc: "11:00-12:30 米其林一星五大名菜（松鼠魚、麥片蝦、海蠣酥、海鮮滷麵、鱸魚煲）＋ 壽星贈送「荔枝蝦球」！" },
+    { day: 1, name: "2. 勤美市民廣場 ＆ 草悟道", lat: 24.15006, lng: 120.66355, color: "#3182ce", desc: "13:45-14:15 草悟道核心林蔭綠園道，寬敞平坦、綠蔭遮陽、長椅充足。" },
+    { day: 1, name: "3. 審計368新創聚落 (外圍平路)", lat: 24.14468, lng: 120.66293, color: "#3182ce", desc: "14:15-14:35 漫步舊省府眷舍聚落外圍平道，欣賞文創特色老屋。" },
+    { day: 1, name: "4. 國立臺灣美術館 ＆ 碑林綠道", lat: 24.14119, lng: 120.66331, color: "#3182ce", desc: "14:35-15:45 免費入館，冷氣舒適、大沙發多，戶外賞50幅名帖書法石雕。" },
+    { day: 1, name: "5. 美術園道 (五權七街)", lat: 24.13597, lng: 120.66286, color: "#3182ce", desc: "15:45-16:30 綠廊大縱走終點，欣賞異國特色建築造景，五權五街搭 75 號公車。" },
+    { day: 1, name: "6. 秋紅谷景觀生態公園", lat: 24.16800, lng: 120.63935, color: "#3182ce", desc: "17:00-19:30 下凹式生態池，全平緩大斜坡，傍晚散步看水鳥；新光/大遠百晚餐後搭 75 號回會館。" },
+
+    // DAY 2
+    { day: 2, name: "水社綜合商場 (6670 終點站 ＆ 電子行李寄存)", lat: 23.86532, lng: 120.91572, color: "#38a169", desc: "10:05 抵達水社（高鐵 08:45 發車之 6670）。大行李直接存入商場電子置物櫃（$50/次），兩手空空出發！" },
+    { day: 2, name: "1. 水社涵碧步道 (梅荷園・蔣公碼頭・育樂亭)", lat: 23.86400, lng: 120.91350, color: "#38a169", desc: "10:15-11:45 平緩紅磚林蔭步道，無階梯不曬日，遠眺拉魯島與青龍山，古色竹筏碼頭拍照極美。" },
+    { day: 2, name: "🍴 新山味邵族風味餐廳", lat: 23.86580, lng: 120.91550, color: "#e53e3e", desc: "11:45-12:45 水社午餐：清蒸總統魚、山筍土雞湯、刺蔥豆腐。12:50 取行李搭 13:00 之 6669A 公車。" },
+    { day: 2, name: "🏨 中華電信日月潭會館 (伊達邵住宿)", lat: 23.84778, lng: 120.92986, color: "#805ad5", desc: "13:25 抵達伊達邵（搭水社 13:00 發車之 6669A 直達）。Check-in 大行李進房間，全身零負重！" },
+    { day: 2, name: "2. 玄奘寺 (全潭最高大景)", lat: 23.83980, lng: 120.91680, color: "#38a169", desc: "14:35-15:25 伊達邵搭 14:25 之 6669 直達廟門口免爬階梯！居高臨下俯瞰全潭，山風清涼。" },
+    { day: 2, name: "3. 玄光寺 / 玄光碼頭 (阿嬤茶葉蛋)", lat: 23.85270, lng: 120.91280, color: "#e53e3e", desc: "15:40-16:25 玄奘寺搭 15:35 之 6669 下坡5分鐘，平坦林蔭棧道買正宗茶葉蛋，在石椅看湖面。" },
+    { day: 2, name: "4. 水蛙頭九蛙疊像 ＆ 達克哈拉水上車道", lat: 23.85960, lng: 120.93280, color: "#38a169", desc: "16:50-17:45 玄光寺搭 16:30 之 6669 直達水蛙頭看九蛙夕陽。回程沿水上車道一路平緩漫步回伊達邵老街！" },
+    { day: 2, name: "🍢 伊達邵老街美食商圈", lat: 23.84880, lng: 120.93000, color: "#e53e3e", desc: "17:45-19:30 老街五大必吃：東東刈包、總統魚酥捲蝦滑羹、Corner櫛瓜塔、杜啦白鰻棍、麓水居紅玉紅茶。" },
+
+    // DAY 3
+    { day: 3, name: "🚲 松錳租車 (日月潭店・中興停車場旁)", lat: 23.86460, lng: 120.91450, color: "#dd6b20", desc: "09:00 取車！指定「雙人電動協力車（後座附靠背，600元/2hr）」，大行李免費寄放店內！" },
+    { day: 3, name: "1. 水社壩堰堤公園 (婚紗勝地)", lat: 23.86180, lng: 120.90680, color: "#dd6b20", desc: "09:20-09:35 碧綠湖水緊貼木棧道，下車牽行 100 公尺散步拍照，湖風吹拂。" },
+    { day: 3, name: "2. 水上浮棧道 ＆ 永結同心橋", lat: 23.85500, lng: 120.90420, color: "#dd6b20", desc: "09:35-09:50 架設於湖面上的水上自行車道，白色優雅曲線橋，CNN全球十大最美自行車道。" },
+    { day: 3, name: "3. 向山行政暨遊客中心 ＆ 惠蓀咖啡", lat: 23.85180, lng: 120.90220, color: "#dd6b20", desc: "09:50-10:50 團紀彥清水模建築（全館無階梯緩坡）。台灣惠蓀咖啡大落地窗喝咖啡看無邊際水池。" },
+    { day: 3, name: "4. 向山懸臂觀景台", lat: 23.85050, lng: 120.90480, color: "#dd6b20", desc: "10:30-10:50 鏤空鋼構高空眺望台，延伸至湖面 270 度飽覽拉魯島全景。11:15 騎回松錳還車取行李！" },
+    { day: 3, name: "🚌 水社綜合商場 (返北起站)", lat: 23.86532, lng: 120.91572, color: "#805ad5", desc: "13:30/14:00 賦歸：搭乘 14:00 之台灣好行 6670 直達台中高鐵，或國光客運 1833 一車直達台北！" }
+  ];
+
+  // 初始化地圖
+  const map = L.map('map').setView([23.86, 120.92], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  let markers = [];
+  const listContainer = document.getElementById('placeList');
+
+  function renderList(filtered) {
+    listContainer.innerHTML = '';
+    filtered.forEach(p => {
+      const card = document.createElement('div');
+      card.className = `place-card d${p.day}`;
+      card.innerHTML = `
+        <div class="place-name">${p.name}</div>
+        <div class="place-desc">${p.desc}</div>
+      `;
+      card.onclick = () => {
+        map.flyTo([p.lat, p.lng], 16);
+        p.marker.openPopup();
+      };
+      listContainer.appendChild(card);
+    });
+  }
+
+  function createCustomIcon(color) {
+    return L.divIcon({
+      className: 'custom-pin',
+      html: `<div style="background-color: ${color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.5);"></div>`,
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
+
+  places.forEach(p => {
+    const marker = L.marker([p.lat, p.lng], { icon: createCustomIcon(p.color) }).addTo(map);
+    marker.bindPopup(`
+      <div class="popup-title">${p.name}</div>
+      <div class="popup-desc">${p.desc}</div>
+    `);
+    p.marker = marker;
+  });
+
+  function filterDay(day) {
+    document.querySelectorAll('.btn-filter').forEach(b => b.className = 'btn-filter');
+    let filtered = places;
+    if (day === 'all') {
+      event.target.classList.add('active-all');
+      places.forEach(p => p.marker.addTo(map));
+      map.fitBounds(places.map(p => [p.lat, p.lng]));
+    } else {
+      event.target.classList.add(`active-d${day}`);
+      filtered = places.filter(p => p.day === day);
+      places.forEach(p => {
+        if (p.day === day) p.marker.addTo(map);
+        else map.removeLayer(p.marker);
+      });
+      if (filtered.length > 0) {
+        map.fitBounds(filtered.map(p => [p.lat, p.lng]));
+      }
+    }
+    renderList(filtered);
+  }
+
+  filterDay('all');
+</script>
+
+</body>
+</html>

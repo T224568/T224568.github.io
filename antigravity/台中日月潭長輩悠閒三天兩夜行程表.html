@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中・日月潭 悠閒三天兩夜行程指南</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  @page {
+    size: A4;
+    margin: 15mm 15mm;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    color: #2d3748;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 24px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 36px 42px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a365d;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .tag {
+    background: #ebf8ff;
+    color: #2b6cb0;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .tag.hotel {
+    background: #fefcbf;
+    color: #744210;
+  }
+
+  /* Section */
+  .day-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 22px;
+    page-break-inside: avoid;
+  }
+  .day-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c5282;
+    margin: 0 0 14px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #bee3f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .day-stay {
+    font-size: 13px;
+    color: #b7791f;
+    background: #fefcbf;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* Timeline Item */
+  .time-item {
+    margin-bottom: 14px;
+    padding-left: 14px;
+    border-left: 3px solid #cbd5e0;
+  }
+  .time-item:last-child {
+    margin-bottom: 0;
+  }
+  .time-badge {
+    font-size: 14px;
+    font-weight: 700;
+    color: #3182ce;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+  .time-content {
+    font-size: 14px;
+    color: #4a5568;
+  }
+  .time-content p {
+    margin: 3px 0;
+  }
+  .highlight {
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  /* Tables */
+  .table-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a365d;
+    margin: 32px 0 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    page-break-before: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 13px;
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background-color: #ebf8ff;
+    color: #2c5282;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  td:first-child {
+    font-weight: 600;
+    color: #1a365d;
+    white-space: nowrap;
+    width: 20%;
+  }
+  td:nth-child(2) {
+    width: 32%;
+  }
+  td:nth-child(3) {
+    width: 34%;
+  }
+  td:nth-child(4) {
+    width: 14%;
+    text-align: center;
+    white-space: nowrap;
+  }
+  tr:hover {
+    background-color: #f7fafc;
+  }
+
+  a {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .btn-link {
+    display: inline-block;
+    background: #ebf8ff;
+    color: #2b6cb0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #bee3f8;
+  }
+
+  /* Notice Box */
+  .notice-box {
+    background-color: #fffaf0;
+    border: 1px solid #feebc8;
+    border-left: 4px solid #dd6b20;
+    padding: 16px;
+    border-radius: 6px;
+    margin-top: 24px;
+    page-break-inside: avoid;
+  }
+  .notice-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #9c4221;
+    margin: 0 0 8px 0;
+  }
+  .notice-box ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #7b341e;
+  }
+  .notice-box li {
+    margin-bottom: 5px;
+  }
+
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+    }
+    .container {
+      box-shadow: none;
+      padding: 0;
+      max-width: 100%;
+    }
+    .btn-link {
+      border: none;
+      padding: 0;
+      color: #2b6cb0;
+      text-decoration: underline;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- 頁首 -->
+  <div class="header">
+    <h1 class="title">🎒 台中・日月潭 悠閒三天兩夜行程指南</h1>
+    <div class="meta-tags">
+      <span class="tag">👥 65歲長輩友善</span>
+      <span class="tag">🚌 全大眾運輸銜接</span>
+      <span class="tag">🚶 平緩好走無階梯</span>
+      <span class="tag hotel">🏨 D1 黎明會館 ｜ D2 日月潭電信會館</span>
+    </div>
+  </div>
+
+  <!-- 行程總覽 -->
+  <div class="day-card">
+    <div class="day-title">
+      <span>📅 DAY 1：台北 ➔ 台中舊城美味 ＆ 藝文綠廊</span>
+      <span class="day-stay">宿：中華電信黎明會館</span>
+    </div>
+    
+    <div class="time-item">
+      <span class="time-badge">⏰ 09:30 - 10:20【抵達台中】</span>
+      <div class="time-content">
+        <p>台北高鐵 ➔ 台中高鐵，轉台鐵新烏日區間車（10分鐘）直達台中火車站（行李寄放車站大型置物櫃）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 10:30 - 13:00【站前古蹟巡禮 ＆ 第二市場午餐】</span>
+      <div class="time-content">
+        <p><span class="highlight">景點巡禮：</span>台中舊站巴洛克挑高月台、宮原眼科紅磚歷史洋樓、綠川親水水岸。</p>
+        <p><span class="highlight">午餐推薦：</span>第二市場（王記菜頭粿糯米腸、嵐肉燥飯、老賴紅茶、天天饅頭炸紅豆包）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 13:30 - 16:00【國立台灣美術館 ＆ 碑林綠道】</span>
+      <div class="time-content">
+        <p><span class="highlight">交通方式：</span>第二市場搭 75 號公車直達國美館正門。</p>
+        <p><span class="highlight">參觀重點：</span>戶外「碑林綠道」賞50幅名帖石雕（全平路綠蔭長椅多）；館內冷氣舒適、設無障礙電梯與沙發歇腳。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 16:30 - 19:30【秋紅谷生態散步 ＆ 景觀晚餐】</span>
+      <div class="time-content">
+        <p><span class="highlight">交通方式：</span>公車直達秋紅谷（朝馬站）。</p>
+        <p><span class="highlight">漫步放鬆：</span>下凹式平緩無階梯斜坡步道，傍晚涼爽看湖景水鳥。</p>
+        <p><span class="highlight">晚餐選擇：</span>新光三越/大遠百美食街（鼎泰豐小籠包）或 与玥樓頂級粵菜（預訂烤鴨、養生燉湯）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 20:00【入住會館】</span>
+      <div class="time-content">
+        <p>取回行李，乘車至「中華電信黎明會館」辦理入住手續放鬆就寢。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-title">
+      <span>📅 DAY 2：直奔日月潭 ＆ 湖心遊船綠意漫遊</span>
+      <span class="day-stay">宿：中華電信日月潭會館</span>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 08:30 - 11:20【出發直達日月潭】</span>
+      <div class="time-content">
+        <p>黎明路搭 159 快捷公車（15分鐘）回台中高鐵站。1 樓轉搭「台灣好行日月潭線（6670）」，走國道直達「水社遊客中心」（車程約80分，平穩好坐）。</p>
+        <p><span class="highlight">寄放行李：</span>出站步行 2 分鐘即達「中華電信日月潭會館」先寄放行李。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 11:45 - 13:00【水社商圈午餐】</span>
+      <div class="time-content">
+        <p><span class="highlight">午餐推薦：</span>新山味邵族風味餐（平路好走，必點清蒸總統魚、山筍土雞湯、刺蔥豆腐）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 13:30 - 16:30【水上遊湖・免走山路】</span>
+      <div class="time-content">
+        <p><span class="highlight">水社碼頭搭乘電動遊艇：</span>（班距約20分鐘，坐船吹湖風平穩舒暢）</p>
+        <p>1️⃣ <strong>玄光碼頭：</strong>出碼頭走平坦棧道，必買正宗「阿嬤香菇茶葉蛋」（免爬上方陡梯）。</p>
+        <p>2️⃣ <strong>伊達邵碼頭：</strong>漫步平緩湖畔廣場，逛伊達邵老街品嚐小米麻糬、台茶18號紅茶。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 17:00 - 19:30【水社親水夕陽步道 ＆ 晚餐】</span>
+      <div class="time-content">
+        <p><span class="highlight">日落漫步：</span>水社碼頭旁無階梯水上架空木棧道，近距離感受金黃晚霞與湖面清風。</p>
+        <p><span class="highlight">晚餐：</span>水社商圈清爽合菜，餐後步行 2 分鐘即回電信會館休憩。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card page-break">
+    <div class="day-title">
+      <span>📅 DAY 3：世界級向山清水模建築 ＆ 輕鬆返北</span>
+      <span class="day-stay">賦歸</span>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 08:30 - 09:30【晨霧清幽散步】</span>
+      <div class="time-content">
+        <p>清晨水社碼頭空氣極清新，晨霧繾綣如山水畫卷，於湖畔悠然享受晨光與早餐。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 09:45 - 11:45【向山行政暨遊客中心】</span>
+      <div class="time-content">
+        <p><span class="highlight">交通方式：</span>水社遊客中心搭乘遊湖公車 8 分鐘直達向山。</p>
+        <p><span class="highlight">特色體驗：</span>日本建築名家「團紀彥」設計，全館無障礙緩坡延伸至湖面；入座「惠蓀咖啡」大片落地窗品嚐台灣咖啡與茶點，飽覽無邊際水池湖景。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 12:00 - 13:30【午餐 ＆ 取行李】</span>
+      <div class="time-content">
+        <p>搭乘公車返回水社商圈享用清爽午餐，回電信會館取件整裝。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 14:00【輕鬆返北雙方案】</span>
+      <div class="time-content">
+        <p><span class="highlight">路線 A（高鐵快穩）：</span>水社搭台灣好行 6670 返回台中高鐵站（站內選購名產）➔ 搭乘高鐵直達台北。</p>
+        <p><span class="highlight">路線 B（一車到底）：</span>水社搭乘「國光客運 1833」直達台北轉運站，免搬行李換車，長輩一覺安穩到台北。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 景點特色與建議對照表 -->
+  <h2 class="table-title">🏛️ 全景點特色、長輩建議與介紹連結</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>景點名稱</th>
+        <th>景點特色</th>
+        <th>長輩貼心建議</th>
+        <th>介紹連結</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>台中舊火車站<br><small style="color:#718096;">(驛鐵道文化園區)</small></td>
+        <td>百年國定古蹟，挑高巴洛克風月台，退役蒸氣與柴油老火車靜態展。</td>
+        <td>站前廣場全平坦磚道無台階，散步拍照約 15~20 分鐘即可。</td>
+        <td><a class="btn-link" href="https://www.travel.taichung.gov.tw/zh-tw/attractions/detail/298" target="_blank">台中觀光網</a></td>
+      </tr>
+      <tr>
+        <td>宮原眼科</td>
+        <td>日治眼科醫院改造，挑高英倫霍格華茲風書樓、特色糕點禮盒。</td>
+        <td>室內假日人潮密集，建議門廳拍照、買盒名產即可，避免久站排隊。</td>
+        <td><a class="btn-link" href="https://www.travel.taichung.gov.tw/zh-tw/attractions/detail/84" target="_blank">台中觀光網</a></td>
+      </tr>
+      <tr>
+        <td>綠川水岸景觀步道</td>
+        <td>舊城親水新典範，綠樹成蔭、林蔭木椅、清澈水質。</td>
+        <td>位於宮原眼科對面，走完眼科後可坐在水岸長椅歇腳吹涼風。</td>
+        <td><a class="btn-link" href="https://www.travel.taichung.gov.tw/zh-tw/attractions/detail/11494" target="_blank">台中觀光網</a></td>
+      </tr>
+      <tr>
+        <td>台中市第二市場</td>
+        <td>歷史悠久六角樓，雲集菜頭粿、肉燥飯、紅茶等老字號傳統小吃。</td>
+        <td>通道較窄且地面偶有水氣，建議著防滑平底鞋；避開中午 12 點尖峰。</td>
+        <td><a class="btn-link" href="https://www.travel.taichung.gov.tw/zh-tw/attractions/detail/471" target="_blank">台中觀光網</a></td>
+      </tr>
+      <tr>
+        <td>國立台灣美術館<br><small style="color:#718096;">＆ 碑林綠道</small></td>
+        <td>亞洲頂尖公立美術館，戶外 50 幅名帖石雕；館內全館無障礙舒適冷氣。</td>
+        <td>入館免費，具平緩斜坡與電梯，走道隨處有軟質沙發可隨時歇腿。</td>
+        <td><a class="btn-link" href="https://www.ntmofa.gov.tw/" target="_blank">國美館官網</a></td>
+      </tr>
+      <tr>
+        <td>秋紅谷生態公園</td>
+        <td>綠意盎然的下凹式景觀公園，綠植水塘、湖畔水鳥優游。</td>
+        <td>設有專屬無障礙平緩大坡道，傍晚 16:30 後散步微風徐徐最舒適。</td>
+        <td><a class="btn-link" href="https://www.travel.taichung.gov.tw/zh-tw/attractions/detail/100" target="_blank">台中觀光網</a></td>
+      </tr>
+      <tr>
+        <td>水社碼頭 ＆ 商圈</td>
+        <td>日月潭核心門戶與交通樞紐，遊艇出發總站，邵族特色餐廳林立。</td>
+        <td>距電信會館步行僅 2 分鐘，出入皆為平整柏油路與木棧道，補給便捷。</td>
+        <td><a class="btn-link" href="https://www.sunmoonlake.gov.tw/zh-tw/attractions/detail/33" target="_blank">日月潭官網</a></td>
+      </tr>
+      <tr>
+        <td>玄光碼頭</td>
+        <td>遊湖停靠站之一，正宗「阿嬤香菇茶葉蛋」飄香老鋪。</td>
+        <td>在碼頭棧道買完茶葉蛋、眺望拉魯島即可，免爬上層陡峭石階至寺廟。</td>
+        <td><a class="btn-link" href="https://www.sunmoonlake.gov.tw/zh-tw/attractions/detail/30" target="_blank">日月潭官網</a></td>
+      </tr>
+      <tr>
+        <td>伊達邵碼頭 ＆ 老街</td>
+        <td>邵族文化精華聚落，品嚐小米麻糬、紅玉紅茶與原民風味美食。</td>
+        <td>碼頭廣場視野寬闊平整，老街街道平順，漫步約 30 分鐘輕鬆惬意。</td>
+        <td><a class="btn-link" href="https://www.sunmoonlake.gov.tw/zh-tw/attractions/detail/32" target="_blank">日月潭官網</a></td>
+      </tr>
+      <tr>
+        <td>水社親水步道</td>
+        <td>依湖畔而建的親水架高木棧道，步道視野開闊、湖水粼粼。</td>
+        <td>全程無階梯阻隔，若稍有疲憊可隨時原路返回街區，平緩零負擔。</td>
+        <td><a class="btn-link" href="https://www.sunmoonlake.gov.tw/zh-tw/attractions/detail/164" target="_blank">日月潭官網</a></td>
+      </tr>
+      <tr>
+        <td>向山行政暨遊客中心</td>
+        <td>日本建築大師團紀彥力作，極簡清水模與無邊際水池倒映湖景。</td>
+        <td>全區採無障礙大斜坡設計；「惠蓀咖啡」大面落地窗坐著賞景最宜人。</td>
+        <td><a class="btn-link" href="https://www.sunmoonlake.gov.tw/zh-tw/attractions/detail/80" target="_blank">日月潭官網</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 長輩備忘錄 -->
+  <div class="notice-box">
+    <div class="notice-title">💡 長輩同行貼心提醒</div>
+    <ul>
+      <li><strong>敬老悠遊卡：</strong>隨身攜帶具備敬老資格之悠遊卡或一卡通，台鐵、台中市公車、台灣好行（6670）皆享半價或乘車優惠。</li>
+      <li><strong>全區無障礙設施：</strong>國美館、向山遊客中心均備有輪椅借用與完善電梯/斜坡，完全不需費力爬陡階梯。</li>
+      <li><strong>彈性搭乘計程車：</strong>台中市區內若長輩稍有疲憊，景點之間（如國美館至秋紅谷）隨時以 Uber 或台灣大車隊接駁（車資約 120~180 元），舒適省力。</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

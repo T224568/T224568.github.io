@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>512G Antigravity | HTML 總目錄 (Google Drive 直連版)</title>
+  <title>512G Antigravity | HTML 總目錄 (支援 HTML Viewer 線上渲染)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -42,8 +42,8 @@
       min-height: 100vh;
       line-height: 1.5;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(66, 133, 244, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
       background-attachment: fixed;
       padding-bottom: 60px;
@@ -73,10 +73,10 @@
       align-items: center;
       gap: 6px;
       padding: 6px 14px;
-      background: rgba(66, 133, 244, 0.15);
-      border: 1px solid rgba(66, 133, 244, 0.35);
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: 9999px;
-      color: #93c5fd;
+      color: var(--accent-cyan);
       font-size: 0.85rem;
       font-weight: 600;
     }
@@ -86,10 +86,10 @@
       align-items: center;
       gap: 6px;
       padding: 6px 14px;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: rgba(66, 133, 244, 0.15);
+      border: 1px solid rgba(66, 133, 244, 0.35);
       border-radius: 9999px;
-      color: #6ee7b7;
+      color: #93c5fd;
       font-size: 0.85rem;
       font-weight: 600;
       text-decoration: none;
@@ -97,7 +97,7 @@
     }
 
     .gdrive-link-badge:hover {
-      background: rgba(16, 185, 129, 0.25);
+      background: rgba(66, 133, 244, 0.3);
       color: #fff;
     }
 
@@ -240,8 +240,8 @@
     }
 
     .search-input:focus {
-      border-color: var(--accent-gdrive);
-      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.25);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
     }
 
     .search-hint {
@@ -298,8 +298,8 @@
     }
 
     .view-btn.active {
-      background: rgba(66, 133, 244, 0.25);
-      color: #93c5fd;
+      background: rgba(56, 189, 248, 0.25);
+      color: var(--accent-cyan);
       font-weight: 600;
     }
 
@@ -331,11 +331,11 @@
     }
 
     .pill.active {
-      background: var(--accent-gdrive);
-      color: #ffffff;
-      border-color: var(--accent-gdrive);
+      background: var(--accent-cyan);
+      color: #0b0f19;
+      border-color: var(--accent-cyan);
       font-weight: 700;
-      box-shadow: 0 0 12px rgba(66, 133, 244, 0.4);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
     }
 
     .pill-count {
@@ -462,8 +462,6 @@
     }
 
     .btn {
-      flex: 1;
-      min-width: 100px;
       padding: 9px 12px;
       border-radius: var(--radius-md);
       font-size: 0.82rem;
@@ -472,34 +470,48 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       cursor: pointer;
       border: 1px solid transparent;
       transition: all 0.2s;
     }
 
-    .btn-gdrive {
-      background: #1a73e8;
+    .btn-viewer {
+      flex: 1.2;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: #ffffff;
-      border-color: #4285f4;
-      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);
     }
 
-    .btn-gdrive:hover {
-      background: #1557b0;
-      color: #ffffff;
+    .btn-viewer:hover {
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      color: #0b0f19;
       transform: translateY(-1px);
     }
 
-    .btn-local {
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--accent-cyan);
-      border-color: rgba(56, 189, 248, 0.25);
+    .btn-preview {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border-color: var(--border-subtle);
     }
 
-    .btn-local:hover {
-      background: var(--accent-cyan);
-      color: #0b0f19;
+    .btn-preview:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+    }
+
+    .btn-gdrive {
+      flex: 1;
+      background: rgba(66, 133, 244, 0.15);
+      color: #93c5fd;
+      border-color: rgba(66, 133, 244, 0.35);
+    }
+
+    .btn-gdrive:hover {
+      background: #1a73e8;
+      color: #ffffff;
     }
 
     .btn-copy {
@@ -507,11 +519,11 @@
       color: var(--text-muted);
       border-color: var(--border-subtle);
       flex: 0 0 auto;
-      min-width: 40px;
+      padding: 9px 10px;
     }
 
     .btn-copy:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       color: #fff;
     }
 
@@ -596,21 +608,117 @@
       white-space: nowrap;
     }
 
-    .tbl-btn-gdrive {
-      background: rgba(66, 133, 244, 0.2);
-      color: #93c5fd;
-      border-color: rgba(66, 133, 244, 0.4);
+    .tbl-btn-viewer {
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--accent-cyan);
+      border-color: rgba(56, 189, 248, 0.4);
       font-weight: 600;
     }
 
-    .tbl-btn-gdrive:hover {
-      background: #1a73e8;
-      color: #fff;
+    .tbl-btn-viewer:hover {
+      background: var(--accent-cyan);
+      color: #0b0f19;
     }
 
     .tbl-btn:hover {
       background: rgba(255, 255, 255, 0.15);
       color: #fff;
+    }
+
+    /* Modal HTML Viewer */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #0f172a;
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      width: 95vw;
+      max-width: 1200px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: #1e293b;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .modal-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .modal-act-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .modal-act-btn:hover {
+      background: var(--accent-cyan);
+      color: #0b0f19;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .modal-close-btn:hover {
+      color: #fff;
+      background: rgba(239, 68, 68, 0.3);
+    }
+
+    .modal-iframe {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #ffffff;
     }
 
     /* Toast */
@@ -625,7 +733,7 @@
       border-radius: var(--radius-md);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       font-size: 0.9rem;
-      z-index: 1000;
+      z-index: 3000;
       opacity: 0;
       transform: translateY(20px);
       pointer-events: none;
@@ -660,19 +768,19 @@
     <header>
       <div class="header-badge-row">
         <div class="header-badge">
-          <span>☁️</span> Google Drive 雙向雲端同步
+          <span>⚡</span> HTML Viewer 網頁原生渲染
         </div>
         <a href="https://drive.google.com/drive/folders/1TNgUnWeb1dwXLaj10brnJNgsGftVnV_r" target="_blank" class="gdrive-link-badge">
-          <span>📁</span> 開啟雲端 Antigravity 資料夾 ↗
+          <span>☁️</span> 開啟 Google Drive 雲端資料夾 ↗
         </a>
       </div>
       <div class="title-row">
         <h1>/Volumes/512G/Antigravity HTML 總目錄</h1>
       </div>
       <div class="subtitle">
-        <span>雲端核心目錄：</span>
-        <span class="path-pill">Backup_512G_Core/Antigravity</span>
-        <span>• 點擊直接於 Google Drive 雲端檢視與預覽</span>
+        <span>全量 HTML 索引：</span>
+        <span class="path-pill">/Volumes/512G/Antigravity</span>
+        <span>• 點擊【HTML Viewer 開啟】或【👁️ 即時預覽】直接以網頁渲染呈現，不顯示原始碼！</span>
       </div>
 
       <!-- Stats Grid -->
@@ -685,10 +793,10 @@
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">☁️</div>
+          <div class="stat-icon">🌐</div>
           <div>
-            <div class="stat-label">Google Drive 直連</div>
-            <div class="stat-value" style="color: #60a5fa;">93 / 95</div>
+            <div class="stat-label">HTML Viewer 渲染</div>
+            <div class="stat-value" style="color: #38bdf8;">100% 支援</div>
           </div>
         </div>
         <div class="stat-card">
@@ -713,7 +821,7 @@
       <div class="search-row">
         <div class="search-box">
           <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" class="search-input" placeholder="搜尋檔名、標題、路徑或分類 (直接連至 Google Drive)..." autocomplete="off">
+          <input type="text" id="searchInput" class="search-input" placeholder="搜尋檔名、標題、路徑或分類..." autocomplete="off">
           <span class="search-hint">按 / 聚焦</span>
         </div>
         <div class="control-selects">
@@ -749,10 +857,10 @@
           <tr>
             <th style="width: 50px;">圖示</th>
             <th>網頁標題與路徑</th>
-            <th style="width: 140px;">分類</th>
-            <th style="width: 110px;">檔案大小</th>
-            <th style="width: 150px;">最後修改</th>
-            <th style="width: 220px; text-align: right;">Google Drive / 操作</th>
+            <th style="width: 130px;">分類</th>
+            <th style="width: 100px;">大小</th>
+            <th style="width: 140px;">最後修改</th>
+            <th style="width: 260px; text-align: right;">網頁渲染 / 預覽 / 雲端</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -761,7 +869,23 @@
 
   </div>
 
-  <div class="toast" id="toast">已複製路徑至剪貼簿！</div>
+  <!-- Modal HTML Viewer -->
+  <div class="modal-overlay" id="modalViewer" onclick="handleModalOverlayClick(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">
+          <span>👁️ HTML Viewer 即時預覽</span>
+        </div>
+        <div class="modal-header-actions">
+          <a href="#" target="_blank" id="modalOpenExternal" class="modal-act-btn">新分頁開啟 ↗</a>
+          <button onclick="closeViewer()" class="modal-close-btn" title="關閉預覽 (Esc)">×</button>
+        </div>
+      </div>
+      <iframe class="modal-iframe" id="modalFrame" src=""></iframe>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">已複製至剪貼簿！</div>
 
   <script>
     const items = [
@@ -772,6 +896,7 @@
     "rel": "20261028_湖內停電醫療備案與租借手冊.html",
     "full_path": "/Volumes/512G/Antigravity/20261028_湖內停電醫療備案與租借手冊.html",
     "file_url": "file:///Volumes/512G/Antigravity/20261028_湖內停電醫療備案與租借手冊.html",
+    "online_url": "antigravity/20261028_%E6%B9%96%E5%85%A7%E5%81%9C%E9%9B%BB%E9%86%AB%E7%99%82%E5%82%99%E6%A1%88%E8%88%87%E7%A7%9F%E5%80%9F%E6%89%8B%E5%86%8A.html",
     "gdrive_url": "https://drive.google.com/file/d/1zpuerdqQeVj_wYoy1FETZYs2D1Pu2eN0/view",
     "gdrive_id": "1zpuerdqQeVj_wYoy1FETZYs2D1Pu2eN0",
     "has_direct_gdrive": true,
@@ -789,6 +914,7 @@
     "rel": "台中日月潭悠閒三天兩夜_地圖導覽.html",
     "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜_地圖導覽.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜_地圖導覽.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C_%E5%9C%B0%E5%9C%96%E5%B0%8E%E8%A6%BD.html",
     "gdrive_url": "https://drive.google.com/drive/search?q=%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C_%E5%9C%B0%E5%9C%96%E5%B0%8E%E8%A6%BD.html",
     "gdrive_id": "",
     "has_direct_gdrive": false,
@@ -806,6 +932,7 @@
     "rel": "台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
     "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_終極定案版.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C%E8%A1%8C%E7%A8%8B%E6%8C%87%E5%8D%97_%E7%B5%82%E6%A5%B5%E5%AE%9A%E6%A1%88%E7%89%88.html",
     "gdrive_url": "https://drive.google.com/drive/search?q=%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C%E8%A1%8C%E7%A8%8B%E6%8C%87%E5%8D%97_%E7%B5%82%E6%A5%B5%E5%AE%9A%E6%A1%88%E7%89%88.html",
     "gdrive_id": "",
     "has_direct_gdrive": false,
@@ -823,6 +950,7 @@
     "rel": "台中龍井茄投段265地號_375租約土地處分全指南.html",
     "full_path": "/Volumes/512G/Antigravity/台中龍井茄投段265地號_375租約土地處分全指南.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中龍井茄投段265地號_375租約土地處分全指南.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E9%BE%8D%E4%BA%95%E8%8C%84%E6%8A%95%E6%AE%B5265%E5%9C%B0%E8%99%9F_375%E7%A7%9F%E7%B4%84%E5%9C%9F%E5%9C%B0%E8%99%95%E5%88%86%E5%85%A8%E6%8C%87%E5%8D%97.html",
     "gdrive_url": "https://drive.google.com/file/d/14zEOXqgizLhFwvz2sy5jZiPB6MSJ3WFq/view",
     "gdrive_id": "14zEOXqgizLhFwvz2sy5jZiPB6MSJ3WFq",
     "has_direct_gdrive": true,
@@ -840,6 +968,7 @@
     "rel": "台中行_完整版_地圖預覽.html",
     "full_path": "/Volumes/512G/Antigravity/台中行_完整版_地圖預覽.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中行_完整版_地圖預覽.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E8%A1%8C_%E5%AE%8C%E6%95%B4%E7%89%88_%E5%9C%B0%E5%9C%96%E9%A0%90%E8%A6%BD.html",
     "gdrive_url": "https://drive.google.com/file/d/1IQ49_p00o8cmhwNfcZrlMMcG6kwOh3TH/view",
     "gdrive_id": "1IQ49_p00o8cmhwNfcZrlMMcG6kwOh3TH",
     "has_direct_gdrive": true,
@@ -857,6 +986,7 @@
     "rel": "台中草悟道公益路CP值美食_地圖預覽.html",
     "full_path": "/Volumes/512G/Antigravity/台中草悟道公益路CP值美食_地圖預覽.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中草悟道公益路CP值美食_地圖預覽.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E8%8D%89%E6%82%9F%E9%81%93%E5%85%AC%E7%9B%8A%E8%B7%AFCP%E5%80%BC%E7%BE%8E%E9%A3%9F_%E5%9C%B0%E5%9C%96%E9%A0%90%E8%A6%BD.html",
     "gdrive_url": "https://drive.google.com/file/d/1t_rQTev_yvER7mchQruKhYXFJwSeiWL8/view",
     "gdrive_id": "1t_rQTev_yvER7mchQruKhYXFJwSeiWL8",
     "has_direct_gdrive": true,
@@ -874,6 +1004,7 @@
     "rel": "全電腦MP3音樂目錄清單_20261025.html",
     "full_path": "/Volumes/512G/Antigravity/全電腦MP3音樂目錄清單_20261025.html",
     "file_url": "file:///Volumes/512G/Antigravity/全電腦MP3音樂目錄清單_20261025.html",
+    "online_url": "antigravity/%E5%85%A8%E9%9B%BB%E8%85%A6MP3%E9%9F%B3%E6%A8%82%E7%9B%AE%E9%8C%84%E6%B8%85%E5%96%AE_20261025.html",
     "gdrive_url": "https://drive.google.com/file/d/13oy0rCKow3Lb1j0MPWpPzLEOIgI67fRU/view",
     "gdrive_id": "13oy0rCKow3Lb1j0MPWpPzLEOIgI67fRU",
     "has_direct_gdrive": true,
@@ -891,6 +1022,7 @@
     "rel": "台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
     "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C%E8%A1%8C%E7%A8%8B%E6%8C%87%E5%8D%97_%E6%9C%80%E7%B5%82%E5%AE%9A%E6%A1%88%E7%89%88.html",
     "gdrive_url": "https://drive.google.com/file/d/1Dbp-UJNIjimWpcriJGfl_lscRw9vPnPx/view",
     "gdrive_id": "1Dbp-UJNIjimWpcriJGfl_lscRw9vPnPx",
     "has_direct_gdrive": true,
@@ -908,6 +1040,7 @@
     "rel": "台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
     "full_path": "/Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中日月潭悠閒三天兩夜行程指南_最終定案版-1.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C%E8%A1%8C%E7%A8%8B%E6%8C%87%E5%8D%97_%E6%9C%80%E7%B5%82%E5%AE%9A%E6%A1%88%E7%89%88-1.html",
     "gdrive_url": "https://drive.google.com/file/d/1q-m5xodLQpztJHh2cyIM2I8FGjIpIQ8R/view",
     "gdrive_id": "1q-m5xodLQpztJHh2cyIM2I8FGjIpIQ8R",
     "has_direct_gdrive": true,
@@ -925,6 +1058,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261023.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261023.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261023.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261023.html",
     "gdrive_url": "https://drive.google.com/file/d/1K3t85KY381S2nMOgDLW8_YVxx1VRd4Sk/view",
     "gdrive_id": "1K3t85KY381S2nMOgDLW8_YVxx1VRd4Sk",
     "has_direct_gdrive": true,
@@ -942,6 +1076,7 @@
     "rel": "台中日月潭慢活行程與乘車指南_方案B.html",
     "full_path": "/Volumes/512G/Antigravity/台中日月潭慢活行程與乘車指南_方案B.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中日月潭慢活行程與乘車指南_方案B.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E6%85%A2%E6%B4%BB%E8%A1%8C%E7%A8%8B%E8%88%87%E4%B9%98%E8%BB%8A%E6%8C%87%E5%8D%97_%E6%96%B9%E6%A1%88B.html",
     "gdrive_url": "https://drive.google.com/file/d/1efvePJA6UBDHjlwjSwtxQbyEomdkIJhg/view",
     "gdrive_id": "1efvePJA6UBDHjlwjSwtxQbyEomdkIJhg",
     "has_direct_gdrive": true,
@@ -959,6 +1094,7 @@
     "rel": "台中日月潭長輩悠閒三天兩夜行程表.html",
     "full_path": "/Volumes/512G/Antigravity/台中日月潭長輩悠閒三天兩夜行程表.html",
     "file_url": "file:///Volumes/512G/Antigravity/台中日月潭長輩悠閒三天兩夜行程表.html",
+    "online_url": "antigravity/%E5%8F%B0%E4%B8%AD%E6%97%A5%E6%9C%88%E6%BD%AD%E9%95%B7%E8%BC%A9%E6%82%A0%E9%96%92%E4%B8%89%E5%A4%A9%E5%85%A9%E5%A4%9C%E8%A1%8C%E7%A8%8B%E8%A1%A8.html",
     "gdrive_url": "https://drive.google.com/file/d/1q1wBkRf1EtPCG5fKtTqIdlBDETbR_Fbv/view",
     "gdrive_id": "1q1wBkRf1EtPCG5fKtTqIdlBDETbR_Fbv",
     "has_direct_gdrive": true,
@@ -976,6 +1112,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261022.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261022.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261022.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261022.html",
     "gdrive_url": "https://drive.google.com/file/d/1mU7HXONcKwqk9dQiZ8TYvTbFnCInNMWt/view",
     "gdrive_id": "1mU7HXONcKwqk9dQiZ8TYvTbFnCInNMWt",
     "has_direct_gdrive": true,
@@ -993,6 +1130,7 @@
     "rel": "srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
     "full_path": "/Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
     "file_url": "file:///Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
+    "online_url": "antigravity/srt-whiteboard-animation/assets/whiteboard/microwave-master/scenes_preview.html",
     "gdrive_url": "https://drive.google.com/file/d/1PbJsqqDmpacTmX_aJ2pBU4Q9C9k-dojr/view",
     "gdrive_id": "1PbJsqqDmpacTmX_aJ2pBU4Q9C9k-dojr",
     "has_direct_gdrive": true,
@@ -1010,6 +1148,7 @@
     "rel": "srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
     "full_path": "/Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
     "file_url": "file:///Volumes/512G/Antigravity/srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
+    "online_url": "antigravity/srt-whiteboard-animation/assets/whiteboard/japan-humidity-control/scenes_preview.html",
     "gdrive_url": "https://drive.google.com/file/d/14yrZ1V-yWcmTDcDkC_D_d6TWoG88myVq/view",
     "gdrive_id": "14yrZ1V-yWcmTDcDkC_D_d6TWoG88myVq",
     "has_direct_gdrive": true,
@@ -1027,6 +1166,7 @@
     "rel": "srt-whiteboard-animation/assets/preview.html",
     "full_path": "/Volumes/512G/Antigravity/srt-whiteboard-animation/assets/preview.html",
     "file_url": "file:///Volumes/512G/Antigravity/srt-whiteboard-animation/assets/preview.html",
+    "online_url": "antigravity/srt-whiteboard-animation/assets/preview.html",
     "gdrive_url": "https://drive.google.com/file/d/1JilHOVad-LM0XjYCPMcEnu_6VHQUXxlw/view",
     "gdrive_id": "1JilHOVad-LM0XjYCPMcEnu_6VHQUXxlw",
     "has_direct_gdrive": true,
@@ -1044,6 +1184,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261021.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261021.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261021.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261021.html",
     "gdrive_url": "https://drive.google.com/file/d/1SXI9BDOZ-NlWWSoSE6OhRcrpeKqOZ-sv/view",
     "gdrive_id": "1SXI9BDOZ-NlWWSoSE6OhRcrpeKqOZ-sv",
     "has_direct_gdrive": true,
@@ -1061,6 +1202,7 @@
     "rel": "gods-eye-view/dist/index.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/dist/index.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/dist/index.html",
+    "online_url": "antigravity/gods-eye-view/dist/index.html",
     "gdrive_url": "https://drive.google.com/file/d/1ma9H2l_WDxB6lPOsGf-o_iYSrr3PPgjl/view",
     "gdrive_id": "1ma9H2l_WDxB6lPOsGf-o_iYSrr3PPgjl",
     "has_direct_gdrive": true,
@@ -1078,6 +1220,7 @@
     "rel": "gods-eye-view/index.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/index.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/index.html",
+    "online_url": "antigravity/gods-eye-view/index.html",
     "gdrive_url": "https://drive.google.com/file/d/1IUt_3vbe2qo7COXSOKjSW31PKeHbNNJT/view",
     "gdrive_id": "1IUt_3vbe2qo7COXSOKjSW31PKeHbNNJT",
     "has_direct_gdrive": true,
@@ -1095,6 +1238,7 @@
     "rel": "gods-eye-view/tools/cesium-render.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/tools/cesium-render.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/tools/cesium-render.html",
+    "online_url": "antigravity/gods-eye-view/tools/cesium-render.html",
     "gdrive_url": "https://drive.google.com/file/d/1cZjRPJIOb08ZOGQEzFOY5VmgTf0nnX-s/view",
     "gdrive_id": "1cZjRPJIOb08ZOGQEzFOY5VmgTf0nnX-s",
     "has_direct_gdrive": true,
@@ -1112,6 +1256,7 @@
     "rel": "gods-eye-view/src/ui/templates/display-controls.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/display-controls.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/display-controls.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/display-controls.html",
     "gdrive_url": "https://drive.google.com/file/d/1VJAvxY7gUsf3yF8bfD1uc9gZTApoOmbj/view",
     "gdrive_id": "1VJAvxY7gUsf3yF8bfD1uc9gZTApoOmbj",
     "has_direct_gdrive": true,
@@ -1129,6 +1274,7 @@
     "rel": "gods-eye-view/src/ui/templates/cockpit.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/cockpit.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/cockpit.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/cockpit.html",
     "gdrive_url": "https://drive.google.com/file/d/199yOpUvb5OLm5EZMyY_cP84kyI6ZINuh/view",
     "gdrive_id": "199yOpUvb5OLm5EZMyY_cP84kyI6ZINuh",
     "has_direct_gdrive": true,
@@ -1146,6 +1292,7 @@
     "rel": "gods-eye-view/src/ui/templates/provider-settings.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/provider-settings.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/provider-settings.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/provider-settings.html",
     "gdrive_url": "https://drive.google.com/file/d/18VGcSV0l9JeaHegVCFwMqAMsX74OYjMk/view",
     "gdrive_id": "18VGcSV0l9JeaHegVCFwMqAMsX74OYjMk",
     "has_direct_gdrive": true,
@@ -1163,6 +1310,7 @@
     "rel": "gods-eye-view/src/ui/templates/context.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/context.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/context.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/context.html",
     "gdrive_url": "https://drive.google.com/file/d/18rUIxD-hol_8zoISCck1oVZVP4FhQtDg/view",
     "gdrive_id": "18rUIxD-hol_8zoISCck1oVZVP4FhQtDg",
     "has_direct_gdrive": true,
@@ -1180,6 +1328,7 @@
     "rel": "gods-eye-view/src/ui/templates/hud-loading.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/hud-loading.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/hud-loading.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/hud-loading.html",
     "gdrive_url": "https://drive.google.com/file/d/1e11Oe5D1wrHPsYlv6uxutPlPx-SADTeG/view",
     "gdrive_id": "1e11Oe5D1wrHPsYlv6uxutPlPx-SADTeG",
     "has_direct_gdrive": true,
@@ -1197,6 +1346,7 @@
     "rel": "gods-eye-view/src/ui/templates/layer-panels.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/layer-panels.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/layer-panels.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/layer-panels.html",
     "gdrive_url": "https://drive.google.com/file/d/1NfQAQxFHvQN1QpMFbfVAAgseyRATudFJ/view",
     "gdrive_id": "1NfQAQxFHvQN1QpMFbfVAAgseyRATudFJ",
     "has_direct_gdrive": true,
@@ -1214,6 +1364,7 @@
     "rel": "gods-eye-view/src/ui/templates/command-dock.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/command-dock.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/command-dock.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/command-dock.html",
     "gdrive_url": "https://drive.google.com/file/d/1LeHQjm0lQosxI7YqZEG7RGOD62IDILeW/view",
     "gdrive_id": "1LeHQjm0lQosxI7YqZEG7RGOD62IDILeW",
     "has_direct_gdrive": true,
@@ -1231,6 +1382,7 @@
     "rel": "gods-eye-view/src/ui/templates/welcome.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/welcome.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/welcome.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/welcome.html",
     "gdrive_url": "https://drive.google.com/file/d/1B1TNKr9TKJyRu9_m4UFcd95aNAFVH_x4/view",
     "gdrive_id": "1B1TNKr9TKJyRu9_m4UFcd95aNAFVH_x4",
     "has_direct_gdrive": true,
@@ -1248,6 +1400,7 @@
     "rel": "gods-eye-view/src/ui/templates/scene-chrome.html",
     "full_path": "/Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/scene-chrome.html",
     "file_url": "file:///Volumes/512G/Antigravity/gods-eye-view/src/ui/templates/scene-chrome.html",
+    "online_url": "antigravity/gods-eye-view/src/ui/templates/scene-chrome.html",
     "gdrive_url": "https://drive.google.com/file/d/13LJIGVyJjmleLPE6WxQR6vkfQ7j5yJ_T/view",
     "gdrive_id": "13LJIGVyJjmleLPE6WxQR6vkfQ7j5yJ_T",
     "has_direct_gdrive": true,
@@ -1265,6 +1418,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261020.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261020.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261020.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261020.html",
     "gdrive_url": "https://drive.google.com/file/d/1UMmcNkJXvzssoPNlSY3d0v7PHkqHzqQv/view",
     "gdrive_id": "1UMmcNkJXvzssoPNlSY3d0v7PHkqHzqQv",
     "has_direct_gdrive": true,
@@ -1282,6 +1436,7 @@
     "rel": "2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
     "full_path": "/Volumes/512G/Antigravity/2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
     "file_url": "file:///Volumes/512G/Antigravity/2026-10-20_韓國瑜_反滲透法_資訊圖卡.html",
+    "online_url": "antigravity/2026-10-20_%E9%9F%93%E5%9C%8B%E7%91%9C_%E5%8F%8D%E6%BB%B2%E9%80%8F%E6%B3%95_%E8%B3%87%E8%A8%8A%E5%9C%96%E5%8D%A1.html",
     "gdrive_url": "https://drive.google.com/file/d/1iQQi8Ms_evD2xPfCqQYmZsN_aj6CqPjo/view",
     "gdrive_id": "1iQQi8Ms_evD2xPfCqQYmZsN_aj6CqPjo",
     "has_direct_gdrive": true,
@@ -1299,6 +1454,7 @@
     "rel": "南門教會直播片頭_v2.html",
     "full_path": "/Volumes/512G/Antigravity/南門教會直播片頭_v2.html",
     "file_url": "file:///Volumes/512G/Antigravity/南門教會直播片頭_v2.html",
+    "online_url": "antigravity/%E5%8D%97%E9%96%80%E6%95%99%E6%9C%83%E7%9B%B4%E6%92%AD%E7%89%87%E9%A0%AD_v2.html",
     "gdrive_url": "https://drive.google.com/file/d/16FizPRFvNs8UGdzqmjzkzPhnHwjAKXMy/view",
     "gdrive_id": "16FizPRFvNs8UGdzqmjzkzPhnHwjAKXMy",
     "has_direct_gdrive": true,
@@ -1316,6 +1472,7 @@
     "rel": "南門教會華語禮拜直播片頭_v2.html",
     "full_path": "/Volumes/512G/Antigravity/南門教會華語禮拜直播片頭_v2.html",
     "file_url": "file:///Volumes/512G/Antigravity/南門教會華語禮拜直播片頭_v2.html",
+    "online_url": "antigravity/%E5%8D%97%E9%96%80%E6%95%99%E6%9C%83%E8%8F%AF%E8%AA%9E%E7%A6%AE%E6%8B%9C%E7%9B%B4%E6%92%AD%E7%89%87%E9%A0%AD_v2.html",
     "gdrive_url": "https://drive.google.com/file/d/11GBvGxmxtWLGcDLlcwYzt-iY-zpzzGXA/view",
     "gdrive_id": "11GBvGxmxtWLGcDLlcwYzt-iY-zpzzGXA",
     "has_direct_gdrive": true,
@@ -1333,6 +1490,7 @@
     "rel": "早安圖主標題統計分析報告.html",
     "full_path": "/Volumes/512G/Antigravity/早安圖主標題統計分析報告.html",
     "file_url": "file:///Volumes/512G/Antigravity/早安圖主標題統計分析報告.html",
+    "online_url": "antigravity/%E6%97%A9%E5%AE%89%E5%9C%96%E4%B8%BB%E6%A8%99%E9%A1%8C%E7%B5%B1%E8%A8%88%E5%88%86%E6%9E%90%E5%A0%B1%E5%91%8A.html",
     "gdrive_url": "https://drive.google.com/file/d/15B6YN1s3IQt9sDePZeGVfqT3Tr6nyye0/view",
     "gdrive_id": "15B6YN1s3IQt9sDePZeGVfqT3Tr6nyye0",
     "has_direct_gdrive": true,
@@ -1350,6 +1508,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261019.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261019.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261019.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261019.html",
     "gdrive_url": "https://drive.google.com/file/d/12GLZB5Mxd-MSpNRSTBYsCwpKDNHhs1Z6/view",
     "gdrive_id": "12GLZB5Mxd-MSpNRSTBYsCwpKDNHhs1Z6",
     "has_direct_gdrive": true,
@@ -1367,6 +1526,7 @@
     "rel": "新屋室內櫃子_尺寸清冊.html",
     "full_path": "/Volumes/512G/Antigravity/新屋室內櫃子_尺寸清冊.html",
     "file_url": "file:///Volumes/512G/Antigravity/新屋室內櫃子_尺寸清冊.html",
+    "online_url": "antigravity/%E6%96%B0%E5%B1%8B%E5%AE%A4%E5%85%A7%E6%AB%83%E5%AD%90_%E5%B0%BA%E5%AF%B8%E6%B8%85%E5%86%8A.html",
     "gdrive_url": "https://drive.google.com/file/d/18pkBJp-77myy278JNQrwXOKUFPCiDDhV/view",
     "gdrive_id": "18pkBJp-77myy278JNQrwXOKUFPCiDDhV",
     "has_direct_gdrive": true,
@@ -1384,6 +1544,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261018.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261018.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261018.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261018.html",
     "gdrive_url": "https://drive.google.com/file/d/1V2qWoCDMy1jR5b7RaDTySbAXck-ZIhnK/view",
     "gdrive_id": "1V2qWoCDMy1jR5b7RaDTySbAXck-ZIhnK",
     "has_direct_gdrive": true,
@@ -1401,6 +1562,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261017.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261017.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261017.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261017.html",
     "gdrive_url": "https://drive.google.com/file/d/1iiHKjIpDz7-1bN0kwlKF_AnPz2xk-gn6/view",
     "gdrive_id": "1iiHKjIpDz7-1bN0kwlKF_AnPz2xk-gn6",
     "has_direct_gdrive": true,
@@ -1418,6 +1580,7 @@
     "rel": "南門教會直播片頭_使用說明.html",
     "full_path": "/Volumes/512G/Antigravity/南門教會直播片頭_使用說明.html",
     "file_url": "file:///Volumes/512G/Antigravity/南門教會直播片頭_使用說明.html",
+    "online_url": "antigravity/%E5%8D%97%E9%96%80%E6%95%99%E6%9C%83%E7%9B%B4%E6%92%AD%E7%89%87%E9%A0%AD_%E4%BD%BF%E7%94%A8%E8%AA%AA%E6%98%8E.html",
     "gdrive_url": "https://drive.google.com/file/d/124NLV40Mrcd6LHX4rUQGoF1NSEc7y7bQ/view",
     "gdrive_id": "124NLV40Mrcd6LHX4rUQGoF1NSEc7y7bQ",
     "has_direct_gdrive": true,
@@ -1435,6 +1598,7 @@
     "rel": "sermon_ppt_index.html",
     "full_path": "/Volumes/512G/Antigravity/sermon_ppt_index.html",
     "file_url": "file:///Volumes/512G/Antigravity/sermon_ppt_index.html",
+    "online_url": "antigravity/sermon_ppt_index.html",
     "gdrive_url": "https://drive.google.com/file/d/1-ohc0OQs77ytTdDSZ6v4HHzNTjVVVRgf/view",
     "gdrive_id": "1-ohc0OQs77ytTdDSZ6v4HHzNTjVVVRgf",
     "has_direct_gdrive": true,
@@ -1452,6 +1616,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261016.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261016.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261016.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261016.html",
     "gdrive_url": "https://drive.google.com/file/d/1r0LhhOHcl1o_4ENheDklPiztoMkJzTq-/view",
     "gdrive_id": "1r0LhhOHcl1o_4ENheDklPiztoMkJzTq-",
     "has_direct_gdrive": true,
@@ -1469,6 +1634,7 @@
     "rel": "南門教會每週愛餐便當統計報告.html",
     "full_path": "/Volumes/512G/Antigravity/南門教會每週愛餐便當統計報告.html",
     "file_url": "file:///Volumes/512G/Antigravity/南門教會每週愛餐便當統計報告.html",
+    "online_url": "antigravity/%E5%8D%97%E9%96%80%E6%95%99%E6%9C%83%E6%AF%8F%E9%80%B1%E6%84%9B%E9%A4%90%E4%BE%BF%E7%95%B6%E7%B5%B1%E8%A8%88%E5%A0%B1%E5%91%8A.html",
     "gdrive_url": "https://drive.google.com/file/d/1SHjFVgiy9CiKfOug7CXxrf5ryGZpXke_/view",
     "gdrive_id": "1SHjFVgiy9CiKfOug7CXxrf5ryGZpXke_",
     "has_direct_gdrive": true,
@@ -1486,6 +1652,7 @@
     "rel": "長鑫4F超車記憶體崩盤_圖卡預覽.html",
     "full_path": "/Volumes/512G/Antigravity/長鑫4F超車記憶體崩盤_圖卡預覽.html",
     "file_url": "file:///Volumes/512G/Antigravity/長鑫4F超車記憶體崩盤_圖卡預覽.html",
+    "online_url": "antigravity/%E9%95%B7%E9%91%AB4F%E8%B6%85%E8%BB%8A%E8%A8%98%E6%86%B6%E9%AB%94%E5%B4%A9%E7%9B%A4_%E5%9C%96%E5%8D%A1%E9%A0%90%E8%A6%BD.html",
     "gdrive_url": "https://drive.google.com/file/d/1rWmECj8kRlzrpYd7qGK0o0zQIGylo8p4/view",
     "gdrive_id": "1rWmECj8kRlzrpYd7qGK0o0zQIGylo8p4",
     "has_direct_gdrive": true,
@@ -1503,6 +1670,7 @@
     "rel": "品陽大苑社區LINE每日掃描摘要_20261015.html",
     "full_path": "/Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261015.html",
     "file_url": "file:///Volumes/512G/Antigravity/品陽大苑社區LINE每日掃描摘要_20261015.html",
+    "online_url": "antigravity/%E5%93%81%E9%99%BD%E5%A4%A7%E8%8B%91%E7%A4%BE%E5%8D%80LINE%E6%AF%8F%E6%97%A5%E6%8E%83%E6%8F%8F%E6%91%98%E8%A6%81_20261015.html",
     "gdrive_url": "https://drive.google.com/file/d/1UHb4oaug3q-gc3Rs-bobMNs17E45_LsY/view",
     "gdrive_id": "1UHb4oaug3q-gc3Rs-bobMNs17E45_LsY",
     "has_direct_gdrive": true,
@@ -1520,6 +1688,7 @@
     "rel": "台積電法說10大重點_圖卡預覽.html",
     "full_path": "/Volumes/512G/Antigravity/台積電法說10大重點_圖卡預覽.html",
     "file_url": "file:///Volumes/512G/Antigravity/台積電法說10大重點_圖卡預覽.html",
+    "online_url": "antigravity/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E6%B3%95%E8%AA%AA10%E5%A4%A7%E9%87%8D%E9%BB%9E_%E5%9C%96%E5%8D%A1%E9%A0%90%E8%A6%BD.html",
     "gdrive_url": "https://drive.google.com/file/d/1tNQz0eR-dfBHKNxPQ-aBBeb59bNh7n7a/view",
     "gdrive_id": "1tNQz0eR-dfBHKNxPQ-aBBeb59bNh7n7a",
     "has_direct_gdrive": true,
@@ -1537,6 +1706,7 @@
     "rel": "0_往伯利恆之路_首調簡譜總目錄.html",
     "full_path": "/Volumes/512G/Antigravity/0_往伯利恆之路_首調簡譜總目錄.html",
     "file_url": "file:///Volumes/512G/Antigravity/0_往伯利恆之路_首調簡譜總目錄.html",
+    "online_url": "antigravity/0_%E5%BE%80%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%B7%AF_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C%E7%B8%BD%E7%9B%AE%E9%8C%84.html",
     "gdrive_url": "https://drive.google.com/file/d/1PjiWuz-OkiEQyHTaL0XQNHbOwcVFGItC/view",
     "gdrive_id": "1PjiWuz-OkiEQyHTaL0XQNHbOwcVFGItC",
     "has_direct_gdrive": true,
@@ -1554,6 +1724,7 @@
     "rel": "1_往伯利恆之路_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/1_往伯利恆之路_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/1_往伯利恆之路_B_首調簡譜.html",
+    "online_url": "antigravity/1_%E5%BE%80%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%B7%AF_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/11bIopOQjHIo-MX9GXfk3pr5COn2DOabp/view",
     "gdrive_id": "11bIopOQjHIo-MX9GXfk3pr5COn2DOabp",
     "has_direct_gdrive": true,
@@ -1571,6 +1742,7 @@
     "rel": "2_為咱之上帝開大路_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_B_首調簡譜.html",
+    "online_url": "antigravity/2_%E7%82%BA%E5%92%B1%E4%B9%8B%E4%B8%8A%E5%B8%9D%E9%96%8B%E5%A4%A7%E8%B7%AF_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/11fDeq3ycvsqGf1R1zx_lLM-bmK0Q9Mrq/view",
     "gdrive_id": "11fDeq3ycvsqGf1R1zx_lLM-bmK0Q9Mrq",
     "has_direct_gdrive": true,
@@ -1588,6 +1760,7 @@
     "rel": "8_基督降生伯利恆_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_T_首調簡譜.html",
+    "online_url": "antigravity/8_%E5%9F%BA%E7%9D%A3%E9%99%8D%E7%94%9F%E4%BC%AF%E5%88%A9%E6%81%86_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1OvnP8f7QjSd8IhJBe_8wclPWp3Vzois5/view",
     "gdrive_id": "1OvnP8f7QjSd8IhJBe_8wclPWp3Vzois5",
     "has_direct_gdrive": true,
@@ -1605,6 +1778,7 @@
     "rel": "8_基督降生伯利恆_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_B_首調簡譜.html",
+    "online_url": "antigravity/8_%E5%9F%BA%E7%9D%A3%E9%99%8D%E7%94%9F%E4%BC%AF%E5%88%A9%E6%81%86_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/19Iy6djHEp9mEtV9EqQ1ywH7qMVi78CL1/view",
     "gdrive_id": "19Iy6djHEp9mEtV9EqQ1ywH7qMVi78CL1",
     "has_direct_gdrive": true,
@@ -1622,6 +1796,7 @@
     "rel": "7_旅程_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/7_旅程_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/7_旅程_T_首調簡譜.html",
+    "online_url": "antigravity/7_%E6%97%85%E7%A8%8B_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1wbYRSpZsd7BEUDGipEyy68YNXBmL90-5/view",
     "gdrive_id": "1wbYRSpZsd7BEUDGipEyy68YNXBmL90-5",
     "has_direct_gdrive": true,
@@ -1639,6 +1814,7 @@
     "rel": "7_旅程_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/7_旅程_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/7_旅程_B_首調簡譜.html",
+    "online_url": "antigravity/7_%E6%97%85%E7%A8%8B_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1V-__GenjQs2WTPmbx3NQqihr1foheBjS/view",
     "gdrive_id": "1V-__GenjQs2WTPmbx3NQqihr1foheBjS",
     "has_direct_gdrive": true,
@@ -1656,6 +1832,7 @@
     "rel": "6_牧者之搖籃詩_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_T_首調簡譜.html",
+    "online_url": "antigravity/6_%E7%89%A7%E8%80%85%E4%B9%8B%E6%90%96%E7%B1%83%E8%A9%A9_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/13o161afjVTtNa05bDHVcSNsGcYRCM8EY/view",
     "gdrive_id": "13o161afjVTtNa05bDHVcSNsGcYRCM8EY",
     "has_direct_gdrive": true,
@@ -1673,6 +1850,7 @@
     "rel": "6_牧者之搖籃詩_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_B_首調簡譜.html",
+    "online_url": "antigravity/6_%E7%89%A7%E8%80%85%E4%B9%8B%E6%90%96%E7%B1%83%E8%A9%A9_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1Fi_VmUaBGTCj7mfsHm6npdAHgTjxab7t/view",
     "gdrive_id": "1Fi_VmUaBGTCj7mfsHm6npdAHgTjxab7t",
     "has_direct_gdrive": true,
@@ -1690,6 +1868,7 @@
     "rel": "5_佇曠野之牧者_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_T_首調簡譜.html",
+    "online_url": "antigravity/5_%E4%BD%87%E6%9B%A0%E9%87%8E%E4%B9%8B%E7%89%A7%E8%80%85_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1yXLgXqWL_WP_rI0EaNA41CxV4lmdco_6/view",
     "gdrive_id": "1yXLgXqWL_WP_rI0EaNA41CxV4lmdco_6",
     "has_direct_gdrive": true,
@@ -1707,6 +1886,7 @@
     "rel": "5_佇曠野之牧者_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_B_首調簡譜.html",
+    "online_url": "antigravity/5_%E4%BD%87%E6%9B%A0%E9%87%8E%E4%B9%8B%E7%89%A7%E8%80%85_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/17Tm6xn4ZztEdALmA5hnyAmLLt5JM1ord/view",
     "gdrive_id": "17Tm6xn4ZztEdALmA5hnyAmLLt5JM1ord",
     "has_direct_gdrive": true,
@@ -1724,6 +1904,7 @@
     "rel": "4_伯利恆之聖嬰兒_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_B_首調簡譜.html",
+    "online_url": "antigravity/4_%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%81%96%E5%AC%B0%E5%85%92_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1qJ1I49I8GO9F_Rwv_o-CYt_Jkr6oqxaw/view",
     "gdrive_id": "1qJ1I49I8GO9F_Rwv_o-CYt_Jkr6oqxaw",
     "has_direct_gdrive": true,
@@ -1741,6 +1922,7 @@
     "rel": "4_伯利恆之聖嬰兒_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_T_首調簡譜.html",
+    "online_url": "antigravity/4_%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%81%96%E5%AC%B0%E5%85%92_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1ZJbxz1wrddYPAjIC0pxZfyBunU86J6jv/view",
     "gdrive_id": "1ZJbxz1wrddYPAjIC0pxZfyBunU86J6jv",
     "has_direct_gdrive": true,
@@ -1758,6 +1940,7 @@
     "rel": "3_請來彌賽亞_B_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_B_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_B_首調簡譜.html",
+    "online_url": "antigravity/3_%E8%AB%8B%E4%BE%86%E5%BD%8C%E8%B3%BD%E4%BA%9E_B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1pfT691_xVcFlUYGwFNZzGvPzcwa2kNmo/view",
     "gdrive_id": "1pfT691_xVcFlUYGwFNZzGvPzcwa2kNmo",
     "has_direct_gdrive": true,
@@ -1775,6 +1958,7 @@
     "rel": "3_請來彌賽亞_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_T_首調簡譜.html",
+    "online_url": "antigravity/3_%E8%AB%8B%E4%BE%86%E5%BD%8C%E8%B3%BD%E4%BA%9E_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1W07LXTp0z8TZ-zpQLzK5mqzZeT7k56eu/view",
     "gdrive_id": "1W07LXTp0z8TZ-zpQLzK5mqzZeT7k56eu",
     "has_direct_gdrive": true,
@@ -1792,6 +1976,7 @@
     "rel": "2_為咱之上帝開大路_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_T_首調簡譜.html",
+    "online_url": "antigravity/2_%E7%82%BA%E5%92%B1%E4%B9%8B%E4%B8%8A%E5%B8%9D%E9%96%8B%E5%A4%A7%E8%B7%AF_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1wtEit3Kvs0AQ7-2e3y74DlsA0aNYEAr_/view",
     "gdrive_id": "1wtEit3Kvs0AQ7-2e3y74DlsA0aNYEAr_",
     "has_direct_gdrive": true,
@@ -1809,6 +1994,7 @@
     "rel": "8_基督降生伯利恆_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_A_首調簡譜.html",
+    "online_url": "antigravity/8_%E5%9F%BA%E7%9D%A3%E9%99%8D%E7%94%9F%E4%BC%AF%E5%88%A9%E6%81%86_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1f1ZNM_vNXC1asMDZvIM5iqZz3PiMwEZ4/view",
     "gdrive_id": "1f1ZNM_vNXC1asMDZvIM5iqZz3PiMwEZ4",
     "has_direct_gdrive": true,
@@ -1826,6 +2012,7 @@
     "rel": "1_往伯利恆之路_T_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/1_往伯利恆之路_T_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/1_往伯利恆之路_T_首調簡譜.html",
+    "online_url": "antigravity/1_%E5%BE%80%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%B7%AF_T_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1cI2M8He4u5ihlmJF-U2oSBIjqjW7Ik-z/view",
     "gdrive_id": "1cI2M8He4u5ihlmJF-U2oSBIjqjW7Ik-z",
     "has_direct_gdrive": true,
@@ -1843,6 +2030,7 @@
     "rel": "7_旅程_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/7_旅程_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/7_旅程_A_首調簡譜.html",
+    "online_url": "antigravity/7_%E6%97%85%E7%A8%8B_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1Fmw1JpSyb8BKOcVGw1-s-_SgS35i-WBZ/view",
     "gdrive_id": "1Fmw1JpSyb8BKOcVGw1-s-_SgS35i-WBZ",
     "has_direct_gdrive": true,
@@ -1860,6 +2048,7 @@
     "rel": "6_牧者之搖籃詩_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_A_首調簡譜.html",
+    "online_url": "antigravity/6_%E7%89%A7%E8%80%85%E4%B9%8B%E6%90%96%E7%B1%83%E8%A9%A9_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1hKtTMjshmST_kcVJIkepoJnANlr9lemQ/view",
     "gdrive_id": "1hKtTMjshmST_kcVJIkepoJnANlr9lemQ",
     "has_direct_gdrive": true,
@@ -1877,6 +2066,7 @@
     "rel": "5_佇曠野之牧者_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_A_首調簡譜.html",
+    "online_url": "antigravity/5_%E4%BD%87%E6%9B%A0%E9%87%8E%E4%B9%8B%E7%89%A7%E8%80%85_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1jHcTS1_KfQUYbzObCIoT2KIkoZwgSLBW/view",
     "gdrive_id": "1jHcTS1_KfQUYbzObCIoT2KIkoZwgSLBW",
     "has_direct_gdrive": true,
@@ -1894,6 +2084,7 @@
     "rel": "4_伯利恆之聖嬰兒_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_A_首調簡譜.html",
+    "online_url": "antigravity/4_%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%81%96%E5%AC%B0%E5%85%92_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1H43lXFSDeA89bIvQCA-A2Fj9M3q6uvBA/view",
     "gdrive_id": "1H43lXFSDeA89bIvQCA-A2Fj9M3q6uvBA",
     "has_direct_gdrive": true,
@@ -1911,6 +2102,7 @@
     "rel": "3_請來彌賽亞_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_A_首調簡譜.html",
+    "online_url": "antigravity/3_%E8%AB%8B%E4%BE%86%E5%BD%8C%E8%B3%BD%E4%BA%9E_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1_PxZJOllYK-YZ-BNceym684uyiNZteJV/view",
     "gdrive_id": "1_PxZJOllYK-YZ-BNceym684uyiNZteJV",
     "has_direct_gdrive": true,
@@ -1928,6 +2120,7 @@
     "rel": "2_為咱之上帝開大路_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_A_首調簡譜.html",
+    "online_url": "antigravity/2_%E7%82%BA%E5%92%B1%E4%B9%8B%E4%B8%8A%E5%B8%9D%E9%96%8B%E5%A4%A7%E8%B7%AF_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1hyuk9csyV2bESK3J6R3MCGCZBPmmUVC7/view",
     "gdrive_id": "1hyuk9csyV2bESK3J6R3MCGCZBPmmUVC7",
     "has_direct_gdrive": true,
@@ -1945,6 +2138,7 @@
     "rel": "1_往伯利恆之路_A_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/1_往伯利恆之路_A_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/1_往伯利恆之路_A_首調簡譜.html",
+    "online_url": "antigravity/1_%E5%BE%80%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%B7%AF_A_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1qim_VJ_4y3GhXq9lKVVYbfbRElyYs3di/view",
     "gdrive_id": "1qim_VJ_4y3GhXq9lKVVYbfbRElyYs3di",
     "has_direct_gdrive": true,
@@ -1962,6 +2156,7 @@
     "rel": "8_基督降生伯利恆_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/8_基督降生伯利恆_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/8_基督降生伯利恆_首調簡譜.html",
+    "online_url": "antigravity/8_%E5%9F%BA%E7%9D%A3%E9%99%8D%E7%94%9F%E4%BC%AF%E5%88%A9%E6%81%86_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1K7-vWq04b_KH_rKZlJFxuuhXrmzWMmt7/view",
     "gdrive_id": "1K7-vWq04b_KH_rKZlJFxuuhXrmzWMmt7",
     "has_direct_gdrive": true,
@@ -1979,6 +2174,7 @@
     "rel": "7_旅程_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/7_旅程_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/7_旅程_首調簡譜.html",
+    "online_url": "antigravity/7_%E6%97%85%E7%A8%8B_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1P_o_W2pP8Bh0gCEU9Q-ZVhUlH7xMvTd1/view",
     "gdrive_id": "1P_o_W2pP8Bh0gCEU9Q-ZVhUlH7xMvTd1",
     "has_direct_gdrive": true,
@@ -1996,6 +2192,7 @@
     "rel": "6_牧者之搖籃詩_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/6_牧者之搖籃詩_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/6_牧者之搖籃詩_首調簡譜.html",
+    "online_url": "antigravity/6_%E7%89%A7%E8%80%85%E4%B9%8B%E6%90%96%E7%B1%83%E8%A9%A9_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1X1syk-VXf_Lk4Wme9ZBu793YgveVsvCk/view",
     "gdrive_id": "1X1syk-VXf_Lk4Wme9ZBu793YgveVsvCk",
     "has_direct_gdrive": true,
@@ -2013,6 +2210,7 @@
     "rel": "5_佇曠野之牧者_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/5_佇曠野之牧者_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/5_佇曠野之牧者_首調簡譜.html",
+    "online_url": "antigravity/5_%E4%BD%87%E6%9B%A0%E9%87%8E%E4%B9%8B%E7%89%A7%E8%80%85_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/13W7VbixqVBZjVGzKvNBSD8vrTIRnL1U2/view",
     "gdrive_id": "13W7VbixqVBZjVGzKvNBSD8vrTIRnL1U2",
     "has_direct_gdrive": true,
@@ -2030,6 +2228,7 @@
     "rel": "4_伯利恆之聖嬰兒_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/4_伯利恆之聖嬰兒_首調簡譜.html",
+    "online_url": "antigravity/4_%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%81%96%E5%AC%B0%E5%85%92_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/12EFCHyGOxpFZVz1v6JjYfKapauMWiD0x/view",
     "gdrive_id": "12EFCHyGOxpFZVz1v6JjYfKapauMWiD0x",
     "has_direct_gdrive": true,
@@ -2047,6 +2246,7 @@
     "rel": "3_請來彌賽亞_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/3_請來彌賽亞_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/3_請來彌賽亞_首調簡譜.html",
+    "online_url": "antigravity/3_%E8%AB%8B%E4%BE%86%E5%BD%8C%E8%B3%BD%E4%BA%9E_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/16jLHyVa4VRiBO7-h2UDa9m2kvme3cF-G/view",
     "gdrive_id": "16jLHyVa4VRiBO7-h2UDa9m2kvme3cF-G",
     "has_direct_gdrive": true,
@@ -2064,6 +2264,7 @@
     "rel": "2_為咱之上帝開大路_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/2_為咱之上帝開大路_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/2_為咱之上帝開大路_首調簡譜.html",
+    "online_url": "antigravity/2_%E7%82%BA%E5%92%B1%E4%B9%8B%E4%B8%8A%E5%B8%9D%E9%96%8B%E5%A4%A7%E8%B7%AF_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1ssAFwHYrJSnA6rCgk4BsQ3Ll082cfntC/view",
     "gdrive_id": "1ssAFwHYrJSnA6rCgk4BsQ3Ll082cfntC",
     "has_direct_gdrive": true,
@@ -2081,6 +2282,7 @@
     "rel": "往伯利恆之路_首調簡譜.html",
     "full_path": "/Volumes/512G/Antigravity/往伯利恆之路_首調簡譜.html",
     "file_url": "file:///Volumes/512G/Antigravity/往伯利恆之路_首調簡譜.html",
+    "online_url": "antigravity/%E5%BE%80%E4%BC%AF%E5%88%A9%E6%81%86%E4%B9%8B%E8%B7%AF_%E9%A6%96%E8%AA%BF%E7%B0%A1%E8%AD%9C.html",
     "gdrive_url": "https://drive.google.com/file/d/1sGQYuXsHAFm3LtzNanKzUpsDKV_c727z/view",
     "gdrive_id": "1sGQYuXsHAFm3LtzNanKzUpsDKV_c727z",
     "has_direct_gdrive": true,
@@ -2098,6 +2300,7 @@
     "rel": "sport500-auto-login/index.html",
     "full_path": "/Volumes/512G/Antigravity/sport500-auto-login/index.html",
     "file_url": "file:///Volumes/512G/Antigravity/sport500-auto-login/index.html",
+    "online_url": "antigravity/sport500-auto-login/index.html",
     "gdrive_url": "https://drive.google.com/file/d/1LJ9OH5MWcttufNpBc6PxdeiEmuclQLTn/view",
     "gdrive_id": "1LJ9OH5MWcttufNpBc6PxdeiEmuclQLTn",
     "has_direct_gdrive": true,
@@ -2115,6 +2318,7 @@
     "rel": "sport500-auto-login/login_page.html",
     "full_path": "/Volumes/512G/Antigravity/sport500-auto-login/login_page.html",
     "file_url": "file:///Volumes/512G/Antigravity/sport500-auto-login/login_page.html",
+    "online_url": "antigravity/sport500-auto-login/login_page.html",
     "gdrive_url": "https://drive.google.com/file/d/1iMc3VsaiB2lSIBfvgtk6MFl8nuHcmb-G/view",
     "gdrive_id": "1iMc3VsaiB2lSIBfvgtk6MFl8nuHcmb-G",
     "has_direct_gdrive": true,
@@ -2132,6 +2336,7 @@
     "rel": "路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
     "full_path": "/Volumes/512G/Antigravity/路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
     "file_url": "file:///Volumes/512G/Antigravity/路線二_湳仔溝至浮洲親水公園_地圖預覽.html",
+    "online_url": "antigravity/%E8%B7%AF%E7%B7%9A%E4%BA%8C_%E6%B9%B3%E4%BB%94%E6%BA%9D%E8%87%B3%E6%B5%AE%E6%B4%B2%E8%A6%AA%E6%B0%B4%E5%85%AC%E5%9C%92_%E5%9C%B0%E5%9C%96%E9%A0%90%E8%A6%BD.html",
     "gdrive_url": "https://drive.google.com/file/d/1V9eJUl9OKc38YvoqQnZAF3rlrCQk6GUc/view",
     "gdrive_id": "1V9eJUl9OKc38YvoqQnZAF3rlrCQk6GUc",
     "has_direct_gdrive": true,
@@ -2149,6 +2354,7 @@
     "rel": "證件/身分證_正反面合一_最新20260918.html",
     "full_path": "/Volumes/512G/Antigravity/證件/身分證_正反面合一_最新20260918.html",
     "file_url": "file:///Volumes/512G/Antigravity/證件/身分證_正反面合一_最新20260918.html",
+    "online_url": "antigravity/%E8%AD%89%E4%BB%B6/%E8%BA%AB%E5%88%86%E8%AD%89_%E6%AD%A3%E5%8F%8D%E9%9D%A2%E5%90%88%E4%B8%80_%E6%9C%80%E6%96%B020260918.html",
     "gdrive_url": "https://drive.google.com/file/d/1ohkcfk3gOSUn3w7RJtsUfpsXigLTqoZ0/view",
     "gdrive_id": "1ohkcfk3gOSUn3w7RJtsUfpsXigLTqoZ0",
     "has_direct_gdrive": true,
@@ -2166,6 +2372,7 @@
     "rel": "Exoskeleton_Guide.html",
     "full_path": "/Volumes/512G/Antigravity/Exoskeleton_Guide.html",
     "file_url": "file:///Volumes/512G/Antigravity/Exoskeleton_Guide.html",
+    "online_url": "antigravity/Exoskeleton_Guide.html",
     "gdrive_url": "https://drive.google.com/file/d/1nu-u9Cdk4duVMDxzXN2lYHWi2B-86ZEn/view",
     "gdrive_id": "1nu-u9Cdk4duVMDxzXN2lYHWi2B-86ZEn",
     "has_direct_gdrive": true,
@@ -2183,6 +2390,7 @@
     "rel": "基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
     "full_path": "/Volumes/512G/Antigravity/基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
     "file_url": "file:///Volumes/512G/Antigravity/基隆海岸岬角健行一日遊_免開車公車串聯全攻略.html",
+    "online_url": "antigravity/%E5%9F%BA%E9%9A%86%E6%B5%B7%E5%B2%B8%E5%B2%AC%E8%A7%92%E5%81%A5%E8%A1%8C%E4%B8%80%E6%97%A5%E9%81%8A_%E5%85%8D%E9%96%8B%E8%BB%8A%E5%85%AC%E8%BB%8A%E4%B8%B2%E8%81%AF%E5%85%A8%E6%94%BB%E7%95%A5.html",
     "gdrive_url": "https://drive.google.com/file/d/1c0GFCfCrWIS9KNHp5wPXlxdZyYHMEo-E/view",
     "gdrive_id": "1c0GFCfCrWIS9KNHp5wPXlxdZyYHMEo-E",
     "has_direct_gdrive": true,
@@ -2200,6 +2408,7 @@
     "rel": "Yale_YDM3109A_一般模式操作設定指南.html",
     "full_path": "/Volumes/512G/Antigravity/Yale_YDM3109A_一般模式操作設定指南.html",
     "file_url": "file:///Volumes/512G/Antigravity/Yale_YDM3109A_一般模式操作設定指南.html",
+    "online_url": "antigravity/Yale_YDM3109A_%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E6%93%8D%E4%BD%9C%E8%A8%AD%E5%AE%9A%E6%8C%87%E5%8D%97.html",
     "gdrive_url": "https://drive.google.com/file/d/15RisnG5rGUlEPM7EeYLuUDkUuNVKVwRs/view",
     "gdrive_id": "15RisnG5rGUlEPM7EeYLuUDkUuNVKVwRs",
     "has_direct_gdrive": true,
@@ -2217,6 +2426,7 @@
     "rel": "大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
     "full_path": "/Volumes/512G/Antigravity/大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
     "file_url": "file:///Volumes/512G/Antigravity/大溪月眉山豬湖健行攻略_鶯歌反向走法與交通時刻.html",
+    "online_url": "antigravity/%E5%A4%A7%E6%BA%AA%E6%9C%88%E7%9C%89%E5%B1%B1%E8%B1%AC%E6%B9%96%E5%81%A5%E8%A1%8C%E6%94%BB%E7%95%A5_%E9%B6%AF%E6%AD%8C%E5%8F%8D%E5%90%91%E8%B5%B0%E6%B3%95%E8%88%87%E4%BA%A4%E9%80%9A%E6%99%82%E5%88%BB.html",
     "gdrive_url": "https://drive.google.com/file/d/1MklBIgi3i06JqhuEw_QI4ipZnzvge1as/view",
     "gdrive_id": "1MklBIgi3i06JqhuEw_QI4ipZnzvge1as",
     "has_direct_gdrive": true,
@@ -2234,6 +2444,7 @@
     "rel": "20261004_每日靈修_普世價值沒有國界.html",
     "full_path": "/Volumes/512G/Antigravity/20261004_每日靈修_普世價值沒有國界.html",
     "file_url": "file:///Volumes/512G/Antigravity/20261004_每日靈修_普世價值沒有國界.html",
+    "online_url": "antigravity/20261004_%E6%AF%8F%E6%97%A5%E9%9D%88%E4%BF%AE_%E6%99%AE%E4%B8%96%E5%83%B9%E5%80%BC%E6%B2%92%E6%9C%89%E5%9C%8B%E7%95%8C.html",
     "gdrive_url": "https://drive.google.com/file/d/1PUXrkmJ8wjmdALK7OtyXonvbG2SbIfpk/view",
     "gdrive_id": "1PUXrkmJ8wjmdALK7OtyXonvbG2SbIfpk",
     "has_direct_gdrive": true,
@@ -2251,6 +2462,7 @@
     "rel": "output/devotion-cards/index.html",
     "full_path": "/Volumes/512G/Antigravity/output/devotion-cards/index.html",
     "file_url": "file:///Volumes/512G/Antigravity/output/devotion-cards/index.html",
+    "online_url": "antigravity/output/devotion-cards/index.html",
     "gdrive_url": "https://drive.google.com/file/d/1S3uuYlmHCgxerNDz3dMZ5mknb6k87Nxy/view",
     "gdrive_id": "1S3uuYlmHCgxerNDz3dMZ5mknb6k87Nxy",
     "has_direct_gdrive": true,
@@ -2268,6 +2480,7 @@
     "rel": "20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
     "full_path": "/Volumes/512G/Antigravity/20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
     "file_url": "file:///Volumes/512G/Antigravity/20260927主日華語禮拜_明月光_杜崇信牧師_講道摘要.html",
+    "online_url": "antigravity/20260927%E4%B8%BB%E6%97%A5%E8%8F%AF%E8%AA%9E%E7%A6%AE%E6%8B%9C_%E6%98%8E%E6%9C%88%E5%85%89_%E6%9D%9C%E5%B4%87%E4%BF%A1%E7%89%A7%E5%B8%AB_%E8%AC%9B%E9%81%93%E6%91%98%E8%A6%81.html",
     "gdrive_url": "https://drive.google.com/file/d/15W48YyCDfyQ4ry9BCv6dA6xkpJfSxAMx/view",
     "gdrive_id": "15W48YyCDfyQ4ry9BCv6dA6xkpJfSxAMx",
     "has_direct_gdrive": true,
@@ -2285,6 +2498,7 @@
     "rel": "步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
     "full_path": "/Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
     "file_url": "file:///Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_完整手冊.html",
+    "online_url": "antigravity/%E6%AD%A5%E8%A1%8C%E7%87%83%E8%84%82%E7%9A%84%E5%BA%95%E5%B1%A4%E9%82%8F%E8%BC%AF_%E8%B7%A8%E8%B6%8A30%E5%88%86%E9%90%98%E5%85%A7%E8%87%9F%E8%84%82%E8%82%AA%E7%98%8B%E7%8B%82%E6%8E%89_%E5%AE%8C%E6%95%B4%E6%89%8B%E5%86%8A.html",
     "gdrive_url": "https://drive.google.com/file/d/1jSGXqUSt0812oax-F7Ih79Pa3kApVhgX/view",
     "gdrive_id": "1jSGXqUSt0812oax-F7Ih79Pa3kApVhgX",
     "has_direct_gdrive": true,
@@ -2302,6 +2516,7 @@
     "rel": "步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
     "full_path": "/Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
     "file_url": "file:///Volumes/512G/Antigravity/步行燃脂的底層邏輯_跨越30分鐘內臟脂肪瘋狂掉_科學指南.html",
+    "online_url": "antigravity/%E6%AD%A5%E8%A1%8C%E7%87%83%E8%84%82%E7%9A%84%E5%BA%95%E5%B1%A4%E9%82%8F%E8%BC%AF_%E8%B7%A8%E8%B6%8A30%E5%88%86%E9%90%98%E5%85%A7%E8%87%9F%E8%84%82%E8%82%AA%E7%98%8B%E7%8B%82%E6%8E%89_%E7%A7%91%E5%AD%B8%E6%8C%87%E5%8D%97.html",
     "gdrive_url": "https://drive.google.com/file/d/1ZiychbJdCZJHwB-cvoeDLGt5UOkOrdjU/view",
     "gdrive_id": "1ZiychbJdCZJHwB-cvoeDLGt5UOkOrdjU",
     "has_direct_gdrive": true,
@@ -2319,6 +2534,7 @@
     "rel": "深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
     "full_path": "/Volumes/512G/Antigravity/深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
     "file_url": "file:///Volumes/512G/Antigravity/深蹲革命_隔天做增效220趴_停三秒深層肌增300趴科學指南.html",
+    "online_url": "antigravity/%E6%B7%B1%E8%B9%B2%E9%9D%A9%E5%91%BD_%E9%9A%94%E5%A4%A9%E5%81%9A%E5%A2%9E%E6%95%88220%E8%B6%B4_%E5%81%9C%E4%B8%89%E7%A7%92%E6%B7%B1%E5%B1%A4%E8%82%8C%E5%A2%9E300%E8%B6%B4%E7%A7%91%E5%AD%B8%E6%8C%87%E5%8D%97.html",
     "gdrive_url": "https://drive.google.com/file/d/18t-Fpj6t0p5lVvLuOn5Bg7DQQJvbH70j/view",
     "gdrive_id": "18t-Fpj6t0p5lVvLuOn5Bg7DQQJvbH70j",
     "has_direct_gdrive": true,
@@ -2336,6 +2552,7 @@
     "rel": "Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
     "full_path": "/Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
     "file_url": "file:///Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測_詳細操作版.html",
+    "online_url": "antigravity/Google_Gemini_%E5%85%A8%E8%83%BD%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8A_9%E5%A4%A7%E6%A0%B8%E5%BF%83%E7%94%A8%E6%B3%95%E8%88%8717%E5%80%8B%E5%8A%9F%E8%83%BD%E5%AF%A6%E6%B8%AC_%E8%A9%B3%E7%B4%B0%E6%93%8D%E4%BD%9C%E7%89%88.html",
     "gdrive_url": "https://drive.google.com/file/d/1Zv5hxcDa8_FhI5UXPp9kks9v8Poq472d/view",
     "gdrive_id": "1Zv5hxcDa8_FhI5UXPp9kks9v8Poq472d",
     "has_direct_gdrive": true,
@@ -2353,6 +2570,7 @@
     "rel": "Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
     "full_path": "/Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
     "file_url": "file:///Volumes/512G/Antigravity/Google_Gemini_全能使用手冊_9大核心用法與17個功能實測.html",
+    "online_url": "antigravity/Google_Gemini_%E5%85%A8%E8%83%BD%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8A_9%E5%A4%A7%E6%A0%B8%E5%BF%83%E7%94%A8%E6%B3%95%E8%88%8717%E5%80%8B%E5%8A%9F%E8%83%BD%E5%AF%A6%E6%B8%AC.html",
     "gdrive_url": "https://drive.google.com/file/d/1c_snVLxLRGpU5LuuwYy9kJNzl85LpJ4y/view",
     "gdrive_id": "1c_snVLxLRGpU5LuuwYy9kJNzl85LpJ4y",
     "has_direct_gdrive": true,
@@ -2370,6 +2588,7 @@
     "rel": "Retirement_Portfolio_Update_v2.html",
     "full_path": "/Volumes/512G/Antigravity/Retirement_Portfolio_Update_v2.html",
     "file_url": "file:///Volumes/512G/Antigravity/Retirement_Portfolio_Update_v2.html",
+    "online_url": "antigravity/Retirement_Portfolio_Update_v2.html",
     "gdrive_url": "https://drive.google.com/file/d/1FUheDgycF-0FHAQFp54NoLZi-NG7rEdX/view",
     "gdrive_id": "1FUheDgycF-0FHAQFp54NoLZi-NG7rEdX",
     "has_direct_gdrive": true,
@@ -2488,15 +2707,15 @@
                   <span>🕒 ${item.mtime}</span>
                 </div>
                 <div class="card-actions" style="margin-top: 12px;">
-                  <a href="${item.gdrive_url}" target="_blank" class="btn btn-gdrive" title="於 Google Drive 雲端檢視開啟">
-                    <span>☁️ GDrive 開啟</span> ↗
+                  <a href="${item.online_url}" target="_blank" class="btn btn-viewer" title="直接以原生 HTML 渲染模式開啟">
+                    <span>🌐 網頁開啟</span> ↗
                   </a>
-                  <a href="${item.file_url}" target="_blank" class="btn btn-local" title="本機直接開啟 (file://)">
-                    <span>本地 512G</span> ↗
-                  </a>
-                  <button onclick="copyToClipboard('${escapeJs(item.gdrive_url)}', '已複製 Google Drive 雲端連結')" class="btn btn-copy" title="複製 Google Drive 雲端網址">
-                    <span>🔗</span>
+                  <button onclick="openViewer('${escapeJs(item.online_url)}', '${escapeJs(item.title)}')" class="btn btn-preview" title="在頁面內即時彈出 HTML Viewer 預覽">
+                    <span>👁️ 預覽</span>
                   </button>
+                  <a href="${item.gdrive_url}" target="_blank" class="btn btn-gdrive" title="Google Drive 雲端檢視">
+                    <span>☁️ 雲端</span>
+                  </a>
                   <button onclick="copyToClipboard('${escapeJs(item.full_path)}', '已複製本地絕對路徑')" class="btn btn-copy" title="複製 512G 本地路徑">
                     <span>📋</span>
                   </button>
@@ -2521,14 +2740,41 @@
               <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted);">${item.mtime}</td>
               <td>
                 <div class="tbl-actions" style="justify-content: flex-end;">
-                  <a href="${item.gdrive_url}" target="_blank" class="tbl-btn tbl-btn-gdrive">☁️ GDrive ↗</a>
-                  <a href="${item.file_url}" target="_blank" class="tbl-btn" style="color: var(--accent-cyan);">本地 ↗</a>
-                  <button onclick="copyToClipboard('${escapeJs(item.gdrive_url)}', '已複製 GDrive 連結')" class="tbl-btn" title="複製 GDrive 連結">🔗</button>
+                  <a href="${item.online_url}" target="_blank" class="tbl-btn tbl-btn-viewer">🌐 網頁 ↗</a>
+                  <button onclick="openViewer('${escapeJs(item.online_url)}', '${escapeJs(item.title)}')" class="tbl-btn">👁️ 預覽</button>
+                  <a href="${item.gdrive_url}" target="_blank" class="tbl-btn" style="color: #93c5fd;">☁️ 雲端</a>
                 </div>
               </td>
             </tr>
           `;
         }).join('');
+      }
+    }
+
+    function openViewer(url, title) {
+      const modal = document.getElementById('modalViewer');
+      const frame = document.getElementById('modalFrame');
+      const titleElem = document.getElementById('modalTitle');
+      const extBtn = document.getElementById('modalOpenExternal');
+
+      titleElem.innerHTML = `<span>👁️ HTML Viewer 預覽:</span> <span style="color:var(--accent-cyan); font-weight:600; margin-left:6px;">${escapeHtml(title)}</span>`;
+      extBtn.href = url;
+      frame.src = url;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewer() {
+      const modal = document.getElementById('modalViewer');
+      const frame = document.getElementById('modalFrame');
+      modal.style.display = 'none';
+      frame.src = '';
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleModalOverlayClick(e) {
+      if (e.target.id === 'modalViewer') {
+        closeViewer();
       }
     }
 
@@ -2545,15 +2791,12 @@
       });
 
       document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeViewer();
+        }
         if (e.key === '/' && document.activeElement !== searchInput) {
           e.preventDefault();
           searchInput.focus();
-        }
-        if (e.key === 'Escape' && document.activeElement === searchInput) {
-          searchInput.value = '';
-          currentSearch = '';
-          searchInput.blur();
-          renderContent();
         }
       });
     }

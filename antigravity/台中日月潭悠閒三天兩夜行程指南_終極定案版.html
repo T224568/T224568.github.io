@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中・日月潭 悠閒三天兩夜行程指南（終極定案版）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    color: #2d3748;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.55;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px 36px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: 23px;
+    font-weight: 700;
+    color: #1a365d;
+    margin: 0 0 8px 0;
+  }
+  .meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    background: #ebf8ff;
+    color: #2b6cb0;
+    padding: 3px 9px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .tag.hotel {
+    background: #fefcbf;
+    color: #744210;
+  }
+  .tag.booked {
+    background: #feebc8;
+    color: #9c4221;
+    font-weight: 700;
+  }
+
+  /* Day Section */
+  .day-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .day-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c5282;
+    margin: 0 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #bee3f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .day-badge {
+    font-size: 11.5px;
+    color: #b7791f;
+    background: #fefcbf;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* Timeline */
+  .time-item {
+    margin-bottom: 9px;
+    padding-left: 10px;
+    border-left: 3px solid #cbd5e0;
+  }
+  .time-item:last-child {
+    margin-bottom: 0;
+  }
+  .time-badge {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3182ce;
+    display: inline-block;
+    margin-bottom: 2px;
+  }
+  .time-content {
+    font-size: 12.5px;
+    color: #4a5568;
+  }
+  .time-content p {
+    margin: 2px 0;
+  }
+  .highlight-food {
+    background: #fff5f5;
+    border-left: 3px solid #e53e3e;
+    padding: 6px 10px;
+    margin: 4px 0;
+    border-radius: 4px;
+    color: #742a2a;
+    font-size: 12px;
+  }
+
+  /* Tables */
+  .table-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a365d;
+    margin: 18px 0 8px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 12px;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+  th, td {
+    padding: 7px 9px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background-color: #ebf8ff;
+    color: #2c5282;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  td:first-child {
+    font-weight: 600;
+    color: #1a365d;
+    white-space: nowrap;
+  }
+  tr:hover {
+    background-color: #f7fafc;
+  }
+
+  /* Notice Box */
+  .notice-box {
+    background-color: #fffaf0;
+    border: 1px solid #feebc8;
+    border-left: 4px solid #dd6b20;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 12px;
+    page-break-inside: avoid;
+  }
+  .notice-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #9c4221;
+    margin: 0 0 4px 0;
+  }
+  .notice-box ul {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 12px;
+    color: #7b341e;
+  }
+  .notice-box li {
+    margin-bottom: 3px;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+    }
+    .container {
+      box-shadow: none;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- 頁首 -->
+  <div class="header">
+    <h1 class="title">🎒 台中・日月潭 悠閒三天兩夜行程指南（終極定案版）</h1>
+    <div class="meta-tags">
+      <span class="tag">👥 65歲長輩 ＋ 未滿65歲朋友（雙人行）</span>
+      <span class="tag">🚌 全大眾運輸銜接</span>
+      <span class="tag">🚶 平緩好走無階梯・不搭船・不背行李</span>
+      <span class="tag booked">🎫 D2 已預約 08:45 高鐵往水社（PO-7528490213 / PO-3410518450）</span>
+      <span class="tag hotel">🏨 D1 黎明會館 ｜ D2 日月潭電信會館（伊達邵）</span>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-card">
+    <div class="day-title">
+      <span>📅 DAY 1：早班高鐵 ➔ 黎明放行李 ➔ 植物園 ➔ 莆田11:00生日盛宴 ➔ 草悟綠廊 ➔ 秋紅谷</span>
+      <span class="day-badge">宿：中華電信黎明會館</span>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 07:00 - 09:15【抵達台中 ➔ 黎明會館先放行李】</span>
+      <div class="time-content">
+        <p>台北搭乘 <strong>07:36 高鐵</strong>直奔台中站（約 08:34 抵達）。至高鐵 1 樓第 12 月台搭乘「<strong>160 公車</strong>」（<strong>08:55 班次</strong>，車程 15 分鐘）直達「黎明新村（黎明路）」。下車往回步行 3 分鐘進「黎明會館」櫃檯放妥大行李，一身輕裝出發！</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 09:30 - 10:55【科博館植物園・挑高雨林溫室】</span>
+      <div class="time-content">
+        <p>會館前搭乘 75 號公車（或小黃約 10 分鐘 / 150 元平攤）直達植物園門口。漫步 40 米挑高雨林玻璃溫室（全無障礙緩坡，平路冷氣不曬日），欣賞高空瀑布與巨型象魚池。早晨人少清幽極好拍照。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 10:55 - 12:30【午餐：莆田 PUTIEN（台中台灣大道店・已預約 11:00）】</span>
+      <div class="time-content">
+        <p>自植物園沿綠蔭慢步 6 分鐘（約 500 公尺）至台灣大道二段405號「莆田」（<strong>已確認預訂 11:00 用餐，訂單編號：8420-BA0A-6F7A-D6A3，JK 戴</strong>）。開門第一輪準時入座寬敞沙發席！</p>
+        <div class="highlight-food">
+          <strong>🍀 莆田五大招牌佳餚 ＆ 壽星生日禮：</strong><br>
+          1. <strong>糖醋松鼠魚</strong>：外皮金黃酥脆、魚肉細嫩無刺，淋上酸甜醬汁極度開胃！<br>
+          2. <strong>酥炸紫菜海蠣酥</strong>：鮮蚵裹紫菜酥炸，酥脆鮮美鹹香好入口。<br>
+          3. <strong>金絲麥片蝦</strong>：大蝦鮮甜彈牙，滿滿香脆奶香麥片與金絲蛋酥。<br>
+          4. <strong>海鮮滷麵</strong>：慢火高湯濃醇滑順，配料豐富，麵條吸飽鮮美湯汁。<br>
+          5. <strong>鮮饌砂鍋鱸魚煲</strong>：砂鍋現煲熱騰騰，鱸魚肉嫩皮Q，湯鮮味美。<br>
+          🎂 <strong>生日特別贈送</strong>：出示預約贈送招牌「<strong>荔枝蝦球</strong>」，造型喜氣貴氣，外酥內Q！
+        </div>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 12:45 - 16:30【草悟道綠廊大縱走 ＆ 國美館看展 ＆ 美術園道】</span>
+      <div class="time-content">
+        <p>🚶 <strong>步道 1</strong>：莆田門口出發 ➔ 沿草悟道林蔭漫步至市民廣場（500公尺 / 7分鐘）。</p>
+        <p>🚶 <strong>步道 2</strong>：市民廣場 ➔ 經審計新村外圍平路 ➔ 經天空步道進「國立台灣美術館」（900公尺 / 12分鐘）。</p>
+        <p>🏛 <strong>國美館歇腳看展（停留 60～80 分鐘）</strong>：免費入館，冷氣舒適、大沙發多，欣賞戶外碑林名帖石雕。</p>
+        <p>🚶 <strong>步道 3</strong>：出館漫步「美術園道」林蔭大道至五權七街，欣賞異國特色建築（700公尺 / 10分鐘）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 17:00 - 19:30【秋紅谷生態散步 ＆ 景觀晚餐】</span>
+      <div class="time-content">
+        <p>五權五街搭 75 號公車（或小黃約 180 元平攤）直達「秋紅谷（朝馬）」。全平緩無階梯下凹滯洪池，傍晚涼爽散步看湖景水鳥。</p>
+        <p>🍽 <strong>晚餐推薦</strong>：新光三越/大遠百美食（鼎泰豐、添好運）或 与玥樓頂級粵菜。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 20:00【返回會館】</span>
+      <div class="time-content">
+        <p>秋紅谷搭 75 號公車（約 8 分鐘）直達黎明新村，步行回會館就寢。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card page-break">
+    <div class="day-title">
+      <span>📅 DAY 2：高鐵 08:45 直奔水社 ➔ 水社寄行李走涵碧步道 ➔ 13:00公車進伊達邵 ➔ 玄奘寺大景 ➔ 水上車道慢遊 ➔ 老街美食</span>
+      <span class="day-badge">宿：中華電信日月潭會館（伊達邵）</span>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 07:30 - 08:25【黎明會館退房 ➔ 搭 160 公車至高鐵台中站】</span>
+      <div class="time-content">
+        <p>早餐後辦理退房，會館對面站牌搭乘文修 07:45 發車之 <strong>160 公車</strong>（約 <strong>08:05～08:10</strong> 上車，15 分鐘），<strong>08:25</strong> 抵達高鐵台中站 1 樓客運大廳。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 08:25 - 08:40【高鐵 1 樓南投客運櫃台・付款取票】</span>
+      <div class="time-content">
+        <p>至 1 樓南投客運櫃檯，出示手機訂單（PO-7528490213 / PO-3410518450）完成現場付款取票（全票1張＋敬老票1張），順便為朋友購買「<strong>6669 環湖公車一日券 $80 元</strong>」（長輩持敬老卡每次搭乘嗶卡僅 $15）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 08:45 - 10:05【搭台灣好行 6670 直奔日月潭】</span>
+      <div class="time-content">
+        <p>高鐵 1 樓第 5 月台憑預約票優先登車，<strong>08:45 準時發車</strong>。經國道六號直達終點「水社遊客中心」，約 <strong>10:05</strong> 提早抵達，避開正中午尖峰人潮。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 10:05 - 10:15【水社下車 ＆ 大行李輕鬆寄存】</span>
+      <div class="time-content">
+        <p>6670 客運於水社綜合商場下車，大行李直接存入商場內之<strong>大型電子置物櫃（約 $50 元 / 次）</strong>，免扛行李、兩手空空輕裝展開上午行程！</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 10:15 - 11:45【水社涵碧步道慢活（林蔭多・平緩無階梯）】</span>
+      <div class="time-content">
+        <p>漫步水社碼頭 ➔ 梅荷園 ➔ 蔣公碼頭古色竹筏 ➔ 育樂亭（遠眺拉魯島與青龍山）。全程紅磚石板平路與木棧道，茂密樹蔭遮陽、微風涼爽、休息長椅多，長輩散步看湖景極為舒適愜意。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 11:45 - 12:45【水社商圈清爽在地午餐】</span>
+      <div class="time-content">
+        <p>水社商圈享用清爽合菜午餐（如新山味邵族合菜：清蒸總統魚、山筍土雞湯、刺蔥豆腐，平路好走無負擔）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 12:50 - 13:25【取行李 ➔ 搭 13:00 公車直達伊達邵・大行李進房間】</span>
+      <div class="time-content">
+        <p>🚌 <strong>搭乘班次：水社 13:00 發車（6669A 區間直達車）</strong><br>
+        12:50 於水社商場置物櫃取回行李，至站牌搭乘 <strong>13:00 發車之 6669A 公車</strong>（行李直接拉上車），約 <strong>13:25</strong> 抵達「伊達邵」站牌。步行 3 分鐘進「中華電信日月潭會館」Check-in，<strong>大行李直接推進房間安頓</strong>！全身 100% 零負重輕裝出發！</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 14:15 - 15:20【搭 14:25 公車 ➔ 登頂玄奘寺（全潭最高大景）】</span>
+      <div class="time-content">
+        <p>🚌 <strong>搭乘班次：水社 14:00 發車之 6669 全程車（約 14:25 抵達伊達邵站）</strong><br>
+        自會館步行至伊達邵站牌，搭乘 <strong>14:25 班次</strong>直達「玄奘寺」（約 <strong>14:35</strong> 抵達廟門口，免爬山路階梯！）。居高臨下俯瞰全潭、正對拉魯島與涵碧半島，廟前大樹涼蔭石椅休息吹山風，視野最震撼。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 15:30 - 16:25【搭 15:35 公車下山 ➔ 玄光寺買阿嬤香菇茶葉蛋】</span>
+      <div class="time-content">
+        <p>🚌 <strong>搭乘班次：水社 15:00 發車之 6669 公車（約 15:35 抵達玄奘寺站）</strong><br>
+        玄奘寺站搭乘 <strong>15:35 班次</strong>，順坡下行 5 分鐘直達終點「玄光寺」（約 <strong>15:40</strong> 抵達）。走平坦林蔭棧道買正宗「阿嬤香菇茶葉蛋」，在湖畔林蔭石桌椅吃茶葉蛋、看湖面風光。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 16:25 - 17:45【搭 16:30 公車至水蛙頭 ➔ 達克哈拉水上自行車道漫步回伊達邵】</span>
+      <div class="time-content">
+        <p>🚌 <strong>搭乘班次：玄光寺 16:30 發車之 6669 回程公車（經玄奘寺、伊達邵往水社方向）</strong><br>
+        玄光寺站搭乘 <strong>16:30 發車班次</strong>，約 <strong>16:50</strong> 直達「水蛙頭步道」站下車。漫步平緩無障礙棧道，在湖心景觀平台欣賞著名的「九蛙疊像」與金黃夕陽晚霞。</p>
+        <p>🌅 <strong>漫遊亮點（全新達克哈拉水上車道＋親水步道・全線完整走一次不重複）</strong>：<br>
+        回程沿著架設在湖面上的「達克哈拉水上高架自行車道（約 1.4km）」串聯「伊達邵水上棧道（約 1.0km）」，一路迎著晚霞湖風平緩走回伊達邵老街（<strong>全線 100% 平坦無階梯、貼水而行</strong>，約 35～40 分鐘，景致極美！）。<br>
+        💡 <strong>長輩體力備案</strong>：若長輩不想走完全程，看完九蛙後可於水蛙頭站直接搭乘玄光寺 18:00 發車之末班公車（約 18:20 抵水蛙頭）或叫小黃（車程 3 分鐘 / 約 100 元）輕鬆回伊達邵。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 17:45 - 19:30【伊達邵老街五大必吃美食巡禮 ＆ 碼頭夜景】</span>
+      <div class="time-content">
+        <div class="highlight-food">
+          <strong>🍢 伊達邵老街五大名店地圖：</strong><br>
+          1. <strong>東東刈包</strong>：特製大黑豆干夾軟爛控肉，鹹香多汁好咀嚼！<br>
+          2. <strong>總統魚酥捲 ＋ 蝦滑羹麵</strong>：在地鮮味，熱羹湯暖胃滑順。<br>
+          3. <strong>Corner 櫛瓜塔</strong>：現點現炸，多汁鮮甜脆口。<br>
+          4. <strong>杜啦 白鰻棍</strong>：炭火現烤熱 Q 小米麻糬，淋煉乳超香。<br>
+          5. <strong>麓水居</strong>：買杯正宗魚池台茶 18 號紅玉紅茶，甘醇解渴。
+        </div>
+        <p>漫步伊達邵碼頭邊看水岸夜景、吹微風，步行 3 分鐘回中華電信會館休息。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-card">
+    <div class="day-title">
+      <span>📅 DAY 3：08:30公車直達水社 ➔ 松錳租雙人電輔車 ➔ 向山水上自行車道 ➔ 惠蓀咖啡 ➔ 輕鬆返北</span>
+      <span class="day-badge">賦歸</span>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 07:30 - 08:15【伊達邵晨霧 ＆ 退房】</span>
+      <div class="time-content">
+        <p>欣賞平靜無波的日月潭晨霧，辦理退房，步行 3 分鐘至「伊達邵」公車站牌。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 08:30 - 08:55【搭 08:30 環湖公車直達水社】</span>
+      <div class="time-content">
+        <p>伊達邵站牌搭乘「08:30 發車」之 6669A 公車直達水社遊客中心／水社綜合商場（約 08:55 抵達，晨間專車人少舒適）。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 09:00 - 09:15【松錳租車取車 ＆ 免費寄放大行李】</span>
+      <div class="time-content">
+        <p>出水社客運站左轉往中興停車場進入（洗手間旁即是「<strong>松錳租車</strong>」，電話 049-2856691）。</p>
+        <p>🎯 <strong>指定租借：「雙人電動協力車」（600元 / 2小時）</strong><br>
+        亮點：<strong>後座附舒適靠背</strong>，長輩坐後座安心舒服；朋友在前座掌控龍頭與煞車，鋰電自動送力，上坡毫不費力！大件行李直接免費寄放在松錳店內，輕裝戴上安全帽出發！</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 09:15 - 11:15【雙人電輔車慢遊：水社 ⇄ 向山（全線專用自行車道，無汽機車干擾）】</span>
+      <div class="time-content">
+        <p>🚲 <strong>水社壩</strong>：著名婚紗勝地，碧綠湖水緊貼木棧道，下車牽行 100 公尺散步拍照。</p>
+        <p>🚲 <strong>水上浮棧道 ＆ 永結同心橋</strong>：如行駛在水面上，欣賞白色優雅曲線橋（CNN 全球十大最美自行車道）。</p>
+        <p>☕ <strong>向山行政中心（停留 50～60 分鐘）</strong>：漫步團紀彥清水模建築（全館 100% 平緩無障礙坡道），在「<strong>台灣惠蓀咖啡</strong>」大落地窗前喝台灣高山咖啡、吃茶點，飽覽無邊際水池與日月潭絕美湖景。</p>
+        <p>🚲 11:15 順順騎回松錳租車還車，取回寄存的大件行李。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 11:45 - 13:15【水社商圈清爽午餐／遊牧咖啡 ＆ 買伴手禮】</span>
+      <div class="time-content">
+        <p>水社商圈清爽在地午餐或至「日月潭遊牧咖啡」小憩、採買紅茶伴手禮，整裝準備返北。</p>
+      </div>
+    </div>
+
+    <div class="time-item">
+      <span class="time-badge">⏰ 13:30 / 14:00【輕鬆返北（雙路線任選）】</span>
+      <div class="time-content">
+        <p>🚅 <strong>路線 A（高鐵快穩・推薦首選）</strong>：水社搭 14:00 台灣好行 6670 ➔ 15:20 台中高鐵 ➔ 搭高鐵直達台北（約 16:30 到台北，準點完全不塞車）。</p>
+        <p>🚌 <strong>路線 B（一車到底・免搬行李）</strong>：水社搭乘國光客運 1833 直達台北轉運站（車程約 3.5 小時，行李放大巴底層，一路安穩睡回台北）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 票券比較表 -->
+  <h2 class="table-title">💳 雙人票券與乘車攻略對照表</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>乘車項目</th>
+        <th>65 歲長輩（敬老票）</th>
+        <th>未滿 65 歲朋友（一般全票）</th>
+        <th>搭乘與省錢攻略</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>高鐵（台北 ⇄ 台中）</td>
+        <td>$350 / 單程</td>
+        <td>$700 / 單程</td>
+        <td>朋友可提早搶早鳥優惠票，或搭乘自由座（約 $675）。</td>
+      </tr>
+      <tr>
+        <td>台中 160 / 75 公車</td>
+        <td>約 $12</td>
+        <td>約 $20～$25</td>
+        <td>上下車刷悠遊卡／一卡通即可。</td>
+      </tr>
+      <tr>
+        <td>台灣好行 6670（高鐵⇄日月潭）</td>
+        <td>$97 / 單程</td>
+        <td>$193 / 單程</td>
+        <td><strong>已預約 D2 08:45 發車班次</strong>，至高鐵櫃檯現場付款取票。</td>
+      </tr>
+      <tr>
+        <td>日月潭 6669 環湖公車</td>
+        <td>每次嗶卡 $15</td>
+        <td>每次嗶卡 $25～$30</td>
+        <td>💡 <strong>朋友建議在水社櫃檯購買「遊湖公車一日券 $80」</strong>（搭 3 趟即回本！長輩刷敬老卡即可）。</td>
+      </tr>
+      <tr>
+        <td>國光客運 1833（返北客運）</td>
+        <td>$235</td>
+        <td>$470</td>
+        <td>水社遊客中心國光客運櫃檯現場劃位或線上預訂。</td>
+      </tr>
+      <tr>
+        <td>松錳雙人電動協力車</td>
+        <td colspan="2" style="text-align:center;">兩人共一部車：<strong>$600 元 / 2 小時</strong>（平攤每人 $300）</td>
+        <td>後座附靠背舒適安全，大行李免費寄放店內。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 貼心提示 -->
+  <div class="notice-box">
+    <div class="notice-title">💡 長輩同行與體力保護三大要點</div>
+    <ul>
+      <li><strong>100% 零負重原則：</strong>D2 中午搭 11:50 公車直達伊達邵會館，大行李直接進房間；D3 早上 08:30 公車直達水社，大行李寄放松錳車行，全程長輩不背任何重物！</li>
+      <li><strong>純陸路避開碼頭顛簸：</strong>全程不搭船，免除在浮動浮橋上下跨越船階的膝蓋壓力與搖晃感，安全第一。</li>
+      <li><strong>雙人電輔車省力保障：</strong>由朋友在前座掌握龍頭與煞車，長輩坐在附靠背後座輕鬆看風景，馬達全程自動送力，膝蓋零負擔。</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

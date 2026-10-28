@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Yale YDM3109A 智慧電子鎖一般模式操作設定指南</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap");
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font-size: 10px;
+      color: #94a3b8;
+    }
+  }
+  body {
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.7;
+    color: #1e293b;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    font-size: 13.5px;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .header {
+    border-bottom: 3px solid #0f766e;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .badge {
+    display: inline-block;
+    background: #ccfbf1;
+    color: #0f766e;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #134e4a;
+    margin: 0 0 8px 0;
+    line-height: 1.35;
+  }
+  .meta {
+    font-size: 12.5px;
+    color: #64748b;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .banner-card {
+    background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+  }
+  .banner-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #99f6e4;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .stat-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .stat-title { font-size: 11px; color: #ccfbf1; }
+  .stat-val { font-size: 17px; font-weight: 800; color: #ffffff; margin: 3px 0; }
+  .stat-sub { font-size: 11px; color: #99f6e4; }
+  
+  h2 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+    border-left: 4px solid #0f766e;
+    padding-left: 10px;
+    margin: 26px 0 14px 0;
+  }
+  
+  .flow-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .flow-step-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+  }
+  .step-pill {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .step-pill.highlight {
+    background: #0f766e;
+    color: #ffffff;
+    border-color: #0f766e;
+  }
+  .arrow { color: #0f766e; font-weight: 800; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 20px 0;
+    font-size: 12.5px;
+  }
+  th, td {
+    padding: 9px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 700;
+  }
+  
+  .alert-box {
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #991b1b;
+  }
+  .tip-box {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #166534;
+  }
+
+  .script-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .script-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    background: #ffffff;
+  }
+  .script-page {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f766e;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .script-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .script-content {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <span class="badge">智慧家居設備與安防操作指南</span>
+    <h1>Yale YDM3109A 智慧電子鎖 一般模式 (General Mode) 操作手冊</h1>
+    <div class="meta">
+      <span>設備型號：Yale YDM3109A</span>
+      <span>教學來源：萬利貿易 WANLEE</span>
+      <span>核心主題：存取權限管理與基本功能重置</span>
+      <span>存檔路徑：/Volumes/512G/Antigravity/</span>
+    </div>
+  </div>
+
+  <div class="banner-card">
+    <h3>🔐 核心設定基準與安全防護鐵律</h3>
+    <div class="grid-3">
+      <div class="stat-box">
+        <div class="stat-title">最高金鑰</div>
+        <div class="stat-val">4～10 位數</div>
+        <div class="stat-sub">使用者主密碼 (1組，具管理權限)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-title">感應卡容量</div>
+        <div class="stat-val">至多 100 張</div>
+        <div class="stat-sub">支援悠遊卡/一卡通/原廠RFID</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-title">操作鐵律 ⚠️</div>
+        <div class="stat-val">門常開＋上鎖</div>
+        <div class="stat-sub">設定全程門扇常開，防止被反鎖</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>🛠️ 第一部分：基礎權限快速設定（日常必備）</h2>
+  
+  <div class="flow-box">
+    <strong>1. 使用者主密碼變更流程 (User Password)：</strong>
+    <div class="flow-step-row">
+      <span class="step-pill highlight">開啟電池背蓋按「設定鍵(I/R)」</span>
+      <span class="arrow">&rarr;</span>
+      <span class="step-pill">面板輸入新密碼 (4~10位數)</span>
+      <span class="arrow">&rarr;</span>
+      <span class="step-pill highlight">再按「設定鍵(I/R)」存檔完成</span>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <strong>2. 感應卡片批次登錄 (最高支援 100 張)：</strong>
+    <div class="flow-step-row">
+      <span class="step-pill highlight">按「設定鍵(I/R)」</span>
+      <span class="arrow">&rarr;</span>
+      <span class="step-pill">依序感應卡片 (聽到嗶聲)</span>
+      <span class="arrow">&rarr;</span>
+      <span class="step-pill highlight">再按「設定鍵(I/R)」存檔完成</span>
+    </div>
+  </div>
+
+  <h2>📋 第二部分：進階選單管理架構 (喚醒 ➔ 輸入主密碼 ➔ 按設定鍵)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>選單代碼</th>
+        <th>功能項目</th>
+        <th>操作路徑</th>
+        <th>適用情境與安全特點</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1#</strong></td>
+        <td>訪客密碼<br>(Guest PIN)</td>
+        <td><strong>新增：</strong>1# &rarr; 1# &rarr; 輸入4位數 &rarr; #<br><strong>刪除：</strong>1# &rarr; 3# &rarr; 輸入主密碼 &rarr; #</td>
+        <td>親友來借住一週使用；在手動刪除前可重複開門。</td>
+      </tr>
+      <tr>
+        <td><strong>2#</strong></td>
+        <td>一次性密碼<br>(One-time PIN)</td>
+        <td><strong>新增：</strong>2# &rarr; 1# &rarr; 輸入4位數 &rarr; #<br><strong>刪除：</strong>2# &rarr; 3# &rarr; 輸入主密碼 &rarr; #</td>
+        <td>水電維修、清潔打掃；成功開門一次後即焚失效。</td>
+      </tr>
+      <tr>
+        <td><strong>3#</strong></td>
+        <td>刪除所有卡片<br>(焦土防護)</td>
+        <td><strong>執行：</strong>3# &rarr; 3# &rarr; 輸入主密碼 &rarr; #</td>
+        <td>一般模式無法單獨刪除單卡；遺失卡片必須全刪重設。</td>
+      </tr>
+      <tr>
+        <td><strong>4#</strong></td>
+        <td>模式變更<br>(進階切換)</td>
+        <td><strong>執行：</strong>4# &rarr; 1# &rarr; 設定管理者密碼 &rarr; #</td>
+        <td>切換為進階模式（⚠️ 原密碼與卡片全數格式化重置）。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box">
+    <strong>⚠️ 資安關鍵提醒（同生共死機制）：</strong><br>
+    一般模式（General Mode）沒有為卡片編列卡號索引，因此<strong>無法單獨刪除單一張卡片</strong>！若家中有人遺失卡片，請立刻至 3 號選單執行「刪除所有卡片」，並將其餘家人的卡片全數收齊後重新批次登錄。
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 隱藏實用技巧：</strong><br>
+    - <strong>虛位密碼防窺 (Fake PIN)</strong>：一般模式專屬，在輸入真實密碼的前後隨意輸入亂碼數字，只要連續包含真實密碼即可開門，可防止旁人偷窺與指紋殘留。<br>
+    - <strong>外接 9V 電池緊急救援</strong>：若電池完全沒電，去便利商店買 9V 方形電池頂住室外面板底部金屬接點即可臨時通電輸入密碼。
+  </div>
+
+  <h2>🎙️ 第三部分：20 頁深度教學演練講稿節錄</h2>
+  <div class="script-grid">
+    <div class="script-card">
+      <div class="script-page">Page 1-3 破冰與安全防線</div>
+      <div class="script-title">設定時門扇必須常開</div>
+      <div class="script-content">在開始前請牢記鐵律：『保持門扇開啟，手動轉動旋鈕上鎖』。門開著，才能避免設定錯誤時將自己鎖在門外。</div>
+    </div>
+    <div class="script-card">
+      <div class="script-page">Page 4-6 存檔核心機制</div>
+      <div class="script-title">認識設定鍵 (I/R 鍵)</div>
+      <div class="script-content">電池蓋內的設定鍵就像 Word 的 Ctrl+S，流程的起始與存檔皆須按它。未按設定鍵前，任何輸入均不生效。</div>
+    </div>
+    <div class="script-card">
+      <div class="script-page">Page 7-9 選單記憶口訣</div>
+      <div class="script-title">1訪客、2單次、3刪卡、4切換</div>
+      <div class="script-content">進入後台選單後，次級邏輯一律是『1 代表新增 (Add)，3 代表刪除 (Delete)』，掌握通則免看說明書。</div>
+    </div>
+    <div class="script-card">
+      <div class="script-page">Page 17-20 必殺技與總結</div>
+      <div class="script-title">虛位密碼與三大箴言</div>
+      <div class="script-content">『設定永遠開著門、存檔必按 I/R 鍵、遺失卡片 3 號房全刪除』。這不是冰冷機器，是保護全家的智慧管家。</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

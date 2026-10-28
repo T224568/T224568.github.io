@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="utf-8">
+	<title>會員登入｜揮汗有禮・全民動起來</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<link rel="icon" type="image/png" sizes="64x64"
+		href="/registrant/images/sportscoin/sabo-icon-50d2a6ee99481cd109c547f4d5855367.png">
+
+	
+	<!-- Global site tag (gtag.js) - Google Analytics（活動方提供的現行追蹤 ID，唯一來源） -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT3BSJ50TW"></script>
+	<script src="/registrant/js/sportscoin/analytics-init-5adc7c334b336a9cb0f584aa9ab0c6df.js"></script>
+
+
+	<!--
+	  先掛上 js class，CSS 才知道可以啟用導覽列收合。同步載入外部腳本是為了避免
+	  手機版在 nav.js 載入前先閃一次展開的選單
+	-->
+	<script src="/registrant/js/sportscoin/page-init-de8ec58ea25c2f5093ed62cb18940833.js"></script>
+
+	<link rel="stylesheet" href="/registrant/css/sportscoin/tokens-3e0da0923424110be32db6b7fc3dd310.css">
+	<link rel="stylesheet" href="/registrant/css/sportscoin/base-7764562e6396292723e253acca262162.css">
+	<link rel="stylesheet" href="/registrant/css/sportscoin/layout-f97130a237471c6481a1c96c6b21164e.css">
+	<link rel="stylesheet" href="/registrant/css/sportscoin/site-navigation-0d15b807d7d505e7dbd88fa574aa71a2.css">
+	<link rel="stylesheet" href="/registrant/css/sportscoin/components-03e83c2a494608e6a50847ade21ec797.css">
+	<link rel="stylesheet" href="/registrant/css/sportscoin/pages-c456c670821fe9f267ade4e0f55a66f9.css">
+	<!-- 個別頁面的額外樣式，須放在共用樣式之後。 -->
+	<!-- 換版靠 Spring 內容雜湊版本化（見 application.yaml 的 spring.web.resources.chain），
+	     不再手動改檔名或加 ?v=；extraCss 改內容後雜湊會自動跟著變。 -->
+	
+
+	<script src="/registrant/vendor/alpinejs/alpine-3.15.12.min-422c7d8cfa8b78375cc7a767d2ae5ca6.js" defer></script>
+	<script src="/registrant/js/sportscoin/nav-d8ffb401b5c6ef3153cd793a59e41f3a.js" defer></script>
+	<script src="/registrant/js/sportscoin/registration-opening-b7ed4e3cc65d0b1d61519df14a302442.js" defer></script>
+</head>
+<body>
+
+	<div>
+
+	<!-- 頁內錨點，不能用 @{/}——那會跳回首頁而不是本頁的主要內容 -->
+	<a class="skip-link" href="#main">跳至主要內容</a>
+
+	<noscript>
+		<p class="notice notice--warning site-header-noscript">
+			本網站的部分功能（選單收合、驗證碼倒數）在 JavaScript 未啟用時無法使用，
+			但所有頁面與表單仍可正常瀏覽與送出。
+		</p>
+	</noscript>
+
+	<header class="site-header">
+		<div class="shell">
+			<a class="site-logo" href="/registrant/">
+				<img src="/registrant/images/sportscoin/homeicon-8c3f5d596650c72f0f1dd8663740801d.png"
+					width="420" height="123" alt="揮汗有禮・全民動起來 活動首頁" decoding="async">
+			</a>
+
+			<button type="button" class="menu-btn" id="menuBtn"
+				aria-label="開啟主選單" aria-expanded="false" aria-controls="siteNav">
+				<span></span>
+			</button>
+
+			<nav class="site-nav" id="siteNav" aria-label="主要導覽">
+				<ul>
+					<!-- 值為 null 時 Thymeleaf 會整個拿掉該屬性，所以非目前頁就不會有 aria-current -->
+					<li><a href="/registrant/">活動首頁</a></li>
+					<li><a href="/registrant/activity-rules">任務辦法</a></li>
+					<li><a href="https://500.gov.tw/news/115/揮汗有禮延續活動懶人包_v3.pdf" target="_blank" rel="noopener" aria-label="懶人包（PDF，另開新視窗）">懶人包</a></li>
+					<li><a href="https://500.gov.tw/news/115/115年揮汗有禮加碼活動使用說明_0924V8.pdf" target="_blank" rel="noopener" aria-label="操作手冊（PDF，另開新視窗）">操作手冊</a></li>
+					<!--
+					  已登入就換成「我的任務」，否則顯示「登入/註冊」。loggedIn 由
+					  GlobalModelAttributes（@ControllerAdvice）帶進來，每一頁都有——
+					  這個 fragment 是全站共用的，靠各 controller 自己 addAttribute 遲早會漏。
+					  登出是 POST（見 LoginController.logout），不能做成導覽列的連結。
+					-->
+					
+					<li><a href="/registrant/access"
+						data-maintenance-entry data-maintenance-from="2026-09-25T00:00:00+08:00"
+						data-maintenance-until="2026-09-25T05:00:00+08:00">登入/註冊</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+</div>
+
+	<main id="main" tabindex="-1">
+		<div class="shell">
+			<div class="card">
+				<h1>會員登入</h1>
+				<p class="lead">請輸入登記時使用的資料，三項都相符才能登入。</p>
+
+				
+
+				<form action="/registrant/login" method="post">
+					<input type="hidden" name="_csrf" value="XWWbuhaMEIxQCPXYT4lIt-k_7gyif5OLGOKQEQKRpls"/>
+					<div class="form-grid">
+						<div class="field full">
+							<label for="idNo">身分證號<span class="required" aria-hidden="true">*</span></label>
+							<input type="text" id="idNo" pattern="[A-Z][12]\d{8}" placeholder="A123456789"
+								inputmode="text" maxlength="10" data-uppercase
+								autocapitalize="characters" autocomplete="off"
+								required autofocus readonly="readonly" name="idNo" value="M120150315">
+							
+						</div>
+						<div class="field full">
+							<label for="birthYear">出生日期<span class="required" aria-hidden="true">*</span></label>
+							<!--
+							  顯示方式沿用運動幣前台的年／月／日選單，年份同時標示民國與西元。
+							  後端欄位仍收 ISO yyyy-MM-dd；前端只負責組值，不改既有登入與 DB 查詢契約。
+							-->
+							<div class="roc-date-input" data-roc-date-select
+								data-min-date="1912-01-01" data-max-date="2009-12-31">
+								<div class="roc-date-input__controls">
+									<select id="birthYear" data-date-year required
+										aria-label="出生年份" aria-describedby="birthDateHint birthDateError">
+										<option value="">請選擇年份</option>
+									</select>
+									<select id="birthMonth" data-date-month required
+										aria-label="出生月份" aria-describedby="birthDateHint birthDateError">
+										<option value="">月</option>
+									</select>
+									<select id="birthDay" data-date-day required
+										aria-label="出生日" aria-describedby="birthDateHint birthDateError">
+										<option value="">日</option>
+									</select>
+								</div>
+								<input type="hidden" id="birthDate" disabled name="birthDate" value="">
+								<p class="field-hint" id="birthDateHint">可選日期至民國98年12月31日（西元2009-12-31）</p>
+							</div>
+							<noscript>
+								<input type="date" name="birthDate" value=""
+									min="1912-01-01" max="2009-12-31" required>
+							</noscript>
+							
+						</div>
+						<div class="field full">
+							<label for="phone">手機號碼<span class="required" aria-hidden="true">*</span></label>
+							<input type="tel" id="phone" pattern="09\d{8}" placeholder="09xxxxxxxx"
+								inputmode="numeric" autocomplete="tel" required name="phone" value="">
+							
+						</div>
+					</div>
+
+					<div class="actions">
+						<button type="submit" class="btn btn--primary">
+							登入<span class="arrow" aria-hidden="true">→</span>
+						</button>
+						<a href="/registrant/" class="btn btn--secondary">返回活動首頁</a>
+					</div>
+				</form>
+
+				<p class="hint" style="margin-top: 20px;">
+					還沒登記過嗎？請先<a href="/registrant/access">從活動入口開始</a>，
+					通過身分驗證後才能登入。
+				</p>
+			</div>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+	<div class="shell">
+		<div class="footer-row">
+			<div>客服電話：<a href="tel:0277523658">02-7752-3658</a></div>
+			<div>客服時間：週一至週日 0900 - 1800（12:00-13:00 暫停服務）</div>
+		</div>
+		<div class="footer-row">
+			<div>本網站支援 Edge、Google Chrome、Firefox 與 Safari 瀏覽器</div>
+			<div>最佳解析度：1920*1080</div>
+		</div>
+		<div class="footer-row">
+			<div>地址：10489 臺北市中山區朱崙街20號</div>
+		</div>
+
+		<div class="footer-badges">
+			<a href="https://accessibility.moda.gov.tw/Applications/Detail?category=20220622172837"
+				target="_blank" rel="noopener">
+				<img src="/registrant/images/sportAdmin/無障礙標章2.0AA級圖示-855a437a45765f3f1af11cd373282171.png"
+					width="88" height="31" alt="通過AA無障礙網頁檢測">
+				<span class="sr-only">（另開新視窗）</span>
+			</a>
+			<a href="https://twedu.qbicloud.com/webchat_sa/index.html" target="_blank" rel="noopener">
+				<img src="/registrant/images/sportAdmin/service-86d304a0291b84ac0e978fa1795454eb.svg"
+					width="30" height="30" alt="">線上客服<span class="sr-only">（另開新視窗）</span>
+			</a>
+		</div>
+
+		<p class="copyright">運動部 2026©版權所有（所有圖資未經本部同意不得轉載及重製）</p>
+	</div>
+
+</footer>
+	<script src="/registrant/js/sportscoin/roc-birth-date-f020e3c4aa295d0f61b37ab7c61b477b.js" defer></script>
+</body>
+</html>
