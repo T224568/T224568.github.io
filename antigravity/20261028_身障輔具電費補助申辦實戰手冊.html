@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高雄市身心障礙維生器材與生活輔具電費補助申辦指南</title>
+<style>
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #eff6ff;
+    --accent: #0284c7;
+    --text: #1f2937;
+    --text-muted: #4b5563;
+    --bg-card: #ffffff;
+    --border: #e5e7eb;
+    --success: #059669;
+    --warning: #d97706;
+  }
+  @page {
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    color: var(--text);
+    background-color: #f8fafc;
+    line-height: 1.6;
+    margin: 0;
+    padding: 24px;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 36px 44px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+  h1 {
+    font-size: 26px;
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 8px;
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .badge {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: normal;
+  }
+  .highlight-card {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+  }
+  .highlight-card h3 {
+    margin: 0 0 8px 0;
+    color: var(--success);
+    font-size: 17px;
+  }
+  .calc-total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #065f46;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px 0;
+    font-size: 14.5px;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background: #f8fafc;
+  }
+  .section-title {
+    font-size: 18px;
+    color: var(--primary);
+    margin: 28px 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+  }
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0;
+  }
+  .checklist li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    font-size: 14.5px;
+  }
+  .checklist li::before {
+    content: "✔";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: var(--primary);
+    font-weight: bold;
+  }
+  .doctor-note-box {
+    background: #fffbeb;
+    border-left: 4px solid var(--warning);
+    padding: 14px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+  .doctor-note-box code {
+    background: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #92400e;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .info-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .info-box h4 {
+    margin: 0 0 6px 0;
+    color: #334155;
+    font-size: 15px;
+  }
+  .footer {
+    margin-top: 36px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    text-align: right;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  @media print {
+    body {
+      background: #ffffff;
+      padding: 0;
+    }
+    .container {
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>
+    <span>身心障礙維生輔具電費補助實務手冊</span>
+    <span class="badge">高雄市專用</span>
+  </h1>
+  <div class="subtitle">針對個案自備維生設備（製氧機、抽痰機）與長照核定輔具（氣墊床）申辦教戰守則</div>
+
+  <div class="highlight-card">
+    <h3>📊 個案電費度數試算（湖內區 謝文良先生）</h3>
+    <div class="calc-total">
+      每月累計折抵度數：<span style="color:#2563eb;">252 度</span>（每期電費帳單現省 <span style="color:#d97706;">504 度</span>）
+    </div>
+    <div style="font-size: 13.5px; color: #047857; margin-top: 4px;">
+      計算項目：自備氧氣製造機 (238度) ＋ 自備抽痰機 (6度) ＋ 氣墊床B款 (8度) = 252 度/月。
+    </div>
+  </div>
+
+  <div class="section-title">一、 申辦品項與度數對照表</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%;">設備項目</th>
+        <th style="width:20%;">取得來源</th>
+        <th style="width:18%;">每月優惠度數</th>
+        <th>申辦文件優勢與注意事項</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>氧氣製造機</strong></td>
+        <td>自備／自購／租賃</td>
+        <td><strong>238 度</strong></td>
+        <td>需 3 個月內診斷書＋人機合照（⚠️鋼瓶不能折抵，務必寫製造機）</td>
+      </tr>
+      <tr>
+        <td><strong>抽痰機</strong></td>
+        <td>自備／自購／租賃</td>
+        <td><strong>6 度</strong></td>
+        <td>可與製氧機寫在<strong>同一張診斷書</strong>，一同合照即可</td>
+      </tr>
+      <tr>
+        <td><strong>氣墊床（B款）</strong></td>
+        <td>長照/身障核定通過</td>
+        <td><strong>8 度</strong></td>
+        <td><strong>免診斷書、免照片！</strong>附市府輔具核定公文與發票即可直接採認</td>
+      </tr>
+      <tr style="color: #6b7280;">
+        <td>居家用電動床（備選）</td>
+        <td>若後續有購買使用</td>
+        <td>15 度</td>
+        <td>已在核定函中（EH01+EH03），有購買發票亦可免診斷書追加</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">二、 醫師診斷證明書開立範本（關鍵步驟）</div>
+  <div class="doctor-note-box">
+    <strong>💡 最省錢省時秘訣：</strong> 製氧機與抽痰機請醫師<strong>「合開一張診斷書」</strong>即可，醫囑請註明：<br>
+    <code>「個案因病情需要，居家確需使用『氧氣製造機』及『抽痰機』。」</code><br>
+    <small style="color: #78350f; display: block; margin-top: 6px;">
+      * 注意事項：請勿寫成「氧氣鋼瓶」或僅寫「氧氣」，台電審核系統關鍵字為「氧氣製造機」。開立效期為 3 個月內。
+    </small>
+  </div>
+
+  <div class="section-title">三、 臨櫃送件必備文件清單（Checklist）</div>
+  <ul class="checklist">
+    <li><strong>身心障礙證明正本</strong>（公所承辦人現場查驗後立即發還）。</li>
+    <li><strong>台電電費單影本</strong>（戶名不限長輩本人，以湖內區實際居住地址與電號為準）。</li>
+    <li><strong>醫師診斷證明書正本</strong>（3 個月內開立，載明需氧氣製造機與抽痰機）。</li>
+    <li><strong>居家使用設備照片</strong>（長輩與氧氣製造機、抽痰機於家中同框合照 1~2 張，手機拍照印出即可）。</li>
+    <li><strong>長照核定通知書與藥局發票影本</strong>（附上宏佳藥局氣墊床發票與高市輔具核定函，氣墊床免檢附診斷書）。</li>
+    <li><strong>代辦家屬身分證正反面影本</strong>、印章。</li>
+    <li><strong>申請表</strong>（至公所現場填寫，同時勾選「氧氣製造機」、「抽痰機」、「氣墊床」三項）。</li>
+  </ul>
+
+  <div class="section-title">四、 申辦窗口與受理單位</div>
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>🏛️ 實體臨櫃申辦（最快）</h4>
+      <div style="font-size: 13.5px; color: var(--text-muted);">
+        <strong>高雄市湖內區公所 社會課</strong><br>
+        地址：高雄市湖內區中正路一段238號<br>
+        電話：(07) 699-1221<br>
+        <em>提示：至社會課櫃檯表明辦理「身障維生器材與生活輔具用電優惠」，現場領表填寫。</em>
+      </div>
+    </div>
+    <div class="info-box">
+      <h4>📱 線上申辦管道</h4>
+      <div style="font-size: 13.5px; color: var(--text-muted);">
+        <strong>高雄市政府線上申辦便民服務</strong><br>
+        網址：<a href="https://gov.tw/fRV" target="_blank" style="color:var(--accent);">https://gov.tw/fRV</a><br>
+        諮詢專線：高雄市社會局身心障礙福利科 (07) 337-3390<br>
+        全國長照福利諮詢：1957
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    製表日期：2026 年 10 月 28 日 ｜ 依據電業法第52條暨高雄市政府身心障礙用電優惠辦法彙整
+  </div>
+</div>
+
+</body>
+</html>
