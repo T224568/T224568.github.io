@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20 款爆款 Gemini 影像指令速查手冊 (20 Viral Image Prompts)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 15mm 12mm 15mm 12mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 13px;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      color: #ffffff;
+      padding: 24px 28px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0 0 6px 0;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      background: #ec4899;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header p {
+      margin: 0;
+      font-size: 13px;
+      color: #c7d2fe;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      break-inside: avoid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .num-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .num-circle {
+      width: 22px;
+      height: 22px;
+      background: #4338ca;
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .slash-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      color: #be185d;
+      background: #fce7f3;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .desc {
+      font-size: 12px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .prompt-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-left: 3px solid #6366f1;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      color: #334155;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .keywords {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #64748b;
+    }
+    .keywords span {
+      background: #e2e8f0;
+      color: #334155;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-right: 4px;
+      display: inline-block;
+      margin-top: 2px;
+    }
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+    .footer-note {
+      margin-top: 14px;
+      background: #f1f5f9;
+      border-left: 4px solid #4338ca;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #334155;
+      break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>
+      <span class="badge">Google Gemini / Nano Banana</span>
+      20 款爆款視覺風格提示詞速查手冊
+    </h1>
+    <p>精選 20 組專業級生圖架構（含零件拆解、等距 3D、商品棚拍、材質置換與定格黏土等），即貼即用。</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- 01 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">01</span> 零件爆炸圖</div>
+        <span class="slash-tag">/exploded</span>
+      </div>
+      <div class="desc">將物體懸浮拆解為各個獨立零件，展示精密機械組裝結構。</div>
+      <div class="prompt-box">
+        Exploded technical view of [主體], floating disassembled components neatly aligned in mid-air, mechanical parts diagram, engineering precision, studio lighting, isolated neutral background.
+      </div>
+      <div class="keywords">關鍵詞：<span>exploded-view</span><span>disassembled</span><span>schematic</span></div>
+    </div>
+
+    <!-- 02 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">02</span> 建築工程藍圖</div>
+        <span class="slash-tag">/blueprint</span>
+      </div>
+      <div class="desc">轉化為經典工程藍曬圖，帶有精細白線、剖面與尺寸標註。</div>
+      <div class="prompt-box">
+        Architectural blueprint of [主體], cyanotype blue background with crisp white technical line drawings, cross-section elevations, grid overlay, handwritten engineering annotations.
+      </div>
+      <div class="keywords">關鍵詞：<span>cyanotype blueprint</span><span>white line</span><span>grid overlay</span></div>
+    </div>
+
+    <!-- 03 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">03</span> 等距 3D 微縮場景</div>
+        <span class="slash-tag">/isometric</span>
+      </div>
+      <div class="desc">等軸測投影 3D 立體模型，如同微縮景觀或模型箱 (Diorama)。</div>
+      <div class="prompt-box">
+        Clean isometric 3D illustration of [場景/主體], orthographic axonometric projection, vibrant pastel colors, miniature diorama scale, soft ambient shadows, 4k render.
+      </div>
+      <div class="keywords">關鍵詞：<span>isometric 3D</span><span>orthographic</span><span>diorama</span></div>
+    </div>
+
+    <!-- 04 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">04</span> 低多邊形幾何</div>
+        <span class="slash-tag">/lowpoly</span>
+      </div>
+      <div class="desc">以極簡多面體切割形狀重新建構，呈現現代立體折紙美學。</div>
+      <div class="prompt-box">
+        Low-poly geometric 3D art of [主體], faceted flat polygons, vibrant gradients, stylized minimalist origami aesthetic, clean lighting.
+      </div>
+      <div class="keywords">關鍵詞：<span>low-poly</span><span>faceted polygons</span><span>origami</span></div>
+    </div>
+
+    <!-- 05 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">05</span> 手繪鉛筆素描</div>
+        <span class="slash-tag">/sketch</span>
+      </div>
+      <div class="desc">具有清晰排線與明暗對比的手繪石墨鉛筆畫，素描本質感。</div>
+      <div class="prompt-box">
+        Detailed graphite pencil sketch of [主體], expressive hand-drawn hatching and cross-hatching linework, rough paper texture, chiaroscuro shading, artist sketchbook page.
+      </div>
+      <div class="keywords">關鍵詞：<span>graphite pencil</span><span>cross-hatching</span><span>sketchbook</span></div>
+    </div>
+
+    <!-- 06 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">06</span> 3D 發光線框</div>
+        <span class="slash-tag">/blueprint3d</span>
+      </div>
+      <div class="desc">在黑夜虛空中旋轉的未來科技全息透視線框，HUD 介面質感。</div>
+      <div class="prompt-box">
+        Futuristic 3D neon holographic wireframe of [主體], glowing electric cyan and blue vector polygon grid lines, rotating floating in dark void, sci-fi HUD aesthetic.
+      </div>
+      <div class="keywords">關鍵詞：<span>holographic</span><span>wireframe</span><span>cyberpunk HUD</span></div>
+    </div>
+
+    <!-- 07 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">07</span> 商業商品棚拍</div>
+        <span class="slash-tag">/packshot</span>
+      </div>
+      <div class="desc">高級品牌棚拍包裝照，柔和自然漫射光與細緻陰影，純淨展台。</div>
+      <div class="prompt-box">
+        Commercial studio packshot of [商品/主體], pristine cosmetic packaging design, soft diffuse natural studio lighting, delicate soft shadows, clean luxury podium background.
+      </div>
+      <div class="keywords">關鍵詞：<span>packshot</span><span>commercial product</span><span>soft diffuse</span></div>
+    </div>
+
+    <!-- 08 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">08</span> 垂直俯瞰平鋪 (Knolling)</div>
+        <span class="slash-tag">/flatlay</span>
+      </div>
+      <div class="desc">90 度正俯視角，相關物件以直角俐落排列，強迫症收納美學。</div>
+      <div class="prompt-box">
+        Overhead top-down 90-degree flat lay of [主題物件集合], knolling style, perfectly aligned and organized at right angles, morning natural light, textured wooden surface.
+      </div>
+      <div class="keywords">關鍵詞：<span>knolling</span><span>flat lay</span><span>overhead 90-degree</span></div>
+    </div>
+
+    <!-- 09 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">09</span> 縮時演進拼圖</div>
+        <span class="slash-tag">/timelapse</span>
+      </div>
+      <div class="desc">同一畫面中由左至右呈現主體在不同階段的成長或轉變過程。</div>
+      <div class="prompt-box">
+        Sequential timelapse evolution of [主體] across 4 distinct developmental stages from left to right, continuous panoramic single frame, chronological progression, unified lighting.
+      </div>
+      <div class="keywords">關鍵詞：<span>timelapse</span><span>sequential evolution</span><span>chronological</span></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">10</span> 真實比例對比</div>
+        <span class="slash-tag">/sizecompare</span>
+      </div>
+      <div class="desc">將兩個或多個物體並排同框，直觀呈現真實尺寸與比例差異。</div>
+      <div class="prompt-box">
+        True scale comparison photo, [物件A] placed directly side-by-side with [物件B], same depth of field, ground level perspective, measuring scale context, photorealistic.
+      </div>
+      <div class="keywords">關鍵詞：<span>scale comparison</span><span>side-by-side</span><span>true size</span></div>
+    </div>
+
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="grid" style="margin-top: 10px;">
+
+    <!-- 11 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">11</span> 材質置換重塑</div>
+        <span class="slash-tag">/materialswap</span>
+      </div>
+      <div class="desc">將物件換成完全不同的材質（磨砂彩虹玻璃、黃銅、液態金屬等）。</div>
+      <div class="prompt-box">
+        A [主體] completely sculpted out of [質地：e.g. frosted iridescent glass / polished mahogany / liquid chrome], caustics, subsurface scattering, macro texture.
+      </div>
+      <div class="keywords">關鍵詞：<span>material swap</span><span>subsurface scattering</span><span>macro</span></div>
+    </div>
+
+    <!-- 12 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">12</span> 立體紙雕童書</div>
+        <span class="slash-tag">/popup</span>
+      </div>
+      <div class="desc">翻開故事書時彈出的多層次手工剪紙藝術，帶有手工紙張紋理。</div>
+      <div class="prompt-box">
+        Intricate pop-up paper craft book illustration, layered cut-out paper folds forming [場景/主體], tactile craft paper texture, soft dimensional shadows, whimsical storybook.
+      </div>
+      <div class="keywords">關鍵詞：<span>pop-up book</span><span>paper craft</span><span>layered cutout</span></div>
+    </div>
+
+    <!-- 13 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">13</span> 定格黏土雕塑</div>
+        <span class="slash-tag">/claymodel</span>
+      </div>
+      <div class="desc">阿德曼動畫風格的軟質彩泥雕塑，表面帶有細緻的手工指紋痕跡。</div>
+      <div class="prompt-box">
+        Cute stop-motion claymation sculpture of [主體], soft plasticine matte texture with subtle artisan fingerprint details, Aardman studio style, warm tactile lighting.
+      </div>
+      <div class="keywords">關鍵詞：<span>claymation</span><span>plasticine</span><span>stop-motion</span></div>
+    </div>
+
+    <!-- 14 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">14</span> 復古霓虹燈招牌</div>
+        <span class="slash-tag">/neonsign</span>
+      </div>
+      <div class="desc">夜晚濕潤磚牆上的彩色發光玻璃氣體霓虹管，充滿光暈與倒影。</div>
+      <div class="prompt-box">
+        Glowing luminous neon sign forming the text/shape "[文字/圖案]", vivid electric pink and cyan glass gas tubes, mounted on dark distressed damp brick wall with wet reflection.
+      </div>
+      <div class="keywords">關鍵詞：<span>neon sign</span><span>glass gas tube</span><span>wet reflection</span></div>
+    </div>
+
+    <!-- 15 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">15</span> 觀光手繪地圖</div>
+        <span class="slash-tag">/mapview</span>
+      </div>
+      <div class="desc">風格化的等距手繪導覽地圖，標出可愛地標建築、虛線路線與地圖標籤。</div>
+      <div class="prompt-box">
+        Stylized tourist isometric illustrated map of [地點/主題], cute landmarks, dotted navigation route with pin marker, playful vector cartography, clean pastel topography.
+      </div>
+      <div class="keywords">關鍵詞：<span>tourist map</span><span>vector cartography</span><span>route pin</span></div>
+    </div>
+
+    <!-- 16 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">16</span> 潮流設計師公仔</div>
+        <span class="slash-tag">/toyversion</span>
+      </div>
+      <div class="desc">泡泡瑪特 (Pop Mart) 風格的 Q 版搪膠收藏玩具，精緻塑料塗裝。</div>
+      <div class="prompt-box">
+        Chibi vinyl collectible designer art toy figurine of [角色/主體], Pop Mart style, glossy and matte plastic finish, smooth oversized head, standing on display base.
+      </div>
+      <div class="keywords">關鍵詞：<span>vinyl art toy</span><span>chibi figurine</span><span>Pop Mart</span></div>
+    </div>
+
+    <!-- 17 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">17</span> 破裂露出內景</div>
+        <span class="slash-tag">/crackedopen</span>
+      </div>
+      <div class="desc">外殼破裂開來，露出隱藏在內部的奇幻發光微縮景觀世界。</div>
+      <div class="prompt-box">
+        A [外殼物件] cracked open in half, revealing a hidden magical miniature world of [內部細節] inside, glowing inner core, cinematic fantasy concept art, cross-section.
+      </div>
+      <div class="keywords">關鍵詞：<span>cracked open</span><span>hidden miniature</span><span>cross-section</span></div>
+    </div>
+
+    <!-- 18 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">18</span> 組裝說明書圖示</div>
+        <span class="slash-tag">/assemblyguide</span>
+      </div>
+      <div class="desc">IKEA 扁平家具 DIY 組裝步驟圖，極簡黑白線條、編號 1-2-3 與箭頭。</div>
+      <div class="prompt-box">
+        Step-by-step DIY flat-pack assembly instruction manual diagram for [主體], monochrome minimalist line art, numbered sequential steps 1-2-3, exploded view with arrows.
+      </div>
+      <div class="keywords">關鍵詞：<span>instruction manual</span><span>assembly diagram</span><span>IKEA style</span></div>
+    </div>
+
+    <!-- 19 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">19</span> 極端天候雙分割</div>
+        <span class="slash-tag">/weatherchange</span>
+      </div>
+      <div class="desc">同一場景雙拼對比，左側萬里晴空，過渡至右側大雪紛飛或暴雨。</div>
+      <div class="prompt-box">
+        Split panoramic comparison of [同一場景], left half under radiant sunny blue sky, transition into right half under heavy snowfall / stormy rain, atmospheric environment lighting.
+      </div>
+      <div class="keywords">關鍵詞：<span>split comparison</span><span>weather shift</span><span>snow / sun</span></div>
+    </div>
+
+    <!-- 20 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="num-title"><span class="num-circle">20</span> 歲月風化流逝</div>
+        <span class="slash-tag">/agingeffect</span>
+      </div>
+      <div class="desc">展示物體隨時間流逝的風化、生鏽、青苔與漆面斑駁歲月痕跡。</div>
+      <div class="prompt-box">
+        Aging progression study of [主體], showing the natural passage of time, weathered patina, subtle peeling paint, rust, moss, and vintage decay, hyper-detailed texture.
+      </div>
+      <div class="keywords">關鍵詞：<span>weathered patina</span><span>aging decay</span><span>vintage rust</span></div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <strong>💡 使用心法：</strong>在 Google Gemini / Nano Banana 中生圖時，可直接複製上方對應的英文提示詞框，並將 <code>[主體]</code> 或 <code>[場景]</code> 替換為你的具體標的。結合英文關鍵術語可大幅提升模型理解精準度與風格純粹度。
+  </div>
+
+</body>
+</html>
