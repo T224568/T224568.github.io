@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>頂級 AI 學習法：概念圖與 Anki 記憶字卡</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --text: #c9d1d9;
+      --text-bright: #f0f6fc;
+      --orange: #f0883e;
+      --green: #3fb950;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    h1 {
+      grid-column: 1 / -1;
+      font-size: 1.8rem;
+      color: var(--text-bright);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .img-wrapper {
+      text-align: center;
+    }
+    .img-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      border: 1px solid var(--border);
+    }
+    .mermaid {
+      background: #090d13;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+    .anki-card {
+      background: #090d13;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    .anki-card:hover {
+      border-color: var(--accent);
+    }
+    .anki-q {
+      font-weight: 600;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+    .anki-a {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <span>🧠 頂級 AI 學習法：概念圖與 Anki 記憶字卡</span>
+      <span class="badge">Google Nano Banana 資訊圖卡</span>
+    </h1>
+
+    <!-- 左側：視覺化資訊圖卡 -->
+    <div class="panel">
+      <h2>🖼️ 9:16 視覺資訊圖卡</h2>
+      <div class="img-wrapper">
+        <img src="20261029_頂級AI學習法_概念圖_資訊圖卡.jpg" alt="頂級AI學習法 資訊圖卡">
+      </div>
+    </div>
+
+    <!-- 右側：Mermaid 流程概念圖 + Anki 字卡 -->
+    <div class="panel">
+      <h2>🗺️ 概念圖 (Concept Flow)</h2>
+      <div class="mermaid">
+flowchart TD
+    In["📥 前置海量輸入<br/>(教科書 / 期刊論文 / 錄音)"] --> KB["🤖 NotebookLM / AI 知識庫<br/>(由上而下吸收)"]
+    
+    subgraph Iteration ["🔁 神級提問疊代迴圈"]
+        S1["① 萃取底層邏輯<br/>『專家認同的 5 個核心思維』"]
+        S2["② 建構知識地圖<br/>『吵最兇的 3 個爭議與硬核論據』"]
+        S3["③ 深度測試除錯<br/>『生成 10 個驗證考題 ➔ 追問漏洞』"]
+        S1 --> S2 --> S3
+    end
+
+    KB --> Iteration
+    Iteration --> Anki["📇 Anki 間隔重複<br/>(精煉字卡內化記憶)"]
+    
+    subgraph Mindset ["💎 三大底層心法"]
+        M1["主動性<br/>(AI當嚴師)"]
+        M2["提問能力<br/>(新門檻)"]
+        M3["思維能力<br/>(終身武器)"]
+    end
+    
+    Iteration -.-> Mindset
+      </div>
+
+      <h2>📇 Anki 記憶字卡庫 (速覽)</h2>
+      
+      <div class="anki-card">
+        <div class="anki-q">Q1: 傳統學習法與「頂級 AI 學習法」最大的策略差異？</div>
+        <div class="anki-a">傳統學習法是「由下而上」死啃教材與細節；AI 學習法是「由上而下」，先讓 AI 吸收海量資料，再透過精準提問直接獲取「底層邏輯」與「知識地圖」。</div>
+      </div>
+
+      <div class="anki-card">
+        <div class="anki-q">Q2: 萃取領域「底層邏輯」的神級提示詞？</div>
+        <div class="anki-a">「這個領域所有的專家都認同的『五個核心思維模式』是什麼？」(跳過死背，直接學大師的思考路徑)。</div>
+      </div>
+
+      <div class="anki-card">
+        <div class="anki-q">Q3: 極速建構「知識地圖」的神級提示詞？</div>
+        <div class="anki-a">「告訴我這個領域的專家們吵得最兇的『三個爭議』是什麼？雙方最硬核的『論據』又是什麼？」(釐清共識邊界與未解之謎)。</div>
+      </div>
+
+      <div class="anki-card">
+        <div class="anki-q">Q4: 如何要求 AI 進行高強度測試與除錯？</div>
+        <div class="anki-a">「生成十個問題，能一眼看出一個人是真正深入了解還是在死記硬背。」答錯時立即追問 AI 自己漏掉了什麼關鍵邏輯。</div>
+      </div>
+
+      <div class="anki-card">
+        <div class="anki-q">Q5: AI 時代的「新門檻」與「最強競爭力」？</div>
+        <div class="anki-a">新門檻是「提問能力」；最強競爭力是「主動性」(把 AI 當嚴師逼問自己，而非有了 AI 就躺平)。</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
