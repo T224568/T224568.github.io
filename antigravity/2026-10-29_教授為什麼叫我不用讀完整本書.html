@@ -169,6 +169,7 @@
             width: 100%;
             overflow-x: auto;
             margin-top: 16px;
+            margin-bottom: 24px;
             break-inside: avoid;
         }
         table {
@@ -176,15 +177,29 @@
             border-collapse: collapse;
             font-size: 13.5px;
             text-align: left;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
         }
         th, td {
-            padding: 12px 14px;
+            padding: 14px 16px;
             border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            line-height: 1.6;
         }
         th {
-            background: #f8fafc;
+            background: #f1f5f9;
             font-weight: 700;
-            color: #475569;
+            color: #1e293b;
+        }
+        code {
+            background: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12.5px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            border: 1px solid #e2e8f0;
         }
         .gallery-grid {
             display: grid;
@@ -230,7 +245,7 @@
             body { background: #ffffff; padding: 0; }
             .container { box-shadow: none; border: none; padding: 0; max-width: 100%; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .card, .fact-card, .timeline-item, .gallery-card { break-inside: avoid; }
+            .card, .fact-card, .timeline-item, .gallery-card, .table-responsive { break-inside: avoid; }
         }
     </style>
 </head>
@@ -251,8 +266,65 @@
             <ul>
                 <li><strong>打破硬讀迷思：</strong>專業書籍中核心論點佔比通常僅約 20%，盲目逐頁通讀往往導致進度停滯與認知超載。</li>
                 <li><strong>四大核心指令：</strong>善用「概念架構圖」、「手繪筆記法」、「問答抽認卡」、「知識漫畫圖」四種維度，滿足全景綜覽、視覺聯想、主動回想與情境轉譯。</li>
-                <li><strong>全繁中交付：</strong>本報告內文、圖表、互動應用程式與生成圖卡全數遵循 100% 純繁體中文規範。</li>
+                <li><strong>全方位支援：</strong>完整支援口語指令、專屬 Prompt、互動 Web App、Anki 題庫卡與純繁中圖卡一鍵直出。</li>
             </ul>
+        </div>
+
+        <!-- 使用者特別要求列入的對照與呼叫表 -->
+        <div class="section-title">🚀 Antigravity 原生全方位實作與呼叫對照表</div>
+        <p style="font-size: 14px; color: #475569; margin-bottom: 12px;">全部具備，且實作能力比單純文字對話的 ChatGPT 更全面、更原生：</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">影片中的功能</th>
+                        <th style="width: 45%;">我的實作能力與進階玩法</th>
+                        <th style="width: 30%;">呼叫方式 / 支援格式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. 概念架構圖</strong><br><span style="color: #64748b; font-size: 12.5px;">(架構/概念圖)</span></td>
+                        <td>
+                            • 原生產出 <strong>Mermaid / SVG / HTML 互動心智圖</strong><br>
+                            • 支援即時點擊折疊展開、縮放與匯出 Draw.io
+                        </td>
+                        <td>
+                            說<strong>「畫成心智圖」</strong>或<strong>「產出架構圖」</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. 手繪塗鴉筆記</strong><br><span style="color: #64748b; font-size: 12.5px;">(手繪塗鴉筆記)</span></td>
+                        <td>
+                            • 調用 <strong>Google Nano Banana</strong> 直出黑板手繪風、手帳塗鴉圖卡<br>
+                            • 可進一步轉成白板手繪筆跡動畫 (MP4)
+                        </td>
+                        <td>
+                            內建 <code>chalkboard-infographic</code>、<code>srt-whiteboard-animation</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. 問答抽認卡</strong><br><span style="color: #64748b; font-size: 12.5px;">(問答抽認卡)</span></td>
+                        <td>
+                            • 輸出 <strong>Anki 專用 CSV / TSV</strong> 或 Obsidian 間隔重複語法 (<code>Q::A</code>)<br>
+                            • 直接寫成可點擊翻牌、自我測驗的 <strong>HTML 互動網頁</strong>
+                        </td>
+                        <td>
+                            說<strong>「做成 Flashcards」</strong>或<strong>「做翻牌測驗 App」</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. 教育知識漫畫</strong><br><span style="color: #64748b; font-size: 12.5px;">(教育漫畫)</span></td>
+                        <td>
+                            • 自動構思四格分鏡腳本、角色對白<br>
+                            • 調用 <strong>Nano Banana</strong> 一鍵生成連環漫畫風格圖卡
+                        </td>
+                        <td>
+                            內建 <code>manga-alchemy</code> 漫畫技能
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="section-title">⚡ 四大核心指令深度剖析</div>
@@ -340,41 +412,6 @@
             <div class="fact-desc">「不用讀完整本」為吸引眼球之社群標題，適用於吸收資訊型書籍；但若涉及需要細讀思辨之哲學或經典著作，摘要仍無法完全取代作者原汁原味的推理脈絡。</div>
         </div>
 
-        <div class="section-title">🛠️ Antigravity 原生全方位實作能力表</div>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>學習維度</th>
-                        <th>傳統對話式 ChatGPT</th>
-                        <th>Antigravity 原生全方位交付</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>概念架構圖</strong></td>
-                        <td>純文字或 Mermaid 代碼</td>
-                        <td><strong>SVG / HTML 互動式心智圖</strong>（支援縮放、折疊節點）</td>
-                    </tr>
-                    <tr>
-                        <td><strong>手繪塗鴉筆記</strong></td>
-                        <td>文字描述，生圖常拼錯中文字</td>
-                        <td><strong>Google Nano Banana 直出純繁中手帳圖卡</strong>，可做白板動畫</td>
-                    </tr>
-                    <tr>
-                        <td><strong>問答抽認卡</strong></td>
-                        <td>純文字 Q&A 清單</td>
-                        <td><strong>3D 翻牌自我測驗 Web App</strong> ＋ <strong>標準 Anki 格式匯出</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>四格教育漫畫</strong></td>
-                        <td>單純給出分鏡劇本</td>
-                        <td><strong>四格日系漫畫全繁中圖卡直出</strong>，角色表情生動對白精準</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
         <div class="section-title">🖼️ 純繁體中文視覺成果展示 (Google Nano Banana)</div>
         <div class="gallery-grid">
             <div class="gallery-card">
@@ -390,7 +427,7 @@
         </div>
 
         <div class="footer">
-            <p>產出檔案位置：/Volumes/512G/Antigravity/ • 已自動發佈至線上入口</p>
+            <p>產出檔案位置：/Volumes/512G/Antigravity/ • 已自動同步推播至線上入口</p>
         </div>
     </div>
 </body>
