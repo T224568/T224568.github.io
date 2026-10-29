@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📸 IG & 影音素材庫目錄 (/Volumes/512G/IG)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fdf2f8',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: #090d16;
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(18, 27, 49, 0.65);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(236, 72, 153, 0.4);
+      box-shadow: 0 12px 30px -10px rgba(236, 72, 153, 0.2);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(236, 72, 153, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16 custom-scroll">
+
+  <!-- Top Navigation & Stats Bar -->
+  <header class="sticky top-0 z-40 glass border-b border-slate-800/80 px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-500 via-rose-500 to-amber-400 flex items-center justify-center text-white shadow-lg shadow-pink-500/20">
+          <i class="fa-brands fa-instagram text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+            IG & 影音素材庫目錄
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono border border-slate-700">/Volumes/512G/IG</span>
+          </h1>
+          <p class="text-xs text-slate-400">本地離線檢視、大標題導覽、輪播圖片預覽與原檔直連</p>
+        </div>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap text-xs">
+        <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center gap-2">
+          <span class="text-slate-400">貼文</span>
+          <span class="font-bold text-pink-400" id="stat-posts">72</span>
+        </div>
+        <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center gap-2">
+          <span class="text-slate-400">總檔案</span>
+          <span class="font-bold text-sky-400">222</span>
+        </div>
+        <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center gap-2">
+          <span class="text-slate-400">圖片</span>
+          <span class="font-bold text-emerald-400">182</span>
+        </div>
+        <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center gap-2">
+          <span class="text-slate-400">影片</span>
+          <span class="font-bold text-rose-400">40</span>
+        </div>
+        <div class="px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center gap-2">
+          <span class="text-slate-400">容量</span>
+          <span class="font-bold text-amber-400">547.5 MB</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter & Controls Section -->
+  <div class="max-w-7xl mx-auto px-4 lg:px-8 mt-6">
+    <div class="glass rounded-2xl p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+      
+      <!-- Search -->
+      <div class="relative flex-1">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="搜尋標題、短代碼 (如 Ddbz-ohkhIu) 或副檔名..." 
+          class="w-full bg-slate-900/90 border border-slate-700 rounded-xl pl-10 pr-10 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 transition-all"
+        />
+        <button id="clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Filters & Sort -->
+      <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+        <!-- Type Filter Buttons -->
+        <div class="inline-flex rounded-xl p-1 bg-slate-900/90 border border-slate-700 text-xs font-medium">
+          <button class="filter-btn active px-3 py-1.5 rounded-lg transition-all text-white bg-pink-600" data-type="all">全部</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white" data-type="carousel">輪播多圖</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white" data-type="video">影片</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white" data-type="image">單圖</button>
+        </div>
+
+        <!-- Sort Select -->
+        <select id="sort-select" class="bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-pink-500">
+          <option value="mtime_desc">最新加入優先</option>
+          <option value="mtime_asc">最早加入優先</option>
+          <option value="count_desc">內容數量最多</option>
+          <option value="size_desc">檔案容量最大</option>
+          <option value="title_asc">標題名稱排序</option>
+        </select>
+
+        <!-- View Toggle -->
+        <div class="inline-flex rounded-xl p-1 bg-slate-900/90 border border-slate-700 text-xs">
+          <button id="view-grid" class="view-btn px-2.5 py-1.5 rounded-lg text-white bg-slate-700" title="卡片網格檢視">
+            <i class="fa-solid fa-grip"></i>
+          </button>
+          <button id="view-list" class="view-btn px-2.5 py-1.5 rounded-lg text-slate-400 hover:text-white" title="表格詳細列表">
+            <i class="fa-solid fa-list-ul"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 mt-6">
+    <!-- Grid View Container -->
+    <div id="posts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+
+    <!-- List View Container (Hidden by default) -->
+    <div id="posts-list-table" class="hidden glass rounded-2xl overflow-hidden border border-slate-800">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-slate-900/90 text-slate-400 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th scope="col" class="py-3.5 px-4 w-16 text-center">預覽</th>
+              <th scope="col" class="py-3.5 px-4">貼文代碼與標題</th>
+              <th scope="col" class="py-3.5 px-3">類型</th>
+              <th scope="col" class="py-3.5 px-3 text-center">張數/數量</th>
+              <th scope="col" class="py-3.5 px-3">總大小</th>
+              <th scope="col" class="py-3.5 px-3">更新時間</th>
+              <th scope="col" class="py-3.5 px-4 text-right">操作</th>
+            </tr>
+          </thead>
+          <tbody id="table-body" class="divide-y divide-slate-800/60 font-medium"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden py-24 text-center">
+      <div class="w-16 h-16 rounded-2xl bg-slate-800/80 flex items-center justify-center mx-auto text-slate-500 mb-4 text-2xl">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <h3 class="text-base font-semibold text-slate-300">查無相符的 IG 素材</h3>
+      <p class="text-xs text-slate-500 mt-1">請嘗試變更搜尋關鍵字或重設類型篩選器</p>
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex flex-col justify-between">
+    <!-- Modal Header -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800 glass">
+      <div class="flex items-center gap-3 overflow-hidden">
+        <span id="modal-counter" class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-pink-400 border border-slate-700">1 / 1</span>
+        <h2 id="modal-title" class="text-sm font-bold text-white truncate max-w-xl">標題預覽</h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <a id="modal-ig-link" href="#" target="_blank" class="px-3 py-1.5 rounded-lg bg-pink-600/30 hover:bg-pink-600/50 text-pink-300 text-xs border border-pink-500/40 flex items-center gap-1.5 transition-all">
+          <i class="fa-brands fa-instagram"></i>
+          <span>IG 原文</span>
+        </a>
+        <a id="modal-raw-file" href="#" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 flex items-center gap-1.5 transition-all">
+          <i class="fa-solid fa-up-right-from-square"></i>
+          <span>開啟原檔</span>
+        </a>
+        <button id="modal-close" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-500/80 text-slate-300 hover:text-white flex items-center justify-center transition-all">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Body (Media Container) -->
+    <div class="relative flex-1 flex items-center justify-center p-4 overflow-hidden">
+      <!-- Prev Button -->
+      <button id="modal-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass hover:bg-pink-600 text-white flex items-center justify-center transition-all z-10">
+        <i class="fa-solid fa-chevron-left text-lg"></i>
+      </button>
+
+      <!-- Media Element -->
+      <div id="modal-media-wrapper" class="max-h-full max-w-full flex items-center justify-center">
+        <img id="modal-img" src="" alt="" class="max-h-[75vh] max-w-[90vw] object-contain rounded-xl shadow-2xl border border-slate-800/80 hidden" />
+        <video id="modal-video" controls class="max-h-[75vh] max-w-[90vw] rounded-xl shadow-2xl border border-slate-800/80 hidden"></video>
+      </div>
+
+      <!-- Next Button -->
+      <button id="modal-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass hover:bg-pink-600 text-white flex items-center justify-center transition-all z-10">
+        <i class="fa-solid fa-chevron-right text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Modal Footer Carousel Strip -->
+    <div class="glass border-t border-slate-800 px-6 py-3">
+      <div id="modal-thumbnails" class="flex items-center gap-2 overflow-x-auto custom-scroll py-1"></div>
+    </div>
+  </div>
+
+  <script>
+    // Raw Data injected from Python
+    const POSTS_DATA = [{"code": "De-oA31hW2X", "title": "Google Maps 10個超實用功能", "ig_url": "https://www.instagram.com/p/De-oA31hW2X/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 478232, "total_size_str": "467.0 KB", "mtime": 1793254614.9366572, "mtime_str": "2026-10-29 14:16", "items": [{"filename": "De-oA31hW2X_Google Maps 10個超實用功能.jpg", "title": "Google Maps 10個超實用功能", "ext": "jpg", "size": 478232, "size_str": "467.0 KB", "mtime": 1793254614.9366572, "mtime_str": "2026-10-29 14:16"}]}, {"code": "DfEGVybD_GA", "title": "猜猜誰畫的_全是AI畫的", "ig_url": "https://www.instagram.com/p/DfEGVybD_GA/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4472674, "total_size_str": "4.3 MB", "mtime": 1793246444.0, "mtime_str": "2026-10-29 12:00", "items": [{"filename": "DfEGVybD_GA_猜猜誰畫的_全是AI畫的.mp4", "title": "猜猜誰畫的_全是AI畫的", "ext": "mp4", "size": 4472674, "size_str": "4.3 MB", "mtime": 1793246444.0, "mtime_str": "2026-10-29 12:00"}]}, {"code": "DfD4s6mj8tV", "title": "能用手點了_MacBook_Pro觸控螢幕", "ig_url": "https://www.instagram.com/p/DfD4s6mj8tV/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4047489, "total_size_str": "3.9 MB", "mtime": 1793239295.0, "mtime_str": "2026-10-29 10:01", "items": [{"filename": "DfD4s6mj8tV_能用手點了_MacBook_Pro觸控螢幕.mp4", "title": "能用手點了_MacBook_Pro觸控螢幕", "ext": "mp4", "size": 4047489, "size_str": "3.9 MB", "mtime": 1793239295.0, "mtime_str": "2026-10-29 10:01"}]}, {"code": "DfDq3k9DOXN", "title": "同一句話叫AI做後台", "ig_url": "https://www.instagram.com/p/DfDq3k9DOXN/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 2038966, "total_size_str": "1.9 MB", "mtime": 1793232042.0, "mtime_str": "2026-10-29 08:00", "items": [{"filename": "DfDq3k9DOXN_同一句話叫AI做後台.mp4", "title": "同一句話叫AI做後台", "ext": "mp4", "size": 2038966, "size_str": "1.9 MB", "mtime": 1793232042.0, "mtime_str": "2026-10-29 08:00"}]}, {"code": "DfDmvIfD1VE", "title": "Google說這是它最強的模型_Gemini_4_Carbon", "ig_url": "https://www.instagram.com/p/DfDmvIfD1VE/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 2969405, "total_size_str": "2.8 MB", "mtime": 1793229874.0, "mtime_str": "2026-10-29 07:24", "items": [{"filename": "DfDmvIfD1VE_Google說這是它最強的模型_Gemini_4_Carbon.mp4", "title": "Google說這是它最強的模型_Gemini_4_Carbon", "ext": "mp4", "size": 2969405, "size_str": "2.8 MB", "mtime": 1793229874.0, "mtime_str": "2026-10-29 07:24"}]}, {"code": "DfCienzjXQ0", "title": "微軟要每家公司有自己的AI_4個留住AI價值的方法", "ig_url": "https://www.instagram.com/p/DfCienzjXQ0/", "type": "carousel", "type_label": "輪播 (6張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 6, "total_size": 1532322, "total_size_str": "1.5 MB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27", "items": [{"filename": "DfCienzjXQ0_微軟要每家公司有自己的AI_4個留住AI價值的方法_1.jpg", "title": "微軟要每家公司有自己的AI_4個留住AI價值的方法_1", "ext": "jpg", "size": 230533, "size_str": "225.1 KB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27"}, {"filename": "DfCienzjXQ0_先假設AI_agent會出錯_替agent設定存取權限_2.jpg", "title": "先假設AI_agent會出錯_替agent設定存取權限_2", "ext": "jpg", "size": 224268, "size_str": "219.0 KB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27"}, {"filename": "DfCienzjXQ0_日常任務可以交給便宜模型_3.jpg", "title": "日常任務可以交給便宜模型_3", "ext": "jpg", "size": 235296, "size_str": "229.8 KB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27"}, {"filename": "DfCienzjXQ0_公司自己的資料能讓小模型做得更好_4.jpg", "title": "公司自己的資料能讓小模型做得更好_4", "ext": "jpg", "size": 352717, "size_str": "344.5 KB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27"}, {"filename": "DfCienzjXQ0_用公司自己的考卷挑模型_5.jpg", "title": "用公司自己的考卷挑模型_5", "ext": "jpg", "size": 254889, "size_str": "248.9 KB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27"}, {"filename": "DfCienzjXQ0_把AI價值留在公司_6.jpg", "title": "把AI價值留在公司_6", "ext": "jpg", "size": 234619, "size_str": "229.1 KB", "mtime": 1793194064.0, "mtime_str": "2026-10-28 21:27"}]}, {"code": "DfCcBoYgUiI", "title": "不寫程式能用Claude_Code_AI小白入門4", "ig_url": "https://www.instagram.com/p/DfCcBoYgUiI/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4101971, "total_size_str": "3.9 MB", "mtime": 1793190721.0, "mtime_str": "2026-10-28 20:32", "items": [{"filename": "DfCcBoYgUiI_不寫程式能用Claude_Code_AI小白入門4.mp4", "title": "不寫程式能用Claude_Code_AI小白入門4", "ext": "mp4", "size": 4101971, "size_str": "3.9 MB", "mtime": 1793190721.0, "mtime_str": "2026-10-28 20:32"}]}, {"code": "DfCKvX_Ekbn", "title": "Windows打ls", "ig_url": "https://www.instagram.com/p/DfCKvX_Ekbn/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 2083298, "total_size_str": "2.0 MB", "mtime": 1793181648.0, "mtime_str": "2026-10-28 18:00", "items": [{"filename": "DfCKvX_Ekbn_Windows打ls.mp4", "title": "Windows打ls", "ext": "mp4", "size": 2083298, "size_str": "2.0 MB", "mtime": 1793181648.0, "mtime_str": "2026-10-28 18:00"}]}, {"code": "DfBhibPGl1F", "title": "22篇全在講同一件事_DeepSeek-V4.1-Flash", "ig_url": "https://www.instagram.com/p/DfBhibPGl1F/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 3379613, "total_size_str": "3.2 MB", "mtime": 1793160042.0, "mtime_str": "2026-10-28 12:00", "items": [{"filename": "DfBhibPGl1F_22篇全在講同一件事_DeepSeek-V4.1-Flash.mp4", "title": "22篇全在講同一件事_DeepSeek-V4.1-Flash", "ext": "mp4", "size": 3379613, "size_str": "3.2 MB", "mtime": 1793160042.0, "mtime_str": "2026-10-28 12:00"}]}, {"code": "DfBT5GqDEzv", "title": "一句變世界_Google_DeepMind_Genie", "ig_url": "https://www.instagram.com/p/DfBT5GqDEzv/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4306634, "total_size_str": "4.1 MB", "mtime": 1793152900.0, "mtime_str": "2026-10-28 10:01", "items": [{"filename": "DfBT5GqDEzv_一句變世界_Google_DeepMind_Genie_4.mp4", "title": "一句變世界_Google_DeepMind_Genie_4", "ext": "mp4", "size": 4306634, "size_str": "4.1 MB", "mtime": 1793152900.0, "mtime_str": "2026-10-28 10:01"}]}, {"code": "DZzic2uJA_N", "title": "由零開始精通鋼琴，第二十四日一招學會五線譜上所有嘅音符！", "ig_url": "https://www.instagram.com/p/DZzic2uJA_N/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 21192819, "total_size_str": "20.2 MB", "mtime": 1793146530.7628825, "mtime_str": "2026-10-28 08:15", "items": [{"filename": "DZzic2uJA_N_由零開始精通鋼琴，第二十四日一招學會五線譜上所有嘅音符！.mp4", "title": "由零開始精通鋼琴，第二十四日一招學會五線譜上所有嘅音符！", "ext": "mp4", "size": 21192819, "size_str": "20.2 MB", "mtime": 1793146530.7628825, "mtime_str": "2026-10-28 08:15"}]}, {"code": "DaXDmREpRww", "title": "零基礎秒認五線譜，只需要一個絕招", "ig_url": "https://www.instagram.com/p/DaXDmREpRww/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 14451243, "total_size_str": "13.8 MB", "mtime": 1793146523.5325255, "mtime_str": "2026-10-28 08:15", "items": [{"filename": "DaXDmREpRww_零基礎秒認五線譜，只需要一個絕招.mp4", "title": "零基礎秒認五線譜，只需要一個絕招", "ext": "mp4", "size": 14451243, "size_str": "13.8 MB", "mtime": 1793146523.5325255, "mtime_str": "2026-10-28 08:15"}]}, {"code": "DeyzQ77pfvs", "title": "零基礎精通鋼琴，第49日，承恩學琴必備手指操！每日20秒，輕鬆提升手指靈活度！", "ig_url": "https://www.instagram.com/p/DeyzQ77pfvs/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 24734979, "total_size_str": "23.6 MB", "mtime": 1793146517.4057455, "mtime_str": "2026-10-28 08:15", "items": [{"filename": "DeyzQ77pfvs_零基礎精通鋼琴，第49日，承恩學琴必備手指操！每日20秒，輕鬆提升手指靈活度！.mp4", "title": "零基礎精通鋼琴，第49日，承恩學琴必備手指操！每日20秒，輕鬆提升手指靈活度！", "ext": "mp4", "size": 24734979, "size_str": "23.6 MB", "mtime": 1793146517.4057455, "mtime_str": "2026-10-28 08:15"}]}, {"code": "De1kxUOpi-X", "title": "零基礎精通鋼琴，第50天，新手必備合手練習", "ig_url": "https://www.instagram.com/p/De1kxUOpi-X/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 3213476, "total_size_str": "3.1 MB", "mtime": 1793146512.2171288, "mtime_str": "2026-10-28 08:15", "items": [{"filename": "De1kxUOpi-X_零基礎精通鋼琴，第50天，新手必備合手練習.mp4", "title": "零基礎精通鋼琴，第50天，新手必備合手練習", "ext": "mp4", "size": 3213476, "size_str": "3.1 MB", "mtime": 1793146512.2171288, "mtime_str": "2026-10-28 08:15"}]}, {"code": "De1k8xapBW6", "title": "零基礎精通鋼琴，第51天，三步搞定鋼琴合手", "ig_url": "https://www.instagram.com/p/De1k8xapBW6/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 29066693, "total_size_str": "27.7 MB", "mtime": 1793146506.9154723, "mtime_str": "2026-10-28 08:15", "items": [{"filename": "De1k8xapBW6_零基礎精通鋼琴，第51天，三步搞定鋼琴合手.mp4", "title": "零基礎精通鋼琴，第51天，三步搞定鋼琴合手", "ext": "mp4", "size": 29066693, "size_str": "27.7 MB", "mtime": 1793146506.9154723, "mtime_str": "2026-10-28 08:15"}]}, {"code": "De1lHEnJLgR", "title": "零基礎精通鋼琴，第52日，一條片教你學識鋼琴五大基本功。", "ig_url": "https://www.instagram.com/p/De1lHEnJLgR/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 40834710, "total_size_str": "38.9 MB", "mtime": 1793146499.9575517, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De1lHEnJLgR_零基礎精通鋼琴，第52日，一條片教你學識鋼琴五大基本功。.mp4", "title": "零基礎精通鋼琴，第52日，一條片教你學識鋼琴五大基本功。", "ext": "mp4", "size": 40834710, "size_str": "38.9 MB", "mtime": 1793146499.9575517, "mtime_str": "2026-10-28 08:14"}]}, {"code": "De3wSHGpVvE", "title": "零基礎精通鋼琴，第53天，新手必備合手練習", "ig_url": "https://www.instagram.com/p/De3wSHGpVvE/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 5276875, "total_size_str": "5.0 MB", "mtime": 1793146493.5835881, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De3wSHGpVvE_零基礎精通鋼琴，第53天，新手必備合手練習.mp4", "title": "零基礎精通鋼琴，第53天，新手必備合手練習", "ext": "mp4", "size": 5276875, "size_str": "5.0 MB", "mtime": 1793146493.5835881, "mtime_str": "2026-10-28 08:14"}]}, {"code": "De3wZxKpG4c", "title": "零基礎精通鋼琴，第54日，乜嘢係音程？", "ig_url": "https://www.instagram.com/p/De3wZxKpG4c/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 13770717, "total_size_str": "13.1 MB", "mtime": 1793146487.6485302, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De3wZxKpG4c_零基礎精通鋼琴，第54日，乜嘢係音程？.mp4", "title": "零基礎精通鋼琴，第54日，乜嘢係音程？", "ext": "mp4", "size": 13770717, "size_str": "13.1 MB", "mtime": 1793146487.6485302, "mtime_str": "2026-10-28 08:14"}]}, {"code": "De3wmYTJv9d", "title": "零基礎精通鋼琴，第55日，3分鐘學識《夢中嘅婚禮》", "ig_url": "https://www.instagram.com/p/De3wmYTJv9d/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 23755791, "total_size_str": "22.7 MB", "mtime": 1793146481.00462, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De3wmYTJv9d_零基礎精通鋼琴，第55日，3分鐘學識《夢中嘅婚禮》.mp4", "title": "零基礎精通鋼琴，第55日，3分鐘學識《夢中嘅婚禮》", "ext": "mp4", "size": 23755791, "size_str": "22.7 MB", "mtime": 1793146481.00462, "mtime_str": "2026-10-28 08:14"}]}, {"code": "De87dicJsIy", "title": "零基礎精通鋼琴，第56日，自學鋼琴點樣免費搵譜？", "ig_url": "https://www.instagram.com/p/De87dicJsIy/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 5935313, "total_size_str": "5.7 MB", "mtime": 1793146473.687765, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De87dicJsIy_零基礎精通鋼琴，第56日，自學鋼琴點樣免費搵譜？.mp4", "title": "零基礎精通鋼琴，第56日，自學鋼琴點樣免費搵譜？", "ext": "mp4", "size": 5935313, "size_str": "5.7 MB", "mtime": 1793146473.687765, "mtime_str": "2026-10-28 08:14"}]}, {"code": "De87rPWp7nk", "title": "零基礎精通鋼琴，第57日，鋼琴入面嘅大小調係咩意思？", "ig_url": "https://www.instagram.com/p/De87rPWp7nk/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 11605903, "total_size_str": "11.1 MB", "mtime": 1793146469.2198708, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De87rPWp7nk_零基礎精通鋼琴，第57日，鋼琴入面嘅大小調係咩意思？.mp4", "title": "零基礎精通鋼琴，第57日，鋼琴入面嘅大小調係咩意思？", "ext": "mp4", "size": 11605903, "size_str": "11.1 MB", "mtime": 1793146469.2198708, "mtime_str": "2026-10-28 08:14"}]}, {"code": "De87yYhpfXL", "title": "零基礎精通鋼琴，第58日，1分鐘學識彈「大悲咒」", "ig_url": "https://www.instagram.com/p/De87yYhpfXL/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 19102066, "total_size_str": "18.2 MB", "mtime": 1793146462.874654, "mtime_str": "2026-10-28 08:14", "items": [{"filename": "De87yYhpfXL_零基礎精通鋼琴，第58日，1分鐘學識彈「大悲咒」.mp4", "title": "零基礎精通鋼琴，第58日，1分鐘學識彈「大悲咒」", "ext": "mp4", "size": 19102066, "size_str": "18.2 MB", "mtime": 1793146462.874654, "mtime_str": "2026-10-28 08:14"}]}, {"code": "DcTCuwKJeab", "title": "二十三：自學必備的音階指法", "ig_url": "https://www.instagram.com/p/DcTCuwKJeab/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 25623289, "total_size_str": "24.4 MB", "mtime": 1793142421.4695182, "mtime_str": "2026-10-28 07:07", "items": [{"filename": "DcTCuwKJeab_二十三：自學必備的音階指法.mp4", "title": "二十三：自學必備的音階指法", "ext": "mp4", "size": 25623289, "size_str": "24.4 MB", "mtime": 1793142421.4695182, "mtime_str": "2026-10-28 07:07"}]}, {"code": "Db-avB1Jww3", "title": "新手如何秒認五線譜", "ig_url": "https://www.instagram.com/p/Db-avB1Jww3/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 14834549, "total_size_str": "14.1 MB", "mtime": 1793142415.2693844, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "Db-avB1Jww3_新手如何秒認五線譜.mp4", "title": "新手如何秒認五線譜", "ext": "mp4", "size": 14834549, "size_str": "14.1 MB", "mtime": 1793142415.2693844, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcS_43VJ-2o", "title": "二十一：光速認譜", "ig_url": "https://www.instagram.com/p/DcS_43VJ-2o/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 10195050, "total_size_str": "9.7 MB", "mtime": 1793142410.1022253, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "DcS_43VJ-2o_二十一：光速認譜.mp4", "title": "二十一：光速認譜", "ext": "mp4", "size": 10195050, "size_str": "9.7 MB", "mtime": 1793142410.1022253, "mtime_str": "2026-10-28 07:06"}]}, {"code": "Db-abhapx_l", "title": "零基礎首選合手練習", "ig_url": "https://www.instagram.com/p/Db-abhapx_l/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4687271, "total_size_str": "4.5 MB", "mtime": 1793142405.7518985, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "Db-abhapx_l_零基礎首選合手練習.mp4", "title": "零基礎首選合手練習", "ext": "mp4", "size": 4687271, "size_str": "4.5 MB", "mtime": 1793142405.7518985, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcTAY_npG1a", "title": "二十二：合手練習進階版", "ig_url": "https://www.instagram.com/p/DcTAY_npG1a/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4237937, "total_size_str": "4.0 MB", "mtime": 1793142400.7118168, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "DcTAY_npG1a_二十二：合手練習進階版.mp4", "title": "二十二：合手練習進階版", "ext": "mp4", "size": 4237937, "size_str": "4.0 MB", "mtime": 1793142400.7118168, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcdKPgBpW1m", "title": "新手自學鋼琴的正確方法", "ig_url": "https://www.instagram.com/p/DcdKPgBpW1m/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 28702814, "total_size_str": "27.4 MB", "mtime": 1793142396.7977898, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "DcdKPgBpW1m_新手自學鋼琴的正確方法.mp4", "title": "新手自學鋼琴的正確方法", "ext": "mp4", "size": 28702814, "size_str": "27.4 MB", "mtime": 1793142396.7977898, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcNyUSipfT2", "title": "鋼琴從啟蒙到十級規劃", "ig_url": "https://www.instagram.com/p/DcNyUSipfT2/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 12777298, "total_size_str": "12.2 MB", "mtime": 1793142390.746551, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "DcNyUSipfT2_鋼琴從啟蒙到十級規劃.mp4", "title": "鋼琴從啟蒙到十級規劃", "ext": "mp4", "size": 12777298, "size_str": "12.2 MB", "mtime": 1793142390.746551, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcOBTXfpPWF", "title": "《觸不可及》保姆級教學", "ig_url": "https://www.instagram.com/p/DcOBTXfpPWF/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 21881957, "total_size_str": "20.9 MB", "mtime": 1793142385.5395503, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "DcOBTXfpPWF_《觸不可及》保姆級教學.mp4", "title": "《觸不可及》保姆級教學", "ext": "mp4", "size": 21881957, "size_str": "20.9 MB", "mtime": 1793142385.5395503, "mtime_str": "2026-10-28 07:06"}]}, {"code": "Db-bpuqJk2J", "title": "成人系統學琴的正確方法", "ig_url": "https://www.instagram.com/p/Db-bpuqJk2J/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 13665286, "total_size_str": "13.0 MB", "mtime": 1793142379.3189576, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "Db-bpuqJk2J_成人系統學琴的正確方法.mp4", "title": "成人系統學琴的正確方法", "ext": "mp4", "size": 13665286, "size_str": "13.0 MB", "mtime": 1793142379.3189576, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcNymfBJc94", "title": "鋼琴必備5大基本功保姆級教程", "ig_url": "https://www.instagram.com/p/DcNymfBJc94/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 31484961, "total_size_str": "30.0 MB", "mtime": 1793142374.6340945, "mtime_str": "2026-10-28 07:06", "items": [{"filename": "DcNymfBJc94_鋼琴必備5大基本功保姆級教程.mp4", "title": "鋼琴必備5大基本功保姆級教程", "ext": "mp4", "size": 31484961, "size_str": "30.0 MB", "mtime": 1793142374.6340945, "mtime_str": "2026-10-28 07:06"}]}, {"code": "DcdKsGSJMXv", "title": "《穿越時空的思念》保姆級教程", "ig_url": "https://www.instagram.com/p/DcdKsGSJMXv/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 28448599, "total_size_str": "27.1 MB", "mtime": 1793142327.13956, "mtime_str": "2026-10-28 07:05", "items": [{"filename": "DcdKsGSJMXv_《穿越時空的思念》保姆級教程.mp4", "title": "《穿越時空的思念》保姆級教程", "ext": "mp4", "size": 28448599, "size_str": "27.1 MB", "mtime": 1793142327.13956, "mtime_str": "2026-10-28 07:05"}]}, {"code": "Dd6VyVjFLiV", "title": "NotebookLM", "ig_url": "https://www.instagram.com/p/Dd6VyVjFLiV/", "type": "carousel", "type_label": "輪播 (10張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 10, "total_size": 3445342, "total_size_str": "3.3 MB", "mtime": 1793141481.7269762, "mtime_str": "2026-10-28 06:51", "items": [{"filename": "Dd6VyVjFLiV_NotebookLM_1.jpg", "title": "NotebookLM_1", "ext": "jpg", "size": 343444, "size_str": "335.4 KB", "mtime": 1793141481.0668576, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_2.jpg", "title": "NotebookLM_2", "ext": "jpg", "size": 332764, "size_str": "325.0 KB", "mtime": 1793141481.1292553, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_3.jpg", "title": "NotebookLM_3", "ext": "jpg", "size": 318845, "size_str": "311.4 KB", "mtime": 1793141481.1890872, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_4.jpg", "title": "NotebookLM_4", "ext": "jpg", "size": 331107, "size_str": "323.3 KB", "mtime": 1793141481.335889, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_5.jpg", "title": "NotebookLM_5", "ext": "jpg", "size": 337599, "size_str": "329.7 KB", "mtime": 1793141481.4018419, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_6.jpg", "title": "NotebookLM_6", "ext": "jpg", "size": 343818, "size_str": "335.8 KB", "mtime": 1793141481.4643166, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_7.jpg", "title": "NotebookLM_7", "ext": "jpg", "size": 380461, "size_str": "371.5 KB", "mtime": 1793141481.5455658, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_8.jpg", "title": "NotebookLM_8", "ext": "jpg", "size": 346857, "size_str": "338.7 KB", "mtime": 1793141481.6071203, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_9.jpg", "title": "NotebookLM_9", "ext": "jpg", "size": 361770, "size_str": "353.3 KB", "mtime": 1793141481.6640873, "mtime_str": "2026-10-28 06:51"}, {"filename": "Dd6VyVjFLiV_NotebookLM_10.jpg", "title": "NotebookLM_10", "ext": "jpg", "size": 348677, "size_str": "340.5 KB", "mtime": 1793141481.7269762, "mtime_str": "2026-10-28 06:51"}]}, {"code": "Dd6lJhTFK9z", "title": "BOLL布林帶", "ig_url": "https://www.instagram.com/p/Dd6lJhTFK9z/", "type": "carousel", "type_label": "輪播 (5張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 5, "total_size": 995215, "total_size_str": "971.9 KB", "mtime": 1793141426.9746754, "mtime_str": "2026-10-28 06:50", "items": [{"filename": "Dd6lJhTFK9z_BOLL布林帶_1.jpg", "title": "BOLL布林帶_1", "ext": "jpg", "size": 199694, "size_str": "195.0 KB", "mtime": 1793141426.7625036, "mtime_str": "2026-10-28 06:50"}, {"filename": "Dd6lJhTFK9z_BOLL布林帶_2.jpg", "title": "BOLL布林帶_2", "ext": "jpg", "size": 206416, "size_str": "201.6 KB", "mtime": 1793141426.823226, "mtime_str": "2026-10-28 06:50"}, {"filename": "Dd6lJhTFK9z_BOLL布林帶_3.jpg", "title": "BOLL布林帶_3", "ext": "jpg", "size": 202780, "size_str": "198.0 KB", "mtime": 1793141426.875978, "mtime_str": "2026-10-28 06:50"}, {"filename": "Dd6lJhTFK9z_BOLL布林帶_4.jpg", "title": "BOLL布林帶_4", "ext": "jpg", "size": 199802, "size_str": "195.1 KB", "mtime": 1793141426.929512, "mtime_str": "2026-10-28 06:50"}, {"filename": "Dd6lJhTFK9z_BOLL布林帶_5.jpg", "title": "BOLL布林帶_5", "ext": "jpg", "size": 186523, "size_str": "182.2 KB", "mtime": 1793141426.9746754, "mtime_str": "2026-10-28 06:50"}]}, {"code": "DdwGVvRD6ov", "title": "活用的繩結", "ig_url": "https://www.instagram.com/p/DdwGVvRD6ov/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 18855596, "total_size_str": "18.0 MB", "mtime": 1793141282.0249455, "mtime_str": "2026-10-28 06:48", "items": [{"filename": "DdwGVvRD6ov_活用的繩結.mp4", "title": "活用的繩結", "ext": "mp4", "size": 18855596, "size_str": "18.0 MB", "mtime": 1793141282.0249455, "mtime_str": "2026-10-28 06:48"}]}, {"code": "Dd1Vb0pumcd", "title": "南港生技隧道通車實測YouBike", "ig_url": "https://www.instagram.com/p/Dd1Vb0pumcd/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 15076612, "total_size_str": "14.4 MB", "mtime": 1793141270.2406468, "mtime_str": "2026-10-28 06:47", "items": [{"filename": "Dd1Vb0pumcd_南港生技隧道通車實測YouBike.mp4", "title": "南港生技隧道通車實測YouBike", "ext": "mp4", "size": 15076612, "size_str": "14.4 MB", "mtime": 1793141270.2406468, "mtime_str": "2026-10-28 06:47"}]}, {"code": "DcaAcWWP6rf", "title": "晚年最高級的自由是身體還能做主", "ig_url": "https://www.instagram.com/p/DcaAcWWP6rf/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 7826869, "total_size_str": "7.5 MB", "mtime": 1793141261.2660325, "mtime_str": "2026-10-28 06:47", "items": [{"filename": "DcaAcWWP6rf_晚年最高級的自由是身體還能做主.mp4", "title": "晚年最高級的自由是身體還能做主", "ext": "mp4", "size": 7826869, "size_str": "7.5 MB", "mtime": 1793141261.2660325, "mtime_str": "2026-10-28 06:47"}]}, {"code": "De6tpUviAvr", "title": "GitHub頁面怎麼看_AI小白入門2", "ig_url": "https://www.instagram.com/p/De6tpUviAvr/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 8448635, "total_size_str": "8.1 MB", "mtime": 1792931533.0, "mtime_str": "2026-10-25 20:32", "items": [{"filename": "De6tpUviAvr_GitHub頁面怎麼看_AI小白入門2.mp4", "title": "GitHub頁面怎麼看_AI小白入門2", "ext": "mp4", "size": 8448635, "size_str": "8.1 MB", "mtime": 1792931533.0, "mtime_str": "2026-10-25 20:32"}]}, {"code": "De25wt-D21B", "title": "這一長串一個字都沒打_Claude_Code", "ig_url": "https://www.instagram.com/p/De25wt-D21B/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 1864196, "total_size_str": "1.8 MB", "mtime": 1792803645.0, "mtime_str": "2026-10-24 09:00", "items": [{"filename": "De25wt-D21B_這一長串一個字都沒打_Claude_Code.mp4", "title": "這一長串一個字都沒打_Claude_Code", "ext": "mp4", "size": 1864196, "size_str": "1.8 MB", "mtime": 1792803645.0, "mtime_str": "2026-10-24 09:00"}]}, {"code": "De1SlH4nA4a", "title": "把最清醒的時間留給自己", "ig_url": "https://www.instagram.com/p/De1SlH4nA4a/", "type": "carousel", "type_label": "輪播 (10張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 10, "total_size": 3488609, "total_size_str": "3.3 MB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58", "items": [{"filename": "De1SlH4nA4a_把最清醒的時間留給自己_1.jpg", "title": "把最清醒的時間留給自己_1", "ext": "jpg", "size": 279252, "size_str": "272.7 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_2.jpg", "title": "把最清醒的時間留給自己_2", "ext": "jpg", "size": 370067, "size_str": "361.4 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_3.jpg", "title": "把最清醒的時間留給自己_3", "ext": "jpg", "size": 339207, "size_str": "331.3 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_4.jpg", "title": "把最清醒的時間留給自己_4", "ext": "jpg", "size": 349588, "size_str": "341.4 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_5.jpg", "title": "把最清醒的時間留給自己_5", "ext": "jpg", "size": 356885, "size_str": "348.5 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_6.jpg", "title": "把最清醒的時間留給自己_6", "ext": "jpg", "size": 386488, "size_str": "377.4 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_7.jpg", "title": "把最清醒的時間留給自己_7", "ext": "jpg", "size": 331192, "size_str": "323.4 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_8.jpg", "title": "把最清醒的時間留給自己_8", "ext": "jpg", "size": 365064, "size_str": "356.5 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_9.jpg", "title": "把最清醒的時間留給自己_9", "ext": "jpg", "size": 350069, "size_str": "341.9 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}, {"filename": "De1SlH4nA4a_把最清醒的時間留給自己_10.jpg", "title": "把最清醒的時間留給自己_10", "ext": "jpg", "size": 360797, "size_str": "352.3 KB", "mtime": 1792749517.0, "mtime_str": "2026-10-23 17:58"}]}, {"code": "Deyk611AYRU", "title": "黃國昌_國家的就是蘇家的違法濫權用力搬錢", "ig_url": "https://www.instagram.com/p/Deyk611AYRU/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 13875003, "total_size_str": "13.2 MB", "mtime": 1792658526.0, "mtime_str": "2026-10-22 16:42", "items": [{"filename": "Deyk611AYRU_黃國昌_國家的就是蘇家的違法濫權用力搬錢.mp4", "title": "黃國昌_國家的就是蘇家的違法濫權用力搬錢", "ext": "mp4", "size": 13875003, "size_str": "13.2 MB", "mtime": 1792658526.0, "mtime_str": "2026-10-22 16:42"}]}, {"code": "Dewpxj_EqqX", "title": "GEMINI幫你修圖像專業攝影師一樣6組提示詞", "ig_url": "https://www.instagram.com/p/Dewpxj_EqqX/", "type": "carousel", "type_label": "輪播 (7張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 7, "total_size": 805853, "total_size_str": "787.0 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45", "items": [{"filename": "Dewpxj_EqqX_GEMINI幫你修圖像專業攝影師一樣6組提示詞_1.jpg", "title": "GEMINI幫你修圖像專業攝影師一樣6組提示詞_1", "ext": "jpg", "size": 117959, "size_str": "115.2 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}, {"filename": "Dewpxj_EqqX_1專業單眼人像_2.jpg", "title": "1專業單眼人像_2", "ext": "jpg", "size": 112432, "size_str": "109.8 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}, {"filename": "Dewpxj_EqqX_2電影感形象照_3.jpg", "title": "2電影感形象照_3", "ext": "jpg", "size": 111060, "size_str": "108.5 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}, {"filename": "Dewpxj_EqqX_3高級感IG生活照_4.jpg", "title": "3高級感IG生活照_4", "ext": "jpg", "size": 111186, "size_str": "108.6 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}, {"filename": "Dewpxj_EqqX_4世界各地旅遊照_5.jpg", "title": "4世界各地旅遊照_5", "ext": "jpg", "size": 116962, "size_str": "114.2 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}, {"filename": "Dewpxj_EqqX_5老照片現代化修復_6.jpg", "title": "5老照片現代化修復_6", "ext": "jpg", "size": 115882, "size_str": "113.2 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}, {"filename": "Dewpxj_EqqX_6LinkedIn專業頭像_7.jpg", "title": "6LinkedIn專業頭像_7", "ext": "jpg", "size": 120372, "size_str": "117.6 KB", "mtime": 1792593906.0, "mtime_str": "2026-10-21 22:45"}]}, {"code": "DewZqESBtyl", "title": "教授為什麼叫我不用讀完整本書", "ig_url": "https://www.instagram.com/p/DewZqESBtyl/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 3417032, "total_size_str": "3.3 MB", "mtime": 1792585574.0, "mtime_str": "2026-10-21 20:26", "items": [{"filename": "DewZqESBtyl_教授為什麼叫我不用讀完整本書.mp4", "title": "教授為什麼叫我不用讀完整本書", "ext": "mp4", "size": 3417032, "size_str": "3.3 MB", "mtime": 1792585574.0, "mtime_str": "2026-10-21 20:26"}]}, {"code": "DeeafttCRqA", "title": "一句話AI幫你畫出3D模型_text-to-cad", "ig_url": "https://www.instagram.com/p/DeeafttCRqA/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 4350924, "total_size_str": "4.1 MB", "mtime": 1791981941.0, "mtime_str": "2026-10-14 20:45", "items": [{"filename": "DeeafttCRqA_一句話AI幫你畫出3D模型_text-to-cad.mp4", "title": "一句話AI幫你畫出3D模型_text-to-cad", "ext": "mp4", "size": 4350924, "size_str": "4.1 MB", "mtime": 1791981941.0, "mtime_str": "2026-10-14 20:45"}]}, {"code": "DeeV-vnEim1", "title": "ChatGPT修圖總是把臉改掉試試這5個指令", "ig_url": "https://www.instagram.com/p/DeeV-vnEim1/", "type": "carousel", "type_label": "輪播 (6張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 6, "total_size": 829200, "total_size_str": "809.8 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05", "items": [{"filename": "DeeV-vnEim1_ChatGPT修圖總是把臉改掉試試這5個指令_1.jpg", "title": "ChatGPT修圖總是把臉改掉試試這5個指令_1", "ext": "jpg", "size": 113893, "size_str": "111.2 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05"}, {"filename": "DeeV-vnEim1_cleanup清除背景路人與雜物_2.jpg", "title": "cleanup清除背景路人與雜物_2", "ext": "jpg", "size": 112841, "size_str": "110.2 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05"}, {"filename": "DeeV-vnEim1_upscale提升照片解析度與細節_3.jpg", "title": "upscale提升照片解析度與細節_3", "ext": "jpg", "size": 133182, "size_str": "130.1 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05"}, {"filename": "DeeV-vnEim1_studioquality改善光線銳利度專業攝影效果_4.jpg", "title": "studioquality改善光線銳利度專業攝影效果_4", "ext": "jpg", "size": 191316, "size_str": "186.8 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05"}, {"filename": "DeeV-vnEim1_poseonly只改變姿勢不修改臉部髮型服裝_5.jpg", "title": "poseonly只改變姿勢不修改臉部髮型服裝_5", "ext": "jpg", "size": 139662, "size_str": "136.4 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05"}, {"filename": "DeeV-vnEim1_identitylock優先鎖定臉部與人物特徵_6.jpg", "title": "identitylock優先鎖定臉部與人物特徵_6", "ext": "jpg", "size": 138306, "size_str": "135.1 KB", "mtime": 1791979548.0, "mtime_str": "2026-10-14 20:05"}]}, {"code": "DeZQVoVkoHL", "title": "別再只會說幫我修圖10個ChatGPT提示詞讓照片直接變專業", "ig_url": "https://www.instagram.com/p/DeZQVoVkoHL/", "type": "carousel", "type_label": "輪播 (11張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 11, "total_size": 1045775, "total_size_str": "1021.3 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40", "items": [{"filename": "DeZQVoVkoHL_別再只會說幫我修圖10個ChatGPT提示詞讓照片直接變專業_1.jpg", "title": "別再只會說幫我修圖10個ChatGPT提示詞讓照片直接變專業_1", "ext": "jpg", "size": 140468, "size_str": "137.2 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_1專業級人像精修_2.jpg", "title": "1專業級人像精修_2", "ext": "jpg", "size": 100098, "size_str": "97.8 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_2移除任何物件或人物_3.jpg", "title": "2移除任何物件或人物_3", "ext": "jpg", "size": 85150, "size_str": "83.2 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_3更換照片背景_4.jpg", "title": "3更換照片背景_4", "ext": "jpg", "size": 84890, "size_str": "82.9 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_4提升照片畫質_5.jpg", "title": "4提升照片畫質_5", "ext": "jpg", "size": 90397, "size_str": "88.3 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_5自然更換穿搭_6.jpg", "title": "5自然更換穿搭_6", "ext": "jpg", "size": 92963, "size_str": "90.8 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_6自然延伸照片畫面_7.jpg", "title": "6自然延伸照片畫面_7", "ext": "jpg", "size": 91852, "size_str": "89.7 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_7改變拍攝時間_8.jpg", "title": "7改變拍攝時間_8", "ext": "jpg", "size": 86381, "size_str": "84.4 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_8修復閉眼或半閉眼_9.jpg", "title": "8修復閉眼或半閉眼_9", "ext": "jpg", "size": 88641, "size_str": "86.6 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_9修平皺掉的衣服_10.jpg", "title": "9修平皺掉的衣服_10", "ext": "jpg", "size": 96069, "size_str": "93.8 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}, {"filename": "DeZQVoVkoHL_10電影感專業調色_11.jpg", "title": "10電影感專業調色_11", "ext": "jpg", "size": 88866, "size_str": "86.8 KB", "mtime": 1791808818.0, "mtime_str": "2026-10-12 20:40"}]}, {"code": "DeW79tUkhMg", "title": "這些禁忌提示詞千萬別再對ChatGPT說", "ig_url": "https://www.instagram.com/p/DeW79tUkhMg/", "type": "carousel", "type_label": "輪播 (3張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 3, "total_size": 572512, "total_size_str": "559.1 KB", "mtime": 1791731027.0, "mtime_str": "2026-10-11 23:03", "items": [{"filename": "DeW79tUkhMg_這些禁忌提示詞千萬別再對ChatGPT說_1.jpg", "title": "這些禁忌提示詞千萬別再對ChatGPT說_1", "ext": "jpg", "size": 158552, "size_str": "154.8 KB", "mtime": 1791731027.0, "mtime_str": "2026-10-11 23:03"}, {"filename": "DeW79tUkhMg_錯誤問法VS精準提示詞1_2.jpg", "title": "錯誤問法VS精準提示詞1_2", "ext": "jpg", "size": 202962, "size_str": "198.2 KB", "mtime": 1791731027.0, "mtime_str": "2026-10-11 23:03"}, {"filename": "DeW79tUkhMg_錯誤問法VS精準提示詞2_3.jpg", "title": "錯誤問法VS精準提示詞2_3", "ext": "jpg", "size": 210998, "size_str": "206.1 KB", "mtime": 1791731027.0, "mtime_str": "2026-10-11 23:03"}]}, {"code": "DeMebZNj-lW", "title": "普通人也能用的7個國外免費工具網站", "ig_url": "https://www.instagram.com/p/DeMebZNj-lW/", "type": "carousel", "type_label": "輪播 (9張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 9, "total_size": 2869635, "total_size_str": "2.7 MB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33", "items": [{"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_1.jpg", "title": "普通人也能用的7個國外免費工具網站_1", "ext": "jpg", "size": 304403, "size_str": "297.3 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_2.jpg", "title": "普通人也能用的7個國外免費工具網站_2", "ext": "jpg", "size": 303406, "size_str": "296.3 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_3.jpg", "title": "普通人也能用的7個國外免費工具網站_3", "ext": "jpg", "size": 298492, "size_str": "291.5 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_4.jpg", "title": "普通人也能用的7個國外免費工具網站_4", "ext": "jpg", "size": 302026, "size_str": "294.9 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_5.jpg", "title": "普通人也能用的7個國外免費工具網站_5", "ext": "jpg", "size": 318169, "size_str": "310.7 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_6.jpg", "title": "普通人也能用的7個國外免費工具網站_6", "ext": "jpg", "size": 320301, "size_str": "312.8 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_7.jpg", "title": "普通人也能用的7個國外免費工具網站_7", "ext": "jpg", "size": 307386, "size_str": "300.2 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_8.jpg", "title": "普通人也能用的7個國外免費工具網站_8", "ext": "jpg", "size": 315227, "size_str": "307.8 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}, {"filename": "DeMebZNj-lW_普通人也能用的7個國外免費工具網站_9.jpg", "title": "普通人也能用的7個國外免費工具網站_9", "ext": "jpg", "size": 400225, "size_str": "390.8 KB", "mtime": 1791379997.0, "mtime_str": "2026-10-07 21:33"}]}, {"code": "Dd_jIfgk9nr", "title": "這7個免費AI工具", "ig_url": "https://www.instagram.com/p/Dd_jIfgk9nr/", "type": "carousel", "type_label": "輪播 (10張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 10, "total_size": 1242665, "total_size_str": "1.2 MB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04", "items": [{"filename": "Dd_jIfgk9nr_這7個免費AI工具_1.jpg", "title": "這7個免費AI工具_1", "ext": "jpg", "size": 215929, "size_str": "210.9 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_2.jpg", "title": "這7個免費AI工具_2", "ext": "jpg", "size": 103055, "size_str": "100.6 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_3.jpg", "title": "這7個免費AI工具_3", "ext": "jpg", "size": 89785, "size_str": "87.7 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_4.jpg", "title": "這7個免費AI工具_4", "ext": "jpg", "size": 90999, "size_str": "88.9 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_5.jpg", "title": "這7個免費AI工具_5", "ext": "jpg", "size": 113911, "size_str": "111.2 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_6.jpg", "title": "這7個免費AI工具_6", "ext": "jpg", "size": 111104, "size_str": "108.5 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_7.jpg", "title": "這7個免費AI工具_7", "ext": "jpg", "size": 112186, "size_str": "109.6 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_8.jpg", "title": "這7個免費AI工具_8", "ext": "jpg", "size": 115675, "size_str": "113.0 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_9.jpg", "title": "這7個免費AI工具_9", "ext": "jpg", "size": 132453, "size_str": "129.3 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}, {"filename": "Dd_jIfgk9nr_這7個免費AI工具_10.jpg", "title": "這7個免費AI工具_10", "ext": "jpg", "size": 157568, "size_str": "153.9 KB", "mtime": 1790946256.0, "mtime_str": "2026-10-02 21:04"}]}, {"code": "Dd6IXuxiYXc", "title": "五個ClaudeCode開源工具", "ig_url": "https://www.instagram.com/p/Dd6IXuxiYXc/", "type": "carousel", "type_label": "輪播 (7張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 7, "total_size": 1646522, "total_size_str": "1.6 MB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34", "items": [{"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_1.jpg", "title": "五個ClaudeCode開源工具_1", "ext": "jpg", "size": 277052, "size_str": "270.6 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}, {"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_2.jpg", "title": "五個ClaudeCode開源工具_2", "ext": "jpg", "size": 233069, "size_str": "227.6 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}, {"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_3.jpg", "title": "五個ClaudeCode開源工具_3", "ext": "jpg", "size": 232416, "size_str": "227.0 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}, {"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_4.jpg", "title": "五個ClaudeCode開源工具_4", "ext": "jpg", "size": 218967, "size_str": "213.8 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}, {"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_5.jpg", "title": "五個ClaudeCode開源工具_5", "ext": "jpg", "size": 213789, "size_str": "208.8 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}, {"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_6.jpg", "title": "五個ClaudeCode開源工具_6", "ext": "jpg", "size": 253495, "size_str": "247.6 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}, {"filename": "Dd6IXuxiYXc_五個ClaudeCode開源工具_7.jpg", "title": "五個ClaudeCode開源工具_7", "ext": "jpg", "size": 217734, "size_str": "212.6 KB", "mtime": 1790764453.0, "mtime_str": "2026-09-30 18:34"}]}, {"code": "Dd4DQC8EitO", "title": "AI也能幫你分析股票10組專業提示詞", "ig_url": "https://www.instagram.com/p/Dd4DQC8EitO/", "type": "carousel", "type_label": "輪播 (11張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 11, "total_size": 1382535, "total_size_str": "1.3 MB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11", "items": [{"filename": "Dd4DQC8EitO_AI也能幫你分析股票10組專業提示詞_1.jpg", "title": "AI也能幫你分析股票10組專業提示詞_1", "ext": "jpg", "size": 116924, "size_str": "114.2 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_01股票篩選框架_2.jpg", "title": "01股票篩選框架_2", "ext": "jpg", "size": 126275, "size_str": "123.3 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_02DCF估值模型_3.jpg", "title": "02DCF估值模型_3", "ext": "jpg", "size": 123862, "size_str": "121.0 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_03投資組合風險健檢_4.jpg", "title": "03投資組合風險健檢_4", "ext": "jpg", "size": 125412, "size_str": "122.5 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_04財報公布前分析_5.jpg", "title": "04財報公布前分析_5", "ext": "jpg", "size": 126481, "size_str": "123.5 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_05資產配置藍圖_6.jpg", "title": "05資產配置藍圖_6", "ext": "jpg", "size": 127408, "size_str": "124.4 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_06技術面交易計畫_7.jpg", "title": "06技術面交易計畫_7", "ext": "jpg", "size": 123826, "size_str": "120.9 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_07股息投資策略_8.jpg", "title": "07股息投資策略_8", "ext": "jpg", "size": 128410, "size_str": "125.4 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_08產業競爭優勢_9.jpg", "title": "08產業競爭優勢_9", "ext": "jpg", "size": 125526, "size_str": "122.6 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_09量化異常檢查_10.jpg", "title": "09量化異常檢查_10", "ext": "jpg", "size": 131324, "size_str": "128.2 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}, {"filename": "Dd4DQC8EitO_10總體環境影響_11.jpg", "title": "10總體環境影響_11", "ext": "jpg", "size": 127087, "size_str": "124.1 KB", "mtime": 1790694660.0, "mtime_str": "2026-09-29 23:11"}]}, {"code": "Ddf156akx9W", "title": "Prompt_Engineering", "ig_url": "https://www.instagram.com/p/Ddf156akx9W/", "type": "carousel", "type_label": "輪播 (12張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 12, "total_size": 17609196, "total_size_str": "16.8 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32", "items": [{"filename": "Ddf156akx9W_Prompt_Engineering_1.jpg", "title": "Prompt_Engineering_1", "ext": "jpg", "size": 1765181, "size_str": "1.7 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_2.jpg", "title": "Prompt_Engineering_2", "ext": "jpg", "size": 1403498, "size_str": "1.3 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_3.jpg", "title": "Prompt_Engineering_3", "ext": "jpg", "size": 1414541, "size_str": "1.3 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_4.jpg", "title": "Prompt_Engineering_4", "ext": "jpg", "size": 1552675, "size_str": "1.5 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_5.jpg", "title": "Prompt_Engineering_5", "ext": "jpg", "size": 1592470, "size_str": "1.5 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_6.jpg", "title": "Prompt_Engineering_6", "ext": "jpg", "size": 1520376, "size_str": "1.4 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_7.jpg", "title": "Prompt_Engineering_7", "ext": "jpg", "size": 1489468, "size_str": "1.4 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_8.jpg", "title": "Prompt_Engineering_8", "ext": "jpg", "size": 1707386, "size_str": "1.6 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_9.jpg", "title": "Prompt_Engineering_9", "ext": "jpg", "size": 1630502, "size_str": "1.6 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_10.jpg", "title": "Prompt_Engineering_10", "ext": "jpg", "size": 1569495, "size_str": "1.5 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_11.jpg", "title": "Prompt_Engineering_11", "ext": "jpg", "size": 1525946, "size_str": "1.5 MB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}, {"filename": "Ddf156akx9W_Prompt_Engineering_12.jpg", "title": "Prompt_Engineering_12", "ext": "jpg", "size": 437658, "size_str": "427.4 KB", "mtime": 1789882357.0, "mtime_str": "2026-09-20 13:32"}]}, {"code": "Ddbz-ohkhIu", "title": "ChatGPT是股票交易天才7組提示詞自動化股票研究", "ig_url": "https://www.instagram.com/p/Ddbz-ohkhIu/", "type": "carousel", "type_label": "輪播 (8張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 8, "total_size": 1113781, "total_size_str": "1.1 MB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58", "items": [{"filename": "Ddbz-ohkhIu_ChatGPT是股票交易天才7組提示詞自動化股票研究_1.jpg", "title": "ChatGPT是股票交易天才7組提示詞自動化股票研究_1", "ext": "jpg", "size": 192461, "size_str": "188.0 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞1交易點子生成器_2.jpg", "title": "提示詞1交易點子生成器_2", "ext": "jpg", "size": 141918, "size_str": "138.6 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞2自動技術分析師_3.jpg", "title": "提示詞2自動技術分析師_3", "ext": "jpg", "size": 137303, "size_str": "134.1 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞3新聞轉交易策略_4.jpg", "title": "提示詞3新聞轉交易策略_4", "ext": "jpg", "size": 126851, "size_str": "123.9 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞4策略回測分析師_5.jpg", "title": "提示詞4策略回測分析師_5", "ext": "jpg", "size": 135195, "size_str": "132.0 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞5投資組合風險管理_6.jpg", "title": "提示詞5投資組合風險管理_6", "ext": "jpg", "size": 130384, "size_str": "127.3 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞6交易日誌分析師_7.jpg", "title": "提示詞6交易日誌分析師_7", "ext": "jpg", "size": 119777, "size_str": "117.0 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}, {"filename": "Ddbz-ohkhIu_提示詞7全自動交易計畫_8.jpg", "title": "提示詞7全自動交易計畫_8", "ext": "jpg", "size": 129892, "size_str": "126.8 KB", "mtime": 1789747129.0, "mtime_str": "2026-09-18 23:58"}]}, {"code": "DdTp39ckmGP", "title": "ChatGPT也能像華爾街分析師一樣研究股市", "ig_url": "https://www.instagram.com/p/DdTp39ckmGP/", "type": "carousel", "type_label": "輪播 (6張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 6, "total_size": 942012, "total_size_str": "919.9 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56", "items": [{"filename": "DdTp39ckmGP_ChatGPT也能像華爾街分析師一樣研究股市_1.jpg", "title": "ChatGPT也能像華爾街分析師一樣研究股市_1", "ext": "jpg", "size": 198064, "size_str": "193.4 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56"}, {"filename": "DdTp39ckmGP_看懂市場正在定價什麼_2.jpg", "title": "看懂市場正在定價什麼_2", "ext": "jpg", "size": 151170, "size_str": "147.6 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56"}, {"filename": "DdTp39ckmGP_像專家一樣看懂圖表_3.jpg", "title": "像專家一樣看懂圖表_3", "ext": "jpg", "size": 146847, "size_str": "143.4 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56"}, {"filename": "DdTp39ckmGP_把新聞轉化為市場影響_4.jpg", "title": "把新聞轉化為市場影響_4", "ext": "jpg", "size": 152195, "size_str": "148.6 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56"}, {"filename": "DdTp39ckmGP_對投資組合進行壓力測試_5.jpg", "title": "對投資組合進行壓力測試_5", "ext": "jpg", "size": 147482, "size_str": "144.0 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56"}, {"filename": "DdTp39ckmGP_回測你的交易策略_6.jpg", "title": "回測你的交易策略_6", "ext": "jpg", "size": 146254, "size_str": "142.8 KB", "mtime": 1789473396.0, "mtime_str": "2026-09-15 19:56"}]}, {"code": "Dc00kHjkjdO", "title": "Google推出的7款免費AI工具", "ig_url": "https://www.instagram.com/p/Dc00kHjkjdO/", "type": "carousel", "type_label": "輪播 (8張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 8, "total_size": 893726, "total_size_str": "872.8 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33", "items": [{"filename": "Dc00kHjkjdO_Google推出的7款免費AI工具_1.jpg", "title": "Google推出的7款免費AI工具_1", "ext": "jpg", "size": 44810, "size_str": "43.8 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_1NotebookLM把資料變成內容_2.jpg", "title": "1NotebookLM把資料變成內容_2", "ext": "jpg", "size": 119159, "size_str": "116.4 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_2AIStudio測試與打造AI應用_3.jpg", "title": "2AIStudio測試與打造AI應用_3", "ext": "jpg", "size": 116339, "size_str": "113.6 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_3Stitch一句話生成UI與程式碼_4.jpg", "title": "3Stitch一句話生成UI與程式碼_4", "ext": "jpg", "size": 118892, "size_str": "116.1 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_4Flow用AI製作電影感影片_5.jpg", "title": "4Flow用AI製作電影感影片_5", "ext": "jpg", "size": 135980, "size_str": "132.8 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_5Opal不用寫程式也能做AI工具_6.jpg", "title": "5Opal不用寫程式也能做AI工具_6", "ext": "jpg", "size": 115671, "size_str": "113.0 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_6Lyria用文字生成完整音樂_7.jpg", "title": "6Lyria用文字生成完整音樂_7", "ext": "jpg", "size": 112770, "size_str": "110.1 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}, {"filename": "Dc00kHjkjdO_7Pomelli自動產生品牌行銷素材_8.jpg", "title": "7Pomelli自動產生品牌行銷素材_8", "ext": "jpg", "size": 130105, "size_str": "127.1 KB", "mtime": 1788438813.0, "mtime_str": "2026-09-03 20:33"}]}, {"code": "DcvlTnzEgy0", "title": "99個讓ChatGPT秒懂你需求的提示詞", "ig_url": "https://www.instagram.com/p/DcvlTnzEgy0/", "type": "carousel", "type_label": "輪播 (10張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 10, "total_size": 1236708, "total_size_str": "1.2 MB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44", "items": [{"filename": "DcvlTnzEgy0_99個讓ChatGPT秒懂你需求的提示詞_1.jpg", "title": "99個讓ChatGPT秒懂你需求的提示詞_1", "ext": "jpg", "size": 48812, "size_str": "47.7 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼01至11_2.jpg", "title": "提示詞快捷碼01至11_2", "ext": "jpg", "size": 136364, "size_str": "133.2 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼12至22_3.jpg", "title": "提示詞快捷碼12至22_3", "ext": "jpg", "size": 133628, "size_str": "130.5 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼23至33_4.jpg", "title": "提示詞快捷碼23至33_4", "ext": "jpg", "size": 130920, "size_str": "127.9 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼34至44_5.jpg", "title": "提示詞快捷碼34至44_5", "ext": "jpg", "size": 131872, "size_str": "128.8 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼45至55_6.jpg", "title": "提示詞快捷碼45至55_6", "ext": "jpg", "size": 130033, "size_str": "127.0 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼56至66_7.jpg", "title": "提示詞快捷碼56至66_7", "ext": "jpg", "size": 132144, "size_str": "129.0 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼67至77_8.jpg", "title": "提示詞快捷碼67至77_8", "ext": "jpg", "size": 125590, "size_str": "122.6 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼78至88_9.jpg", "title": "提示詞快捷碼78至88_9", "ext": "jpg", "size": 130425, "size_str": "127.4 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}, {"filename": "DcvlTnzEgy0_提示詞快捷碼89至99_10.jpg", "title": "提示詞快捷碼89至99_10", "ext": "jpg", "size": 136920, "size_str": "133.7 KB", "mtime": 1788263041.0, "mtime_str": "2026-09-01 19:44"}]}, {"code": "DctHbfhkkci", "title": "9個讓ChatGPT把普通照片變成專業攝影作品的提示詞", "ig_url": "https://www.instagram.com/p/DctHbfhkkci/", "type": "carousel", "type_label": "輪播 (10張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 10, "total_size": 840503, "total_size_str": "820.8 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44", "items": [{"filename": "DctHbfhkkci_9個讓ChatGPT把普通照片變成專業攝影作品的提示詞_1.jpg", "title": "9個讓ChatGPT把普通照片變成專業攝影作品的提示詞_1", "ext": "jpg", "size": 62064, "size_str": "60.6 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_1普通照片變成DSLR專業人像_2.jpg", "title": "1普通照片變成DSLR專業人像_2", "ext": "jpg", "size": 97719, "size_str": "95.4 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_2電影感專業寫真_3.jpg", "title": "2電影感專業寫真_3", "ext": "jpg", "size": 89350, "size_str": "87.3 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_3高級感Instagram形象照_4.jpg", "title": "3高級感Instagram形象照_4", "ext": "jpg", "size": 83214, "size_str": "81.3 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_4旅行網紅風景照_5.jpg", "title": "4旅行網紅風景照_5", "ext": "jpg", "size": 80764, "size_str": "78.9 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_5時尚雜誌封面照_6.jpg", "title": "5時尚雜誌封面照_6", "ext": "jpg", "size": 88092, "size_str": "86.0 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_6修復老照片_7.jpg", "title": "6修復老照片_7", "ext": "jpg", "size": 76290, "size_str": "74.5 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_7把照片換到任何地點_8.jpg", "title": "7把照片換到任何地點_8", "ext": "jpg", "size": 79334, "size_str": "77.5 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_8專業個人形象照_9.jpg", "title": "8專業個人形象照_9", "ext": "jpg", "size": 90177, "size_str": "88.1 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}, {"filename": "DctHbfhkkci_9黃金時刻氛圍照_10.jpg", "title": "9黃金時刻氛圍照_10", "ext": "jpg", "size": 93499, "size_str": "91.3 KB", "mtime": 1788180268.0, "mtime_str": "2026-08-31 20:44"}]}, {"code": "DcTcwDxltqt", "title": "做演說前值得問AI的10句prompt", "ig_url": "https://www.instagram.com/p/DcTcwDxltqt/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 400808, "total_size_str": "391.4 KB", "mtime": 1787319039.0, "mtime_str": "2026-08-21 21:30", "items": [{"filename": "DcTcwDxltqt_做演說前值得問AI的10句prompt.jpg", "title": "做演說前值得問AI的10句prompt", "ext": "jpg", "size": 400808, "size_str": "391.4 KB", "mtime": 1787319039.0, "mtime_str": "2026-08-21 21:30"}]}, {"code": "DcJJk80oN4T", "title": "做決定前值得問AI的10句prompt", "ig_url": "https://www.instagram.com/p/DcJJk80oN4T/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 477201, "total_size_str": "466.0 KB", "mtime": 1786973442.0, "mtime_str": "2026-08-17 21:30", "items": [{"filename": "DcJJk80oN4T_做決定前值得問AI的10句prompt.jpg", "title": "做決定前值得問AI的10句prompt", "ext": "jpg", "size": 477201, "size_str": "466.0 KB", "mtime": 1786973442.0, "mtime_str": "2026-08-17 21:30"}]}, {"code": "DcBbLQqjSs3", "title": "發掘自己潛力的10句prompt", "ig_url": "https://www.instagram.com/p/DcBbLQqjSs3/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 415300, "total_size_str": "405.6 KB", "mtime": 1786714233.0, "mtime_str": "2026-08-14 21:30", "items": [{"filename": "DcBbLQqjSs3_發掘自己潛力的10句prompt.jpg", "title": "發掘自己潛力的10句prompt", "ext": "jpg", "size": 415300, "size_str": "405.6 KB", "mtime": 1786714233.0, "mtime_str": "2026-08-14 21:30"}]}, {"code": "Db8RluDAELw", "title": "讓你提高思維的10句prompt", "ig_url": "https://www.instagram.com/p/Db8RluDAELw/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 378621, "total_size_str": "369.7 KB", "mtime": 1786541435.0, "mtime_str": "2026-08-12 21:30", "items": [{"filename": "Db8RluDAELw_讓你提高思維的10句prompt.jpg", "title": "讓你提高思維的10句prompt", "ext": "jpg", "size": 378621, "size_str": "369.7 KB", "mtime": 1786541435.0, "mtime_str": "2026-08-12 21:30"}]}, {"code": "DEjhovsSiA7", "title": "min.w621", "ig_url": "https://www.instagram.com/p/DEjhovsSiA7/", "type": "video", "type_label": "影片", "type_badge": "bg-rose-500/20 text-rose-400 border-rose-500/30", "count": 1, "total_size": 10147516, "total_size_str": "9.7 MB", "mtime": 1786516897.0, "mtime_str": "2026-08-12 14:41", "items": [{"filename": "DEjhovsSiA7_min.w621.mp4", "title": "min.w621", "ext": "mp4", "size": 10147516, "size_str": "9.7 MB", "mtime": 1786516897.0, "mtime_str": "2026-08-12 14:41"}]}, {"code": "Db3Q50LGqd3", "title": "5步讓你將想法拆件", "ig_url": "https://www.instagram.com/p/Db3Q50LGqd3/", "type": "carousel", "type_label": "輪播 (5張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 5, "total_size": 1410370, "total_size_str": "1.3 MB", "mtime": 1786373302.0, "mtime_str": "2026-08-10 22:48", "items": [{"filename": "Db3Q50LGqd3_5步讓你將想法拆件_1.jpg", "title": "5步讓你將想法拆件_1", "ext": "jpg", "size": 338765, "size_str": "330.8 KB", "mtime": 1786373302.0, "mtime_str": "2026-08-10 22:48"}, {"filename": "Db3Q50LGqd3_拆到最小單位_2.jpg", "title": "拆到最小單位_2", "ext": "jpg", "size": 244955, "size_str": "239.2 KB", "mtime": 1786373302.0, "mtime_str": "2026-08-10 22:48"}, {"filename": "Db3Q50LGqd3_分「已知／未知」_3.jpg", "title": "分「已知／未知」_3", "ext": "jpg", "size": 250802, "size_str": "244.9 KB", "mtime": 1786373302.0, "mtime_str": "2026-08-10 22:48"}, {"filename": "Db3Q50LGqd3_排優先序_4.jpg", "title": "排優先序_4", "ext": "jpg", "size": 295883, "size_str": "288.9 KB", "mtime": 1786373302.0, "mtime_str": "2026-08-10 22:48"}, {"filename": "Db3Q50LGqd3_出行動_5.jpg", "title": "出行動_5", "ext": "jpg", "size": 279965, "size_str": "273.4 KB", "mtime": 1786373302.0, "mtime_str": "2026-08-10 22:48"}]}, {"code": "DbvZslBG6AR", "title": "7位學者都在用的70句prompt", "ig_url": "https://www.instagram.com/p/DbvZslBG6AR/", "type": "carousel", "type_label": "輪播 (9張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 9, "total_size": 3448502, "total_size_str": "3.3 MB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31", "items": [{"filename": "DbvZslBG6AR_7位學者都在用的70句prompt_1.jpg", "title": "7位學者都在用的70句prompt_1", "ext": "jpg", "size": 319699, "size_str": "312.2 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_哲學家都在用的10句prompt_2.jpg", "title": "哲學家都在用的10句prompt_2", "ext": "jpg", "size": 393893, "size_str": "384.7 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_科學家都在用的10句prompt_3.jpg", "title": "科學家都在用的10句prompt_3", "ext": "jpg", "size": 363229, "size_str": "354.7 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_心理學家都在用的10句prompt_4.jpg", "title": "心理學家都在用的10句prompt_4", "ext": "jpg", "size": 435778, "size_str": "425.6 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_戰略家都在用的10句prompt_5.jpg", "title": "戰略家都在用的10句prompt_5", "ext": "jpg", "size": 453040, "size_str": "442.4 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_企業家都在用的10句prompt_6.jpg", "title": "企業家都在用的10句prompt_6", "ext": "jpg", "size": 389383, "size_str": "380.3 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_演說家都在用的10句prompt_7.jpg", "title": "演說家都在用的10句prompt_7", "ext": "jpg", "size": 377088, "size_str": "368.2 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_經濟學家都在用的10句prompt_8.jpg", "title": "經濟學家都在用的10句prompt_8", "ext": "jpg", "size": 400162, "size_str": "390.8 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}, {"filename": "DbvZslBG6AR_70句的用法_9.jpg", "title": "70句的用法_9", "ext": "jpg", "size": 316230, "size_str": "308.8 KB", "mtime": 1786109477.0, "mtime_str": "2026-08-07 21:31"}]}, {"code": "DbqQAknj4K6", "title": "經濟學家都在用的10句prompt", "ig_url": "https://www.instagram.com/p/DbqQAknj4K6/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 400162, "total_size_str": "390.8 KB", "mtime": 1785936625.0, "mtime_str": "2026-08-05 21:30", "items": [{"filename": "DbqQAknj4K6_經濟學家都在用的10句prompt.jpg", "title": "經濟學家都在用的10句prompt", "ext": "jpg", "size": 400162, "size_str": "390.8 KB", "mtime": 1785936625.0, "mtime_str": "2026-08-05 21:30"}]}, {"code": "DblGajPiX0F", "title": "演說家都在用的10句prompt", "ig_url": "https://www.instagram.com/p/DblGajPiX0F/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 377088, "total_size_str": "368.2 KB", "mtime": 1785763821.0, "mtime_str": "2026-08-03 21:30", "items": [{"filename": "DblGajPiX0F_演說家都在用的10句prompt.jpg", "title": "演說家都在用的10句prompt", "ext": "jpg", "size": 377088, "size_str": "368.2 KB", "mtime": 1785763821.0, "mtime_str": "2026-08-03 21:30"}]}, {"code": "DbdYBioDfyR", "title": "企業家都在用的10句prompt", "ig_url": "https://www.instagram.com/p/DbdYBioDfyR/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 389383, "total_size_str": "380.3 KB", "mtime": 1785504618.0, "mtime_str": "2026-07-31 21:30", "items": [{"filename": "DbdYBioDfyR_企業家都在用的10句prompt.jpg", "title": "企業家都在用的10句prompt", "ext": "jpg", "size": 389383, "size_str": "380.3 KB", "mtime": 1785504618.0, "mtime_str": "2026-07-31 21:30"}]}, {"code": "DbYOcLegNMn", "title": "戰略家都在用的10句prompt", "ig_url": "https://www.instagram.com/p/DbYOcLegNMn/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 453040, "total_size_str": "442.4 KB", "mtime": 1785331824.0, "mtime_str": "2026-07-29 21:30", "items": [{"filename": "DbYOcLegNMn_戰略家都在用的10句prompt.jpg", "title": "戰略家都在用的10句prompt", "ext": "jpg", "size": 453040, "size_str": "442.4 KB", "mtime": 1785331824.0, "mtime_str": "2026-07-29 21:30"}]}, {"code": "DbTE22ekhAz", "title": "心理學家都在用的10句prompt", "ig_url": "https://www.instagram.com/p/DbTE22ekhAz/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 435778, "total_size_str": "425.6 KB", "mtime": 1785159026.0, "mtime_str": "2026-07-27 21:30", "items": [{"filename": "DbTE22ekhAz_心理學家都在用的10句prompt.jpg", "title": "心理學家都在用的10句prompt", "ext": "jpg", "size": 435778, "size_str": "425.6 KB", "mtime": 1785159026.0, "mtime_str": "2026-07-27 21:30"}]}, {"code": "DbLWdd6Dott", "title": "科學家都在用的10句prompt", "ig_url": "https://www.instagram.com/p/DbLWdd6Dott/", "type": "image", "type_label": "單圖", "type_badge": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", "count": 1, "total_size": 363229, "total_size_str": "354.7 KB", "mtime": 1784899819.0, "mtime_str": "2026-07-24 21:30", "items": [{"filename": "DbLWdd6Dott_科學家都在用的10句prompt.jpg", "title": "科學家都在用的10句prompt", "ext": "jpg", "size": 363229, "size_str": "354.7 KB", "mtime": 1784899819.0, "mtime_str": "2026-07-24 21:30"}]}, {"code": "DaztZenEiRs", "title": "Claude7個提示詞大幅提升股票研究效率", "ig_url": "https://www.instagram.com/p/DaztZenEiRs/", "type": "carousel", "type_label": "輪播 (8張)", "type_badge": "bg-blue-500/20 text-blue-400 border-blue-500/30", "count": 8, "total_size": 1464120, "total_size_str": "1.4 MB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08", "items": [{"filename": "DaztZenEiRs_Claude7個提示詞大幅提升股票研究效率_1.jpg", "title": "Claude7個提示詞大幅提升股票研究效率_1", "ext": "jpg", "size": 38098, "size_str": "37.2 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞1股票分析師_2.jpg", "title": "提示詞1股票分析師_2", "ext": "jpg", "size": 178795, "size_str": "174.6 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞2交易設置產生器_3.jpg", "title": "提示詞2交易設置產生器_3", "ext": "jpg", "size": 170813, "size_str": "166.8 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞3新聞雜訊過濾器_4.jpg", "title": "提示詞3新聞雜訊過濾器_4", "ext": "jpg", "size": 280449, "size_str": "273.9 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞4財報電話會議拆解_5.jpg", "title": "提示詞4財報電話會議拆解_5", "ext": "jpg", "size": 133680, "size_str": "130.5 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞5投資組合風險檢查_6.jpg", "title": "提示詞5投資組合風險檢查_6", "ext": "jpg", "size": 231748, "size_str": "226.3 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞6估值現實檢查_7.jpg", "title": "提示詞6估值現實檢查_7", "ext": "jpg", "size": 166239, "size_str": "162.3 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}, {"filename": "DaztZenEiRs_提示詞7總經與產業背景_8.jpg", "title": "提示詞7總經與產業背景_8", "ext": "jpg", "size": 264298, "size_str": "258.1 KB", "mtime": 1784106534.0, "mtime_str": "2026-07-15 17:08"}]}];
+
+    // Auto-detect base path: relative to current HTML location
+    const isAntigravityDir = window.location.pathname.includes('/Antigravity/');
+    const BASE_PATH = isAntigravityDir ? '../IG/' : './';
+
+    // State
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let currentSort = 'mtime_desc';
+    let currentView = 'grid'; // 'grid' | 'list'
+
+    // Lightbox State
+    let activePost = null;
+    let activeSlideIndex = 0;
+
+    // DOM Elements
+    const postsGrid = document.getElementById('posts-grid');
+    const postsTable = document.getElementById('posts-list-table');
+    const tableBody = document.getElementById('table-body');
+    const emptyState = document.getElementById('empty-state');
+    const searchInput = document.getElementById('search-input');
+    const clearSearchBtn = document.getElementById('clear-search');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const sortSelect = document.getElementById('sort-select');
+    const viewGridBtn = document.getElementById('view-grid');
+    const viewListBtn = document.getElementById('view-list');
+    const statPostsEl = document.getElementById('stat-posts');
+
+    // Lightbox DOM
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalCounter = document.getElementById('modal-counter');
+    const modalIgLink = document.getElementById('modal-ig-link');
+    const modalRawFile = document.getElementById('modal-raw-file');
+    const modalClose = document.getElementById('modal-close');
+    const modalPrev = document.getElementById('modal-prev');
+    const modalNext = document.getElementById('modal-next');
+    const modalImg = document.getElementById('modal-img');
+    const modalVideo = document.getElementById('modal-video');
+    const modalThumbnails = document.getElementById('modal-thumbnails');
+
+    function filterAndSortPosts() {
+      return POSTS_DATA.filter(post => {
+        // Type filter
+        if (currentFilter !== 'all' && post.type !== currentFilter) {
+          return false;
+        }
+        // Search query
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          const matchTitle = post.title.toLowerCase().includes(q);
+          const matchCode = post.code.toLowerCase().includes(q);
+          const matchItem = post.items.some(it => it.title.toLowerCase().includes(q) || it.filename.toLowerCase().includes(q));
+          if (!matchTitle && !matchCode && !matchItem) return false;
+        }
+        return true;
+      }).sort((a, b) => {
+        if (currentSort === 'mtime_desc') return b.mtime - a.mtime;
+        if (currentSort === 'mtime_asc') return a.mtime - b.mtime;
+        if (currentSort === 'count_desc') return b.count - a.count;
+        if (currentSort === 'size_desc') return b.total_size - a.total_size;
+        if (currentSort === 'title_asc') return a.title.localeCompare(b.title, 'zh-Hant');
+        return 0;
+      });
+    }
+
+    function render() {
+      const filtered = filterAndSortPosts();
+      statPostsEl.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        postsGrid.innerHTML = '';
+        tableBody.innerHTML = '';
+        postsGrid.classList.add('hidden');
+        postsTable.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      if (currentView === 'grid') {
+        postsGrid.classList.remove('hidden');
+        postsTable.classList.add('hidden');
+        renderGrid(filtered);
+      } else {
+        postsGrid.classList.add('hidden');
+        postsTable.classList.remove('hidden');
+        renderTable(filtered);
+      }
+    }
+
+    function renderGrid(posts) {
+      postsGrid.innerHTML = posts.map(post => {
+        const cover = post.items[0];
+        const isVid = cover.ext in { 'mp4': 1, 'mov': 1, 'webm': 1 };
+        const coverSrc = BASE_PATH + encodeURIComponent(cover.filename);
+
+        // Slide dots or mini previews
+        const thumbsHtml = post.items.slice(0, 5).map((it, idx) => `
+          <button onclick="openLightbox('${post.code}', ${idx})" class="w-6 h-6 rounded border border-slate-700/80 overflow-hidden hover:scale-110 hover:border-pink-500 transition-all">
+            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-[8px] text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${BASE_PATH + encodeURIComponent(it.filename)}" class="w-full h-full object-cover" loading="lazy" />`}
+          </button>
+        `).join('');
+
+        const extraCount = post.items.length > 5 ? `<span class="text-[10px] text-slate-400 self-center">+${post.items.length - 5}</span>` : '';
+
+        return `
+          <div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+            <!-- Media Preview Area -->
+            <div class="relative aspect-[4/5] bg-slate-950/80 overflow-hidden cursor-pointer" onclick="openLightbox('${post.code}', 0)">
+              ${isVid 
+                ? `<video src="${coverSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"></video>
+                   <div class="absolute inset-0 bg-black/30 flex items-center justify-center"><div class="w-12 h-12 rounded-full bg-pink-600/80 text-white flex items-center justify-center shadow-lg"><i class="fa-solid fa-play text-lg ml-0.5"></i></div></div>`
+                : `<img src="${coverSrc}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
+              }
+
+              <!-- Badges Overlay -->
+              <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full border ${post.type_badge}">
+                  ${post.type_label}
+                </span>
+              </div>
+              <div class="absolute top-3 right-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 text-slate-300 border border-white/10 backdrop-blur-sm">
+                  ${post.total_size_str}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono mb-1.5">
+                  <span class="text-pink-400">#${post.code}</span>
+                  <span>${post.mtime_str.split(' ')[0]}</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-100 group-hover:text-pink-300 transition-colors line-clamp-2 leading-snug cursor-pointer" onclick="openLightbox('${post.code}', 0)">
+                  ${post.title}
+                </h3>
+              </div>
+
+              <!-- Mini Carousel Strip & Actions -->
+              <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <div class="flex items-center gap-1.5 overflow-hidden">
+                  ${thumbsHtml}
+                  ${extraCount}
+                </div>
+                ${post.ig_url ? `
+                  <a href="${post.ig_url}" target="_blank" class="text-xs text-slate-400 hover:text-pink-400 transition-colors p-1" title="在 Instagram 開啟">
+                    <i class="fa-brands fa-instagram text-base"></i>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderTable(posts) {
+      tableBody.innerHTML = posts.map(post => {
+        const cover = post.items[0];
+        const isVid = cover.ext in { 'mp4': 1, 'mov': 1 };
+        const coverSrc = BASE_PATH + encodeURIComponent(cover.filename);
+
+        return `
+          <tr class="hover:bg-slate-800/40 transition-colors group">
+            <td class="py-3 px-4 text-center">
+              <div class="w-10 h-10 rounded-lg overflow-hidden border border-slate-700 bg-slate-900 cursor-pointer mx-auto" onclick="openLightbox('${post.code}', 0)">
+                ${isVid 
+                  ? `<div class="w-full h-full bg-slate-800 flex items-center justify-center text-rose-400"><i class="fa-solid fa-play text-xs"></i></div>`
+                  : `<img src="${coverSrc}" class="w-full h-full object-cover" loading="lazy" />`
+                }
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="flex flex-col">
+                <span class="text-xs font-bold text-slate-100 group-hover:text-pink-300 transition-colors cursor-pointer" onclick="openLightbox('${post.code}', 0)">
+                  ${post.title}
+                </span>
+                <span class="text-[11px] font-mono text-slate-400 mt-0.5">代碼: ${post.code}</span>
+              </div>
+            </td>
+            <td class="py-3 px-3">
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border ${post.type_badge}">
+                ${post.type_label}
+              </span>
+            </td>
+            <td class="py-3 px-3 text-center font-mono text-xs text-slate-200">
+              ${post.count}
+            </td>
+            <td class="py-3 px-3 font-mono text-xs text-slate-400">
+              ${post.total_size_str}
+            </td>
+            <td class="py-3 px-3 text-xs text-slate-400">
+              ${post.mtime_str}
+            </td>
+            <td class="py-3 px-4 text-right">
+              <div class="inline-flex items-center gap-2">
+                <button onclick="openLightbox('${post.code}', 0)" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 transition-all">
+                  檢視
+                </button>
+                ${post.ig_url ? `
+                  <a href="${post.ig_url}" target="_blank" class="p-1 text-slate-400 hover:text-pink-400 transition-colors" title="前往 IG">
+                    <i class="fa-brands fa-instagram text-sm"></i>
+                  </a>
+                ` : ''}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Lightbox Logic
+    window.openLightbox = function(postCode, slideIndex = 0) {
+      activePost = POSTS_DATA.find(p => p.code === postCode);
+      if (!activePost) return;
+      activeSlideIndex = slideIndex;
+      updateLightboxSlide();
+      lightboxModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    function closeLightbox() {
+      lightboxModal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.src = '';
+      }
+    }
+
+    function updateLightboxSlide() {
+      if (!activePost || !activePost.items[activeSlideIndex]) return;
+      const currentItem = activePost.items[activeSlideIndex];
+      const isVid = currentItem.ext in { 'mp4': 1, 'mov': 1, 'webm': 1 };
+      const mediaSrc = BASE_PATH + encodeURIComponent(currentItem.filename);
+
+      // Header info
+      modalTitle.textContent = currentItem.title || activePost.title;
+      modalCounter.textContent = `${activeSlideIndex + 1} / ${activePost.items.length}`;
+      modalRawFile.href = mediaSrc;
+
+      if (activePost.ig_url) {
+        modalIgLink.href = activePost.ig_url;
+        modalIgLink.classList.remove('hidden');
+      } else {
+        modalIgLink.classList.add('hidden');
+      }
+
+      // Display Image or Video
+      if (isVid) {
+        modalImg.classList.add('hidden');
+        modalVideo.src = mediaSrc;
+        modalVideo.classList.remove('hidden');
+        modalVideo.play().catch(() => {});
+      } else {
+        modalVideo.pause();
+        modalVideo.classList.add('hidden');
+        modalImg.src = mediaSrc;
+        modalImg.classList.remove('hidden');
+      }
+
+      // Render Strip Thumbnails
+      modalThumbnails.innerHTML = activePost.items.map((it, idx) => `
+        <button onclick="setSlideIndex(${idx})" class="w-12 h-12 rounded-lg border-2 overflow-hidden flex-shrink-0 transition-all ${idx === activeSlideIndex ? 'border-pink-500 scale-105 shadow-md shadow-pink-500/30' : 'border-slate-800 opacity-60 hover:opacity-100'}">
+          ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-xs text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${BASE_PATH + encodeURIComponent(it.filename)}" class="w-full h-full object-cover" />`}
+        </button>
+      `).join('');
+    }
+
+    window.setSlideIndex = function(idx) {
+      activeSlideIndex = idx;
+      updateLightboxSlide();
+    };
+
+    modalPrev.addEventListener('click', () => {
+      if (!activePost) return;
+      activeSlideIndex = (activeSlideIndex - 1 + activePost.items.length) % activePost.items.length;
+      updateLightboxSlide();
+    });
+
+    modalNext.addEventListener('click', () => {
+      if (!activePost) return;
+      activeSlideIndex = (activeSlideIndex + 1) % activePost.items.length;
+      updateLightboxSlide();
+    });
+
+    modalClose.addEventListener('click', closeLightbox);
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (lightboxModal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') modalPrev.click();
+      if (e.key === 'ArrowRight') modalNext.click();
+    });
+
+    // Event Listeners for Filters
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-pink-600', 'text-white');
+          b.classList.add('text-slate-400');
+        });
+        btn.classList.add('active', 'bg-pink-600', 'text-white');
+        btn.classList.remove('text-slate-400');
+        currentFilter = btn.dataset.type;
+        render();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      clearSearchBtn.classList.toggle('hidden', !searchQuery);
+      render();
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearchBtn.classList.add('hidden');
+      render();
+    });
+
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = e.target.value;
+      render();
+    });
+
+    viewGridBtn.addEventListener('click', () => {
+      currentView = 'grid';
+      viewGridBtn.classList.add('bg-slate-700', 'text-white');
+      viewGridBtn.classList.remove('text-slate-400');
+      viewListBtn.classList.remove('bg-slate-700', 'text-white');
+      viewListBtn.classList.add('text-slate-400');
+      render();
+    });
+
+    viewListBtn.addEventListener('click', () => {
+      currentView = 'list';
+      viewListBtn.classList.add('bg-slate-700', 'text-white');
+      viewListBtn.classList.remove('text-slate-400');
+      viewGridBtn.classList.remove('bg-slate-700', 'text-white');
+      viewGridBtn.classList.add('text-slate-400');
+      render();
+    });
+
+    // Initial Render
+    render();
+  </script>
+</body>
+</html>
