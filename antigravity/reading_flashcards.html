@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式 3D 抽認卡 (Flashcards) - 4大高效閱讀法</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-front: #1e293b;
+            --card-back: #0f766e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #14b8a6;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 580px;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #2dd4bf;
+            margin-bottom: 6px;
+        }
+        .header p { font-size: 14px; color: var(--text-muted); }
+
+        .progress-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .progress-bar-bg {
+            flex: 1;
+            height: 8px;
+            background: #334155;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: #2dd4bf;
+            width: 16%;
+            transition: width 0.3s ease;
+        }
+        .progress-text { font-size: 13px; font-weight: 700; color: #2dd4bf; width: 45px; }
+
+        /* 3D Flip Card Container */
+        .card-scene {
+            perspective: 1000px;
+            margin-bottom: 24px;
+        }
+        .flip-card {
+            width: 100%;
+            min-height: 290px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            cursor: pointer;
+        }
+        .flip-card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+        .card-front {
+            background: var(--card-front);
+            border-top: 5px solid #38bdf8;
+        }
+        .card-back {
+            background: linear-gradient(135deg, #0f766e, #115e59);
+            transform: rotateY(180deg);
+            border-top: 5px solid #2dd4bf;
+        }
+        .tag {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #93c5fd;
+            width: fit-content;
+        }
+        .card-back .tag { color: #a7f3d0; }
+        .card-text {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: auto 0;
+        }
+        .card-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .card-back .card-hint { color: #ccfbf1; }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .btn {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:hover { background: #334155; transform: translateY(-2px); }
+        .btn-success { background: #059669; border-color: #10b981; }
+        .btn-success:hover { background: #10b981; }
+        .anki-btn {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>📇 互動式問答字卡 (Flashcards)</h1>
+            <p>點擊卡片翻面 • 利用 Active Recall 主動提取強化長期記憶</p>
+        </div>
+
+        <div class="progress-box">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">1 / 6</div>
+        </div>
+
+        <div class="card-scene">
+            <div class="flip-card" id="flashcard" onclick="flipCard()">
+                <div class="card-face card-front">
+                    <span class="tag" id="cardTag">提問 (Question)</span>
+                    <div class="card-text" id="frontText">為什麼教授說「不用讀完整本書」？</div>
+                    <div class="card-hint">👆 點擊卡片翻看答案</div>
+                </div>
+                <div class="card-face card-back">
+                    <span class="tag">解答 (Answer)</span>
+                    <div class="card-text" id="backText">因為多數專業書籍的核心論點與架構其實只佔全書 20%，盲目從第一頁硬讀容易陷入認知超載與進度停滯。善用 AI 先理清「概念架構圖（Concept Map）」與抓取精華，更能達成高留存率的高效閱讀。</div>
+                    <div class="card-hint">👆 點擊卡片翻回正面</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="prevCard()">⬅ 上一題</button>
+            <button class="btn" onclick="flipCard()">🔄 翻面</button>
+            <button class="btn btn-success" onclick="nextCard()">記住了 ➡</button>
+        </div>
+
+        <div class="anki-btn" onclick="downloadAnki()">
+            📥 點此下載對應之 Anki 記憶卡 (CSV 檔)
+        </div>
+    </div>
+
+    <script>
+        const cards = [
+            {
+                q: "為什麼教授說「不用讀完整本書」？",
+                a: "因為專業書籍的核心論點與架構其實只佔全書 20%，盲目硬讀容易認知超載。善用 AI 先理清「概念架構圖（Concept Map）」與核心精華，更能達成高留存率。",
+                tag: "讀書思維"
+            },
+            {
+                q: "ChatGPT 指令「Concept Map」的核心用途是什麼？",
+                a: "繪製整本書的核心概念與各章節脈絡關係圖。在深入閱讀前先建立頂層知識全景，幫助讀者見樹又見林，大幅降低理解難度。",
+                tag: "Concept Map"
+            },
+            {
+                q: "ChatGPT 指令「Sketchnotes」能帶來什麼學習效益？",
+                a: "將抽象文字摘要轉化為手寫、手帳塗鴉質感的視覺筆記，利用圖文雙重編碼（Dual Coding）強化視覺聯想，非常適合列印張貼隨身複習。",
+                tag: "Sketchnotes"
+            },
+            {
+                q: "ChatGPT 指令「Flashcards」是運用了心理學的哪種記憶機制？",
+                a: "運用了認知心理學的「主動提取（Active Recall）」與「間隔重複（Spaced Repetition）」效應。將關鍵重點拆成 Q&A 問答卡自我測驗，能顯著提升長期記憶留存率。",
+                tag: "Flashcards"
+            },
+            {
+                q: "ChatGPT 指令「Educational Comics」適合哪種類型的學習者？",
+                a: "特別適合「視覺型學習者（Visual Learners）」。它將艱澀枯燥的理論包裝成生活化漫畫、情境對白或角色衝突，有效降低大腦理解門檻。",
+                tag: "Educational Comics"
+            },
+            {
+                q: "社群短影音宣稱「留言領取 100 個免費讀書指令」應如何理性看待？",
+                a: "這是典型的社群演算法導流話術。多數免費指令包僅是通用範本，核心關鍵在於學習者是否具備「明確定義問題、追問脈絡、辨識事實與反思內化」的批判性思考能力。",
+                tag: "批判查核"
+            }
+        ];
+
+        let currentIndex = 0;
+        const cardElement = document.getElementById('flashcard');
+        const frontText = document.getElementById('frontText');
+        const backText = document.getElementById('backText');
+        const cardTag = document.getElementById('cardTag');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+
+        function updateCard() {
+            cardElement.classList.remove('flipped');
+            setTimeout(() => {
+                const item = cards[currentIndex];
+                frontText.textContent = item.q;
+                backText.textContent = item.a;
+                cardTag.textContent = item.tag;
+                progressText.textContent = `${currentIndex + 1} / ${cards.length}`;
+                progressFill.style.width = `${((currentIndex + 1) / cards.length) * 100}%`;
+            }, 150);
+        }
+
+        function flipCard() {
+            cardElement.classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateCard();
+            } else {
+                alert('🎉 恭喜！您已完成本組所有抽認卡的自我測驗！');
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCard();
+            }
+        }
+
+        function downloadAnki() {
+            window.location.href = 'reading_flashcards_anki.csv';
+        }
+    </script>
+</body>
+</html>

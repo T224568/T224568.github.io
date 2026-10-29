@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動概念架構圖 (Concept Map) - 4大 ChatGPT 讀書指令</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-green: #4ade80;
+            --accent-purple: #c084fc;
+            --accent-orange: #fb923c;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px;
+            overflow-x: auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header p { color: var(--text-muted); font-size: 14px; }
+        .map-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .tree {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+        }
+        .root-node {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            padding: 20px 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.5);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .root-node:hover { transform: scale(1.02); }
+        .root-title { font-size: 20px; font-weight: 800; }
+        .root-sub { font-size: 13px; color: #e0f2fe; margin-top: 4px; }
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .node-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .node-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+        }
+        .node-c1 { border-top: 4px solid var(--accent); }
+        .node-c2 { border-top: 4px solid var(--accent-orange); }
+        .node-c3 { border-top: 4px solid var(--accent-green); }
+        .node-c4 { border-top: 4px solid var(--accent-purple); }
+
+        .node-badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .node-c1 .node-badge { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+        .node-c2 .node-badge { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); }
+        .node-c3 .node-badge { background: rgba(74, 222, 128, 0.15); color: var(--accent-green); }
+        .node-c4 .node-badge { background: rgba(192, 132, 252, 0.15); color: var(--accent-purple); }
+
+        .node-name { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+        .node-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+        
+        .sub-points {
+            list-style: none;
+            border-top: 1px dashed var(--border);
+            padding-top: 10px;
+            font-size: 12.5px;
+        }
+        .sub-points li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            color: #cbd5e1;
+        }
+        .sub-points li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .connector-line {
+            width: 2px;
+            height: 24px;
+            background: var(--border);
+            margin: 0 auto;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .btn {
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: #334155; border-color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗺️ 互動概念架構圖 (Concept Map)</h1>
+        <p>點擊節點卡片可折疊/展開細節 • 視覺化建立整本書的知識骨幹</p>
+    </div>
+
+    <div class="toolbar">
+        <button class="btn" onclick="toggleAll(false)">折疊全部細節</button>
+        <button class="btn" onclick="toggleAll(true)">展開全部節點</button>
+    </div>
+
+    <div class="map-wrapper">
+        <div class="tree">
+            <div class="root-node" onclick="this.classList.toggle('active')">
+                <div class="root-title">📚 核心理念：不用讀完整本書</div>
+                <div class="root-sub">掌握全書 20% 核心架構 ＝ 獲取 80% 核心洞察</div>
+            </div>
+
+            <div class="connector-line"></div>
+
+            <div class="branch-grid">
+                <!-- Node 1 -->
+                <div class="node-card node-c1" onclick="toggleCard(this)">
+                    <span class="node-badge">架構層 • 全景</span>
+                    <div class="node-name">🗺️ Concept Map</div>
+                    <div class="node-desc">繪製全書骨幹與章節脈絡，建立大腦第一層索引。</div>
+                    <ul class="sub-points">
+                        <li>識別全書核心論點 (Central Thesis)</li>
+                        <li>梳理章節因果與層級推演</li>
+                        <li>解決問題：消除見樹不見林的迷航</li>
+                    </ul>
+                </div>
+
+                <!-- Node 2 -->
+                <div class="node-card node-c2" onclick="toggleCard(this)">
+                    <span class="node-badge">消化層 • 視覺</span>
+                    <div class="node-name">📝 Sketchnotes</div>
+                    <div class="node-desc">手帳塗鴉風格筆記，雙重編碼加速圖像記憶。</div>
+                    <ul class="sub-points">
+                        <li>關鍵字 + 圖像符號結合</li>
+                        <li>手繪質感減少認知枯燥感</li>
+                        <li>可列印張貼於桌面隨身翻閱</li>
+                    </ul>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="node-card node-c3" onclick="toggleCard(this)">
+                    <span class="node-badge">內化層 • 測驗</span>
+                    <div class="node-name">📇 Flashcards</div>
+                    <div class="node-desc">拆解核心為 Q&A 問答卡，主動提取抗遺忘。</div>
+                    <ul class="sub-points">
+                        <li>啟動 Active Recall 主動回想</li>
+                        <li>搭配 Spaced Repetition 間隔重複</li>
+                        <li>隨時自我檢核學習盲點</li>
+                    </ul>
+                </div>
+
+                <!-- Node 4 -->
+                <div class="node-card node-c4" onclick="toggleCard(this)">
+                    <span class="node-badge">轉譯層 • 情境</span>
+                    <div class="node-name">🎨 Educational Comics</div>
+                    <div class="node-desc">將深奧理論轉化為連環漫畫與角色對話。</div>
+                    <ul class="sub-points">
+                        <li>角色衝突與故事化敘事</li>
+                        <li>極度適合視覺型學習者</li>
+                        <li>打破學術術語的抽象壁壘</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            const list = card.querySelector('.sub-points');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
+        }
+        function toggleAll(show) {
+            document.querySelectorAll('.sub-points').forEach(el => {
+                el.style.display = show ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
