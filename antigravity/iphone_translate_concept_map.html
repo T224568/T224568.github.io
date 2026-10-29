@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動概念架構圖 - iPhone 原生一鍵同聲傳譯全解析</title>
+    <style>
+        :root {
+            --bg: #0b1120;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-teal: #2dd4bf;
+            --accent-amber: #fbbf24;
+            --accent-purple: #c084fc;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 32px 20px;
+        }
+        .header {
+            text-align: center;
+            max-width: 860px;
+            margin: 0 auto 36px auto;
+        }
+        .badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header p { color: var(--text-muted); font-size: 14px; }
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .btn {
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: #334155; border-color: var(--accent-blue); }
+
+        .map-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .root-node {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            padding: 24px 36px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px -8px rgba(37, 99, 235, 0.5);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .root-title { font-size: 22px; font-weight: 800; }
+        .root-sub { font-size: 13.5px; color: #e0f2fe; margin-top: 6px; }
+        .connector-line {
+            width: 2px;
+            height: 32px;
+            background: var(--border);
+            margin: 0 auto;
+        }
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .branch-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .branch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.5);
+        }
+        .card-b1 { border-top: 4px solid var(--accent-blue); }
+        .card-b2 { border-top: 4px solid var(--accent-teal); }
+        .card-b3 { border-top: 4px solid var(--accent-amber); }
+        .card-b4 { border-top: 4px solid var(--accent-purple); }
+
+        .card-tag {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .card-b1 .card-tag { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); }
+        .card-b2 .card-tag { background: rgba(45, 212, 191, 0.15); color: var(--accent-teal); }
+        .card-b3 .card-tag { background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); }
+        .card-b4 .card-tag { background: rgba(192, 132, 252, 0.15); color: var(--accent-purple); }
+
+        .card-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; }
+        .sub-list {
+            list-style: none;
+            border-top: 1px dashed var(--border);
+            padding-top: 12px;
+            font-size: 12.5px;
+        }
+        .sub-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+        .sub-list li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="badge">YouTube 精選解析 (huFeJiiIHn4)</span>
+        <h1>🗺️ iPhone 原生一鍵同聲傳譯概念架構圖</h1>
+        <p>點擊各分支卡片可收合/展開重點 • 徹底解放出國跨語言溝通力</p>
+        <div class="toolbar">
+            <button class="btn" onclick="toggleAll(false)">收合所有細節</button>
+            <button class="btn" onclick="toggleAll(true)">展開完整架構</button>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <div class="root-node">
+            <div class="root-title">📱 iPhone 原生同聲傳譯神器</div>
+            <div class="root-sub">零成本 • 免裝第三方 App • 雙向即時對話 • 離線支援</div>
+        </div>
+
+        <div class="connector-line"></div>
+
+        <div class="branch-grid">
+            <!-- 支柱 1 -->
+            <div class="branch-card card-b1" onclick="toggleCard(this)">
+                <span class="card-tag">基礎層 • 官方原生</span>
+                <div class="card-title">🛡️ 原生免費優勢</div>
+                <div class="card-desc">Apple 官方系統層級工具，整合度極高且完全免費。</div>
+                <ul class="sub-list">
+                    <li>內建於 iOS / iPadOS / watchOS，無多餘廣告</li>
+                    <li>若不小心刪除，可直接從 App Store 免費載回</li>
+                    <li>支援主流 19 個國家與地區語言（含中文繁/簡、英、日、韓、歐美大宗語言）</li>
+                    <li>出國前可下載離線語言包，無網路照常翻譯</li>
+                </ul>
+            </div>
+
+            <!-- 支柱 2 -->
+            <div class="branch-card card-b2" onclick="toggleCard(this)">
+                <span class="card-tag">核心層 • 智慧對話</span>
+                <div class="card-title">🗣️ 智慧雙向對話</div>
+                <div class="card-desc">告別單向翻譯，系統自動識別雙方講話語言。</div>
+                <ul class="sub-list">
+                    <li>切換至底部「對話 (Conversation)」標籤頁</li>
+                    <li>點擊收音，語音引擎自動辨析是母語還是外語</li>
+                    <li>說中文自動翻成目標外語，說外語自動轉成中文</li>
+                    <li>免除反覆切換語言輸入框的繁瑣手動操作</li>
+                </ul>
+            </div>
+
+            <!-- 支柱 3 -->
+            <div class="branch-card card-b3" onclick="toggleCard(this)">
+                <span class="card-tag">關鍵層 • 同傳秘技</span>
+                <div class="card-title">⚡ 一鍵同傳設定</div>
+                <div class="card-desc">右上角兩個關鍵開關，讓對話如翻譯官般行雲流水。</div>
+                <ul class="sub-list">
+                    <li>點擊右上角「...」設定功能表</li>
+                    <li>開啟【自動翻譯】：說完話自動啟動翻譯，不需二次點按確認</li>
+                    <li>開啟【播放翻譯】：翻譯完成後手機自動以清晰語音朗讀</li>
+                    <li>只需按一次麥克風，即可放桌上持續流暢雙向溝通</li>
+                </ul>
+            </div>
+
+            <!-- 支柱 4 -->
+            <div class="branch-card card-b4" onclick="toggleCard(this)">
+                <span class="card-tag">情境層 • 出國交流</span>
+                <div class="card-title">🤝 面對面視圖</div>
+                <div class="card-desc">專為出國問路、海關交流與商務對話設計的絕佳介面。</div>
+                <ul class="sub-list">
+                    <li>左側視圖切換為「面對面 (Face to Face)」模式</li>
+                    <li>螢幕上下對向分屏，對面的人可直接看到正向外語文字</li>
+                    <li>兩側皆設有獨立收音按鈕，各自操作清晰不混亂</li>
+                    <li>出國問路、餐廳點餐、購物砍價時最具效率與禮貌</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>概念圖產生自 Antigravity • 資料儲存於 /Volumes/512G/Antigravity/</p>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            const list = card.querySelector('.sub-list');
+            list.style.display = (list.style.display === 'none') ? 'block' : 'none';
+        }
+        function toggleAll(show) {
+            document.querySelectorAll('.sub-list').forEach(el => {
+                el.style.display = show ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

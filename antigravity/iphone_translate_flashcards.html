@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式抽認卡 (Flashcards) - iPhone 原生一鍵同傳</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-front: #1e293b;
+            --card-back: #0f766e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #2dd4bf;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 580px;
+            text-align: center;
+        }
+        .header { margin-bottom: 24px; }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .header p { font-size: 14px; color: var(--text-muted); }
+        .progress-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .progress-bar-bg {
+            flex: 1;
+            height: 8px;
+            background: #334155;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 16.6%;
+            transition: width 0.3s ease;
+        }
+        .progress-text { font-size: 13px; font-weight: 700; color: var(--accent); width: 45px; }
+
+        .card-scene {
+            perspective: 1000px;
+            margin-bottom: 24px;
+        }
+        .flip-card {
+            width: 100%;
+            min-height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            cursor: pointer;
+        }
+        .flip-card.flipped { transform: rotateY(180deg); }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+        .card-front {
+            background: var(--card-front);
+            border-top: 5px solid #38bdf8;
+        }
+        .card-back {
+            background: linear-gradient(135deg, #0f766e, #115e59);
+            transform: rotateY(180deg);
+            border-top: 5px solid var(--accent);
+        }
+        .tag {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #93c5fd;
+            width: fit-content;
+        }
+        .card-back .tag { color: #a7f3d0; }
+        .card-text {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: auto 0;
+        }
+        .card-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .card-back .card-hint { color: #ccfbf1; }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .btn {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: #334155; transform: translateY(-2px); }
+        .btn-success { background: #059669; border-color: #10b981; }
+        .btn-success:hover { background: #10b981; }
+        .anki-btn {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>📇 互動抽認卡：iPhone 同聲傳譯</h1>
+            <p>點擊卡片翻面 • 深度內化出國必備翻譯技能</p>
+        </div>
+
+        <div class="progress-box">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">1 / 6</div>
+        </div>
+
+        <div class="card-scene">
+            <div class="flip-card" id="flashcard" onclick="flipCard()">
+                <div class="card-face card-front">
+                    <span class="tag" id="cardTag">提問 (Question)</span>
+                    <div class="card-text" id="frontText">iPhone 內建的「翻譯」功能需要付費或下載第三方 App 嗎？</div>
+                    <div class="card-hint">👆 點擊卡片翻看答案</div>
+                </div>
+                <div class="card-face card-back">
+                    <span class="tag">解答 (Answer)</span>
+                    <div class="card-text" id="backText">完全免費！它是 Apple 官方原生的系統應用程式，若找不到可直接在 App Store 搜尋 Apple 開發的「翻譯」重新載回，無廣告且免訂閱。</div>
+                    <div class="card-hint">👆 點擊卡片翻回正面</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="prevCard()">⬅ 上一題</button>
+            <button class="btn" onclick="flipCard()">🔄 翻面</button>
+            <button class="btn btn-success" onclick="nextCard()">記住了 ➡</button>
+        </div>
+
+        <div class="anki-btn" onclick="downloadAnki()">
+            📥 點此下載對應之 Anki 記憶卡 (CSV 檔)
+        </div>
+    </div>
+
+    <script>
+        const cards = [
+            {
+                q: "iPhone 內建的「翻譯」功能需要付費或下載第三方 App 嗎？",
+                a: "完全免費！它是 Apple 官方原生的系統應用程式，若找不到可直接在 App Store 搜尋 Apple 開發的「翻譯」重新載回，無廣告且免訂閱。",
+                tag: "原生優勢"
+            },
+            {
+                q: "iPhone「翻譯」App 目前支援多少個主流國家與地區的語言？",
+                a: "支援主流 19 個國家與地區語言，包含中文普通話（簡體與繁體）、英語、日語、韓語、德法西俄、阿拉伯語等，並支援下載離線語言包。",
+                tag: "語言支援"
+            },
+            {
+                q: "如何在 iPhone 翻譯 App 中實現「按一次麥克風就能持續雙向對話」？",
+                a: "點擊右上角的「...」功能選單，同時開啟【自動翻譯】與【播放翻譯】兩個選項。開啟後只需點擊一次麥克風，系統便會自動辨識雙方語言、自動翻譯並自動朗讀播放。",
+                tag: "連續同傳"
+            },
+            {
+                q: "iPhone 翻譯 App 的「面對面視圖（Face to Face）」有什麼獨特優勢？",
+                a: "將螢幕分為上下兩個對向畫面（倒置顯示給對面的人看）。雙方各自對著自己方向的麥克風講話與看文字，非常適合在國外餐廳點餐、機場或街頭問路時面對面交流。",
+                tag: "面對面視圖"
+            },
+            {
+                q: "如果出國在沒有網路或收訊差的環境，iPhone 內建翻譯還能運作嗎？",
+                a: "可以！只要在出發前進入設定下載「離線語言套件（本地端語言模型）」，即使在完全無網路、飛行模式下也能在設備端完成語音與文字翻譯。",
+                tag: "離線模型"
+            },
+            {
+                q: "iPhone 翻譯 App 的「對話模式」是如何判斷哪一方在說話的？",
+                a: "系統具備自動語音識別（ASR）引擎，能自動分辨收錄到的聲音是中文還是設定的目標外語，並智慧進行雙向互譯，無須手動反覆切換輸入語言。",
+                tag: "語音辨識"
+            }
+        ];
+
+        let currentIndex = 0;
+        const cardElement = document.getElementById('flashcard');
+        const frontText = document.getElementById('frontText');
+        const backText = document.getElementById('backText');
+        const cardTag = document.getElementById('cardTag');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+
+        function updateCard() {
+            cardElement.classList.remove('flipped');
+            setTimeout(() => {
+                const item = cards[currentIndex];
+                frontText.textContent = item.q;
+                backText.textContent = item.a;
+                cardTag.textContent = item.tag;
+                progressText.textContent = `${currentIndex + 1} / ${cards.length}`;
+                progressFill.style.width = `${((currentIndex + 1) / cards.length) * 100}%`;
+            }, 150);
+        }
+
+        function flipCard() {
+            cardElement.classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateCard();
+            } else {
+                alert('🎉 恭喜！您已完成 iPhone 原生翻譯的所有記憶測驗！');
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCard();
+            }
+        }
+
+        function downloadAnki() {
+            window.location.href = 'iphone_translate_anki.csv';
+        }
+    </script>
+</body>
+</html>
