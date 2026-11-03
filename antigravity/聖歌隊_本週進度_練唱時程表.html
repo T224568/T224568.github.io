@@ -58,12 +58,77 @@
       flex-wrap: wrap;
       gap: 12px;
       font-size: 0.85rem;
+      align-items: center;
     }
     .meta-pill {
       background: rgba(255, 255, 255, 0.2);
       padding: 4px 12px;
       border-radius: 20px;
       backdrop-filter: blur(4px);
+    }
+    .cta-btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f59e0b;
+      color: #78350f !important;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+      font-size: 0.88rem;
+    }
+    .cta-btn-link:hover {
+      background: #fbbf24;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .song-book a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .song-book a:hover {
+      text-decoration: underline;
+    }
+    .banner-road {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border: 1px solid #93c5fd;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .banner-road-text {
+      color: #1e3a8a;
+      font-size: 0.95rem;
+    }
+    .banner-road-text strong {
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .banner-btn {
+      background: #2563eb;
+      color: #ffffff !important;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.25);
+    }
+    .banner-btn:hover {
+      background: #1d4ed8;
     }
     .section-title {
       font-size: 1.3rem;
@@ -200,8 +265,21 @@
         <span class="meta-pill">主日獻詩：09:30 ~</span>
         <span class="meta-pill">主日練唱：12:30 ~ 14:30</span>
         <span class="meta-pill">聖誕讚美禮拜：12/20 (日)</span>
+        <a href="https://www.jktai123.com/Gemini/road_to_bethlehem/index.html" target="_blank" class="cta-btn-link">
+          🎵《往伯利恆之路》SATB 首調簡譜總目錄 ↗
+        </a>
       </div>
     </header>
+
+    <div class="banner-road">
+      <div class="banner-road-text">
+        <strong>🎄 聖誕清唱劇《往伯利恆之路》全套 SATB 首調簡譜專頁</strong>
+        包含 1~8 首 SATB 各聲部（共 32 份分部簡譜 HTML/TXT）、實體樂譜頁數對照與各聲部專屬練唱 YouTube 影片。
+      </div>
+      <a href="https://www.jktai123.com/Gemini/road_to_bethlehem/index.html" target="_blank" class="banner-btn">
+        開啟簡譜與練唱總目錄 ↗
+      </a>
+    </div>
 
     <h2 class="section-title">📅 每週進度時間表</h2>
     <div class="schedule-table-card">
