@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聖歌隊練唱進度與時日表（本週進度）</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #d97706;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --badge-fri: #e0e7ff;
+      --badge-fri-text: #3730a3;
+      --badge-sun-am: #fef3c7;
+      --badge-sun-am-text: #92400e;
+      --badge-sun-pm: #dcfce7;
+      --badge-sun-pm-text: #166534;
+      --highlight: #fee2e2;
+      --highlight-text: #991b1b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: #fff;
+      padding: 28px 24px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(30, 58, 138, 0.15);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    .meta-bar {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+    .meta-pill {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 28px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .schedule-table-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .badge-fri { background: var(--badge-fri); color: var(--badge-fri-text); }
+    .badge-sun-am { background: var(--badge-sun-am); color: var(--badge-sun-am-text); }
+    .badge-sun-pm { background: var(--badge-sun-pm); color: var(--badge-sun-pm-text); }
+    .song-item {
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+    .song-title {
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .song-book {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .service-highlight {
+      background: #fff1f2;
+      border-left: 4px solid #e11d48;
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+    .service-highlight h4 {
+      color: #be123c;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .service-highlight ol {
+      padding-left: 20px;
+      font-size: 0.9rem;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .song-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .song-card h3 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .timeline-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin: 2px 4px 2px 0;
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .timeline-tag.sing {
+      background: #fef08a;
+      color: #854d0e;
+      font-weight: 600;
+    }
+    .timeline-tag.worship {
+      background: #fecdd3;
+      color: #9f1239;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>聖歌隊練唱與獻詩時程表（本週進度）</h1>
+      <p>來源：Google Sheet「聖歌隊」工作表「本週進度」(gid: 1008123340)</p>
+      <div class="meta-bar">
+        <span class="meta-pill">週五練唱：19:30 ~ 21:30</span>
+        <span class="meta-pill">主日獻詩：09:30 ~</span>
+        <span class="meta-pill">主日練唱：12:30 ~ 14:30</span>
+        <span class="meta-pill">聖誕讚美禮拜：12/20 (日)</span>
+      </div>
+    </header>
+
+    <h2 class="section-title">📅 每週進度時間表</h2>
+    <div class="schedule-table-card">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%;">週次 / 日期</th>
+            <th style="width: 29%;">週五練唱 (19:30~21:30)</th>
+            <th style="width: 29%;">主日獻詩 (09:30~)</th>
+            <th style="width: 30%;">主日練唱 (12:30~14:30)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>第 1 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">11/6 ~ 11/8</span></td>
+            <td>
+              <span class="badge badge-fri">11/6 (五)</span>
+              <div class="song-item">
+                <div class="song-title">讚美愛疼之主_11/8</div>
+                <div class="song-book">(歡欣讚美27 p.26)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">為咱之上帝開大路_11/15</div>
+                <div class="song-book">(往伯利恆的路 p.16)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">基督降生伯利恆</div>
+                <div class="song-book">(往伯利恆的路 p.78)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">11/8 (日)</span>
+              <div class="song-item">
+                <div class="song-title">讚美愛疼之主</div>
+                <div class="song-book">(歡欣讚美27 p.26)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">11/8 (日)</span>
+              <div class="song-item">
+                <div class="song-title">基督降生伯利恆</div>
+                <div class="song-book">(往伯利恆的路 p.78)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">往伯利恆的路</div>
+                <div class="song-book">(往伯利恆的路 p.4)</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>第 2 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">11/13 ~ 11/15</span></td>
+            <td>
+              <span class="badge badge-fri">11/13 (五)</span>
+              <div class="song-item">
+                <div class="song-title">為咱之上帝開大路_11/15</div>
+                <div class="song-book">(往伯利恆的路 p.16)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">往伯利恆的路</div>
+                <div class="song-book">(往伯利恆的路 p.4)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">11/15 (日)</span>
+              <div class="song-item">
+                <div class="song-title">為咱之上帝開大路</div>
+                <div class="song-book">(往伯利恆的路 p.16)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">11/15 (日)</span>
+              <div class="song-item">
+                <div class="song-title">往伯利恆的路</div>
+                <div class="song-book">(往伯利恆的路 p.4)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">請來，彌賽亞</div>
+                <div class="song-book">(往伯利恆的路 p.27)</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>第 3 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">11/20 ~ 11/22</span></td>
+            <td>
+              <span class="badge badge-fri">11/20 (五)</span>
+              <div class="song-item">
+                <div class="song-title">請來，彌賽亞_11/29</div>
+                <div class="song-book">(往伯利恆的路 p.27)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">基督降生伯利恆</div>
+                <div class="song-book">(往伯利恆的路 p.78)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">11/22 (日)</span>
+              <div class="song-item">
+                <div class="song-title">雅音合唱團</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">11/22 (日)</span>
+              <div class="song-item">
+                <div class="song-title">請來，彌賽亞</div>
+                <div class="song-book">(往伯利恆的路 p.27)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">基督降生伯利恆</div>
+                <div class="song-book">(往伯利恆的路 p.78)</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>第 4 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">11/27 ~ 11/29</span></td>
+            <td>
+              <span class="badge badge-fri">11/27 (五)</span>
+              <div class="song-item">
+                <div class="song-title">請來，彌賽亞_11/29</div>
+                <div class="song-book">(往伯利恆的路 p.27)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">基督降生伯利恆</div>
+                <div class="song-book">(往伯利恆的路 p.78)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">11/29 (日)</span>
+              <div class="song-item">
+                <div class="song-title">請來，彌賽亞</div>
+                <div class="song-book">(往伯利恆的路 p.27)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">11/29 (日)</span>
+              <div class="song-item">
+                <div class="song-title">旅程</div>
+                <div class="song-book">(往伯利恆的路 p.68)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">基督降生伯利恆</div>
+                <div class="song-book">(往伯利恆的路 p.78)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">佇曠野之牧者</div>
+                <div class="song-book">(往伯利恆的路 p.46)</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>第 5 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">12/4 ~ 12/6</span></td>
+            <td>
+              <span class="badge badge-fri">12/4 (五)</span>
+              <div class="song-item">
+                <div class="song-title">旅程</div>
+                <div class="song-book">(往伯利恆的路 p.68)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">牧者之搖籃曲</div>
+                <div class="song-book">(往伯利恆的路 p.58)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">佇曠野之牧者_12/13</div>
+                <div class="song-book">(往伯利恆的路 p.46)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">12/6 (日)</span>
+              <div class="song-item">
+                <div class="song-title">敬拜團</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">12/6 (日)</span>
+              <div class="song-item">
+                <div class="song-title" style="color: var(--accent);">總複習 & 樂團</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>第 6 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">12/11 ~ 12/13</span></td>
+            <td>
+              <span class="badge badge-fri">12/11 (五)</span>
+              <div class="song-item">
+                <div class="song-title">佇曠野之牧者_12/13</div>
+                <div class="song-book">(往伯利恆的路 p.46)</div>
+              </div>
+              <div class="song-item">
+                <div class="song-title">複習</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">12/13 (日)</span>
+              <div class="song-item">
+                <div class="song-title">佇曠野之牧者</div>
+                <div class="song-book">(往伯利恆的路 p.46)</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">12/13 (日)</span>
+              <div class="song-item">
+                <div class="song-title" style="color: var(--accent);">總複習 & 樂團</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr style="background: #fff8f6;">
+            <td><strong>第 7 週</strong><br><span style="color:#b91c1c; font-weight:700; font-size:0.85rem;">12/18 ~ 12/20</span></td>
+            <td>
+              <span class="badge badge-fri">12/18 (五)</span>
+              <div class="song-item">
+                <div class="song-title" style="color: #b91c1c;">總複習</div>
+              </div>
+            </td>
+            <td colspan="2">
+              <div class="service-highlight">
+                <h4>🎄 12/20 (日) 聖誕讚美禮拜獻詩程序</h4>
+                <p style="font-weight:600; margin-bottom: 6px;">往伯利恆的路 —— 朝拜新生王的旅程</p>
+                <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                  <div>
+                    <strong>【講道前】</strong>
+                    <ol>
+                      <li>往伯利恆之路 (p.4)</li>
+                      <li>為咱之上帝開大路 (p.16)</li>
+                      <li>請來，彌賽亞 (p.27)</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <strong>【講道後】</strong>
+                    <ol>
+                      <li>佇曠野之牧者 (p.46)</li>
+                      <li>牧者之搖籃曲 (p.58)</li>
+                      <li>旅程 (p.68)</li>
+                      <li>基督降生伯利恆 (p.78)</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>第 8 週</strong><br><span style="color:var(--text-muted); font-size:0.85rem;">12/25 ~ 12/27</span></td>
+            <td>
+              <span class="badge badge-fri">12/25 (五)</span>
+              <div class="song-item" style="color:var(--text-muted);">（聖誕週五）</div>
+            </td>
+            <td>
+              <span class="badge badge-sun-am">12/27 (日)</span>
+              <div class="song-item">
+                <div class="song-title">雅音合唱團</div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-sun-pm">12/27 (日)</span>
+              <div class="song-item" style="color:var(--text-muted);">-</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">🔍 各曲目練唱與獻唱反查索引</h2>
+    <div class="summary-grid">
+      <div class="song-card">
+        <h3>1. 往伯利恆之路 (p.4)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">11/8 (日) 練唱</span>
+        <span class="timeline-tag">11/13 (五) 練唱</span>
+        <span class="timeline-tag">11/15 (日) 練唱</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+
+      <div class="song-card">
+        <h3>2. 為咱之上帝開大路 (p.16)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">11/6 (五) 練唱</span>
+        <span class="timeline-tag">11/13 (五) 練唱</span>
+        <span class="timeline-tag sing">11/15 (日) 主日獻詩</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+
+      <div class="song-card">
+        <h3>3. 請來，彌賽亞 (p.27)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">11/15 (日) 練唱</span>
+        <span class="timeline-tag">11/20 (五) 練唱</span>
+        <span class="timeline-tag">11/22 (日) 練唱</span>
+        <span class="timeline-tag">11/27 (五) 練唱</span>
+        <span class="timeline-tag sing">11/29 (日) 主日獻詩</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+
+      <div class="song-card">
+        <h3>5. 佇曠野之牧者 (p.46)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">11/29 (日) 練唱</span>
+        <span class="timeline-tag">12/4 (五) 練唱</span>
+        <span class="timeline-tag">12/11 (五) 練唱</span>
+        <span class="timeline-tag sing">12/13 (日) 主日獻詩</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+
+      <div class="song-card">
+        <h3>6. 牧者之搖籃曲 (p.58)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">12/4 (五) 練唱</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+
+      <div class="song-card">
+        <h3>7. 旅程 (p.68)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">11/29 (日) 練唱</span>
+        <span class="timeline-tag">12/4 (五) 練唱</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+
+      <div class="song-card">
+        <h3>8. 基督降生伯利恆 (p.78)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:6px;">練唱與獻詩歷程：</p>
+        <span class="timeline-tag">11/6 (五) 練唱</span>
+        <span class="timeline-tag">11/8 (日) 練唱</span>
+        <span class="timeline-tag">11/20 (五) 練唱</span>
+        <span class="timeline-tag">11/22 (日) 練唱</span>
+        <span class="timeline-tag">11/27 (五) 練唱</span>
+        <span class="timeline-tag">11/29 (日) 練唱</span>
+        <span class="timeline-tag worship">12/20 (日) 聖誕讚美禮拜</span>
+      </div>
+    </div>
+
+    <footer>
+      聖歌隊練習進度表 • 擷取自 Google 試算表「本週進度」 • 資料同步於 2026-11-03
+    </footer>
+  </div>
+</body>
+</html>
