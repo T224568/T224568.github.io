@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三元大廈 — 歷期雙月管理費整理列表</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #0284c7;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --highlight: #fef08a;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header {
+      background: linear-gradient(135deg, #1e3a8a, #0369a1);
+      color: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+    .header h1 {
+      margin: 0 0 8px 0;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+    .header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 14px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card);
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .card-header {
+      padding: 16px 20px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 16px;
+      color: #334155;
+    }
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    th {
+      background-color: #f8fafc;
+      color: #475569;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    tr:hover {
+      background-color: #f8fafc;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-active {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+    .badge-special {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+    .amount {
+      font-family: "SF Mono", Menlo, Consolas, Monaco, monospace;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .bank-info {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 32px;
+      padding-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>三元大廈 — 歷期每雙月管理費整理列表</h1>
+    <p>來源：LINE 群組記事對話檔 <code>[LINE]三元大廈.txt</code> | 涵蓋期間：112年3月 ～ 115年10月（共 22 期）</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">總記錄期數</div>
+      <div class="stat-value">22 期（雙月）</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">一般期 2~7樓平均每戶</div>
+      <div class="stat-value">約 600 ~ 800 元</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">大額修繕均攤最高期</div>
+      <div class="stat-value">3,230 元 <span style="font-size:13px; font-weight:normal; color:#64748b;">(113.9-10)</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">當前最新收款期別</div>
+      <div class="stat-value">115年 9-10月</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">📊 歷次每兩個月管理費與輪值明細表</div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>期別（雙月）</th>
+            <th>公告收款日</th>
+            <th>輪值住戶 / 收款人</th>
+            <th>2~7樓 (12戶)</th>
+            <th>1樓每戶</th>
+            <th>收款帳戶</th>
+            <th>重點備註 / 特殊工程支出</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: #f0fdf4;">
+            <td><strong>115年 09-10月</strong> <span class="badge badge-active">最新收款中</span></td>
+            <td>2026/11/03</td>
+            <td>高雪粧 (232號3F)</td>
+            <td class="amount">$869</td>
+            <td class="amount">$44 (公電)</td>
+            <td class="bank-info">台北富邦 (012)<br>00500168133700</td>
+            <td>含水塔清洗報價($4,000)、消防安檢($6,500)與樓梯清潔報價討論</td>
+          </tr>
+          <tr>
+            <td><strong>115年 07-08月</strong></td>
+            <td>2026/09/01</td>
+            <td>Alice Yeh (234號4F)</td>
+            <td class="amount">$699</td>
+            <td class="amount">$42 (公電)</td>
+            <td class="bank-info">玉山銀行 (808)<br>1148976004644</td>
+            <td>消防複檢、住警器增補、地下室電錶鐵門溝通</td>
+          </tr>
+          <tr>
+            <td><strong>115年 05-06月</strong></td>
+            <td>2026/06/30</td>
+            <td>洪佳伶 (232號4F)</td>
+            <td class="amount">$860</td>
+            <td class="amount">$40</td>
+            <td class="bank-info">上海銀行 (011)<br>21203001171889</td>
+            <td>記事本收款公告</td>
+          </tr>
+          <tr>
+            <td><strong>115年 03-04月</strong></td>
+            <td>2026/04/30</td>
+            <td>李郁周 (232號5F)</td>
+            <td class="amount">$715</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">第一銀行 (007)<br>末5碼 37635</td>
+            <td>轉帳查收確認</td>
+          </tr>
+          <tr>
+            <td><strong>115年 01-02月</strong></td>
+            <td>2026/02/28</td>
+            <td>戴任寬 (234號6F)</td>
+            <td class="amount">$690</td>
+            <td class="amount">$40</td>
+            <td class="bank-info">華南銀行 (008)<br>123200180830</td>
+            <td>群組通知轉帳</td>
+          </tr>
+          <tr>
+            <td><strong>114年 11-12月</strong></td>
+            <td>2026/01/02</td>
+            <td>陈素成 (232號6F)</td>
+            <td class="amount">$700</td>
+            <td class="amount">$42</td>
+            <td class="bank-info">土地銀行 (005)<br>041003128618</td>
+            <td>一般日常運作費用</td>
+          </tr>
+          <tr>
+            <td><strong>114年 09-10月</strong></td>
+            <td>2025/11/01</td>
+            <td>許文榮 (234號7F)</td>
+            <td class="amount">$1,310</td>
+            <td class="amount">$528</td>
+            <td class="bank-info">遠東商銀 (805)<br>00200400055938</td>
+            <td>兩棟1樓各收 528 元</td>
+          </tr>
+          <tr>
+            <td><strong>114年 07-08月</strong></td>
+            <td>2025/08/31</td>
+            <td>胡宏基 (232號7F)</td>
+            <td class="amount">$1,010</td>
+            <td class="amount">$417</td>
+            <td class="bank-info">彰化銀行 (009)<br>51475196942600</td>
+            <td>建立「2025/7-8月」相簿</td>
+          </tr>
+          <tr>
+            <td><strong>114年 05-06月</strong></td>
+            <td>2025/07/04</td>
+            <td>熙卉 (234號3F)</td>
+            <td class="amount">$700</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">台新銀行 (812)<br>21101000502027</td>
+            <td>年度例行消防安檢安排</td>
+          </tr>
+          <tr>
+            <td><strong>114年 03-04月</strong></td>
+            <td>2025/05/02</td>
+            <td>高雪粧 (232號3F)</td>
+            <td class="amount">$785</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">第一銀行 (007)<br>17268134332</td>
+            <td>晚間 9:00 至貴戶收取或轉帳</td>
+          </tr>
+          <tr>
+            <td><strong>114年 01-02月</strong> <span class="badge badge-special">磁磚均攤</span></td>
+            <td>2025/03/03</td>
+            <td>Alice Yeh (234號4F)</td>
+            <td class="amount">$2,701</td>
+            <td class="amount">自收現(分攤表)</td>
+            <td class="bank-info">玉山銀行 (808)<br>1148976004644</td>
+            <td>包含去年 1 樓外牆重做磁磚費用由 2~7 樓 12 戶均攤</td>
+          </tr>
+          <tr>
+            <td><strong>113年 11-12月</strong></td>
+            <td>2025/01/03</td>
+            <td>洪佳伶 (232號4F)</td>
+            <td class="amount">$620</td>
+            <td class="amount">$35</td>
+            <td class="bank-info">上海銀行 (011)<br>21203001171889</td>
+            <td>建立相簿，支援台灣行動支付收款</td>
+          </tr>
+          <tr>
+            <td><strong>113年 09-10月</strong> <span class="badge badge-special">水塔修繕均攤</span></td>
+            <td>2024/10/29</td>
+            <td>李郁周 (232號5F)</td>
+            <td class="amount">$3,230</td>
+            <td class="amount">232號$2,390<br>234號$810</td>
+            <td class="bank-info">第一銀行 (007)<br>11150537635</td>
+            <td>含水塔清洗、修繕大額分攤，收條放住戶信箱</td>
+          </tr>
+          <tr>
+            <td><strong>113年 07-08月</strong></td>
+            <td>2024/08/30</td>
+            <td>戴任寬 (234號6F)</td>
+            <td class="amount">$610</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">華南銀行 (008)<br>123200180830</td>
+            <td>消防安檢+滅火器檢測 $6,930 由公費支出</td>
+          </tr>
+          <tr>
+            <td><strong>113年 05-06月</strong></td>
+            <td>2024/07/03</td>
+            <td>陈素成 (232號6F)</td>
+            <td class="amount">$600</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">土地銀行 (005)<br>041003128618</td>
+            <td>日常電梯保養與公共電費</td>
+          </tr>
+          <tr>
+            <td><strong>113年 03-04月</strong></td>
+            <td>2024/04/27</td>
+            <td>許文榮 (234號7F)</td>
+            <td class="amount">$1,570</td>
+            <td class="amount">$32</td>
+            <td class="bank-info">台新銀行 (812)<br>28881001228886</td>
+            <td>群組提供分攤表，響應環保取消紙本收據</td>
+          </tr>
+          <tr>
+            <td><strong>113年 01-02月</strong></td>
+            <td>2024/02/27</td>
+            <td>胡宏基 (232號7F)</td>
+            <td class="amount">$730</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">元大銀行 (806)<br>末5碼 61420</td>
+            <td>樓梯間改裝感應燈泡，提醒隨手不關開關</td>
+          </tr>
+          <tr>
+            <td><strong>112年 11-12月</strong></td>
+            <td>2023/12/19</td>
+            <td>廖丹瑩 (代232號2F)</td>
+            <td class="amount">$600</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">中華郵政 (700)<br>00110021492449</td>
+            <td>原輪值廖小姐身故，由姪女廖丹瑩代收管理費</td>
+          </tr>
+          <tr>
+            <td><strong>112年 09-10月</strong></td>
+            <td>2023/11/07</td>
+            <td>熙卉 (234號3F)</td>
+            <td class="amount">$1,300</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">台新銀行 (812)<br>21101000502038</td>
+            <td>記事本公告收據</td>
+          </tr>
+          <tr>
+            <td><strong>112年 07-08月</strong></td>
+            <td>2023/09/01</td>
+            <td>高雪粧 (232號3F)</td>
+            <td class="amount">$935</td>
+            <td class="amount">$35</td>
+            <td class="bank-info">第一銀行 (007)<br>17268134332</td>
+            <td>建立相簿</td>
+          </tr>
+          <tr>
+            <td><strong>112年 05-06月</strong></td>
+            <td>2023/06/26</td>
+            <td>Jessie廖 (232號2F)</td>
+            <td class="amount">$600</td>
+            <td class="amount">$30</td>
+            <td class="bank-info">華南銀行 (008)<br>143200141624</td>
+            <td>響應環保詢問是否需要紙本收據</td>
+          </tr>
+          <tr>
+            <td><strong>112年 03-04月</strong></td>
+            <td>2023/05/01</td>
+            <td>洪佳伶 (232號4F)</td>
+            <td class="amount">$700</td>
+            <td class="amount">依分攤表</td>
+            <td class="bank-info">上海銀行 (011)<br>21203001171889</td>
+            <td>建立「112.3-4管理費及收據」相簿</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    三元大廈管理維護資料庫 ｜ 產出時間：2026-11-03
+  </div>
+</div>
+
+</body>
+</html>
