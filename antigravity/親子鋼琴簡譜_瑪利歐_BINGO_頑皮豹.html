@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎹 親子鋼琴簡譜大百科：超級瑪利歐・BINGO・頑皮豹</title>
+<style>
+  :root {
+    --primary: #ef4444;
+    --secondary: #3b82f6;
+    --accent: #f59e0b;
+    --pink: #ec4899;
+    --green: #10b981;
+    --bg: #fffbeb;
+    --card: #ffffff;
+    --text: #1e293b;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    background-image: radial-gradient(#fde68a 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    color: var(--text);
+    margin: 0;
+    padding: 20px 14px 60px;
+  }
+  .container {
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+    color: #fff;
+    padding: 24px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.25);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  header h1 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  header p {
+    margin: 0;
+    font-size: 15px;
+    opacity: 0.95;
+    font-weight: 500;
+  }
+
+  /* Controls & Tabs */
+  .top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 14px 18px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+    border: 2px solid #fde68a;
+  }
+  .song-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tab-btn {
+    border: none;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    color: #475569;
+  }
+  .tab-btn:hover {
+    transform: translateY(-2px);
+  }
+  .tab-btn.active[data-song="mario"] {
+    background: #ef4444;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+  }
+  .tab-btn.active[data-song="bingo"] {
+    background: #10b981;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+  }
+  .tab-btn.active[data-song="panther"] {
+    background: #ec4899;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
+  }
+  .player-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-action {
+    border: none;
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+  }
+  .btn-play {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  }
+  .btn-play:hover { background: #1d4ed8; }
+  .btn-stop {
+    background: #64748b;
+    color: white;
+  }
+  .btn-stop:hover { background: #475569; }
+  .btn-print {
+    background: #f59e0b;
+    color: white;
+  }
+  .btn-print:hover { background: #d97706; }
+  .tempo-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+  .tempo-box select {
+    border: none;
+    background: transparent;
+    font-weight: 700;
+    color: #2563eb;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* Interactive Piano Keyboard */
+  .piano-wrapper {
+    background: #1e293b;
+    padding: 18px 16px 22px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    margin-bottom: 24px;
+    text-align: center;
+    position: sticky;
+    top: 8px;
+    z-index: 50;
+  }
+  .piano-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #cbd5e1;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 0 8px;
+  }
+  .piano-header span strong {
+    color: #fde047;
+  }
+  .piano-scroll {
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .piano {
+    display: inline-flex;
+    position: relative;
+    height: 156px;
+    user-select: none;
+    background: #0f172a;
+    padding: 6px;
+    border-radius: 10px;
+  }
+  .key-white {
+    width: 44px;
+    height: 144px;
+    background: linear-gradient(to bottom, #ffffff 0%, #f1f5f9 100%);
+    border: 1px solid #94a3b8;
+    border-radius: 0 0 8px 8px;
+    margin: 0 1px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 8px;
+    transition: transform 0.05s, background 0.1s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+  .key-white:active, .key-white.active {
+    background: #fde047 !important;
+    transform: translateY(3px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .key-white .num {
+    font-size: 18px;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.1;
+  }
+  .key-white .solfege {
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    margin-top: 2px;
+  }
+  .key-white .note-name {
+    font-size: 10px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+  /* Rainbow colors on bottom bar of white keys for kids */
+  .key-white[data-deg="1"] { border-bottom: 6px solid #ef4444; }
+  .key-white[data-deg="2"] { border-bottom: 6px solid #f97316; }
+  .key-white[data-deg="3"] { border-bottom: 6px solid #eab308; }
+  .key-white[data-deg="4"] { border-bottom: 6px solid #22c55e; }
+  .key-white[data-deg="5"] { border-bottom: 6px solid #3b82f6; }
+  .key-white[data-deg="6"] { border-bottom: 6px solid #6366f1; }
+  .key-white[data-deg="7"] { border-bottom: 6px solid #a855f7; }
+
+  .key-black {
+    width: 30px;
+    height: 92px;
+    background: linear-gradient(to bottom, #334155 0%, #0f172a 100%);
+    border: 1px solid #000;
+    border-radius: 0 0 6px 6px;
+    position: absolute;
+    top: 6px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 6px;
+    color: #f8fafc;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    transition: transform 0.05s, background 0.1s;
+  }
+  .key-black:active, .key-black.active {
+    background: #ec4899 !important;
+    transform: translateY(3px);
+  }
+  .key-black span {
+    font-size: 10px;
+    color: #fde047;
+    line-height: 1.1;
+  }
+
+  /* Song Sheet Card */
+  .song-section {
+    display: none;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    border: 2px solid #e2e8f0;
+  }
+  .song-section.active {
+    display: block;
+  }
+  .song-title-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px dashed #e2e8f0;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    gap: 12px;
+  }
+  .song-title-bar h2 {
+    margin: 0;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .badge-key { background: #dbeafe; color: #1e40af; }
+  .badge-beat { background: #fef3c7; color: #92400e; }
+  .badge-level { background: #dcfce7; color: #166534; }
+
+  .kid-tip {
+    background: #fffbeb;
+    border-left: 5px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 22px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .kid-tip strong {
+    color: #b45309;
+  }
+
+  .part-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #334155;
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Measure Grid */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .measure-card {
+    background: #f8fafc;
+    border: 2px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 12px 14px;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .measure-card:hover {
+    border-color: #94a3b8;
+    background: #ffffff;
+  }
+  .measure-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+  }
+  .chord-tag {
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .notes-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 54px;
+    gap: 4px;
+  }
+  .note-token {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.12s;
+    min-width: 34px;
+    user-select: none;
+  }
+  .note-token:hover {
+    background: #e2e8f0;
+    transform: scale(1.08);
+  }
+  .note-token.playing {
+    background: #fde047 !important;
+    transform: scale(1.18);
+    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.4);
+  }
+  .note-num {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.1;
+    position: relative;
+    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  }
+  /* High / Low octave dots */
+  .note-num.high::before {
+    content: "•";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: inherit;
+  }
+  .note-num.low::after {
+    content: "•";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: inherit;
+  }
+  /* Underlines for 8th / 16th notes */
+  .note-token.eighth .note-num {
+    border-bottom: 2.5px solid currentColor;
+    padding-bottom: 1px;
+  }
+  .note-token.sixteenth .note-num {
+    border-bottom: 4px double currentColor;
+    padding-bottom: 1px;
+  }
+  .note-lyric {
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    margin-top: 6px;
+    white-space: nowrap;
+  }
+  .note-finger {
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* Note Color Coding by Pitch Degree */
+  .deg-1 { color: #dc2626; }
+  .deg-2 { color: #ea580c; }
+  .deg-3 { color: #ca8a04; }
+  .deg-4 { color: #16a34a; }
+  .deg-5 { color: #2563eb; }
+  .deg-6 { color: #4f46e5; }
+  .deg-7 { color: #9333ea; }
+  .deg-sharp { color: #db2777; }
+  .deg-0 { color: #94a3b8; }
+
+  /* Left Hand & Legend Box */
+  .helper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .helper-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .helper-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .helper-card ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #475569;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .top-bar, .piano-wrapper { display: none !important; }
+    .song-section { display: block !important; page-break-after: always; border: none; box-shadow: none; padding: 10px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🎹 親子鋼琴簡譜樂園：瑪利歐・BINGO・頑皮豹</h1>
+    <p>大字彩色簡譜 ＋ 點擊發聲練習琴鍵 ＋ 自動伴奏跟彈（給小朋友自彈＆爸媽陪練）</p>
+  </header>
+
+  <!-- 頂部切換與播放控制 -->
+  <div class="top-bar">
+    <div class="song-tabs">
+      <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐</button>
+      <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌</button>
+      <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲</button>
+    </div>
+
+    <div class="player-controls">
+      <div class="tempo-box">
+        <span>🐢 速度：</span>
+        <select id="tempoSelect">
+          <option value="0.65">超慢速練習 (0.65x)</option>
+          <option value="0.8">慢速跟彈 (0.8x)</option>
+          <option value="1" selected>原速示範 (1.0x)</option>
+          <option value="1.15">歡樂加速 (1.15x)</option>
+        </select>
+      </div>
+      <button class="btn-action btn-play" id="playBtn" onclick="playCurrentSong()">▶️ 播放示範（跟著亮燈彈）</button>
+      <button class="btn-action btn-stop" onclick="stopPlayback()">⏹️ 停止</button>
+      <button class="btn-action btn-print" onclick="window.print()">🖨️ 列印全部簡譜</button>
+    </div>
+  </div>
+
+  <!-- 互動式鋼琴鍵盤 -->
+  <div class="piano-wrapper">
+    <div class="piano-header">
+      <span>👇 <strong>互動鋼琴鍵盤</strong>（可直接用滑鼠／手指點擊琴鍵彈奏，或點下方簡譜音符聽音高）</span>
+      <span id="nowPlayingText">準備就緒 ✨</span>
+    </div>
+    <div class="piano-scroll">
+      <div class="piano" id="pianoKeys">
+        <!-- 由 JS 動態生成低音 5 到高音 5 的琴鍵 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 1. 超級瑪利歐 ==================== -->
+  <section class="song-section active" id="song-mario">
+    <div class="song-title-bar">
+      <h2>🍄 超級瑪利歐兄弟 (Super Mario Bros. 主題曲)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（全白鍵為主）</span>
+        <span class="badge badge-beat">拍號：4/4 拍</span>
+        <span class="badge badge-level">難度：★★☆（節奏輕快）</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>給小朋友的彈奏秘訣：</strong><br>
+      1. 開頭最經典的「<strong>3 3 0 3 0 1 3 5</strong>」就是瑪利歐跳起來吃金幣的聲音！數字 <strong>0</strong> 代表「休息拍手不彈」。<br>
+      2. 數字上面有黑點（例如 <strong class="deg-1">1̇</strong>）代表往右邊高八度的白鍵彈；數字下面有黑點（例如 <strong class="deg-5">5̣</strong>）代表往左邊低音彈！
+    </div>
+
+    <div class="part-title">🎬 【前奏 Intro】經典開場音效（點擊任一音符可直接聽聲音！）</div>
+    <div class="score-grid" id="grid-mario-intro"></div>
+
+    <div class="part-title">🌟 【A 段主旋律】陽光冒險出發（這段重複彈 2 次！）</div>
+    <div class="score-grid" id="grid-mario-a"></div>
+
+    <div class="part-title">🔥 【B 段星星無敵旋律】黑鍵小挑戰（#4 升 Fa 是 4 右上角的黑鍵）</div>
+    <div class="score-grid" id="grid-mario-b"></div>
+  </section>
+
+  <!-- ==================== 2. BINGO 賓果歌 ==================== -->
+  <section class="song-section" id="song-bingo">
+    <div class="song-title-bar">
+      <h2>🐶 BINGO 賓果小狗歌（超好彈入門首選）</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（100% 全白鍵）</span>
+        <span class="badge badge-beat">拍號：4/4 拍</span>
+        <span class="badge badge-level">難度：★☆☆（零黑鍵・最適合初學）</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>給小朋友的彈奏秘訣：</strong><br>
+      1. 這首歌<strong>完全不用彈黑鍵</strong>！全部都在白鍵上完成，最適合第一首自彈自唱！<br>
+      2. 玩遊戲彈法：第 1 次邊彈邊唱 <strong>B-I-N-G-O</strong>，第 2 次把 <strong>B</strong> 改成「拍手 👏 不彈」，越後面拍手越多下，超級好玩！
+    </div>
+
+    <div class="part-title">🐾 【第一段】農夫有隻小狗狗</div>
+    <div class="score-grid" id="grid-bingo-a"></div>
+
+    <div class="part-title">👏 【第二段】B - I - N - G - O 拼字樂（可反覆邊拍手邊彈）</div>
+    <div class="score-grid" id="grid-bingo-b"></div>
+  </section>
+
+  <!-- ==================== 3. 頑皮豹 ==================== -->
+  <section class="song-section" id="song-panther">
+    <div class="song-title-bar">
+      <h2>🐾 頑皮豹主題曲 (The Pink Panther Theme)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：6̣ = A 小調（神秘偵探風）</span>
+        <span class="badge badge-beat">拍號：4/4 拍（搖擺爵士 Swing）</span>
+        <span class="badge badge-level">難度：★★★（半音階滑步超帥！）</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>給小朋友的彈奏秘訣：</strong><br>
+      1. 頑皮豹最迷人的就是「躡手躡腳走路」的聲音：<strong>#4̣ → 5̣ → #5̣ → 6̣</strong>（黑鍵→白鍵→黑鍵→白鍵，像爬樓梯一樣一步一步往右邊走一格）！<br>
+      2. 看到 <strong class="deg-sharp">#4（升 Fa）</strong>、<strong class="deg-sharp">#5（升 Sol）</strong>、<strong class="deg-sharp">b3（降 Mi）</strong> 時，只要看上方鋼琴鍵盤亮粉紅色的黑鍵位置就對囉！
+    </div>
+
+    <div class="part-title">🕵️ 【前奏】躡手躡腳神秘登場（黑鍵→白鍵爬樓梯）</div>
+    <div class="score-grid" id="grid-panther-intro"></div>
+
+    <div class="part-title">🎷 【A 段主題】酷帥偵探搖擺旋律</div>
+    <div class="score-grid" id="grid-panther-a"></div>
+
+    <div class="part-title">✨ 【B 段高潮】結尾帥氣轉音</div>
+    <div class="score-grid" id="grid-panther-b"></div>
+  </section>
+
+  <!-- 底部輔助教學區 -->
+  <div class="helper-grid">
+    <div class="helper-card">
+      <h4>🖐️ 右手手指編號小幫手</h4>
+      <ul>
+        <li><strong>第 1 指</strong>：大拇指 👍（最常彈 1 Do 或低音 5̣）</li>
+        <li><strong>第 2 指</strong>：食指 ☝️（彈 2 Re）</li>
+        <li><strong>第 3 指</strong>：中指 🖐️（彈 3 Mi 或黑鍵滑音）</li>
+        <li><strong>第 4 指</strong>：無名指 💍（彈 4 Fa）</li>
+        <li><strong>第 5 指</strong>：小拇指 🤙（彈 5 Sol 或高音 6 La）</li>
+      </ul>
+    </div>
+    <div class="helper-card">
+      <h4>📖 簡譜符號一秒看懂</h4>
+      <ul>
+        <li><strong>1 2 3 4 5 6 7</strong> ＝ Do Re Mi Fa Sol La Si（白鍵）</li>
+        <li><strong>0</strong> ＝ 休止符（休息一下不彈，可以在心裡默數一拍）</li>
+        <li><strong>—</strong> ＝ 延長音（按住琴鍵不放，讓聲音延續下去）</li>
+        <li><strong>#4 / #5 / b3</strong> ＝ 黑鍵（升4＝4右邊黑鍵；降3＝3左邊黑鍵）</li>
+      </ul>
+    </div>
+    <div class="helper-card">
+      <h4>🎹 爸媽陪彈：超簡單左手伴奏</h4>
+      <ul>
+        <li>小節卡片右上角標註 <strong>[C]</strong>：左手單指彈低音 <strong>1 (Do)</strong> 或雙音 <strong>1+5</strong></li>
+        <li>標註 <strong>[G]</strong>：左手單指彈低音 <strong>5̣ (Sol)</strong></li>
+        <li>標註 <strong>[F]</strong>：左手單指彈低音 <strong>4 (Fa)</strong></li>
+        <li>標註 <strong>[Am]</strong>：左手單指彈低音 <strong>6̣ (La)</strong>（頑皮豹主音！）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== 1. 鋼琴鍵盤定義 (G3 低音5 ~ G5 高音5) ====================
+const PIANO_KEYS = [
+  { id: 'G3',  type: 'white', num: '5̣', sol: 'Sol', deg: '5', freq: 196.00 },
+  { id: 'G#3', type: 'black', num: '#5̣', sol: '#Sol', freq: 207.65, leftIdx: 1 },
+  { id: 'A3',  type: 'white', num: '6̣', sol: 'La',  deg: '6', freq: 220.00 },
+  { id: 'A#3', type: 'black', num: 'b7̣', sol: 'bSi', freq: 233.08, leftIdx: 2 },
+  { id: 'B3',  type: 'white', num: '7̣', sol: 'Si',  deg: '7', freq: 246.94 },
+
+  // 中音區 (C4 - B4)
+  { id: 'C4',  type: 'white', num: '1',  sol: 'Do',  deg: '1', freq: 261.63 },
+  { id: 'C#4', type: 'black', num: '#1', sol: '#Do', freq: 277.18, leftIdx: 4 },
+  { id: 'D4',  type: 'white', num: '2',  sol: 'Re',  deg: '2', freq: 293.66 },
+  { id: 'D#4', type: 'black', num: 'b3', sol: 'bMi', freq: 311.13, leftIdx: 5 },
+  { id: 'E4',  type: 'white', num: '3',  sol: 'Mi',  deg: '3', freq: 329.63 },
+  { id: 'F4',  type: 'white', num: '4',  sol: 'Fa',  deg: '4', freq: 349.23 },
+  { id: 'F#4', type: 'black', num: '#4', sol: '#Fa', freq: 369.99, leftIdx: 7 },
+  { id: 'G4',  type: 'white', num: '5',  sol: 'Sol', deg: '5', freq: 392.00 },
+  { id: 'G#4', type: 'black', num: '#5', sol: '#Sol', freq: 415.30, leftIdx: 8 },
+  { id: 'A4',  type: 'white', num: '6',  sol: 'La',  deg: '6', freq: 440.00 },
+  { id: 'A#4', type: 'black', num: 'b7', sol: 'bSi', freq: 466.16, leftIdx: 9 },
+  { id: 'B4',  type: 'white', num: '7',  sol: 'Si',  deg: '7', freq: 493.88 },
+
+  // 高音區 (C5 - G5)
+  { id: 'C5',  type: 'white', num: '1̇', sol: '高Do', deg: '1', freq: 523.25 },
+  { id: 'C#5', type: 'black', num: '#1̇', sol: '#Do', freq: 554.37, leftIdx: 11 },
+  { id: 'D5',  type: 'white', num: '2̇', sol: '高Re', deg: '2', freq: 587.33 },
+  { id: 'D#5', type: 'black', num: 'b3̇', sol: 'bMi', freq: 622.25, leftIdx: 12 },
+  { id: 'E5',  type: 'white', num: '3̇', sol: '高Mi', deg: '3', freq: 659.25 },
+  { id: 'F5',  type: 'white', num: '4̇', sol: '高Fa', deg: '4', freq: 698.46 },
+  { id: 'F#5', type: 'black', num: '#4̇', sol: '#Fa', freq: 739.99, leftIdx: 14 },
+  { id: 'G5',  type: 'white', num: '5̇', sol: '高Sol', deg: '5', freq: 783.99 }
+];
+
+// 補充低音 #4̣ (F#3) 供頑皮豹前奏使用
+const EXTRA_FREQ = {
+  'F#3': 185.00
+};
+
+const KEY_MAP = {};
+PIANO_KEYS.forEach(k => KEY_MAP[k.id] = k);
+
+function renderPiano() {
+  const container = document.getElementById('pianoKeys');
+  container.innerHTML = '';
+  const whiteWidth = 46; // 44px + 2px margin
+
+  PIANO_KEYS.filter(k => k.type === 'white').forEach((k) => {
+    const el = document.createElement('div');
+    el.className = 'key-white';
+    el.id = `key-${k.id}`;
+    el.dataset.deg = k.deg;
+    el.innerHTML = `
+      <div class="num">${k.num}</div>
+      <div class="solfege">${k.sol}</div>
+      <div class="note-name">${k.id}</div>
+    `;
+    el.addEventListener('mousedown', () => triggerNote(k.id, 0.45));
+    el.addEventListener('touchstart', (e) => { e.preventDefault(); triggerNote(k.id, 0.45); });
+    container.appendChild(el);
+  });
+
+  PIANO_KEYS.filter(k => k.type === 'black').forEach((k) => {
+    const el = document.createElement('div');
+    el.className = 'key-black';
+    el.id = `key-${k.id}`;
+    el.style.left = `${6 + k.leftIdx * whiteWidth - 15}px`;
+    el.innerHTML = `<div>${k.num}</div><span>${k.sol}</span>`;
+    el.addEventListener('mousedown', (e) => { e.stopPropagation(); triggerNote(k.id, 0.45); });
+    el.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); triggerNote(k.id, 0.45); });
+    container.appendChild(el);
+  });
+}
+
+// ==================== 2. Web Audio 鋼琴合成音效 ====================
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playTone(noteId, durationSec = 0.4) {
+  if (!noteId || noteId === 'REST') return;
+  initAudio();
+  const keyObj = KEY_MAP[noteId];
+  const freq = keyObj ? keyObj.freq : EXTRA_FREQ[noteId];
+  if (!freq) return;
+
+  const now = audioCtx.currentTime;
+  const osc1 = audioCtx.createOscillator();
+  const osc2 = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  // 溫暖清脆的電鋼琴音色 (Triangle + Sine 泛音)
+  osc1.type = 'triangle';
+  osc1.frequency.setValueAtTime(freq, now);
+
+  osc2.type = 'sine';
+  osc2.frequency.setValueAtTime(freq * 2, now);
+
+  const subGain = audioCtx.createGain();
+  subGain.gain.setValueAtTime(0.18, now);
+
+  gain.gain.setValueAtTime(0.001, now);
+  gain.gain.exponentialRampToValueAtTime(0.45, now + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.15, now + durationSec * 0.6);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + durationSec);
+
+  osc1.connect(gain);
+  osc2.connect(subGain);
+  subGain.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc1.start(now);
+  osc2.start(now);
+  osc1.stop(now + durationSec);
+  osc2.stop(now + durationSec);
+}
+
+function triggerNote(noteId, dur = 0.4) {
+  playTone(noteId, dur);
+  const keyEl = document.getElementById(`key-${noteId}`);
+  if (keyEl) {
+    keyEl.classList.add('active');
+    setTimeout(() => keyEl.classList.remove('active'), Math.min(dur * 850, 350));
+  }
+  const k = KEY_MAP[noteId];
+  if (k) {
+    document.getElementById('nowPlayingText').innerHTML = `🎵 正在發聲：<strong>${k.num} (${k.sol} / ${k.id})</strong>`;
+  }
+}
+
+// ==================== 3. 三首歌曲完整簡譜資料庫 ====================
+// 每個 note: { disp: 顯示數字, oct: 'high'|'low'|'', dur: 拍數, key: 對應琴鍵ID, lyr: 歌詞/提示, deg: 顏色等級 }
+const SONGS_DATA = {
+  mario: {
+    bpm: 150,
+    sections: {
+      'grid-mario-intro': [
+        {
+          measure: 1, chord: 'C',
+          notes: [
+            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: '噠', deg: '3' },
+            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: '噠', deg: '3' },
+            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: '噠', deg: '3' },
+            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: '叮', deg: '1' },
+            { disp: '3', oct: 'high', dur: 1.0, key: 'E5', lyr: '噹！', deg: '3' }
+          ]
+        },
+        {
+          measure: 2, chord: 'G',
+          notes: [
+            { disp: '5', oct: 'high', dur: 1.0, key: 'G5', lyr: '跳！', deg: '5' },
+            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(空)', deg: '0' },
+            { disp: '5', oct: '',     dur: 1.0, key: 'G4', lyr: '低Sol', deg: '5' },
+            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(空)', deg: '0' }
+          ]
+        }
+      ],
+      'grid-mario-a': [
+        {
+          measure: 3, chord: 'C',
+          notes: [
+            { disp: '1', oct: 'high', dur: 1.5, key: 'C5', lyr: '高Do', deg: '1' },
+            { disp: '5', oct: '',     dur: 1.5, key: 'G4', lyr: 'Sol', deg: '5' },
+            { disp: '3', oct: '',     dur: 1.0, key: 'E4', lyr: 'Mi', deg: '3' }
+          ]
+        },
+        {
+          measure: 4, chord: 'F → G',
+          notes: [
+            { disp: '6', oct: '',     dur: 1.0, key: 'A4', lyr: 'La', deg: '6' },
+            { disp: '7', oct: '',     dur: 1.0, key: 'B4', lyr: 'Si', deg: '7' },
+            { disp: 'b7',oct: '',     dur: 0.5, key: 'A#4',lyr: '黑鍵', deg: 'sharp' },
+            { disp: '6', oct: '',     dur: 1.5, key: 'A4', lyr: 'La', deg: '6' }
+          ]
+        },
+        {
+          measure: 5, chord: 'C → Am',
+          notes: [
+            { disp: '5', oct: '',     dur: 0.7, key: 'G4', lyr: 'Sol', deg: '5' },
+            { disp: '3', oct: 'high', dur: 0.7, key: 'E5', lyr: '高Mi', deg: '3' },
+            { disp: '5', oct: 'high', dur: 0.6, key: 'G5', lyr: '高Sol', deg: '5' },
+            { disp: '6', oct: 'high', dur: 1.0, key: 'A4', lyr: 'La', deg: '6' },
+            { disp: '4', oct: 'high', dur: 0.5, key: 'F5', lyr: '高Fa', deg: '4' },
+            { disp: '5', oct: 'high', dur: 0.5, key: 'G5', lyr: '高Sol', deg: '5' }
+          ]
+        },
+        {
+          measure: 6, chord: 'G',
+          notes: [
+            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '3', oct: 'high', dur: 1.0, key: 'E5', lyr: '高Mi', deg: '3' },
+            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: '高Do', deg: '1' },
+            { disp: '2', oct: 'high', dur: 0.5, key: 'D5', lyr: '高Re', deg: '2' },
+            { disp: '7', oct: '',     dur: 1.5, key: 'B4', lyr: 'Si—', deg: '7' }
+          ]
+        }
+      ],
+      'grid-mario-b': [
+        {
+          measure: 7, chord: 'C',
+          notes: [
+            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '5', oct: 'high', dur: 0.5, key: 'G5', lyr: 'Sol', deg: '5' },
+            { disp: '#4',oct: 'high', dur: 0.5, key: 'F#5',lyr: '升Fa', deg: 'sharp' },
+            { disp: '4', oct: 'high', dur: 0.5, key: 'F5', lyr: 'Fa', deg: '4' },
+            { disp: 'b3',oct: 'high', dur: 1.0, key: 'D#5',lyr: '降Mi', deg: 'sharp' },
+            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: 'Mi', deg: '3' }
+          ]
+        },
+        {
+          measure: 8, chord: 'F → C',
+          notes: [
+            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '#5',oct: '',     dur: 0.5, key: 'G#4',lyr: '升Sol', deg: 'sharp' },
+            { disp: '6', oct: '',     dur: 0.5, key: 'A4', lyr: 'La', deg: '6' },
+            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: '高Do', deg: '1' },
+            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '6', oct: '',     dur: 0.5, key: 'A4', lyr: 'La', deg: '6' },
+            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: 'Do', deg: '1' },
+            { disp: '2', oct: 'high', dur: 0.5, key: 'D5', lyr: 'Re', deg: '2' }
+          ]
+        },
+        {
+          measure: 9, chord: 'Ab → Bb',
+          notes: [
+            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: 'b3',oct: 'high', dur: 1.0, key: 'D#5',lyr: '降Mi', deg: 'sharp' },
+            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
+            { disp: '2', oct: 'high', dur: 1.5, key: 'D5', lyr: '高Re', deg: '2' }
+          ]
+        },
+        {
+          measure: 10, chord: 'C (過關！)',
+          notes: [
+            { disp: '1', oct: 'high', dur: 2.0, key: 'C5', lyr: '高Do—', deg: '1' },
+            { disp: '0', oct: '',     dur: 2.0, key: 'REST', lyr: '🎉完成', deg: '0' }
+          ]
+        }
+      ]
+    }
+  },
+
+  bingo: {
+    bpm: 116,
+    sections: {
+      'grid-bingo-a': [
+        {
+          measure: 1, chord: 'C',
+          notes: [
+            { disp: '5', oct: 'low', dur: 1.0, key: 'G3', lyr: '農 (There)', deg: '5' },
+            { disp: '1', oct: '',    dur: 0.5, key: 'C4', lyr: '夫 (was)', deg: '1' },
+            { disp: '1', oct: '',    dur: 0.5, key: 'C4', lyr: '有 (a)', deg: '1' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '隻 (farm-)', deg: '1' },
+            { disp: '5', oct: 'low', dur: 0.5, key: 'G3', lyr: '小 (er)', deg: '5' },
+            { disp: '6', oct: 'low', dur: 0.5, key: 'A3', lyr: '狗 (had)', deg: '6' }
+          ]
+        },
+        {
+          measure: 2, chord: 'G → C',
+          notes: [
+            { disp: '7', oct: 'low', dur: 0.5, key: 'B3', lyr: '狗 (a)', deg: '7' },
+            { disp: '5', oct: 'low', dur: 0.5, key: 'G3', lyr: '呀 (dog)', deg: '5' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '名 (and)', deg: '1' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '字 (Bin-)', deg: '1' },
+            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: '叫 (go)', deg: '2' },
+            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: '做 (was)', deg: '2' }
+          ]
+        },
+        {
+          measure: 3, chord: 'G',
+          notes: [
+            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: '賓 (his)', deg: '3' },
+            { disp: '1', oct: '',    dur: 1.5, key: 'C4', lyr: '果 (name-o!)', deg: '1' },
+            { disp: '0', oct: '',    dur: 1.5, key: 'REST', lyr: '(呼吸)', deg: '0' }
+          ]
+        }
+      ],
+      'grid-bingo-b': [
+        {
+          measure: 4, chord: 'C',
+          notes: [
+            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: 'B !', deg: '3' },
+            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: 'I !', deg: '3' },
+            { disp: '4', oct: '',    dur: 0.5, key: 'F4', lyr: 'N -', deg: '4' },
+            { disp: '4', oct: '',    dur: 0.5, key: 'F4', lyr: 'G -', deg: '4' },
+            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: 'O !', deg: '3' }
+          ]
+        },
+        {
+          measure: 5, chord: 'F',
+          notes: [
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: 'B !', deg: '1' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: 'I !', deg: '1' },
+            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: 'N -', deg: '2' },
+            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: 'G -', deg: '2' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: 'O !', deg: '1' }
+          ]
+        },
+        {
+          measure: 6, chord: 'G',
+          notes: [
+            { disp: '2', oct: '',    dur: 1.0, key: 'D4', lyr: 'B !', deg: '2' },
+            { disp: '2', oct: '',    dur: 1.0, key: 'D4', lyr: 'I !', deg: '2' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4', lyr: 'N -', deg: '3' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4', lyr: 'G -', deg: '3' },
+            { disp: '2', oct: '',    dur: 1.0, key: 'D4', lyr: 'O !', deg: '2' }
+          ]
+        },
+        {
+          measure: 7, chord: 'G → C',
+          notes: [
+            { disp: '5', oct: '',    dur: 0.5, key: 'G4', lyr: '牠 (And)', deg: '5' },
+            { disp: '4', oct: '',    dur: 0.5, key: 'F4', lyr: '名 (Bin-)', deg: '4' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4', lyr: '字 (go)', deg: '3' },
+            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: '叫 (was)', deg: '2' },
+            { disp: '1', oct: '',    dur: 0.5, key: 'C4', lyr: '賓 (his)', deg: '1' },
+            { disp: '7', oct: 'low', dur: 0.5, key: 'B3', lyr: '果 (name)', deg: '7' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '喲！(O!)', deg: '1' }
+          ]
+        }
+      ]
+    }
+  },
+
+  panther: {
+    bpm: 112,
+    sections: {
+      'grid-panther-intro': [
+        {
+          measure: 1, chord: 'Am (神秘爬梯)',
+          notes: [
+            { disp: '#4',oct: 'low', dur: 0.5, key: 'F#3', lyr: '躡', deg: 'sharp' },
+            { disp: '5', oct: 'low', dur: 1.5, key: 'G3',  lyr: '手—', deg: '5' },
+            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '躡', deg: 'sharp' },
+            { disp: '6', oct: 'low', dur: 1.5, key: 'A3',  lyr: '腳—', deg: '6' }
+          ]
+        }
+      ],
+      'grid-panther-a': [
+        {
+          measure: 2, chord: 'Am',
+          notes: [
+            { disp: '#4',oct: 'low', dur: 0.5, key: 'F#3', lyr: '巴', deg: 'sharp' },
+            { disp: '5', oct: 'low', dur: 0.5, key: 'G3',  lyr: '拉', deg: '5' },
+            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '巴', deg: 'sharp' },
+            { disp: '6', oct: 'low', dur: 0.5, key: 'A3',  lyr: '拉', deg: '6' },
+            { disp: 'b3',oct: '',    dur: 0.5, key: 'D#4', lyr: '降Mi', deg: 'sharp' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' },
+            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '#Sol', deg: 'sharp' },
+            { disp: '6', oct: 'low', dur: 0.5, key: 'A3',  lyr: 'La', deg: '6' }
+          ]
+        },
+        {
+          measure: 3, chord: 'F → C',
+          notes: [
+            { disp: '7', oct: 'low', dur: 0.5, key: 'B3',  lyr: 'Si', deg: '7' },
+            { disp: '1', oct: '',    dur: 1.0, key: 'C4',  lyr: 'Do—', deg: '1' },
+            { disp: '#4',oct: '',    dur: 0.5, key: 'F#4', lyr: '升Fa', deg: 'sharp' },
+            { disp: '5', oct: '',    dur: 1.0, key: 'G4',  lyr: 'Sol—', deg: '5' },
+            { disp: '1', oct: '',    dur: 0.5, key: 'C4',  lyr: 'Do', deg: '1' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' }
+          ]
+        },
+        {
+          measure: 4, chord: 'E7 → Am',
+          notes: [
+            { disp: '#4',oct: '',    dur: 0.5, key: 'F#4', lyr: '升Fa', deg: 'sharp' },
+            { disp: '4', oct: '',    dur: 1.5, key: 'F4',  lyr: 'Fa—', deg: '4' },
+            { disp: '3', oct: '',    dur: 0.4, key: 'E4',  lyr: 'Mi', deg: '3' },
+            { disp: '1', oct: '',    dur: 0.4, key: 'C4',  lyr: 'Do', deg: '1' },
+            { disp: '6', oct: 'low', dur: 0.4, key: 'A3',  lyr: 'La', deg: '6' },
+            { disp: '5', oct: 'low', dur: 0.4, key: 'G3',  lyr: 'Sol', deg: '5' },
+            { disp: '6', oct: 'low', dur: 1.2, key: 'A3',  lyr: 'La—！', deg: '6' }
+          ]
+        }
+      ],
+      'grid-panther-b': [
+        {
+          measure: 5, chord: 'Am → Dm',
+          notes: [
+            { disp: '#4',oct: 'low', dur: 0.5, key: 'F#3', lyr: '巴', deg: 'sharp' },
+            { disp: '5', oct: 'low', dur: 0.5, key: 'G3',  lyr: '拉', deg: '5' },
+            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '巴', deg: 'sharp' },
+            { disp: '6', oct: 'low', dur: 0.5, key: 'A3',  lyr: '拉', deg: '6' },
+            { disp: 'b3',oct: '',    dur: 0.5, key: 'D#4', lyr: '降Mi', deg: 'sharp' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' },
+            { disp: '#4',oct: '',    dur: 0.5, key: 'F#4', lyr: '升Fa', deg: 'sharp' },
+            { disp: '5', oct: '',    dur: 0.5, key: 'G4',  lyr: 'Sol', deg: '5' }
+          ]
+        },
+        {
+          measure: 6, chord: 'G → C',
+          notes: [
+            { disp: '#5',oct: '',    dur: 0.5, key: 'G#4', lyr: '升Sol', deg: 'sharp' },
+            { disp: '6', oct: '',    dur: 1.0, key: 'A4',  lyr: '高La—', deg: '6' },
+            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' },
+            { disp: '5', oct: '',    dur: 0.5, key: 'G4',  lyr: 'Sol', deg: '5' },
+            { disp: '1', oct: 'high', dur: 0.5, key: 'C5',  lyr: '高Do', deg: '1' },
+            { disp: '7', oct: '',    dur: 1.0, key: 'B4',  lyr: 'Si—', deg: '7' }
+          ]
+        },
+        {
+          measure: 7, chord: 'Am (帥氣收尾)',
+          notes: [
+            { disp: '6', oct: '',    dur: 0.4, key: 'A4',  lyr: 'La', deg: '6' },
+            { disp: '5', oct: '',    dur: 0.4, key: 'G4',  lyr: 'Sol', deg: '5' },
+            { disp: '3', oct: '',    dur: 0.4, key: 'E4',  lyr: 'Mi', deg: '3' },
+            { disp: '2', oct: '',    dur: 0.4, key: 'D4',  lyr: 'Re', deg: '2' },
+            { disp: '6', oct: 'low', dur: 2.0, key: 'A3',  lyr: 'La—🐾', deg: '6' }
+          ]
+        }
+      ]
+    }
+  }
+};
+
+// ==================== 4. 渲染簡譜卡片 ====================
+function renderAllScores() {
+  Object.keys(SONGS_DATA).forEach(songKey => {
+    const sections = SONGS_DATA[songKey].sections;
+    Object.keys(sections).forEach(gridId => {
+      const gridEl = document.getElementById(gridId);
+      if (!gridEl) return;
+      gridEl.innerHTML = '';
+
+      sections[gridId].forEach((mObj) => {
+        const card = document.createElement('div');
+        card.className = 'measure-card';
+
+        const header = document.createElement('div');
+        header.className = 'measure-header';
+        header.innerHTML = `<span>第 ${mObj.measure} 小節</span><span class="chord-tag">${mObj.chord}</span>`;
+        card.appendChild(header);
+
+        const row = document.createElement('div');
+        row.className = 'notes-row';
+
+        mObj.notes.forEach((n) => {
+          const token = document.createElement('div');
+          const durClass = n.dur <= 0.45 ? 'sixteenth' : (n.dur <= 0.6 ? 'eighth' : '');
+          token.className = `note-token ${durClass}`;
+          const octClass = n.oct === 'high' ? 'high' : (n.oct === 'low' ? 'low' : '');
+
+          token.innerHTML = `
+            <div class="note-num ${octClass} deg-${n.deg}">${n.disp}</div>
+            <div class="note-lyric">${n.lyr}</div>
+          `;
+          token.addEventListener('click', () => {
+            token.classList.add('playing');
+            setTimeout(() => token.classList.remove('playing'), 300);
+            triggerNote(n.key, 0.5);
+          });
+          n._el = token;
+          row.appendChild(token);
+        });
+
+        card.appendChild(row);
+        gridEl.appendChild(card);
+      });
+    });
+  });
+}
+
+// ==================== 5. 歌曲切換與自動播放引擎 ====================
+let currentSong = 'mario';
+let playTimeouts = [];
+let isPlaying = false;
+
+function switchSong(songKey) {
+  stopPlayback();
+  currentSong = songKey;
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.song === songKey);
+  });
+  document.querySelectorAll('.song-section').forEach(sec => {
+    sec.classList.toggle('active', sec.id === `song-${songKey}`);
+  });
+}
+
+function stopPlayback() {
+  playTimeouts.forEach(t => clearTimeout(t));
+  playTimeouts = [];
+  isPlaying = false;
+  document.querySelectorAll('.note-token.playing').forEach(el => el.classList.remove('playing'));
+  document.querySelectorAll('.key-white.active, .key-black.active').forEach(el => el.classList.remove('active'));
+  document.getElementById('playBtn').innerHTML = '▶️ 播放示範（跟著亮燈彈）';
+  document.getElementById('nowPlayingText').innerHTML = '準備就緒 ✨';
+}
+
+function playCurrentSong() {
+  if (isPlaying) {
+    stopPlayback();
+    return;
+  }
+  initAudio();
+  isPlaying = true;
+  document.getElementById('playBtn').innerHTML = '⏸️ 播放中...（點此暫停）';
+
+  const songObj = SONGS_DATA[currentSong];
+  const speedRatio = parseFloat(document.getElementById('tempoSelect').value) || 1.0;
+  const beatSec = (60 / songObj.bpm) / speedRatio;
+
+  let accumulatedSec = 0.1;
+  Object.keys(songObj.sections).forEach(gridId => {
+    songObj.sections[gridId].forEach(mObj => {
+      mObj.notes.forEach(n => {
+        const noteDurSec = n.dur * beatSec;
+        const startMs = accumulatedSec * 1000;
+        const durMs = noteDurSec * 900;
+
+        const tId = setTimeout(() => {
+          if (!isPlaying) return;
+          if (n._el) {
+            n._el.classList.add('playing');
+            setTimeout(() => n._el.classList.remove('playing'), durMs);
+          }
+          if (n.key !== 'REST') {
+            triggerNote(n.key, noteDurSec * 0.92);
+          } else {
+            document.getElementById('nowPlayingText').innerHTML = `🤫 休止符（休息拍手）`;
+          }
+        }, startMs);
+
+        playTimeouts.push(tId);
+        accumulatedSec += noteDurSec;
+      });
+    });
+  });
+
+  const endId = setTimeout(() => {
+    stopPlayback();
+  }, accumulatedSec * 1000 + 200);
+  playTimeouts.push(endId);
+}
+
+// 初始化
+renderPiano();
+renderAllScores();
+</script>
+</body>
+</html>
