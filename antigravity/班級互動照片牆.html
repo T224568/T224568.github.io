@@ -788,6 +788,37 @@ button:disabled { background: #ccc; cursor: not-allowed; }
   to   { transform:translateY(-3px) scale(1.05); }
 }
 
+
+/* 🌟 下拉式選單手動挑選器樣式 */
+.slot-select-dropdown {
+    width: 140px;
+    max-width: 155px;
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    background: #ffffff;
+    border: 2px solid #ffb300;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin: 0 !important;
+}
+.slot-select-dropdown:focus {
+    border-color: #ff6f00;
+    box-shadow: 0 0 0 3px rgba(255,179,0,0.3);
+}
+@media (max-width: 600px) {
+    .slot-select-dropdown {
+        width: 105px !important;
+        font-size: 13px !important;
+        padding: 6px 4px !important;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -1458,21 +1489,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <h2 style="margin-top:30px; color:#ff9800;">🎰 9202 AI 寵物抽籤機</h2>
     
     <div class="slot-machine">
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🐾 動物</div>
             <div class="slot-reel" id="slot-1" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9202-1" onchange="onManualSelectSlot('9202', 1, this.value)" style="border-color:#ffb74d;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">📍 地點</div>
             <div class="slot-reel" id="slot-2" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9202-2" onchange="onManualSelectSlot('9202', 2, this.value)" style="border-color:#ffb74d;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🎒 物品</div>
             <div class="slot-reel" id="slot-3" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9202-3" onchange="onManualSelectSlot('9202', 3, this.value)" style="border-color:#ffb74d;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🎨 畫風</div>
             <div class="slot-reel" id="slot-4" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9202-4" onchange="onManualSelectSlot('9202', 4, this.value)" style="border-color:#ffb74d;"></select>
         </div>
         <button onclick="spinSlot()" style="background:#4CAF50; width:100%; font-size:22px; padding:15px; margin-top:5px; border-radius:10px;">點我開始抽籤</button>
     </div>
@@ -1507,20 +1542,20 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     <div class="travel-draw-box">
         <div class="travel-results">
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:10px 8px;">
                 <div class="travel-card-label">📍 旅行目的地</div>
                 <div class="travel-card-value" id="travel-location-result">準備抽籤</div>
-                
+                <select class="slot-select-dropdown" id="sel-travel-location" onchange="onManualSelectTravel('location', this.value)" style="width:100%; max-width:none; border-color:#00897b; margin-top:6px !important;"></select>
             </div>
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:10px 8px;">
                 <div class="travel-card-label">🎭 你的旅行夥伴</div>
                 <div class="travel-card-value" id="travel-character-result">準備抽籤</div>
-                
+                <select class="slot-select-dropdown" id="sel-travel-character" onchange="onManualSelectTravel('character', this.value)" style="width:100%; max-width:none; border-color:#00897b; margin-top:6px !important;"></select>
             </div>
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:10px 8px;">
                 <div class="travel-card-label">🤣 你們正在做</div>
                 <div class="travel-card-value" id="travel-event-result">準備抽籤</div>
-                
+                <select class="slot-select-dropdown" id="sel-travel-event" onchange="onManualSelectTravel('event', this.value)" style="width:100%; max-width:none; border-color:#00897b; margin-top:6px !important;"></select>
             </div>
         </div>
         <button id="travel-main-draw-btn" class="travel-main-draw" type="button" onclick="spinTravelComic()">一鍵抽出爆笑旅行！</button>
@@ -1575,21 +1610,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     <div class="travel-draw-box figurine-story-box">
         <div class="travel-results figurine-results">
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:8px 6px;">
                 <div class="travel-card-label">角色</div>
                 <div class="travel-card-value" id="figurine-role-result">準備抽籤</div>
+                <select class="slot-select-dropdown" id="sel-figurine-role" onchange="onManualSelectFigurine('role', this.value)" style="width:100%; max-width:none; border-color:#7b1fa2; font-size:12px; margin-top:4px !important;"></select>
             </div>
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:8px 6px;">
                 <div class="travel-card-label">地點</div>
                 <div class="travel-card-value" id="figurine-location-result">準備抽籤</div>
+                <select class="slot-select-dropdown" id="sel-figurine-location" onchange="onManualSelectFigurine('location', this.value)" style="width:100%; max-width:none; border-color:#7b1fa2; font-size:12px; margin-top:4px !important;"></select>
             </div>
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:8px 6px;">
                 <div class="travel-card-label">情境</div>
                 <div class="travel-card-value" id="figurine-scene-result">準備抽籤</div>
+                <select class="slot-select-dropdown" id="sel-figurine-scene" onchange="onManualSelectFigurine('scene', this.value)" style="width:100%; max-width:none; border-color:#7b1fa2; font-size:12px; margin-top:4px !important;"></select>
             </div>
-            <div class="travel-card">
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:8px 6px;">
                 <div class="travel-card-label">風格</div>
                 <div class="travel-card-value" id="figurine-style-result">準備抽籤</div>
+                <select class="slot-select-dropdown" id="sel-figurine-style" onchange="onManualSelectFigurine('style', this.value)" style="width:100%; max-width:none; border-color:#7b1fa2; font-size:12px; margin-top:4px !important;"></select>
             </div>
         </div>
         <button id="figurine-main-draw-btn" class="travel-main-draw" type="button" onclick="spinFigurineStory()">一鍵抽出公仔故事！</button>
@@ -1636,19 +1675,22 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <div class="sticker-video-card">
                 <div class="sticker-video-card-label">第一籤｜四格互動動作</div>
                 <div class="sticker-video-card-value" id="sticker-action-result">尚未抽籤</div>
-                <button class="sticker-video-reroll" type="button" onclick="rerollStickerVideo('action')">重抽動作</button>
+                <select class="slot-select-dropdown" id="sel-sticker-action" onchange="onManualSelectSticker('action', this.value)" style="width:100%; max-width:none; border-color:#e65100; margin-bottom:5px !important; font-size:12px;"></select>
+                <button class="sticker-video-reroll" type="button" onclick="rerollStickerVideo('action')">🎲 隨機重抽</button>
             </div>
 
             <div class="sticker-video-card">
                 <div class="sticker-video-card-label">第二籤｜影片背景場景</div>
                 <div class="sticker-video-card-value" id="sticker-scene-result">尚未抽籤</div>
-                <button class="sticker-video-reroll" type="button" onclick="rerollStickerVideo('scene')">重抽場景</button>
+                <select class="slot-select-dropdown" id="sel-sticker-scene" onchange="onManualSelectSticker('scene', this.value)" style="width:100%; max-width:none; border-color:#e65100; margin-bottom:5px !important; font-size:12px;"></select>
+                <button class="sticker-video-reroll" type="button" onclick="rerollStickerVideo('scene')">🎲 隨機重抽</button>
             </div>
 
             <div class="sticker-video-card">
                 <div class="sticker-video-card-label">第三籤｜音樂與氣氛</div>
                 <div class="sticker-video-card-value" id="sticker-mood-result">尚未抽籤</div>
-                <button class="sticker-video-reroll" type="button" onclick="rerollStickerVideo('mood')">重抽氣氛</button>
+                <select class="slot-select-dropdown" id="sel-sticker-mood" onchange="onManualSelectSticker('mood', this.value)" style="width:100%; max-width:none; border-color:#e65100; margin-bottom:5px !important; font-size:12px;"></select>
+                <button class="sticker-video-reroll" type="button" onclick="rerollStickerVideo('mood')">🎲 隨機重抽</button>
             </div>
         </div>
 
@@ -1677,21 +1719,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <h2 style="margin-top:30px; color:#9c27b0;">🎨 9104 AI 藝術抽籤機</h2>
     
     <div class="slot-machine" style="border-color: #9c27b0;">
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🎒 物品</div>
             <div class="slot-reel" id="slot-9104-1" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9104-1" onchange="onManualSelectSlot('9104', 1, this.value)" style="border-color:#ba68c8;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">📍 地點</div>
             <div class="slot-reel" id="slot-9104-2" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9104-2" onchange="onManualSelectSlot('9104', 2, this.value)" style="border-color:#ba68c8;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">👤 人物</div>
             <div class="slot-reel" id="slot-9104-3" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9104-3" onchange="onManualSelectSlot('9104', 3, this.value)" style="border-color:#ba68c8;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🎨 畫風</div>
             <div class="slot-reel" id="slot-9104-4" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9104-4" onchange="onManualSelectSlot('9104', 4, this.value)" style="border-color:#ba68c8;"></select>
         </div>
         <button onclick="spinSlot9104()" style="background:#9c27b0; width:100%; font-size:22px; padding:15px; margin-top:5px; border-radius:10px;">點我開始抽籤</button>
     </div>
@@ -1719,21 +1765,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <h2 style="margin-top:30px; color:#e91e63;">📺 9106 AI 廣告抽籤機</h2>
     
     <div class="slot-machine" style="border-color: #e91e63;">
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🏢 行業</div>
             <div class="slot-reel" id="slot-9106-1" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9106-1" onchange="onManualSelectSlot('9106', 1, this.value)" style="border-color:#f06292;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">📦 產品</div>
             <div class="slot-reel" id="slot-9106-2" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9106-2" onchange="onManualSelectSlot('9106', 2, this.value)" style="border-color:#f06292;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">👤 人物</div>
             <div class="slot-reel" id="slot-9106-3" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9106-3" onchange="onManualSelectSlot('9106', 3, this.value)" style="border-color:#f06292;"></select>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
             <div style="color: gold; font-size: 18px; font-weight: bold; min-width: 65px; text-align: left;">🎨 風格</div>
             <div class="slot-reel" id="slot-9106-4" style="margin: 0; flex: 1;">❓ 準備抽籤</div>
+            <select class="slot-select-dropdown" id="sel-9106-4" onchange="onManualSelectSlot('9106', 4, this.value)" style="border-color:#f06292;"></select>
         </div>
         <button onclick="spinSlot9106()" style="background:#e91e63; width:100%; font-size:22px; padding:15px; margin-top:5px; border-radius:10px;">點我開始抽籤</button>
     </div>
@@ -2620,6 +2670,252 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             teacherSwitchBtn.style.display = home && home.classList.contains('active-view') ? 'block' : 'none';
         }
     });
+    
+    // =========================================================================
+    // 🌟 全站抽籤機下拉式選單雙向同步引擎 (手選即時聯動 + 抽籤自動同步選單)
+    // =========================================================================
+
+    function initAllSlotDropdowns() {
+        // 1. 初始化 9202 寵物抽籤選單
+        if (typeof slotData !== 'undefined') {
+            for (let i = 1; i <= 4; i++) {
+                const sel = document.getElementById(`sel-9202-${i}`);
+                if (sel && sel.options.length <= 1) {
+                    sel.innerHTML = '<option value="">▼ 手動選擇...</option>' + 
+                        slotData[i-1].map(item => `<option value="${item}">${item}</option>`).join('');
+                }
+            }
+        }
+
+        // 2. 初始化 9104 藝術抽籤選單
+        if (typeof slotData9104 !== 'undefined') {
+            for (let i = 1; i <= 4; i++) {
+                const sel = document.getElementById(`sel-9104-${i}`);
+                if (sel && sel.options.length <= 1) {
+                    sel.innerHTML = '<option value="">▼ 手動選擇...</option>' + 
+                        slotData9104[i-1].map(item => `<option value="${item}">${item}</option>`).join('');
+                }
+            }
+        }
+
+        // 3. 初始化 9106 廣告抽籤選單
+        if (typeof slotData9106 !== 'undefined') {
+            for (let i = 1; i <= 4; i++) {
+                const sel = document.getElementById(`sel-9106-${i}`);
+                if (sel && sel.options.length <= 1) {
+                    sel.innerHTML = '<option value="">▼ 手動選擇...</option>' + 
+                        slotData9106[i-1].map(item => `<option value="${item}">${item}</option>`).join('');
+                }
+            }
+        }
+
+        // 4. 初始化 旅行四格漫畫 下拉選單
+        if (typeof travelLocations !== 'undefined') {
+            const selLoc = document.getElementById('sel-travel-location');
+            if (selLoc && selLoc.options.length <= 1) {
+                selLoc.innerHTML = '<option value="">▼ 挑選目的地...</option>' + 
+                    travelLocations.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selChar = document.getElementById('sel-travel-character');
+            if (selChar && selChar.options.length <= 1) {
+                selChar.innerHTML = '<option value="">▼ 挑選旅伴...</option>' + 
+                    travelCharacters.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selEvent = document.getElementById('sel-travel-event');
+            if (selEvent && selEvent.options.length <= 1) {
+                selEvent.innerHTML = '<option value="">▼ 挑選事件...</option>' + 
+                    travelEvents.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+        }
+
+        // 5. 初始化 AI 公仔系列 下拉選單
+        if (typeof figurineRoles !== 'undefined') {
+            const selRole = document.getElementById('sel-figurine-role');
+            if (selRole && selRole.options.length <= 1) {
+                selRole.innerHTML = '<option value="">▼ 挑選角色...</option>' + 
+                    figurineRoles.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selLoc = document.getElementById('sel-figurine-location');
+            if (selLoc && selLoc.options.length <= 1) {
+                selLoc.innerHTML = '<option value="">▼ 挑選地點...</option>' + 
+                    figurineLocations.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selScene = document.getElementById('sel-figurine-scene');
+            if (selScene && selScene.options.length <= 1) {
+                selScene.innerHTML = '<option value="">▼ 挑選情境...</option>' + 
+                    figurineScenes.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selStyle = document.getElementById('sel-figurine-style');
+            if (selStyle && selStyle.options.length <= 1) {
+                selStyle.innerHTML = '<option value="">▼ 挑選風格...</option>' + 
+                    figurineStyles.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+        }
+
+        // 6. 初始化 AI 貼圖影片 下拉選單
+        if (typeof stickerVideoActions !== 'undefined') {
+            const selAction = document.getElementById('sel-sticker-action');
+            if (selAction && selAction.options.length <= 1) {
+                selAction.innerHTML = '<option value="">▼ 挑選動作...</option>' + 
+                    stickerVideoActions.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selScene = document.getElementById('sel-sticker-scene');
+            if (selScene && selScene.options.length <= 1) {
+                selScene.innerHTML = '<option value="">▼ 挑選場景...</option>' + 
+                    stickerVideoScenes.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+            const selMood = document.getElementById('sel-sticker-mood');
+            if (selMood && selMood.options.length <= 1) {
+                selMood.innerHTML = '<option value="">▼ 挑選氣氛...</option>' + 
+                    stickerVideoMoods.map((t, idx) => `<option value="${idx}">${t.short}</option>`).join('');
+            }
+        }
+    }
+
+    // 手動下拉選擇回呼處理器 (9202, 9104, 9106)
+    function onManualSelectSlot(type, index, value) {
+        if (!value) return;
+        if (type === '9202') {
+            const reel = document.getElementById(`slot-${index}`);
+            if (reel) reel.innerText = value;
+            const targetMap = { 1:'p9202-animal', 2:'p9202-location', 3:'p9202-item', 4:'p9202-style' };
+            const pTarget = document.getElementById(targetMap[index]);
+            if (pTarget) pTarget.innerText = value;
+            const s1 = document.getElementById('slot-1').innerText;
+            const s2 = document.getElementById('slot-2').innerText;
+            const s3 = document.getElementById('slot-3').innerText;
+            const s4 = document.getElementById('slot-4').innerText;
+            saveSlots('slots_9202', {s1, s2, s3, s4});
+        } else if (type === '9104') {
+            const reel = document.getElementById(`slot-9104-${index}`);
+            if (reel) reel.innerText = value;
+            const targetMap = { 1:'p9104-item', 2:'p9104-location', 3:'p9104-person', 4:'p9104-style' };
+            const pTarget = document.getElementById(targetMap[index]);
+            if (pTarget) pTarget.innerText = value;
+            const s1 = document.getElementById('slot-9104-1').innerText;
+            const s2 = document.getElementById('slot-9104-2').innerText;
+            const s3 = document.getElementById('slot-9104-3').innerText;
+            const s4 = document.getElementById('slot-9104-4').innerText;
+            saveSlots('slots_9104', {s1, s2, s3, s4});
+        } else if (type === '9106') {
+            const reel = document.getElementById(`slot-9106-${index}`);
+            if (reel) reel.innerText = value;
+            const targetMap = { 1:'p9106-industry', 2:'p9106-product', 3:'p9106-person', 4:'p9106-style' };
+            const pTarget = document.getElementById(targetMap[index]);
+            if (pTarget) pTarget.innerText = value;
+            const s1 = document.getElementById('slot-9106-1').innerText;
+            const s2 = document.getElementById('slot-9106-2').innerText;
+            const s3 = document.getElementById('slot-9106-3').innerText;
+            const s4 = document.getElementById('slot-9106-4').innerText;
+            saveSlots('slots_9106', {s1, s2, s3, s4});
+        }
+    }
+
+    function onManualSelectTravel(field, idxStr) {
+        if (idxStr === '') return;
+        const idx = Number(idxStr);
+        if (field === 'location' && travelLocations[idx]) travelComicState.location = travelLocations[idx];
+        if (field === 'character' && travelCharacters[idx]) travelComicState.character = travelCharacters[idx];
+        if (field === 'event' && travelEvents[idx]) travelComicState.event = travelEvents[idx];
+        saveTravelComic();
+        updateTravelComicUI();
+    }
+
+    function onManualSelectFigurine(field, idxStr) {
+        if (idxStr === '') return;
+        const idx = Number(idxStr);
+        if (field === 'role' && figurineRoles[idx]) figurineStoryState.role = figurineRoles[idx];
+        if (field === 'location' && figurineLocations[idx]) figurineStoryState.location = figurineLocations[idx];
+        if (field === 'scene' && figurineScenes[idx]) figurineStoryState.scene = figurineScenes[idx];
+        if (field === 'style' && figurineStyles[idx]) figurineStoryState.style = figurineStyles[idx];
+        saveFigurineStory();
+        updateFigurineUI();
+    }
+
+    function onManualSelectSticker(type, idxStr) {
+        if (idxStr === '') return;
+        const idx = Number(idxStr);
+        if (type === 'action' && stickerVideoActions[idx]) stickerVideoState.action = stickerVideoActions[idx];
+        if (type === 'scene' && stickerVideoScenes[idx]) stickerVideoState.scene = stickerVideoScenes[idx];
+        if (type === 'mood' && stickerVideoMoods[idx]) stickerVideoState.mood = stickerVideoMoods[idx];
+        saveStickerVideoState();
+        updateStickerVideoUI();
+    }
+
+    function syncDropdownValuesAfterSpin() {
+        // 同步 9202
+        for (let i = 1; i <= 4; i++) {
+            const reel = document.getElementById(`slot-${i}`);
+            const sel = document.getElementById(`sel-9202-${i}`);
+            if (reel && sel && reel.innerText !== '❓ 準備抽籤') sel.value = reel.innerText;
+        }
+        // 同步 9104
+        for (let i = 1; i <= 4; i++) {
+            const reel = document.getElementById(`slot-9104-${i}`);
+            const sel = document.getElementById(`sel-9104-${i}`);
+            if (reel && sel && reel.innerText !== '❓ 準備抽籤') sel.value = reel.innerText;
+        }
+        // 同步 9106
+        for (let i = 1; i <= 4; i++) {
+            const reel = document.getElementById(`slot-9106-${i}`);
+            const sel = document.getElementById(`sel-9106-${i}`);
+            if (reel && sel && reel.innerText !== '❓ 準備抽籤') sel.value = reel.innerText;
+        }
+        // 同步 Travel
+        if (travelComicState.location) {
+            const selLoc = document.getElementById('sel-travel-location');
+            const idx = travelLocations.findIndex(t => t.short === travelComicState.location.short);
+            if (selLoc && idx >= 0) selLoc.value = String(idx);
+        }
+        if (travelComicState.character) {
+            const selChar = document.getElementById('sel-travel-character');
+            const idx = travelCharacters.findIndex(t => t.short === travelComicState.character.short);
+            if (selChar && idx >= 0) selChar.value = String(idx);
+        }
+        if (travelComicState.event) {
+            const selEvent = document.getElementById('sel-travel-event');
+            const idx = travelEvents.findIndex(t => t.short === travelComicState.event.short);
+            if (selEvent && idx >= 0) selEvent.value = String(idx);
+        }
+        // 同步 Figurine
+        if (figurineStoryState.role) {
+            const sel = document.getElementById('sel-figurine-role');
+            const idx = figurineRoles.findIndex(t => t.short === figurineStoryState.role.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+        if (figurineStoryState.location) {
+            const sel = document.getElementById('sel-figurine-location');
+            const idx = figurineLocations.findIndex(t => t.short === figurineStoryState.location.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+        if (figurineStoryState.scene) {
+            const sel = document.getElementById('sel-figurine-scene');
+            const idx = figurineScenes.findIndex(t => t.short === figurineStoryState.scene.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+        if (figurineStoryState.style) {
+            const sel = document.getElementById('sel-figurine-style');
+            const idx = figurineStyles.findIndex(t => t.short === figurineStoryState.style.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+        // 同步 Sticker
+        if (stickerVideoState.action) {
+            const sel = document.getElementById('sel-sticker-action');
+            const idx = stickerVideoActions.findIndex(t => t.short === stickerVideoState.action.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+        if (stickerVideoState.scene) {
+            const sel = document.getElementById('sel-sticker-scene');
+            const idx = stickerVideoScenes.findIndex(t => t.short === stickerVideoState.scene.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+        if (stickerVideoState.mood) {
+            const sel = document.getElementById('sel-sticker-mood');
+            const idx = stickerVideoMoods.findIndex(t => t.short === stickerVideoState.mood.short);
+            if (sel && idx >= 0) sel.value = String(idx);
+        }
+    }
+
     let DISTRICT_DATA = {};
     let currentPetPrompt = ""; 
 
@@ -2684,6 +2980,8 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         // 🌟 讀取記憶中的老虎機狀態
         restoreSlots();
+        initAllSlotDropdowns();
+        setTimeout(syncDropdownValuesAfterSpin, 200);
 
         setupSSEConnection();
         setupClipboardBtns();
@@ -3517,6 +3815,7 @@ ${heroJourneyPlan}
 
         // AI 旅行四格漫畫
         restoreTravelComic();
+        syncDropdownValuesAfterSpin();
         restoreFigurineStory();
         restoreStickerVideoState();
     }
@@ -4694,6 +4993,7 @@ ${stickerVideoState.mood.full}
                 document.getElementById('p9202-style').innerText = s4;
 
                 saveSlots('slots_9202', {s1:s1, s2:s2, s3:s3, s4:s4});
+                syncDropdownValuesAfterSpin();
             }
         }, 100);
     }
@@ -4729,6 +5029,7 @@ ${stickerVideoState.mood.full}
                 document.getElementById('p9104-style').innerText = s4;
 
                 saveSlots('slots_9104', {s1:s1, s2:s2, s3:s3, s4:s4});
+                syncDropdownValuesAfterSpin();
             }
         }, 100);
     }
@@ -4764,6 +5065,7 @@ ${stickerVideoState.mood.full}
                 document.getElementById('p9106-style').innerText = s4;
 
                 saveSlots('slots_9106', {s1:s1, s2:s2, s3:s3, s4:s4});
+                syncDropdownValuesAfterSpin();
             }
         }, 100);
     }
