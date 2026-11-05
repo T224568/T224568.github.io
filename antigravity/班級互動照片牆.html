@@ -1127,7 +1127,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <h1>AI 繪本故事創作器</h1>
             <p>只要在這裡回答一次，系統就會幫你整理成完整指令。<br><b>不需要先和 AI 一題一題聊天。</b></p>
             <div class="book-flow-badges">
-                <span>① 回答問題</span><span>② 產生指令</span><span>③ 複製到 ChatGPT</span><span>④ 完成封面＋8～11頁規劃</span>
+                <span>① 回答問題</span><span>② 產生指令</span><span>③ 複製到 Gemini</span><span>④ 完成封面＋8～11頁規劃</span>
             </div>
             <div style="margin-top: 15px; text-align: center;">
                 <button type="button" onclick="randomizeEntireBookWizard()" style="padding: 10px 22px; font-size: 15px; font-weight: bold; border-radius: 999px; background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(139,92,246,0.35); transition: transform 0.2s;">🎲 隨機換整套靈感（全部自動填寫）</button>
@@ -1454,10 +1454,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <div class="book-result-success">
                 <div class="book-result-icon">✅</div>
                 <h2>你的完整繪本指令做好了！</h2>
-                <p id="book-result-summary">按下面的按鈕複製，再貼到 ChatGPT。<b>如果主角是真實人物，請先在同一個 ChatGPT 對話中上傳主角照片一次，並告訴 AI：這張照片是整本繪本唯一固定的人物身份參考。</b>之後封面與各頁都在同一個對話中依序生成，不需要每做一張就重新上傳照片。AI 會依故事需要完成<b>封面＋8～11頁故事</b>，不會再訪問你。</p>
+                <p id="book-result-summary">按下面的按鈕複製，再貼到 Gemini。<b>如果主角是真實人物，請先在同一個 Gemini 對話中上傳主角照片一次，並告訴 AI：這張照片是整本繪本唯一固定的人物身份參考。</b>之後封面與各頁都在同一個對話中依序生成，不需要每做一張就重新上傳照片。AI 會依故事需要完成<b>封面＋8～11頁故事</b>，不會再訪問你。</p>
             </div>
             <button id="book-copy-result" type="button" class="book-copy-big" onclick="copyGeneratedBookPrompt(this)">一鍵複製完整指令</button>
-            <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="book-open-chatgpt">🤖 開啟 ChatGPT</a>
+            <a href="https://gemini.google.com/" target="_blank" rel="noopener" class="book-open-chatgpt" style="background: linear-gradient(135deg, #1e1f20, #1a73e8); box-shadow: 0 4px 12px rgba(26,115,232,0.3);">✨ 開啟 Gemini</a>
             <details class="book-prompt-details">
                 <summary>👀 查看完整指令</summary>
                 <pre id="book-generated-prompt" class="book-generated-prompt"></pre>
@@ -3654,7 +3654,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 4. 本書已由系統依故事複雜度規劃為：封面1頁＋故事正文${storyPages}頁＝總共${totalPages}頁。禁止自行增加或減少頁數。
 5. 這一次回答必須直接完成：故事名稱＋角色視覺設定＋封面＋第1～${storyPages}頁故事＋封面與${storyPages}頁各自獨立的圖片生成指令。
 6. 這次不要直接生成圖片；先完整輸出故事內容與之後可以拿去生成圖片的指令，避免浪費圖片額度。
-7. 你的整份回答必須使用 Markdown 排版。最重要的是：所有「封面／單頁圖片生成指令」都必須各自使用真正的 Markdown fenced code block（程式碼區塊），讓 ChatGPT 介面出現可直接點擊的「複製程式碼」按鈕。每個圖片指令都必須以「\`\`\`text」開始，並以「\`\`\`」結束。禁止把圖片指令寫成一般段落、引用區塊、項目符號或純文字。
+7. 你的整份回答必須使用 Markdown 排版。最重要的是：所有「封面／單頁圖片生成指令」都必須各自使用真正的 Markdown fenced code block（程式碼區塊），讓 AI 介面出現可直接點擊的「複製程式碼」按鈕。每個圖片指令都必須以「\`\`\`text」開始，並以「\`\`\`」結束。禁止把圖片指令寫成一般段落、引用區塊、項目符號或純文字。
 8. 封面與第1～${storyPages}頁共${totalPages}個圖片生成指令，必須有${totalPages}個彼此分開的 Markdown 程式碼區塊；一個圖片只准放一個程式碼區塊，禁止合併。
 9. 每一個圖片指令都必須完全獨立。禁止寫「沿用上一頁」「同樣角色」「參考前文」「維持之前設定」。每一頁都重新完整寫出主角外觀、年齡、服裝、場景、動作、表情、畫風、構圖、文字與尺寸。
 10. 若圖片生成指令沒有出現在 Markdown 程式碼區塊內，即視為格式錯誤，請在輸出前自行修正。
@@ -3667,7 +3667,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 ━━━━━━━━━━━━━━━━━━
 - 如果本對話中已經有使用者上傳的主角照片，該照片就是整本繪本唯一固定的人物身份參考。
 - 請不要要求使用者每做一張圖就再上傳一次同一張照片。
-- 後續正確使用方式是：同一個 ChatGPT 對話中，先上傳主角照片一次，再貼上本指令，接著在同一對話中依序產生封面、第1頁、第2頁、第3頁……直到最後一頁。
+- 後續正確使用方式是：同一個 Gemini 對話中，先上傳主角照片一次，再貼上本指令，接著在同一對話中依序產生封面、第1頁、第2頁、第3頁……直到最後一頁。
 - 你在規劃故事與撰寫每一頁圖片生成指令時，都必須把「同一對話中的既有主角照片」視為固定身份參考來源。
 - 如果有照片參考，照片中的身份特徵優先於純文字推測。
 - 即使每一頁場景、姿勢、動作、表情、鏡頭與光線不同，主角也必須維持同一個人的核心外貌。
@@ -3866,7 +3866,7 @@ ${heroJourneyPlan}
         const storyPages = dna.storyPages || determineBookStoryPages(data);
         const totalPages = storyPages + 1;
         const summary = document.getElementById('book-result-summary');
-        if (summary) summary.innerHTML = '按下面的按鈕複製，再貼到 ChatGPT。<b>如果主角是真實人物，請先在同一個 ChatGPT 對話中上傳主角照片一次，並告訴 AI：這張照片是整本繪本唯一固定的人物身份參考。</b>後續封面與各頁都在同一個對話中依序生成，不需要每做一張就重新上傳照片。這次故事已規劃為 <b>封面1頁＋故事正文' + storyPages + '頁＝總共' + totalPages + '頁</b>，AI 會一次完成全部內容與 <b>' + totalPages + '個獨立圖片生成指令</b>，不會再訪問你。';
+        if (summary) summary.innerHTML = '按下面的按鈕複製，再貼到 Gemini。<b>如果主角是真實人物，請先在同一個 Gemini 對話中上傳主角照片一次，並告訴 AI：這張照片是整本繪本唯一固定的人物身份參考。</b>後續封面與各頁都在同一個對話中依序生成，不需要每做一張就重新上傳照片。這次故事已規劃為 <b>封面1頁＋故事正文' + storyPages + '頁＝總共' + totalPages + '頁</b>，AI 會一次完成全部內容與 <b>' + totalPages + '個獨立圖片生成指令</b>，不會再訪問你。';
         const out = document.getElementById('book-generated-prompt');
         if (out) out.textContent = prompt;
         document.getElementById('book-wizard-panel').style.display = 'none';
@@ -3883,7 +3883,7 @@ ${heroJourneyPlan}
         const text = el.innerText || el.textContent;
         const original = btn.innerText;
         const done = () => {
-            btn.innerText = '已複製！現在貼到 ChatGPT';
+            btn.innerText = '已複製！現在貼到 Gemini';
             setTimeout(() => btn.innerText = original, 2200);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
