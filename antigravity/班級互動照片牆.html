@@ -1129,6 +1129,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <div class="book-flow-badges">
                 <span>① 回答問題</span><span>② 產生指令</span><span>③ 複製到 ChatGPT</span><span>④ 完成封面＋8～11頁規劃</span>
             </div>
+            <div style="margin-top: 15px; text-align: center;">
+                <button type="button" onclick="randomizeEntireBookWizard()" style="padding: 10px 22px; font-size: 15px; font-weight: bold; border-radius: 999px; background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(139,92,246,0.35); transition: transform 0.2s;">🎲 隨機換整套靈感（全部自動填寫）</button>
+            </div>
         </div>
 
         <div id="book-wizard-panel" class="book-panel">
@@ -1143,9 +1146,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <section class="book-step active" data-step="1">
                     <div class="book-question-icon">📖</div>
                     <h2>你想做哪一種故事？</h2>
-                    <p class="book-hint">選一個最接近你想法的類型。</p>
+                    <p class="book-hint">選一個最接近你想法的類型（支援下拉選單或點擊卡片）。</p>
+                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+                        <select id="book-story-type-select" class="slot-select-dropdown" onchange="onSelectBookOption('book-story-type', this.value)" style="flex: 1; padding: 10px 14px; font-size: 15px; border-radius: 10px; border: 2px solid #6366f1; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 請選擇故事類型 (已隨機預設) --</option>
+                            <option value="成長教育">成長教育（勇敢、自信、學會面對困難）</option>
+                            <option value="奇幻冒險">奇幻冒險（魔法、旅程、神秘世界）</option>
+                            <option value="睡前故事">睡前故事（溫暖、安靜、療癒）</option>
+                            <option value="動物故事">動物故事（可愛、有趣、動物主角）</option>
+                            <option value="親情友情">親情友情（家人、朋友、陪伴與珍惜）</option>
+                            <option value="幽默搞笑">幽默搞笑（糗事、誤會、意外笑點）</option>
+                            <option value="科普知識">科普知識（自然、世界、生活知識）</option>
+                            <option value="歷史文化">歷史文化（傳統、地方、記憶與文化）</option>
+                            <option value="科學探索">科學探索（宇宙、生物、實驗與發現）</option>
+                            <option value="經典童話">經典童話（想像、寓意、童話世界）</option>
+                        </select>
+                        <button type="button" class="btn-slot-random" onclick="randomizeBookSingle('book-story-type')" style="padding: 10px 16px; border-radius: 10px; border: none; background: #6366f1; color: #fff; font-weight: bold; cursor: pointer; white-space: nowrap;">🎲 隨機</button>
+                    </div>
                     <input type="hidden" id="book-story-type">
-                    <div class="book-option-grid two-col">
+                    <div class="book-option-grid two-col" id="book-story-type-grid">
                         <button type="button" class="book-option" onclick="chooseBookOption('book-story-type','成長教育',this)"><b>成長教育</b><small>勇敢、自信、學會面對困難</small></button>
                         <button type="button" class="book-option" onclick="chooseBookOption('book-story-type','奇幻冒險',this)"><b>奇幻冒險</b><small>魔法、旅程、神秘世界</small></button>
                         <button type="button" class="book-option" onclick="chooseBookOption('book-story-type','睡前故事',this)"><b>睡前故事</b><small>溫暖、安靜、療癒</small></button>
@@ -1163,9 +1182,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <section class="book-step" data-step="2">
                     <div class="book-question-icon">🎨</div>
                     <h2>你想要哪一種繪本畫風？</h2>
-                    <p class="book-hint">整本封面與故事頁都會維持同一種視覺風格。</p>
+                    <p class="book-hint">整本封面與故事頁都會維持同一種視覺風格（支援下拉選單或點擊卡片）。</p>
+                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+                        <select id="book-art-style-select" class="slot-select-dropdown" onchange="onSelectBookOption('book-art-style', this.value)" style="flex: 1; padding: 10px 14px; font-size: 15px; border-radius: 10px; border: 2px solid #ec4899; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 請選擇繪本畫風 (已隨機預設) --</option>
+                            <option value="水彩繪本風">水彩繪本風（柔和、手繪、紙張質感）</option>
+                            <option value="吉卜力風">吉卜力風（日系手繪、自然、溫暖動畫感）</option>
+                            <option value="黏土動畫風">黏土動畫風（立體、手作、微縮世界）</option>
+                            <option value="兒童插畫風">兒童插畫風（清楚、活潑、出版繪本感）</option>
+                            <option value="卡通漫畫風">卡通漫畫風（動作明確、表情豐富）</option>
+                            <option value="油畫繪本風">油畫繪本風（厚實筆觸、藝術感、戲劇光影）</option>
+                            <option value="寫實溫暖風">寫實溫暖風（自然人物、柔和光線、真實情感）</option>
+                            <option value="Q版搞笑風">Q版搞笑風（可愛比例、誇張表情、歡樂）</option>
+                            <option value="皮克敏風">皮克敏風（可愛小生物、巨大植物、微型奇幻世界）</option>
+                            <option value="迪士尼動畫風">迪士尼動畫風（動畫電影感、夢幻冒險、豐富表情）</option>
+                        </select>
+                        <button type="button" class="btn-slot-random" onclick="randomizeBookSingle('book-art-style')" style="padding: 10px 16px; border-radius: 10px; border: none; background: #ec4899; color: #fff; font-weight: bold; cursor: pointer; white-space: nowrap;">🎲 隨機</button>
+                    </div>
                     <input type="hidden" id="book-art-style">
-                    <div class="book-option-grid two-col">
+                    <div class="book-option-grid two-col" id="book-art-style-grid">
                         <button type="button" class="book-option" onclick="chooseBookOption('book-art-style','水彩繪本風',this)"><b>水彩繪本風</b><small>柔和、手繪、紙張質感</small></button>
                         <button type="button" class="book-option" onclick="chooseBookOption('book-art-style','吉卜力風',this)"><b>吉卜力風</b><small>日系手繪、自然、溫暖動畫感</small></button>
                         <button type="button" class="book-option" onclick="chooseBookOption('book-art-style','黏土動畫風',this)"><b>黏土動畫風</b><small>立體、手作、微縮世界</small></button>
@@ -1183,7 +1218,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <section class="book-step" data-step="3">
                     <div class="book-question-icon">💛</div>
                     <h2>你希望讀者看完有什麼感覺？</h2>
-                    <p class="book-hint">可以選 1～3 個。不同感覺會改變故事節奏、轉折與結局。</p>
+                    <p class="book-hint">可以選 1～3 個（可複選，支援下拉加入或點擊標籤）。</p>
+                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+                        <select id="book-feeling-select" class="slot-select-dropdown" onchange="onSelectBookChip('feeling', this.value, 3); this.value='';" style="flex: 1; padding: 10px 14px; font-size: 15px; border-radius: 10px; border: 2px solid #f59e0b; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 下拉快速挑選加入感覺 (已隨機選2個) --</option>
+                            <option value="勇敢">勇敢</option>
+                            <option value="感動">感動</option>
+                            <option value="開心">開心</option>
+                            <option value="溫暖">溫暖</option>
+                            <option value="療癒">療癒</option>
+                            <option value="好奇">好奇</option>
+                            <option value="幽默">幽默</option>
+                            <option value="平靜">平靜</option>
+                            <option value="收穫滿滿">收穫滿滿</option>
+                            <option value="充滿希望">充滿希望</option>
+                            <option value="學會同理">學會同理</option>
+                            <option value="珍惜當下">珍惜當下</option>
+                        </select>
+                        <button type="button" class="btn-slot-random" onclick="randomizeBookChips('feeling', 3, 2)" style="padding: 10px 16px; border-radius: 10px; border: none; background: #f59e0b; color: #fff; font-weight: bold; cursor: pointer; white-space: nowrap;">🎲 隨機選2個</button>
+                    </div>
                     <div class="book-chip-grid" id="book-feeling-options">
                         <button type="button" class="book-chip" data-value="勇敢" onclick="toggleBookChip(this,'feeling',3)">勇敢</button>
                         <button type="button" class="book-chip" data-value="感動" onclick="toggleBookChip(this,'feeling',3)">感動</button>
@@ -1207,21 +1260,53 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <section class="book-step" data-step="4">
                     <div class="book-question-icon">💭</div>
                     <h2>你大概想講什麼故事？</h2>
-                    <p class="book-hint">不用寫得很完整，用自己的話說就好。AI 會幫你變成真正的繪本。</p>
+                    <p class="book-hint">不用寫得很完整，用自己的話說就好（可由下拉選單選取靈感，亦可自由修改或自己輸入！）。</p>
+                    <div style="margin-bottom: 12px; display: flex; gap: 10px; align-items: center;">
+                        <select id="book-story-idea-preset" class="slot-select-dropdown" onchange="applyPresetText('book-story-idea', this.value)" style="flex: 1; padding: 10px 14px; font-size: 15px; border-radius: 10px; border: 2px solid #10b981; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 💡 10 個精選故事大綱靈感 (選取可自由修改) --</option>
+                            <option value="一隻很想學飛但翅膀受傷的小企鵝，遇到了愛修東西的貓頭鷹爺爺，一起用掉落的羽毛和創意發明，共同完成飛行夢想的故事。">1. 小企鵝與貓頭鷹飛行夢想（成長勵志）</option>
+                            <option value="小女孩在奶奶的舊衣櫥裡發現一把發光的黃銅鑰匙，打開通往四季顛倒的神祕森林，踏上尋找遺失春天的奇幻冒險。">2. 神祕森林與四季之鑰（奇幻冒險）</option>
+                            <option value="害羞膽小的黑貓露露每晚都在小鎮屋頂悄悄收集月光與好夢，為做惡夢的小朋友們編織溫暖安穩的星光毯。">3. 屋頂收集月光的溫柔黑貓（睡前療癒）</option>
+                            <option value="一隻總是把胡蘿蔔藏在奇怪地方的小兔子，意外在菜園裡引發了一場熱鬧又搞笑的蔬菜尋寶大追逐。">4. 健忘小兔子的胡蘿蔔大混亂（幽默趣味）</option>
+                            <option value="小男孩每天放學陪獨居的阿公在老眷村散步，透過一張張泛黃舊照片，聽阿公訴說一甲子前漂洋過海的青春故事。">5. 眷村老照片與夕陽散步（親情溫暖）</option>
+                            <option value="森林裡的動物學校要舉辦烹飪大賽，挑食的小熊與只吃青菜的狐狸被迫分在同一組，激盪出前所未見的美味驚喜。">6. 挑食小熊與動物烹飪大賽（友情合作）</option>
+                            <option value="好奇的小水滴跟隨雨水落入小溪，歷經瀑布、地底暗河與廣袤大海，最後蒸發重回雲端，體驗精彩的水循環旅程。">7. 小水滴的環球奇幻旅程（科普教育）</option>
+                            <option value="熱愛看星星的小天文迷，自製了一具簡易紙筒望遠鏡，卻意外發現外星小精靈掉落地球求助的奇妙訊號。">8. 少年天文迷與掉落的流星訪客（科學探索）</option>
+                            <option value="百年糖果老店面臨歇業危機，小孫女運用童年記憶裡的祖傳秘方與現代巧思，重新點燃三代人的甜蜜人情味。">9. 老街糖果店的百年甜蜜秘密（文化記憶）</option>
+                            <option value="不願意噴火只喜歡種花的小恐龍，在火山即將噴發的危急時刻，用滿山繽紛花草的智慧化解了整座島嶼的危機。">10. 喜歡種花的溫和草食小火龍（經典童話）</option>
+                        </select>
+                        <button type="button" class="btn-slot-random" onclick="randomizePresetText('book-story-idea-preset', 'book-story-idea')" style="padding: 10px 16px; border-radius: 10px; border: none; background: #10b981; color: #fff; font-weight: bold; cursor: pointer; white-space: nowrap;">🎲 換個靈感</button>
+                    </div>
                     <textarea id="book-story-idea" class="book-textarea" maxlength="600" placeholder="例如：一個很怕失敗的小女孩撿到一顆會說話的種子，她必須帶著種子穿過森林，最後發現勇敢不是不害怕，而是害怕的時候還願意再試一次。"></textarea>
-                    <div class="book-examples">💡 可以寫：想去哪裡、想完成什麼、發生什麼特別的事、有哪些朋友或動物。</div>
+                    <div class="book-examples">💡 可以寫：想去哪裡、想完成什麼、發生什麼特別的事、有哪些朋友或動物，或直接在上方選單挑選！</div>
                 </section>
 
                 <!-- Step 5 -->
                 <section class="book-step" data-step="5">
                     <div class="book-question-icon">🧒</div>
                     <h2>你的故事主角是誰？</h2>
-                    <p class="book-hint">只要告訴我們主角名稱與年齡，外型不足的地方會由 AI 自動設計。</p>
+                    <p class="book-hint">告訴我們主角名稱與年齡（可從下拉選單選取 10 組經典主角靈感自動填入，亦可自由修改或自己輸入！）。</p>
+                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+                        <select id="book-character-preset" class="slot-select-dropdown" onchange="applyCharacterPreset(this.value)" style="flex: 1; padding: 10px 14px; font-size: 15px; border-radius: 10px; border: 2px solid #8b5cf6; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 💡 10 組經典主角靈感範例 (選取自動填寫，可自由修改) --</option>
+                            <option value="皮皮|5歲|羽毛蓬鬆的小企鵝，戴著鮮黃色針織飛行帽，右側翅膀貼著一塊可愛的星星創可貼">1. 小企鵝皮皮（5歲・戴飛行帽與星星創可貼）</option>
+                            <option value="小安|8歲|戴著大大的紅色圓眼鏡，喜歡穿墨綠色吊帶褲，總是背著小昆蟲觀察盒的小男孩">2. 觀察家小安（8歲・紅圓眼鏡吊帶褲）</option>
+                            <option value="露露|幼年貓咪|毛色烏黑發亮的小黑貓，尾巴尖端有一撮純白毛，脖子繫著發光的小金鈴鐺">3. 黑貓露露（幼年・黑貓白尾尖金鈴鐺）</option>
+                            <option value="波波|4歲|圓滾滾的小海獺，胸前常抱著一顆光滑幸運貝殼，游起泳來會吐可愛泡泡">4. 小海獺波波（4歲・抱幸運貝殼圓滾滾）</option>
+                            <option value="可可|6歲|毛茸茸的橘色小狐狸，耳朵大大的愛好奇聆聽，圍著森林薄荷綠圍巾">5. 小狐狸可可（6歲・大耳朵薄荷綠圍巾）</option>
+                            <option value="林爺爺|72歲|銀白頭髮、笑瞇瞇滿面慈祥，手持一把老檜木柺杖，穿著米白色中山裝襯衫">6. 慈祥林爺爺（72歲・銀白頭髮木拐杖）</option>
+                            <option value="奇奇|國小三年級|留著俏麗馬尾辮、充滿活力朝氣，球鞋上沾著泥巴、雙眼閃爍好奇光芒的小女孩">7. 活力少女奇奇（國小三年級・馬尾運動風）</option>
+                            <option value="咕咕鐘爺爺|年邁貓頭鷹|羽毛灰白厚重的老貓頭鷹，鼻樑掛著單邊放大鏡，口袋塞滿各種精密發明小螺絲">8. 發明家貓頭鷹爺爺（年邁・單邊放大鏡小工具）</option>
+                            <option value="巴豆|3歲|皮膚是粉嫩薄荷綠的小恐龍，背上有一排像花瓣的小背鰭，特別愛聞花香">9. 花草小恐龍巴豆（3歲・薄荷綠花瓣背鰭）</option>
+                            <option value="布布|精靈幼兒|只有手掌大小的發光小樹精，頭頂長著一片小嫩葉，生氣或高興時會發出微光">10. 光之樹精布布（手掌大小・嫩葉微光）</option>
+                        </select>
+                        <button type="button" class="btn-slot-random" onclick="randomizeCharacterPreset()" style="padding: 10px 16px; border-radius: 10px; border: none; background: #8b5cf6; color: #fff; font-weight: bold; cursor: pointer; white-space: nowrap;">🎲 換主角</button>
+                    </div>
                     <label class="book-field-label">主角名字或稱呼</label>
                     <input id="book-character-name" class="book-input" type="text" maxlength="40" placeholder="例如：小安、小恐龍豆豆、我的奶奶">
                     <label class="book-field-label">主角年齡</label>
                     <input id="book-character-age" class="book-input" type="text" maxlength="30" placeholder="例如：8歲、65歲、幼年小狐狸">
-                    <label class="book-field-label">主角外型或重要特徵 <span>（選填）</span></label>
+                    <label class="book-field-label">主角外型或重要特徵 <span>（選填，可自由編輯）</span></label>
                     <input id="book-character-look" class="book-input" type="text" maxlength="160" placeholder="例如：短黑髮、黃色雨衣、紅色小背包；不填也可以">
                 </section>
 
@@ -1229,8 +1314,20 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <section class="book-step" data-step="6">
                     <div class="book-question-icon">🌟</div>
                     <h2>主角有什麼優點和缺點？</h2>
-                    <p class="book-hint">優點和缺點都會真正影響故事，不只是寫在人物介紹裡。</p>
-                    <h3 class="book-mini-title">優點（可複選）</h3>
+                    <p class="book-hint">優點和缺點都會真正影響故事（支援下拉加入或點選標籤，已為你預選好！）。</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <h3 class="book-mini-title" style="margin: 0;">優點（可複選 1~4 個）</h3>
+                        <button type="button" class="btn-slot-random" onclick="randomizeBookChips('strength', 4, 2)" style="padding: 4px 12px; font-size: 13px; border-radius: 8px; border: none; background: #10b981; color: #fff; font-weight: bold; cursor: pointer;">🎲 隨機選2優點</button>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <select id="book-strength-select" class="slot-select-dropdown" onchange="onSelectBookChip('strength', this.value, 4); this.value='';" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #10b981; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 下拉快速挑選加入優點 --</option>
+                            <option value="勇敢">勇敢</option><option value="善良">善良</option><option value="聰明">聰明</option><option value="好奇">好奇</option>
+                            <option value="有耐心">有耐心</option><option value="有創意">有創意</option><option value="樂於助人">樂於助人</option><option value="不輕易放棄">不輕易放棄</option>
+                            <option value="有責任感">有責任感</option><option value="細心">細心</option><option value="樂觀">樂觀</option><option value="誠實">誠實</option>
+                            <option value="有同理心">有同理心</option><option value="願意合作">願意合作</option><option value="獨立">獨立</option><option value="愛學習">愛學習</option>
+                        </select>
+                    </div>
                     <div class="book-chip-grid compact" id="book-strength-options">
                         <button type="button" class="book-chip" data-value="勇敢" onclick="toggleBookChip(this,'strength',4)">勇敢</button>
                         <button type="button" class="book-chip" data-value="善良" onclick="toggleBookChip(this,'strength',4)">善良</button>
@@ -1249,9 +1346,21 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                         <button type="button" class="book-chip" data-value="獨立" onclick="toggleBookChip(this,'strength',4)">獨立</button>
                         <button type="button" class="book-chip" data-value="愛學習" onclick="toggleBookChip(this,'strength',4)">愛學習</button>
                     </div>
-                    <input id="book-strength-custom" class="book-input small-gap" type="text" maxlength="120" placeholder="其他優點（選填）">
+                    <input id="book-strength-custom" class="book-input small-gap" type="text" maxlength="120" placeholder="其他優點（選填，可自行輸入）">
 
-                    <h3 class="book-mini-title weakness">缺點（可複選）</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 14px 0 6px 0;">
+                        <h3 class="book-mini-title weakness" style="margin: 0;">缺點（可複選 1~4 個）</h3>
+                        <button type="button" class="btn-slot-random" onclick="randomizeBookChips('weakness', 4, 2)" style="padding: 4px 12px; font-size: 13px; border-radius: 8px; border: none; background: #f43f5e; color: #fff; font-weight: bold; cursor: pointer;">🎲 隨機選2缺點</button>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <select id="book-weakness-select" class="slot-select-dropdown" onchange="onSelectBookChip('weakness', this.value, 4); this.value='';" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #f43f5e; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 下拉快速挑選加入缺點 --</option>
+                            <option value="怕失敗">怕失敗</option><option value="粗心">粗心</option><option value="急躁">急躁</option><option value="害羞">害羞</option>
+                            <option value="容易放棄">容易放棄</option><option value="太逞強">太逞強</option><option value="不敢求助">不敢求助</option><option value="容易分心">容易分心</option>
+                            <option value="固執">固執</option><option value="容易緊張">容易緊張</option><option value="沒有自信">沒有自信</option><option value="愛拖延">愛拖延</option>
+                            <option value="太依賴別人">太依賴別人</option><option value="愛面子">愛面子</option><option value="太好勝">太好勝</option><option value="健忘">健忘</option>
+                        </select>
+                    </div>
                     <div class="book-chip-grid compact" id="book-weakness-options">
                         <button type="button" class="book-chip" data-value="怕失敗" onclick="toggleBookChip(this,'weakness',4)">怕失敗</button>
                         <button type="button" class="book-chip" data-value="粗心" onclick="toggleBookChip(this,'weakness',4)">粗心</button>
@@ -1277,10 +1386,48 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <section class="book-step" data-step="7">
                     <div class="book-question-icon">🧩</div>
                     <h2>主角遇到什麼問題？最後怎麼解決？</h2>
-                    <p class="book-hint">這兩個答案會成為故事最重要的衝突與結局。</p>
-                    <label class="book-field-label">遇到的問題</label>
+                    <p class="book-hint">這兩個答案會成為故事最重要的衝突與結局（可選 10 種精選範例填入，亦可自由修改！）。</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; margin-bottom: 6px;">
+                        <label class="book-field-label" style="margin: 0;">遇到的問題</label>
+                        <button type="button" class="btn-slot-random" onclick="randomizePresetText('book-problem-preset', 'book-problem')" style="padding: 4px 12px; font-size: 13px; border-radius: 8px; border: none; background: #ef4444; color: #fff; font-weight: bold; cursor: pointer;">🎲 隨機換問題</button>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <select id="book-problem-preset" class="slot-select-dropdown" onchange="applyPresetText('book-problem', this.value)" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #ef4444; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 💡 10 個經典問題/衝突範例 (選取自動填寫，可自由修改) --</option>
+                            <option value="進入神秘森林後迷路，還把最重要的古老指針與地圖弄丟了，四周漸漸變暗。">1. 迷路且遺失地圖（冒險危機）</option>
+                            <option value="辛苦練習很久的演講與演出，上台前一刻卻緊張到雙腿發抖、喉嚨卡住說不出話來。">2. 臨場過度焦慮忘詞（自我成長）</option>
+                            <option value="最要好的朋友因為一場誤會賭氣不理自己，心裡很難過卻又拉不下臉不敢開口道歉。">3. 朋友間的冷戰與誤會（同理與修復）</option>
+                            <option value="森林裡的魔法泉水突然枯竭，賴以生存的花草枯萎，小動物們陷入無水可用的大危機。">4. 魔法水源枯竭危機（環境與合作）</option>
+                            <option value="想要親手造出一艘能飛向星星的木頭飛行器，但歷經十幾次試飛都墜毀，遭到同伴無情的嘲笑。">5. 發明一再受挫與嘲弄（挫折逆境）</option>
+                            <option value="全家突然搬到陌生的新城鎮，教室裡沒有任何認識的朋友，下課時間只能一個人默默坐在角落。">6. 陌生環境與社交孤立（適應新挑戰）</option>
+                            <option value="在後院意外撿到一隻羽翼受傷的外星光之精靈，但不知如何治癒牠，精靈身上的光芒越來越微弱。">7. 守護重傷神秘訪客（愛心與拯救）</option>
+                            <option value="因為一時愛面子吹了一個大牛皮，結果謊言越滾越大，眼看隨時要在全校面前被拆穿。">8. 謊言越滾越大的窘境（誠實與道德）</option>
+                            <option value="家族代代相傳的百年秘密食譜突然失竊，必須在黃昏祭典前解開三道謎題才能找回。">9. 傳家寶物限時尋回任務（智力考驗）</option>
+                            <option value="第一次一個人留在漆黑的房間睡覺，窗外傳來奇異怪聲，牆上映出張牙舞爪的巨大黑影。">10. 黑夜恐懼與未知幻想（克服心魔）</option>
+                        </select>
+                    </div>
                     <textarea id="book-problem" class="book-textarea medium" maxlength="400" placeholder="例如：進入森林後迷路，還把重要的地圖弄丟了。"></textarea>
-                    <label class="book-field-label">最後怎麼解決</label>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; margin-bottom: 6px;">
+                        <label class="book-field-label" style="margin: 0;">最後怎麼解決</label>
+                        <button type="button" class="btn-slot-random" onclick="randomizePresetText('book-solution-preset', 'book-solution')" style="padding: 4px 12px; font-size: 13px; border-radius: 8px; border: none; background: #3b82f6; color: #fff; font-weight: bold; cursor: pointer;">🎲 隨機換結局</button>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <select id="book-solution-preset" class="slot-select-dropdown" onchange="applyPresetText('book-solution', this.value)" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #3b82f6; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="">-- 💡 10 個經典解決/結局範例 (選取自動填寫，可自由修改) --</option>
+                            <option value="她不再逞強，冷靜下來仔細觀察北極星與樹幹青苔，也真誠向新認識的朋友求助，最後齊心協力找到回家的路。">1. 觀察自然並攜手求助重返正軌</option>
+                            <option value="深呼吸三次，看著台下老師溫暖鼓勵的眼神，勇敢跨出第一步，用最真誠童稚的聲音打動了所有觀眾。">2. 克服恐懼、真情流露贏得喝采</option>
+                            <option value="親手折了一隻帶著抱歉表情的紙青蛙，寫下一句真摯的對不起放在好友桌上，兩個人相視一笑緊緊擁抱和好。">3. 放下自尊真心道歉重修舊好</option>
+                            <option value="召集所有森林小動物分工合作，大象搬開巨石、松鼠疏通落葉，終於打通水源，乾涸大地重現生機。">4. 團結互助解決共同難題</option>
+                            <option value="冷靜分析十次墜毀的記錄筆記，吸取教訓重新調整機翼弧度，最後在夕陽下平穩滑翔飛越整座山丘。">5. 堅持不懈從失敗中學習終獲成功</option>
+                            <option value="主動帶著自己最喜歡的繪本與手作小餅乾分享給鄰座同學，發現大家其實非常熱情，很快打成一片。">6. 跨出舒適圈主動友善結交新夥伴</option>
+                            <option value="徹夜查閱古老星象圖書館，用晨曦露水與誠心祈禱治癒精靈，並在流星之夜護送精靈平安回返浩瀚星空。">7. 無私的愛與付出成就溫暖奇蹟</option>
+                            <option value="下定決心鼓起最大勇氣向大家坦白道歉，並以實際行動認真負責彌補，反而贏得所有人更加敬重的信任。">8. 勇於認錯承擔贏得真心信任</option>
+                            <option value="冷靜運用細膩觀察力與生活常識，步步抽絲剝繭破解謎題，在鐘樓頂端搶救回祖傳寶物。">9. 機智與細心化險為夷</option>
+                            <option value="鼓起勇氣打開手電筒走向黑影，才發現原來是微風吹動窗簾與小泰迪熊的影子，自己不禁破涕為笑放鬆入睡。">10. 揭開恐懼真相戰勝自我</option>
+                        </select>
+                    </div>
                     <textarea id="book-solution" class="book-textarea medium" maxlength="400" placeholder="例如：她不再逞強，開始仔細觀察星星，也向新認識的朋友求助，最後一起找到回家的路。"></textarea>
                 </section>
 
@@ -3152,11 +3299,128 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         cameras: ['廣角建立世界＋中景動作＋關鍵特寫','以主角視線高度觀看世界，讓環境顯得巨大','大量前景遮擋營造探索感，再用開闊遠景完成突破','前半較近的鏡頭呈現壓力，後半逐漸拉遠呈現自由','以電影式對角線與景深增加冒險感','以溫柔平視與留白構圖強化情感','用低視角強化困難的巨大，再以高視角呈現找到方法','以動態追隨鏡頭呈現喜劇節奏，再以穩定構圖收尾']
     };
 
+    // === 9204 下拉選單連動與隨機靈感配置系統 ===
+    function onSelectBookOption(inputId, value) {
+        document.getElementById(inputId).value = value;
+        const grid = document.getElementById(inputId + '-grid') || document.querySelector('#' + inputId).nextElementSibling;
+        if (grid) {
+            grid.querySelectorAll('.book-option').forEach(el => {
+                const bText = el.querySelector('b') ? el.querySelector('b').innerText.trim() : '';
+                if (bText === value) {
+                    el.classList.add('selected');
+                } else {
+                    el.classList.remove('selected');
+                }
+            });
+        }
+    }
+
+    function randomizeBookSingle(inputId) {
+        const select = document.getElementById(inputId + '-select');
+        if (!select || select.options.length <= 1) return;
+        const randIdx = Math.floor(Math.random() * (select.options.length - 1)) + 1;
+        select.selectedIndex = randIdx;
+        onSelectBookOption(inputId, select.value);
+    }
+
+    function onSelectBookChip(group, value, maxCount) {
+        if (!value) return;
+        const container = document.getElementById('book-' + group + '-options');
+        if (!container) return;
+        const btn = Array.from(container.querySelectorAll('.book-chip')).find(b => b.dataset.value === value);
+        if (btn) {
+            const arr = bookChipState[group];
+            if (!arr.includes(value)) {
+                if (arr.length >= maxCount) {
+                    // 若滿了，替換最後一個
+                    const removed = arr.pop();
+                    const remBtn = Array.from(container.querySelectorAll('.book-chip')).find(b => b.dataset.value === removed);
+                    if (remBtn) remBtn.classList.remove('selected');
+                }
+                arr.push(value);
+                btn.classList.add('selected');
+            }
+        }
+    }
+
+    function randomizeBookChips(group, maxCount, countToPick) {
+        const container = document.getElementById('book-' + group + '-options');
+        if (!container) return;
+        const chips = Array.from(container.querySelectorAll('.book-chip'));
+        if (!chips.length) return;
+        // 清空現有選擇
+        bookChipState[group] = [];
+        chips.forEach(b => b.classList.remove('selected'));
+        // 隨機打亂並挑選
+        const shuffled = chips.slice().sort(() => 0.5 - Math.random());
+        const picked = shuffled.slice(0, Math.min(countToPick, maxCount));
+        picked.forEach(btn => {
+            bookChipState[group].push(btn.dataset.value);
+            btn.classList.add('selected');
+        });
+    }
+
+    function applyPresetText(targetId, val) {
+        if (!val) return;
+        const target = document.getElementById(targetId);
+        if (target) {
+            target.value = val;
+            target.focus();
+        }
+    }
+
+    function randomizePresetText(selectId, targetId) {
+        const sel = document.getElementById(selectId);
+        if (!sel || sel.options.length <= 1) return;
+        const randIdx = Math.floor(Math.random() * (sel.options.length - 1)) + 1;
+        sel.selectedIndex = randIdx;
+        applyPresetText(targetId, sel.value);
+    }
+
+    function applyCharacterPreset(val) {
+        if (!val) return;
+        const parts = val.split('|');
+        if (parts.length >= 2) {
+            const nameEl = document.getElementById('book-character-name');
+            const ageEl = document.getElementById('book-character-age');
+            const lookEl = document.getElementById('book-character-look');
+            if (nameEl) nameEl.value = parts[0] || '';
+            if (ageEl) ageEl.value = parts[1] || '';
+            if (lookEl) lookEl.value = parts[2] || '';
+        }
+    }
+
+    function randomizeCharacterPreset() {
+        const sel = document.getElementById('book-character-preset');
+        if (!sel || sel.options.length <= 1) return;
+        const randIdx = Math.floor(Math.random() * (sel.options.length - 1)) + 1;
+        sel.selectedIndex = randIdx;
+        applyCharacterPreset(sel.value);
+    }
+
+    function randomizeEntireBookWizard() {
+        randomizeBookSingle('book-story-type');
+        randomizeBookSingle('book-art-style');
+        randomizeBookChips('feeling', 3, 2);
+        randomizePresetText('book-story-idea-preset', 'book-story-idea');
+        randomizeCharacterPreset();
+        randomizeBookChips('strength', 4, 2);
+        randomizeBookChips('weakness', 4, 2);
+        randomizePresetText('book-problem-preset', 'book-problem');
+        randomizePresetText('book-solution-preset', 'book-solution');
+        const author = document.getElementById('book-author');
+        if (author && !author.value) {
+            author.value = localStorage.getItem('studentName') || localStorage.getItem('book9204Author') || '青松創作隊員';
+        }
+    }
+
     function chooseBookOption(inputId, value, btn) {
         document.getElementById(inputId).value = value;
         const parent = btn.parentElement;
         parent.querySelectorAll('.book-option').forEach(el => el.classList.remove('selected'));
         btn.classList.add('selected');
+        const sel = document.getElementById(inputId + '-select');
+        if (sel) sel.value = value;
     }
 
     function toggleBookChip(btn, group, maxCount) {
@@ -3664,6 +3928,10 @@ ${heroJourneyPlan}
         if (author && !author.value) {
             const savedStudent = localStorage.getItem('studentName') || localStorage.getItem('book9204Author') || '';
             author.value = savedStudent;
+        }
+        // 如果故事類型尚未選擇（初次進入或重置），先隨機配置一整套預設值
+        if (!getBookField('book-story-type')) {
+            randomizeEntireBookWizard();
         }
     }
 
