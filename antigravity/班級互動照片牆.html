@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南門教會・手機班＆樂活班 AI 互動照片牆</title>
-<meta name="description" content="台北南門教會手機班、樂活班與社區 AI 創作課程專屬互動照片牆：內建 9 大 AI 創作指令抽籤機、繪本 PDF 合成、全班即時上傳照片牆、人氣投票與 AI 評審頒獎系統。">
+<title>青松健行隊 AI 互動照片牆</title>
+<meta name="description" content="青松健行隊活動與 AI 創作專屬互動照片牆：內建 9 大 AI 創作指令抽籤機、繪本 PDF 合成、全班即時上傳照片牆、人氣投票與 AI 評審頒獎系統。">
 <!-- 🌟 引入純前端 PDF 合成套件 -->
 <style>
 body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; text-align: center; background: #f4f4f9; padding: 20px; margin: 0; }
@@ -851,7 +851,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <div id="view-upload" class="view-section active-view container">
     <h2 style="margin-top:35px; margin-bottom:4px;">📷 上傳你的作品</h2>
 
-    <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前班級：南門教會・手機班 (戴老師)</div>
+    <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前隊伍：青松健行隊</div>
     <input type="text" id="studentName" placeholder="輸入姓名 (系統會自動記憶)" style="margin-top:2px;">
     <input type="file" id="photoInput" accept="image/*">
     <div id="line-external-browser-banner" style="display:none; margin:2px 0 5px; font-size:13px; line-height:1.35; color:#6d4c41; white-space:nowrap;">
@@ -1757,7 +1757,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <button class="back-btn" onclick="switchView('view-upload')">回首頁</button>
     <h2 style="margin-top:30px;">📚 歷史作品館</h2>
     <div class="tab-container" style="gap:8px;">
-        <button class="tab-btn active" onclick="switchHistoryTab('南門教會')" id="tab-church" style="width:32%;">⛪ 南門教會</button>
+        <button class="tab-btn active" onclick="switchHistoryTab('青松健行隊')" id="tab-church" style="width:32%;">🌲 青松健行隊</button>
         <button class="tab-btn" onclick="switchHistoryTab('大安區')" id="tab-daan" style="width:32%;">大安區</button>
         <button class="tab-btn" onclick="switchHistoryTab('文山區')" id="tab-wenshan" style="width:32%;">文山區</button>
     </div>
@@ -1908,14 +1908,11 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     window.__PHOTO_DATA_MAP = window.__PHOTO_DATA_MAP || {};
 
     const CHURCH_AND_COMMUNITY_LOCATIONS = [
-        {"district":"南門教會","neighborhood":"20261H手機班"},
-        {"district":"南門教會","neighborhood":"20261H樂活班"},
-        {"district":"南門教會","neighborhood":"松年團契"},
-        {"district":"南門教會","neighborhood":"婦女團契"},
-        {"district":"南門教會","neighborhood":"主日學與青年"},
-        {"district":"南門教會","neighborhood":"聖歌隊"},
-        {"district":"南門教會","neighborhood":"社區AI實戰班"},
-        {"district":"南門教會","neighborhood":"特別活動"},
+        {"district":"青松健行隊","neighborhood":"每週例行健行"},
+        {"district":"青松健行隊","neighborhood":"大台北步道精選"},
+        {"district":"青松健行隊","neighborhood":"郊山與古道健行"},
+        {"district":"青松健行隊","neighborhood":"特別健行活動"},
+        {"district":"青松健行隊","neighborhood":"健行花絮與聚餐"},
         {"district":"大安區","neighborhood":"德安里"},{"district":"大安區","neighborhood":"仁慈里"},{"district":"大安區","neighborhood":"和安里"},{"district":"大安區","neighborhood":"民炤里"},{"district":"大安區","neighborhood":"仁愛里"},{"district":"大安區","neighborhood":"義村里"},{"district":"大安區","neighborhood":"民輝里"},{"district":"大安區","neighborhood":"昌隆里"},{"district":"大安區","neighborhood":"誠安里"},{"district":"大安區","neighborhood":"光武里"},{"district":"大安區","neighborhood":"龍坡里"},{"district":"大安區","neighborhood":"龍泉里"},{"district":"大安區","neighborhood":"古風里"},{"district":"大安區","neighborhood":"古莊里"},{"district":"大安區","neighborhood":"龍安里"},{"district":"大安區","neighborhood":"錦安里"},{"district":"大安區","neighborhood":"福住里"},{"district":"大安區","neighborhood":"永康里"},{"district":"大安區","neighborhood":"光明里"},{"district":"大安區","neighborhood":"錦泰里"},{"district":"大安區","neighborhood":"錦華里"},{"district":"大安區","neighborhood":"龍圖里"},{"district":"大安區","neighborhood":"新龍里"},{"district":"大安區","neighborhood":"龍陣里"},{"district":"大安區","neighborhood":"龍雲里"},{"district":"大安區","neighborhood":"龍生里"},{"district":"大安區","neighborhood":"住安里"},{"district":"大安區","neighborhood":"義安里"},{"district":"大安區","neighborhood":"通化里"},{"district":"大安區","neighborhood":"通安里"},{"district":"大安區","neighborhood":"臨江里"},{"district":"大安區","neighborhood":"法治里"},{"district":"大安區","neighborhood":"全安里"},{"district":"大安區","neighborhood":"群賢里"},{"district":"大安區","neighborhood":"群英里"},{"district":"大安區","neighborhood":"虎嘯里"},{"district":"大安區","neighborhood":"臥龍里"},{"district":"大安區","neighborhood":"龍淵里"},{"district":"大安區","neighborhood":"龍門里"},{"district":"大安區","neighborhood":"大學里"},{"district":"大安區","neighborhood":"芳和里"},{"district":"大安區","neighborhood":"黎元里"},{"district":"大安區","neighborhood":"黎孝里"},{"district":"大安區","neighborhood":"黎和里"},{"district":"大安區","neighborhood":"建安里"},{"district":"大安區","neighborhood":"建倫里"},{"district":"大安區","neighborhood":"敦安里"},{"district":"大安區","neighborhood":"正聲里"},{"district":"大安區","neighborhood":"敦煌里"},{"district":"大安區","neighborhood":"華聲里"},{"district":"大安區","neighborhood":"車層里"},{"district":"大安區","neighborhood":"光信里"},{"district":"大安區","neighborhood":"學府里"},{"district":"大安區","neighborhood":"永健長青促進協會"},{"district":"大安區","neighborhood":"紅十字會 台灣分會"},
         {"district":"文山區","neighborhood":"景行里"},{"district":"文山區","neighborhood":"景東里"},{"district":"文山區","neighborhood":"景美里"},{"district":"文山區","neighborhood":"景慶里"},{"district":"文山區","neighborhood":"景仁里"},{"district":"文山區","neighborhood":"景華里"},{"district":"文山區","neighborhood":"萬有里"},{"district":"文山區","neighborhood":"萬祥里"},{"district":"文山區","neighborhood":"萬隆里"},{"district":"文山區","neighborhood":"萬年里"},{"district":"文山區","neighborhood":"萬和里"},{"district":"文山區","neighborhood":"萬盛里"},{"district":"文山區","neighborhood":"興豐里"},{"district":"文山區","neighborhood":"興光里"},{"district":"文山區","neighborhood":"興家里"},{"district":"文山區","neighborhood":"興得里"},{"district":"文山區","neighborhood":"興業里"},{"district":"文山區","neighborhood":"興安里"},{"district":"文山區","neighborhood":"興福里"},{"district":"文山區","neighborhood":"興旺里"},{"district":"文山區","neighborhood":"興泰里"},{"district":"文山區","neighborhood":"興昌里"},{"district":"文山區","neighborhood":"試院里"},{"district":"文山區","neighborhood":"華興里"},{"district":"文山區","neighborhood":"明義里"},{"district":"文山區","neighborhood":"明興里"},{"district":"文山區","neighborhood":"木柵里"},{"district":"文山區","neighborhood":"木新里"},{"district":"文山區","neighborhood":"順興里"},{"district":"文山區","neighborhood":"樟林里"},{"district":"文山區","neighborhood":"樟新里"},{"district":"文山區","neighborhood":"樟腳里"},{"district":"文山區","neighborhood":"萬芳里"},{"district":"文山區","neighborhood":"博嘉里"},{"district":"文山區","neighborhood":"萬興里"},{"district":"文山區","neighborhood":"指南里"},{"district":"文山區","neighborhood":"老泉里"},{"district":"文山區","neighborhood":"忠順里"},{"district":"文山區","neighborhood":"樟樹里"},{"district":"文山區","neighborhood":"樟文里"},{"district":"文山區","neighborhood":"政大里"}
     ];
@@ -1929,7 +1926,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const cleanUrl = window.location.href.split('#')[0];
         if (img) img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=8&data=' + encodeURIComponent(cleanUrl);
         if (urlText) urlText.innerText = cleanUrl;
-        if (label) label.innerText = CLASSROOM === 'teacher2' ? '◆ 南門教會・樂活班 (第二教室)' : '● 南門教會・手機班 (戴老師)';
+        if (label) label.innerText = CLASSROOM === 'teacher2' ? '◆ 青松健行隊 (第二組)' : '● 青松健行隊';
         if (overlay) overlay.style.display = 'block';
         if (modal) modal.style.display = 'block';
     }
@@ -2437,7 +2434,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                     return jsonResponse({ success: false, message: '目前沒有未封存的本堂課照片喔！' });
                 }
                 const courseId = Date.now();
-                const courseName = bodyObj.courseName || '南門教會-20261H手機班';
+                const courseName = bodyObj.courseName || '青松健行隊-活動紀錄';
                 const createdAt = photos[0]?.created_at || new Date().toISOString();
 
                 // a) 儲存課程紀錄
@@ -2592,23 +2589,23 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const second = CLASSROOM === 'teacher2';
         const banner = document.getElementById('classroom-banner');
         if (banner) {
-            banner.innerText = second ? '◆ 目前班級：南門教會・樂活班 (第二教室)' : '● 目前班級：南門教會・手機班 (戴老師)';
+            banner.innerText = second ? '◆ 目前隊伍：青松健行隊 (第二組)' : '● 目前隊伍：青松健行隊';
             banner.style.color = second ? '#7b1fa2' : '#1565c0';
         }
 
         const switchBtn = document.getElementById('teacher-switch-btn');
         if (switchBtn) {
             if (second) {
-                switchBtn.innerText = '● 切換回：手機班';
+                switchBtn.innerText = '● 切換回：第一組';
                 switchBtn.style.background = '#2196F3';
             } else {
-                switchBtn.innerText = '◆ 切換至：樂活班';
+                switchBtn.innerText = '◆ 切換至：第二組';
                 switchBtn.style.background = '#8e44ad';
             }
         }
 
         const adminTitle = document.querySelector('#view-admin h2');
-        if (adminTitle) adminTitle.innerText = second ? '老師專區（樂活班）' : '老師專區（手機班）';
+        if (adminTitle) adminTitle.innerText = second ? '管理專區（第二組）' : '管理專區（青松健行隊）';
     }
 
     let adminKey = '';
@@ -5608,7 +5605,7 @@ ${stickerVideoState.mood.full}
             const res = await apiFetch('/api/history');
             const data = await res.json();
             if(data.success && data.courses) historyCoursesData = data.courses; 
-            switchHistoryTab('南門教會'); 
+            switchHistoryTab('青松健行隊'); 
         } catch (e) { alert('歷史資料讀取失敗'); }
     }
 
@@ -5619,7 +5616,7 @@ ${stickerVideoState.mood.full}
         if (tabChurch) tabChurch.classList.remove('active');
         if (tabDaan) tabDaan.classList.remove('active');
         if (tabWenshan) tabWenshan.classList.remove('active');
-        if (dist === '南門教會' && tabChurch) tabChurch.classList.add('active');
+        if (dist === '青松健行隊' && tabChurch) tabChurch.classList.add('active');
         else if (dist === '大安區' && tabDaan) tabDaan.classList.add('active');
         else if (tabWenshan) tabWenshan.classList.add('active');
         showNeighborhoods();
