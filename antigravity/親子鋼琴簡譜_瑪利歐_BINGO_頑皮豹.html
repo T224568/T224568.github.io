@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎹 親子鋼琴簡譜大百科：超級瑪利歐・BINGO・頑皮豹</title>
+<title>🎹 親子鋼琴簡譜大百科（完整原曲不刪減版）：超級瑪利歐・BINGO・頑皮豹</title>
 <style>
   :root {
     --primary: #ef4444;
@@ -28,23 +28,23 @@
     padding: 20px 14px 60px;
   }
   .container {
-    max-width: 1020px;
+    max-width: 1120px;
     margin: 0 auto;
   }
   header {
     text-align: center;
     background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
     color: #fff;
-    padding: 24px 20px;
+    padding: 22px 20px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(239, 68, 68, 0.25);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     position: relative;
     overflow: hidden;
   }
   header h1 {
     margin: 0 0 8px 0;
-    font-size: 28px;
+    font-size: 27px;
     letter-spacing: 1px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
@@ -66,7 +66,7 @@
     padding: 14px 18px;
     border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     border: 2px solid #fde68a;
   }
   .song-tabs {
@@ -114,7 +114,7 @@
   }
   .btn-action {
     border: none;
-    padding: 9px 16px;
+    padding: 9px 15px;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 700;
@@ -164,10 +164,10 @@
   /* Interactive Piano Keyboard */
   .piano-wrapper {
     background: #1e293b;
-    padding: 18px 16px 22px;
+    padding: 14px 14px 18px;
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    margin-bottom: 24px;
+    margin-bottom: 22px;
     text-align: center;
     position: sticky;
     top: 8px;
@@ -175,12 +175,14 @@
   }
   .piano-header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     color: #cbd5e1;
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     padding: 0 8px;
+    gap: 8px;
   }
   .piano-header span strong {
     color: #fde047;
@@ -192,7 +194,7 @@
   .piano {
     display: inline-flex;
     position: relative;
-    height: 156px;
+    height: 150px;
     user-select: none;
     background: #0f172a;
     padding: 6px;
@@ -200,7 +202,7 @@
   }
   .key-white {
     width: 44px;
-    height: 144px;
+    height: 138px;
     background: linear-gradient(to bottom, #ffffff 0%, #f1f5f9 100%);
     border: 1px solid #94a3b8;
     border-radius: 0 0 8px 8px;
@@ -211,7 +213,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
     transition: transform 0.05s, background 0.1s;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   }
@@ -221,7 +223,7 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   }
   .key-white .num {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 900;
     color: #0f172a;
     line-height: 1.1;
@@ -235,9 +237,8 @@
   .key-white .note-name {
     font-size: 10px;
     color: #94a3b8;
-    margin-top: 2px;
+    margin-top: 1px;
   }
-  /* Rainbow colors on bottom bar of white keys for kids */
   .key-white[data-deg="1"] { border-bottom: 6px solid #ef4444; }
   .key-white[data-deg="2"] { border-bottom: 6px solid #f97316; }
   .key-white[data-deg="3"] { border-bottom: 6px solid #eab308; }
@@ -248,7 +249,7 @@
 
   .key-black {
     width: 30px;
-    height: 92px;
+    height: 88px;
     background: linear-gradient(to bottom, #334155 0%, #0f172a 100%);
     border: 1px solid #000;
     border-radius: 0 0 6px 6px;
@@ -260,7 +261,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding-bottom: 6px;
+    padding-bottom: 5px;
     color: #f8fafc;
     font-size: 11px;
     font-weight: 700;
@@ -272,7 +273,7 @@
     transform: translateY(3px);
   }
   .key-black span {
-    font-size: 10px;
+    font-size: 9px;
     color: #fde047;
     line-height: 1.1;
   }
@@ -282,7 +283,7 @@
     display: none;
     background: var(--card);
     border-radius: 20px;
-    padding: 28px;
+    padding: 26px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     border: 2px solid #e2e8f0;
   }
@@ -295,13 +296,13 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px dashed #e2e8f0;
-    padding-bottom: 16px;
-    margin-bottom: 20px;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
     gap: 12px;
   }
   .song-title-bar h2 {
     margin: 0;
-    font-size: 26px;
+    font-size: 25px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -326,42 +327,66 @@
     border-left: 5px solid #f59e0b;
     padding: 12px 16px;
     border-radius: 0 12px 12px 0;
-    margin-bottom: 22px;
-    font-size: 15px;
+    margin-bottom: 20px;
+    font-size: 14.5px;
     line-height: 1.6;
   }
   .kid-tip strong {
     color: #b45309;
   }
 
-  .part-title {
-    font-size: 18px;
-    font-weight: 800;
-    color: #334155;
+  .part-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 10px 16px;
+    border-radius: 12px;
     margin: 24px 0 12px;
+    border-left: 5px solid #3b82f6;
+  }
+  .part-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1e293b;
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+  .btn-part-play {
+    border: none;
+    background: #3b82f6;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-part-play:hover {
+    background: #2563eb;
   }
 
   /* Measure Grid */
   .score-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
     margin-bottom: 16px;
   }
   .measure-card {
     background: #f8fafc;
     border: 2px solid #cbd5e1;
     border-radius: 14px;
-    padding: 12px 14px;
+    padding: 10px 12px;
     position: relative;
     transition: all 0.2s;
   }
-  .measure-card:hover {
-    border-color: #94a3b8;
-    background: #ffffff;
+  .measure-card.active-measure {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
   }
   .measure-header {
     display: flex;
@@ -377,7 +402,7 @@
     color: #3730a3;
     padding: 2px 8px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
   }
   .notes-row {
@@ -385,18 +410,19 @@
     justify-content: space-around;
     align-items: center;
     min-height: 54px;
-    gap: 4px;
+    gap: 2px;
+    flex-wrap: wrap;
   }
   .note-token {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 6px 8px;
+    padding: 5px 6px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.12s;
-    min-width: 34px;
+    min-width: 28px;
     user-select: none;
   }
   .note-token:hover {
@@ -406,35 +432,33 @@
   .note-token.playing {
     background: #fde047 !important;
     transform: scale(1.18);
-    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.4);
+    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.45);
   }
   .note-num {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 900;
     line-height: 1.1;
     position: relative;
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   }
-  /* High / Low octave dots */
   .note-num.high::before {
     content: "•";
     position: absolute;
-    top: -12px;
+    top: -11px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 16px;
+    font-size: 15px;
     color: inherit;
   }
   .note-num.low::after {
     content: "•";
     position: absolute;
-    bottom: -12px;
+    bottom: -11px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 16px;
+    font-size: 15px;
     color: inherit;
   }
-  /* Underlines for 8th / 16th notes */
   .note-token.eighth .note-num {
     border-bottom: 2.5px solid currentColor;
     padding-bottom: 1px;
@@ -444,17 +468,11 @@
     padding-bottom: 1px;
   }
   .note-lyric {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     color: #475569;
-    margin-top: 6px;
+    margin-top: 5px;
     white-space: nowrap;
-  }
-  .note-finger {
-    font-size: 10px;
-    color: #94a3b8;
-    font-weight: 600;
-    margin-top: 2px;
   }
 
   /* Note Color Coding by Pitch Degree */
@@ -499,7 +517,7 @@
 
   @media print {
     body { background: #fff; padding: 0; }
-    .top-bar, .piano-wrapper { display: none !important; }
+    .top-bar, .piano-wrapper, .btn-part-play { display: none !important; }
     .song-section { display: block !important; page-break-after: always; border: none; box-shadow: none; padding: 10px 0; }
   }
 </style>
@@ -508,16 +526,16 @@
 
 <div class="container">
   <header>
-    <h1>🎹 親子鋼琴簡譜樂園：瑪利歐・BINGO・頑皮豹</h1>
-    <p>大字彩色簡譜 ＋ 點擊發聲練習琴鍵 ＋ 自動伴奏跟彈（給小朋友自彈＆爸媽陪練）</p>
+    <h1>🎹 親子鋼琴簡譜大百科（100% 完整原曲不刪減版）</h1>
+    <p>超級瑪利歐全曲（52小節）・BINGO 六段拍手全曲（48小節）・頑皮豹完整爵士原曲（35小節）</p>
   </header>
 
   <!-- 頂部切換與播放控制 -->
   <div class="top-bar">
     <div class="song-tabs">
-      <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐</button>
-      <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌</button>
-      <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲</button>
+      <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐 (全曲52小節)</button>
+      <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌 (全6段48小節)</button>
+      <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲 (全曲35小節)</button>
     </div>
 
     <div class="player-controls">
@@ -526,11 +544,11 @@
         <select id="tempoSelect">
           <option value="0.65">超慢速練習 (0.65x)</option>
           <option value="0.8">慢速跟彈 (0.8x)</option>
-          <option value="1" selected>原速示範 (1.0x)</option>
+          <option value="1" selected>原曲速度 (1.0x)</option>
           <option value="1.15">歡樂加速 (1.15x)</option>
         </select>
       </div>
-      <button class="btn-action btn-play" id="playBtn" onclick="playCurrentSong()">▶️ 播放示範（跟著亮燈彈）</button>
+      <button class="btn-action btn-play" id="playBtn" onclick="playCurrentSong()">▶️ 完整播放整首（自動捲動亮燈）</button>
       <button class="btn-action btn-stop" onclick="stopPlayback()">⏹️ 停止</button>
       <button class="btn-action btn-print" onclick="window.print()">🖨️ 列印全部簡譜</button>
     </div>
@@ -539,92 +557,174 @@
   <!-- 互動式鋼琴鍵盤 -->
   <div class="piano-wrapper">
     <div class="piano-header">
-      <span>👇 <strong>互動鋼琴鍵盤</strong>（可直接用滑鼠／手指點擊琴鍵彈奏，或點下方簡譜音符聽音高）</span>
+      <span>👇 <strong>互動鋼琴鍵盤</strong>（涵蓋低音 3̣ 到高音 6̇，點琴鍵或下方簡譜音符都會發聲；播放時可點擊任一段落「▶ 單獨播放本段」）</span>
       <span id="nowPlayingText">準備就緒 ✨</span>
     </div>
     <div class="piano-scroll">
-      <div class="piano" id="pianoKeys">
-        <!-- 由 JS 動態生成低音 5 到高音 5 的琴鍵 -->
-      </div>
+      <div class="piano" id="pianoKeys"></div>
     </div>
   </div>
 
-  <!-- ==================== 1. 超級瑪利歐 ==================== -->
+  <!-- ==================== 1. 超級瑪利歐 (完整原曲 52 小節) ==================== -->
   <section class="song-section active" id="song-mario">
     <div class="song-title-bar">
-      <h2>🍄 超級瑪利歐兄弟 (Super Mario Bros. 主題曲)</h2>
+      <h2>🍄 超級瑪利歐兄弟 (Ground Theme 完整原曲全編制)</h2>
       <div class="badge-group">
-        <span class="badge badge-key">調號：1 = C（全白鍵為主）</span>
-        <span class="badge badge-beat">拍號：4/4 拍</span>
-        <span class="badge badge-level">難度：★★☆（節奏輕快）</span>
+        <span class="badge badge-key">調號：1 = C</span>
+        <span class="badge badge-beat">全長：52 小節（Intro + A段 + B段 + A段再現 + C段 + Intro + 破關Fanfare）</span>
+        <span class="badge badge-level">原曲完整呈現</span>
       </div>
     </div>
 
     <div class="kid-tip">
-      💡 <strong>給小朋友的彈奏秘訣：</strong><br>
-      1. 開頭最經典的「<strong>3 3 0 3 0 1 3 5</strong>」就是瑪利歐跳起來吃金幣的聲音！數字 <strong>0</strong> 代表「休息拍手不彈」。<br>
-      2. 數字上面有黑點（例如 <strong class="deg-1">1̇</strong>）代表往右邊高八度的白鍵彈；數字下面有黑點（例如 <strong class="deg-5">5̣</strong>）代表往左邊低音彈！
+      💡 <strong>完整原曲架構導覽：</strong><br>
+      近藤浩治（Koji Kondo）創作的瑪利歐地上BGM原曲包含五大核心段落：<strong>【前奏】→【A段主旋律×2】→【B段半音階對位×2】→【A段再現】→【C段拉格泰姆切分音×2】→【回到前奏】→【破關勝利號角】</strong>！每一段右邊都有「▶ 播放本段」按鈕，可以分段練熟再整首挑戰！
     </div>
 
-    <div class="part-title">🎬 【前奏 Intro】經典開場音效（點擊任一音符可直接聽聲音！）</div>
+    <div class="part-header">
+      <div class="part-title">🎬 【第 1 段：Intro 經典前奏】（第 1 ~ 2 小節）</div>
+      <button class="btn-part-play" onclick="playSection('mario', 'grid-mario-intro')">▶ 單獨播放本段</button>
+    </div>
     <div class="score-grid" id="grid-mario-intro"></div>
 
-    <div class="part-title">🌟 【A 段主旋律】陽光冒險出發（這段重複彈 2 次！）</div>
+    <div class="part-header">
+      <div class="part-title">🌟 【第 2 段：A 段陽光冒險主旋律（完整反覆 2 遍）】（第 3 ~ 10 小節）</div>
+      <button class="btn-part-play" onclick="playSection('mario', 'grid-mario-a')">▶ 單獨播放本段</button>
+    </div>
     <div class="score-grid" id="grid-mario-a"></div>
 
-    <div class="part-title">🔥 【B 段星星無敵旋律】黑鍵小挑戰（#4 升 Fa 是 4 右上角的黑鍵）</div>
+    <div class="part-header">
+      <div class="part-title">🔥 【第 3 段：B 段半音滑步＆高音回應（完整第1遍＋第2遍）】（第 11 ~ 26 小節）</div>
+      <button class="btn-part-play" onclick="playSection('mario', 'grid-mario-b')">▶ 單獨播放本段</button>
+    </div>
     <div class="score-grid" id="grid-mario-b"></div>
+
+    <div class="part-header">
+      <div class="part-title">🔄 【第 4 段：A 段主旋律再現】（第 27 ~ 34 小節）</div>
+      <button class="btn-part-play" onclick="playSection('mario', 'grid-mario-a2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-mario-a2"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎺 【第 5 段：C 段爵士切分進行曲（完整 2 遍）】（第 35 ~ 50 小節）</div>
+      <button class="btn-part-play" onclick="playSection('mario', 'grid-mario-c')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-mario-c"></div>
+
+    <div class="part-header">
+      <div class="part-title">🏁 【第 6 段：尾奏拉旗桿破關號角 (Course Clear Fanfare)】（第 51 ~ 54 小節）</div>
+      <button class="btn-part-play" onclick="playSection('mario', 'grid-mario-outro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-mario-outro"></div>
   </section>
 
-  <!-- ==================== 2. BINGO 賓果歌 ==================== -->
+  <!-- ==================== 2. BINGO 賓果歌 (完整 6 段拍手遊戲全曲 48 小節) ==================== -->
   <section class="song-section" id="song-bingo">
     <div class="song-title-bar">
-      <h2>🐶 BINGO 賓果小狗歌（超好彈入門首選）</h2>
+      <h2>🐶 BINGO 賓果小狗歌（完整 6 段拍手漸進遊戲全曲）</h2>
       <div class="badge-group">
         <span class="badge badge-key">調號：1 = C（100% 全白鍵）</span>
-        <span class="badge badge-beat">拍號：4/4 拍</span>
-        <span class="badge badge-level">難度：★☆☆（零黑鍵・最適合初學）</span>
+        <span class="badge badge-beat">全長：48 小節（完整 6 回合漸進拍手版）</span>
+        <span class="badge badge-level">親子唱跳完整版</span>
       </div>
     </div>
 
     <div class="kid-tip">
-      💡 <strong>給小朋友的彈奏秘訣：</strong><br>
-      1. 這首歌<strong>完全不用彈黑鍵</strong>！全部都在白鍵上完成，最適合第一首自彈自唱！<br>
-      2. 玩遊戲彈法：第 1 次邊彈邊唱 <strong>B-I-N-G-O</strong>，第 2 次把 <strong>B</strong> 改成「拍手 👏 不彈」，越後面拍手越多下，超級好玩！
+      💡 <strong>原曲完整 6 段遊戲規則：</strong><br>
+      BINGO 原曲之所以好玩，是因為它一共有 <strong>6 個回合</strong>！<br>
+      • <strong>第 1 回合</strong>：全部彈出來 <code>B - I - N - G - O</code><br>
+      • <strong>第 2 回合</strong>：把 B 變成「👏拍手不彈」<code>(拍) - I - N - G - O</code><br>
+      • <strong>第 3～6 回合</strong>：每次多減少一個音改用拍手，直到第 6 回合五個字母全部拍手 <code>👏-👏-👏-👏-👏</code>，最後再大聲彈出「牠名字叫賓果喲」！播放時遇到「👏拍」會有清脆木魚拍手音效喔！
     </div>
 
-    <div class="part-title">🐾 【第一段】農夫有隻小狗狗</div>
-    <div class="score-grid" id="grid-bingo-a"></div>
+    <div class="part-header">
+      <div class="part-title">🐾 【第 1 回合：全字母彈奏 B-I-N-G-O】（第 1 ~ 8 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bingo', 'grid-bingo-v1')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bingo-v1"></div>
 
-    <div class="part-title">👏 【第二段】B - I - N - G - O 拼字樂（可反覆邊拍手邊彈）</div>
-    <div class="score-grid" id="grid-bingo-b"></div>
+    <div class="part-header">
+      <div class="part-title">👏 【第 2 回合：拍手 1 下 (👏)-I-N-G-O】（第 9 ~ 16 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bingo', 'grid-bingo-v2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bingo-v2"></div>
+
+    <div class="part-header">
+      <div class="part-title">👏👏 【第 3 回合：拍手 2 下 (👏)-(👏)-N-G-O】（第 17 ~ 24 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bingo', 'grid-bingo-v3')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bingo-v3"></div>
+
+    <div class="part-header">
+      <div class="part-title">👏👏👏 【第 4 回合：拍手 3 下 (👏)-(👏)-(👏)-G-O】（第 25 ~ 32 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bingo', 'grid-bingo-v4')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bingo-v4"></div>
+
+    <div class="part-header">
+      <div class="part-title">👏👏👏👏 【第 5 回合：拍手 4 下 (👏)-(👏)-(👏)-(👏)-O】（第 33 ~ 40 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bingo', 'grid-bingo-v5')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bingo-v5"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎉 【第 6 回合大高潮：5 下全拍手＋歡樂大結尾！】（第 41 ~ 48 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bingo', 'grid-bingo-v6')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bingo-v6"></div>
   </section>
 
-  <!-- ==================== 3. 頑皮豹 ==================== -->
+  <!-- ==================== 3. 頑皮豹 (完整原曲 35 小節) ==================== -->
   <section class="song-section" id="song-panther">
     <div class="song-title-bar">
-      <h2>🐾 頑皮豹主題曲 (The Pink Panther Theme)</h2>
+      <h2>🐾 頑皮豹主題曲 (The Pink Panther Theme 亨利曼西尼完整原曲)</h2>
       <div class="badge-group">
-        <span class="badge badge-key">調號：6̣ = A 小調（神秘偵探風）</span>
-        <span class="badge badge-beat">拍號：4/4 拍（搖擺爵士 Swing）</span>
-        <span class="badge badge-level">難度：★★★（半音階滑步超帥！）</span>
+        <span class="badge badge-key">調號：6̣ = A 小調</span>
+        <span class="badge badge-beat">全長：35 小節（前奏 + A1段 + A2段 + 爵士橋段Bridge + A3再現 + 經典3連跳Coda）</span>
+        <span class="badge badge-level">原汁原味完整版</span>
       </div>
     </div>
 
     <div class="kid-tip">
-      💡 <strong>給小朋友的彈奏秘訣：</strong><br>
-      1. 頑皮豹最迷人的就是「躡手躡腳走路」的聲音：<strong>#4̣ → 5̣ → #5̣ → 6̣</strong>（黑鍵→白鍵→黑鍵→白鍵，像爬樓梯一樣一步一步往右邊走一格）！<br>
-      2. 看到 <strong class="deg-sharp">#4（升 Fa）</strong>、<strong class="deg-sharp">#5（升 Sol）</strong>、<strong class="deg-sharp">b3（降 Mi）</strong> 時，只要看上方鋼琴鍵盤亮粉紅色的黑鍵位置就對囉！
+      💡 <strong>亨利・曼西尼（Henry Mancini）完整原曲結構：</strong><br>
+      包含：<strong>【4小節神秘低音前奏】→【A1段主題與藍調滑音】→【A2段高音大跳與華麗下坡】→【Bridge 爵士搖擺間奏】→【A3段主題再現】→【Coda 頑皮豹經典三次「巴拉巴拉砰！」完美收尾】</strong>！
     </div>
 
-    <div class="part-title">🕵️ 【前奏】躡手躡腳神秘登場（黑鍵→白鍵爬樓梯）</div>
+    <div class="part-header">
+      <div class="part-title">🕵️ 【第 1 段：Intro 神秘偵探躡手躡腳前奏】（第 1 ~ 4 小節）</div>
+      <button class="btn-part-play" onclick="playSection('panther', 'grid-panther-intro')">▶ 單獨播放本段</button>
+    </div>
     <div class="score-grid" id="grid-panther-intro"></div>
 
-    <div class="part-title">🎷 【A 段主題】酷帥偵探搖擺旋律</div>
-    <div class="score-grid" id="grid-panther-a"></div>
+    <div class="part-header">
+      <div class="part-title">🎷 【第 2 段：A1 主題第一樂句（含藍調快速下行）】（第 5 ~ 12 小節）</div>
+      <button class="btn-part-play" onclick="playSection('panther', 'grid-panther-a1')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-panther-a1"></div>
 
-    <div class="part-title">✨ 【B 段高潮】結尾帥氣轉音</div>
-    <div class="score-grid" id="grid-panther-b"></div>
+    <div class="part-header">
+      <div class="part-title">🔥 【第 3 段：A2 主題第二樂句（高音 1̇→7 搖擺大跳）】（第 13 ~ 20 小節）</div>
+      <button class="btn-part-play" onclick="playSection('panther', 'grid-panther-a2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-panther-a2"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎩 【第 4 段：Bridge 偵探搖擺過門間奏】（第 21 ~ 24 小節）</div>
+      <button class="btn-part-play" onclick="playSection('panther', 'grid-panther-bridge')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-panther-bridge"></div>
+
+    <div class="part-header">
+      <div class="part-title">✨ 【第 5 段：A3 主題華麗再現】（第 25 ~ 30 小節）</div>
+      <button class="btn-part-play" onclick="playSection('panther', 'grid-panther-a3')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-panther-a3"></div>
+
+    <div class="part-header">
+      <div class="part-title">🐾 【第 6 段：Coda 經典三次收尾（巴拉巴拉～砰！）】（第 31 ~ 35 小節）</div>
+      <button class="btn-part-play" onclick="playSection('panther', 'grid-panther-coda')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-panther-coda"></div>
   </section>
 
   <!-- 底部輔助教學區 -->
@@ -643,61 +743,62 @@
       <h4>📖 簡譜符號一秒看懂</h4>
       <ul>
         <li><strong>1 2 3 4 5 6 7</strong> ＝ Do Re Mi Fa Sol La Si（白鍵）</li>
-        <li><strong>0</strong> ＝ 休止符（休息一下不彈，可以在心裡默數一拍）</li>
-        <li><strong>—</strong> ＝ 延長音（按住琴鍵不放，讓聲音延續下去）</li>
-        <li><strong>#4 / #5 / b3</strong> ＝ 黑鍵（升4＝4右邊黑鍵；降3＝3左邊黑鍵）</li>
+        <li><strong>0 / 👏</strong> ＝ 休止符（休息不彈，或拍手一下）</li>
+        <li><strong>#4 / #5 / b3 / b7</strong> ＝ 粉紅色字代表彈上方黑鍵</li>
+        <li><strong>數字上/下黑點</strong> ＝ 往右高八度（•在上面）／往左低八度（•在下面）</li>
       </ul>
     </div>
     <div class="helper-card">
       <h4>🎹 爸媽陪彈：超簡單左手伴奏</h4>
       <ul>
-        <li>小節卡片右上角標註 <strong>[C]</strong>：左手單指彈低音 <strong>1 (Do)</strong> 或雙音 <strong>1+5</strong></li>
-        <li>標註 <strong>[G]</strong>：左手單指彈低音 <strong>5̣ (Sol)</strong></li>
-        <li>標註 <strong>[F]</strong>：左手單指彈低音 <strong>4 (Fa)</strong></li>
-        <li>標註 <strong>[Am]</strong>：左手單指彈低音 <strong>6̣ (La)</strong>（頑皮豹主音！）</li>
+        <li>小節右上角標註 <strong>[C]</strong>：左手彈低音 <strong>1 (Do)</strong> 或 <strong>1+5</strong></li>
+        <li>標註 <strong>[G / G7]</strong>：左手彈低音 <strong>5̣ (Sol)</strong></li>
+        <li>標註 <strong>[F]</strong>：左手彈低音 <strong>4 (Fa)</strong></li>
+        <li>標註 <strong>[Am]</strong>：左手彈低音 <strong>6̣ (La)</strong></li>
       </ul>
     </div>
   </div>
 </div>
 
 <script>
-// ==================== 1. 鋼琴鍵盤定義 (G3 低音5 ~ G5 高音5) ====================
+// ==================== 1. 擴充版鋼琴鍵盤定義 (E3 低音3̣ ~ A5 高音6̇) ====================
 const PIANO_KEYS = [
-  { id: 'G3',  type: 'white', num: '5̣', sol: 'Sol', deg: '5', freq: 196.00 },
-  { id: 'G#3', type: 'black', num: '#5̣', sol: '#Sol', freq: 207.65, leftIdx: 1 },
-  { id: 'A3',  type: 'white', num: '6̣', sol: 'La',  deg: '6', freq: 220.00 },
-  { id: 'A#3', type: 'black', num: 'b7̣', sol: 'bSi', freq: 233.08, leftIdx: 2 },
-  { id: 'B3',  type: 'white', num: '7̣', sol: 'Si',  deg: '7', freq: 246.94 },
+  // 低音區 (E3 - B3)
+  { id: 'E3',  type: 'white', num: '3̣', sol: '低Mi', deg: '3', freq: 164.81 },
+  { id: 'F3',  type: 'white', num: '4̣', sol: '低Fa', deg: '4', freq: 174.61 },
+  { id: 'F#3', type: 'black', num: '#4̣', sol: '#Fa', freq: 185.00, leftIdx: 2 },
+  { id: 'G3',  type: 'white', num: '5̣', sol: '低Sol',deg: '5', freq: 196.00 },
+  { id: 'G#3', type: 'black', num: '#5̣', sol: '#Sol',freq: 207.65, leftIdx: 3 },
+  { id: 'A3',  type: 'white', num: '6̣', sol: '低La', deg: '6', freq: 220.00 },
+  { id: 'A#3', type: 'black', num: 'b7̣', sol: 'bSi', freq: 233.08, leftIdx: 4 },
+  { id: 'B3',  type: 'white', num: '7̣', sol: '低Si', deg: '7', freq: 246.94 },
 
   // 中音區 (C4 - B4)
   { id: 'C4',  type: 'white', num: '1',  sol: 'Do',  deg: '1', freq: 261.63 },
-  { id: 'C#4', type: 'black', num: '#1', sol: '#Do', freq: 277.18, leftIdx: 4 },
+  { id: 'C#4', type: 'black', num: '#1', sol: '#Do', freq: 277.18, leftIdx: 6 },
   { id: 'D4',  type: 'white', num: '2',  sol: 'Re',  deg: '2', freq: 293.66 },
-  { id: 'D#4', type: 'black', num: 'b3', sol: 'bMi', freq: 311.13, leftIdx: 5 },
+  { id: 'D#4', type: 'black', num: 'b3', sol: 'bMi', freq: 311.13, leftIdx: 7 },
   { id: 'E4',  type: 'white', num: '3',  sol: 'Mi',  deg: '3', freq: 329.63 },
   { id: 'F4',  type: 'white', num: '4',  sol: 'Fa',  deg: '4', freq: 349.23 },
-  { id: 'F#4', type: 'black', num: '#4', sol: '#Fa', freq: 369.99, leftIdx: 7 },
+  { id: 'F#4', type: 'black', num: '#4', sol: '#Fa', freq: 369.99, leftIdx: 9 },
   { id: 'G4',  type: 'white', num: '5',  sol: 'Sol', deg: '5', freq: 392.00 },
-  { id: 'G#4', type: 'black', num: '#5', sol: '#Sol', freq: 415.30, leftIdx: 8 },
+  { id: 'G#4', type: 'black', num: '#5', sol: '#Sol',freq: 415.30, leftIdx: 10 },
   { id: 'A4',  type: 'white', num: '6',  sol: 'La',  deg: '6', freq: 440.00 },
-  { id: 'A#4', type: 'black', num: 'b7', sol: 'bSi', freq: 466.16, leftIdx: 9 },
+  { id: 'A#4', type: 'black', num: 'b7', sol: 'bSi', freq: 466.16, leftIdx: 11 },
   { id: 'B4',  type: 'white', num: '7',  sol: 'Si',  deg: '7', freq: 493.88 },
 
-  // 高音區 (C5 - G5)
+  // 高音區 (C5 - A5)
   { id: 'C5',  type: 'white', num: '1̇', sol: '高Do', deg: '1', freq: 523.25 },
-  { id: 'C#5', type: 'black', num: '#1̇', sol: '#Do', freq: 554.37, leftIdx: 11 },
+  { id: 'C#5', type: 'black', num: '#1̇', sol: '#Do', freq: 554.37, leftIdx: 13 },
   { id: 'D5',  type: 'white', num: '2̇', sol: '高Re', deg: '2', freq: 587.33 },
-  { id: 'D#5', type: 'black', num: 'b3̇', sol: 'bMi', freq: 622.25, leftIdx: 12 },
+  { id: 'D#5', type: 'black', num: 'b3̇', sol: 'bMi', freq: 622.25, leftIdx: 14 },
   { id: 'E5',  type: 'white', num: '3̇', sol: '高Mi', deg: '3', freq: 659.25 },
   { id: 'F5',  type: 'white', num: '4̇', sol: '高Fa', deg: '4', freq: 698.46 },
-  { id: 'F#5', type: 'black', num: '#4̇', sol: '#Fa', freq: 739.99, leftIdx: 14 },
-  { id: 'G5',  type: 'white', num: '5̇', sol: '高Sol', deg: '5', freq: 783.99 }
+  { id: 'F#5', type: 'black', num: '#4̇', sol: '#Fa', freq: 739.99, leftIdx: 16 },
+  { id: 'G5',  type: 'white', num: '5̇', sol: '高Sol',deg: '5', freq: 783.99 },
+  { id: 'G#5', type: 'black', num: '#5̇', sol: '#Sol',freq: 830.61, leftIdx: 17 },
+  { id: 'A5',  type: 'white', num: '6̇', sol: '高La', deg: '6', freq: 880.00 }
 ];
-
-// 補充低音 #4̣ (F#3) 供頑皮豹前奏使用
-const EXTRA_FREQ = {
-  'F#3': 185.00
-};
 
 const KEY_MAP = {};
 PIANO_KEYS.forEach(k => KEY_MAP[k.id] = k);
@@ -705,7 +806,7 @@ PIANO_KEYS.forEach(k => KEY_MAP[k.id] = k);
 function renderPiano() {
   const container = document.getElementById('pianoKeys');
   container.innerHTML = '';
-  const whiteWidth = 46; // 44px + 2px margin
+  const whiteWidth = 46;
 
   PIANO_KEYS.filter(k => k.type === 'white').forEach((k) => {
     const el = document.createElement('div');
@@ -734,7 +835,7 @@ function renderPiano() {
   });
 }
 
-// ==================== 2. Web Audio 鋼琴合成音效 ====================
+// ==================== 2. Web Audio 鋼琴合成與拍手音效 ====================
 let audioCtx = null;
 function initAudio() {
   if (!audioCtx) {
@@ -745,19 +846,38 @@ function initAudio() {
   }
 }
 
+function playClapSound() {
+  initAudio();
+  const now = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(850, now);
+  osc.frequency.exponentialRampToValueAtTime(320, now + 0.08);
+  gain.gain.setValueAtTime(0.35, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start(now);
+  osc.stop(now + 0.09);
+}
+
 function playTone(noteId, durationSec = 0.4) {
   if (!noteId || noteId === 'REST') return;
+  if (noteId === 'CLAP') {
+    playClapSound();
+    return;
+  }
   initAudio();
   const keyObj = KEY_MAP[noteId];
-  const freq = keyObj ? keyObj.freq : EXTRA_FREQ[noteId];
-  if (!freq) return;
+  if (!keyObj) return;
+  const freq = keyObj.freq;
 
   const now = audioCtx.currentTime;
   const osc1 = audioCtx.createOscillator();
   const osc2 = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
 
-  // 溫暖清脆的電鋼琴音色 (Triangle + Sine 泛音)
   osc1.type = 'triangle';
   osc1.frequency.setValueAtTime(freq, now);
 
@@ -769,7 +889,7 @@ function playTone(noteId, durationSec = 0.4) {
 
   gain.gain.setValueAtTime(0.001, now);
   gain.gain.exponentialRampToValueAtTime(0.45, now + 0.015);
-  gain.gain.exponentialRampToValueAtTime(0.15, now + durationSec * 0.6);
+  gain.gain.exponentialRampToValueAtTime(0.16, now + durationSec * 0.65);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + durationSec);
 
   osc1.connect(gain);
@@ -788,297 +908,400 @@ function triggerNote(noteId, dur = 0.4) {
   const keyEl = document.getElementById(`key-${noteId}`);
   if (keyEl) {
     keyEl.classList.add('active');
-    setTimeout(() => keyEl.classList.remove('active'), Math.min(dur * 850, 350));
+    setTimeout(() => keyEl.classList.remove('active'), Math.min(dur * 850, 360));
   }
   const k = KEY_MAP[noteId];
   if (k) {
     document.getElementById('nowPlayingText').innerHTML = `🎵 正在發聲：<strong>${k.num} (${k.sol} / ${k.id})</strong>`;
+  } else if (noteId === 'CLAP') {
+    document.getElementById('nowPlayingText').innerHTML = `👏 <strong>拍手一下！（Clap!）</strong>`;
   }
 }
 
-// ==================== 3. 三首歌曲完整簡譜資料庫 ====================
-// 每個 note: { disp: 顯示數字, oct: 'high'|'low'|'', dur: 拍數, key: 對應琴鍵ID, lyr: 歌詞/提示, deg: 顏色等級 }
+// 輔助快速建構音符函式
+function N(disp, oct, dur, key, lyr, deg) {
+  return { disp, oct, dur, key, lyr, deg };
+}
+
+// ==================== 3. 三首完整原曲簡譜資料庫 ====================
+
+// --- 超級瑪利歐兄弟共用段落產生器 ---
+function getMarioSectionA(startMeasure) {
+  return [
+    { measure: startMeasure, chord: 'C → G', notes: [
+      N('1','high',1.5,'C5','高Do','1'), N('5','',1.5,'G4','Sol','5'), N('3','',1.0,'E4','Mi','3')
+    ]},
+    { measure: startMeasure+1, chord: 'F → G', notes: [
+      N('6','',1.0,'A4','La','6'), N('7','',1.0,'B4','Si','7'), N('b7','',0.5,'A#4','降Si','sharp'), N('6','',1.5,'A4','La','6')
+    ]},
+    { measure: startMeasure+2, chord: 'C → F', notes: [
+      N('5','',0.66,'G4','Sol','5'), N('3','high',0.67,'E5','高Mi','3'), N('5','high',0.67,'G5','高Sol','5'),
+      N('6','high',1.0,'A5','高La','6'), N('4','high',0.5,'F5','高Fa','4'), N('5','high',0.5,'G5','高Sol','5')
+    ]},
+    { measure: startMeasure+3, chord: 'G7 → C', notes: [
+      N('0','',0.5,'REST','(休)','0'), N('3','high',1.0,'E5','高Mi','3'),
+      N('1','high',0.5,'C5','高Do','1'), N('2','high',0.5,'D5','高Re','2'), N('7','',1.5,'B4','Si—','7')
+    ]},
+    // 第二遍反覆
+    { measure: startMeasure+4, chord: 'C → G (第2遍)', notes: [
+      N('1','high',1.5,'C5','高Do','1'), N('5','',1.5,'G4','Sol','5'), N('3','',1.0,'E4','Mi','3')
+    ]},
+    { measure: startMeasure+5, chord: 'F → G', notes: [
+      N('6','',1.0,'A4','La','6'), N('7','',1.0,'B4','Si','7'), N('b7','',0.5,'A#4','降Si','sharp'), N('6','',1.5,'A4','La','6')
+    ]},
+    { measure: startMeasure+6, chord: 'C → F', notes: [
+      N('5','',0.66,'G4','Sol','5'), N('3','high',0.67,'E5','高Mi','3'), N('5','high',0.67,'G5','高Sol','5'),
+      N('6','high',1.0,'A5','高La','6'), N('4','high',0.5,'F5','高Fa','4'), N('5','high',0.5,'G5','高Sol','5')
+    ]},
+    { measure: startMeasure+7, chord: 'G7 → C', notes: [
+      N('0','',0.5,'REST','(休)','0'), N('3','high',1.0,'E5','高Mi','3'),
+      N('1','high',0.5,'C5','高Do','1'), N('2','high',0.5,'D5','高Re','2'), N('7','',1.5,'B4','Si—','7')
+    ]}
+  ];
+}
+
+function getMarioSectionB(startMeasure) {
+  const halfB = (mOffset, label) => [
+    { measure: mOffset, chord: `C ${label}`, notes: [
+      N('0','',1.0,'REST','(休)','0'), N('5','high',0.5,'G5','Sol','5'), N('#4','high',0.5,'F#5','#Fa','sharp'),
+      N('4','high',0.5,'F5','Fa','4'), N('b3','high',1.0,'D#5','bMi','sharp'), N('3','high',0.5,'E5','Mi','3')
+    ]},
+    { measure: mOffset+1, chord: 'F → C', notes: [
+      N('0','',0.5,'REST','(休)','0'), N('#5','',0.5,'G#4','#Sol','sharp'), N('6','',0.5,'A4','La','6'), N('1','high',0.5,'C5','高Do','1'),
+      N('0','',0.5,'REST','(休)','0'), N('6','',0.5,'A4','La','6'), N('1','high',0.5,'C5','Do','1'), N('2','high',0.5,'D5','Re','2')
+    ]},
+    { measure: mOffset+2, chord: 'C', notes: [
+      N('0','',1.0,'REST','(休)','0'), N('5','high',0.5,'G5','Sol','5'), N('#4','high',0.5,'F#5','#Fa','sharp'),
+      N('4','high',0.5,'F5','Fa','4'), N('b3','high',1.0,'D#5','bMi','sharp'), N('3','high',0.5,'E5','Mi','3')
+    ]},
+    { measure: mOffset+3, chord: 'G (高音叮噹)', notes: [
+      N('0','',0.5,'REST','(休)','0'), N('1','high',1.0,'C5','高Do!','1'), N('1','high',0.5,'C5','高Do!','1'),
+      N('1','high',1.0,'C5','高Do!','1'), N('0','',1.0,'REST','(休)','0')
+    ]},
+    { measure: mOffset+4, chord: 'C', notes: [
+      N('0','',1.0,'REST','(休)','0'), N('5','high',0.5,'G5','Sol','5'), N('#4','high',0.5,'F#5','#Fa','sharp'),
+      N('4','high',0.5,'F5','Fa','4'), N('b3','high',1.0,'D#5','bMi','sharp'), N('3','high',0.5,'E5','Mi','3')
+    ]},
+    { measure: mOffset+5, chord: 'F → C', notes: [
+      N('0','',0.5,'REST','(休)','0'), N('#5','',0.5,'G#4','#Sol','sharp'), N('6','',0.5,'A4','La','6'), N('1','high',0.5,'C5','高Do','1'),
+      N('0','',0.5,'REST','(休)','0'), N('6','',0.5,'A4','La','6'), N('1','high',0.5,'C5','Do','1'), N('2','high',0.5,'D5','Re','2')
+    ]},
+    { measure: mOffset+6, chord: 'Ab → Bb', notes: [
+      N('0','',1.0,'REST','(休)','0'), N('b3','high',1.0,'D#5','降Mi','sharp'),
+      N('0','',0.5,'REST','(休)','0'), N('2','high',1.5,'D5','高Re','2')
+    ]},
+    { measure: mOffset+7, chord: 'C', notes: [
+      N('1','high',2.0,'C5','高Do—','1'), N('0','',2.0,'REST','(休止)','0')
+    ]}
+  ];
+  return [...halfB(startMeasure, '(第1遍)'), ...halfB(startMeasure + 8, '(第2遍)')];
+}
+
+function getMarioSectionC(startMeasure) {
+  const halfC = (mOffset, label) => [
+    { measure: mOffset, chord: `Ab ${label}`, notes: [
+      N('1','high',0.5,'C5','Do','1'), N('1','high',1.0,'C5','Do','1'), N('1','high',0.5,'C5','Do','1'),
+      N('0','',0.5,'REST','(休)','0'), N('1','high',0.5,'C5','Do','1'), N('2','high',1.0,'D5','Re','2')
+    ]},
+    { measure: mOffset+1, chord: 'C → G', notes: [
+      N('3','high',0.5,'E5','Mi','3'), N('1','high',1.0,'C5','Do','1'), N('6','',0.5,'A4','La','6'), N('5','',2.0,'G4','Sol—','5')
+    ]},
+    { measure: mOffset+2, chord: 'Ab', notes: [
+      N('1','high',0.5,'C5','Do','1'), N('1','high',1.0,'C5','Do','1'), N('1','high',0.5,'C5','Do','1'),
+      N('0','',0.5,'REST','(休)','0'), N('1','high',0.5,'C5','Do','1'), N('2','high',0.5,'D5','Re','2'), N('3','high',0.5,'E5','Mi','3')
+    ]},
+    { measure: mOffset+3, chord: 'G', notes: [
+      N('0','',4.0,'REST','(伴奏過門休息4拍)','0')
+    ]},
+    { measure: mOffset+4, chord: 'Ab', notes: [
+      N('1','high',0.5,'C5','Do','1'), N('1','high',1.0,'C5','Do','1'), N('1','high',0.5,'C5','Do','1'),
+      N('0','',0.5,'REST','(休)','0'), N('1','high',0.5,'C5','Do','1'), N('2','high',1.0,'D5','Re','2')
+    ]},
+    { measure: mOffset+5, chord: 'C → G', notes: [
+      N('3','high',0.5,'E5','Mi','3'), N('1','high',1.0,'C5','Do','1'), N('6','',0.5,'A4','La','6'), N('5','',2.0,'G4','Sol—','5')
+    ]},
+    { measure: mOffset+6, chord: 'G7 (回到前奏引子)', notes: [
+      N('3','high',0.5,'E5','噠','3'), N('3','high',0.5,'E5','噠','3'), N('0','',0.5,'REST','(休)','0'),
+      N('3','high',0.5,'E5','噠','3'), N('0','',0.5,'REST','(休)','0'), N('1','high',0.5,'C5','叮','1'), N('3','high',1.0,'E5','噹！','3')
+    ]},
+    { measure: mOffset+7, chord: 'G → C', notes: [
+      N('5','high',1.0,'G5','跳！','5'), N('0','',1.0,'REST','(空)','0'), N('5','',1.0,'G4','低Sol','5'), N('0','',1.0,'REST','(空)','0')
+    ]}
+  ];
+  return [...halfC(startMeasure, '(第1遍)'), ...halfC(startMeasure + 8, '(第2遍)')];
+}
+
+// --- BINGO 6個回合完整產生器 ---
+function getBingoVerse(verseNum, clapCount) {
+  const mStart = (verseNum - 1) * 8 + 1;
+  const letters = ['B', 'I', 'N', 'G', 'O'];
+
+  // 輔助決定該字母是彈音符還是拍手
+  const spellNote = (idx, pitchDisp, keyId, deg, dur) => {
+    if (idx < clapCount) {
+      return N('👏', '', dur, 'CLAP', `(拍手:${letters[idx]})`, 'sharp');
+    }
+    return N(pitchDisp, '', dur, keyId, `${letters[idx]} !`, deg);
+  };
+
+  return [
+    { measure: mStart, chord: 'C', notes: [
+      N('5','low',1.0,'G3','農(There)','5'), N('1','',0.5,'C4','夫(was)','1'), N('1','',0.5,'C4','有(a)','1'),
+      N('1','',1.0,'C4','隻(farm-)','1'), N('5','low',0.5,'G3','小(er)','5'), N('6','low',0.5,'A3','狗(had)','6')
+    ]},
+    { measure: mStart+1, chord: 'G → C', notes: [
+      N('7','low',0.5,'B3','狗(a)','7'), N('5','low',0.5,'G3','呀(dog)','5'), N('1','',1.0,'C4','名(and)','1'),
+      N('1','',1.0,'C4','字(Bin-)','1'), N('2','',0.5,'D4','叫(go)','2'), N('2','',0.5,'D4','做(was)','2')
+    ]},
+    { measure: mStart+2, chord: 'G → C', notes: [
+      N('3','',1.0,'E4','賓(his)','3'), N('1','',2.0,'C4','果(name-o)','1'), N('0','',1.0,'REST','(吸氣)','0')
+    ]},
+    { measure: mStart+3, chord: 'C (第1次拼字)', notes: [
+      spellNote(0, '3', 'E4', '3', 1.0),
+      spellNote(1, '3', 'E4', '3', 1.0),
+      spellNote(2, '4', 'F4', '4', 0.5),
+      spellNote(3, '4', 'F4', '4', 0.5),
+      spellNote(4, '3', 'E4', '3', 1.0)
+    ]},
+    { measure: mStart+4, chord: 'F (第2次拼字)', notes: [
+      spellNote(0, '1', 'C4', '1', 1.0),
+      spellNote(1, '1', 'C4', '1', 1.0),
+      spellNote(2, '2', 'D4', '2', 0.5),
+      spellNote(3, '2', 'D4', '2', 0.5),
+      spellNote(4, '1', 'C4', '1', 1.0)
+    ]},
+    { measure: mStart+5, chord: 'G (第3次拼字)', notes: [
+      spellNote(0, '2', 'D4', '2', 1.0),
+      spellNote(1, '2', 'D4', '2', 1.0),
+      spellNote(2, '3', 'E4', '3', 0.5),
+      spellNote(3, '3', 'E4', '3', 0.5),
+      spellNote(4, '2', 'D4', '2', 1.0)
+    ]},
+    { measure: mStart+6, chord: 'G7', notes: [
+      N('5','',0.5,'G4','牠(And)','5'), N('4','',0.5,'F4','名(Bin-)','4'), N('3','',0.5,'E4','字(go)','3'), N('2','',0.5,'D4','叫(was)','2'),
+      N('1','',1.0,'C4','賓(his)','1'), N('7','low',1.0,'B3','果(name)','7')
+    ]},
+    { measure: mStart+7, chord: 'C', notes: [
+      N('1','',2.5,'C4','喲！(O!)','1'), N('0','',1.5,'REST', verseNum === 6 ? '🎉全曲結束' : '(接下一段)','0')
+    ]}
+  ];
+}
+
 const SONGS_DATA = {
   mario: {
-    bpm: 150,
+    bpm: 152,
     sections: {
       'grid-mario-intro': [
-        {
-          measure: 1, chord: 'C',
-          notes: [
-            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: '噠', deg: '3' },
-            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: '噠', deg: '3' },
-            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: '噠', deg: '3' },
-            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: '叮', deg: '1' },
-            { disp: '3', oct: 'high', dur: 1.0, key: 'E5', lyr: '噹！', deg: '3' }
-          ]
-        },
-        {
-          measure: 2, chord: 'G',
-          notes: [
-            { disp: '5', oct: 'high', dur: 1.0, key: 'G5', lyr: '跳！', deg: '5' },
-            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(空)', deg: '0' },
-            { disp: '5', oct: '',     dur: 1.0, key: 'G4', lyr: '低Sol', deg: '5' },
-            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(空)', deg: '0' }
-          ]
-        }
+        { measure: 1, chord: 'C', notes: [
+          N('3','high',0.5,'E5','噠','3'), N('3','high',0.5,'E5','噠','3'), N('0','',0.5,'REST','(休)','0'),
+          N('3','high',0.5,'E5','噠','3'), N('0','',0.5,'REST','(休)','0'), N('1','high',0.5,'C5','叮','1'), N('3','high',1.0,'E5','噹！','3')
+        ]},
+        { measure: 2, chord: 'G', notes: [
+          N('5','high',1.0,'G5','跳！','5'), N('0','',1.0,'REST','(空)','0'), N('5','',1.0,'G4','低Sol','5'), N('0','',1.0,'REST','(空)','0')
+        ]}
       ],
-      'grid-mario-a': [
-        {
-          measure: 3, chord: 'C',
-          notes: [
-            { disp: '1', oct: 'high', dur: 1.5, key: 'C5', lyr: '高Do', deg: '1' },
-            { disp: '5', oct: '',     dur: 1.5, key: 'G4', lyr: 'Sol', deg: '5' },
-            { disp: '3', oct: '',     dur: 1.0, key: 'E4', lyr: 'Mi', deg: '3' }
-          ]
-        },
-        {
-          measure: 4, chord: 'F → G',
-          notes: [
-            { disp: '6', oct: '',     dur: 1.0, key: 'A4', lyr: 'La', deg: '6' },
-            { disp: '7', oct: '',     dur: 1.0, key: 'B4', lyr: 'Si', deg: '7' },
-            { disp: 'b7',oct: '',     dur: 0.5, key: 'A#4',lyr: '黑鍵', deg: 'sharp' },
-            { disp: '6', oct: '',     dur: 1.5, key: 'A4', lyr: 'La', deg: '6' }
-          ]
-        },
-        {
-          measure: 5, chord: 'C → Am',
-          notes: [
-            { disp: '5', oct: '',     dur: 0.7, key: 'G4', lyr: 'Sol', deg: '5' },
-            { disp: '3', oct: 'high', dur: 0.7, key: 'E5', lyr: '高Mi', deg: '3' },
-            { disp: '5', oct: 'high', dur: 0.6, key: 'G5', lyr: '高Sol', deg: '5' },
-            { disp: '6', oct: 'high', dur: 1.0, key: 'A4', lyr: 'La', deg: '6' },
-            { disp: '4', oct: 'high', dur: 0.5, key: 'F5', lyr: '高Fa', deg: '4' },
-            { disp: '5', oct: 'high', dur: 0.5, key: 'G5', lyr: '高Sol', deg: '5' }
-          ]
-        },
-        {
-          measure: 6, chord: 'G',
-          notes: [
-            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '3', oct: 'high', dur: 1.0, key: 'E5', lyr: '高Mi', deg: '3' },
-            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: '高Do', deg: '1' },
-            { disp: '2', oct: 'high', dur: 0.5, key: 'D5', lyr: '高Re', deg: '2' },
-            { disp: '7', oct: '',     dur: 1.5, key: 'B4', lyr: 'Si—', deg: '7' }
-          ]
-        }
-      ],
-      'grid-mario-b': [
-        {
-          measure: 7, chord: 'C',
-          notes: [
-            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '5', oct: 'high', dur: 0.5, key: 'G5', lyr: 'Sol', deg: '5' },
-            { disp: '#4',oct: 'high', dur: 0.5, key: 'F#5',lyr: '升Fa', deg: 'sharp' },
-            { disp: '4', oct: 'high', dur: 0.5, key: 'F5', lyr: 'Fa', deg: '4' },
-            { disp: 'b3',oct: 'high', dur: 1.0, key: 'D#5',lyr: '降Mi', deg: 'sharp' },
-            { disp: '3', oct: 'high', dur: 0.5, key: 'E5', lyr: 'Mi', deg: '3' }
-          ]
-        },
-        {
-          measure: 8, chord: 'F → C',
-          notes: [
-            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '#5',oct: '',     dur: 0.5, key: 'G#4',lyr: '升Sol', deg: 'sharp' },
-            { disp: '6', oct: '',     dur: 0.5, key: 'A4', lyr: 'La', deg: '6' },
-            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: '高Do', deg: '1' },
-            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '6', oct: '',     dur: 0.5, key: 'A4', lyr: 'La', deg: '6' },
-            { disp: '1', oct: 'high', dur: 0.5, key: 'C5', lyr: 'Do', deg: '1' },
-            { disp: '2', oct: 'high', dur: 0.5, key: 'D5', lyr: 'Re', deg: '2' }
-          ]
-        },
-        {
-          measure: 9, chord: 'Ab → Bb',
-          notes: [
-            { disp: '0', oct: '',     dur: 1.0, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: 'b3',oct: 'high', dur: 1.0, key: 'D#5',lyr: '降Mi', deg: 'sharp' },
-            { disp: '0', oct: '',     dur: 0.5, key: 'REST', lyr: '(休)', deg: '0' },
-            { disp: '2', oct: 'high', dur: 1.5, key: 'D5', lyr: '高Re', deg: '2' }
-          ]
-        },
-        {
-          measure: 10, chord: 'C (過關！)',
-          notes: [
-            { disp: '1', oct: 'high', dur: 2.0, key: 'C5', lyr: '高Do—', deg: '1' },
-            { disp: '0', oct: '',     dur: 2.0, key: 'REST', lyr: '🎉完成', deg: '0' }
-          ]
-        }
+      'grid-mario-a': getMarioSectionA(3),
+      'grid-mario-b': getMarioSectionB(11),
+      'grid-mario-a2': getMarioSectionA(27),
+      'grid-mario-c': getMarioSectionC(35),
+      'grid-mario-outro': [
+        { measure: 51, chord: 'G → C (拉旗桿)', notes: [
+          N('5','low',0.33,'G3','Sol','5'), N('1','',0.33,'C4','Do','1'), N('3','',0.34,'E4','Mi','3'),
+          N('5','',0.33,'G4','Sol','5'), N('1','high',0.33,'C5','高Do','1'), N('3','high',0.34,'E5','高Mi','3'),
+          N('5','high',1.0,'G5','高Sol—','5'), N('3','high',1.0,'E5','高Mi—','3')
+        ]},
+        { measure: 52, chord: 'Ab (升半音階)', notes: [
+          N('#5','low',0.33,'G#3','#Sol','sharp'), N('1','',0.33,'C4','Do','1'), N('b3','',0.34,'D#4','bMi','sharp'),
+          N('#5','',0.33,'G#4','#Sol','sharp'), N('1','high',0.33,'C5','高Do','1'), N('b3','high',0.34,'D#5','bMi','sharp'),
+          N('#5','high',1.0,'G#5','#Sol—','sharp'), N('b3','high',1.0,'D#5','bMi—','sharp')
+        ]},
+        { measure: 53, chord: 'Bb (再升一階)', notes: [
+          N('b7','low',0.33,'A#3','bSi','sharp'), N('2','',0.33,'D4','Re','2'), N('4','',0.34,'F4','Fa','4'),
+          N('b7','',0.33,'A#4','bSi','sharp'), N('2','high',0.33,'D5','高Re','2'), N('4','high',0.34,'F5','高Fa','4'),
+          N('6','high',1.0,'A5','高La!','6'), N('6','high',0.33,'A5','噠','6'), N('6','high',0.33,'A5','噠','6'), N('6','high',0.34,'A5','噠','6')
+        ]},
+        { measure: 54, chord: 'C (過關勝利！)', notes: [
+          N('1','high',2.5,'C5','高Do—🏆','1'), N('0','',1.5,'REST','🎉恭喜過關','0')
+        ]}
       ]
     }
   },
 
   bingo: {
-    bpm: 116,
+    bpm: 120,
     sections: {
-      'grid-bingo-a': [
-        {
-          measure: 1, chord: 'C',
-          notes: [
-            { disp: '5', oct: 'low', dur: 1.0, key: 'G3', lyr: '農 (There)', deg: '5' },
-            { disp: '1', oct: '',    dur: 0.5, key: 'C4', lyr: '夫 (was)', deg: '1' },
-            { disp: '1', oct: '',    dur: 0.5, key: 'C4', lyr: '有 (a)', deg: '1' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '隻 (farm-)', deg: '1' },
-            { disp: '5', oct: 'low', dur: 0.5, key: 'G3', lyr: '小 (er)', deg: '5' },
-            { disp: '6', oct: 'low', dur: 0.5, key: 'A3', lyr: '狗 (had)', deg: '6' }
-          ]
-        },
-        {
-          measure: 2, chord: 'G → C',
-          notes: [
-            { disp: '7', oct: 'low', dur: 0.5, key: 'B3', lyr: '狗 (a)', deg: '7' },
-            { disp: '5', oct: 'low', dur: 0.5, key: 'G3', lyr: '呀 (dog)', deg: '5' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '名 (and)', deg: '1' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '字 (Bin-)', deg: '1' },
-            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: '叫 (go)', deg: '2' },
-            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: '做 (was)', deg: '2' }
-          ]
-        },
-        {
-          measure: 3, chord: 'G',
-          notes: [
-            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: '賓 (his)', deg: '3' },
-            { disp: '1', oct: '',    dur: 1.5, key: 'C4', lyr: '果 (name-o!)', deg: '1' },
-            { disp: '0', oct: '',    dur: 1.5, key: 'REST', lyr: '(呼吸)', deg: '0' }
-          ]
-        }
-      ],
-      'grid-bingo-b': [
-        {
-          measure: 4, chord: 'C',
-          notes: [
-            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: 'B !', deg: '3' },
-            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: 'I !', deg: '3' },
-            { disp: '4', oct: '',    dur: 0.5, key: 'F4', lyr: 'N -', deg: '4' },
-            { disp: '4', oct: '',    dur: 0.5, key: 'F4', lyr: 'G -', deg: '4' },
-            { disp: '3', oct: '',    dur: 1.0, key: 'E4', lyr: 'O !', deg: '3' }
-          ]
-        },
-        {
-          measure: 5, chord: 'F',
-          notes: [
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: 'B !', deg: '1' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: 'I !', deg: '1' },
-            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: 'N -', deg: '2' },
-            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: 'G -', deg: '2' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: 'O !', deg: '1' }
-          ]
-        },
-        {
-          measure: 6, chord: 'G',
-          notes: [
-            { disp: '2', oct: '',    dur: 1.0, key: 'D4', lyr: 'B !', deg: '2' },
-            { disp: '2', oct: '',    dur: 1.0, key: 'D4', lyr: 'I !', deg: '2' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4', lyr: 'N -', deg: '3' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4', lyr: 'G -', deg: '3' },
-            { disp: '2', oct: '',    dur: 1.0, key: 'D4', lyr: 'O !', deg: '2' }
-          ]
-        },
-        {
-          measure: 7, chord: 'G → C',
-          notes: [
-            { disp: '5', oct: '',    dur: 0.5, key: 'G4', lyr: '牠 (And)', deg: '5' },
-            { disp: '4', oct: '',    dur: 0.5, key: 'F4', lyr: '名 (Bin-)', deg: '4' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4', lyr: '字 (go)', deg: '3' },
-            { disp: '2', oct: '',    dur: 0.5, key: 'D4', lyr: '叫 (was)', deg: '2' },
-            { disp: '1', oct: '',    dur: 0.5, key: 'C4', lyr: '賓 (his)', deg: '1' },
-            { disp: '7', oct: 'low', dur: 0.5, key: 'B3', lyr: '果 (name)', deg: '7' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4', lyr: '喲！(O!)', deg: '1' }
-          ]
-        }
-      ]
+      'grid-bingo-v1': getBingoVerse(1, 0),
+      'grid-bingo-v2': getBingoVerse(2, 1),
+      'grid-bingo-v3': getBingoVerse(3, 2),
+      'grid-bingo-v4': getBingoVerse(4, 3),
+      'grid-bingo-v5': getBingoVerse(5, 4),
+      'grid-bingo-v6': getBingoVerse(6, 5)
     }
   },
 
   panther: {
-    bpm: 112,
+    bpm: 116,
     sections: {
       'grid-panther-intro': [
-        {
-          measure: 1, chord: 'Am (神秘爬梯)',
-          notes: [
-            { disp: '#4',oct: 'low', dur: 0.5, key: 'F#3', lyr: '躡', deg: 'sharp' },
-            { disp: '5', oct: 'low', dur: 1.5, key: 'G3',  lyr: '手—', deg: '5' },
-            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '躡', deg: 'sharp' },
-            { disp: '6', oct: 'low', dur: 1.5, key: 'A3',  lyr: '腳—', deg: '6' }
-          ]
-        }
+        { measure: 1, chord: 'Am (低音潛行)', notes: [
+          N('#4','low',0.5,'F#3','躡','sharp'), N('5','low',1.5,'G3','手—','5'),
+          N('#5','low',0.5,'G#3','躡','sharp'), N('6','low',1.5,'A3','腳—','6')
+        ]},
+        { measure: 2, chord: 'Am', notes: [
+          N('0','',2.0,'REST','(左右偷看)','0'),
+          N('#4','low',0.5,'F#3','躡','sharp'), N('5','low',1.5,'G3','手—','5')
+        ]},
+        { measure: 3, chord: 'Am', notes: [
+          N('#5','low',0.5,'G#3','躡','sharp'), N('6','low',2.5,'A3','腳—','6'),
+          N('0','',1.0,'REST','(預備)','0')
+        ]},
+        { measure: 4, chord: 'Am (前奏導音)', notes: [
+          N('0','',2.0,'REST','(休止)','0'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]}
       ],
-      'grid-panther-a': [
-        {
-          measure: 2, chord: 'Am',
-          notes: [
-            { disp: '#4',oct: 'low', dur: 0.5, key: 'F#3', lyr: '巴', deg: 'sharp' },
-            { disp: '5', oct: 'low', dur: 0.5, key: 'G3',  lyr: '拉', deg: '5' },
-            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '巴', deg: 'sharp' },
-            { disp: '6', oct: 'low', dur: 0.5, key: 'A3',  lyr: '拉', deg: '6' },
-            { disp: 'b3',oct: '',    dur: 0.5, key: 'D#4', lyr: '降Mi', deg: 'sharp' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' },
-            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '#Sol', deg: 'sharp' },
-            { disp: '6', oct: 'low', dur: 0.5, key: 'A3',  lyr: 'La', deg: '6' }
-          ]
-        },
-        {
-          measure: 3, chord: 'F → C',
-          notes: [
-            { disp: '7', oct: 'low', dur: 0.5, key: 'B3',  lyr: 'Si', deg: '7' },
-            { disp: '1', oct: '',    dur: 1.0, key: 'C4',  lyr: 'Do—', deg: '1' },
-            { disp: '#4',oct: '',    dur: 0.5, key: 'F#4', lyr: '升Fa', deg: 'sharp' },
-            { disp: '5', oct: '',    dur: 1.0, key: 'G4',  lyr: 'Sol—', deg: '5' },
-            { disp: '1', oct: '',    dur: 0.5, key: 'C4',  lyr: 'Do', deg: '1' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' }
-          ]
-        },
-        {
-          measure: 4, chord: 'E7 → Am',
-          notes: [
-            { disp: '#4',oct: '',    dur: 0.5, key: 'F#4', lyr: '升Fa', deg: 'sharp' },
-            { disp: '4', oct: '',    dur: 1.5, key: 'F4',  lyr: 'Fa—', deg: '4' },
-            { disp: '3', oct: '',    dur: 0.4, key: 'E4',  lyr: 'Mi', deg: '3' },
-            { disp: '1', oct: '',    dur: 0.4, key: 'C4',  lyr: 'Do', deg: '1' },
-            { disp: '6', oct: 'low', dur: 0.4, key: 'A3',  lyr: 'La', deg: '6' },
-            { disp: '5', oct: 'low', dur: 0.4, key: 'G3',  lyr: 'Sol', deg: '5' },
-            { disp: '6', oct: 'low', dur: 1.2, key: 'A3',  lyr: 'La—！', deg: '6' }
-          ]
-        }
+      'grid-panther-a1': [
+        { measure: 5, chord: 'Am', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.5,'E4','Mi—','3'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]},
+        { measure: 6, chord: 'F7 → C', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.0,'E4','Mi—','3'),
+          N('7','low',0.5,'B3','Si','7'), N('1','',0.5,'C4','Do','1'),
+          N('#4','',0.5,'F#4','#Fa','sharp'), N('5','',1.0,'G4','Sol—','5')
+        ]},
+        { measure: 7, chord: 'C → F7', notes: [
+          N('1','',0.5,'C4','Do','1'), N('3','',0.5,'E4','Mi','3'),
+          N('#4','',0.5,'F#4','#Fa','sharp'), N('4','',2.0,'F4','Fa——','4'),
+          N('0','',0.5,'REST','(休)','0')
+        ]},
+        { measure: 8, chord: 'Am (藍調滑音)', notes: [
+          N('3','',0.4,'E4','Mi','3'), N('1','',0.4,'C4','Do','1'), N('6','low',0.4,'A3','La','6'), N('5','low',0.4,'G3','Sol','5'),
+          N('6','low',2.4,'A3','La——','6')
+        ]},
+        { measure: 9, chord: 'Am', notes: [
+          N('0','',2.0,'REST','(呼吸)','0'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]},
+        { measure: 10, chord: 'Dm → Am', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.5,'E4','Mi—','3'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]},
+        { measure: 11, chord: 'F7 → G', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.0,'E4','Mi—','3'),
+          N('7','low',0.5,'B3','Si','7'), N('1','',0.5,'C4','Do','1'),
+          N('#4','',0.5,'F#4','#Fa','sharp'), N('5','',1.0,'G4','Sol—','5')
+        ]},
+        { measure: 12, chord: 'G → C', notes: [
+          N('5','',0.5,'G4','Sol','5'), N('#5','',0.5,'G#4','#Sol','sharp'),
+          N('6','',2.5,'A4','高La——','6'), N('0','',0.5,'REST','(休)','0')
+        ]}
       ],
-      'grid-panther-b': [
-        {
-          measure: 5, chord: 'Am → Dm',
-          notes: [
-            { disp: '#4',oct: 'low', dur: 0.5, key: 'F#3', lyr: '巴', deg: 'sharp' },
-            { disp: '5', oct: 'low', dur: 0.5, key: 'G3',  lyr: '拉', deg: '5' },
-            { disp: '#5',oct: 'low', dur: 0.5, key: 'G#3', lyr: '巴', deg: 'sharp' },
-            { disp: '6', oct: 'low', dur: 0.5, key: 'A3',  lyr: '拉', deg: '6' },
-            { disp: 'b3',oct: '',    dur: 0.5, key: 'D#4', lyr: '降Mi', deg: 'sharp' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' },
-            { disp: '#4',oct: '',    dur: 0.5, key: 'F#4', lyr: '升Fa', deg: 'sharp' },
-            { disp: '5', oct: '',    dur: 0.5, key: 'G4',  lyr: 'Sol', deg: '5' }
-          ]
-        },
-        {
-          measure: 6, chord: 'G → C',
-          notes: [
-            { disp: '#5',oct: '',    dur: 0.5, key: 'G#4', lyr: '升Sol', deg: 'sharp' },
-            { disp: '6', oct: '',    dur: 1.0, key: 'A4',  lyr: '高La—', deg: '6' },
-            { disp: '3', oct: '',    dur: 0.5, key: 'E4',  lyr: 'Mi', deg: '3' },
-            { disp: '5', oct: '',    dur: 0.5, key: 'G4',  lyr: 'Sol', deg: '5' },
-            { disp: '1', oct: 'high', dur: 0.5, key: 'C5',  lyr: '高Do', deg: '1' },
-            { disp: '7', oct: '',    dur: 1.0, key: 'B4',  lyr: 'Si—', deg: '7' }
-          ]
-        },
-        {
-          measure: 7, chord: 'Am (帥氣收尾)',
-          notes: [
-            { disp: '6', oct: '',    dur: 0.4, key: 'A4',  lyr: 'La', deg: '6' },
-            { disp: '5', oct: '',    dur: 0.4, key: 'G4',  lyr: 'Sol', deg: '5' },
-            { disp: '3', oct: '',    dur: 0.4, key: 'E4',  lyr: 'Mi', deg: '3' },
-            { disp: '2', oct: '',    dur: 0.4, key: 'D4',  lyr: 'Re', deg: '2' },
-            { disp: '6', oct: 'low', dur: 2.0, key: 'A3',  lyr: 'La—🐾', deg: '6' }
-          ]
-        }
+      'grid-panther-a2': [
+        { measure: 13, chord: 'Am', notes: [
+          N('0','',2.0,'REST','(休)','0'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]},
+        { measure: 14, chord: 'Am', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.5,'E4','Mi—','3'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]},
+        { measure: 15, chord: 'Dm → G7', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.0,'E4','Mi—','3'),
+          N('7','low',0.5,'B3','Si','7'), N('1','',0.5,'C4','Do','1'),
+          N('3','',0.5,'E4','Mi','3'), N('5','',1.0,'G4','Sol—','5')
+        ]},
+        { measure: 16, chord: 'C → E7 (高音大跳)', notes: [
+          N('1','high',0.5,'C5','高Do!','1'), N('7','',2.5,'B4','Si——','7'),
+          N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 17, chord: 'Am (帥氣藍調下坡)', notes: [
+          N('6','',0.33,'A4','La','6'), N('5','',0.33,'G4','Sol','5'), N('3','',0.34,'E4','Mi','3'),
+          N('2','',0.33,'D4','Re','2'), N('1','',0.33,'C4','Do','1'), N('6','low',0.34,'A3','低La','6'),
+          N('b3','',0.5,'D#4','bMi','sharp'), N('2','',0.5,'D4','Re','2'), N('1','',0.5,'C4','Do','1'), N('6','low',0.5,'A3','La','6')
+        ]},
+        { measure: 18, chord: 'Am', notes: [
+          N('5','low',0.5,'G3','Sol','5'), N('6','low',2.5,'A3','La——','6'), N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 19, chord: 'Am', notes: [
+          N('3','',0.5,'E4','Mi','3'), N('2','',0.5,'D4','Re','2'), N('1','',0.5,'C4','Do','1'), N('6','low',0.5,'A3','La','6'),
+          N('5','low',0.5,'G3','Sol','5'), N('6','low',1.5,'A3','La—','6')
+        ]},
+        { measure: 20, chord: 'Am', notes: [
+          N('6','low',2.0,'A3','(延長)','6'), N('0','',2.0,'REST','(進間奏)','0')
+        ]}
+      ],
+      'grid-panther-bridge': [
+        { measure: 21, chord: 'Fmaj7 (爵士搖擺)', notes: [
+          N('3','',1.0,'E4','Mi','3'), N('1','',0.5,'C4','Do','1'), N('2','',0.5,'D4','Re','2'),
+          N('3','',1.0,'E4','Mi','3'), N('1','',0.5,'C4','Do','1'), N('2','',0.5,'D4','Re','2')
+        ]},
+        { measure: 22, chord: 'Dm7 → G7', notes: [
+          N('3','',0.5,'E4','Mi','3'), N('4','',0.5,'F4','Fa','4'), N('5','',1.0,'G4','Sol','5'),
+          N('3','',1.0,'E4','Mi','3'), N('1','',1.0,'C4','Do','1')
+        ]},
+        { measure: 23, chord: 'Em7 → Am', notes: [
+          N('2','',1.0,'D4','Re','2'), N('7','low',0.5,'B3','Si','7'), N('1','',0.5,'C4','Do','1'),
+          N('2','',1.0,'D4','Re','2'), N('7','low',0.5,'B3','Si','7'), N('5','low',0.5,'G3','Sol','5')
+        ]},
+        { measure: 24, chord: 'E7 (回到主題引子)', notes: [
+          N('6','low',2.0,'A3','La—','6'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]}
+      ],
+      'grid-panther-a3': [
+        { measure: 25, chord: 'Am', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.5,'E4','Mi—','3'),
+          N('#4','low',0.5,'F#3','巴','sharp'), N('5','low',0.5,'G3','拉','5'),
+          N('#5','low',0.5,'G#3','巴','sharp'), N('6','low',0.5,'A3','拉','6')
+        ]},
+        { measure: 26, chord: 'Dm → G7', notes: [
+          N('b3','',0.5,'D#4','bMi','sharp'), N('3','',1.0,'E4','Mi—','3'),
+          N('7','low',0.5,'B3','Si','7'), N('1','',0.5,'C4','Do','1'),
+          N('3','',0.5,'E4','Mi','3'), N('5','',1.0,'G4','Sol—','5')
+        ]},
+        { measure: 27, chord: 'C → E7', notes: [
+          N('1','high',0.5,'C5','高Do!','1'), N('7','',2.5,'B4','Si——','7'), N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 28, chord: 'Am', notes: [
+          N('6','',0.33,'A4','La','6'), N('5','',0.33,'G4','Sol','5'), N('3','',0.34,'E4','Mi','3'),
+          N('2','',0.33,'D4','Re','2'), N('1','',0.33,'C4','Do','1'), N('6','low',0.34,'A3','La','6'),
+          N('b3','',0.5,'D#4','bMi','sharp'), N('2','',0.5,'D4','Re','2'), N('1','',0.5,'C4','Do','1'), N('6','low',0.5,'A3','La','6')
+        ]},
+        { measure: 29, chord: 'Am', notes: [
+          N('5','low',0.5,'G3','Sol','5'), N('6','low',2.5,'A3','La——','6'), N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 30, chord: 'Am', notes: [
+          N('0','',4.0,'REST','(準備進入尾奏三連跳)','0')
+        ]}
+      ],
+      'grid-panther-coda': [
+        { measure: 31, chord: 'F7 → E7 (尾奏第1跳)', notes: [
+          N('6','',0.5,'A4','巴','6'), N('5','',0.5,'G4','拉','5'), N('3','',0.5,'E4','巴','3'),
+          N('2','',0.5,'D4','拉','2'), N('1','',0.5,'C4','巴','1'), N('6','low',1.5,'A3','拉—','6')
+        ]},
+        { measure: 32, chord: 'F7 → E7 (尾奏第2跳)', notes: [
+          N('6','',0.5,'A4','巴','6'), N('5','',0.5,'G4','拉','5'), N('3','',0.5,'E4','巴','3'),
+          N('2','',0.5,'D4','拉','2'), N('1','',0.5,'C4','巴','1'), N('6','low',1.5,'A3','拉—','6')
+        ]},
+        { measure: 33, chord: 'F7 → E7 (尾奏第3跳)', notes: [
+          N('6','',0.5,'A4','巴','6'), N('5','',0.5,'G4','拉','5'), N('3','',0.5,'E4','巴','3'),
+          N('2','',0.5,'D4','拉','2'), N('1','',0.5,'C4','巴','1'), N('6','low',1.5,'A3','拉—','6')
+        ]},
+        { measure: 34, chord: 'E7 → Am', notes: [
+          N('5','low',0.5,'G3','Sol','5'), N('#5','low',0.5,'G#3','#Sol','sharp'),
+          N('6','low',2.0,'A3','La——','6'), N('3','low',1.0,'E3','低Mi','3')
+        ]},
+        { measure: 35, chord: 'Am9 (帥氣收尾！)', notes: [
+          N('6','low',2.5,'A3','砰！🐾','6'), N('0','',1.5,'REST','🎉完美結束','0')
+        ]}
       ]
     }
   }
@@ -1096,6 +1319,7 @@ function renderAllScores() {
       sections[gridId].forEach((mObj) => {
         const card = document.createElement('div');
         card.className = 'measure-card';
+        mObj._cardEl = card;
 
         const header = document.createElement('div');
         header.className = 'measure-header';
@@ -1107,7 +1331,7 @@ function renderAllScores() {
 
         mObj.notes.forEach((n) => {
           const token = document.createElement('div');
-          const durClass = n.dur <= 0.45 ? 'sixteenth' : (n.dur <= 0.6 ? 'eighth' : '');
+          const durClass = n.dur <= 0.36 ? 'sixteenth' : (n.dur <= 0.68 ? 'eighth' : '');
           token.className = `note-token ${durClass}`;
           const octClass = n.oct === 'high' ? 'high' : (n.oct === 'low' ? 'low' : '');
 
@@ -1131,7 +1355,7 @@ function renderAllScores() {
   });
 }
 
-// ==================== 5. 歌曲切換與自動播放引擎 ====================
+// ==================== 5. 歌曲切換與自動播放引擎（支援整首＆單段＆自動捲動） ====================
 let currentSong = 'mario';
 let playTimeouts = [];
 let isPlaying = false;
@@ -1152,9 +1376,68 @@ function stopPlayback() {
   playTimeouts = [];
   isPlaying = false;
   document.querySelectorAll('.note-token.playing').forEach(el => el.classList.remove('playing'));
+  document.querySelectorAll('.measure-card.active-measure').forEach(el => el.classList.remove('active-measure'));
   document.querySelectorAll('.key-white.active, .key-black.active').forEach(el => el.classList.remove('active'));
-  document.getElementById('playBtn').innerHTML = '▶️ 播放示範（跟著亮燈彈）';
+  document.getElementById('playBtn').innerHTML = '▶️ 完整播放整首（自動捲動亮燈）';
   document.getElementById('nowPlayingText').innerHTML = '準備就緒 ✨';
+}
+
+function scheduleMeasureList(bpm, measuresList) {
+  stopPlayback();
+  initAudio();
+  isPlaying = true;
+  document.getElementById('playBtn').innerHTML = '⏸️ 播放中...（點此暫停）';
+
+  const speedRatio = parseFloat(document.getElementById('tempoSelect').value) || 1.0;
+  const beatSec = (60 / bpm) / speedRatio;
+
+  let accumulatedSec = 0.1;
+  measuresList.forEach(mObj => {
+    const measureStartMs = accumulatedSec * 1000;
+    let measureDurSec = 0;
+    mObj.notes.forEach(n => { measureDurSec += n.dur * beatSec; });
+
+    // 小節卡片高亮與平滑捲動
+    const mTimer = setTimeout(() => {
+      if (!isPlaying) return;
+      document.querySelectorAll('.measure-card.active-measure').forEach(el => el.classList.remove('active-measure'));
+      if (mObj._cardEl) {
+        mObj._cardEl.classList.add('active-measure');
+        const rect = mObj._cardEl.getBoundingClientRect();
+        if (rect.top < 210 || rect.bottom > window.innerHeight - 40) {
+          mObj._cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, measureStartMs);
+    playTimeouts.push(mTimer);
+
+    mObj.notes.forEach(n => {
+      const noteDurSec = n.dur * beatSec;
+      const startMs = accumulatedSec * 1000;
+      const durMs = noteDurSec * 900;
+
+      const tId = setTimeout(() => {
+        if (!isPlaying) return;
+        if (n._el) {
+          n._el.classList.add('playing');
+          setTimeout(() => n._el.classList.remove('playing'), durMs);
+        }
+        if (n.key !== 'REST') {
+          triggerNote(n.key, noteDurSec * 0.92);
+        } else {
+          document.getElementById('nowPlayingText').innerHTML = `🤫 休止符（第 ${mObj.measure} 小節）`;
+        }
+      }, startMs);
+
+      playTimeouts.push(tId);
+      accumulatedSec += noteDurSec;
+    });
+  });
+
+  const endId = setTimeout(() => {
+    stopPlayback();
+  }, accumulatedSec * 1000 + 250);
+  playTimeouts.push(endId);
 }
 
 function playCurrentSong() {
@@ -1162,45 +1445,21 @@ function playCurrentSong() {
     stopPlayback();
     return;
   }
-  initAudio();
-  isPlaying = true;
-  document.getElementById('playBtn').innerHTML = '⏸️ 播放中...（點此暫停）';
-
   const songObj = SONGS_DATA[currentSong];
-  const speedRatio = parseFloat(document.getElementById('tempoSelect').value) || 1.0;
-  const beatSec = (60 / songObj.bpm) / speedRatio;
-
-  let accumulatedSec = 0.1;
+  const allMeasures = [];
   Object.keys(songObj.sections).forEach(gridId => {
-    songObj.sections[gridId].forEach(mObj => {
-      mObj.notes.forEach(n => {
-        const noteDurSec = n.dur * beatSec;
-        const startMs = accumulatedSec * 1000;
-        const durMs = noteDurSec * 900;
-
-        const tId = setTimeout(() => {
-          if (!isPlaying) return;
-          if (n._el) {
-            n._el.classList.add('playing');
-            setTimeout(() => n._el.classList.remove('playing'), durMs);
-          }
-          if (n.key !== 'REST') {
-            triggerNote(n.key, noteDurSec * 0.92);
-          } else {
-            document.getElementById('nowPlayingText').innerHTML = `🤫 休止符（休息拍手）`;
-          }
-        }, startMs);
-
-        playTimeouts.push(tId);
-        accumulatedSec += noteDurSec;
-      });
-    });
+    allMeasures.push(...songObj.sections[gridId]);
   });
+  scheduleMeasureList(songObj.bpm, allMeasures);
+}
 
-  const endId = setTimeout(() => {
-    stopPlayback();
-  }, accumulatedSec * 1000 + 200);
-  playTimeouts.push(endId);
+function playSection(songKey, gridId) {
+  if (currentSong !== songKey) {
+    switchSong(songKey);
+  }
+  const songObj = SONGS_DATA[songKey];
+  const sectionMeasures = songObj.sections[gridId] || [];
+  scheduleMeasureList(songObj.bpm, sectionMeasures);
 }
 
 // 初始化
