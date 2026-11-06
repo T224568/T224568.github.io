@@ -33,6 +33,12 @@
     color: #ffffff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
+  .header-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
   .brand-badge {
     display: inline-flex;
     align-items: center;
@@ -45,7 +51,27 @@
     font-weight: 700;
     letter-spacing: 0.5px;
     color: #a7f3d0;
-    margin-bottom: 8px;
+  }
+  .btn-gpx-studio {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.38);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+  }
+  .btn-gpx-studio:hover {
+    background: #ffffff;
+    color: #0f3d2e;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transform: translateY(-1px);
   }
   .sidebar-header h1 {
     font-size: 20px;
@@ -541,7 +567,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    .brand-badge, .sidebar-header p, .header-actions {
+    .header-top-row, .brand-badge, .sidebar-header p, .header-actions {
       display: none;
     }
     .sidebar-header h1 {
@@ -576,7 +602,12 @@
 <div id="sidebar">
   <div class="sidebar-header">
     <div>
-      <div class="brand-badge">🌲 CHING-SONG HIKING CLUB</div>
+      <div class="header-top-row">
+        <div class="brand-badge">🌲 CHING-SONG HIKING CLUB</div>
+        <a href="https://gpx.studio/app" target="_blank" rel="noopener noreferrer" class="btn-gpx-studio" title="開啟 gpx.studio 線上軌跡編輯工具">
+          🗺️ gpx.studio ↗
+        </a>
+      </div>
       <h1>青松健行隊 路線地圖導覽</h1>
       <p>精選雙北河濱・捷運接駁・水岸與山林悠活路線</p>
     </div>
@@ -832,6 +863,7 @@
           <div class="line-download-actions">
             <button class="btn-line-dl" onclick="downloadLinePlan('${route.id}', event)">📄 下載路線規劃 (.txt)</button>
             <a class="btn-line-dl" href="${route.download_url}" target="_blank" download="${route.filename}" onclick="event.stopPropagation()">📥 下載 GPX 檔</a>
+            <a class="btn-line-dl" href="https://gpx.studio/app" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">🗺️ gpx.studio</a>
           </div>
         </div>
 
