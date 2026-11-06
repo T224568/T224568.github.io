@@ -909,6 +909,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <button class="home-course-btn home-yellow-btn" onclick="openExternalView('view-9201')">AI 人生故事</button>
         <button class="home-course-btn home-yellow-btn" onclick="openExternalView('view-9202')">AI 萌寵變身</button>
 
+        <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0288d1, #00acc1); color: #fff; font-size:17px; margin-top:2px;" onclick="openExternalView('view-travel-planner')">✈️ AI 旅行規劃師與創意打卡美照</button>
         <button class="home-course-btn home-wide-btn" style="background:#00bcd4;" onclick="openExternalView('view-9204')">AI 繪本故事創作器</button>
     </div>
 
@@ -1853,6 +1854,160 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <!-- ========================================== -->
 <!-- AI 帶你去旅行｜爆笑四格漫畫抽籤機 -->
 <!-- ========================================== -->
+<!-- ========================================== -->
+<!-- 🌟 AI 旅行規劃師與創意打卡美照 -->
+<!-- ========================================== -->
+<div id="view-travel-planner" class="view-section container" style="max-width: 960px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div class="travel-planner-shell">
+        <div class="travel-hero" style="background: linear-gradient(135deg, #e1f5fe 0%, #e0f2f1 50%, #fff9c4 100%); border: 2px solid #80deea; border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 24px; box-shadow: 0 6px 20px rgba(0,172,193,0.12);">
+            <div style="font-size: 42px; line-height: 1; margin-bottom: 8px;">✈️📸</div>
+            <h1 style="color: #00695c; margin: 4px 0 10px; font-size: 26px;">AI 旅行規劃師與創意打卡美照</h1>
+            <p style="color: #455a64; font-size: 15px; line-height: 1.6; margin: 0 auto; max-width: 680px;">
+                點選下方指令直接複製，貼給 AI（Gemini 或 ChatGPT）就能為你規劃夢幻旅程與產生驚豔的旅行美照！<br>
+                <b>全流程已預先智慧隨機配置，免手動輸入，一鍵立即使用！</b>
+            </p>
+            <div class="book-flow-badges" style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">① 專屬旅行推薦卡</span>
+                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">② 在地打卡美照</span>
+                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">③ 創意名產小人國</span>
+            </div>
+            <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" onclick="randomizeTravelPlanner()" style="padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 999px; background: linear-gradient(135deg, #0288d1, #00897b); color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(2,136,209,0.3);">🎲 隨機換一套旅行靈感</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 999px; background: #1e1f20; color: #fff; text-decoration: none; border: 1px solid #4a5568;">✨ 開啟 Gemini</a>
+            </div>
+        </div>
+
+        <!-- 步驟 1: AI 專屬旅行推薦卡 -->
+        <div class="instruction-block" style="background: #fff; border: 1px solid #b3e5fc; border-left: 5px solid #0288d1; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                <h3 style="margin: 0; color: #01579b; font-size: 18px; font-weight: bold;">1 AI 專屬旅行推薦卡（排版出圖）</h3>
+                <span style="background: #e1f5fe; color: #0277bd; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🗺️ 旅行推薦卡指令</span>
+            </div>
+            
+            <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">讓 AI 根據您的照片，智慧推薦 3 個最適合您的夢幻旅行地點，並排版成一張高質感推薦卡。</p>
+            
+            <div style="margin-bottom: 12px;">
+                <label style="font-size: 13px; font-weight: bold; color: #374151; display: block; margin-bottom: 4px;">推薦偏好（已預選，亦可自由切換）：</label>
+                <select id="travel-pref-select" class="slot-select-dropdown" onchange="updateTravelCardPrompt()" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #0288d1; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                    <option value="不限地點，世界各地都可以">世界各地驚喜推薦（世界各地都可以，跳脫常見地點）</option>
+                    <option value="偏好歐洲浪漫歷史古堡、優雅小鎮與古典建築">歐洲浪漫古堡巡禮（優雅、古典建築、歷史文化）</option>
+                    <option value="偏好日韓文青小店、街景散策與在地道地美食">日韓文青美食散策（街景小巷、質感咖啡、特色美食）</option>
+                    <option value="偏好陽光熱帶海島、白沙灘、蔚藍清澈海洋與放鬆渡假">蔚藍海島度假放鬆（陽光、白沙灘、清澈海水）</option>
+                    <option value="偏好壯闊大自然奇景、高山湖泊、峽谷與璀璨極光">壯麗大自然秘境探索（高山、峽谷、冰川、極光）</option>
+                    <option value="偏好千年神秘古文明遺跡、金字塔、神殿與歷史傳奇">古文明歷史探索（金字塔、古神殿、千年遺跡）</option>
+                </select>
+            </div>
+
+            <div class="prompt-text" id="prompt-travel-card" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 15px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請看我的照片，推薦 3 個適合我的旅行地點。
+不要只選常見的地方，世界各地都可以。
+請直接做成一張「AI 旅行推薦卡」，把畫面分成 3 個旅行地點：
+每個地點要有代表性美景、一句吸引人的推薦理由，以及推薦我的原因。
+排版要乾淨、大氣、有質感。</div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="copy-btn" onclick="copyTravelText(this, 'prompt-travel-card')" style="background: #0288d1; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 旅行推薦卡指令</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+            </div>
+        </div>
+
+        <!-- 步驟 2: 生成在地旅行打卡美照 -->
+        <div class="instruction-block" style="background: #fff; border: 1px solid #fed7aa; border-left: 5px solid #f97316; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                <h3 style="margin: 0; color: #9a3412; font-size: 18px; font-weight: bold;">2 生成在地旅行打卡美照（神韻一致）</h3>
+                <span style="background: #ffedd5; color: #c2410c; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">📸 景點打卡指令</span>
+            </div>
+            
+            <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">讓 AI 用您的本人照片置換到所選的夢幻景點前，生成自然、真實、開心且神韻完全一致的旅遊打卡照。</p>
+
+            <div style="margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #374151;">選擇目的地（已隨機選好，亦可自由切換）：</label>
+                    <button type="button" onclick="randomizeTravelLocation()" style="padding: 3px 10px; font-size: 12px; border-radius: 6px; border: none; background: #f97316; color: #fff; font-weight: bold; cursor: pointer;">🎲 隨機換地點</button>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <select id="travel-spot-select" class="slot-select-dropdown" onchange="onSelectTravelSpot(this.value)" style="flex: 1; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #f97316; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                        <option value="日本京都">日本京都（古色古香神社、清水寺與楓紅小徑）</option>
+                        <option value="法國巴黎">法國巴黎（艾菲爾鐵塔、塞納河畔法式優雅）</option>
+                        <option value="冰島藍湖極光">冰島藍湖（夢幻地熱溫泉與璀璨極光夜空）</option>
+                        <option value="義大利威尼斯">義大利威尼斯（水上貢多拉、聖馬可廣場石橋）</option>
+                        <option value="希臘聖托里尼">希臘聖托里尼（藍頂白牆教堂、愛琴海日落）</option>
+                        <option value="瑞士少女峰">瑞士少女峰（雪山森林、齒軌小火車與童話小木屋）</option>
+                        <option value="台灣九份老街">台灣九份老街（山城紅燈籠、蜿蜒石階與海景茶樓）</option>
+                        <option value="泰國清邁古城">泰國清邁古城（金碧輝煌寺廟、水燈節浪漫氛圍）</option>
+                        <option value="埃及吉薩金字塔">埃及吉薩金字塔（雄偉千年金字塔與金色沙漠）</option>
+                        <option value="美國紐約時代廣場">美國紐約時代廣場（璀璨摩天霓虹、百老匯繁華街景）</option>
+                        <option value="英國倫敦大笨鐘">英國倫敦（泰晤士河畔、大笨鐘與紅色雙層巴士）</option>
+                        <option value="澳洲雪梨歌劇院">澳洲雪梨（雪梨歌劇院、蔚藍港灣大橋夕陽）</option>
+                        <option value="捷克布拉格廣場">捷克布拉格（天文鐘、查理大橋中世紀童話）</option>
+                        <option value="西班牙巴塞隆納">西班牙巴塞隆納（聖家堂、繽紛奎爾公園建築）</option>
+                        <option value="土耳其卡帕多奇亞">土耳其卡帕多奇亞（奇岩怪石晨曦、滿天繽紛熱氣球）</option>
+                    </select>
+                    <input type="text" id="travel-custom-spot" placeholder="亦可自訂輸入地點" oninput="updateTravelSpotPrompt()" style="width: 140px; padding: 8px 10px; font-size: 13px; border-radius: 8px; border: 1px solid #cbd5e1; margin: 0;">
+                </div>
+            </div>
+
+            <div class="prompt-text" id="prompt-travel-spot" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 15px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">我選擇去【日本京都】旅行。請從你剛才推薦的景點裡，為我選一個最適合拍照的景點。
+請用我的照片做一張旅行照。
+請保持我像本人，讓我站在這個景點前面。
+背景要清楚看得到當地景點特色，請做成像旅遊拍照的照片，感覺自然、真實、開心。</div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="copy-btn" onclick="copyTravelText(this, 'prompt-travel-spot')" style="background: #f97316; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 景點打卡指令</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+            </div>
+        </div>
+
+        <!-- 步驟 3: 創意名產小人國照 -->
+        <div class="instruction-block" style="background: #fff; border: 1px solid #e9d5ff; border-left: 5px solid #a855f7; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                <h3 style="margin: 0; color: #6b21a8; font-size: 18px; font-weight: bold;">3 創意名產小人國照（趣味微縮穿梭）</h3>
+                <span style="background: #f3e8ff; color: #7e22ce; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🍡 巨大名產趣味指令</span>
+            </div>
+            
+            <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">把您變成微縮小人，穿梭在巨大的當地必吃必買名產、特色街道與美景之間，充滿童趣與驚喜！</p>
+
+            <div style="margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #374151;">選擇藝術風格（已隨機選好，亦可自由切換）：</label>
+                    <button type="button" onclick="randomizeTravelStyle()" style="padding: 3px 10px; font-size: 12px; border-radius: 6px; border: none; background: #a855f7; color: #fff; font-weight: bold; cursor: pointer;">🎲 隨機換風格</button>
+                </div>
+                <select id="travel-style-select" class="slot-select-dropdown" onchange="updateTravelMiniPrompt()" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #a855f7; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                    <option value="日式手繪風">日式手繪風（清新線條、溫暖自然色彩）</option>
+                    <option value="3D 黏土微縮風">3D 黏土微縮風（立體圓潤、柔軟手工模型質感）</option>
+                    <option value="迪士尼動畫風">迪士尼動畫風（電影感光影、精緻生動表情）</option>
+                    <option value="皮克敏微型冒險風">皮克敏微型冒險風（巨大植物與名產、超萌探索感）</option>
+                    <option value="樂高積木世界風">樂高積木世界風（真實 Minifigure 公仔與名產積木）</option>
+                    <option value="清新水彩繪本風">清新水彩繪本風（紙張紋理、柔和水彩暈染童話）</option>
+                </select>
+            </div>
+
+            <div class="prompt-text" id="prompt-travel-mini" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 15px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請從你前面推薦的當地必買名產裡，選 3 種最有代表性的名產。
+請用我的照片做成 1 張有趣的旅遊圖片：
+把我變成超迷你人物，穿梭在巨大的名產、當地街道、商店、市場和代表性景色之間。
+重點要放在當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。
+3 種名產或重要景點都要清楚出現在畫面裡，並標上正確名稱。
+整體請用【日式手繪風】，畫面豐富、有趣、有旅行感。</div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="copy-btn" onclick="copyTravelText(this, 'prompt-travel-mini')" style="background: #a855f7; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 巨大名產趣味指令</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+            </div>
+        </div>
+
+        <!-- 專屬上傳區 -->
+        <div class="container" style="background:#f9f9f9; border: 2px dashed #0288d1; margin-top:30px; border-radius: 12px;">
+            <h3 style="margin-top:0; color:#0288d1;">📥 專屬上傳區：AI 旅行打卡美照</h3>
+            <p style="color:#666; font-size:14px; margin-top:4px;">在 Gemini 生成好看的旅行推薦卡或打卡美照後，可直接上傳至照片牆與大家分享投票喔！</p>
+            <input type="text" id="travelPlannerStudentName" placeholder="輸入姓名 (系統會自動記憶)">
+            <input type="file" id="travelPlannerPhotoInput" accept="image/*">
+            <button id="travelPlannerSubmitBtn" class="blue-btn" style="background:#0288d1; font-size: 16px; padding: 12px;" onclick="uploadPhoto(false, 'travelPlannerStudentName', 'travelPlannerPhotoInput', 'travelPlannerSubmitBtn')">確認上傳作品</button>
+        </div>
+    </div>
+</div>
+
 <div id="view-travel-comic" class="view-section container travel-shell">
     <button class="back-btn" onclick="switchView('view-upload')">回首頁</button>
     <div style="clear:both;"></div>
@@ -2928,7 +3083,102 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         openRequestedView(viewId);
     }
 
+    // === AI 旅行規劃師與打卡美照 控制邏輯 ===
+    function updateTravelCardPrompt() {
+        const sel = document.getElementById('travel-pref-select');
+        const pref = sel ? sel.value : '不限地點，世界各地都可以';
+        let extra = '';
+        if (pref !== '不限地點，世界各地都可以') {
+            extra = '\n旅遊風格偏好：' + pref + '。';
+        }
+        const text = '請看我的照片，推薦 3 個適合我的旅行地點。\n不要只選常見的地方，世界各地都可以。' + extra + '\n請直接做成一張「AI 旅行推薦卡」，把畫面分成 3 個旅行地點：\n每個地點要有代表性美景、一句吸引人的推薦理由，以及推薦我的原因。\n排版要乾淨、大氣、有質感。';
+        const box = document.getElementById('prompt-travel-card');
+        if (box) box.textContent = text;
+    }
+
+    function onSelectTravelSpot(val) {
+        const custom = document.getElementById('travel-custom-spot');
+        if (custom) custom.value = val;
+        updateTravelSpotPrompt();
+    }
+
+    function updateTravelSpotPrompt() {
+        const custom = document.getElementById('travel-custom-spot');
+        const sel = document.getElementById('travel-spot-select');
+        let spot = custom && custom.value.trim() ? custom.value.trim() : (sel ? sel.value : '日本京都');
+        const text = '我選擇去【' + spot + '】旅行。請從你剛才推薦的景點裡，為我選一個最適合拍照的景點。\n請用我的照片做一張旅行照。\n請保持我像本人，讓我站在這個景點前面。\n背景要清楚看得到當地景點特色，請做成像旅遊拍照的照片，感覺自然、真實、開心。';
+        const box = document.getElementById('prompt-travel-spot');
+        if (box) box.textContent = text;
+    }
+
+    function updateTravelMiniPrompt() {
+        const sel = document.getElementById('travel-style-select');
+        const style = sel ? sel.value : '日式手繪風';
+        const text = '請從你前面推薦的當地必買名產裡，選 3 種最有代表性的名產。\n請用我的照片做成 1 張有趣的旅遊圖片：\n把我變成超迷你人物，穿梭在巨大的名產、當地街道、商店、市場和代表性景色之間。\n重點要放在當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。\n3 種名產或重要景點都要清楚出現在畫面裡，並標上正確名稱。\n整體請用【' + style + '】，畫面豐富、有趣、有旅行感。';
+        const box = document.getElementById('prompt-travel-mini');
+        if (box) box.textContent = text;
+    }
+
+    function randomizeTravelLocation() {
+        const sel = document.getElementById('travel-spot-select');
+        if (!sel || !sel.options.length) return;
+        const randIdx = Math.floor(Math.random() * sel.options.length);
+        sel.selectedIndex = randIdx;
+        onSelectTravelSpot(sel.value);
+    }
+
+    function randomizeTravelStyle() {
+        const sel = document.getElementById('travel-style-select');
+        if (!sel || !sel.options.length) return;
+        const randIdx = Math.floor(Math.random() * sel.options.length);
+        sel.selectedIndex = randIdx;
+        updateTravelMiniPrompt();
+    }
+
+    function randomizeTravelPlanner() {
+        const prefSel = document.getElementById('travel-pref-select');
+        if (prefSel) {
+            prefSel.selectedIndex = Math.floor(Math.random() * prefSel.options.length);
+            updateTravelCardPrompt();
+        }
+        randomizeTravelLocation();
+        randomizeTravelStyle();
+    }
+
+    function copyTravelText(btn, elementId) {
+        const elem = document.getElementById(elementId);
+        if (!elem) return;
+        const text = elem.innerText || elem.textContent;
+        const orig = btn.innerText;
+        const done = () => {
+            btn.innerText = '✅ 已複製！現在貼到 Gemini';
+            setTimeout(() => { btn.innerText = orig; }, 2200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopyTextToClipboard(text); done(); });
+        } else {
+            fallbackCopyTextToClipboard(text);
+            done();
+        }
+    }
+
+    let travelPlannerInitialized = false;
+    function initializeTravelPlanner() {
+        if (!travelPlannerInitialized) {
+            randomizeTravelPlanner();
+            travelPlannerInitialized = true;
+        }
+        const nameEl = document.getElementById('travelPlannerStudentName');
+        if (nameEl && !nameEl.value) {
+            nameEl.value = localStorage.getItem('studentName') || '';
+        }
+    }
+
     function openRequestedView(viewId) {
+        if (viewId === 'view-travel-planner') {
+            switchView('view-travel-planner');
+            initializeTravelPlanner();
+        } else
         if (viewId === 'view-wall') {
             switchView('view-wall');
             loadPhotoWall();
