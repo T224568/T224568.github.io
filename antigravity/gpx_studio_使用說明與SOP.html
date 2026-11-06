@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gpx.studio 專業線上 GPX 編輯器詳細使用手冊與實戰 SOP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --primary-light: #ecfdf5;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --accent-blue: #2563eb;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-800);
+      line-height: 1.68;
+      padding: 0;
+      margin: 0;
+    }
+    header {
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+      color: #fff;
+      padding: 44px 24px 36px;
+      border-bottom: 4px solid var(--primary);
+    }
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #d1fae5;
+      max-width: 800px;
+      margin-bottom: 18px;
+    }
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .quick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      color: #065f46;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      transition: all 0.2s;
+    }
+    .quick-btn:hover {
+      background: #ecfdf5;
+      transform: translateY(-1px);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 20px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .toc-wrapper { display: none; }
+    }
+    /* TOC 側邊欄 */
+    .toc-wrapper {
+      position: sticky;
+      top: 24px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--slate-200);
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .toc-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--slate-900);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--slate-100);
+    }
+    .toc-list {
+      list-style: none;
+    }
+    .toc-item {
+      margin-bottom: 8px;
+    }
+    .toc-link {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 13.5px;
+      display: block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .toc-link:hover {
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      font-weight: 700;
+    }
+    /* 主要內容 */
+    .main-content {
+      min-width: 0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid var(--slate-200);
+      padding: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    }
+    .card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid var(--slate-100);
+      padding-bottom: 10px;
+    }
+    .card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin: 20px 0 10px;
+    }
+    p { margin-bottom: 12px; font-size: 15px; color: var(--slate-700); }
+    ul, ol { margin-left: 20px; margin-bottom: 14px; color: var(--slate-700); }
+    li { margin-bottom: 6px; font-size: 14.5px; }
+    
+    /* 工具按鈕表格 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .feature-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 16px;
+      transition: all 0.2s;
+    }
+    .feature-box:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(16, 185, 129, 0.08);
+    }
+    .feature-box .icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .feature-box .name {
+      font-weight: 700;
+      color: var(--slate-900);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .feature-box .desc {
+      font-size: 13px;
+      color: var(--slate-600);
+      line-height: 1.5;
+    }
+
+    /* SOP 流程步驟樣式 */
+    .sop-step {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 24px;
+    }
+    .sop-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 26px;
+      height: 26px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sop-step::after {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 30px;
+      bottom: -18px;
+      width: 2px;
+      background: var(--slate-200);
+    }
+    .sop-step:last-child::after { display: none; }
+    .sop-step-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+    .sop-step-content {
+      font-size: 14.5px;
+      color: var(--slate-600);
+      background: var(--slate-50);
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+    }
+
+    /* 快捷提示卡 */
+    .tip-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--accent-blue);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #1e40af;
+    }
+    .warn-box {
+      background: #fffbeb;
+      border-left: 4px solid var(--accent-amber);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #92400e;
+    }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--slate-200);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background: var(--slate-100);
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    code {
+      font-family: "JetBrains Mono", monospace;
+      background: var(--slate-100);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #d97706;
+      font-weight: 600;
+    }
+    .kbd {
+      display: inline-block;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-family: inherit;
+      line-height: 1;
+      color: #444;
+      vertical-align: middle;
+      background-color: #fafbfc;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      box-shadow: inset 0 -1px 0 #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <span class="badge">戶外登山・自行車・越野路跑必備工具</span>
+    <h1>gpx.studio 專業線上 GPX 編輯器操作手冊與標準 SOP</h1>
+    <p class="subtitle">全面解析地圖吸附導航、軌跡裁切縫合、高度補正、時間戳微調及 POI 標註，打造無痛匯入 Garmin、綠野遊蹤、Hikingbook 的標準航跡。</p>
+    <div class="quick-links">
+      <a href="https://gpx.studio/zh/app#14.42/25.0787/121.59936/14.8" target="_blank" class="quick-btn">
+        🗺️ 開啟 gpx.studio (台北地區座標)
+      </a>
+      <a href="#sop-clean" class="quick-btn">✂️ 快速修整軌跡 SOP</a>
+      <a href="#sop-create" class="quick-btn">✏️ 規劃新路線 SOP</a>
+      <a href="#sop-combine" class="quick-btn">🔗 縫合多段路線 SOP</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- 側邊導航目錄 -->
+  <aside class="toc-wrapper">
+    <div class="toc-title">📖 目錄導覽</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#intro" class="toc-link">1. 核心定位與優勢</a></li>
+      <li class="toc-item"><a href="#ui-overview" class="toc-link">2. 介面架構與工具導覽</a></li>
+      <li class="toc-item"><a href="#sop-create" class="toc-link">3. SOP 1：手動規劃全新路線</a></li>
+      <li class="toc-item"><a href="#sop-clean" class="toc-link">4. SOP 2：GPS 雜訊修剪與去噪</a></li>
+      <li class="toc-item"><a href="#sop-combine" class="toc-link">5. SOP 3：多段 GPX 串接縫合</a></li>
+      <li class="toc-item"><a href="#sop-reverse" class="toc-link">6. SOP 4：軌跡反轉與時間重算</a></li>
+      <li class="toc-item"><a href="#sop-poi" class="toc-link">7. SOP 5：新增 POI 地標與導出</a></li>
+      <li class="toc-item"><a href="#pro-tips" class="toc-link">8. 專家避坑心法與快捷鍵</a></li>
+    </ul>
+  </aside>
+
+  <!-- 主內容區 -->
+  <main class="main-content">
+
+    <!-- 1. 核心定位與優勢 -->
+    <section id="intro" class="card">
+      <h2>🌟 1. 核心定位與特色</h2>
+      <p><strong>gpx.studio</strong> 是一套基於瀏覽器運作的開源向量 GPX 軌跡編輯神台級工具，零安裝、免登入、純本機運算（個資與軌跡不隨意上傳第三方伺服器）。它整合了 OpenStreetMap、Mapbox 高解析衛星圖與 Mapbox/OSRM 路線引擎，是健行登山、雙塔單車、越野跑步玩家在規劃行程與修補手錶軌跡時的首選。</p>
+      
+      <div class="feature-grid">
+        <div class="feature-box">
+          <div class="icon">⚡</div>
+          <div class="name">智慧道路/步道吸附</div>
+          <div class="desc">支援步行、自行車、公路等多種模式自動吸附 OSM 步道，亦可隨時切換為直線穿透獸徑。</div>
+        </div>
+        <div class="feature-box">
+          <div class="icon">🏔️</div>
+          <div class="name">高程數據自動補全</div>
+          <div class="desc">若手機記錄或自行繪製的軌跡缺海拔數據，一鍵調用全域 DEM 數位高程模型自動填補。</div>
+        </div>
+        <div class="feature-box">
+          <div class="icon">⏱️</div>
+          <div class="name">時間戳記與配速管理</div>
+          <div class="desc">支援自訂平均時速、爬升降速因子，重新模擬合理時間軸，解決無時間 GPX 不能同步問題。</div>
+        </div>
+        <div class="feature-box">
+          <div class="icon">🔥</div>
+          <div class="name">熱門熱圖圖層整合</div>
+          <div class="desc">整合 Strava Heatmap（單車/步行熱圖）與 OpenTopoMap 地形圖，真實熱門路徑一目了然。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 介面架構與工具導覽 -->
+    <section id="ui-overview" class="card">
+      <h2>🖥️ 2. 介面架構與核心工具全覽</h2>
+      <p>進入網站後，主要由 4 個核心操作區組成：</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">介面區域</th>
+            <th style="width: 28%;">功能名稱</th>
+            <th>詳細用途說明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>頂部工具列 (Top)</strong></td>
+            <td>載入 / 匯出 / 多標籤</td>
+            <td>拖曳多個 <code>.gpx</code>、<code>.kml</code> 或 <code>.fit</code> 檔案進入；支援復原 (Ctrl+Z) 與重做；支援 Google Drive 直接連線儲存。</td>
+          </tr>
+          <tr>
+            <td><strong>左側工具箱 (Sidebar)</strong></td>
+            <td>編輯 / 裁切 / 縫合 / 簡化</td>
+            <td>核心操作區。包含：軌跡反轉、高程補正、編輯航點(POI)、調整時間與顏色樣式。</td>
+          </tr>
+          <tr>
+            <td><strong>右上角控制 (Right)</strong></td>
+            <td>圖層選單 (Layers)</td>
+            <td>切換地圖基底：Mapbox 衛星、OpenStreetMap、CyclOSM、Thunderforest 戶外地形，以及開啟 Strava 熱圖。</td>
+          </tr>
+          <tr>
+            <td><strong>底部統計面板 (Bottom)</strong></td>
+            <td>高程剖面 (Elevation)</td>
+            <td>動態顯示距離、爬升、落差與坡度。滑鼠移過可於地圖即時對應位置；支援框選區段進行局部刪除。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3. SOP 1: 手動規劃全新路線 -->
+    <section id="sop-create" class="card">
+      <h2>✏️ SOP 1：手動規劃全新登山 / 健行路線</h2>
+      <p>適用場景：行前探勘、社團活動排程、將未走過的路線畫成 GPX 提供隊員離線地圖導航。</p>
+
+      <div class="sop-step" data-step="1">
+        <div class="sop-step-title">建立空白路線並開啟編輯工具</div>
+        <div class="sop-step-content">
+          點擊左側工具列的 <strong>「編輯軌跡 (鉛筆圖示)」</strong> 或直接在頂部按「新建 (New)」。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="2">
+        <div class="sop-step-title">設定路線引擎與吸附模式</div>
+        <div class="sop-step-content">
+          在左側面板中選擇路由設定：
+          <ul>
+            <li><strong>步行 / 徒步 (Foot/Hike)</strong>：適合登山步道、林道與階梯，會依 OSM 資料庫自動吸附小徑。</li>
+            <li><strong>自行車 (Bicycle)</strong>：適合公路單車、林道越野騎乘。</li>
+            <li><strong>直線模式 (Off-road / Straight line)</strong>：遇到野外原始獸徑、無圖資的崩壁稜線時，按住 <span class="kbd">Shift</span> 鍵或切換為直線，即可不受限制自由落點。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="3">
+        <div class="sop-step-title">在沿途關鍵路口點擊錨點</div>
+        <div class="sop-step-content">
+          地圖上依序點擊「登山口」→「岔路口」→「三角點」→「出口」。系統會自動在步道上循線延伸連線，並即時在底部運算總距離與爬升。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="4">
+        <div class="sop-step-title">補全高度與匯出</div>
+        <div class="sop-step-content">
+          繪製完畢後點擊左側 <strong>「高程 (Elevation)」</strong> 檢查是否有海拔曲線；確認無誤後點擊右上角 <strong>「匯出 (Export)」</strong> 下載 <code>.gpx</code>。
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SOP 2: GPS 雜訊修剪與去噪 -->
+    <section id="sop-clean" class="card">
+      <h2>✂️ SOP 2：GPS 軌跡清理、去噪與裁切頭尾</h2>
+      <p>適用場景：手錶在室內、上車忘記關閉錄製產生的蜘蛛網漂移，或休息吃中餐時停留產生的密雜毛刺點。</p>
+
+      <div class="sop-step" data-step="1">
+        <div class="sop-step-title">拖曳載入軌跡檔</div>
+        <div class="sop-step-content">
+          將含有雜訊的 <code>.gpx</code> 拖入瀏覽器視窗。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="2">
+        <div class="sop-step-title">頭尾多餘路段裁切 (Crop / Trim)</div>
+        <div class="sop-step-content">
+          點擊左側 <strong>「裁切 (剪刀圖示)」</strong> 工具。在底部高程圖拖動左側起始滑桿與右側結束滑桿，裁去上車搭捷運或出門開車的雜訊段落，點擊「確認裁切」。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="3">
+        <div class="sop-step-title">局部漂移雜訊圈選刪除</div>
+        <div class="sop-step-content">
+          點擊左側 <strong>「編輯軌跡 (鉛筆圖示)」</strong>，直接在地圖上拖曳飄走的不正常點歸位，或點擊不正常點按「刪除」；亦可在底部高程圖中<strong>按住滑鼠左鍵框選特定時間區段</strong>，點擊彈出的「刪除選取區段」。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="4">
+        <div class="sop-step-title">軌跡點適度簡化 (Simplify)</div>
+        <div class="sop-step-content">
+          點擊左側 <strong>「簡化 (Simplify)」</strong>。若原本手錶記錄了 30,000 個點，可將滑桿微調至保留 95% 形狀（約 2,000~3,000 點），既不失真又可防止傳入舊型 Garmin 手錶或手機 App 造成載入遲緩。
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SOP 3: 多段 GPX 串接縫合 -->
+    <section id="sop-combine" class="card">
+      <h2>🔗 SOP 3：多段 GPX 串接與斷點縫合</h2>
+      <p>適用場景：兩天或三天的縱走行程拆成多個檔案，或手機中途沒電換機記錄，需要串接成單一完整活動。</p>
+
+      <div class="sop-step" data-step="1">
+        <div class="sop-step-title">一次載入所有分段軌跡</div>
+        <div class="sop-step-content">
+          同時圈選 Day 1、Day 2、Day 3 的檔案拖入，頂部會顯示多個分頁標籤。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="2">
+        <div class="sop-step-title">檢查軌跡方向性</div>
+        <div class="sop-step-content">
+          確認每段軌跡的起點 (綠色圓點) 與終點 (紅色圓點) 方向一致。若某一段錄反了，選取該分頁後點擊左側 <strong>「反轉 (Reverse)」</strong>。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="3">
+        <div class="sop-step-title">執行合併 (Combine / Merge)</div>
+        <div class="sop-step-content">
+          點擊左側 <strong>「合併 (Combine)」</strong> 按鈕，勾選欲縫合的檔案，並依時間或順序排列，點擊「合併為單一軌跡」。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="4">
+        <div class="sop-step-title">縫合斷點間隙</div>
+        <div class="sop-step-content">
+          兩段軌跡間若有小空隙，系統會詢問「是否以直線連接」或「依道路路由填補」，選擇符合實際步行情況的連線方式完成合併。
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SOP 4: 軌跡反轉與時間重算 -->
+    <section id="sop-reverse" class="card">
+      <h2>🔄 SOP 4：軌跡反轉（逆走）與時間戳重置</h2>
+      <p>適用場景：下載前輩「由東向西」的 GPX，但自己要「由西向東」原路或逆向挑戰，且需要合理的預估配速時間。</p>
+
+      <div class="sop-step" data-step="1">
+        <div class="sop-step-title">一鍵反轉方向 (Reverse)</div>
+        <div class="sop-step-content">
+          點選左側 <strong>「反轉軌跡」</strong>。此時起終點對調，高程剖面圖會同步自動倒轉（原本的長下坡轉為長上坡）。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="2">
+        <div class="sop-step-title">調校時間戳記與配速 (Time)</div>
+        <div class="sop-step-content">
+          點選左側 <strong>「時間 (時鐘圖示)」</strong>：
+          <ul>
+            <li>設定預計出發日期與時間（例如：<code>2026-11-15 06:30</code>）。</li>
+            <li>設定平均移動速度（健行可設 <code>2.5 ~ 3.5 km/h</code>；單車可設 <code>18 ~ 25 km/h</code>）。</li>
+            <li>勾選 <strong>「考慮坡度影響 (Slope factor)」</strong>，系統會自動在上坡路段減速、下坡微幅加速，產出高度逼真的時間戳記。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SOP 5: 新增 POI 地標與導出 -->
+    <section id="sop-poi" class="card">
+      <h2>📍 SOP 5：新增 POI 地標（水源、營地、岔路）與最佳導出設定</h2>
+
+      <div class="sop-step" data-step="1">
+        <div class="sop-step-title">標註關鍵航點 (Waypoints)</div>
+        <div class="sop-step-content">
+          點擊左側 <strong>「航點 (圖釘圖示)」</strong>，然後點擊地圖上的特定位置（例如山屋、活水源、危險崩塌地），填寫名稱與描述，並選擇相符的圖示（如帳篷、水滴、警告標誌）。
+        </div>
+      </div>
+
+      <div class="sop-step" data-step="2">
+        <div class="sop-step-title">標準匯出核對清單 (Export Checklist)</div>
+        <div class="sop-step-content">
+          點擊右上角 <strong>「匯出 (Export)」</strong>，彈出設定視窗，請務必依用途確認：
+          <table>
+            <tr>
+              <th>匯出選項</th>
+              <th>推薦勾選狀態</th>
+              <th>原因說明</th>
+            </tr>
+            <tr>
+              <td>包含航點 (Include Waypoints)</td>
+              <td><span style="color:var(--primary-dark);font-weight:700;">✅ 必勾</span></td>
+              <td>確保水源、營地與警告地標隨 GPX 一起存檔。</td>
+            </tr>
+            <tr>
+              <td>包含高程 (Include Elevation)</td>
+              <td><span style="color:var(--primary-dark);font-weight:700;">✅ 必勾</span></td>
+              <td>提供登山離線地圖即時爬升進度顯示。</td>
+            </tr>
+            <tr>
+              <td>包含時間 (Include Time)</td>
+              <td>視需要</td>
+              <td>若要匯入 Garmin/Strava 當作虛擬跑者建議勾選；純看路徑可不勾。</td>
+            </tr>
+            <tr>
+              <td>檔案格式</td>
+              <td><code>GPX</code></td>
+              <td>相容性最高（支援 綠野遊蹤、Hikingbook、山林日誌、Garmin Connect、OruxMaps）。</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. 專家避坑心法 -->
+    <section id="pro-tips" class="card">
+      <h2>💡 8. 專家避坑心法與實戰秘技</h2>
+      
+      <div class="tip-box">
+        <strong>⚡ 秘技 1：利用 Strava Heatmap 找隱藏路徑</strong><br>
+        在台灣中級山或冷門百岳，OSM 步道可能未更新。開啟右上角圖層的「Strava 熱圖 (Heatmap)」，凡是有發亮橘紅線條處，代表近期有山友或越野跑者走過，是比對荒廢林道與捷徑的利器。
+      </div>
+
+      <div class="warn-box">
+        <strong>⚠️ 避坑 1：吸附模式在斷頭路強行繞道</strong><br>
+        當步道在 OSM 圖資上有缺口，吸附模式會迫使路線大繞幾公里回到公路上。此時只要<strong>按住鍵盤 <span class="kbd">Shift</span> 鍵</strong>即可暫時切換成「自由直線」，手動連過缺口後再放開繼續吸附。
+      </div>
+
+      <div class="tip-box">
+        <strong>☁️ 秘技 2：直接連線 Google Drive</strong><br>
+        點擊左上角「雲端硬碟 (Google Drive)」圖示授權後，可直接讀取/回存雲端硬碟的 GPX，跨電腦與手機編輯完全不需要手動重複下載上傳。
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
