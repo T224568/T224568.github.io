@@ -7,7 +7,7 @@
 <meta name="description" content="青松健行隊活動與 AI 創作專屬互動照片牆：內建 9 大 AI 創作指令抽籤機、繪本 PDF 合成、全班即時上傳照片牆、人氣投票與 AI 評審頒獎系統。">
 <!-- 🌟 引入純前端 PDF 合成套件 -->
 <style>
-body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; text-align: center; background: #f4f4f9; padding: 20px; margin: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; text-align: center; background: #f4f4f9; padding: 20px 15px; padding-top: max(20px, env(safe-area-inset-top)); margin: 0; }
 .view-section { display: none; }
 .active-view { display: block; }
 .container { max-width: 600px; margin: 20px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
@@ -880,8 +880,14 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 </div>
 
 <div id="view-upload" class="view-section active-view container">
+    <!-- 🌟 首頁頂部歡迎與隊伍標題（防平板/手機頂部切邊） -->
+    <div style="margin-top: 5px; margin-bottom: 18px; padding: 4px 10px;">
+        <h1 style="font-size: 23px; color: #1e293b; margin: 0 0 6px 0; font-weight: 900; letter-spacing: 0.5px;">🌲 青松健行隊 AI 互動創作平台</h1>
+        <div style="font-size: 14px; font-weight: bold; color: #0288d1;">點選下方功能直接創作，完成後往下滑即可上傳作品投票！</div>
+    </div>
+
     <!-- 🌟 首頁課程按鈕（置頂優先） -->
-    <div class="home-course-grid" style="margin-top: 10px;">
+    <div class="home-course-grid" style="margin-top: 6px;">
         <button class="travel-home-btn" onclick="openExternalView('view-travel-comic')">AI 旅行四格漫畫</button>
         <button class="figurine-home-btn" onclick="openExternalView('view-figurine-story')">AI 公仔系列</button>
         <button class="sticker-video-home-btn" onclick="openExternalView('view-sticker-video')">AI 貼圖影片指令</button>
@@ -4280,7 +4286,6 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const target = document.getElementById(targetId);
         if (target) {
             target.value = val;
-            target.focus();
         }
     }
 
@@ -7239,5 +7244,16 @@ ${stickerVideoState.mood.full}
     "
 >◆ 第二位老師</button>
 
+<script>
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+});
+window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+});
+</script>
 </body>
 </html>
