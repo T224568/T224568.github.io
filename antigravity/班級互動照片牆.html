@@ -880,25 +880,8 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 </div>
 
 <div id="view-upload" class="view-section active-view container">
-    <h2 style="margin-top:35px; margin-bottom:4px;">📷 上傳你的作品</h2>
-
-    <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前隊伍：青松健行隊</div>
-    <input type="text" id="studentName" placeholder="輸入姓名 (系統會自動記憶)" style="margin-top:2px;">
-    <input type="file" id="photoInput" accept="image/*">
-    <div id="line-external-browser-banner" style="display:none; margin:2px 0 5px; font-size:13px; line-height:1.35; color:#6d4c41; white-space:nowrap;">
-        如果上傳不了照片請點「<a id="line-external-browser-link" href="#" style="font-weight:900; color:#d97706; text-decoration:underline;">這裡用手機瀏覽器開啟</a>」
-    </div>
-    <button id="submitBtn" onclick="uploadPhoto(false, 'studentName', 'photoInput', 'submitBtn')">確認上傳</button>
-
-    <div id="home-wall-vote-wrap" class="home-wall-vote-wrap">
-        <span id="home-vote-hint" class="home-vote-hint">🗳️ 點我投票</span>
-        <button id="home-wall-vote-btn" class="blue-btn" onclick="openExternalView('view-wall')">直接觀看照片牆 & 🗳️ 投票</button>
-    </div>
-    
-    <hr class="home-course-divider">
-
-    <!-- 🌟 首頁課程按鈕 -->
-    <div class="home-course-grid">
+    <!-- 🌟 首頁課程按鈕（置頂優先） -->
+    <div class="home-course-grid" style="margin-top: 10px;">
         <button class="travel-home-btn" onclick="openExternalView('view-travel-comic')">AI 旅行四格漫畫</button>
         <button class="figurine-home-btn" onclick="openExternalView('view-figurine-story')">AI 公仔系列</button>
         <button class="sticker-video-home-btn" onclick="openExternalView('view-sticker-video')">AI 貼圖影片指令</button>
@@ -921,7 +904,25 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             class="home-full-width-btn"
             style="background:#e65100;">🔥 熱門畫風風格指令</button>
 
-    <button style="background: #8e44ad; width:auto; padding: 12px 25px; margin-top:20px;" onclick="openExternalView('view-history')">前往歷史作品館</button>
+    <hr class="home-course-divider" style="margin: 25px 0 20px;">
+
+    <!-- 🌟 下半部：上傳你的作品與觀看照片牆 -->
+    <h2 style="margin-top:10px; margin-bottom:4px;">📷 上傳你的作品</h2>
+
+    <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前隊伍：青松健行隊</div>
+    <input type="text" id="studentName" placeholder="輸入姓名 (系統會自動記憶)" style="margin-top:2px;">
+    <input type="file" id="photoInput" accept="image/*">
+    <div id="line-external-browser-banner" style="display:none; margin:2px 0 5px; font-size:13px; line-height:1.35; color:#6d4c41; white-space:nowrap;">
+        如果上傳不了照片請點「<a id="line-external-browser-link" href="#" style="font-weight:900; color:#d97706; text-decoration:underline;">這裡用手機瀏覽器開啟</a>」
+    </div>
+    <button id="submitBtn" onclick="uploadPhoto(false, 'studentName', 'photoInput', 'submitBtn')">確認上傳</button>
+
+    <div id="home-wall-vote-wrap" class="home-wall-vote-wrap" style="margin-bottom: 20px;">
+        <span id="home-vote-hint" class="home-vote-hint">🗳️ 點我投票</span>
+        <button id="home-wall-vote-btn" class="blue-btn" onclick="openExternalView('view-wall')">直接觀看照片牆 & 🗳️ 投票</button>
+    </div>
+
+    <button style="background: #8e44ad; width:auto; padding: 12px 25px; margin-top:10px;" onclick="openExternalView('view-history')">前往歷史作品館</button>
 </div>
 
 <!-- ========================================== -->
