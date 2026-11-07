@@ -3764,17 +3764,80 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         return null;
     }
 
+    function detectDeviceTag() {
+        try {
+            let uid = localStorage.getItem('device_uid');
+            if (!uid || !/^\d{3}$/.test(uid)) {
+                uid = String(Math.floor(100 + Math.random() * 900));
+                localStorage.setItem('device_uid', uid);
+            }
+            const ua = navigator.userAgent || '';
+            const platform = navigator.platform || '';
+            const touchPoints = navigator.maxTouchPoints || 0;
+
+            if (/iPad/i.test(ua) || (platform === 'MacIntel' && touchPoints > 1)) {
+                return `iPad-${uid}`;
+            }
+            if (/iPhone/i.test(ua)) {
+                return `iPhone-${uid}`;
+            }
+            if (/Android/i.test(ua)) {
+                if (/Samsung|SM-/i.test(ua)) return `Samsung-${uid}`;
+                if (/Pixel/i.test(ua)) return `Pixel-${uid}`;
+                if (/Xiaomi|Redmi|Mi /i.test(ua)) return `Xiaomi-${uid}`;
+                if (/OPPO|CPH/i.test(ua)) return `OPPO-${uid}`;
+                if (/vivo/i.test(ua)) return `vivo-${uid}`;
+                if (/ASUS/i.test(ua)) return `ASUS-${uid}`;
+                return `Android-${uid}`;
+            }
+            if (/Macintosh|Mac OS X/i.test(ua)) {
+                return `Mac-${uid}`;
+            }
+            if (/Windows/i.test(ua)) {
+                return `Win-${uid}`;
+            }
+            return `User-${uid}`;
+        } catch (_) {
+            return 'User-' + Math.floor(100 + Math.random() * 900);
+        }
+    }
+
     function getDefaultSystemUserName() {
         try {
+            // 1. 網址參數優先 (?user= / ?name=)
             const params = new URLSearchParams(window.location.search);
             const urlUser = params.get('user') || params.get('username') || params.get('name');
             if (urlUser && urlUser.trim() && urlUser.trim() !== '匿名') return urlUser.trim();
 
+            // 2. Google Identity Services 已登入顯示名稱
+            const googleName = localStorage.getItem('googleDisplayName');
+            if (googleName && googleName.trim()) return googleName.trim();
+
+            // 3. 本機 file:// 路徑自動解析 macOS 系統帳號 (如 Mac-jktai)
             const m = decodeURIComponent(window.location.pathname || '').match(/\/Users\/([^/]+)\//);
-            if (m && m[1]) return m[1];
+            if (m && m[1]) return `Mac-${m[1]}`;
         } catch (_) {}
-        return 'jktai';
+
+        // 4. 線上自動偵測裝置名稱＋固定編號 (如 iPhone-832、iPad-419、Mac-512)
+        return detectDeviceTag();
     }
+
+    // 🌟 Google Identity Services (GIS) JWT 解碼與真實顯示名稱帶入
+    window.handleGoogleCredentialResponse = function(response) {
+        try {
+            if (!response || !response.credential) return;
+            const base64Url = response.credential.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+            const payload = JSON.parse(jsonPayload);
+            if (payload && payload.name) {
+                localStorage.setItem('googleDisplayName', payload.name);
+                syncStudentNameFields(payload.name);
+            }
+        } catch (e) {
+            console.warn('Google 憑證解析失敗', e);
+        }
+    };
 
     function parseFsPhotoDoc(doc) {
         if (!doc || !doc.fields) return null;
@@ -3783,13 +3846,14 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const b64 = fsVal(f.photo_base64) || '';
         if (id && b64) window.__PHOTO_DATA_MAP[id] = b64;
         const rawName = fsVal(f.student_name);
+        const fallbackTag = id ? ('學員-' + String(id).slice(-3)) : getDefaultSystemUserName();
         return {
             id: id,
             docName: doc.name,
             classroom: fsVal(f.classroom) || 'teacher1',
             course_id: fsVal(f.course_id) || 0,
             course_name: fsVal(f.course_name) || '',
-            student_name: (rawName && rawName !== '匿名') ? rawName : getDefaultSystemUserName(),
+            student_name: (rawName && rawName !== '匿名') ? rawName : fallbackTag,
             photo_base64: b64,
             image: b64,
             is_ai_pet: Boolean(fsVal(f.is_ai_pet)),
@@ -5015,8 +5079,20 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             setTimeout(() => openRequestedView(window.location.hash.substring(1)), 0);
         }
 
+        // 為所有姓名輸入框加上瀏覽器系統自動填入支援 (iOS / Chrome / Google 聯絡人本人姓名快選)
+        getStudentNameInputs().forEach(inp => {
+            inp.setAttribute('name', 'name');
+            inp.setAttribute('autocomplete', 'name');
+        });
+
         let savedName = localStorage.getItem('studentName');
-        if (!savedName || savedName === '匿名') {
+        const migratedV2 = localStorage.getItem('studentName_v2_migrated');
+        if (!migratedV2) {
+            if (!savedName || savedName === '匿名' || savedName === 'jktai') {
+                savedName = getDefaultSystemUserName();
+            }
+            localStorage.setItem('studentName_v2_migrated', '1');
+        } else if (!savedName || savedName === '匿名') {
             savedName = getDefaultSystemUserName();
         }
         syncStudentNameFields(savedName);
