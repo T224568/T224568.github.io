@@ -6980,9 +6980,19 @@ ${stickerVideoState.mood.full}
         }
     }
 
+    function scrollToTopForce() {
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        if (document.documentElement) document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+    }
+
     function switchView(viewId) {
         document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active-view'));
-        document.getElementById(viewId).classList.add('active-view');
+        const targetView = document.getElementById(viewId);
+        if (targetView) targetView.classList.add('active-view');
 
         const isHome = viewId === 'view-upload';
 
@@ -6996,7 +7006,10 @@ ${stickerVideoState.mood.full}
             appToolbar.style.display = isHome ? 'flex' : 'none';
         }
 
-        window.scrollTo(0, 0);
+        scrollToTopForce();
+        setTimeout(scrollToTopForce, 40);
+        setTimeout(scrollToTopForce, 150);
+        setTimeout(scrollToTopForce, 300);
     }
 
     function promptAdmin() {
@@ -8088,14 +8101,27 @@ ${stickerVideoState.mood.full}
 >◆ 第二位老師</button>
 
 <script>
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+function scrollToTopForceGlobal() {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
 }
 window.addEventListener('DOMContentLoaded', () => {
-    window.scrollTo(0, 0);
+    scrollToTopForceGlobal();
+    setTimeout(scrollToTopForceGlobal, 50);
+    setTimeout(scrollToTopForceGlobal, 200);
 });
 window.addEventListener('load', () => {
-    window.scrollTo(0, 0);
+    scrollToTopForceGlobal();
+    setTimeout(scrollToTopForceGlobal, 100);
+    setTimeout(scrollToTopForceGlobal, 400);
+});
+window.addEventListener('pageshow', (event) => {
+    scrollToTopForceGlobal();
+    setTimeout(scrollToTopForceGlobal, 80);
 });
 </script>
 </body>
