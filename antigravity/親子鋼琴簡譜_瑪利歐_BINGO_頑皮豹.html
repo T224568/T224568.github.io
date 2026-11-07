@@ -121,6 +121,26 @@
     color: #fff;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
   }
+  .tab-btn.active[data-song="diudiu"] {
+    background: #d97706;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+  }
+  .tab-btn.active[data-song="peach"] {
+    background: #e11d48;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+  }
+  .tab-btn.active[data-song="farm"] {
+    background: #65a30d;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(101, 163, 13, 0.35);
+  }
+  .tab-btn.active[data-song="bridge"] {
+    background: #7c3aed;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+  }
   .player-controls {
     display: flex;
     flex-wrap: wrap;
@@ -146,10 +166,36 @@
   }
   .btn-play:hover { background: #1d4ed8; }
   .btn-stop {
-    background: #64748b;
+    background: #dc2626;
     color: white;
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
   }
-  .btn-stop:hover { background: #475569; }
+  .btn-stop:hover { background: #b91c1c; }
+  .btn-sticky-stop {
+    display: none;
+    border: none;
+    background: #ef4444;
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+    animation: pulseStop 1.2s infinite;
+  }
+  .btn-sticky-stop.visible {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  @keyframes pulseStop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  .btn-part-play.playing-part {
+    background: #ef4444 !important;
+  }
   .btn-print {
     background: #f59e0b;
     color: white;
@@ -541,8 +587,8 @@
 
 <div class="container">
   <header>
-    <h1>🎹 親子鋼琴簡譜大百科（6 首完整原曲不刪減版）</h1>
-    <p>超級瑪利歐・BINGO・頑皮豹・豆豆龍散步・鯊魚寶寶・哆啦A夢（全曲不精簡・自動捲動亮燈跟彈）</p>
+    <h1>🎹 親子鋼琴簡譜大百科（10 首完整原曲不刪減版）</h1>
+    <p>動漫遊戲名曲 ＋ 台灣經典童謠（丟丟銅仔・桃花過渡） ＋ 世界民謠（王老先生有塊地・倫敦鐵橋）</p>
   </header>
 
   <!-- 頂部切換與播放控制 -->
@@ -554,6 +600,10 @@
       <button class="tab-btn" data-song="totoro" onclick="switchSong('totoro')">🌱 4. 豆豆龍：散步 (36小節)</button>
       <button class="tab-btn" data-song="shark" onclick="switchSong('shark')">🦈 5. 鯊魚寶寶全曲 (30小節)</button>
       <button class="tab-btn" data-song="doraemon" onclick="switchSong('doraemon')">🔔 6. 哆啦A夢之歌 (33小節)</button>
+      <button class="tab-btn" data-song="diudiu" onclick="switchSong('diudiu')">🚂 7. 台灣民謠：丟丟銅仔 (32小節)</button>
+      <button class="tab-btn" data-song="peach" onclick="switchSong('peach')">🌸 8. 台灣民謠：桃花過渡 (32小節)</button>
+      <button class="tab-btn" data-song="farm" onclick="switchSong('farm')">🐄 9. 世界民謠：王老先生有塊地 (36小節)</button>
+      <button class="tab-btn" data-song="bridge" onclick="switchSong('bridge')">🌉 10. 世界民謠：倫敦鐵橋垮下來 (32小節)</button>
     </div>
 
     <div class="player-controls">
@@ -575,8 +625,11 @@
   <!-- 互動式鋼琴鍵盤 -->
   <div class="piano-wrapper">
     <div class="piano-header">
-      <span>👇 <strong>互動鋼琴鍵盤</strong>（涵蓋低音 3̣ 到高音 6̇，點琴鍵或下方簡譜音符都會發聲；播放時可點擊任一段落「▶ 單獨播放本段」）</span>
-      <span id="nowPlayingText">準備就緒 ✨</span>
+      <span>👇 <strong>互動鋼琴鍵盤</strong>（點琴鍵或簡譜音符發聲；播放時可隨時按 <strong>空白鍵 Space / Esc</strong> 或右側按鈕停止）</span>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span id="nowPlayingText">準備就緒 ✨</span>
+        <button class="btn-sticky-stop" id="stickyStopBtn" onclick="stopPlayback()">⏹️ 立即停止播放</button>
+      </div>
     </div>
     <div class="piano-scroll">
       <div class="piano" id="pianoKeys"></div>
@@ -883,6 +936,171 @@
     <div class="score-grid" id="grid-doraemon-c"></div>
   </section>
 
+  <!-- ==================== 7. 台灣民謠：丟丟銅仔 (宜蘭火車民謠完整原曲 32 小節) ==================== -->
+  <section class="song-section" id="song-diudiu">
+    <div class="song-title-bar">
+      <h2>🚂 台灣宜蘭民謠：丟丟銅仔（火車行到伊都阿末伊都丟・完整原曲）</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（台灣五聲音階 1 2 3 5 6 全白鍵！）</span>
+        <span class="badge badge-beat">全長：32 小節（火車汽笛進站前奏 + 第一段火車過山洞 + 磅空水滴間奏 + 第二段雙連過山洞 + 汽笛尾奏）</span>
+        <span class="badge badge-level">★☆☆ 台灣必學代表作</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>台灣最歡樂的火車童謠（只用 `1 2 3 5 6` 五個白鍵！）：</strong><br>
+      「丟丟銅仔」模仿古時候蒸汽火車穿過宜蘭山洞時，山洞頂端水滴滴落「丟、丟、銅仔」的清脆聲音！整首歌完全沒有 `4` 跟 `7`，也沒有黑鍵，彈起來超級順手！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">🚂 【第 1 段：Intro 蒸汽火車鳴笛啟動前奏】（第 1 ~ 4 小節）</div>
+      <button class="btn-part-play" onclick="playSection('diudiu', 'grid-diudiu-intro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-diudiu-intro"></div>
+
+    <div class="part-header">
+      <div class="part-title">⛰️ 【第 2 段：A 段「火車行到伊都，阿末伊都丟，唉唷磅空內」】（第 5 ~ 12 小節）</div>
+      <button class="btn-part-play" onclick="playSection('diudiu', 'grid-diudiu-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-diudiu-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">💧 【第 3 段：B 段「磅空的水伊都，丟丟銅仔伊都，滴落來」】（第 13 ~ 20 小節）</div>
+      <button class="btn-part-play" onclick="playSection('diudiu', 'grid-diudiu-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-diudiu-b"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎉 【第 4 段：C 段熱鬧呼喊「伊都阿末伊都丟！」＋火車到站鳴笛尾奏】（第 21 ~ 32 小節）</div>
+      <button class="btn-part-play" onclick="playSection('diudiu', 'grid-diudiu-c')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-diudiu-c"></div>
+  </section>
+
+  <!-- ==================== 8. 台灣民謠：桃花過渡 (正月調對唱民謠完整原曲 32 小節) ==================== -->
+  <section class="song-section" id="song-peach">
+    <div class="song-title-bar">
+      <h2>🌸 台灣車鼓戲民謠：桃花過渡（正月算來春氣味・完整原曲）</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（100% 全白鍵・五聲音階歡樂搖擺）</span>
+        <span class="badge badge-beat">全長：32 小節（鑼鼓前奏 + 正月春氣味 + 二月立春分 + 桃花撐渡過河副歌 + 歡慶收尾）</span>
+        <span class="badge badge-level">★☆☆ 輕快好聽零黑鍵</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>台灣傳統最活潑的渡船對唱歌謠：</strong><br>
+      描寫桃花姐要搭渡船過河，跟老船夫一問一答唱出「十二月令」的趣味故事！旋律大量重複 `3 5 6` 與 `5 3 2 1`，節奏像划船一樣一搖一擺，非常適合親子一起邊彈邊唱！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">🥁 【第 1 段：Intro 歡鑼喜鼓划船前奏】（第 1 ~ 4 小節）</div>
+      <button class="btn-part-play" onclick="playSection('peach', 'grid-peach-intro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-peach-intro"></div>
+
+    <div class="part-header">
+      <div class="part-title">🌱 【第 2 段：A1 段「正月算來伊都春氣味（八月算來桂花香）」】（第 5 ~ 12 小節）</div>
+      <button class="btn-part-play" onclick="playSection('peach', 'grid-peach-a1')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-peach-a1"></div>
+
+    <div class="part-header">
+      <div class="part-title">🚣 【第 3 段：B 段副歌「伊都晃呀晃，挨呀挨，撐渡阿伯快開船！」】（第 13 ~ 20 小節）</div>
+      <button class="btn-part-play" onclick="playSection('peach', 'grid-peach-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-peach-b"></div>
+
+    <div class="part-header">
+      <div class="part-title">🌺 【第 4 段：A2 段再現「二月立春好時機」＋過河靠岸尾奏】（第 21 ~ 32 小節）</div>
+      <button class="btn-part-play" onclick="playSection('peach', 'grid-peach-a2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-peach-a2"></div>
+  </section>
+
+  <!-- ==================== 9. 世界民謠：王老先生有塊地 (Old MacDonald 完整四段動物農場 36 小節) ==================== -->
+  <section class="song-section" id="song-farm">
+    <div class="song-title-bar">
+      <h2>🐄 世界經典童謠：王老先生有塊地 (Old MacDonald Had a Farm 完整 4 段動物叫聲全曲)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（100% 全白鍵・只用 1 2 3 5 6 五個音！）</span>
+        <span class="badge badge-beat">全長：36 小節（第1段小鴨呱呱 + 第2段小豬呼嚕 + 第3段小牛哞哞 + 第4段小狗汪汪＆農場大合唱）</span>
+        <span class="badge badge-level">★☆☆ 全球幼教第一名曲</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>全世界小孩都會唱的動物模仿歌：</strong><br>
+      整首歌只用到 <strong>1 (Do)、2 (Re)、3 (Mi)、5̣ (低Sol)、6̣ (低La)</strong> 五顆白鍵！<br>
+      每次彈到 <strong>「伊呀伊呀唷（3 3 2 2 1）」</strong> 最有成就感，中間還可以讓小孩自己邊彈 `1 1 1` 邊學小鴨、小牛、小狗叫！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">🦆 【第 1 段：小鴨子「呱呱呱 (Quack Quack)」】（第 1 ~ 9 小節）</div>
+      <button class="btn-part-play" onclick="playSection('farm', 'grid-farm-v1')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-farm-v1"></div>
+
+    <div class="part-header">
+      <div class="part-title">🐷 【第 2 段：小豬仔「嚄嚄嚄 (Oink Oink)」】（第 10 ~ 18 小節）</div>
+      <button class="btn-part-play" onclick="playSection('farm', 'grid-farm-v2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-farm-v2"></div>
+
+    <div class="part-header">
+      <div class="part-title">🐮 【第 3 段：大乳牛「哞哞哞 (Moo Moo)」】（第 19 ~ 27 小節）</div>
+      <button class="btn-part-play" onclick="playSection('farm', 'grid-farm-v3')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-farm-v3"></div>
+
+    <div class="part-header">
+      <div class="part-title">🐶 【第 4 段：小狗狗「汪汪汪 (Woof Woof)」＋農場歡呼大結尾】（第 28 ~ 36 小節）</div>
+      <button class="btn-part-play" onclick="playSection('farm', 'grid-farm-v4')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-farm-v4"></div>
+  </section>
+
+  <!-- ==================== 10. 世界民謠：倫敦鐵橋垮下來 (London Bridge 完整四段故事全曲 32 小節) ==================== -->
+  <section class="song-section" id="song-bridge">
+    <div class="song-title-bar">
+      <h2>🌉 世界英國童謠：倫敦鐵橋垮下來 (London Bridge Is Falling Down 完整 4 段故事全曲)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（100% 全白鍵・右手五指不移位即可彈完！）</span>
+        <span class="badge badge-beat">全長：32 小節（第1段鐵橋垮下來 + 第2段用木頭黏土蓋 + 第3段用金銀珠寶蓋 + 第4段派衛兵站崗收尾）</span>
+        <span class="badge badge-level">★☆☆ 五指原位最佳練習曲</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>右手 5 根手指頭完全不用搬家就能彈完！</strong><br>
+      把右手大拇指放在 <strong>2 (Re)</strong> 或 <strong>1 (Do)</strong>，整首歌只在 `1 2 3 4 5 6` 之間順著走（`5 6 5 4 | 3 4 5 | 2 3 4 | 3 4 5`），是鋼琴老師公認最適合建立手指獨立性的世界名曲！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">🌉 【第 1 段：倫敦鐵橋垮下來 (Falling Down)】（第 1 ~ 8 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bridge', 'grid-bridge-v1')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bridge-v1"></div>
+
+    <div class="part-header">
+      <div class="part-title">🪵 【第 2 段：拿木頭和泥土蓋起來 (Wood and Clay)】（第 9 ~ 16 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bridge', 'grid-bridge-v2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bridge-v2"></div>
+
+    <div class="part-header">
+      <div class="part-title">💎 【第 3 段：拿金子和銀子蓋起來 (Gold and Silver)】（第 17 ~ 24 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bridge', 'grid-bridge-v3')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bridge-v3"></div>
+
+    <div class="part-header">
+      <div class="part-title">💂 【第 4 段：美麗的淑女＆歡樂大結局 (My Fair Lady!)】（第 25 ~ 32 小節）</div>
+      <button class="btn-part-play" onclick="playSection('bridge', 'grid-bridge-v4')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-bridge-v4"></div>
+  </section>
+
   <!-- 底部輔助教學區 -->
   <div class="helper-grid">
     <div class="helper-card">
@@ -993,8 +1211,10 @@ function renderPiano() {
   });
 }
 
-// ==================== 2. Web Audio 鋼琴合成與拍手音效 ====================
+// ==================== 2. Web Audio 鋼琴合成與拍手音效（支援立即靜音切斷） ====================
 let audioCtx = null;
+let activeOscillators = [];
+
 function initAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1002,6 +1222,19 @@ function initAudio() {
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
+}
+
+function stopAllActiveSounds() {
+  activeOscillators.forEach(item => {
+    try {
+      if (item.gain && audioCtx) {
+        item.gain.gain.cancelScheduledValues(audioCtx.currentTime);
+        item.gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      }
+      if (item.osc) item.osc.stop();
+    } catch (e) {}
+  });
+  activeOscillators = [];
 }
 
 function playClapSound() {
@@ -1018,6 +1251,7 @@ function playClapSound() {
   gain.connect(audioCtx.destination);
   osc.start(now);
   osc.stop(now + 0.09);
+  activeOscillators.push({ osc, gain });
 }
 
 function playTone(noteId, durationSec = 0.4) {
@@ -1059,6 +1293,7 @@ function playTone(noteId, durationSec = 0.4) {
   osc2.start(now);
   osc1.stop(now + durationSec);
   osc2.stop(now + durationSec);
+  activeOscillators.push({ osc: osc1, gain }, { osc: osc2, gain });
 }
 
 function triggerNote(noteId, dur = 0.4) {
@@ -1926,6 +2161,540 @@ const SONGS_DATA = {
         ]}
       ]
     }
+  },
+
+  diudiu: {
+    bpm: 126,
+    sections: {
+      'grid-diudiu-intro': [
+        { measure: 1, chord: 'C (蒸汽火車鳴笛)', notes: [
+          N('5','',1.5,'G4','嗚——','5'), N('6','',0.5,'A4','嗚','6'),
+          N('5','',1.0,'G4','嗚—','5'), N('3','',1.0,'E4','傾隆','3')
+        ]},
+        { measure: 2, chord: 'C → G', notes: [
+          N('5','',0.5,'G4','丟','5'), N('5','',0.5,'G4','丟','5'), N('6','',0.5,'A4','銅','6'), N('5','',0.5,'G4','仔','5'),
+          N('3','',0.5,'E4','伊','3'), N('2','',0.5,'D4','都','2'), N('1','',1.0,'C4','噹！','1')
+        ]},
+        { measure: 3, chord: 'C → G', notes: [
+          N('2','',0.5,'D4','傾','2'), N('3','',0.5,'E4','隆','3'), N('2','',0.5,'D4','傾','2'), N('1','',0.5,'C4','隆','1'),
+          N('6','low',1.0,'A3','低La','6'), N('5','low',1.0,'G3','低Sol','5')
+        ]},
+        { measure: 4, chord: 'C (準備開動)', notes: [
+          N('1','',2.0,'C4','出發——🚂','1'), N('0','',2.0,'REST','(吸氣開唱)','0')
+        ]}
+      ],
+      'grid-diudiu-a': [
+        { measure: 5, chord: 'C', notes: [
+          N('3','',1.0,'E4','火','3'), N('3','',0.5,'E4','車','3'), N('2','',0.5,'D4','行','2'),
+          N('1','',1.0,'C4','到','1'), N('3','',0.5,'E4','伊','3'), N('2','',0.5,'D4','都','2')
+        ]},
+        { measure: 6, chord: 'Am → G', notes: [
+          N('1','',0.5,'C4','阿','1'), N('6','low',0.5,'A3','末','6'), N('1','',0.5,'C4','伊','1'), N('2','',0.5,'D4','都','2'),
+          N('3','',1.0,'E4','丟','3'), N('5','',1.0,'G4','唉唷','5')
+        ]},
+        { measure: 7, chord: 'C → G', notes: [
+          N('6','',0.5,'A4','磅','6'), N('5','',0.5,'G4','空','5'), N('3','',1.0,'E4','內','3'),
+          N('2','',1.0,'D4','伊都','2'), N('1','',1.0,'C4','喲—','1')
+        ]},
+        { measure: 8, chord: 'C', notes: [
+          N('3','',0.5,'E4','丟','3'), N('2','',0.5,'D4','丟','2'), N('1','',0.5,'C4','銅','1'), N('6','low',0.5,'A3','仔','6'),
+          N('5','low',1.0,'G3','伊','5'), N('1','',1.0,'C4','都','1')
+        ]},
+        { measure: 9, chord: 'G → C', notes: [
+          N('2','',0.5,'D4','阿','2'), N('3','',0.5,'E4','末','3'), N('2','',0.5,'D4','伊','2'), N('1','',0.5,'C4','都','1'),
+          N('2','',2.0,'D4','丟——','2')
+        ]},
+        { measure: 10, chord: 'C', notes: [
+          N('3','',0.5,'E4','伊','3'), N('5','',0.5,'G4','都','5'), N('6','',0.5,'A4','磅','6'), N('5','',0.5,'G4','空','5'),
+          N('3','',1.0,'E4','內','3'), N('2','',1.0,'D4','喲','2')
+        ]},
+        { measure: 11, chord: 'G7 → C', notes: [
+          N('1','',2.0,'C4','Do——','1'),
+          N('5','',0.5,'G4','(水滴','5'), N('3','',0.5,'E4','叮','3'), N('5','',0.5,'G4','咚','5'), N('3','',0.5,'E4','滴)','3')
+        ]},
+        { measure: 12, chord: 'C', notes: [
+          N('1','',2.0,'C4','叮咚—','1'), N('0','',2.0,'REST','(接第2段)','0')
+        ]}
+      ],
+      'grid-diudiu-b': [
+        { measure: 13, chord: 'C', notes: [
+          N('5','',1.0,'G4','磅','5'), N('5','',0.5,'G4','空','5'), N('6','',0.5,'A4','的','6'),
+          N('5','',1.0,'G4','水','5'), N('3','',0.5,'E4','伊','3'), N('2','',0.5,'D4','都','2')
+        ]},
+        { measure: 14, chord: 'C → G', notes: [
+          N('1','',0.5,'C4','丟','1'), N('2','',0.5,'D4','丟','2'), N('3','',0.5,'E4','銅','3'), N('5','',0.5,'G4','仔','5'),
+          N('6','',1.0,'A4','伊','6'), N('5','',1.0,'G4','都','5')
+        ]},
+        { measure: 15, chord: 'Am → G', notes: [
+          N('3','',0.5,'E4','阿','3'), N('2','',0.5,'D4','末','2'), N('1','',0.5,'C4','伊','1'), N('6','low',0.5,'A3','都','6'),
+          N('2','',1.0,'D4','丟','2'), N('3','',1.0,'E4','仔伊都','3')
+        ]},
+        { measure: 16, chord: 'G → C', notes: [
+          N('2','',1.0,'D4','滴','2'), N('5','low',1.0,'G3','落','5'),
+          N('1','',2.0,'C4','來——💧','1')
+        ]},
+        { measure: 17, chord: 'C', notes: [
+          N('3','',0.5,'E4','雙','3'), N('3','',0.5,'E4','腳','3'), N('2','',0.5,'D4','踏','2'), N('1','',0.5,'C4','到','1'),
+          N('3','',1.0,'E4','伊','3'), N('5','',1.0,'G4','都','5')
+        ]},
+        { measure: 18, chord: 'F → C', notes: [
+          N('6','',0.5,'A4','阿','6'), N('6','',0.5,'A4','末','6'), N('5','',0.5,'G4','伊','5'), N('3','',0.5,'E4','都','3'),
+          N('5','',1.0,'G4','丟','5'), N('6','',1.0,'A4','唉唷','6')
+        ]},
+        { measure: 19, chord: 'G7', notes: [
+          N('5','',1.0,'G4','雙','5'), N('3','',1.0,'E4','連','3'),
+          N('2','',1.0,'D4','內','2'), N('3','',1.0,'E4','喲','3')
+        ]},
+        { measure: 20, chord: 'C', notes: [
+          N('1','',2.5,'C4','Do——','1'), N('0','',1.5,'REST','(呼吸)','0')
+        ]}
+      ],
+      'grid-diudiu-c': [
+        { measure: 21, chord: 'C (加速歡呼)', notes: [
+          N('5','',0.5,'G4','伊','5'), N('5','',0.5,'G4','都','5'), N('6','',0.5,'A4','阿','6'), N('5','',0.5,'G4','末','5'),
+          N('3','',0.5,'E4','伊','3'), N('2','',0.5,'D4','都','2'), N('1','',1.0,'C4','丟！','1')
+        ]},
+        { measure: 22, chord: 'G → C', notes: [
+          N('2','',0.5,'D4','伊','2'), N('2','',0.5,'D4','都','2'), N('3','',0.5,'E4','阿','3'), N('2','',0.5,'D4','末','2'),
+          N('1','',0.5,'C4','伊','1'), N('6','low',0.5,'A3','都','6'), N('5','low',1.0,'G3','丟！','5')
+        ]},
+        { measure: 23, chord: 'C', notes: [
+          N('1','',0.5,'C4','看','1'), N('2','',0.5,'D4','見','2'), N('3','',0.5,'E4','火','3'), N('5','',0.5,'G4','車','5'),
+          N('6','',1.0,'A4','出','6'), N('5','',1.0,'G4','山洞','5')
+        ]},
+        { measure: 24, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','滴','3'), N('2','',1.0,'D4','落','2'),
+          N('1','',2.0,'C4','來——！','1')
+        ]},
+        { measure: 25, chord: 'C (火車到站尾奏)', notes: [
+          N('5','',1.0,'G4','嗚—','5'), N('3','',1.0,'E4','嗚—','3'),
+          N('5','',1.0,'G4','嗚—','5'), N('1','high',1.0,'C5','高Do!','1')
+        ]},
+        { measure: 26, chord: 'G7 → C', notes: [
+          N('6','',0.5,'A4','傾','6'), N('5','',0.5,'G4','隆','5'), N('3','',0.5,'E4','傾','3'), N('2','',0.5,'D4','隆','2'),
+          N('1','',1.5,'C4','到站囉🚂','1'), N('0','',0.5,'REST','🎉結束','0')
+        ]}
+      ]
+    }
+  },
+
+  peach: {
+    bpm: 118,
+    sections: {
+      'grid-peach-intro': [
+        { measure: 1, chord: 'C (車鼓戲鑼鼓)', notes: [
+          N('3','',0.5,'E4','咚','3'), N('5','',0.5,'G4','得','5'), N('6','',1.0,'A4','隆咚','6'),
+          N('5','',1.0,'G4','鏘！','5'), N('3','',1.0,'E4','鏘！','3')
+        ]},
+        { measure: 2, chord: 'G → C', notes: [
+          N('2','',0.5,'D4','咚','2'), N('3','',0.5,'E4','得','3'), N('5','',0.5,'G4','隆','5'), N('3','',0.5,'E4','咚','3'),
+          N('2','',1.0,'D4','鏘','2'), N('1','',1.0,'C4','鏘！','1')
+        ]},
+        { measure: 3, chord: 'C', notes: [
+          N('5','low',0.5,'G3','划','5'), N('6','low',0.5,'A3','船','6'), N('1','',0.5,'C4','過','1'), N('2','',0.5,'D4','河','2'),
+          N('3','',1.0,'E4','囉','3'), N('5','',1.0,'G4','喲','5')
+        ]},
+        { measure: 4, chord: 'C', notes: [
+          N('1','',2.0,'C4','Do——','1'), N('0','',2.0,'REST','(桃花開唱)','0')
+        ]}
+      ],
+      'grid-peach-a1': [
+        { measure: 5, chord: 'C', notes: [
+          N('3','',1.0,'E4','正','3'), N('5','',1.0,'G4','月','5'),
+          N('6','',1.0,'A4','算','6'), N('6','',0.5,'A4','來','6'), N('5','',0.5,'G4','伊都','5')
+        ]},
+        { measure: 6, chord: 'C → G', notes: [
+          N('3','',1.0,'E4','春','3'), N('5','',1.0,'G4','氣','5'),
+          N('2','',2.0,'D4','味——','2')
+        ]},
+        { measure: 7, chord: 'Dm → G', notes: [
+          N('2','',1.0,'D4','八','2'), N('3','',1.0,'E4','月','3'),
+          N('5','',1.0,'G4','算','5'), N('5','',0.5,'G4','來','5'), N('3','',0.5,'E4','伊都','3')
+        ]},
+        { measure: 8, chord: 'C', notes: [
+          N('2','',1.0,'D4','桂','2'), N('1','',1.0,'C4','花','1'),
+          N('6','low',1.0,'A3','香','6'), N('5','low',1.0,'G3','喲','5')
+        ]},
+        { measure: 9, chord: 'C', notes: [
+          N('1','',1.0,'C4','桃','1'), N('2','',1.0,'D4','花','2'),
+          N('3','',1.0,'E4','過','3'), N('5','',1.0,'G4','渡','5')
+        ]},
+        { measure: 10, chord: 'F → C', notes: [
+          N('6','',1.0,'A4','笑','6'), N('5','',1.0,'G4','咪','5'),
+          N('3','',2.0,'E4','咪——','3')
+        ]},
+        { measure: 11, chord: 'G7', notes: [
+          N('2','',0.5,'D4','拜','2'), N('3','',0.5,'E4','託','3'), N('5','',1.0,'G4','阿伯','5'),
+          N('3','',1.0,'E4','搖','3'), N('2','',1.0,'D4','船','2')
+        ]},
+        { measure: 12, chord: 'C', notes: [
+          N('1','',2.5,'C4','去——🌸','1'), N('0','',1.5,'REST','(進副歌)','0')
+        ]}
+      ],
+      'grid-peach-b': [
+        { measure: 13, chord: 'C', notes: [
+          N('5','',1.0,'G4','伊','5'), N('5','',1.0,'G4','都','5'),
+          N('6','',1.0,'A4','晃','6'), N('5','',1.0,'G4','呀','5')
+        ]},
+        { measure: 14, chord: 'C → G', notes: [
+          N('3','',1.0,'E4','晃','3'), N('2','',1.0,'D4','呀','2'),
+          N('1','',1.0,'C4','挨','1'), N('2','',1.0,'D4','呀','2')
+        ]},
+        { measure: 15, chord: 'C', notes: [
+          N('3','',1.0,'E4','挨','3'), N('5','',1.0,'G4','呀','5'),
+          N('6','',1.0,'A4','伊','6'), N('5','',1.0,'G4','都','5')
+        ]},
+        { measure: 16, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','好','3'), N('2','',1.0,'D4','心','2'),
+          N('1','',2.0,'C4','情——','1')
+        ]},
+        { measure: 17, chord: 'F → C', notes: [
+          N('6','',1.0,'A4','撐','6'), N('6','',1.0,'A4','渡','6'),
+          N('5','',1.0,'G4','阿','5'), N('3','',1.0,'E4','伯','3')
+        ]},
+        { measure: 18, chord: 'Dm → G', notes: [
+          N('2','',1.0,'D4','快','2'), N('3','',1.0,'E4','開','3'),
+          N('5','',2.0,'G4','船——','5')
+        ]},
+        { measure: 19, chord: 'G7 → C', notes: [
+          N('3','',0.5,'E4','搖','3'), N('5','',0.5,'G4','過','5'), N('3','',1.0,'E4','河','3'),
+          N('2','',1.0,'D4','岸','2'), N('1','',1.0,'C4','去','1')
+        ]},
+        { measure: 20, chord: 'C', notes: [
+          N('1','',2.5,'C4','囉——🚣','1'), N('0','',1.5,'REST','(換第2段)','0')
+        ]}
+      ],
+      'grid-peach-a2': [
+        { measure: 21, chord: 'C', notes: [
+          N('3','',1.0,'E4','二','3'), N('5','',1.0,'G4','月','5'),
+          N('6','',1.0,'A4','算','6'), N('6','',0.5,'A4','來','6'), N('5','',0.5,'G4','伊都','5')
+        ]},
+        { measure: 22, chord: 'C → G', notes: [
+          N('3','',1.0,'E4','立','3'), N('5','',1.0,'G4','春','5'),
+          N('2','',2.0,'D4','分——','2')
+        ]},
+        { measure: 23, chord: 'Dm → G', notes: [
+          N('2','',1.0,'D4','九','2'), N('3','',1.0,'E4','月','3'),
+          N('5','',1.0,'G4','算','5'), N('5','',0.5,'G4','來','5'), N('3','',0.5,'E4','伊都','3')
+        ]},
+        { measure: 24, chord: 'C', notes: [
+          N('2','',1.0,'D4','九','2'), N('1','',1.0,'C4','降','1'),
+          N('6','low',1.0,'A3','風','6'), N('5','low',1.0,'G3','喲','5')
+        ]},
+        { measure: 25, chord: 'C → F', notes: [
+          N('1','',1.0,'C4','小','1'), N('2','',1.0,'D4','船','2'),
+          N('3','',1.0,'E4','平','3'), N('5','',1.0,'G4','安','5')
+        ]},
+        { measure: 26, chord: 'G7 → C', notes: [
+          N('6','',1.0,'A4','到','6'), N('5','',1.0,'G4','對','5'),
+          N('3','',1.0,'E4','岸','3'), N('2','',1.0,'D4','囉','2')
+        ]},
+        { measure: 27, chord: 'C (歡慶鑼鼓尾奏)', notes: [
+          N('3','',0.5,'E4','咚','3'), N('5','',0.5,'G4','得','5'), N('6','',1.0,'A4','隆咚','6'),
+          N('5','',1.0,'G4','鏘！','5'), N('3','',1.0,'E4','鏘！','3')
+        ]},
+        { measure: 28, chord: 'G7 → C', notes: [
+          N('2','',0.5,'D4','多','2'), N('3','',0.5,'E4','謝','3'), N('2','',0.5,'D4','阿','2'), N('5','low',0.5,'G3','伯','5'),
+          N('1','',1.5,'C4','靠岸囉🌸','1'), N('0','',0.5,'REST','🎉結束','0')
+        ]}
+      ]
+    }
+  },
+
+  farm: {
+    bpm: 118,
+    sections: {
+      'grid-farm-v1': [
+        { measure: 1, chord: 'C', notes: [
+          N('1','',1.0,'C4','王(Old)','1'), N('1','',1.0,'C4','老(Mac)','1'),
+          N('1','',1.0,'C4','先(Don-)','1'), N('5','low',1.0,'G3','生(ald)','5')
+        ]},
+        { measure: 2, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','有(had)','6'), N('6','low',1.0,'A3','塊(a)','6'),
+          N('5','low',2.0,'G3','地(farm)—','5')
+        ]},
+        { measure: 3, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 4, chord: 'C', notes: [
+          N('1','',2.5,'C4','唷(O)——','1'), N('5','low',1.5,'G3','他在','5')
+        ]},
+        { measure: 5, chord: 'C', notes: [
+          N('1','',1.0,'C4','田(And)','1'), N('1','',1.0,'C4','邊(on)','1'),
+          N('1','',1.0,'C4','養(his)','1'), N('5','low',1.0,'G3','小(farm)','5')
+        ]},
+        { measure: 6, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','鴨(had)','6'), N('6','low',1.0,'A3','子(a)','6'),
+          N('5','low',2.0,'G3','呀(duck)—','5')
+        ]},
+        { measure: 7, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 8, chord: 'C (小鴨叫聲)', notes: [
+          N('1','',1.5,'C4','唷(O)!','1'), N('5','low',0.5,'G3','這(With)','5'), N('5','low',0.5,'G3','裡(a)','5'),
+          N('1','',0.5,'C4','呱(quack)','1'), N('1','',0.5,'C4','呱(quack)','1'), N('1','',0.5,'C4','那裡','1')
+        ]},
+        { measure: 9, chord: 'G7 → C', notes: [
+          N('1','',0.5,'C4','呱','1'), N('1','',0.5,'C4','呱','1'),
+          N('3','',0.5,'E4','伊','3'), N('3','',0.5,'E4','呀','3'), N('2','',0.5,'D4','伊','2'), N('2','',0.5,'D4','呀','2'),
+          N('1','',1.0,'C4','唷🦆','1')
+        ]}
+      ],
+      'grid-farm-v2': [
+        { measure: 10, chord: 'C', notes: [
+          N('1','',1.0,'C4','王(Old)','1'), N('1','',1.0,'C4','老(Mac)','1'),
+          N('1','',1.0,'C4','先(Don-)','1'), N('5','low',1.0,'G3','生(ald)','5')
+        ]},
+        { measure: 11, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','有(had)','6'), N('6','low',1.0,'A3','塊(a)','6'),
+          N('5','low',2.0,'G3','地(farm)—','5')
+        ]},
+        { measure: 12, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 13, chord: 'C', notes: [
+          N('1','',2.5,'C4','唷(O)——','1'), N('5','low',1.5,'G3','他在','5')
+        ]},
+        { measure: 14, chord: 'C', notes: [
+          N('1','',1.0,'C4','田(And)','1'), N('1','',1.0,'C4','邊(on)','1'),
+          N('1','',1.0,'C4','養(his)','1'), N('5','low',1.0,'G3','小(farm)','5')
+        ]},
+        { measure: 15, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','豬(had)','6'), N('6','low',1.0,'A3','仔(a)','6'),
+          N('5','low',2.0,'G3','呀(pig)—','5')
+        ]},
+        { measure: 16, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 17, chord: 'C (小豬叫聲)', notes: [
+          N('1','',1.5,'C4','唷(O)!','1'), N('5','low',0.5,'G3','這(With)','5'), N('5','low',0.5,'G3','裡(an)','5'),
+          N('1','',0.5,'C4','嚄(oink)','1'), N('1','',0.5,'C4','嚄(oink)','1'), N('1','',0.5,'C4','那裡','1')
+        ]},
+        { measure: 18, chord: 'G7 → C', notes: [
+          N('1','',0.5,'C4','嚄','1'), N('1','',0.5,'C4','嚄','1'),
+          N('3','',0.5,'E4','伊','3'), N('3','',0.5,'E4','呀','3'), N('2','',0.5,'D4','伊','2'), N('2','',0.5,'D4','呀','2'),
+          N('1','',1.0,'C4','唷🐷','1')
+        ]}
+      ],
+      'grid-farm-v3': [
+        { measure: 19, chord: 'C', notes: [
+          N('1','',1.0,'C4','王(Old)','1'), N('1','',1.0,'C4','老(Mac)','1'),
+          N('1','',1.0,'C4','先(Don-)','1'), N('5','low',1.0,'G3','生(ald)','5')
+        ]},
+        { measure: 20, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','有(had)','6'), N('6','low',1.0,'A3','塊(a)','6'),
+          N('5','low',2.0,'G3','地(farm)—','5')
+        ]},
+        { measure: 21, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 22, chord: 'C', notes: [
+          N('1','',2.5,'C4','唷(O)——','1'), N('5','low',1.5,'G3','他在','5')
+        ]},
+        { measure: 23, chord: 'C', notes: [
+          N('1','',1.0,'C4','田(And)','1'), N('1','',1.0,'C4','邊(on)','1'),
+          N('1','',1.0,'C4','養(his)','1'), N('5','low',1.0,'G3','大(farm)','5')
+        ]},
+        { measure: 24, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','乳(had)','6'), N('6','low',1.0,'A3','牛(a)','6'),
+          N('5','low',2.0,'G3','呀(cow)—','5')
+        ]},
+        { measure: 25, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 26, chord: 'C (大牛叫聲)', notes: [
+          N('1','',1.5,'C4','唷(O)!','1'), N('5','low',0.5,'G3','這(With)','5'), N('5','low',0.5,'G3','裡(a)','5'),
+          N('1','',0.5,'C4','哞(moo)','1'), N('1','',0.5,'C4','哞(moo)','1'), N('1','',0.5,'C4','那裡','1')
+        ]},
+        { measure: 27, chord: 'G7 → C', notes: [
+          N('1','',0.5,'C4','哞','1'), N('1','',0.5,'C4','哞','1'),
+          N('3','',0.5,'E4','伊','3'), N('3','',0.5,'E4','呀','3'), N('2','',0.5,'D4','伊','2'), N('2','',0.5,'D4','呀','2'),
+          N('1','',1.0,'C4','唷🐮','1')
+        ]}
+      ],
+      'grid-farm-v4': [
+        { measure: 28, chord: 'C', notes: [
+          N('1','',1.0,'C4','王(Old)','1'), N('1','',1.0,'C4','老(Mac)','1'),
+          N('1','',1.0,'C4','先(Don-)','1'), N('5','low',1.0,'G3','生(ald)','5')
+        ]},
+        { measure: 29, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','有(had)','6'), N('6','low',1.0,'A3','塊(a)','6'),
+          N('5','low',2.0,'G3','地(farm)—','5')
+        ]},
+        { measure: 30, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 31, chord: 'C', notes: [
+          N('1','',2.5,'C4','唷(O)——','1'), N('5','low',1.5,'G3','他在','5')
+        ]},
+        { measure: 32, chord: 'C', notes: [
+          N('1','',1.0,'C4','田(And)','1'), N('1','',1.0,'C4','邊(on)','1'),
+          N('1','',1.0,'C4','養(his)','1'), N('5','low',1.0,'G3','小(farm)','5')
+        ]},
+        { measure: 33, chord: 'F → C', notes: [
+          N('6','low',1.0,'A3','狗(had)','6'), N('6','low',1.0,'A3','狗(a)','6'),
+          N('5','low',2.0,'G3','呀(dog)—','5')
+        ]},
+        { measure: 34, chord: 'C (小狗汪汪)', notes: [
+          N('5','low',0.5,'G3','這','5'), N('5','low',0.5,'G3','裡','5'),
+          N('1','',0.5,'C4','汪(woof)','1'), N('1','',0.5,'C4','汪(woof)','1'),
+          N('5','low',0.5,'G3','那','5'), N('5','low',0.5,'G3','裡','5'),
+          N('1','',0.5,'C4','汪(woof)','1'), N('1','',0.5,'C4','汪(woof)','1')
+        ]},
+        { measure: 35, chord: 'G7', notes: [
+          N('3','',1.0,'E4','伊(E-)','3'), N('3','',1.0,'E4','呀(I-)','3'),
+          N('2','',1.0,'D4','伊(E-)','2'), N('2','',1.0,'D4','呀(I-)','2')
+        ]},
+        { measure: 36, chord: 'C (農場大歡呼)', notes: [
+          N('1','',2.5,'C4','唷(O)——🐶','1'), N('0','',1.5,'REST','🎉完美結束','0')
+        ]}
+      ]
+    }
+  },
+
+  bridge: {
+    bpm: 120,
+    sections: {
+      'grid-bridge-v1': [
+        { measure: 1, chord: 'C', notes: [
+          N('5','',1.5,'G4','倫(Lon-)','5'), N('6','',0.5,'A4','敦(don)','6'),
+          N('5','',1.0,'G4','鐵(Bridge)','5'), N('4','',1.0,'F4','橋(is)','4')
+        ]},
+        { measure: 2, chord: 'C', notes: [
+          N('3','',1.0,'E4','垮(fall-)','3'), N('4','',1.0,'F4','下(ing)','4'),
+          N('5','',2.0,'G4','來(down)—','5')
+        ]},
+        { measure: 3, chord: 'G7', notes: [
+          N('2','',1.0,'D4','垮(Fall-)','2'), N('3','',1.0,'E4','下(ing)','3'),
+          N('4','',2.0,'F4','來(down)—','4')
+        ]},
+        { measure: 4, chord: 'C', notes: [
+          N('3','',1.0,'E4','垮(Fall-)','3'), N('4','',1.0,'F4','下(ing)','4'),
+          N('5','',2.0,'G4','來(down)—','5')
+        ]},
+        { measure: 5, chord: 'C', notes: [
+          N('5','',1.5,'G4','倫(Lon-)','5'), N('6','',0.5,'A4','敦(don)','6'),
+          N('5','',1.0,'G4','鐵(Bridge)','5'), N('4','',1.0,'F4','橋(is)','4')
+        ]},
+        { measure: 6, chord: 'C', notes: [
+          N('3','',1.0,'E4','垮(fall-)','3'), N('4','',1.0,'F4','下(ing)','4'),
+          N('5','',2.0,'G4','來(down)—','5')
+        ]},
+        { measure: 7, chord: 'G7', notes: [
+          N('2','',2.0,'D4','我(My)—','2'), N('5','',2.0,'G4','的(fair)—','5')
+        ]},
+        { measure: 8, chord: 'C', notes: [
+          N('3','',1.0,'E4','淑(la-)','3'), N('1','',2.0,'C4','女(dy)—','1'),
+          N('0','',1.0,'REST','(接第2段)','0')
+        ]}
+      ],
+      'grid-bridge-v2': [
+        { measure: 9, chord: 'C', notes: [
+          N('5','',1.5,'G4','拿(Build)','5'), N('6','',0.5,'A4','木(it)','6'),
+          N('5','',1.0,'G4','頭(up)','5'), N('4','',1.0,'F4','和(with)','4')
+        ]},
+        { measure: 10, chord: 'C', notes: [
+          N('3','',1.0,'E4','泥(wood)','3'), N('4','',1.0,'F4','土(and)','4'),
+          N('5','',2.0,'G4','蓋(clay)—','5')
+        ]},
+        { measure: 11, chord: 'G7', notes: [
+          N('2','',1.0,'D4','木(Wood)','2'), N('3','',1.0,'E4','和(and)','3'),
+          N('4','',2.0,'F4','泥(clay)—','4')
+        ]},
+        { measure: 12, chord: 'C', notes: [
+          N('3','',1.0,'E4','木(Wood)','3'), N('4','',1.0,'F4','和(and)','4'),
+          N('5','',2.0,'G4','泥(clay)—','5')
+        ]},
+        { measure: 13, chord: 'C', notes: [
+          N('5','',1.5,'G4','拿(Build)','5'), N('6','',0.5,'A4','木(it)','6'),
+          N('5','',1.0,'G4','頭(up)','5'), N('4','',1.0,'F4','和(with)','4')
+        ]},
+        { measure: 14, chord: 'C', notes: [
+          N('3','',1.0,'E4','泥(wood)','3'), N('4','',1.0,'F4','土(and)','4'),
+          N('5','',2.0,'G4','蓋(clay)—','5')
+        ]},
+        { measure: 15, chord: 'G7', notes: [
+          N('2','',2.0,'D4','我(My)—','2'), N('5','',2.0,'G4','的(fair)—','5')
+        ]},
+        { measure: 16, chord: 'C', notes: [
+          N('3','',1.0,'E4','淑(la-)','3'), N('1','',2.0,'C4','女(dy)—','1'),
+          N('0','',1.0,'REST','(接第3段)','0')
+        ]}
+      ],
+      'grid-bridge-v3': [
+        { measure: 17, chord: 'C', notes: [
+          N('5','',1.5,'G4','拿(Build)','5'), N('6','',0.5,'A4','金(it)','6'),
+          N('5','',1.0,'G4','子(up)','5'), N('4','',1.0,'F4','和(with)','4')
+        ]},
+        { measure: 18, chord: 'C', notes: [
+          N('3','',1.0,'E4','銀(gold)','3'), N('4','',1.0,'F4','子(and)','4'),
+          N('5','',2.0,'G4','蓋(sil-ver)','5')
+        ]},
+        { measure: 19, chord: 'G7', notes: [
+          N('2','',1.0,'D4','金(Gold)','2'), N('3','',1.0,'E4','和(and)','3'),
+          N('4','',2.0,'F4','銀(sil-ver)','4')
+        ]},
+        { measure: 20, chord: 'C', notes: [
+          N('3','',1.0,'E4','金(Gold)','3'), N('4','',1.0,'F4','和(and)','4'),
+          N('5','',2.0,'G4','銀(sil-ver)','5')
+        ]},
+        { measure: 21, chord: 'C', notes: [
+          N('5','',1.5,'G4','拿(Build)','5'), N('6','',0.5,'A4','金(it)','6'),
+          N('5','',1.0,'G4','子(up)','5'), N('4','',1.0,'F4','和(with)','4')
+        ]},
+        { measure: 22, chord: 'C', notes: [
+          N('3','',1.0,'E4','銀(gold)','3'), N('4','',1.0,'F4','子(and)','4'),
+          N('5','',2.0,'G4','蓋(sil-ver)','5')
+        ]},
+        { measure: 23, chord: 'G7', notes: [
+          N('2','',2.0,'D4','我(My)—','2'), N('5','',2.0,'G4','的(fair)—','5')
+        ]},
+        { measure: 24, chord: 'C', notes: [
+          N('3','',1.0,'E4','淑(la-)','3'), N('1','',2.0,'C4','女(dy)—','1'),
+          N('0','',1.0,'REST','(接第4段)','0')
+        ]}
+      ],
+      'grid-bridge-v4': [
+        { measure: 25, chord: 'C', notes: [
+          N('5','',1.5,'G4','派(Set)','5'), N('6','',0.5,'A4','個(a)','6'),
+          N('5','',1.0,'G4','衛(man)','5'), N('4','',1.0,'F4','兵(to)','4')
+        ]},
+        { measure: 26, chord: 'C', notes: [
+          N('3','',1.0,'E4','守(watch)','3'), N('4','',1.0,'F4','整(all)','4'),
+          N('5','',2.0,'G4','夜(night)—','5')
+        ]},
+        { measure: 27, chord: 'G7', notes: [
+          N('2','',1.0,'D4','守(Watch)','2'), N('3','',1.0,'E4','整(all)','3'),
+          N('4','',2.0,'F4','夜(night)—','4')
+        ]},
+        { measure: 28, chord: 'C', notes: [
+          N('3','',1.0,'E4','守(Watch)','3'), N('4','',1.0,'F4','整(all)','4'),
+          N('5','',2.0,'G4','夜(night)—','5')
+        ]},
+        { measure: 29, chord: 'C', notes: [
+          N('5','',1.5,'G4','倫(Lon-)','5'), N('6','',0.5,'A4','敦(don)','6'),
+          N('5','',1.0,'G4','鐵(Bridge)','5'), N('4','',1.0,'F4','橋(is)','4')
+        ]},
+        { measure: 30, chord: 'C', notes: [
+          N('3','',1.0,'E4','蓋(built)','3'), N('4','',1.0,'F4','好(up)','4'),
+          N('5','',2.0,'G4','囉(now)—','5')
+        ]},
+        { measure: 31, chord: 'G7', notes: [
+          N('2','',2.0,'D4','我(My)—','2'), N('5','',2.0,'G4','的(fair)—','5')
+        ]},
+        { measure: 32, chord: 'C (完美收尾！)', notes: [
+          N('3','',1.0,'E4','淑(la-)','3'), N('1','',2.0,'C4','女(dy)!🌉','1'),
+          N('0','',1.0,'REST','🎉完美結束','0')
+        ]}
+      ]
+    }
   }
 };
 
@@ -1977,8 +2746,9 @@ function renderAllScores() {
   });
 }
 
-// ==================== 5. 歌曲切換與自動播放引擎（支援整首＆單段＆自動捲動） ====================
+// ==================== 5. 歌曲切換與自動播放引擎（支援整首＆單段＆多重隨時停止） ====================
 let currentSong = 'mario';
+let currentSectionGrid = null;
 let playTimeouts = [];
 let isPlaying = false;
 
@@ -1997,18 +2767,39 @@ function stopPlayback() {
   playTimeouts.forEach(t => clearTimeout(t));
   playTimeouts = [];
   isPlaying = false;
+  currentSectionGrid = null;
+  stopAllActiveSounds();
   document.querySelectorAll('.note-token.playing').forEach(el => el.classList.remove('playing'));
   document.querySelectorAll('.measure-card.active-measure').forEach(el => el.classList.remove('active-measure'));
   document.querySelectorAll('.key-white.active, .key-black.active').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.btn-part-play').forEach(btn => {
+    btn.classList.remove('playing-part');
+    btn.innerHTML = '▶ 單獨播放本段';
+  });
   document.getElementById('playBtn').innerHTML = '▶️ 完整播放整首（自動捲動亮燈）';
-  document.getElementById('nowPlayingText').innerHTML = '準備就緒 ✨';
+  const stickyStop = document.getElementById('stickyStopBtn');
+  if (stickyStop) stickyStop.classList.remove('visible');
+  document.getElementById('nowPlayingText').innerHTML = '⏹️ 已停止播放（準備就緒 ✨）';
 }
 
-function scheduleMeasureList(bpm, measuresList) {
+function scheduleMeasureList(bpm, measuresList, activeGridId = null) {
   stopPlayback();
   initAudio();
   isPlaying = true;
-  document.getElementById('playBtn').innerHTML = '⏸️ 播放中...（點此暫停）';
+  currentSectionGrid = activeGridId;
+  document.getElementById('playBtn').innerHTML = '⏹️ 播放中...（點此立即停止）';
+  const stickyStop = document.getElementById('stickyStopBtn');
+  if (stickyStop) stickyStop.classList.add('visible');
+
+  if (activeGridId) {
+    document.querySelectorAll('.btn-part-play').forEach(btn => {
+      const onclickAttr = btn.getAttribute('onclick') || '';
+      if (onclickAttr.includes(`'${activeGridId}'`)) {
+        btn.classList.add('playing-part');
+        btn.innerHTML = '⏹️ 停止本段播放';
+      }
+    });
+  }
 
   const speedRatio = parseFloat(document.getElementById('tempoSelect').value) || 1.0;
   const beatSec = (60 / bpm) / speedRatio;
@@ -2072,17 +2863,29 @@ function playCurrentSong() {
   Object.keys(songObj.sections).forEach(gridId => {
     allMeasures.push(...songObj.sections[gridId]);
   });
-  scheduleMeasureList(songObj.bpm, allMeasures);
+  scheduleMeasureList(songObj.bpm, allMeasures, null);
 }
 
 function playSection(songKey, gridId) {
+  if (isPlaying && currentSectionGrid === gridId) {
+    stopPlayback();
+    return;
+  }
   if (currentSong !== songKey) {
     switchSong(songKey);
   }
   const songObj = SONGS_DATA[songKey];
   const sectionMeasures = songObj.sections[gridId] || [];
-  scheduleMeasureList(songObj.bpm, sectionMeasures);
+  scheduleMeasureList(songObj.bpm, sectionMeasures, gridId);
 }
+
+// 支援鍵盤 Space / Escape 隨時立即停止播放
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Escape' || (e.code === 'Space' && isPlaying)) {
+    e.preventDefault();
+    stopPlayback();
+  }
+});
 
 // 初始化
 renderPiano();
