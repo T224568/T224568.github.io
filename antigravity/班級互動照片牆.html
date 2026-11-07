@@ -3764,19 +3764,32 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         return null;
     }
 
+    function getDefaultSystemUserName() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const urlUser = params.get('user') || params.get('username') || params.get('name');
+            if (urlUser && urlUser.trim() && urlUser.trim() !== '匿名') return urlUser.trim();
+
+            const m = decodeURIComponent(window.location.pathname || '').match(/\/Users\/([^/]+)\//);
+            if (m && m[1]) return m[1];
+        } catch (_) {}
+        return 'jktai';
+    }
+
     function parseFsPhotoDoc(doc) {
         if (!doc || !doc.fields) return null;
         const f = doc.fields;
         const id = fsVal(f.id);
         const b64 = fsVal(f.photo_base64) || '';
         if (id && b64) window.__PHOTO_DATA_MAP[id] = b64;
+        const rawName = fsVal(f.student_name);
         return {
             id: id,
             docName: doc.name,
             classroom: fsVal(f.classroom) || 'teacher1',
             course_id: fsVal(f.course_id) || 0,
             course_name: fsVal(f.course_name) || '',
-            student_name: fsVal(f.student_name) || '匿名',
+            student_name: (rawName && rawName !== '匿名') ? rawName : getDefaultSystemUserName(),
             photo_base64: b64,
             image: b64,
             is_ai_pet: Boolean(fsVal(f.is_ai_pet)),
@@ -3923,7 +3936,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 classroom: { stringValue: String(photoObj.classroom || CLASSROOM) },
                 course_id: { integerValue: String(photoObj.course_id || 0) },
                 course_name: { stringValue: String(photoObj.course_name || '') },
-                student_name: { stringValue: String(photoObj.student_name || '匿名') },
+                student_name: { stringValue: String((photoObj.student_name && photoObj.student_name !== '匿名') ? photoObj.student_name : getDefaultSystemUserName()) },
                 photo_base64: { stringValue: String(photoObj.photo_base64 || '') },
                 is_ai_pet: { booleanValue: Boolean(photoObj.is_ai_pet) },
                 is_class_photo: { booleanValue: Boolean(photoObj.is_class_photo) },
@@ -4056,7 +4069,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                     classroom: CLASSROOM,
                     course_id: 0,
                     course_name: '',
-                    student_name: (bodyObj.studentName || '匿名').trim(),
+                    student_name: ((bodyObj.studentName && bodyObj.studentName !== '匿名') ? bodyObj.studentName : getDefaultSystemUserName()).trim(),
                     photo_base64: bodyObj.photoBase64,
                     is_ai_pet: Boolean(bodyObj.isPet),
                     is_class_photo: false,
@@ -4620,8 +4633,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             travelPlannerInitialized = true;
         }
         const nameEl = document.getElementById('travelPlannerStudentName');
-        if (nameEl && !nameEl.value) {
-            nameEl.value = localStorage.getItem('studentName') || '';
+        if (nameEl && (!nameEl.value || nameEl.value === '匿名')) {
+            const st = localStorage.getItem('studentName');
+            nameEl.value = (st && st !== '匿名') ? st : getDefaultSystemUserName();
         }
     }
 
@@ -5001,8 +5015,11 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             setTimeout(() => openRequestedView(window.location.hash.substring(1)), 0);
         }
 
-        const savedName = localStorage.getItem('studentName');
-        if (savedName) syncStudentNameFields(savedName);
+        let savedName = localStorage.getItem('studentName');
+        if (!savedName || savedName === '匿名') {
+            savedName = getDefaultSystemUserName();
+        }
+        syncStudentNameFields(savedName);
 
         // 🌟 讀取記憶中的老虎機狀態
         restoreSlots();
@@ -7637,7 +7654,7 @@ ${stickerVideoState.mood.full}
         const imageTypeOk = !file.type || file.type.startsWith('image/');
         if (!imageTypeOk && !imageNameOk) return alert('僅支援照片上傳喔！');
 
-        if (!name) name = '匿名';
+        if (!name || name === '匿名') name = getDefaultSystemUserName();
         syncStudentNameFields(name);
 
         const btn = document.getElementById(btnId);
@@ -7738,7 +7755,7 @@ ${stickerVideoState.mood.full}
         const file = (adminInputEl && adminInputEl.files && adminInputEl.files[0]) || (window.__PASTE_FILES && window.__PASTE_FILES['adminPhotoInput']);
         if (!file) return alert('⚠️ 請先選擇一張照片或從剪貼簿貼上！');
         if (!file.type.startsWith('image/')) return alert('僅支援照片上傳！');
-        if (!name) name = '匿名';
+        if (!name || name === '匿名') name = getDefaultSystemUserName();
 
         try {
             const base64 = await compressImage(file);
@@ -8151,6 +8168,22 @@ ${stickerVideoState.mood.full}
         document.getElementById('lightbox').style.display = 'none';
     }
 
+    // 🌟 照片燈箱鍵盤快捷鍵支援：左右方向鍵切換照片、ESC 鍵退出
+    document.addEventListener('keydown', (e) => {
+        const lb = document.getElementById('lightbox');
+        if (!lb || lb.style.display !== 'flex') return;
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            showPrevPhoto(e);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            showNextPhoto(e);
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            closeLightboxNow(e);
+        }
+    });
+
     async function downloadCurrentPhotos() {
         const btn = document.getElementById('downloadCurrentBtn');
         const originalText = btn.innerHTML;
@@ -8508,8 +8541,9 @@ ${stickerVideoState.mood.full}
             geminiPromptsInitialized = true;
         }
         const nameEl = document.getElementById('geminiPromptsStudentName');
-        if (nameEl && !nameEl.value) {
-            nameEl.value = localStorage.getItem('studentName') || '';
+        if (nameEl && (!nameEl.value || nameEl.value === '匿名')) {
+            const st = localStorage.getItem('studentName');
+            nameEl.value = (st && st !== '匿名') ? st : getDefaultSystemUserName();
         }
     }
 
