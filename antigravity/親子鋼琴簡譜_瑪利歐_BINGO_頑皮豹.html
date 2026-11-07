@@ -106,6 +106,21 @@
     color: #fff;
     box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
   }
+  .tab-btn.active[data-song="totoro"] {
+    background: #059669;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+  }
+  .tab-btn.active[data-song="shark"] {
+    background: #0284c7;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+  }
+  .tab-btn.active[data-song="doraemon"] {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  }
   .player-controls {
     display: flex;
     flex-wrap: wrap;
@@ -526,16 +541,19 @@
 
 <div class="container">
   <header>
-    <h1>🎹 親子鋼琴簡譜大百科（100% 完整原曲不刪減版）</h1>
-    <p>超級瑪利歐全曲（52小節）・BINGO 六段拍手全曲（48小節）・頑皮豹完整爵士原曲（35小節）</p>
+    <h1>🎹 親子鋼琴簡譜大百科（6 首完整原曲不刪減版）</h1>
+    <p>超級瑪利歐・BINGO・頑皮豹・豆豆龍散步・鯊魚寶寶・哆啦A夢（全曲不精簡・自動捲動亮燈跟彈）</p>
   </header>
 
   <!-- 頂部切換與播放控制 -->
   <div class="top-bar">
     <div class="song-tabs">
-      <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐 (全曲52小節)</button>
-      <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌 (全6段48小節)</button>
-      <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲 (全曲35小節)</button>
+      <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐 (54小節)</button>
+      <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌 (48小節)</button>
+      <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲 (35小節)</button>
+      <button class="tab-btn" data-song="totoro" onclick="switchSong('totoro')">🌱 4. 豆豆龍：散步 (36小節)</button>
+      <button class="tab-btn" data-song="shark" onclick="switchSong('shark')">🦈 5. 鯊魚寶寶全曲 (30小節)</button>
+      <button class="tab-btn" data-song="doraemon" onclick="switchSong('doraemon')">🔔 6. 哆啦A夢之歌 (33小節)</button>
     </div>
 
     <div class="player-controls">
@@ -727,6 +745,144 @@
     <div class="score-grid" id="grid-panther-coda"></div>
   </section>
 
+  <!-- ==================== 4. 豆豆龍：散步 (Sanpo 完整原曲 36 小節) ==================== -->
+  <section class="song-section" id="song-totoro">
+    <div class="song-title-bar">
+      <h2>🌱 龍貓片頭曲：散步 (Sanpo / 歩こう〜歩こう〜 久石讓完整原曲)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（輕快大調進行曲）</span>
+        <span class="badge badge-beat">全長：36 小節（號角前奏 + A段走吧走吧 + B段森林昆蟲朋友 + C段上下坡大冒險 + A段再現尾奏）</span>
+        <span class="badge badge-level">宮崎駿經典必彈</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>久石讓《龍貓・散步》彈奏秘訣：</strong><br>
+      這首歌就像背著小背包去森林遠足一樣有精神！開頭的 <strong>「走吧！走吧！（3 1 3 5 | 5 —）」</strong> 節奏要彈得很有彈性，中段介紹「蜜蜂、狐狸、小狸貓」時全部在白鍵上像上下樓梯一樣好彈！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">🎺 【第 1 段：Intro 森林元氣號角前奏】（第 1 ~ 4 小節）</div>
+      <button class="btn-part-play" onclick="playSection('totoro', 'grid-totoro-intro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-totoro-intro"></div>
+
+    <div class="part-header">
+      <div class="part-title">🥾 【第 2 段：A 段「走吧！走吧！我最有活力！」】（第 5 ~ 12 小節）</div>
+      <button class="btn-part-play" onclick="playSection('totoro', 'grid-totoro-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-totoro-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🐝 【第 3 段：B 段森林動物好朋友（狐狸＆狸貓出來吧）】（第 13 ~ 20 小節）</div>
+      <button class="btn-part-play" onclick="playSection('totoro', 'grid-totoro-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-totoro-b"></div>
+
+    <div class="part-header">
+      <div class="part-title">⛰️ 【第 4 段：C 段爬上陡坡＆穿過草叢隧道】（第 21 ~ 28 小節）</div>
+      <button class="btn-part-play" onclick="playSection('totoro', 'grid-totoro-c')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-totoro-c"></div>
+
+    <div class="part-header">
+      <div class="part-title">🌈 【第 5 段：A 段再現＆歡呼大結尾】（第 29 ~ 36 小節）</div>
+      <button class="btn-part-play" onclick="playSection('totoro', 'grid-totoro-outro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-totoro-outro"></div>
+  </section>
+
+  <!-- ==================== 5. 鯊魚寶寶 (Baby Shark 完整六段家族全曲 48 小節) ==================== -->
+  <section class="song-section" id="song-shark">
+    <div class="song-title-bar">
+      <h2>🦈 鯊魚寶寶家族全曲 (Baby Shark 完整 6 段不刪減版)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C（100% 全白鍵・只用 2 3 4 5 四個音！）</span>
+        <span class="badge badge-beat">全長：48 小節（前奏警報 + 鯊魚寶寶 + 媽咪 + 爸比 + 阿嬤 + 阿公 + 快跑安全收尾）</span>
+        <span class="badge badge-level">★☆☆ 幼幼班秒會神曲</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>小朋友最愛神曲（只用 4 個白鍵就能彈完 48 小節！）：</strong><br>
+      整首《Baby Shark》右手只需要用到 <strong>2 (Re)、3 (Mi)、4 (Fa)、5 (Sol)</strong> 四顆相鄰的白鍵！<br>
+      • <strong>前奏大白鯊警報</strong>：低音 <code>2̣ — 3̣ —</code> 由慢到快超刺激！<br>
+      • <strong>六大家族完整唱跳</strong>：鯊魚寶寶（張開小手）→ 鯊魚媽咪 → 鯊魚爸比 → 鯊魚阿嬤 → 鯊魚阿公 → 看到鯊魚快游泳逃跑（加速）！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">⚠️ 【第 1 段：Intro 大白鯊逼近警報前奏＋鯊魚寶寶 Baby Shark】（第 1 ~ 7 小節）</div>
+      <button class="btn-part-play" onclick="playSection('shark', 'grid-shark-v1')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-shark-v1"></div>
+
+    <div class="part-header">
+      <div class="part-title">👩 【第 2 段：鯊魚媽咪 Mommy Shark】（第 8 ~ 12 小節）</div>
+      <button class="btn-part-play" onclick="playSection('shark', 'grid-shark-v2')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-shark-v2"></div>
+
+    <div class="part-header">
+      <div class="part-title">👨 【第 3 段：鯊魚爸比 Daddy Shark】（第 13 ~ 17 小節）</div>
+      <button class="btn-part-play" onclick="playSection('shark', 'grid-shark-v3')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-shark-v3"></div>
+
+    <div class="part-header">
+      <div class="part-title">👵 【第 4 段：鯊魚阿嬤 Grandma Shark】（第 18 ~ 22 小節）</div>
+      <button class="btn-part-play" onclick="playSection('shark', 'grid-shark-v4')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-shark-v4"></div>
+
+    <div class="part-header">
+      <div class="part-title">👴 【第 5 段：鯊魚阿公 Grandpa Shark ＋ 游啊游快逃跑！（結尾）】（第 23 ~ 30 小節）</div>
+      <button class="btn-part-play" onclick="playSection('shark', 'grid-shark-v5')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-shark-v5"></div>
+  </section>
+
+  <!-- ==================== 6. 哆啦A夢之歌 (Doraemon no Uta 完整原曲 33 小節) ==================== -->
+  <section class="song-section" id="song-doraemon">
+    <div class="song-title-bar">
+      <h2>🔔 哆啦A夢之歌 (ドラえもんのうた 菊池俊輔完整原曲)</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">調號：1 = C</span>
+        <span class="badge badge-beat">全長：33 小節（百寶袋前奏 + A段如果我有魔法 + B段竹蜻蜓＆任意門 + C段副歌2遍 + 鈴鐺尾奏）</span>
+        <span class="badge badge-level">★★☆ 歡樂進行曲</span>
+      </div>
+    </div>
+
+    <div class="kid-tip">
+      💡 <strong>《哆啦A夢》彈奏秘訣：</strong><br>
+      1. 開頭是竹蜻蜓飛起來的魔法前奏，接著進入大家最熟悉的 <strong>「コンナ コト イイナ（5̣ 1 1 3 6 3 5）」</strong>！<br>
+      2. 最精彩的是最後喊出 <strong>「アン・アン・アン（6 — 5 — | 4 3 2 1 | 2 —）」</strong> 與 <strong>「哆啦A夢～（5 6 5 3 1̇）」</strong>，彈起來超級有成就感！
+    </div>
+
+    <div class="part-header">
+      <div class="part-title">🚁 【第 1 段：Intro 竹蜻蜓魔法前奏】（第 1 ~ 4 小節）</div>
+      <button class="btn-part-play" onclick="playSection('doraemon', 'grid-doraemon-intro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-doraemon-intro"></div>
+
+    <div class="part-header">
+      <div class="part-title">✨ 【第 2 段：A 段「如果能這樣該有多好（こんなこといいな）」】（第 5 ~ 12 小節）</div>
+      <button class="btn-part-play" onclick="playSection('doraemon', 'grid-doraemon-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-doraemon-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎒 【第 3 段：B 段「自由飛翔吧！『是的！竹蜻蜓！』＋時光機＆任意門」】（第 13 ~ 24 小節）</div>
+      <button class="btn-part-play" onclick="playSection('doraemon', 'grid-doraemon-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-doraemon-b"></div>
+
+    <div class="part-header">
+      <div class="part-title">❤️ 【第 4 段：C 段副歌「アン・アン・アン 最喜歡你了，哆啦A夢！」（完整 2 遍＋尾奏）】（第 25 ~ 33 小節）</div>
+      <button class="btn-part-play" onclick="playSection('doraemon', 'grid-doraemon-c')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-doraemon-c"></div>
+  </section>
+
   <!-- 底部輔助教學區 -->
   <div class="helper-grid">
     <div class="helper-card">
@@ -761,42 +917,44 @@
 </div>
 
 <script>
-// ==================== 1. 擴充版鋼琴鍵盤定義 (E3 低音3̣ ~ A5 高音6̇) ====================
+// ==================== 1. 擴充版鋼琴鍵盤定義 (D3 低音2̣ ~ A5 高音6̇) ====================
 const PIANO_KEYS = [
-  // 低音區 (E3 - B3)
+  // 低音區 (D3 - B3)
+  { id: 'D3',  type: 'white', num: '2̣', sol: '低Re', deg: '2', freq: 146.83 },
+  { id: 'D#3', type: 'black', num: 'b3̣', sol: 'bMi', freq: 155.56, leftIdx: 1 },
   { id: 'E3',  type: 'white', num: '3̣', sol: '低Mi', deg: '3', freq: 164.81 },
   { id: 'F3',  type: 'white', num: '4̣', sol: '低Fa', deg: '4', freq: 174.61 },
-  { id: 'F#3', type: 'black', num: '#4̣', sol: '#Fa', freq: 185.00, leftIdx: 2 },
+  { id: 'F#3', type: 'black', num: '#4̣', sol: '#Fa', freq: 185.00, leftIdx: 3 },
   { id: 'G3',  type: 'white', num: '5̣', sol: '低Sol',deg: '5', freq: 196.00 },
-  { id: 'G#3', type: 'black', num: '#5̣', sol: '#Sol',freq: 207.65, leftIdx: 3 },
+  { id: 'G#3', type: 'black', num: '#5̣', sol: '#Sol',freq: 207.65, leftIdx: 4 },
   { id: 'A3',  type: 'white', num: '6̣', sol: '低La', deg: '6', freq: 220.00 },
-  { id: 'A#3', type: 'black', num: 'b7̣', sol: 'bSi', freq: 233.08, leftIdx: 4 },
+  { id: 'A#3', type: 'black', num: 'b7̣', sol: 'bSi', freq: 233.08, leftIdx: 5 },
   { id: 'B3',  type: 'white', num: '7̣', sol: '低Si', deg: '7', freq: 246.94 },
 
   // 中音區 (C4 - B4)
   { id: 'C4',  type: 'white', num: '1',  sol: 'Do',  deg: '1', freq: 261.63 },
-  { id: 'C#4', type: 'black', num: '#1', sol: '#Do', freq: 277.18, leftIdx: 6 },
+  { id: 'C#4', type: 'black', num: '#1', sol: '#Do', freq: 277.18, leftIdx: 7 },
   { id: 'D4',  type: 'white', num: '2',  sol: 'Re',  deg: '2', freq: 293.66 },
-  { id: 'D#4', type: 'black', num: 'b3', sol: 'bMi', freq: 311.13, leftIdx: 7 },
+  { id: 'D#4', type: 'black', num: 'b3', sol: 'bMi', freq: 311.13, leftIdx: 8 },
   { id: 'E4',  type: 'white', num: '3',  sol: 'Mi',  deg: '3', freq: 329.63 },
   { id: 'F4',  type: 'white', num: '4',  sol: 'Fa',  deg: '4', freq: 349.23 },
-  { id: 'F#4', type: 'black', num: '#4', sol: '#Fa', freq: 369.99, leftIdx: 9 },
+  { id: 'F#4', type: 'black', num: '#4', sol: '#Fa', freq: 369.99, leftIdx: 10 },
   { id: 'G4',  type: 'white', num: '5',  sol: 'Sol', deg: '5', freq: 392.00 },
-  { id: 'G#4', type: 'black', num: '#5', sol: '#Sol',freq: 415.30, leftIdx: 10 },
+  { id: 'G#4', type: 'black', num: '#5', sol: '#Sol',freq: 415.30, leftIdx: 11 },
   { id: 'A4',  type: 'white', num: '6',  sol: 'La',  deg: '6', freq: 440.00 },
-  { id: 'A#4', type: 'black', num: 'b7', sol: 'bSi', freq: 466.16, leftIdx: 11 },
+  { id: 'A#4', type: 'black', num: 'b7', sol: 'bSi', freq: 466.16, leftIdx: 12 },
   { id: 'B4',  type: 'white', num: '7',  sol: 'Si',  deg: '7', freq: 493.88 },
 
   // 高音區 (C5 - A5)
   { id: 'C5',  type: 'white', num: '1̇', sol: '高Do', deg: '1', freq: 523.25 },
-  { id: 'C#5', type: 'black', num: '#1̇', sol: '#Do', freq: 554.37, leftIdx: 13 },
+  { id: 'C#5', type: 'black', num: '#1̇', sol: '#Do', freq: 554.37, leftIdx: 14 },
   { id: 'D5',  type: 'white', num: '2̇', sol: '高Re', deg: '2', freq: 587.33 },
-  { id: 'D#5', type: 'black', num: 'b3̇', sol: 'bMi', freq: 622.25, leftIdx: 14 },
+  { id: 'D#5', type: 'black', num: 'b3̇', sol: 'bMi', freq: 622.25, leftIdx: 15 },
   { id: 'E5',  type: 'white', num: '3̇', sol: '高Mi', deg: '3', freq: 659.25 },
   { id: 'F5',  type: 'white', num: '4̇', sol: '高Fa', deg: '4', freq: 698.46 },
-  { id: 'F#5', type: 'black', num: '#4̇', sol: '#Fa', freq: 739.99, leftIdx: 16 },
+  { id: 'F#5', type: 'black', num: '#4̇', sol: '#Fa', freq: 739.99, leftIdx: 17 },
   { id: 'G5',  type: 'white', num: '5̇', sol: '高Sol',deg: '5', freq: 783.99 },
-  { id: 'G#5', type: 'black', num: '#5̇', sol: '#Sol',freq: 830.61, leftIdx: 17 },
+  { id: 'G#5', type: 'black', num: '#5̇', sol: '#Sol',freq: 830.61, leftIdx: 18 },
   { id: 'A5',  type: 'white', num: '6̇', sol: '高La', deg: '6', freq: 880.00 }
 ];
 
@@ -1301,6 +1459,470 @@ const SONGS_DATA = {
         ]},
         { measure: 35, chord: 'Am9 (帥氣收尾！)', notes: [
           N('6','low',2.5,'A3','砰！🐾','6'), N('0','',1.5,'REST','🎉完美結束','0')
+        ]}
+      ]
+    }
+  },
+
+  totoro: {
+    bpm: 124,
+    sections: {
+      'grid-totoro-intro': [
+        { measure: 1, chord: 'C', notes: [
+          N('5','low',0.5,'G3','噠','5'), N('1','',0.5,'C4','噠','1'), N('2','',0.5,'D4','噠','2'), N('3','',0.5,'E4','噠','3'),
+          N('4','',0.5,'F4','噠','4'), N('5','',0.5,'G4','噠','5'), N('6','',0.5,'A4','噠','6'), N('7','',0.5,'B4','噠','7')
+        ]},
+        { measure: 2, chord: 'C → G', notes: [
+          N('1','high',1.0,'C5','高Do!','1'), N('5','',1.0,'G4','Sol!','5'),
+          N('3','',1.0,'E4','Mi!','3'), N('1','',1.0,'C4','Do!','1')
+        ]},
+        { measure: 3, chord: 'F → G7', notes: [
+          N('2','',1.0,'D4','Re','2'), N('4','',1.0,'F4','Fa','4'),
+          N('3','',1.0,'E4','Mi','3'), N('2','',1.0,'D4','Re','2')
+        ]},
+        { measure: 4, chord: 'C (準備出發！)', notes: [
+          N('1','',2.0,'C4','Do——','1'), N('0','',2.0,'REST','(吸氣出發)','0')
+        ]}
+      ],
+      'grid-totoro-a': [
+        { measure: 5, chord: 'C', notes: [
+          N('3','',1.0,'E4','走(A-)','3'), N('1','',1.0,'C4','吧(ru-)','1'),
+          N('3','',1.0,'E4','走(ko-)','3'), N('5','',1.0,'G4','吧(u)','5')
+        ]},
+        { measure: 6, chord: 'C', notes: [
+          N('5','',2.0,'G4','喲——','5'), N('0','',1.0,'REST','(休)','0'),
+          N('3','',0.5,'E4','走(A-)','3'), N('1','',0.5,'C4','吧(ru-)','1')
+        ]},
+        { measure: 7, chord: 'G7', notes: [
+          N('2','',1.0,'D4','走(ko-)','2'), N('5','low',2.0,'G3','吧(u)—','5'),
+          N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 8, chord: 'C', notes: [
+          N('1','',0.5,'C4','我(Wa-)','1'), N('2','',0.5,'D4','最(ta-)','2'),
+          N('3','',1.0,'E4','有(shi)','3'), N('4','',1.0,'F4','活(wa)','4'),
+          N('5','',1.0,'G4','力(gen-)','5')
+        ]},
+        { measure: 9, chord: 'F → C', notes: [
+          N('6','',1.0,'A4','喲(ki)!','6'), N('5','',2.0,'G4','Sol——','5'),
+          N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 10, chord: 'Dm → G7', notes: [
+          N('4','',1.0,'F4','最(A-)','4'), N('3','',1.0,'E4','喜(ru-)','3'),
+          N('2','',1.0,'D4','歡(ku)','2'), N('1','',1.0,'C4','走(no)','1')
+        ]},
+        { measure: 11, chord: 'C → G', notes: [
+          N('3','',1.0,'E4','路(ga)','3'), N('2','',1.5,'D4','散(da-)','2'),
+          N('1','',0.5,'C4','步(i-)','1'), N('2','',1.0,'D4','了(su-)','2')
+        ]},
+        { measure: 12, chord: 'C', notes: [
+          N('1','',1.0,'C4','喲(ki)!','1'), N('5','low',0.5,'G3','どんどん','5'), N('1','',0.5,'C4','向前','1'),
+          N('3','',1.0,'E4','走(ゆこう)!','3'), N('0','',1.0,'REST','(休)','0')
+        ]}
+      ],
+      'grid-totoro-b': [
+        { measure: 13, chord: 'Am → Em', notes: [
+          N('6','',1.0,'A4','坂(Sa-)','6'), N('6','',1.0,'A4','道(ka-)','6'),
+          N('5','',1.0,'G4','隧(mi-)','5'), N('3','',1.0,'E4','道(chi)','3')
+        ]},
+        { measure: 14, chord: 'F → C', notes: [
+          N('4','',0.5,'F4','草(Ku-)','4'), N('4','',0.5,'F4','原(sa-)','4'),
+          N('3','',1.0,'E4','地(っぱ-)','3'), N('1','',2.0,'C4','喲(ら)—','1')
+        ]},
+        { measure: 15, chord: 'Dm → G', notes: [
+          N('2','',1.0,'D4','獨(Ip-)','2'), N('2','',1.0,'D4','木(pon)','2'),
+          N('3','',1.0,'E4','橋(ba-)','3'), N('4','',1.0,'F4','上(shi)','4')
+        ]},
+        { measure: 16, chord: 'C → E7', notes: [
+          N('5','',0.5,'G4','凹(de-)','5'), N('5','',0.5,'G4','凸(ko-)','5'),
+          N('6','',1.0,'A4','小(bo-)','6'), N('5','',2.0,'G4','路(ko)—','5')
+        ]},
+        { measure: 17, chord: 'Am', notes: [
+          N('6','',1.0,'A4','蜘(Ku-)','6'), N('6','',1.0,'A4','蛛(mo)','6'),
+          N('5','',1.0,'G4','網(no)','5'), N('3','',1.0,'E4','下(su)','3')
+        ]},
+        { measure: 18, chord: 'Dm → G7', notes: [
+          N('4','',1.0,'F4','鑽(ku-)','4'), N('3','',1.0,'E4','過(gu-)','3'),
+          N('2','',1.0,'D4','去(tte)','2'), N('5','',1.0,'G4','下(ku-)','5')
+        ]},
+        { measure: 19, chord: 'C → G', notes: [
+          N('3','',1.0,'E4','坡(da-)','3'), N('2','',1.0,'D4','道(ri)','2'),
+          N('1','',1.0,'C4','囉(mi-)','1'), N('2','',1.0,'D4','ち!','2')
+        ]},
+        { measure: 20, chord: 'C', notes: [
+          N('1','',2.5,'C4','耶——！','1'), N('0','',1.5,'REST','(呼吸)','0')
+        ]}
+      ],
+      'grid-totoro-c': [
+        { measure: 21, chord: 'F', notes: [
+          N('4','',1.0,'F4','蜜(Mi-)','4'), N('4','',1.0,'F4','蜂(tsu-)','4'),
+          N('4','',1.0,'F4','飛(ba-)','4'), N('6','',1.0,'A4','來(chi)','6')
+        ]},
+        { measure: 22, chord: 'C', notes: [
+          N('5','',1.0,'G4','嗡(Bun-)','5'), N('3','',1.0,'E4','嗡(bun-)','3'),
+          N('1','',2.0,'C4','嗡(bun)—','1')
+        ]},
+        { measure: 23, chord: 'Dm → G', notes: [
+          N('2','',1.0,'D4','花(Ha-)','2'), N('2','',1.0,'D4','瓣(na-)','2'),
+          N('3','',1.0,'E4','盛(ba-)','3'), N('4','',1.0,'F4','開(ta-)','4')
+        ]},
+        { measure: 24, chord: 'C', notes: [
+          N('5','',2.5,'G4','囉(ke)——','5'), N('0','',1.5,'REST','(休)','0')
+        ]},
+        { measure: 25, chord: 'F', notes: [
+          N('6','',1.0,'A4','狐(Ki-)','6'), N('6','',1.0,'A4','狸(tsu-)','6'),
+          N('1','high',1.0,'C5','也(ne)','1'), N('6','',1.0,'A4','在(mo)','6')
+        ]},
+        { measure: 26, chord: 'C → Am', notes: [
+          N('5','',1.0,'G4','狸(Ta-)','5'), N('3','',1.0,'E4','貓(nu-)','3'),
+          N('5','',1.0,'G4','也(ki)','5'), N('3','',1.0,'E4','在(mo)','3')
+        ]},
+        { measure: 27, chord: 'Dm → G7', notes: [
+          N('2','',1.0,'D4','快(De-)','2'), N('3','',1.0,'E4','出(te-)','3'),
+          N('4','',1.0,'F4','來(o-)','4'), N('5','',1.0,'G4','玩(i-)','5')
+        ]},
+        { measure: 28, chord: 'G7', notes: [
+          N('5','',2.5,'G4','吧(de)——！','5'), N('0','',1.5,'REST','(回主旋律)','0')
+        ]}
+      ],
+      'grid-totoro-outro': [
+        { measure: 29, chord: 'C', notes: [
+          N('3','',1.0,'E4','走(A-)','3'), N('1','',1.0,'C4','吧(ru-)','1'),
+          N('3','',1.0,'E4','走(ko-)','3'), N('5','',1.0,'G4','吧(u)','5')
+        ]},
+        { measure: 30, chord: 'C', notes: [
+          N('5','',2.0,'G4','喲——','5'), N('0','',1.0,'REST','(休)','0'),
+          N('3','',0.5,'E4','走(A-)','3'), N('1','',0.5,'C4','吧(ru-)','1')
+        ]},
+        { measure: 31, chord: 'G7', notes: [
+          N('2','',1.0,'D4','走(ko-)','2'), N('5','low',2.0,'G3','吧(u)—','5'),
+          N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 32, chord: 'C', notes: [
+          N('1','',0.5,'C4','我(Wa-)','1'), N('2','',0.5,'D4','最(ta-)','2'),
+          N('3','',1.0,'E4','有(shi)','3'), N('4','',1.0,'F4','活(wa)','4'),
+          N('5','',1.0,'G4','力(gen-)','5')
+        ]},
+        { measure: 33, chord: 'F → C', notes: [
+          N('6','',1.0,'A4','喲(ki)!','6'), N('5','',2.0,'G4','Sol——','5'),
+          N('0','',1.0,'REST','(休)','0')
+        ]},
+        { measure: 34, chord: 'Dm → G7', notes: [
+          N('4','',1.0,'F4','最(A-)','4'), N('3','',1.0,'E4','喜(ru-)','3'),
+          N('2','',1.0,'D4','歡(ku)','2'), N('1','',1.0,'C4','走(no)','1')
+        ]},
+        { measure: 35, chord: 'G7 → C', notes: [
+          N('3','',1.0,'E4','路(ga)','3'), N('2','',1.0,'D4','散(da-)','2'),
+          N('5','',1.0,'G4','步(i-)','5'), N('7','',1.0,'B4','了(su-)','7')
+        ]},
+        { measure: 36, chord: 'C (歡呼收尾！)', notes: [
+          N('1','high',2.5,'C5','喲(ki)!🌱','1'), N('0','',1.5,'REST','🎉完美結束','0')
+        ]}
+      ]
+    }
+  },
+
+  shark: {
+    bpm: 118,
+    sections: {
+      'grid-shark-v1': [
+        { measure: 1, chord: 'Am (大白鯊警報)', notes: [
+          N('2','low',2.0,'D3','低Re—','2'), N('3','low',2.0,'E3','低Mi—','3')
+        ]},
+        { measure: 2, chord: 'Am (警報加速)', notes: [
+          N('2','low',1.0,'D3','低Re','2'), N('3','low',1.0,'E3','低Mi','3'),
+          N('2','low',1.0,'D3','低Re','2'), N('3','low',1.0,'E3','低Mi','3')
+        ]},
+        { measure: 3, chord: 'G (準備出來囉)', notes: [
+          N('2','low',0.5,'D3','咚','2'), N('3','low',0.5,'E3','咚','3'),
+          N('2','low',0.5,'D3','咚','2'), N('3','low',0.5,'E3','咚','3'),
+          N('2','',1.0,'D4','鯊(Ba-)','2'), N('3','',1.0,'E4','魚(by)','3')
+        ]},
+        { measure: 4, chord: 'C (第1次)', notes: [
+          N('5','',0.5,'G4','寶(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Ba-)','2'), N('3','',0.5,'E4','魚(by)','3')
+        ]},
+        { measure: 5, chord: 'F (第2次)', notes: [
+          N('5','',0.5,'G4','寶(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Ba-)','2'), N('3','',0.5,'E4','魚(by)','3')
+        ]},
+        { measure: 6, chord: 'Am (第3次)', notes: [
+          N('5','',0.5,'G4','寶(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.5,'G4','鯊(Ba-)','5'), N('5','',0.5,'G4','魚(by)','5')
+        ]},
+        { measure: 7, chord: 'G → C', notes: [
+          N('4','',2.5,'F4','寶(Shark)!','4'), N('0','',1.5,'REST','(換媽咪)','0')
+        ]}
+      ],
+      'grid-shark-v2': [
+        { measure: 8, chord: 'C', notes: [
+          N('0','',3.0,'REST','(預備)','0'), N('2','',0.5,'D4','鯊(Mom-)','2'), N('3','',0.5,'E4','魚(my)','3')
+        ]},
+        { measure: 9, chord: 'C (第1次)', notes: [
+          N('5','',0.5,'G4','媽(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Mom-)','2'), N('3','',0.5,'E4','魚(my)','3')
+        ]},
+        { measure: 10, chord: 'F (第2次)', notes: [
+          N('5','',0.5,'G4','媽(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Mom-)','2'), N('3','',0.5,'E4','魚(my)','3')
+        ]},
+        { measure: 11, chord: 'Am (第3次)', notes: [
+          N('5','',0.5,'G4','媽(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.5,'G4','鯊(Mom-)','5'), N('5','',0.5,'G4','魚(my)','5')
+        ]},
+        { measure: 12, chord: 'G → C', notes: [
+          N('4','',2.5,'F4','媽(Shark)!','4'), N('0','',1.5,'REST','(換爸比)','0')
+        ]}
+      ],
+      'grid-shark-v3': [
+        { measure: 13, chord: 'C', notes: [
+          N('0','',3.0,'REST','(預備)','0'), N('2','',0.5,'D4','鯊(Dad-)','2'), N('3','',0.5,'E4','魚(dy)','3')
+        ]},
+        { measure: 14, chord: 'C (第1次)', notes: [
+          N('5','',0.5,'G4','爸(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Dad-)','2'), N('3','',0.5,'E4','魚(dy)','3')
+        ]},
+        { measure: 15, chord: 'F (第2次)', notes: [
+          N('5','',0.5,'G4','爸(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Dad-)','2'), N('3','',0.5,'E4','魚(dy)','3')
+        ]},
+        { measure: 16, chord: 'Am (第3次)', notes: [
+          N('5','',0.5,'G4','爸(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.5,'G4','鯊(Dad-)','5'), N('5','',0.5,'G4','魚(dy)','5')
+        ]},
+        { measure: 17, chord: 'G → C', notes: [
+          N('4','',2.5,'F4','爸(Shark)!','4'), N('0','',1.5,'REST','(換阿嬤)','0')
+        ]}
+      ],
+      'grid-shark-v4': [
+        { measure: 18, chord: 'C', notes: [
+          N('0','',3.0,'REST','(預備)','0'), N('2','',0.5,'D4','鯊(Grand-)','2'), N('3','',0.5,'E4','魚(ma)','3')
+        ]},
+        { measure: 19, chord: 'C (第1次)', notes: [
+          N('5','',0.5,'G4','嬤(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Grand-)','2'), N('3','',0.5,'E4','魚(ma)','3')
+        ]},
+        { measure: 20, chord: 'F (第2次)', notes: [
+          N('5','',0.5,'G4','嬤(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Grand-)','2'), N('3','',0.5,'E4','魚(ma)','3')
+        ]},
+        { measure: 21, chord: 'Am (第3次)', notes: [
+          N('5','',0.5,'G4','嬤(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.5,'G4','鯊(Grand-)','5'), N('5','',0.5,'G4','魚(ma)','5')
+        ]},
+        { measure: 22, chord: 'G → C', notes: [
+          N('4','',2.5,'F4','嬤(Shark)!','4'), N('0','',1.5,'REST','(換阿公)','0')
+        ]}
+      ],
+      'grid-shark-v5': [
+        { measure: 23, chord: 'C', notes: [
+          N('0','',3.0,'REST','(預備)','0'), N('2','',0.5,'D4','鯊(Grand-)','2'), N('3','',0.5,'E4','魚(pa)','3')
+        ]},
+        { measure: 24, chord: 'C (阿公第1次)', notes: [
+          N('5','',0.5,'G4','公(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Grand-)','2'), N('3','',0.5,'E4','魚(pa)','3')
+        ]},
+        { measure: 25, chord: 'F (阿公第2次)', notes: [
+          N('5','',0.5,'G4','公(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','鯊(Grand-)','2'), N('3','',0.5,'E4','魚(pa)','3')
+        ]},
+        { measure: 26, chord: 'Am (阿公第3次)', notes: [
+          N('5','',0.5,'G4','公(Shark)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.5,'G4','鯊(Grand-)','5'), N('5','',0.5,'G4','魚(pa)','5')
+        ]},
+        { measure: 27, chord: 'G → C', notes: [
+          N('4','',2.0,'F4','公(Shark)!','4'), N('0','',1.0,'REST','(休)','0'),
+          N('2','',0.5,'D4','快(Run)','2'), N('3','',0.5,'E4','逃(a-)','3')
+        ]},
+        { measure: 28, chord: 'C (快跑第1次)', notes: [
+          N('5','',0.5,'G4','跑(way)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('2','',0.5,'D4','快(Run)','2'), N('3','',0.5,'E4','逃(a-)','3')
+        ]},
+        { measure: 29, chord: 'F (快跑第2次)', notes: [
+          N('5','',0.5,'G4','跑(way)','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'), N('5','',0.25,'G4','嘟','5'), N('5','',0.5,'G4','嘟','5'),
+          N('5','',0.5,'G4','終(Safe)','5'), N('5','',0.5,'G4','於(at)','5')
+        ]},
+        { measure: 30, chord: 'G → C (安全歡呼！)', notes: [
+          N('4','',1.5,'F4','安全(last)!','4'), N('5','',0.5,'G4','呼','5'),
+          N('1','high',1.0,'C5','耶！🦈','1'), N('0','',1.0,'REST','🎉完美結束','0')
+        ]}
+      ]
+    }
+  },
+
+  doraemon: {
+    bpm: 122,
+    sections: {
+      'grid-doraemon-intro': [
+        { measure: 1, chord: 'C (竹蜻蜓升空)', notes: [
+          N('5','',0.5,'G4','叮','5'), N('6','',0.5,'A4','噹','6'), N('5','',0.5,'G4','叮','5'), N('3','',0.5,'E4','噹','3'),
+          N('1','high',1.0,'C5','高Do!','1'), N('5','',1.0,'G4','Sol!','5')
+        ]},
+        { measure: 2, chord: 'F → G', notes: [
+          N('6','',0.5,'A4','La','6'), N('1','high',0.5,'C5','高Do','1'), N('6','',0.5,'A4','La','6'), N('5','',0.5,'G4','Sol','5'),
+          N('2','high',2.0,'D5','高Re——','2')
+        ]},
+        { measure: 3, chord: 'G7', notes: [
+          N('5','',0.5,'G4','Sol','5'), N('7','',0.5,'B4','Si','7'), N('2','high',0.5,'D5','高Re','2'), N('4','high',0.5,'F5','高Fa','4'),
+          N('3','high',1.0,'E5','高Mi','3'), N('2','high',1.0,'D5','高Re','2')
+        ]},
+        { measure: 4, chord: 'C', notes: [
+          N('1','high',2.5,'C5','高Do——','1'), N('0','',1.0,'REST','(預備)','0'), N('5','low',0.5,'G3','(Ko-)','5')
+        ]}
+      ],
+      'grid-doraemon-a': [
+        { measure: 5, chord: 'C', notes: [
+          N('1','',0.5,'C4','如(n-)','1'), N('1','',0.5,'C4','果(na)','1'),
+          N('3','',0.5,'E4','這(ko-)','3'), N('6','',0.5,'A4','樣(to)','6'),
+          N('3','',0.5,'E4','該(i-)','3'), N('5','',0.5,'G4','有(i-)','5'), N('5','',1.0,'G4','多好(na)','5')
+        ]},
+        { measure: 6, chord: 'G7', notes: [
+          N('5','',0.5,'G4','能(De-)','5'), N('6','',0.5,'A4','夠(ki-)','6'),
+          N('5','',0.5,'G4','實(ta-)','5'), N('3','',0.5,'E4','現(ra)','3'),
+          N('4','',0.5,'F4','有(i-)','4'), N('3','',0.5,'E4','多(i-)','3'), N('2','',1.0,'D4','好(na)','2')
+        ]},
+        { measure: 7, chord: 'Dm → G7', notes: [
+          N('6','low',0.5,'A3','這(A-)','6'), N('2','',0.5,'D4','樣(n-)','2'), N('2','',0.5,'D4','的(na)','2'),
+          N('4','',0.5,'F4','夢(yu-)','4'), N('7','',0.5,'B4','那(me)','7'), N('7','',0.5,'B4','樣(ko-)','7'),
+          N('6','',0.5,'A4','的(n-)','6'), N('5','',0.5,'G4','夢(na)','5')
+        ]},
+        { measure: 8, chord: 'C', notes: [
+          N('4','',0.5,'F4','雖(yu-)','4'), N('4','',0.5,'F4','有(me)','4'),
+          N('3','',0.5,'E4','好(i-)','3'), N('5','low',0.5,'G3','多(ppa-)','5'),
+          N('6','low',0.5,'A3','好(i)','6'), N('7','low',0.5,'B3','多(a-)','7'), N('1','',1.0,'C4','喲(ru)','1')
+        ]},
+        { measure: 9, chord: 'C', notes: [
+          N('5','low',0.5,'G3','但(ke-)','5'), N('1','',0.5,'C4','是(do)','1'), N('1','',0.5,'C4','全(mi-)','1'),
+          N('3','',0.5,'E4','部(n-)','3'), N('6','',0.5,'A4','全(na)','6'), N('3','',0.5,'E4','部(mi-)','3'),
+          N('5','',1.0,'G4','呀(nna)','5')
+        ]},
+        { measure: 10, chord: 'F', notes: [
+          N('5','',0.5,'G4','全(mi-)','5'), N('6','',0.5,'A4','幫(n-)','6'), N('5','',0.5,'G4','我(na)','5'),
+          N('3','',0.5,'E4','實(ka-)','3'), N('4','',0.5,'F4','現(na-)','4'), N('5','',0.5,'G4','願(e-)','5'),
+          N('6','',1.0,'A4','望(te)','6')
+        ]},
+        { measure: 11, chord: 'G7', notes: [
+          N('2','',0.5,'D4','神(Fu-)','2'), N('3','',0.5,'E4','奇(shi-)','3'), N('4','',0.5,'F4','百(gi-)','4'),
+          N('5','',0.5,'G4','寶(na)','5'), N('6','',0.5,'A4','口(po-)','6'), N('4','',0.5,'F4','袋(ke-)','4'),
+          N('2','',0.5,'D4','幫(tto)','2'), N('5','',0.5,'G4','我(de)','5')
+        ]},
+        { measure: 12, chord: 'C', notes: [
+          N('3','',0.5,'E4','實(ka-)','3'), N('2','',0.5,'D4','現(na-)','2'),
+          N('1','',2.0,'C4','吧(ete)—','1'), N('0','',1.0,'REST','(休)','0')
+        ]}
+      ],
+      'grid-doraemon-b': [
+        { measure: 13, chord: 'F', notes: [
+          N('6','',0.5,'A4','在(So-)','6'), N('6','',0.5,'A4','天(ra)','6'), N('6','',0.5,'A4','空(o)','6'),
+          N('5','',0.5,'G4','自(ji-)','5'), N('4','',1.0,'F4','由(yuu)','4'),
+          N('5','',0.5,'G4','飛(ni)','5'), N('6','',0.5,'A4','翔(to-)','6')
+        ]},
+        { measure: 14, chord: 'C', notes: [
+          N('5','',0.5,'G4','該(bi-)','5'), N('3','',0.5,'E4','多(ta-)','3'), N('1','',0.5,'C4','好(i)','1'),
+          N('2','',1.5,'D4','呀(na)—','2'), N('0','',1.0,'REST','(喊：竹蜻蜓！)','0')
+        ]},
+        { measure: 15, chord: 'G7 → C', notes: [
+          N('5','',0.5,'G4','「是(Ha-)','5'), N('5','',0.5,'G4','的(i)!','5'),
+          N('6','',0.5,'A4','竹(Ta-)','6'), N('5','',0.5,'G4','蜻(ke-)','5'),
+          N('3','',0.5,'E4','蜓(ko-)','3'), N('1','high',1.5,'C5','喲(puta)!」','1')
+        ]},
+        { measure: 16, chord: 'C', notes: [
+          N('0','',2.0,'REST','(過門間奏)','0'),
+          N('5','low',0.5,'G3','咚','5'), N('1','',0.5,'C4','咚','1'), N('2','',0.5,'D4','咚','2'), N('3','',0.5,'E4','咚','3')
+        ]},
+        { measure: 17, chord: 'C', notes: [
+          N('1','',0.5,'C4','功(Shu-)','1'), N('1','',0.5,'C4','課(ku-)','1'),
+          N('3','',0.5,'E4','當(da-)','3'), N('6','',0.5,'A4','番(i)','6'),
+          N('3','',0.5,'E4','お(o-)','3'), N('5','',0.5,'G4','使(tsuka-)','5'), N('5','',1.0,'G4','い(i)','5')
+        ]},
+        { measure: 18, chord: 'G7', notes: [
+          N('5','',0.5,'G4','せ(se-)','5'), N('6','',0.5,'A4','ん(n-)','6'),
+          N('5','',0.5,'G4','ぶ(bu)','5'), N('3','',0.5,'E4','や(ya-)','3'),
+          N('4','',0.5,'F4','っ(tte-)','4'), N('3','',0.5,'E4','た(ra)','3'), N('2','',1.0,'D4','ら','2')
+        ]},
+        { measure: 19, chord: 'Dm → G7', notes: [
+          N('6','low',0.5,'A3','時(Ta-)','6'), N('2','',0.5,'D4','光(i-)','2'), N('2','',0.5,'D4','機(mu)','2'),
+          N('4','',0.5,'F4','器(ma-)','4'), N('7','',0.5,'B4','帶(shi-)','7'), N('7','',0.5,'B4','我(n)','7'),
+          N('6','',0.5,'A4','去(de)','6'), N('5','',0.5,'G4','玩(yu-)','5')
+        ]},
+        { measure: 20, chord: 'C', notes: [
+          N('4','',0.5,'F4','穿(ko-)','4'), N('4','',0.5,'F4','越(u)','4'),
+          N('3','',0.5,'E4','未(mi-)','3'), N('5','low',0.5,'G3','來(ra-)','5'),
+          N('6','low',0.5,'A3','世(i)','6'), N('7','low',0.5,'B3','界(no)','7'), N('1','',1.0,'C4','吧(kuni)','1')
+        ]},
+        { measure: 21, chord: 'F', notes: [
+          N('6','',0.5,'A4','全(Se-)','6'), N('6','',0.5,'A4','世(ka-)','6'), N('6','',0.5,'A4','界(i)','6'),
+          N('5','',0.5,'G4','旅(ryo-)','5'), N('4','',1.0,'F4','行(kou)','4'),
+          N('5','',0.5,'G4','去(ni)','5'), N('6','',0.5,'A4','吧(yu-)','6')
+        ]},
+        { measure: 22, chord: 'C', notes: [
+          N('5','',0.5,'G4','該(ki-)','5'), N('3','',0.5,'E4','多(ta-)','3'), N('1','',0.5,'C4','好(i)','1'),
+          N('2','',1.5,'D4','呀(na)—','2'), N('0','',1.0,'REST','(喊：任意門！)','0')
+        ]},
+        { measure: 23, chord: 'G7 → C', notes: [
+          N('5','',0.5,'G4','「ウ(U-)','5'), N('5','',0.5,'G4','フ(fu-)','5'),
+          N('6','',0.5,'A4','フ(fu)','6'), N('5','',0.5,'G4','任(Do-)','5'),
+          N('3','',0.5,'E4','意(ko-)','3'), N('1','high',1.5,'C5','門(demo)!」','1')
+        ]},
+        { measure: 24, chord: 'C', notes: [
+          N('0','',4.0,'REST','(準備大合唱副歌)','0')
+        ]}
+      ],
+      'grid-doraemon-c': [
+        { measure: 25, chord: 'F → G (第1次副歌)', notes: [
+          N('6','',1.5,'A4','アン(An)','6'), N('5','',1.5,'G4','アン(An)','5'),
+          N('4','',0.5,'F4','アン(An)','4'), N('3','',0.5,'E4','~','3')
+        ]},
+        { measure: 26, chord: 'C → Am', notes: [
+          N('2','',0.5,'D4','と(to-)','2'), N('3','',0.5,'E4','っ(tte-)','3'),
+          N('4','',0.5,'F4','て(mo)','4'), N('6','',0.5,'A4','も(da-)','6'),
+          N('5','',0.5,'G4','大(i-)','5'), N('3','',0.5,'E4','好(su-)','3'), N('2','',1.0,'D4','き(ki)','2')
+        ]},
+        { measure: 27, chord: 'Dm → G7', notes: [
+          N('5','',0.5,'G4','ド(Do-)','5'), N('6','',0.5,'A4','ラ(ra-)','6'),
+          N('5','',0.5,'G4','え(e-)','5'), N('3','',0.5,'E4','も(mo-)','3'),
+          N('1','high',2.0,'C5','ん(n)——','1')
+        ]},
+        { measure: 28, chord: 'C', notes: [
+          N('1','high',2.0,'C5','(延長)','1'), N('0','',2.0,'REST','(再唱一次！)','0')
+        ]},
+        { measure: 29, chord: 'F → G (第2次副歌)', notes: [
+          N('6','',1.5,'A4','アン(An)','6'), N('5','',1.5,'G4','アン(An)','5'),
+          N('4','',0.5,'F4','アン(An)','4'), N('3','',0.5,'E4','~','3')
+        ]},
+        { measure: 30, chord: 'C → Am', notes: [
+          N('2','',0.5,'D4','と(to-)','2'), N('3','',0.5,'E4','っ(tte-)','3'),
+          N('4','',0.5,'F4','て(mo)','4'), N('6','',0.5,'A4','も(da-)','6'),
+          N('5','',0.5,'G4','大(i-)','5'), N('3','',0.5,'E4','好(su-)','3'), N('2','',1.0,'D4','き(ki)','2')
+        ]},
+        { measure: 31, chord: 'Dm → G7', notes: [
+          N('5','',0.5,'G4','ド(Do-)','5'), N('6','',0.5,'A4','ラ(ra-)','6'),
+          N('5','',0.5,'G4','え(e-)','5'), N('3','',0.5,'E4','も(mo-)','3'),
+          N('1','high',2.0,'C5','ん(n)——🔔','1')
+        ]},
+        { measure: 32, chord: 'C (歡樂鈴鐺尾奏)', notes: [
+          N('5','',0.5,'G4','叮','5'), N('6','',0.5,'A4','噹','6'), N('5','',0.5,'G4','叮','5'), N('3','',0.5,'E4','噹','3'),
+          N('1','high',1.0,'C5','高Do!','1'), N('5','',1.0,'G4','Sol!','5')
+        ]},
+        { measure: 33, chord: 'G7 → C', notes: [
+          N('6','',0.5,'A4','叮','6'), N('7','',0.5,'B4','噹','7'), N('1','high',1.5,'C5','哆啦A夢！🎉','1'),
+          N('0','',1.5,'REST','🎉完美結束','0')
         ]}
       ]
     }
