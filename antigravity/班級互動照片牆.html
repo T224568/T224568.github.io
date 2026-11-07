@@ -954,31 +954,14 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <h1 style="color: #ffffff; margin: 4px 0 10px; font-size: 26px; font-weight: 900;">20 款爆款 Gemini 影像指令速查手冊</h1>
             <p style="color: #c7d2fe; font-size: 15px; line-height: 1.6; margin: 0 auto 16px; max-width: 720px;">
-                涵蓋零件爆炸圖、建築藍圖、等距 3D、平鋪收納、紙雕黏土到潮流公仔！<b>全指令已自動填入精選主體，免打字</b>，點擊「複製指令」貼給 Gemini 立即出圖！
+                每款風格皆已配備<b>專屬精準主題選單（6 組量身打造選項）</b>，免打字即選即用，點選「複製指令」貼給 Gemini 立即生成專業級大作！
             </p>
 
-            <!-- 全域主體一鍵替換控制列 -->
-            <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 14px 16px; margin: 0 auto; max-width: 640px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <label style="font-size: 14px; font-weight: bold; color: #fbcfe8; white-space: nowrap;">🌟 全域主體：</label>
-                <select id="global-gemini-subject" class="slot-select-dropdown" onchange="applyGlobalGeminiSubject(this.value)" style="flex: 1; min-width: 200px; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #ec4899; background: #ffffff; font-weight: bold; color: #1e1b4b; margin: 0;">
-                    <option value="復古機械相機 (Vintage Mechanical Camera)">復古機械相機 (Vintage Mechanical Camera)</option>
-                    <option value="經典復古跑車 (Classic Sports Car)">經典復古跑車 (Classic Sports Car)</option>
-                    <option value="可愛活潑柴犬 (Playful Shiba Inu)">可愛活潑柴犬 (Playful Shiba Inu)</option>
-                    <option value="拿鐵拉花咖啡杯 (Latte Coffee Cup)">拿鐵拉花咖啡杯 (Latte Coffee Cup)</option>
-                    <option value="奢華機械手錶 (Luxury Mechanical Watch)">奢華機械手錶 (Luxury Mechanical Watch)</option>
-                    <option value="日式陶藝茶壺組 (Japanese Ceramic Teapot)">日式陶藝茶壺組 (Japanese Ceramic Teapot)</option>
-                    <option value="戶外露營登山裝備 (Outdoor Camping Gear)">戶外露營登山裝備 (Outdoor Camping Gear)</option>
-                    <option value="未來科技無人機 (Futuristic Drone)">未來科技無人機 (Futuristic Drone)</option>
-                    <option value="台北九份山城老街 (Jiufen Old Mountain Street)">台北九份山城老街 (Jiufen Old Mountain Street)</option>
-                    <option value="魔法精靈小樹屋 (Magical Fairy Treehouse)">魔法精靈小樹屋 (Magical Fairy Treehouse)</option>
-                    <option value="經典美味日式拉麵 (Delicious Japanese Ramen)">經典美味日式拉麵 (Delicious Japanese Ramen)</option>
-                    <option value="登陸月球的太空人 (Astronaut on the Moon)">登陸月球的太空人 (Astronaut on the Moon)</option>
-                </select>
-                <button type="button" onclick="randomizeGlobalGeminiSubject()" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: none; background: #ec4899; color: #fff; cursor: pointer; white-space: nowrap; width: auto; margin: 0;">🎲 隨機換主體</button>
-            </div>
-
-            <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; padding: 10px 22px; font-size: 14px; font-weight: bold; border-radius: 999px; background: #ffffff; color: #1e1b4b; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">✨ 開啟 Gemini</a>
+            <!-- 全域一鍵隨機靈感控制列 -->
+            <div style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 14px; padding: 12px 16px; margin: 0 auto; max-width: 620px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                <span style="font-size: 14px; font-weight: bold; color: #fbcfe8;">✨ 20 款皆已對齊專屬合理選項：</span>
+                <button type="button" onclick="randomizeGlobalGeminiSubject()" style="padding: 9px 18px; font-size: 14px; font-weight: 800; border-radius: 999px; border: none; background: #ec4899; color: #fff; cursor: pointer; white-space: nowrap; width: auto; margin: 0; box-shadow: 0 4px 10px rgba(236,72,153,0.4);">🎲 全部卡片隨機換一組專屬主體</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; padding: 9px 18px; font-size: 14px; font-weight: 800; border-radius: 999px; background: #ffffff; color: #1e1b4b; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">✨ 開啟 Gemini</a>
             </div>
         </div>
 
@@ -1004,15 +987,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將物體懸浮拆解為各個獨立零件，展示精密機械組裝結構。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-01" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('01')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('01')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換機械/物件：</label>
+                    <select id="select-01" onchange="onSelectCardOption('01', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="復古單眼機械相機 (Vintage Mechanical SLR Camera)">復古單眼機械相機 (Vintage Mechanical SLR Camera)</option>
+                    <option value="瑞士奢華陀飛輪機械錶 (Luxury Tourbillon Mechanical Watch)">瑞士奢華陀飛輪機械錶 (Luxury Tourbillon Mechanical Watch)</option>
+                    <option value="義式濃縮半自動咖啡機 (Italian Espresso Machine)">義式濃縮半自動咖啡機 (Italian Espresso Machine)</option>
+                    <option value="四軸航拍無人機 (Quadcopter Camera Drone)">四軸航拍無人機 (Quadcopter Camera Drone)</option>
+                    <option value="經典保時捷水平對臥引擎 (Classic Porsche Flat-Six Engine)">經典保時捷水平對臥引擎 (Classic Porsche Flat-Six Engine)</option>
+                    <option value="復古黑膠唱盤機 (Vintage Vinyl Turntable)">復古黑膠唱盤機 (Vintage Vinyl Turntable)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('01')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-01" value="復古單眼機械相機 (Vintage Mechanical SLR Camera)" oninput="updateSinglePrompt('01')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-01" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Exploded technical view of [主體], floating disassembled components neatly aligned in mid-air, mechanical parts diagram, engineering precision, studio lighting, isolated neutral background.</div>
+            <div class="prompt-text" id="prompt-box-01" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Exploded technical view of 復古單眼機械相機 (Vintage Mechanical SLR Camera), floating disassembled components neatly aligned in mid-air, mechanical parts diagram, engineering precision, studio lighting, isolated neutral background.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1036,15 +1032,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">轉化為經典工程藍曬圖，帶有精細白線、剖面與尺寸標註。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-02" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('02')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('02')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換建築/載具：</label>
+                    <select id="select-02" onchange="onSelectCardOption('02', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="台北101摩天大樓 (Taipei 101 Skyscraper)">台北101摩天大樓 (Taipei 101 Skyscraper)</option>
+                    <option value="日式傳統木造五重塔 (Traditional Japanese Wooden Pagoda)">日式傳統木造五重塔 (Traditional Japanese Wooden Pagoda)</option>
+                    <option value="歐洲哥德式玫瑰窗大教堂 (Gothic Cathedral with Rose Window)">歐洲哥德式玫瑰窗大教堂 (Gothic Cathedral with Rose Window)</option>
+                    <option value="19世紀古典蒸汽火車頭 (19th-Century Steam Locomotive)">19世紀古典蒸汽火車頭 (19th-Century Steam Locomotive)</option>
+                    <option value="大航海時代三桅古典帆船 (Three-Masted Vintage Galleon Ship)">大航海時代三桅古典帆船 (Three-Masted Vintage Galleon Ship)</option>
+                    <option value="未來環形太空殖民站 (Futuristic Orbital Space Station)">未來環形太空殖民站 (Futuristic Orbital Space Station)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('02')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-02" value="台北101摩天大樓 (Taipei 101 Skyscraper)" oninput="updateSinglePrompt('02')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-02" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Architectural blueprint of [主體], cyanotype blue background with crisp white technical line drawings, cross-section elevations, grid overlay, handwritten engineering annotations.</div>
+            <div class="prompt-text" id="prompt-box-02" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Architectural blueprint of 台北101摩天大樓 (Taipei 101 Skyscraper), cyanotype blue background with crisp white technical line drawings, cross-section elevations, grid overlay, handwritten engineering annotations.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1068,15 +1077,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">等軸測投影 3D 立體模型，如同微縮景觀或模型箱 (Diorama)。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-03" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('03')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('03')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換微縮場景：</label>
+                    <select id="select-03" onchange="onSelectCardOption('03', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="巴黎街角陽光烘焙咖啡館 (Cozy Parisian Corner Bakery Cafe)">巴黎街角陽光烘焙咖啡館 (Cozy Parisian Corner Bakery Cafe)</option>
+                    <option value="深夜發光的日式屋台拉麵攤 (Late-Night Japanese Ramen Stall)">深夜發光的日式屋台拉麵攤 (Late-Night Japanese Ramen Stall)</option>
+                    <option value="陽光灑落的熱帶植物玻璃溫室 (Sunlit Botanical Glass Greenhouse)">陽光灑落的熱帶植物玻璃溫室 (Sunlit Botanical Glass Greenhouse)</option>
+                    <option value="充滿書香的閣樓黑膠音樂書房 (Cozy Attic Vinyl & Reading Room)">充滿書香的閣樓黑膠音樂書房 (Cozy Attic Vinyl & Reading Room)</option>
+                    <option value="森林深處的魔法藥水工坊 (Magical Forest Potion Workshop)">森林深處的魔法藥水工坊 (Magical Forest Potion Workshop)</option>
+                    <option value="懷舊台灣柑仔店與老街轉角 (Nostalgic Taiwanese Grocery Corner)">懷舊台灣柑仔店與老街轉角 (Nostalgic Taiwanese Grocery Corner)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('03')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-03" value="巴黎街角陽光烘焙咖啡館 (Cozy Parisian Corner Bakery Cafe)" oninput="updateSinglePrompt('03')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-03" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Clean isometric 3D illustration of [場景/主體], orthographic axonometric projection, vibrant pastel colors, miniature diorama scale, soft ambient shadows, 4k render.</div>
+            <div class="prompt-text" id="prompt-box-03" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Clean isometric 3D illustration of 巴黎街角陽光烘焙咖啡館 (Cozy Parisian Corner Bakery Cafe), orthographic axonometric projection, vibrant pastel colors, miniature diorama scale, soft ambient shadows, 4k render.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1100,15 +1122,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">以極簡多面體切割形狀重新建構，呈現現代立體折紙美學。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-04" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('04')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('04')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換幾何主體：</label>
+                    <select id="select-04" onchange="onSelectCardOption('04', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="仰望星空的雄偉森林麋鹿 (Majestic Forest Stag Deer)">仰望星空的雄偉森林麋鹿 (Majestic Forest Stag Deer)</option>
+                    <option value="奔馳於雪地的火紅狐狸 (Running Red Fox in Snow)">奔馳於雪地的火紅狐狸 (Running Red Fox in Snow)</option>
+                    <option value="展翅翱翔的翠綠蜂鳥 (Soaring Emerald Hummingbird)">展翅翱翔的翠綠蜂鳥 (Soaring Emerald Hummingbird)</option>
+                    <option value="日落餘暉下的阿爾卑斯雪山島嶼 (Floating Alpine Mountain Island)">日落餘暉下的阿爾卑斯雪山島嶼 (Floating Alpine Mountain Island)</option>
+                    <option value="躍出深海的巨型座頭鯨 (Breaching Humpback Whale)">躍出深海的巨型座頭鯨 (Breaching Humpback Whale)</option>
+                    <option value="戴著耳機的未來感柴犬 (Futuristic Shiba Inu with Headphones)">戴著耳機的未來感柴犬 (Futuristic Shiba Inu with Headphones)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('04')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-04" value="仰望星空的雄偉森林麋鹿 (Majestic Forest Stag Deer)" oninput="updateSinglePrompt('04')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-04" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Low-poly geometric 3D art of [主體], faceted flat polygons, vibrant gradients, stylized minimalist origami aesthetic, clean lighting.</div>
+            <div class="prompt-text" id="prompt-box-04" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Low-poly geometric 3D art of 仰望星空的雄偉森林麋鹿 (Majestic Forest Stag Deer), faceted flat polygons, vibrant gradients, stylized minimalist origami aesthetic, clean lighting.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1132,15 +1167,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">具有清晰排線與明暗對比的手繪石墨鉛筆畫，素描本質感。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-05" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('05')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('05')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換素描對象：</label>
+                    <select id="select-05" onchange="onSelectCardOption('05', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="米開朗基羅大衛石膏雕像 (Classical Marble Bust of David)">米開朗基羅大衛石膏雕像 (Classical Marble Bust of David)</option>
+                    <option value="窗邊蜷縮熟睡的虎斑小貓 (Sleeping Tabby Kitten by the Window)">窗邊蜷縮熟睡的虎斑小貓 (Sleeping Tabby Kitten by the Window)</option>
+                    <option value="威尼斯運河與嘆息橋古建築 (Venice Canal and Historic Bridge)">威尼斯運河與嘆息橋古建築 (Venice Canal and Historic Bridge)</option>
+                    <option value="眼神深邃的智慧老船長肖像 (Weathered Old Sea Captain Portrait)">眼神深邃的智慧老船長肖像 (Weathered Old Sea Captain Portrait)</option>
+                    <option value="盛開的古典玫瑰花束與玻璃瓶 (Blooming Vintage Rose Bouquet)">盛開的古典玫瑰花束與玻璃瓶 (Blooming Vintage Rose Bouquet)</option>
+                    <option value="展翅欲飛的貓頭鷹特寫 (Detailed Barn Owl Taking Flight)">展翅欲飛的貓頭鷹特寫 (Detailed Barn Owl Taking Flight)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('05')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-05" value="米開朗基羅大衛石膏雕像 (Classical Marble Bust of David)" oninput="updateSinglePrompt('05')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-05" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Detailed graphite pencil sketch of [主體], expressive hand-drawn hatching and cross-hatching linework, rough paper texture, chiaroscuro shading, artist sketchbook page.</div>
+            <div class="prompt-text" id="prompt-box-05" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Detailed graphite pencil sketch of 米開朗基羅大衛石膏雕像 (Classical Marble Bust of David), expressive hand-drawn hatching and cross-hatching linework, rough paper texture, chiaroscuro shading, artist sketchbook page.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1164,15 +1212,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">在黑夜虛空中旋轉的未來科技全息透視線框，HUD 介面質感。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-06" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('06')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('06')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換全息主體：</label>
+                    <select id="select-06" onchange="onSelectCardOption('06', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="未來概念超跑空氣力學車體 (Futuristic Aerodynamic Supercar)">未來概念超跑空氣力學車體 (Futuristic Aerodynamic Supercar)</option>
+                    <option value="仿生機械手臂與精密關節結構 (Cybernetic Bionic Robotic Arm)">仿生機械手臂與精密關節結構 (Cybernetic Bionic Robotic Arm)</option>
+                    <option value="人類大腦神經元全息網絡 (Human Brain Neural Network)">人類大腦神經元全息網絡 (Human Brain Neural Network)</option>
+                    <option value="超音速隱形戰鬥機渦輪結構 (Stealth Fighter Jet Turbine)">超音速隱形戰鬥機渦輪結構 (Stealth Fighter Jet Turbine)</option>
+                    <option value="機械暴龍全身骨骼透視圖 (Mecha T-Rex Skeleton Structure)">機械暴龍全身骨骼透視圖 (Mecha T-Rex Skeleton Structure)</option>
+                    <option value="地球同步軌道衛星通訊網 (Global Orbital Satellite System)">地球同步軌道衛星通訊網 (Global Orbital Satellite System)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('06')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-06" value="未來概念超跑空氣力學車體 (Futuristic Aerodynamic Supercar)" oninput="updateSinglePrompt('06')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-06" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Futuristic 3D neon holographic wireframe of [主體], glowing electric cyan and blue vector polygon grid lines, rotating floating in dark void, sci-fi HUD aesthetic.</div>
+            <div class="prompt-text" id="prompt-box-06" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Futuristic 3D neon holographic wireframe of 未來概念超跑空氣力學車體 (Futuristic Aerodynamic Supercar), glowing electric cyan and blue vector polygon grid lines, rotating floating in dark void, sci-fi HUD aesthetic.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1196,15 +1257,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">高級品牌棚拍包裝照，柔和自然漫射光與細緻陰影，純淨展台。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-07" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('07')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('07')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換商業產品：</label>
+                    <select id="select-07" onchange="onSelectCardOption('07', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="山茶花精萃奢華水晶香水瓶 (Luxury Crystal Camellia Perfume Bottle)">山茶花精萃奢華水晶香水瓶 (Luxury Crystal Camellia Perfume Bottle)</option>
+                    <option value="翡翠綠絲絨燙金抗老精華液 (Emerald Velvet Gold Serum Dropper Bottle)">翡翠綠絲絨燙金抗老精華液 (Emerald Velvet Gold Serum Dropper Bottle)</option>
+                    <option value="極簡北歐風霧面金屬藍牙耳機 (Minimalist Matte Metallic Wireless Headphones)">極簡北歐風霧面金屬藍牙耳機 (Minimalist Matte Metallic Wireless Headphones)</option>
+                    <option value="京都宇治頂級抹茶手工禮盒 (Premium Kyoto Uji Matcha Gift Tin)">京都宇治頂級抹茶手工禮盒 (Premium Kyoto Uji Matcha Gift Tin)</option>
+                    <option value="手工冷壓初榨橄欖油玻璃瓶 (Artisanal Extra Virgin Olive Oil Bottle)">手工冷壓初榨橄欖油玻璃瓶 (Artisanal Extra Virgin Olive Oil Bottle)</option>
+                    <option value="瑞士極簡主義玫瑰金腕錶 (Minimalist Rose Gold Wristwatch)">瑞士極簡主義玫瑰金腕錶 (Minimalist Rose Gold Wristwatch)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('07')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-07" value="山茶花精萃奢華水晶香水瓶 (Luxury Crystal Camellia Perfume Bottle)" oninput="updateSinglePrompt('07')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-07" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Commercial studio packshot of [商品/主體], pristine cosmetic packaging design, soft diffuse natural studio lighting, delicate soft shadows, clean luxury podium background.</div>
+            <div class="prompt-text" id="prompt-box-07" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Commercial studio packshot of 山茶花精萃奢華水晶香水瓶 (Luxury Crystal Camellia Perfume Bottle), pristine cosmetic packaging design, soft diffuse natural studio lighting, delicate soft shadows, clean luxury podium background.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1228,15 +1302,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">90 度正俯視角，相關物件以直角俐落排列，強迫症收納美學。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-08" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('08')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('08')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換平鋪主題組：</label>
+                    <select id="select-08" onchange="onSelectCardOption('08', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="職人手沖咖啡全套器具與咖啡豆 (Barista Pour-Over Coffee Gear & Beans)">職人手沖咖啡全套器具與咖啡豆 (Barista Pour-Over Coffee Gear & Beans)</option>
+                    <option value="戶外山系露營野炊裝備大全 (Ultralight Backpacking & Camping Gear)">戶外山系露營野炊裝備大全 (Ultralight Backpacking & Camping Gear)</option>
+                    <option value="復古底片攝影師隨身背包全配件 (Vintage Film Photographer Everyday Carry)">復古底片攝影師隨身背包全配件 (Vintage Film Photographer Everyday Carry)</option>
+                    <option value="透明水彩畫家寫生畫具與顏料組 (Botanical Watercolor Artist Toolkit)">透明水彩畫家寫生畫具與顏料組 (Botanical Watercolor Artist Toolkit)</option>
+                    <option value="日式茶道刷茶碗、茶筅與和菓子組 (Traditional Japanese Matcha Tea Ceremony Set)">日式茶道刷茶碗、茶筅與和菓子組 (Traditional Japanese Matcha Tea Ceremony Set)</option>
+                    <option value="法式甜點師烘焙工具與香草食材 (French Pastry Chef Baking Utensils & Spices)">法式甜點師烘焙工具與香草食材 (French Pastry Chef Baking Utensils & Spices)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('08')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-08" value="職人手沖咖啡全套器具與咖啡豆 (Barista Pour-Over Coffee Gear & Beans)" oninput="updateSinglePrompt('08')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-08" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Overhead top-down 90-degree flat lay of [主題物件集合], knolling style, perfectly aligned and organized at right angles, morning natural light, textured wooden surface.</div>
+            <div class="prompt-text" id="prompt-box-08" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Overhead top-down 90-degree flat lay of 職人手沖咖啡全套器具與咖啡豆 (Barista Pour-Over Coffee Gear & Beans), knolling style, perfectly aligned and organized at right angles, morning natural light, textured wooden surface.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1260,15 +1347,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">同一畫面中由左至右呈現主體在不同階段的成長或轉變過程。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-09" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('09')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('09')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換演變過程：</label>
+                    <select id="select-09" onchange="onSelectCardOption('09', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="櫻花樹從春芽、盛開、楓紅到冬雪的四季變化 (A Cherry Blossom Tree across Four Seasons)">櫻花樹從春芽、盛開、楓紅到冬雪的四季變化 (A Cherry Blossom Tree across Four Seasons)</option>
+                    <option value="橡實種子發芽長成參天巨木的成長歷程 (An Acorn Sprouting into a Giant Oak Tree)">橡實種子發芽長成參天巨木的成長歷程 (An Acorn Sprouting into a Giant Oak Tree)</option>
+                    <option value="毛毛蟲結蛹破繭化為閃亮彩蝶的生命週期 (Caterpillar Metamorphosis into a Butterfly)">毛毛蟲結蛹破繭化為閃亮彩蝶的生命週期 (Caterpillar Metamorphosis into a Butterfly)</option>
+                    <option value="人類建築從原始茅草屋演變為未來摩天生態城 (Architecture from Thatch Hut to Futuristic Eco-City)">人類建築從原始茅草屋演變為未來摩天生態城 (Architecture from Thatch Hut to Futuristic Eco-City)</option>
+                    <option value="汽車工業從古典馬車演變為未來飛行跑車 (Vehicles from Horse Carriage to Flying Supercar)">汽車工業從古典馬車演變為未來飛行跑車 (Vehicles from Horse Carriage to Flying Supercar)</option>
+                    <option value="向日葵從清晨含苞、正午盛開到夕陽垂首 (A Sunflower Blooming from Dawn to Dusk)">向日葵從清晨含苞、正午盛開到夕陽垂首 (A Sunflower Blooming from Dawn to Dusk)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('09')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-09" value="櫻花樹從春芽、盛開、楓紅到冬雪的四季變化 (A Cherry Blossom Tree across Four Seasons)" oninput="updateSinglePrompt('09')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-09" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Sequential timelapse evolution of [主體] across 4 distinct developmental stages from left to right, continuous panoramic single frame, chronological progression, unified lighting.</div>
+            <div class="prompt-text" id="prompt-box-09" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Sequential timelapse evolution of 櫻花樹從春芽、盛開、楓紅到冬雪的四季變化 (A Cherry Blossom Tree across Four Seasons) across 4 distinct developmental stages from left to right, continuous panoramic single frame, chronological progression, unified lighting.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1290,17 +1390,30 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 </div>
                 <span style="background:#fce7f3; color:#db2777; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/sizecompare</span>
             </div>
-            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將兩個或多個物體並排同框，直觀呈現真實尺寸與比例差異。</div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將兩個物體並排同框（以 | 分隔物件A與物件B），直觀呈現真實尺寸與比例差異。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-10" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('10')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('10')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換對比組合 (A | B)：</label>
+                    <select id="select-10" onchange="onSelectCardOption('10', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="a tiny teacup Chihuahua puppy (迷你茶杯吉娃娃) | a giant gentle Saint Bernard dog (巨大聖伯納犬)">a tiny teacup Chihuahua puppy (迷你茶杯吉娃娃) | a giant gentle Saint Bernard dog (巨大聖伯納犬)</option>
+                    <option value="a prehistoric Tyrannosaurus Rex (史前霸王龍) | a modern double-decker city bus (現代雙層巴士)">a prehistoric Tyrannosaurus Rex (史前霸王龍) | a modern double-decker city bus (現代雙層巴士)</option>
+                    <option value="a tiny emerald hummingbird (迷你翠綠蜂鳥) | a ripe red strawberry (一顆紅透的草莓)">a tiny emerald hummingbird (迷你翠綠蜂鳥) | a ripe red strawberry (一顆紅透的草莓)</option>
+                    <option value="the Great Pyramid of Giza (埃及吉薩大金字塔) | the modern Eiffel Tower (現代巴黎艾菲爾鐵塔)">the Great Pyramid of Giza (埃及吉薩大金字塔) | the modern Eiffel Tower (現代巴黎艾菲爾鐵塔)</option>
+                    <option value="a colossal blue whale in clear water (深海巨型藍鯨) | a human scuba diver (人類潛水員)">a colossal blue whale in clear water (深海巨型藍鯨) | a human scuba diver (人類潛水員)</option>
+                    <option value="a giant Sequoia tree trunk (巨型紅杉樹幹) | a classic yellow Volkswagen Beetle car (復古金龜車)">a giant Sequoia tree trunk (巨型紅杉樹幹) | a classic yellow Volkswagen Beetle car (復古金龜車)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('10')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-10" value="a tiny teacup Chihuahua puppy (迷你茶杯吉娃娃) | a giant gentle Saint Bernard dog (巨大聖伯納犬)" oninput="updateSinglePrompt('10')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-10" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">True scale comparison photo, [物件A] placed directly side-by-side with [物件B], same depth of field, ground level perspective, measuring scale context, photorealistic.</div>
+            <div class="prompt-text" id="prompt-box-10" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">True scale comparison photo, a tiny teacup Chihuahua puppy (迷你茶杯吉娃娃) placed directly side-by-side with a giant gentle Saint Bernard dog (巨大聖伯納犬), same depth of field, ground level perspective, measuring scale context, photorealistic.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1314,7 +1427,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
         </div>
         <!-- Card 11 -->
-        <div class="gemini-prompt-card" data-cat="art" data-num="11" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #4338ca;">
+        <div class="gemini-prompt-card" data-cat="creative" data-num="11" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #4338ca;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
                 <div style="display:flex; align-items:center; gap:8px;">
                     <span style="background:#4338ca; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">11</span>
@@ -1322,17 +1435,30 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 </div>
                 <span style="background:#fce7f3; color:#db2777; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/materialswap</span>
             </div>
-            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將物件換成完全不同的材質（磨砂彩虹玻璃、黃銅、液態金屬等）。</div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將物件換成完全不同的奇幻材質（以 | 分隔主體與材質）。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-11" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('11')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('11')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換主體與材質：</label>
+                    <select id="select-11" onchange="onSelectCardOption('11', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="leaping ocean dolphin (躍起的海豚) | frosted iridescent aurora glass (磨砂極光彩虹琉璃)">leaping ocean dolphin (躍起的海豚) | frosted iridescent aurora glass (磨砂極光彩虹琉璃)</option>
+                    <option value="blooming sacred lotus flower (盛開的蓮花) | translucent imperial white jade with gold veins (溫潤羊脂白玉鑲金絲)">blooming sacred lotus flower (盛開的蓮花) | translucent imperial white jade with gold veins (溫潤羊脂白玉鑲金絲)</option>
+                    <option value="roaring majestic lion head (咆哮的雄獅) | swirling molten liquid chrome metal (流動液態鏡面金屬鉻)">roaring majestic lion head (咆哮的雄獅) | swirling molten liquid chrome metal (流動液態鏡面金屬鉻)</option>
+                    <option value="vintage sneaker shoe (潮流運動球鞋) | intricate translucent crystal andstained glass (透明水晶與彩繪玻璃)">vintage sneaker shoe (潮流運動球鞋) | intricate translucent crystal andstained glass (透明水晶與彩繪玻璃)</option>
+                    <option value="classical grand violin (古典小提琴) | glowing bioluminescent ocean coral and pearl (發光深海珊瑚與珍珠母貝)">classical grand violin (古典小提琴) | glowing bioluminescent ocean coral and pearl (發光深海珊瑚與珍珠母貝)</option>
+                    <option value="cute sitting French Bulldog (可愛法國鬥牛犬) | colorful translucent gummy candy (晶瑩剔透水果軟糖)">cute sitting French Bulldog (可愛法國鬥牛犬) | colorful translucent gummy candy (晶瑩剔透水果軟糖)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('11')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-11" value="leaping ocean dolphin (躍起的海豚) | frosted iridescent aurora glass (磨砂極光彩虹琉璃)" oninput="updateSinglePrompt('11')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-11" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">A [主體] completely sculpted out of [質地：e.g. frosted iridescent glass / polished mahogany / liquid chrome], caustics, subsurface scattering, macro texture.</div>
+            <div class="prompt-text" id="prompt-box-11" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">A leaping ocean dolphin (躍起的海豚) completely sculpted out of frosted iridescent aurora glass (磨砂極光彩虹琉璃), caustics, subsurface scattering, macro texture.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1356,15 +1482,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">翻開故事書時彈出的多層次手工剪紙藝術，帶有手工紙張紋理。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-12" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('12')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('12')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換立體書場景：</label>
+                    <select id="select-12" onchange="onSelectCardOption('12', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="阿里山紅色森林小火車穿越櫻花鐵橋 (Alishan Forest Train Crossing Cherry Blossom Bridge)">阿里山紅色森林小火車穿越櫻花鐵橋 (Alishan Forest Train Crossing Cherry Blossom Bridge)</option>
+                    <option value="雲端上的奇幻漂浮魔法城堡與飛龍 (Magical Floating Sky Castle with a Friendly Dragon)">雲端上的奇幻漂浮魔法城堡與飛龍 (Magical Floating Sky Castle with a Friendly Dragon)</option>
+                    <option value="熱鬧發光的台灣九份紅燈籠山城夜景 (Glowing Red Lantern Mountain Town of Jiufen)">熱鬧發光的台灣九份紅燈籠山城夜景 (Glowing Red Lantern Mountain Town of Jiufen)</option>
+                    <option value="繽紛珊瑚礁與海底人魚王國宮殿 (Underwater Mermaid Palace & Coral Reef Kingdom)">繽紛珊瑚礁與海底人魚王國宮殿 (Underwater Mermaid Palace & Coral Reef Kingdom)</option>
+                    <option value="聖誕老人麋鹿雪橇飛越雪夜童話村 (Santa Sleigh Flying Over Snowy Fairytale Village)">聖誕老人麋鹿雪橇飛越雪夜童話村 (Santa Sleigh Flying Over Snowy Fairytale Village)</option>
+                    <option value="綠野仙蹤翡翠城與黃磚道奇幻森林 (Emerald City and Yellow Brick Road Forest)">綠野仙蹤翡翠城與黃磚道奇幻森林 (Emerald City and Yellow Brick Road Forest)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('12')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-12" value="阿里山紅色森林小火車穿越櫻花鐵橋 (Alishan Forest Train Crossing Cherry Blossom Bridge)" oninput="updateSinglePrompt('12')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-12" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Intricate pop-up paper craft book illustration, layered cut-out paper folds forming [場景/主體], tactile craft paper texture, soft dimensional shadows, whimsical storybook.</div>
+            <div class="prompt-text" id="prompt-box-12" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Intricate pop-up paper craft book illustration, layered cut-out paper folds forming 阿里山紅色森林小火車穿越櫻花鐵橋 (Alishan Forest Train Crossing Cherry Blossom Bridge), tactile craft paper texture, soft dimensional shadows, whimsical storybook.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1388,15 +1527,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">阿德曼動畫風格的軟質彩泥雕塑，表面帶有細緻的手工指紋痕跡。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-13" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('13')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('13')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換黏土主角：</label>
+                    <select id="select-13" onchange="onSelectCardOption('13', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="戴著高帽正在揉麵團做披薩的圓滾滾小熊廚師 (Chubby Bear Chef tossing pizza dough)">戴著高帽正在揉麵團做披薩的圓滾滾小熊廚師 (Chubby Bear Chef tossing pizza dough)</option>
+                    <option value="背著黃色小書包開心地去郊遊的呆萌柴犬 (Happy Shiba Inu wearing a yellow backpack)">背著黃色小書包開心地去郊遊的呆萌柴犬 (Happy Shiba Inu wearing a yellow backpack)</option>
+                    <option value="坐在樹樁上喝下午茶聊天的兔子與刺蝟好朋友 (Rabbit and Hedgehog having forest tea party)">坐在樹樁上喝下午茶聊天的兔子與刺蝟好朋友 (Rabbit and Hedgehog having forest tea party)</option>
+                    <option value="戴著老花眼鏡在工作台修理時鐘的慈祥老爺爺 (Kind Old Watchmaker fixing a cuckoo clock)">戴著老花眼鏡在工作台修理時鐘的慈祥老爺爺 (Kind Old Watchmaker fixing a cuckoo clock)</option>
+                    <option value="圍著紅色圍巾在雪地裡堆雪人的小企鵝家族 (Penguin family building a snowman)">圍著紅色圍巾在雪地裡堆雪人的小企鵝家族 (Penguin family building a snowman)</option>
+                    <option value="騎著復古綠色偉士牌機車送包裹的小浣熊郵差 (Raccoon postman riding a vintage mint scooter)">騎著復古綠色偉士牌機車送包裹的小浣熊郵差 (Raccoon postman riding a vintage mint scooter)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('13')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-13" value="戴著高帽正在揉麵團做披薩的圓滾滾小熊廚師 (Chubby Bear Chef tossing pizza dough)" oninput="updateSinglePrompt('13')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-13" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Cute stop-motion claymation sculpture of [主體], soft plasticine matte texture with subtle artisan fingerprint details, Aardman studio style, warm tactile lighting.</div>
+            <div class="prompt-text" id="prompt-box-13" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Cute stop-motion claymation sculpture of 戴著高帽正在揉麵團做披薩的圓滾滾小熊廚師 (Chubby Bear Chef tossing pizza dough), soft plasticine matte texture with subtle artisan fingerprint details, Aardman studio style, warm tactile lighting.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1420,15 +1572,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">夜晚濕潤磚牆上的彩色發光玻璃氣體霓虹管，充滿光暈與倒影。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-14" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('14')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('14')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換霓虹文字/圖案：</label>
+                    <select id="select-14" onchange="onSelectCardOption('14', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="COFFEE & DREAMS with a steaming coffee cup icon (咖啡與夢想＋熱咖啡杯圖案)">COFFEE & DREAMS with a steaming coffee cup icon (咖啡與夢想＋熱咖啡杯圖案)</option>
+                    <option value="OPEN 24 HOURS with a retro cocktail glass icon (24小時營業＋復古調酒杯圖案)">OPEN 24 HOURS with a retro cocktail glass icon (24小時營業＋復古調酒杯圖案)</option>
+                    <option value="TAIPEI NIGHTS with a glowing ramen bowl icon (台北夜未眠＋發光拉麵碗圖案)">TAIPEI NIGHTS with a glowing ramen bowl icon (台北夜未眠＋發光拉麵碗圖案)</option>
+                    <option value="GOOD VIBES ONLY with a neon palm tree & sun icon (美好時光＋霓虹棕櫚樹圖案)">GOOD VIBES ONLY with a neon palm tree & sun icon (美好時光＋霓虹棕櫚樹圖案)</option>
+                    <option value="LATE NIGHT JAZZ with a glowing saxophone icon (深夜爵士吧＋薩克斯風圖案)">LATE NIGHT JAZZ with a glowing saxophone icon (深夜爵士吧＋薩克斯風圖案)</option>
+                    <option value="CHING-SONG HIKING CLUB with mountain peak icon (青松健行隊＋山峰雲朵圖案)">CHING-SONG HIKING CLUB with mountain peak icon (青松健行隊＋山峰雲朵圖案)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('14')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-14" value="COFFEE & DREAMS with a steaming coffee cup icon (咖啡與夢想＋熱咖啡杯圖案)" oninput="updateSinglePrompt('14')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-14" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Glowing luminous neon sign forming the text/shape "[文字/圖案]", vivid electric pink and cyan glass gas tubes, mounted on dark distressed damp brick wall with wet reflection.</div>
+            <div class="prompt-text" id="prompt-box-14" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Glowing luminous neon sign forming the text/shape "COFFEE & DREAMS with a steaming coffee cup icon (咖啡與夢想＋熱咖啡杯圖案)", vivid electric pink and cyan glass gas tubes, mounted on dark distressed damp brick wall with wet reflection.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1452,15 +1617,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">風格化的等距手繪導覽地圖，標出可愛地標建築、虛線路線與地圖標籤。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-15" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('15')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('15')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換地圖景點/城市：</label>
+                    <select id="select-15" onchange="onSelectCardOption('15', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="Kyoto Cherry Blossom Historic District & Temples (日本京都古都賞櫻名所散策)">Kyoto Cherry Blossom Historic District & Temples (日本京都古都賞櫻名所散策)</option>
+                    <option value="Jiufen Old Street & Golden Mountain Town in Taiwan (台灣九份山城茶樓與老街導覽)">Jiufen Old Street & Golden Mountain Town in Taiwan (台灣九份山城茶樓與老街導覽)</option>
+                    <option value="Tainan Historic Forts & Street Food Treasure Map (台南府城古蹟與美食尋寶地圖)">Tainan Historic Forts & Street Food Treasure Map (台南府城古蹟與美食尋寶地圖)</option>
+                    <option value="Swiss Alps Fairy-Tale Ski Village & Cable Cars (瑞士阿爾卑斯山童話滑雪度假村)">Swiss Alps Fairy-Tale Ski Village & Cable Cars (瑞士阿爾卑斯山童話滑雪度假村)</option>
+                    <option value="Taipei Yangmingshan Hiking Trails & Hot Springs (台北陽明山國家公園健行與溫泉地圖)">Taipei Yangmingshan Hiking Trails & Hot Springs (台北陽明山國家公園健行與溫泉地圖)</option>
+                    <option value="Magical Fantasy Theme Park & Castle Island (奇幻魔法城堡主題樂園導覽圖)">Magical Fantasy Theme Park & Castle Island (奇幻魔法城堡主題樂園導覽圖)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('15')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-15" value="Kyoto Cherry Blossom Historic District & Temples (日本京都古都賞櫻名所散策)" oninput="updateSinglePrompt('15')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-15" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Stylized tourist isometric illustrated map of [地點/主題], cute landmarks, dotted navigation route with pin marker, playful vector cartography, clean pastel topography.</div>
+            <div class="prompt-text" id="prompt-box-15" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Stylized tourist isometric illustrated map of Kyoto Cherry Blossom Historic District & Temples (日本京都古都賞櫻名所散策), cute landmarks, dotted navigation route with pin marker, playful vector cartography, clean pastel topography.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1474,7 +1652,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
         </div>
         <!-- Card 16 -->
-        <div class="gemini-prompt-card" data-cat="creative" data-num="16" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #4338ca;">
+        <div class="gemini-prompt-card" data-cat="art" data-num="16" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #4338ca;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
                 <div style="display:flex; align-items:center; gap:8px;">
                     <span style="background:#4338ca; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">16</span>
@@ -1484,15 +1662,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">泡泡瑪特 (Pop Mart) 風格的 Q 版搪膠收藏玩具，精緻塑料塗裝。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-16" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('16')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('16')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換公仔角色：</label>
+                    <select id="select-16" onchange="onSelectCardOption('16', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="a cute astronaut kitten holding a glowing star (抱著發光星星的太空小貓)">a cute astronaut kitten holding a glowing star (抱著發光星星的太空小貓)</option>
+                    <option value="a trendy streetwear Shiba Inu with headphones and skateboard (戴耳機拿滑板的街頭潮流柴犬)">a trendy streetwear Shiba Inu with headphones and skateboard (戴耳機拿滑板的街頭潮流柴犬)</option>
+                    <option value="a whimsical Boba Tea fairy girl with pearl hair clips (化身珍珠奶茶精靈的圓臉小女孩)">a whimsical Boba Tea fairy girl with pearl hair clips (化身珍珠奶茶精靈的圓臉小女孩)</option>
+                    <option value="a chubby penguin in a vintage brass diving suit (穿著復古潛水服的呆萌小企鵝)">a chubby penguin in a vintage brass diving suit (穿著復古潛水服的呆萌小企鵝)</option>
+                    <option value="a sleepy forest elf magician holding a crystal ball (拿著水晶球的森林魔法小精靈)">a sleepy forest elf magician holding a crystal ball (拿著水晶球的森林魔法小精靈)</option>
+                    <option value="a happy hiker bear with trekking poles and camera (拿登山杖與相機的登山健行小熊)">a happy hiker bear with trekking poles and camera (拿登山杖與相機的登山健行小熊)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('16')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-16" value="a cute astronaut kitten holding a glowing star (抱著發光星星的太空小貓)" oninput="updateSinglePrompt('16')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-16" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Chibi vinyl collectible designer art toy figurine of [角色/主體], Pop Mart style, glossy and matte plastic finish, smooth oversized head, standing on display base.</div>
+            <div class="prompt-text" id="prompt-box-16" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Chibi vinyl collectible designer art toy figurine of a cute astronaut kitten holding a glowing star (抱著發光星星的太空小貓), Pop Mart style, glossy and matte plastic finish, smooth oversized head, standing on display base.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1514,17 +1705,30 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 </div>
                 <span style="background:#fce7f3; color:#db2777; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/crackedopen</span>
             </div>
-            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">外殼破裂開來，露出隱藏在內部的奇幻發光微縮景觀世界。</div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">外殼破裂開來，露出隱藏在內部的奇幻發光微縮景觀世界（以 | 分隔外殼與內景）。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-17" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('17')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('17')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換外殼與內景：</label>
+                    <select id="select-17" onchange="onSelectCardOption('17', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="antique brass pocket watch (古老黃銅懷錶) | a glowing steampunk clockwork city and floating library (發光齒輪城市與漂浮圖書館)">antique brass pocket watch (古老黃銅懷錶) | a glowing steampunk clockwork city and floating library (發光齒輪城市與漂浮圖書館)</option>
+                    <option value="mossy forest rock geode (森林青苔水晶洞石) | a sparkling fairy waterfall and glowing mushroom village (閃耀精靈瀑布與發光蘑菇村)">mossy forest rock geode (森林青苔水晶洞石) | a sparkling fairy waterfall and glowing mushroom village (閃耀精靈瀑布與發光蘑菇村)</option>
+                    <option value="cracked tropical coconut shell (裂開的椰子殼) | a sunny turquoise lagoon beach with tiny palm bungalows (陽光碧藍潟湖與水上度假屋)">cracked tropical coconut shell (裂開的椰子殼) | a sunny turquoise lagoon beach with tiny palm bungalows (陽光碧藍潟湖與水上度假屋)</option>
+                    <option value="ancient leather-bound spellbook (古老精裝魔法書) | a floating medieval castle with soaring dragons (雲端漂浮城堡與飛龍王國)">ancient leather-bound spellbook (古老精裝魔法書) | a floating medieval castle with soaring dragons (雲端漂浮城堡與飛龍王國)</option>
+                    <option value="vintage Edison glass lightbulb (復古愛迪生玻璃燈泡) | a swirling miniature galaxy with Saturn rings and astronauts (微型璀璨銀河系與太空人)">vintage Edison glass lightbulb (復古愛迪生玻璃燈泡) | a swirling miniature galaxy with Saturn rings and astronauts (微型璀璨銀河系與太空人)</option>
+                    <option value="giant autumn pine cone (巨大秋日松果) | a cozy warm candlelit squirrel family treehouse bakery (溫暖燭光松鼠家族樹屋烘焙坊)">giant autumn pine cone (巨大秋日松果) | a cozy warm candlelit squirrel family treehouse bakery (溫暖燭光松鼠家族樹屋烘焙坊)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('17')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-17" value="antique brass pocket watch (古老黃銅懷錶) | a glowing steampunk clockwork city and floating library (發光齒輪城市與漂浮圖書館)" oninput="updateSinglePrompt('17')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-17" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">A [外殼物件] cracked open in half, revealing a hidden magical miniature world of [內部細節] inside, glowing inner core, cinematic fantasy concept art, cross-section.</div>
+            <div class="prompt-text" id="prompt-box-17" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">A antique brass pocket watch (古老黃銅懷錶) cracked open in half, revealing a hidden magical miniature world of a glowing steampunk clockwork city and floating library (發光齒輪城市與漂浮圖書館) inside, glowing inner core, cinematic fantasy concept art, cross-section.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1548,15 +1752,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">IKEA 扁平家具 DIY 組裝步驟圖，極簡黑白線條、編號 1-2-3 與箭頭。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-18" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('18')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('18')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換組裝物件：</label>
+                    <select id="select-18" onchange="onSelectCardOption('18', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="a Nordic wooden multi-level cat tree tower (北歐風木質多層貓跳台)">a Nordic wooden multi-level cat tree tower (北歐風木質多層貓跳台)</option>
+                    <option value="a minimalist wooden pour-over coffee stand set (極簡手沖咖啡木架與濾杯座)">a minimalist wooden pour-over coffee stand set (極簡手沖咖啡木架與濾杯座)</option>
+                    <option value="a classic children's wooden rocking horse chair (經典兒童玩具木馬搖椅)">a classic children's wooden rocking horse chair (經典兒童玩具木馬搖椅)</option>
+                    <option value="a desktop mini glass greenhouse for succulent plants (桌面迷你多肉植物木框溫室)">a desktop mini glass greenhouse for succulent plants (桌面迷你多肉植物木框溫室)</option>
+                    <option value="a vintage two-wheeled wooden garden flower cart (歐式鄉村風木製雙輪花車)">a vintage two-wheeled wooden garden flower cart (歐式鄉村風木製雙輪花車)</option>
+                    <option value="a modular wooden birdhouse with a tiny porch (帶有小陽台的木製拼裝鳥屋)">a modular wooden birdhouse with a tiny porch (帶有小陽台的木製拼裝鳥屋)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('18')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-18" value="a Nordic wooden multi-level cat tree tower (北歐風木質多層貓跳台)" oninput="updateSinglePrompt('18')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-18" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Step-by-step DIY flat-pack assembly instruction manual diagram for [主體], monochrome minimalist line art, numbered sequential steps 1-2-3, exploded view with arrows.</div>
+            <div class="prompt-text" id="prompt-box-18" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Step-by-step DIY flat-pack assembly instruction manual diagram for a Nordic wooden multi-level cat tree tower (北歐風木質多層貓跳台), monochrome minimalist line art, numbered sequential steps 1-2-3, exploded view with arrows.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1578,17 +1795,30 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 </div>
                 <span style="background:#fce7f3; color:#db2777; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/weatherchange</span>
             </div>
-            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">同一場景雙拼對比，左側萬里晴空，過渡至右側大雪紛飛或暴雨。</div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">同一場景雙拼對比，左側萬里晴空，過渡至右側大雪紛飛或暴風雨。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-19" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('19')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('19')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換天候對比場景：</label>
+                    <select id="select-19" onchange="onSelectCardOption('19', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="Shirakawa-go Gassho-zukuri thatched village in Japan (日本白川鄉合掌村童話木屋群)">Shirakawa-go Gassho-zukuri thatched village in Japan (日本白川鄉合掌村童話木屋群)</option>
+                    <option value="Taipei 101 and Xinyi District city skyline (台北101與信義區城市天際線)">Taipei 101 and Xinyi District city skyline (台北101與信義區城市天際線)</option>
+                    <option value="Mount Fuji with Chureito Pagoda and cherry blossoms (日本富士山與忠靈塔五重塔景觀)">Mount Fuji with Chureito Pagoda and cherry blossoms (日本富士山與忠靈塔五重塔景觀)</option>
+                    <option value="European Alpine lakeside castle with mountain reflection (歐洲阿爾卑斯山湖畔古堡與倒影)">European Alpine lakeside castle with mountain reflection (歐洲阿爾卑斯山湖畔古堡與倒影)</option>
+                    <option value="Kiyomizu-dera wooden temple and historic slope in Kyoto (京都清水寺舞台與二年坂古街)">Kiyomizu-dera wooden temple and historic slope in Kyoto (京都清水寺舞台與二年坂古街)</option>
+                    <option value="dramatic coastal lighthouse standing on rocky ocean cliff (矗立於海岬懸崖上的紅白燈塔)">dramatic coastal lighthouse standing on rocky ocean cliff (矗立於海岬懸崖上的紅白燈塔)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('19')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-19" value="Shirakawa-go Gassho-zukuri thatched village in Japan (日本白川鄉合掌村童話木屋群)" oninput="updateSinglePrompt('19')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-19" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Split panoramic comparison of [同一場景], left half under radiant sunny blue sky, transition into right half under heavy snowfall / stormy rain, atmospheric environment lighting.</div>
+            <div class="prompt-text" id="prompt-box-19" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Split panoramic comparison of Shirakawa-go Gassho-zukuri thatched village in Japan (日本白川鄉合掌村童話木屋群), left half under radiant sunny blue sky, transition into right half under heavy snowfall / stormy rain, atmospheric environment lighting.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1612,15 +1842,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
             <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">展示物體隨時間流逝的風化、生鏽、青苔與漆面斑駁歲月痕跡。</div>
             
-            <!-- 卡片個別主體微調 (免輸入，預設自動代入，亦可自由修改) -->
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
-                <label style="font-size:12px; font-weight:700; color:#475569;">替換主體：</label>
-                <input type="text" class="card-subject-input" id="subject-20" value="復古機械相機 (Vintage Mechanical Camera)" oninput="updateSinglePrompt('20')" style="flex:1; min-width:160px; padding:6px 10px; font-size:13px; border-radius:6px; border:1px solid #cbd5e1; margin:0;">
-                <button type="button" onclick="randomizeSingleSubject('20')" style="padding:6px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#e0e7ff; color:#3730a3; cursor:pointer; width:auto; margin:0;">🎲 換主體</button>
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#312e81; white-space:nowrap;">🎯 替換歲月舊化物件：</label>
+                    <select id="select-20" onchange="onSelectCardOption('20', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#1e1b4b; border-radius:6px; border:1.5px solid #818cf8; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="a classic turquoise Volkswagen Beetle parked in a forest (停在森林深處的復古藍綠金龜車)">a classic turquoise Volkswagen Beetle parked in a forest (停在森林深處的復古藍綠金龜車)</option>
+                    <option value="a vintage red British telephone booth on a cobblestone street (鵝卵石街角的復古紅色電話亭)">a vintage red British telephone booth on a cobblestone street (鵝卵石街角的復古紅色電話亭)</option>
+                    <option value="an antique brass diving helmet resting on the ocean floor (沉睡在海底的古老黃銅潛水頭盔)">an antique brass diving helmet resting on the ocean floor (沉睡在海底的古老黃銅潛水頭盔)</option>
+                    <option value="an abandoned steampunk locomotive train overgrown with vines (被藤蔓與青苔包圍的廢棄蒸汽火車頭)">an abandoned steampunk locomotive train overgrown with vines (被藤蔓與青苔包圍的廢棄蒸汽火車頭)</option>
+                    <option value="an ornate carousel horse in an old forgotten amusement park (廢棄遊樂園裡的華麗彩繪旋轉木馬)">an ornate carousel horse in an old forgotten amusement park (廢棄遊樂園裡的華麗彩繪旋轉木馬)</option>
+                    <option value="a retro mint-green rotary telephone on a dusty wooden desk (老舊木桌上斑駁的復古轉盤電話機)">a retro mint-green rotary telephone on a dusty wooden desk (老舊木桌上斑駁的復古轉盤電話機)</option>
+                    </select>
+                    <button type="button" onclick="randomizeSingleSubject('20')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="subject-20" value="a classic turquoise Volkswagen Beetle parked in a forest (停在森林深處的復古藍綠金龜車)" oninput="updateSinglePrompt('20')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
             </div>
 
             <!-- 即時指令框 -->
-            <div class="prompt-text" id="prompt-box-20" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Aging progression study of [主體], showing the natural passage of time, weathered patina, subtle peeling paint, rust, moss, and vintage decay, hyper-detailed texture.</div>
+            <div class="prompt-text" id="prompt-box-20" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">Aging progression study of a classic turquoise Volkswagen Beetle parked in a forest (停在森林深處的復古藍綠金龜車), showing the natural passage of time, weathered patina, subtle peeling paint, rust, moss, and vintage decay, hyper-detailed texture.</div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1635,13 +1878,13 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         </div>
         </div>
 
-        <!-- 專屬上傳區 -->
-        <div class="container" style="background:#f9f9f9; border: 2px dashed #4338ca; margin-top:30px; border-radius: 12px;">
-            <h3 style="margin-top:0; color:#4338ca;">📥 專屬上傳區：Gemini 爆款影像作品</h3>
-            <p style="color:#666; font-size:14px; margin-top:4px;">在 Gemini 輸入指令產出精彩圖片後，可直接上傳到照片牆與大家分享投票喔！</p>
+        <!-- 專屬作品上傳區 -->
+        <div class="travel-upload-box" style="margin-top: 28px; background: #eef2ff; border: 2px dashed #6366f1; border-radius: 16px; padding: 20px;">
+            <h3 style="color: #312e81; margin-top: 0;">📸 專屬上傳區：Gemini 爆款影像作品</h3>
+            <p style="margin: 0 0 10px; color: #4338ca; line-height: 1.5; font-size: 14px;">在 Gemini 生成完超酷的視覺作品後，歡迎直接上傳到班級照片牆與大家分享！</p>
             <input type="text" id="geminiPromptsStudentName" placeholder="輸入姓名 (系統會自動記憶)">
             <input type="file" id="geminiPromptsPhotoInput" accept="image/*">
-            <button id="geminiPromptsSubmitBtn" class="blue-btn" style="background:#4338ca; font-size: 16px; padding: 12px;" onclick="uploadPhoto(false, 'geminiPromptsStudentName', 'geminiPromptsPhotoInput', 'geminiPromptsSubmitBtn')">確認上傳作品</button>
+            <button id="geminiPromptsSubmitBtn" style="background: linear-gradient(135deg, #312e81, #4338ca); color: white; border: none; cursor: pointer; font-weight: bold; margin: 10px 0; padding: 12px; font-size: 16px; border-radius: 8px; width: 100%;" onclick="uploadPhoto(false, 'geminiPromptsStudentName', 'geminiPromptsPhotoInput', 'geminiPromptsSubmitBtn')">確認上傳作品</button>
         </div>
     </div>
 </div>
@@ -7949,80 +8192,85 @@ ${stickerVideoState.mood.full}
         loadAdminPhotos(); 
     }
 
-    // === 20 款爆款 Gemini 影像指令 控制邏輯 ===
+    // === 20 款爆款 Gemini 影像指令 控制邏輯（每卡專屬精準選項對應版） ===
     const RAW_GEMINI_PROMPTS = {"01": "Exploded technical view of [主體], floating disassembled components neatly aligned in mid-air, mechanical parts diagram, engineering precision, studio lighting, isolated neutral background.", "02": "Architectural blueprint of [主體], cyanotype blue background with crisp white technical line drawings, cross-section elevations, grid overlay, handwritten engineering annotations.", "03": "Clean isometric 3D illustration of [場景/主體], orthographic axonometric projection, vibrant pastel colors, miniature diorama scale, soft ambient shadows, 4k render.", "04": "Low-poly geometric 3D art of [主體], faceted flat polygons, vibrant gradients, stylized minimalist origami aesthetic, clean lighting.", "05": "Detailed graphite pencil sketch of [主體], expressive hand-drawn hatching and cross-hatching linework, rough paper texture, chiaroscuro shading, artist sketchbook page.", "06": "Futuristic 3D neon holographic wireframe of [主體], glowing electric cyan and blue vector polygon grid lines, rotating floating in dark void, sci-fi HUD aesthetic.", "07": "Commercial studio packshot of [商品/主體], pristine cosmetic packaging design, soft diffuse natural studio lighting, delicate soft shadows, clean luxury podium background.", "08": "Overhead top-down 90-degree flat lay of [主題物件集合], knolling style, perfectly aligned and organized at right angles, morning natural light, textured wooden surface.", "09": "Sequential timelapse evolution of [主體] across 4 distinct developmental stages from left to right, continuous panoramic single frame, chronological progression, unified lighting.", "10": "True scale comparison photo, [物件A] placed directly side-by-side with [物件B], same depth of field, ground level perspective, measuring scale context, photorealistic.", "11": "A [主體] completely sculpted out of [質地：e.g. frosted iridescent glass / polished mahogany / liquid chrome], caustics, subsurface scattering, macro texture.", "12": "Intricate pop-up paper craft book illustration, layered cut-out paper folds forming [場景/主體], tactile craft paper texture, soft dimensional shadows, whimsical storybook.", "13": "Cute stop-motion claymation sculpture of [主體], soft plasticine matte texture with subtle artisan fingerprint details, Aardman studio style, warm tactile lighting.", "14": "Glowing luminous neon sign forming the text/shape \"[文字/圖案]\", vivid electric pink and cyan glass gas tubes, mounted on dark distressed damp brick wall with wet reflection.", "15": "Stylized tourist isometric illustrated map of [地點/主題], cute landmarks, dotted navigation route with pin marker, playful vector cartography, clean pastel topography.", "16": "Chibi vinyl collectible designer art toy figurine of [角色/主體], Pop Mart style, glossy and matte plastic finish, smooth oversized head, standing on display base.", "17": "A [外殼物件] cracked open in half, revealing a hidden magical miniature world of [內部細節] inside, glowing inner core, cinematic fantasy concept art, cross-section.", "18": "Step-by-step DIY flat-pack assembly instruction manual diagram for [主體], monochrome minimalist line art, numbered sequential steps 1-2-3, exploded view with arrows.", "19": "Split panoramic comparison of [同一場景], left half under radiant sunny blue sky, transition into right half under heavy snowfall / stormy rain, atmospheric environment lighting.", "20": "Aging progression study of [主體], showing the natural passage of time, weathered patina, subtle peeling paint, rust, moss, and vintage decay, hyper-detailed texture."};
-    const GEMINI_SUBJECT_POOL = [
-        "復古機械相機 (Vintage Mechanical Camera)",
-        "經典復古跑車 (Classic Sports Car)",
-        "可愛活潑柴犬 (Playful Shiba Inu)",
-        "拿鐵拉花咖啡杯 (Latte Coffee Cup)",
-        "奢華機械手錶 (Luxury Mechanical Watch)",
-        "日式陶藝茶壺組 (Japanese Ceramic Teapot)",
-        "戶外露營登山裝備 (Outdoor Camping Gear)",
-        "未來科技無人機 (Futuristic Drone)",
-        "台北九份山城老街 (Jiufen Old Mountain Street)",
-        "魔法精靈小樹屋 (Magical Fairy Treehouse)",
-        "經典美味日式拉麵 (Delicious Japanese Ramen)",
-        "登陸月球的太空人 (Astronaut on the Moon)"
-    ];
+    const GEMINI_CARD_OPTIONS = {"01": ["復古單眼機械相機 (Vintage Mechanical SLR Camera)", "瑞士奢華陀飛輪機械錶 (Luxury Tourbillon Mechanical Watch)", "義式濃縮半自動咖啡機 (Italian Espresso Machine)", "四軸航拍無人機 (Quadcopter Camera Drone)", "經典保時捷水平對臥引擎 (Classic Porsche Flat-Six Engine)", "復古黑膠唱盤機 (Vintage Vinyl Turntable)"], "02": ["台北101摩天大樓 (Taipei 101 Skyscraper)", "日式傳統木造五重塔 (Traditional Japanese Wooden Pagoda)", "歐洲哥德式玫瑰窗大教堂 (Gothic Cathedral with Rose Window)", "19世紀古典蒸汽火車頭 (19th-Century Steam Locomotive)", "大航海時代三桅古典帆船 (Three-Masted Vintage Galleon Ship)", "未來環形太空殖民站 (Futuristic Orbital Space Station)"], "03": ["巴黎街角陽光烘焙咖啡館 (Cozy Parisian Corner Bakery Cafe)", "深夜發光的日式屋台拉麵攤 (Late-Night Japanese Ramen Stall)", "陽光灑落的熱帶植物玻璃溫室 (Sunlit Botanical Glass Greenhouse)", "充滿書香的閣樓黑膠音樂書房 (Cozy Attic Vinyl & Reading Room)", "森林深處的魔法藥水工坊 (Magical Forest Potion Workshop)", "懷舊台灣柑仔店與老街轉角 (Nostalgic Taiwanese Grocery Corner)"], "04": ["仰望星空的雄偉森林麋鹿 (Majestic Forest Stag Deer)", "奔馳於雪地的火紅狐狸 (Running Red Fox in Snow)", "展翅翱翔的翠綠蜂鳥 (Soaring Emerald Hummingbird)", "日落餘暉下的阿爾卑斯雪山島嶼 (Floating Alpine Mountain Island)", "躍出深海的巨型座頭鯨 (Breaching Humpback Whale)", "戴著耳機的未來感柴犬 (Futuristic Shiba Inu with Headphones)"], "05": ["米開朗基羅大衛石膏雕像 (Classical Marble Bust of David)", "窗邊蜷縮熟睡的虎斑小貓 (Sleeping Tabby Kitten by the Window)", "威尼斯運河與嘆息橋古建築 (Venice Canal and Historic Bridge)", "眼神深邃的智慧老船長肖像 (Weathered Old Sea Captain Portrait)", "盛開的古典玫瑰花束與玻璃瓶 (Blooming Vintage Rose Bouquet)", "展翅欲飛的貓頭鷹特寫 (Detailed Barn Owl Taking Flight)"], "06": ["未來概念超跑空氣力學車體 (Futuristic Aerodynamic Supercar)", "仿生機械手臂與精密關節結構 (Cybernetic Bionic Robotic Arm)", "人類大腦神經元全息網絡 (Human Brain Neural Network)", "超音速隱形戰鬥機渦輪結構 (Stealth Fighter Jet Turbine)", "機械暴龍全身骨骼透視圖 (Mecha T-Rex Skeleton Structure)", "地球同步軌道衛星通訊網 (Global Orbital Satellite System)"], "07": ["山茶花精萃奢華水晶香水瓶 (Luxury Crystal Camellia Perfume Bottle)", "翡翠綠絲絨燙金抗老精華液 (Emerald Velvet Gold Serum Dropper Bottle)", "極簡北歐風霧面金屬藍牙耳機 (Minimalist Matte Metallic Wireless Headphones)", "京都宇治頂級抹茶手工禮盒 (Premium Kyoto Uji Matcha Gift Tin)", "手工冷壓初榨橄欖油玻璃瓶 (Artisanal Extra Virgin Olive Oil Bottle)", "瑞士極簡主義玫瑰金腕錶 (Minimalist Rose Gold Wristwatch)"], "08": ["職人手沖咖啡全套器具與咖啡豆 (Barista Pour-Over Coffee Gear & Beans)", "戶外山系露營野炊裝備大全 (Ultralight Backpacking & Camping Gear)", "復古底片攝影師隨身背包全配件 (Vintage Film Photographer Everyday Carry)", "透明水彩畫家寫生畫具與顏料組 (Botanical Watercolor Artist Toolkit)", "日式茶道刷茶碗、茶筅與和菓子組 (Traditional Japanese Matcha Tea Ceremony Set)", "法式甜點師烘焙工具與香草食材 (French Pastry Chef Baking Utensils & Spices)"], "09": ["櫻花樹從春芽、盛開、楓紅到冬雪的四季變化 (A Cherry Blossom Tree across Four Seasons)", "橡實種子發芽長成參天巨木的成長歷程 (An Acorn Sprouting into a Giant Oak Tree)", "毛毛蟲結蛹破繭化為閃亮彩蝶的生命週期 (Caterpillar Metamorphosis into a Butterfly)", "人類建築從原始茅草屋演變為未來摩天生態城 (Architecture from Thatch Hut to Futuristic Eco-City)", "汽車工業從古典馬車演變為未來飛行跑車 (Vehicles from Horse Carriage to Flying Supercar)", "向日葵從清晨含苞、正午盛開到夕陽垂首 (A Sunflower Blooming from Dawn to Dusk)"], "10": ["a tiny teacup Chihuahua puppy (迷你茶杯吉娃娃) | a giant gentle Saint Bernard dog (巨大聖伯納犬)", "a prehistoric Tyrannosaurus Rex (史前霸王龍) | a modern double-decker city bus (現代雙層巴士)", "a tiny emerald hummingbird (迷你翠綠蜂鳥) | a ripe red strawberry (一顆紅透的草莓)", "the Great Pyramid of Giza (埃及吉薩大金字塔) | the modern Eiffel Tower (現代巴黎艾菲爾鐵塔)", "a colossal blue whale in clear water (深海巨型藍鯨) | a human scuba diver (人類潛水員)", "a giant Sequoia tree trunk (巨型紅杉樹幹) | a classic yellow Volkswagen Beetle car (復古金龜車)"], "11": ["leaping ocean dolphin (躍起的海豚) | frosted iridescent aurora glass (磨砂極光彩虹琉璃)", "blooming sacred lotus flower (盛開的蓮花) | translucent imperial white jade with gold veins (溫潤羊脂白玉鑲金絲)", "roaring majestic lion head (咆哮的雄獅) | swirling molten liquid chrome metal (流動液態鏡面金屬鉻)", "vintage sneaker shoe (潮流運動球鞋) | intricate translucent crystal andstained glass (透明水晶與彩繪玻璃)", "classical grand violin (古典小提琴) | glowing bioluminescent ocean coral and pearl (發光深海珊瑚與珍珠母貝)", "cute sitting French Bulldog (可愛法國鬥牛犬) | colorful translucent gummy candy (晶瑩剔透水果軟糖)"], "12": ["阿里山紅色森林小火車穿越櫻花鐵橋 (Alishan Forest Train Crossing Cherry Blossom Bridge)", "雲端上的奇幻漂浮魔法城堡與飛龍 (Magical Floating Sky Castle with a Friendly Dragon)", "熱鬧發光的台灣九份紅燈籠山城夜景 (Glowing Red Lantern Mountain Town of Jiufen)", "繽紛珊瑚礁與海底人魚王國宮殿 (Underwater Mermaid Palace & Coral Reef Kingdom)", "聖誕老人麋鹿雪橇飛越雪夜童話村 (Santa Sleigh Flying Over Snowy Fairytale Village)", "綠野仙蹤翡翠城與黃磚道奇幻森林 (Emerald City and Yellow Brick Road Forest)"], "13": ["戴著高帽正在揉麵團做披薩的圓滾滾小熊廚師 (Chubby Bear Chef tossing pizza dough)", "背著黃色小書包開心地去郊遊的呆萌柴犬 (Happy Shiba Inu wearing a yellow backpack)", "坐在樹樁上喝下午茶聊天的兔子與刺蝟好朋友 (Rabbit and Hedgehog having forest tea party)", "戴著老花眼鏡在工作台修理時鐘的慈祥老爺爺 (Kind Old Watchmaker fixing a cuckoo clock)", "圍著紅色圍巾在雪地裡堆雪人的小企鵝家族 (Penguin family building a snowman)", "騎著復古綠色偉士牌機車送包裹的小浣熊郵差 (Raccoon postman riding a vintage mint scooter)"], "14": ["COFFEE & DREAMS with a steaming coffee cup icon (咖啡與夢想＋熱咖啡杯圖案)", "OPEN 24 HOURS with a retro cocktail glass icon (24小時營業＋復古調酒杯圖案)", "TAIPEI NIGHTS with a glowing ramen bowl icon (台北夜未眠＋發光拉麵碗圖案)", "GOOD VIBES ONLY with a neon palm tree & sun icon (美好時光＋霓虹棕櫚樹圖案)", "LATE NIGHT JAZZ with a glowing saxophone icon (深夜爵士吧＋薩克斯風圖案)", "CHING-SONG HIKING CLUB with mountain peak icon (青松健行隊＋山峰雲朵圖案)"], "15": ["Kyoto Cherry Blossom Historic District & Temples (日本京都古都賞櫻名所散策)", "Jiufen Old Street & Golden Mountain Town in Taiwan (台灣九份山城茶樓與老街導覽)", "Tainan Historic Forts & Street Food Treasure Map (台南府城古蹟與美食尋寶地圖)", "Swiss Alps Fairy-Tale Ski Village & Cable Cars (瑞士阿爾卑斯山童話滑雪度假村)", "Taipei Yangmingshan Hiking Trails & Hot Springs (台北陽明山國家公園健行與溫泉地圖)", "Magical Fantasy Theme Park & Castle Island (奇幻魔法城堡主題樂園導覽圖)"], "16": ["a cute astronaut kitten holding a glowing star (抱著發光星星的太空小貓)", "a trendy streetwear Shiba Inu with headphones and skateboard (戴耳機拿滑板的街頭潮流柴犬)", "a whimsical Boba Tea fairy girl with pearl hair clips (化身珍珠奶茶精靈的圓臉小女孩)", "a chubby penguin in a vintage brass diving suit (穿著復古潛水服的呆萌小企鵝)", "a sleepy forest elf magician holding a crystal ball (拿著水晶球的森林魔法小精靈)", "a happy hiker bear with trekking poles and camera (拿登山杖與相機的登山健行小熊)"], "17": ["antique brass pocket watch (古老黃銅懷錶) | a glowing steampunk clockwork city and floating library (發光齒輪城市與漂浮圖書館)", "mossy forest rock geode (森林青苔水晶洞石) | a sparkling fairy waterfall and glowing mushroom village (閃耀精靈瀑布與發光蘑菇村)", "cracked tropical coconut shell (裂開的椰子殼) | a sunny turquoise lagoon beach with tiny palm bungalows (陽光碧藍潟湖與水上度假屋)", "ancient leather-bound spellbook (古老精裝魔法書) | a floating medieval castle with soaring dragons (雲端漂浮城堡與飛龍王國)", "vintage Edison glass lightbulb (復古愛迪生玻璃燈泡) | a swirling miniature galaxy with Saturn rings and astronauts (微型璀璨銀河系與太空人)", "giant autumn pine cone (巨大秋日松果) | a cozy warm candlelit squirrel family treehouse bakery (溫暖燭光松鼠家族樹屋烘焙坊)"], "18": ["a Nordic wooden multi-level cat tree tower (北歐風木質多層貓跳台)", "a minimalist wooden pour-over coffee stand set (極簡手沖咖啡木架與濾杯座)", "a classic children's wooden rocking horse chair (經典兒童玩具木馬搖椅)", "a desktop mini glass greenhouse for succulent plants (桌面迷你多肉植物木框溫室)", "a vintage two-wheeled wooden garden flower cart (歐式鄉村風木製雙輪花車)", "a modular wooden birdhouse with a tiny porch (帶有小陽台的木製拼裝鳥屋)"], "19": ["Shirakawa-go Gassho-zukuri thatched village in Japan (日本白川鄉合掌村童話木屋群)", "Taipei 101 and Xinyi District city skyline (台北101與信義區城市天際線)", "Mount Fuji with Chureito Pagoda and cherry blossoms (日本富士山與忠靈塔五重塔景觀)", "European Alpine lakeside castle with mountain reflection (歐洲阿爾卑斯山湖畔古堡與倒影)", "Kiyomizu-dera wooden temple and historic slope in Kyoto (京都清水寺舞台與二年坂古街)", "dramatic coastal lighthouse standing on rocky ocean cliff (矗立於海岬懸崖上的紅白燈塔)"], "20": ["a classic turquoise Volkswagen Beetle parked in a forest (停在森林深處的復古藍綠金龜車)", "a vintage red British telephone booth on a cobblestone street (鵝卵石街角的復古紅色電話亭)", "an antique brass diving helmet resting on the ocean floor (沉睡在海底的古老黃銅潛水頭盔)", "an abandoned steampunk locomotive train overgrown with vines (被藤蔓與青苔包圍的廢棄蒸汽火車頭)", "an ornate carousel horse in an old forgotten amusement park (廢棄遊樂園裡的華麗彩繪旋轉木馬)", "a retro mint-green rotary telephone on a dusty wooden desk (老舊木桌上斑駁的復古轉盤電話機)"]};
 
-    function renderPromptWithSubject(rawPrompt, subject) {
+    function renderPromptWithSubject(num, rawPrompt, subject) {
         if (!rawPrompt) return '';
-        // 替換各種佔位符
         let text = rawPrompt;
-        const placeholders = [
-            /\[主體\]/g,
-            /\[場景\/主體\]/g,
-            /\[多個相關物件類別\]/g,
-            /\[主角\/生物\/植物\]/g,
-            /\[大物件\]/g,
-            /\[小物件\]/g,
-            /\[立體故事主題\]/g,
-            /\[角色\/動物\/植物\]/g,
-            /\[文字\/圖標\/形狀\]/g,
-            /\[城市\/景點\/園區\]/g,
-            /\[人物\/動物\/職業角色\]/g,
-            /\[同一個場景\/景觀\]/g
-        ];
-        placeholders.forEach(reg => {
-            text = text.replace(reg, subject);
-        });
+        const val = (subject || '').trim();
+        if (num === '10') {
+            const parts = val.split('|').map(s => s.trim()).filter(Boolean);
+            if (parts.length >= 2) {
+                text = text.replace('[物件A]', parts[0]).replace('[物件B]', parts[1]);
+            } else {
+                text = text.replace('[物件A] placed directly side-by-side with [物件B]', val || 'Object A and Object B');
+            }
+        } else if (num === '11') {
+            const parts = val.split('|').map(s => s.trim()).filter(Boolean);
+            if (parts.length >= 2) {
+                text = text.replace('[主體]', parts[0]);
+                text = text.replace(/\[質地[^\]]*\]/g, parts[1]);
+            } else {
+                text = text.replace('[主體]', val);
+                text = text.replace(/\[質地[^\]]*\]/g, 'frosted iridescent glass');
+            }
+        } else if (num === '17') {
+            const parts = val.split('|').map(s => s.trim()).filter(Boolean);
+            if (parts.length >= 2) {
+                text = text.replace('[外殼物件]', parts[0]).replace('[內部細節]', parts[1]);
+            } else {
+                text = text.replace('[外殼物件]', val).replace('[內部細節]', 'a glowing miniature fantasy world');
+            }
+        } else {
+            text = text.replace(/\[[^\]]+\]/g, val);
+        }
         return text;
+    }
+
+    function onSelectCardOption(num, selectedVal) {
+        const inp = document.getElementById('subject-' + num);
+        if (inp) inp.value = selectedVal;
+        updateSinglePrompt(num);
     }
 
     function updateSinglePrompt(num) {
         const inp = document.getElementById('subject-' + num);
-        const subject = inp && inp.value.trim() ? inp.value.trim() : '復古機械相機 (Vintage Mechanical Camera)';
+        const pool = GEMINI_CARD_OPTIONS[num] || [];
+        const fallback = pool.length ? pool[0] : 'Vintage Camera';
+        const subject = inp && inp.value.trim() ? inp.value.trim() : fallback;
         const raw = RAW_GEMINI_PROMPTS[num] || '';
-        const rendered = renderPromptWithSubject(raw, subject);
+        const rendered = renderPromptWithSubject(num, raw, subject);
         const box = document.getElementById('prompt-box-' + num);
         if (box) box.textContent = rendered;
     }
 
     function randomizeSingleSubject(num) {
+        const sel = document.getElementById('select-' + num);
         const inp = document.getElementById('subject-' + num);
-        if (!inp) return;
-        const rand = GEMINI_SUBJECT_POOL[Math.floor(Math.random() * GEMINI_SUBJECT_POOL.length)];
-        inp.value = rand;
+        const pool = GEMINI_CARD_OPTIONS[num] || [];
+        if (!pool.length) return;
+        let nextIdx = 0;
+        if (sel && sel.options.length > 1) {
+            // 切換到下一個不同的合理選項
+            const cur = sel.selectedIndex;
+            let step = Math.floor(Math.random() * (pool.length - 1)) + 1;
+            nextIdx = (cur + step) % pool.length;
+            sel.selectedIndex = nextIdx;
+        } else {
+            nextIdx = Math.floor(Math.random() * pool.length);
+        }
+        const chosen = pool[nextIdx];
+        if (inp) inp.value = chosen;
         updateSinglePrompt(num);
     }
 
-    function applyGlobalGeminiSubject(subject) {
-        if (!subject) return;
+    function randomizeGlobalGeminiSubject() {
         for (let i = 1; i <= 20; i++) {
             const num = String(i).padStart(2, '0');
-            const inp = document.getElementById('subject-' + num);
-            if (inp) inp.value = subject;
-            updateSinglePrompt(num);
+            randomizeSingleSubject(num);
         }
-    }
-
-    function randomizeGlobalGeminiSubject() {
-        const sel = document.getElementById('global-gemini-subject');
-        if (!sel || !sel.options.length) return;
-        const randIdx = Math.floor(Math.random() * sel.options.length);
-        sel.selectedIndex = randIdx;
-        applyGlobalGeminiSubject(sel.value);
     }
 
     function filterGeminiCategory(cat, btn) {
@@ -8030,16 +8278,14 @@ ${stickerVideoState.mood.full}
             b.style.borderColor = '#cbd5e1';
             b.style.background = '#f8fafc';
             b.style.color = '#475569';
-            b.classList.remove('active');
         });
         if (btn) {
             btn.style.borderColor = '#4338ca';
             btn.style.background = '#4338ca';
-            btn.style.color = '#fff';
-            btn.classList.add('active');
+            btn.style.color = '#ffffff';
         }
         document.querySelectorAll('.gemini-prompt-card').forEach(card => {
-            if (cat === 'all' || card.dataset.cat === cat) {
+            if (cat === 'all' || card.getAttribute('data-cat') === cat) {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
@@ -8067,7 +8313,10 @@ ${stickerVideoState.mood.full}
     let geminiPromptsInitialized = false;
     function initializeGeminiPrompts() {
         if (!geminiPromptsInitialized) {
-            randomizeGlobalGeminiSubject();
+            for (let i = 1; i <= 20; i++) {
+                const num = String(i).padStart(2, '0');
+                updateSinglePrompt(num);
+            }
             geminiPromptsInitialized = true;
         }
         const nameEl = document.getElementById('geminiPromptsStudentName');
