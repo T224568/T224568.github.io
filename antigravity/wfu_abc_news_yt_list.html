@@ -1,0 +1,2558 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WFU APP - 線上看電視 YouTube 直播頻道清單</title>
+    <style>
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --badge-bg: #fee2e2;
+            --badge-text: #991b1b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            padding: 2.5rem 1.5rem;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .header .meta {
+            margin-top: 1rem;
+            display: inline-flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.08);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+        .header a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+        .featured-card {
+            background: var(--card-bg);
+            border: 2px solid #ef4444;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.08);
+        }
+        .featured-thumb {
+            width: 280px;
+            height: 158px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            flex-shrink: 0;
+        }
+        .featured-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .featured-info {
+            flex: 1;
+            min-width: 260px;
+        }
+        .featured-badge {
+            background: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .featured-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .featured-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        .section-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+        .card-thumb {
+            width: 100%;
+            height: 150px;
+            position: relative;
+            background: #1e293b;
+        }
+        .card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-id {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: #f1f5f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            word-break: break-all;
+        }
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-footer .yt-btn {
+            color: #dc2626;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .card-footer .yt-btn:hover {
+            text-decoration: underline;
+        }
+
+        .search-box {
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 1rem;
+            z-index: 10;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .search-box {
+                display: none;
+            }
+            .header {
+                background: #0f172a !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 1.5rem;
+                border-radius: 0;
+            }
+            .featured-card {
+                border-color: #dc2626 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-inside: avoid;
+            }
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+            .card {
+                page-break-inside: avoid;
+                border: 1px solid #cbd5e1;
+            }
+            .card-thumb {
+                height: 110px;
+            }
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📺 線上看電視 YouTube 直播頻道清單</h1>
+            <p>來源頁面：ABC News(直播)線上看 | 全站整合與提取報告</p>
+            <div class="meta">
+                <span>🔗 來源：<a href="https://tv2.wfuapp.com/2020/04/abc-news-live.html" target="_blank">tv2.wfuapp.com</a></span>
+                <span>📊 總計頻道數：157 個</span>
+                <span>📅 抓取時間：2026-11-08</span>
+            </div>
+        </div>
+
+        <div class="featured-card">
+            <div class="featured-thumb">
+                <img src="https://img.youtube.com/vi/KQhNZQ_Uag8/mqdefault.jpg" alt="ABC News Live">
+            </div>
+            <div class="featured-info">
+                <span class="featured-badge">🔴 本頁當前直播主打</span>
+                <h2 class="featured-title">ABC News (直播) 線上看</h2>
+                <p class="featured-desc">美國廣播公司（ABC News）24小時全天候國際即時新聞直播頻道。</p>
+                <div style="display: flex; gap: 0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=KQhNZQ_Uag8" target="_blank" class="btn">
+                        ▶ 前往 YouTube 觀看 (KQhNZQ_Uag8)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" id="filter-input" placeholder="🔍 輸入頻道名稱或 Video ID 即時搜尋...">
+        </div>
+
+        <div class="channel-section" data-group="台灣直播1">
+            <div class="section-title">
+                <span>📁 台灣直播1</span>
+                <span class="section-count">共 10 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="中視新聞(直播)" data-id="TCnaIE_SAtM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/TCnaIE_SAtM/mqdefault.jpg" alt="中視新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">中視新聞(直播)</div>
+                        <div class="card-id">ID: TCnaIE_SAtM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=TCnaIE_SAtM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="華視新聞(直播)" data-id="wM0g8EoUZ_E">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/wM0g8EoUZ_E/mqdefault.jpg" alt="華視新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">華視新聞(直播)</div>
+                        <div class="card-id">ID: wM0g8EoUZ_E</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=wM0g8EoUZ_E" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森新聞(直播)" data-id="V1p33hqPrUk">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/V1p33hqPrUk/mqdefault.jpg" alt="東森新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森新聞(直播)</div>
+                        <div class="card-id">ID: V1p33hqPrUk</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=V1p33hqPrUk" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="鏡新聞(直播)" data-id="5n0y6b0Q25o">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/5n0y6b0Q25o/mqdefault.jpg" alt="鏡新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">鏡新聞(直播)</div>
+                        <div class="card-id">ID: 5n0y6b0Q25o</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=5n0y6b0Q25o" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="中天新聞(直播)" data-id="vr3XyVCR4T0">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/vr3XyVCR4T0/mqdefault.jpg" alt="中天新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">中天新聞(直播)</div>
+                        <div class="card-id">ID: vr3XyVCR4T0</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=vr3XyVCR4T0" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="民視新聞(直播)" data-id="ylYJSBUgaMA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/ylYJSBUgaMA/mqdefault.jpg" alt="民視新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">民視新聞(直播)</div>
+                        <div class="card-id">ID: ylYJSBUgaMA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=ylYJSBUgaMA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三立新聞(直播)" data-id="yeYC0mbSIOo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/yeYC0mbSIOo/mqdefault.jpg" alt="三立新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三立新聞(直播)</div>
+                        <div class="card-id">ID: yeYC0mbSIOo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=yeYC0mbSIOo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="TVBS 55(直播)" data-id="m_dhMSvUCIc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/m_dhMSvUCIc/mqdefault.jpg" alt="TVBS 55(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">TVBS 55(直播)</div>
+                        <div class="card-id">ID: m_dhMSvUCIc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=m_dhMSvUCIc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="寰宇新聞(直播)" data-id="6IquAgfvYmc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/6IquAgfvYmc/mqdefault.jpg" alt="寰宇新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">寰宇新聞(直播)</div>
+                        <div class="card-id">ID: 6IquAgfvYmc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=6IquAgfvYmc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="NOWnews新聞(AI中文直播)" data-id="NgqAue7oOtw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/NgqAue7oOtw/mqdefault.jpg" alt="NOWnews新聞(AI中文直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">NOWnews新聞(AI中文直播)</div>
+                        <div class="card-id">ID: NgqAue7oOtw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=NgqAue7oOtw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="台灣直播2">
+            <div class="section-title">
+                <span>📁 台灣直播2</span>
+                <span class="section-count">共 11 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="公視新聞(直播)" data-id="hg4nYb3jE9A">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/hg4nYb3jE9A/mqdefault.jpg" alt="公視新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">公視新聞(直播)</div>
+                        <div class="card-id">ID: hg4nYb3jE9A</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=hg4nYb3jE9A" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非凡新聞(直播)" data-id="wAUx3pywTt8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/wAUx3pywTt8/mqdefault.jpg" alt="非凡新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非凡新聞(直播)</div>
+                        <div class="card-id">ID: wAUx3pywTt8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=wAUx3pywTt8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="寰宇新聞台灣台(直播)" data-id="w87VGpgd90U">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/w87VGpgd90U/mqdefault.jpg" alt="寰宇新聞台灣台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">寰宇新聞台灣台(直播)</div>
+                        <div class="card-id">ID: w87VGpgd90U</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=w87VGpgd90U" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="TVBS 56(直播)" data-id="eEvMO8zGIeI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/eEvMO8zGIeI/mqdefault.jpg" alt="TVBS 56(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">TVBS 56(直播)</div>
+                        <div class="card-id">ID: eEvMO8zGIeI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=eEvMO8zGIeI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三立新聞2台(直播)" data-id="pF507BLtbqU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/pF507BLtbqU/mqdefault.jpg" alt="三立新聞2台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三立新聞2台(直播)</div>
+                        <div class="card-id">ID: pF507BLtbqU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=pF507BLtbqU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="NOWnews氣象新聞(AI直播)" data-id="jt4miJV9Rac">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/jt4miJV9Rac/mqdefault.jpg" alt="NOWnews氣象新聞(AI直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">NOWnews氣象新聞(AI直播)</div>
+                        <div class="card-id">ID: jt4miJV9Rac</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=jt4miJV9Rac" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="台視新聞(YT直播)" data-id="9iRAqBMakXY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/9iRAqBMakXY/mqdefault.jpg" alt="台視新聞(YT直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">台視新聞(YT直播)</div>
+                        <div class="card-id">ID: 9iRAqBMakXY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=9iRAqBMakXY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三立新聞(VPN)" data-id="hGJkDZDchYI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/hGJkDZDchYI/mqdefault.jpg" alt="三立新聞(VPN)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三立新聞(VPN)</div>
+                        <div class="card-id">ID: hGJkDZDchYI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=hGJkDZDchYI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森新聞(VPN)" data-id="E0zhe2gkXBs">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/E0zhe2gkXBs/mqdefault.jpg" alt="東森新聞(VPN)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森新聞(VPN)</div>
+                        <div class="card-id">ID: E0zhe2gkXBs</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=E0zhe2gkXBs" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="TVBS 55(VPN)" data-id="2mCSYvcfhtc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/2mCSYvcfhtc/mqdefault.jpg" alt="TVBS 55(VPN)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">TVBS 55(VPN)</div>
+                        <div class="card-id">ID: 2mCSYvcfhtc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=2mCSYvcfhtc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="TVBS 56(VPN)" data-id="o_-hSMgpAzs">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/o_-hSMgpAzs/mqdefault.jpg" alt="TVBS 56(VPN)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">TVBS 56(VPN)</div>
+                        <div class="card-id">ID: o_-hSMgpAzs</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=o_-hSMgpAzs" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="歐美新聞直播">
+            <div class="section-title">
+                <span>📁 歐美新聞直播</span>
+                <span class="section-count">共 7 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="ABC News(直播)" data-id="KQhNZQ_Uag8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/KQhNZQ_Uag8/mqdefault.jpg" alt="ABC News(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">ABC News(直播)</div>
+                        <div class="card-id">ID: KQhNZQ_Uag8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=KQhNZQ_Uag8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Fox News(直播)" data-id="C96oohpWBGw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/C96oohpWBGw/mqdefault.jpg" alt="Fox News(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Fox News(直播)</div>
+                        <div class="card-id">ID: C96oohpWBGw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=C96oohpWBGw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Sky News(直播)" data-id="umLWFz4izTM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/umLWFz4izTM/mqdefault.jpg" alt="Sky News(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Sky News(直播)</div>
+                        <div class="card-id">ID: umLWFz4izTM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=umLWFz4izTM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Bloomberg(直播)" data-id="QB5BNdBFujE">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/QB5BNdBFujE/mqdefault.jpg" alt="Bloomberg(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Bloomberg(直播)</div>
+                        <div class="card-id">ID: QB5BNdBFujE</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=QB5BNdBFujE" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="euronews(直播)" data-id="pykpO5kQJ98">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/pykpO5kQJ98/mqdefault.jpg" alt="euronews(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">euronews(直播)</div>
+                        <div class="card-id">ID: pykpO5kQJ98</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=pykpO5kQJ98" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="德國之聲(直播)" data-id="LuKwFajn37U">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/LuKwFajn37U/mqdefault.jpg" alt="德國之聲(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">德國之聲(直播)</div>
+                        <div class="card-id">ID: LuKwFajn37U</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=LuKwFajn37U" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="法蘭西 24(直播)" data-id="HvZt-nh9sGg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/HvZt-nh9sGg/mqdefault.jpg" alt="法蘭西 24(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">法蘭西 24(直播)</div>
+                        <div class="card-id">ID: HvZt-nh9sGg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=HvZt-nh9sGg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="亞洲新聞直播">
+            <div class="section-title">
+                <span>📁 亞洲新聞直播</span>
+                <span class="section-count">共 7 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="半島電視台(直播)" data-id="gCNeDWCI0vo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/gCNeDWCI0vo/mqdefault.jpg" alt="半島電視台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">半島電視台(直播)</div>
+                        <div class="card-id">ID: gCNeDWCI0vo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=gCNeDWCI0vo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="新加坡 CNA(直播)" data-id="-PWMxjBgr0k">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/-PWMxjBgr0k/mqdefault.jpg" alt="新加坡 CNA(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">新加坡 CNA(直播)</div>
+                        <div class="card-id">ID: -PWMxjBgr0k</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=-PWMxjBgr0k" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="朝日電視網(直播)" data-id="3Z7ZOgCT4SU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/3Z7ZOgCT4SU/mqdefault.jpg" alt="朝日電視網(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">朝日電視網(直播)</div>
+                        <div class="card-id">ID: 3Z7ZOgCT4SU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=3Z7ZOgCT4SU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="日本 TBS NEWS(直播)" data-id="Anr15FA9OCI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Anr15FA9OCI/mqdefault.jpg" alt="日本 TBS NEWS(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">日本 TBS NEWS(直播)</div>
+                        <div class="card-id">ID: Anr15FA9OCI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Anr15FA9OCI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="日本 NTV NEWS(直播)" data-id="t9kwjZBLI-A">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/t9kwjZBLI-A/mqdefault.jpg" alt="日本 NTV NEWS(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">日本 NTV NEWS(直播)</div>
+                        <div class="card-id">ID: t9kwjZBLI-A</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=t9kwjZBLI-A" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="NHK WORLD JAPAN(直播)" data-id="IimtbuqYIE8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/IimtbuqYIE8/mqdefault.jpg" alt="NHK WORLD JAPAN(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">NHK WORLD JAPAN(直播)</div>
+                        <div class="card-id">ID: IimtbuqYIE8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=IimtbuqYIE8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="阿里郞電視台(直播)" data-id="hvVlyZ5GiE8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/hvVlyZ5GiE8/mqdefault.jpg" alt="阿里郞電視台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">阿里郞電視台(直播)</div>
+                        <div class="card-id">ID: hvVlyZ5GiE8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=hvVlyZ5GiE8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="政論財經直播">
+            <div class="section-title">
+                <span>📁 政論財經直播</span>
+                <span class="section-count">共 11 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="東森財經新聞(直播)" data-id="1I2iq41Akmo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/1I2iq41Akmo/mqdefault.jpg" alt="東森財經新聞(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森財經新聞(直播)</div>
+                        <div class="card-id">ID: 1I2iq41Akmo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=1I2iq41Akmo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森財經股市(直播)" data-id="AEBeWMM1atA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/AEBeWMM1atA/mqdefault.jpg" alt="東森財經股市(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森財經股市(直播)</div>
+                        <div class="card-id">ID: AEBeWMM1atA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=AEBeWMM1atA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="TVBS 財經台(直播)" data-id="0an9taQ7OYM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/0an9taQ7OYM/mqdefault.jpg" alt="TVBS 財經台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">TVBS 財經台(直播)</div>
+                        <div class="card-id">ID: 0an9taQ7OYM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=0an9taQ7OYM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三立 iNEWS(直播)" data-id="pF507BLtbqU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/pF507BLtbqU/mqdefault.jpg" alt="三立 iNEWS(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三立 iNEWS(直播)</div>
+                        <div class="card-id">ID: pF507BLtbqU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=pF507BLtbqU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="民視政論財經頻道(直播)" data-id="xvbDsoLcMIc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xvbDsoLcMIc/mqdefault.jpg" alt="民視政論財經頻道(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">民視政論財經頻道(直播)</div>
+                        <div class="card-id">ID: xvbDsoLcMIc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xvbDsoLcMIc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="中天政論頻道(直播)" data-id="-Bk_tdwVDPQ">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/-Bk_tdwVDPQ/mqdefault.jpg" alt="中天政論頻道(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">中天政論頻道(直播)</div>
+                        <div class="card-id">ID: -Bk_tdwVDPQ</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=-Bk_tdwVDPQ" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="寰宇財經台(直播)" data-id="yAUQQ0DhPxI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/yAUQQ0DhPxI/mqdefault.jpg" alt="寰宇財經台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">寰宇財經台(直播)</div>
+                        <div class="card-id">ID: yAUQQ0DhPxI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=yAUQQ0DhPxI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非凡商業台(直播)" data-id="eA6Aczd3FZM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/eA6Aczd3FZM/mqdefault.jpg" alt="非凡商業台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非凡商業台(直播)</div>
+                        <div class="card-id">ID: eA6Aczd3FZM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=eA6Aczd3FZM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非凡商業台2(直播)" data-id="xLqt2p6Dowo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xLqt2p6Dowo/mqdefault.jpg" alt="非凡商業台2(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非凡商業台2(直播)</div>
+                        <div class="card-id">ID: xLqt2p6Dowo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xLqt2p6Dowo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="全球財經台(直播)" data-id="ESzfNE8trIY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/ESzfNE8trIY/mqdefault.jpg" alt="全球財經台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">全球財經台(直播)</div>
+                        <div class="card-id">ID: ESzfNE8trIY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=ESzfNE8trIY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="運通財經台(直播)" data-id="xYMPHCjyD-c">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xYMPHCjyD-c/mqdefault.jpg" alt="運通財經台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">運通財經台(直播)</div>
+                        <div class="card-id">ID: xYMPHCjyD-c</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xYMPHCjyD-c" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="綜藝直播">
+            <div class="section-title">
+                <span>📁 綜藝直播</span>
+                <span class="section-count">共 11 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="飢餓遊戲(直播)" data-id="HOlP1Vff4Gg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/HOlP1Vff4Gg/mqdefault.jpg" alt="飢餓遊戲(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">飢餓遊戲(直播)</div>
+                        <div class="card-id">ID: HOlP1Vff4Gg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=HOlP1Vff4Gg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="天才衝衝衝(直播)" data-id="0ePhPlTJbGo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/0ePhPlTJbGo/mqdefault.jpg" alt="天才衝衝衝(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">天才衝衝衝(直播)</div>
+                        <div class="card-id">ID: 0ePhPlTJbGo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=0ePhPlTJbGo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="綜藝大集合(直播)" data-id="xQwzLc7hWOI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xQwzLc7hWOI/mqdefault.jpg" alt="綜藝大集合(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">綜藝大集合(直播)</div>
+                        <div class="card-id">ID: xQwzLc7hWOI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xQwzLc7hWOI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="超級冰冰 Show(直播)" data-id="H7HIw9E6AHI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/H7HIw9E6AHI/mqdefault.jpg" alt="超級冰冰 Show(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">超級冰冰 Show(直播)</div>
+                        <div class="card-id">ID: H7HIw9E6AHI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=H7HIw9E6AHI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="綜藝一級棒(直播)" data-id="9gx5EIyHmsw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/9gx5EIyHmsw/mqdefault.jpg" alt="綜藝一級棒(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">綜藝一級棒(直播)</div>
+                        <div class="card-id">ID: 9gx5EIyHmsw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=9gx5EIyHmsw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="豬哥會社(直播)" data-id="v8MUGB4vst8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/v8MUGB4vst8/mqdefault.jpg" alt="豬哥會社(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">豬哥會社(直播)</div>
+                        <div class="card-id">ID: v8MUGB4vst8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=v8MUGB4vst8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="現代嘉慶君(直播)" data-id="OhA_G0s9pqw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/OhA_G0s9pqw/mqdefault.jpg" alt="現代嘉慶君(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">現代嘉慶君(直播)</div>
+                        <div class="card-id">ID: OhA_G0s9pqw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=OhA_G0s9pqw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="萬秀豬王(直播)" data-id="ADDSmXoPDY8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/ADDSmXoPDY8/mqdefault.jpg" alt="萬秀豬王(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">萬秀豬王(直播)</div>
+                        <div class="card-id">ID: ADDSmXoPDY8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=ADDSmXoPDY8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="豆豆先生(直播)" data-id="S_71wzZMf0M">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/S_71wzZMf0M/mqdefault.jpg" alt="豆豆先生(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">豆豆先生(直播)</div>
+                        <div class="card-id">ID: S_71wzZMf0M</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=S_71wzZMf0M" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="The K-POP(直播)" data-id="bI2nrOdgwZ8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/bI2nrOdgwZ8/mqdefault.jpg" alt="The K-POP(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">The K-POP(直播)</div>
+                        <div class="card-id">ID: bI2nrOdgwZ8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=bI2nrOdgwZ8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="K-POP IDOL Channel(直播)" data-id="rIXYTUnP9Q4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/rIXYTUnP9Q4/mqdefault.jpg" alt="K-POP IDOL Channel(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">K-POP IDOL Channel(直播)</div>
+                        <div class="card-id">ID: rIXYTUnP9Q4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=rIXYTUnP9Q4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="國語戲劇直播">
+            <div class="section-title">
+                <span>📁 國語戲劇直播</span>
+                <span class="section-count">共 9 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="惡作劇之吻(直播)" data-id="1ErR9tMU9b8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/1ErR9tMU9b8/mqdefault.jpg" alt="惡作劇之吻(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">惡作劇之吻(直播)</div>
+                        <div class="card-id">ID: 1ErR9tMU9b8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=1ErR9tMU9b8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="女兵日記(直播)" data-id="OZsZJRRkr8g">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/OZsZJRRkr8g/mqdefault.jpg" alt="女兵日記(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">女兵日記(直播)</div>
+                        <div class="card-id">ID: OZsZJRRkr8g</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=OZsZJRRkr8g" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="機智校園生活(直播)" data-id="RdXlNJ2Y8Q8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/RdXlNJ2Y8Q8/mqdefault.jpg" alt="機智校園生活(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">機智校園生活(直播)</div>
+                        <div class="card-id">ID: RdXlNJ2Y8Q8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=RdXlNJ2Y8Q8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="終極系列(直播)" data-id="HKDuzWlyGts">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/HKDuzWlyGts/mqdefault.jpg" alt="終極系列(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">終極系列(直播)</div>
+                        <div class="card-id">ID: HKDuzWlyGts</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=HKDuzWlyGts" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="新兵日記 特戰英雄HD(直播)" data-id="65bIk97v35Q">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/65bIk97v35Q/mqdefault.jpg" alt="新兵日記 特戰英雄HD(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">新兵日記 特戰英雄HD(直播)</div>
+                        <div class="card-id">ID: 65bIk97v35Q</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=65bIk97v35Q" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="我的老師叫小賀(直播)" data-id="FOrcD6iEUso">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/FOrcD6iEUso/mqdefault.jpg" alt="我的老師叫小賀(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">我的老師叫小賀(直播)</div>
+                        <div class="card-id">ID: FOrcD6iEUso</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=FOrcD6iEUso" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="廉政英雄(直播)" data-id="TXKWbIPgD_8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/TXKWbIPgD_8/mqdefault.jpg" alt="廉政英雄(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">廉政英雄(直播)</div>
+                        <div class="card-id">ID: TXKWbIPgD_8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=TXKWbIPgD_8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="台灣靈異事件(直播)" data-id="6ZowCmLBcMY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/6ZowCmLBcMY/mqdefault.jpg" alt="台灣靈異事件(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">台灣靈異事件(直播)</div>
+                        <div class="card-id">ID: 6ZowCmLBcMY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=6ZowCmLBcMY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="包青天(直播)" data-id="YoHbYG8OVHc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/YoHbYG8OVHc/mqdefault.jpg" alt="包青天(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">包青天(直播)</div>
+                        <div class="card-id">ID: YoHbYG8OVHc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=YoHbYG8OVHc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="台語戲劇直播">
+            <div class="section-title">
+                <span>📁 台語戲劇直播</span>
+                <span class="section-count">共 6 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="台灣龍捲風(直播)" data-id="QMWZl6-1Qx8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/QMWZl6-1Qx8/mqdefault.jpg" alt="台灣龍捲風(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">台灣龍捲風(直播)</div>
+                        <div class="card-id">ID: QMWZl6-1Qx8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=QMWZl6-1Qx8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="天之驕女(直播)" data-id="a6iZ0DiM9pQ">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/a6iZ0DiM9pQ/mqdefault.jpg" alt="天之驕女(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">天之驕女(直播)</div>
+                        <div class="card-id">ID: a6iZ0DiM9pQ</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=a6iZ0DiM9pQ" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="親戚不計較(直播)" data-id="GjXBXz5dl6E">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/GjXBXz5dl6E/mqdefault.jpg" alt="親戚不計較(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">親戚不計較(直播)</div>
+                        <div class="card-id">ID: GjXBXz5dl6E</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=GjXBXz5dl6E" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="台灣奇案(直播)" data-id="NyrdWXddfR4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/NyrdWXddfR4/mqdefault.jpg" alt="台灣奇案(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">台灣奇案(直播)</div>
+                        <div class="card-id">ID: NyrdWXddfR4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=NyrdWXddfR4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="藍色水玲瓏(直播)" data-id="K2qsju6byIg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/K2qsju6byIg/mqdefault.jpg" alt="藍色水玲瓏(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">藍色水玲瓏(直播)</div>
+                        <div class="card-id">ID: K2qsju6byIg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=K2qsju6byIg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="新玫瑰瞳鈴眼(YT直播)" data-id="qVm9WTxK3Xc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/qVm9WTxK3Xc/mqdefault.jpg" alt="新玫瑰瞳鈴眼(YT直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">新玫瑰瞳鈴眼(YT直播)</div>
+                        <div class="card-id">ID: qVm9WTxK3Xc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=qVm9WTxK3Xc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="直播">
+            <div class="section-title">
+                <span>📁 直播</span>
+                <span class="section-count">共 40 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="瑯琊榜(直播)" data-id="18ypxNBbMYY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/18ypxNBbMYY/mqdefault.jpg" alt="瑯琊榜(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">瑯琊榜(直播)</div>
+                        <div class="card-id">ID: 18ypxNBbMYY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=18ypxNBbMYY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="大軍師司馬懿之軍師聯盟(直播)" data-id="gLBwyVXe_Xo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/gLBwyVXe_Xo/mqdefault.jpg" alt="大軍師司馬懿之軍師聯盟(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">大軍師司馬懿之軍師聯盟(直播)</div>
+                        <div class="card-id">ID: gLBwyVXe_Xo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=gLBwyVXe_Xo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="知否知否應是綠肥紅瘦(直播)" data-id="dgnnYeyqbRU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/dgnnYeyqbRU/mqdefault.jpg" alt="知否知否應是綠肥紅瘦(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">知否知否應是綠肥紅瘦(直播)</div>
+                        <div class="card-id">ID: dgnnYeyqbRU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=dgnnYeyqbRU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="不眠日(直播)" data-id="IKRBP19ViB8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/IKRBP19ViB8/mqdefault.jpg" alt="不眠日(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">不眠日(直播)</div>
+                        <div class="card-id">ID: IKRBP19ViB8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=IKRBP19ViB8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="倚天屠龍記2019(直播)" data-id="gfZwQjskr4M">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/gfZwQjskr4M/mqdefault.jpg" alt="倚天屠龍記2019(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">倚天屠龍記2019(直播)</div>
+                        <div class="card-id">ID: gfZwQjskr4M</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=gfZwQjskr4M" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三國2010(直播)" data-id="h3A3Yo2GGiU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/h3A3Yo2GGiU/mqdefault.jpg" alt="三國2010(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三國2010(直播)</div>
+                        <div class="card-id">ID: h3A3Yo2GGiU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=h3A3Yo2GGiU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三國演義1994(直播)" data-id="t4IqvJ9eMI0">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/t4IqvJ9eMI0/mqdefault.jpg" alt="三國演義1994(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三國演義1994(直播)</div>
+                        <div class="card-id">ID: t4IqvJ9eMI0</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=t4IqvJ9eMI0" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="三生三世十里桃花(直播)" data-id="qZ1sr-gvc54">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/qZ1sr-gvc54/mqdefault.jpg" alt="三生三世十里桃花(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">三生三世十里桃花(直播)</div>
+                        <div class="card-id">ID: qZ1sr-gvc54</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=qZ1sr-gvc54" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="九重紫(直播)" data-id="ESCvRS78MBk">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/ESCvRS78MBk/mqdefault.jpg" alt="九重紫(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">九重紫(直播)</div>
+                        <div class="card-id">ID: ESCvRS78MBk</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=ESCvRS78MBk" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="康熙王朝(直播)" data-id="clQL5keqAEQ">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/clQL5keqAEQ/mqdefault.jpg" alt="康熙王朝(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">康熙王朝(直播)</div>
+                        <div class="card-id">ID: clQL5keqAEQ</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=clQL5keqAEQ" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="雍正王朝(直播)" data-id="VaTLqXjEz0k">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/VaTLqXjEz0k/mqdefault.jpg" alt="雍正王朝(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">雍正王朝(直播)</div>
+                        <div class="card-id">ID: VaTLqXjEz0k</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=VaTLqXjEz0k" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="神鵰俠侶2014(直播)" data-id="OyTd6lXP32Y">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/OyTd6lXP32Y/mqdefault.jpg" alt="神鵰俠侶2014(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">神鵰俠侶2014(直播)</div>
+                        <div class="card-id">ID: OyTd6lXP32Y</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=OyTd6lXP32Y" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="去有風的地方(直播)" data-id="eHe-Sf016R0">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/eHe-Sf016R0/mqdefault.jpg" alt="去有風的地方(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">去有風的地方(直播)</div>
+                        <div class="card-id">ID: eHe-Sf016R0</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=eHe-Sf016R0" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="光芒(直播)" data-id="Wsz2YuQ422g">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Wsz2YuQ422g/mqdefault.jpg" alt="光芒(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">光芒(直播)</div>
+                        <div class="card-id">ID: Wsz2YuQ422g</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Wsz2YuQ422g" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非凡大探索 台北美食(直播)" data-id="xyCB4q1wM_o">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xyCB4q1wM_o/mqdefault.jpg" alt="非凡大探索 台北美食(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非凡大探索 台北美食(直播)</div>
+                        <div class="card-id">ID: xyCB4q1wM_o</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xyCB4q1wM_o" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非凡大探索 台中美食(直播)" data-id="Xz5nXSzKQLI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Xz5nXSzKQLI/mqdefault.jpg" alt="非凡大探索 台中美食(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非凡大探索 台中美食(直播)</div>
+                        <div class="card-id">ID: Xz5nXSzKQLI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Xz5nXSzKQLI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非凡大探索 高雄美食(直播)" data-id="yInGNjLYFjI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/yInGNjLYFjI/mqdefault.jpg" alt="非凡大探索 高雄美食(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非凡大探索 高雄美食(直播)</div>
+                        <div class="card-id">ID: yInGNjLYFjI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=yInGNjLYFjI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="57怪奇物語(直播)" data-id="5sFglcMEm7I">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/5sFglcMEm7I/mqdefault.jpg" alt="57怪奇物語(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">57怪奇物語(直播)</div>
+                        <div class="card-id">ID: 5sFglcMEm7I</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=5sFglcMEm7I" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="台灣大搜索(直播)" data-id="Q0jusAya5s4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Q0jusAya5s4/mqdefault.jpg" alt="台灣大搜索(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">台灣大搜索(直播)</div>
+                        <div class="card-id">ID: Q0jusAya5s4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Q0jusAya5s4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="熊貓頻道(直播)" data-id="SUXPnIEpbn4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/SUXPnIEpbn4/mqdefault.jpg" alt="熊貓頻道(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">熊貓頻道(直播)</div>
+                        <div class="card-id">ID: SUXPnIEpbn4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=SUXPnIEpbn4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="非洲動物探索(直播)" data-id="DsNtwGJXTTs">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/DsNtwGJXTTs/mqdefault.jpg" alt="非洲動物探索(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">非洲動物探索(直播)</div>
+                        <div class="card-id">ID: DsNtwGJXTTs</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=DsNtwGJXTTs" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="海洋探索(直播)" data-id="jzx_n25g3kA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/jzx_n25g3kA/mqdefault.jpg" alt="海洋探索(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">海洋探索(直播)</div>
+                        <div class="card-id">ID: jzx_n25g3kA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=jzx_n25g3kA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="自然生態探索(直播)" data-id="Fz6sl9YJZE0">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Fz6sl9YJZE0/mqdefault.jpg" alt="自然生態探索(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">自然生態探索(直播)</div>
+                        <div class="card-id">ID: Fz6sl9YJZE0</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Fz6sl9YJZE0" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="YOYO TV(直播)" data-id="BjY_jXI15ks">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/BjY_jXI15ks/mqdefault.jpg" alt="YOYO TV(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">YOYO TV(直播)</div>
+                        <div class="card-id">ID: BjY_jXI15ks</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=BjY_jXI15ks" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="MOMO 親子台(直播)" data-id="cnxRAfxwWqo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/cnxRAfxwWqo/mqdefault.jpg" alt="MOMO 親子台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">MOMO 親子台(直播)</div>
+                        <div class="card-id">ID: cnxRAfxwWqo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=cnxRAfxwWqo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="哆啦A夢(直播)" data-id="xTYgMy0ZMuo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xTYgMy0ZMuo/mqdefault.jpg" alt="哆啦A夢(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">哆啦A夢(直播)</div>
+                        <div class="card-id">ID: xTYgMy0ZMuo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xTYgMy0ZMuo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="我們這一家(直播)" data-id="g4pN3pK1XvY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/g4pN3pK1XvY/mqdefault.jpg" alt="我們這一家(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">我們這一家(直播)</div>
+                        <div class="card-id">ID: g4pN3pK1XvY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=g4pN3pK1XvY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="蠟筆小新(直播)" data-id="TE5Msg_hAgY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/TE5Msg_hAgY/mqdefault.jpg" alt="蠟筆小新(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">蠟筆小新(直播)</div>
+                        <div class="card-id">ID: TE5Msg_hAgY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=TE5Msg_hAgY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="中華一番(直播)" data-id="M9NCwwyUPpQ">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/M9NCwwyUPpQ/mqdefault.jpg" alt="中華一番(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">中華一番(直播)</div>
+                        <div class="card-id">ID: M9NCwwyUPpQ</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=M9NCwwyUPpQ" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="小豬佩奇(直播)" data-id="0M2RRNEgHX8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/0M2RRNEgHX8/mqdefault.jpg" alt="小豬佩奇(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">小豬佩奇(直播)</div>
+                        <div class="card-id">ID: 0M2RRNEgHX8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=0M2RRNEgHX8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="死亡筆記本(直播)" data-id="0vG51-o6Cgw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/0vG51-o6Cgw/mqdefault.jpg" alt="死亡筆記本(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">死亡筆記本(直播)</div>
+                        <div class="card-id">ID: 0vG51-o6Cgw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=0vG51-o6Cgw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="真珠美人魚(直播)" data-id="zSaJdKNjMdw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/zSaJdKNjMdw/mqdefault.jpg" alt="真珠美人魚(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">真珠美人魚(直播)</div>
+                        <div class="card-id">ID: zSaJdKNjMdw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=zSaJdKNjMdw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="寶貝多米(直播)" data-id="_VTZ6SKmkD0">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/_VTZ6SKmkD0/mqdefault.jpg" alt="寶貝多米(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">寶貝多米(直播)</div>
+                        <div class="card-id">ID: _VTZ6SKmkD0</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=_VTZ6SKmkD0" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森綜合2台(直播)" data-id="cimbpAZUjzw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/cimbpAZUjzw/mqdefault.jpg" alt="東森綜合2台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森綜合2台(直播)</div>
+                        <div class="card-id">ID: cimbpAZUjzw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=cimbpAZUjzw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="公視(直播)" data-id="C6gYqSHLRw4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/C6gYqSHLRw4/mqdefault.jpg" alt="公視(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">公視(直播)</div>
+                        <div class="card-id">ID: C6gYqSHLRw4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=C6gYqSHLRw4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="公視台語台(直播)" data-id="6KlRR_DGhmI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/6KlRR_DGhmI/mqdefault.jpg" alt="公視台語台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">公視台語台(直播)</div>
+                        <div class="card-id">ID: 6KlRR_DGhmI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=6KlRR_DGhmI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="台視主頻(YT直播)" data-id="uDqQo8a7Xmk">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/uDqQo8a7Xmk/mqdefault.jpg" alt="台視主頻(YT直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">台視主頻(YT直播)</div>
+                        <div class="card-id">ID: uDqQo8a7Xmk</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=uDqQo8a7Xmk" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="新唐人亞太台(直播)" data-id="Bhp_V7H5QoY">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Bhp_V7H5QoY/mqdefault.jpg" alt="新唐人亞太台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">新唐人亞太台(直播)</div>
+                        <div class="card-id">ID: Bhp_V7H5QoY</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Bhp_V7H5QoY" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="CCTV 央視(直播)" data-id="cAqktxCy0ls">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/cAqktxCy0ls/mqdefault.jpg" alt="CCTV 央視(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">CCTV 央視(直播)</div>
+                        <div class="card-id">ID: cAqktxCy0ls</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=cAqktxCy0ls" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="鳳凰衛視(直播)" data-id="Ry--eMIjYLQ">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Ry--eMIjYLQ/mqdefault.jpg" alt="鳳凰衛視(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">鳳凰衛視(直播)</div>
+                        <div class="card-id">ID: Ry--eMIjYLQ</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Ry--eMIjYLQ" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="購物台">
+            <div class="section-title">
+                <span>📁 購物台</span>
+                <span class="section-count">共 8 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="momo購物一台(直播)" data-id="didkukfD9QA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/didkukfD9QA/mqdefault.jpg" alt="momo購物一台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">momo購物一台(直播)</div>
+                        <div class="card-id">ID: didkukfD9QA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=didkukfD9QA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="momo購物二台(直播)" data-id="xbNWkUyxQGM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/xbNWkUyxQGM/mqdefault.jpg" alt="momo購物二台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">momo購物二台(直播)</div>
+                        <div class="card-id">ID: xbNWkUyxQGM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=xbNWkUyxQGM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森購物CH34(直播)" data-id="J3t9N0vciPI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/J3t9N0vciPI/mqdefault.jpg" alt="東森購物CH34(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森購物CH34(直播)</div>
+                        <div class="card-id">ID: J3t9N0vciPI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=J3t9N0vciPI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森購物CH46(直播)" data-id="tUvQg2HgIbs">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/tUvQg2HgIbs/mqdefault.jpg" alt="東森購物CH46(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森購物CH46(直播)</div>
+                        <div class="card-id">ID: tUvQg2HgIbs</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=tUvQg2HgIbs" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森購物CH47(直播)" data-id="wRdZ2t8Vd6k">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/wRdZ2t8Vd6k/mqdefault.jpg" alt="東森購物CH47(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森購物CH47(直播)</div>
+                        <div class="card-id">ID: wRdZ2t8Vd6k</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=wRdZ2t8Vd6k" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="東森購物CH60(直播)" data-id="2IGZjBPTPT8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/2IGZjBPTPT8/mqdefault.jpg" alt="東森購物CH60(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">東森購物CH60(直播)</div>
+                        <div class="card-id">ID: 2IGZjBPTPT8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=2IGZjBPTPT8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="ViVa TV 美好購物1台(直播)" data-id="rc8px6ti8fc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/rc8px6ti8fc/mqdefault.jpg" alt="ViVa TV 美好購物1台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">ViVa TV 美好購物1台(直播)</div>
+                        <div class="card-id">ID: rc8px6ti8fc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=rc8px6ti8fc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="ViVa TV 美好購物2台(直播)" data-id="MHoyggBaFW4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/MHoyggBaFW4/mqdefault.jpg" alt="ViVa TV 美好購物2台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">ViVa TV 美好購物2台(直播)</div>
+                        <div class="card-id">ID: MHoyggBaFW4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=MHoyggBaFW4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="英文直播">
+            <div class="section-title">
+                <span>📁 英文直播</span>
+                <span class="section-count">共 2 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="迪士尼兒童頻道(英語直播)" data-id="yHmPWzkhcZ8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/yHmPWzkhcZ8/mqdefault.jpg" alt="迪士尼兒童頻道(英語直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">迪士尼兒童頻道(英語直播)</div>
+                        <div class="card-id">ID: yHmPWzkhcZ8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=yHmPWzkhcZ8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="汪汪隊立大功(英語直播)" data-id="hzSYersnf3I">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/hzSYersnf3I/mqdefault.jpg" alt="汪汪隊立大功(英語直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">汪汪隊立大功(英語直播)</div>
+                        <div class="card-id">ID: hzSYersnf3I</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=hzSYersnf3I" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="今日直播">
+            <div class="section-title">
+                <span>📁 今日直播</span>
+                <span class="section-count">共 4 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="08:00 U23世界盃棒球賽 | G10 | 尼加拉瓜 vs 中華 |" data-id="4LDc-teq2z4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/4LDc-teq2z4/mqdefault.jpg" alt="08:00 U23世界盃棒球賽 | G10 | 尼加拉瓜 vs 中華 |" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">08:00 U23世界盃棒球賽 | G10 | 尼加拉瓜 vs 中華 |</div>
+                        <div class="card-id">ID: 4LDc-teq2z4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=4LDc-teq2z4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="08:45 花蓮太平洋國際龍舟節 DAY3" data-id="3OzsqD57BfA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/3OzsqD57BfA/mqdefault.jpg" alt="08:45 花蓮太平洋國際龍舟節 DAY3" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">08:45 花蓮太平洋國際龍舟節 DAY3</div>
+                        <div class="card-id">ID: 3OzsqD57BfA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=3OzsqD57BfA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="14:00 TPBL ｜ 桃園台啤永豐雲豹 vs 臺北台新戰神" data-id="je0SvB_K-w4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/je0SvB_K-w4/mqdefault.jpg" alt="14:00 TPBL ｜ 桃園台啤永豐雲豹 vs 臺北台新戰神" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">14:00 TPBL ｜ 桃園台啤永豐雲豹 vs 臺北台新戰神</div>
+                        <div class="card-id">ID: je0SvB_K-w4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=je0SvB_K-w4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="15:00 2026國聯保全盃菁英撞球大賽：第四站" data-id="__UGvvMhfF4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/__UGvvMhfF4/mqdefault.jpg" alt="15:00 2026國聯保全盃菁英撞球大賽：第四站" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">15:00 2026國聯保全盃菁英撞球大賽：第四站</div>
+                        <div class="card-id">ID: __UGvvMhfF4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=__UGvvMhfF4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="體育直播">
+            <div class="section-title">
+                <span>📁 體育直播</span>
+                <span class="section-count">共 1 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="世界撲克大賽(直播)" data-id="nU5ClZZQ4kg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/nU5ClZZQ4kg/mqdefault.jpg" alt="世界撲克大賽(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">世界撲克大賽(直播)</div>
+                        <div class="card-id">ID: nU5ClZZQ4kg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=nU5ClZZQ4kg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="亞洲動畫(外部)">
+            <div class="section-title">
+                <span>📁 亞洲動畫(外部)</span>
+                <span class="section-count">共 7 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="鬼滅之刃(LINE)" data-id="RMHKEQDfTaM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/RMHKEQDfTaM/mqdefault.jpg" alt="鬼滅之刃(LINE)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">鬼滅之刃(LINE)</div>
+                        <div class="card-id">ID: RMHKEQDfTaM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=RMHKEQDfTaM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="火影忍者(巴哈姆特)" data-id="Gtkofis77S4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Gtkofis77S4/mqdefault.jpg" alt="火影忍者(巴哈姆特)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">火影忍者(巴哈姆特)</div>
+                        <div class="card-id">ID: Gtkofis77S4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Gtkofis77S4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="刀劍神域(愛奇藝)" data-id="Fe8MmjcX_gk">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Fe8MmjcX_gk/mqdefault.jpg" alt="刀劍神域(愛奇藝)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">刀劍神域(愛奇藝)</div>
+                        <div class="card-id">ID: Fe8MmjcX_gk</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Fe8MmjcX_gk" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="王者天下(巴哈姆特)" data-id="_5RW1vIqTWo">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/_5RW1vIqTWo/mqdefault.jpg" alt="王者天下(巴哈姆特)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">王者天下(巴哈姆特)</div>
+                        <div class="card-id">ID: _5RW1vIqTWo</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=_5RW1vIqTWo" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="棋靈王(巴哈姆特)" data-id="pixY9nzbfGA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/pixY9nzbfGA/mqdefault.jpg" alt="棋靈王(巴哈姆特)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">棋靈王(巴哈姆特)</div>
+                        <div class="card-id">ID: pixY9nzbfGA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=pixY9nzbfGA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="第一神拳(巴哈姆特)" data-id="zXsXwL0KkeM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/zXsXwL0KkeM/mqdefault.jpg" alt="第一神拳(巴哈姆特)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">第一神拳(巴哈姆特)</div>
+                        <div class="card-id">ID: zXsXwL0KkeM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=zXsXwL0KkeM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="犬夜叉(巴哈姆特)" data-id="coKUVlotPak">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/coKUVlotPak/mqdefault.jpg" alt="犬夜叉(巴哈姆特)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">犬夜叉(巴哈姆特)</div>
+                        <div class="card-id">ID: coKUVlotPak</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=coKUVlotPak" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="公民監督">
+            <div class="section-title">
+                <span>📁 公民監督</span>
+                <span class="section-count">共 16 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="國會頻道1(直播)" data-id="x6XVbD7Ln78">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/x6XVbD7Ln78/mqdefault.jpg" alt="國會頻道1(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">國會頻道1(直播)</div>
+                        <div class="card-id">ID: x6XVbD7Ln78</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=x6XVbD7Ln78" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="國會頻道2(直播)" data-id="Lj8OWF6nzcg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Lj8OWF6nzcg/mqdefault.jpg" alt="國會頻道2(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">國會頻道2(直播)</div>
+                        <div class="card-id">ID: Lj8OWF6nzcg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Lj8OWF6nzcg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="立法院會議(直播)" data-id="6Ybha3lFq2E">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/6Ybha3lFq2E/mqdefault.jpg" alt="立法院會議(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">立法院會議(直播)</div>
+                        <div class="card-id">ID: 6Ybha3lFq2E</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=6Ybha3lFq2E" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="朝野黨團協商(直播)" data-id="265wHQ0DVeM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/265wHQ0DVeM/mqdefault.jpg" alt="朝野黨團協商(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">朝野黨團協商(直播)</div>
+                        <div class="card-id">ID: 265wHQ0DVeM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=265wHQ0DVeM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="教育及文化委員會(直播)" data-id="Wc_-o39hHY4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/Wc_-o39hHY4/mqdefault.jpg" alt="教育及文化委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">教育及文化委員會(直播)</div>
+                        <div class="card-id">ID: Wc_-o39hHY4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=Wc_-o39hHY4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="司法及法制委員會(直播)" data-id="0c2RCtAL-w8">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/0c2RCtAL-w8/mqdefault.jpg" alt="司法及法制委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">司法及法制委員會(直播)</div>
+                        <div class="card-id">ID: 0c2RCtAL-w8</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=0c2RCtAL-w8" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="交通委員會(直播)" data-id="huoEvUMgULU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/huoEvUMgULU/mqdefault.jpg" alt="交通委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">交通委員會(直播)</div>
+                        <div class="card-id">ID: huoEvUMgULU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=huoEvUMgULU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="財政委員會(直播)" data-id="51d1HEK-SAM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/51d1HEK-SAM/mqdefault.jpg" alt="財政委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">財政委員會(直播)</div>
+                        <div class="card-id">ID: 51d1HEK-SAM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=51d1HEK-SAM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="經濟委員會(直播)" data-id="8i-nJ0qq4lw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/8i-nJ0qq4lw/mqdefault.jpg" alt="經濟委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">經濟委員會(直播)</div>
+                        <div class="card-id">ID: 8i-nJ0qq4lw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=8i-nJ0qq4lw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="外交及國防委員會(直播)" data-id="8UsK6xkOTm4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/8UsK6xkOTm4/mqdefault.jpg" alt="外交及國防委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">外交及國防委員會(直播)</div>
+                        <div class="card-id">ID: 8UsK6xkOTm4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=8UsK6xkOTm4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="內政委員會(直播)" data-id="bR5UF8qNktI">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/bR5UF8qNktI/mqdefault.jpg" alt="內政委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">內政委員會(直播)</div>
+                        <div class="card-id">ID: bR5UF8qNktI</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=bR5UF8qNktI" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="程序委員會(直播)" data-id="-voc4yCNOkw">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/-voc4yCNOkw/mqdefault.jpg" alt="程序委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">程序委員會(直播)</div>
+                        <div class="card-id">ID: -voc4yCNOkw</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=-voc4yCNOkw" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="紀律委員會(直播)" data-id="-k0b_eZHbJ0">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/-k0b_eZHbJ0/mqdefault.jpg" alt="紀律委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">紀律委員會(直播)</div>
+                        <div class="card-id">ID: -k0b_eZHbJ0</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=-k0b_eZHbJ0" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="修憲委員會(直播)" data-id="zPa9ZMPhhvc">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/zPa9ZMPhhvc/mqdefault.jpg" alt="修憲委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">修憲委員會(直播)</div>
+                        <div class="card-id">ID: zPa9ZMPhhvc</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=zPa9ZMPhhvc" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="社會福利及衛生環境委員會(直播)" data-id="jXSiQqeK2BQ">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/jXSiQqeK2BQ/mqdefault.jpg" alt="社會福利及衛生環境委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">社會福利及衛生環境委員會(直播)</div>
+                        <div class="card-id">ID: jXSiQqeK2BQ</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=jXSiQqeK2BQ" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="經費稽核委員會(直播)" data-id="voGAaZe1LPA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/voGAaZe1LPA/mqdefault.jpg" alt="經費稽核委員會(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">經費稽核委員會(直播)</div>
+                        <div class="card-id">ID: voGAaZe1LPA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=voGAaZe1LPA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="宗教">
+            <div class="section-title">
+                <span>📁 宗教</span>
+                <span class="section-count">共 6 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="大愛一臺(直播)" data-id="oV_i3Hsl_zg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/oV_i3Hsl_zg/mqdefault.jpg" alt="大愛一臺(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">大愛一臺(直播)</div>
+                        <div class="card-id">ID: oV_i3Hsl_zg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=oV_i3Hsl_zg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="大愛二臺(直播)" data-id="OKvWtVoDR8I">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/OKvWtVoDR8I/mqdefault.jpg" alt="大愛二臺(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">大愛二臺(直播)</div>
+                        <div class="card-id">ID: OKvWtVoDR8I</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=OKvWtVoDR8I" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="大愛海外台(直播)" data-id="MIqUplvSRWA">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/MIqUplvSRWA/mqdefault.jpg" alt="大愛海外台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">大愛海外台(直播)</div>
+                        <div class="card-id">ID: MIqUplvSRWA</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=MIqUplvSRWA" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="華藏衛視(直播)" data-id="XWQTHTOj6VU">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/XWQTHTOj6VU/mqdefault.jpg" alt="華藏衛視(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">華藏衛視(直播)</div>
+                        <div class="card-id">ID: XWQTHTOj6VU</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=XWQTHTOj6VU" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="正德電視台(直播)" data-id="wIicpuUDgv4">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/wIicpuUDgv4/mqdefault.jpg" alt="正德電視台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">正德電視台(直播)</div>
+                        <div class="card-id">ID: wIicpuUDgv4</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=wIicpuUDgv4" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-title="淨空老法師(直播)" data-id="LuomVsFAFpg">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/LuomVsFAFpg/mqdefault.jpg" alt="淨空老法師(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">淨空老法師(直播)</div>
+                        <div class="card-id">ID: LuomVsFAFpg</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=LuomVsFAFpg" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="channel-section" data-group="其他">
+            <div class="section-title">
+                <span>📁 其他</span>
+                <span class="section-count">共 1 個頻道</span>
+            </div>
+            <div class="grid">
+
+                <div class="card" data-title="信吉電視台(直播)" data-id="HBTaw9FD3nM">
+                    <div class="card-thumb">
+                        <img src="https://img.youtube.com/vi/HBTaw9FD3nM/mqdefault.jpg" alt="信吉電視台(直播)" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">信吉電視台(直播)</div>
+                        <div class="card-id">ID: HBTaw9FD3nM</div>
+                        <div class="card-footer">
+                            <a href="https://www.youtube.com/watch?v=HBTaw9FD3nM" target="_blank" class="yt-btn">▶ 開啟 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const filterInput = document.getElementById('filter-input');
+        filterInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            document.querySelectorAll('.card').forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const id = card.getAttribute('data-id').toLowerCase();
+                if (title.includes(query) || id.includes(query)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.channel-section').forEach(sec => {
+                const visibleCards = sec.querySelectorAll('.card:not([style*="display: none"])');
+                sec.style.display = visibleCards.length > 0 ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
