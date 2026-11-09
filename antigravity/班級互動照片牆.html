@@ -3367,7 +3367,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         <div style="background:#fff; border:2px solid #ffcdd2; border-radius:14px; padding:12px; margin-top:8px; text-align:left;">
             <div style="background:#ffebee; border-left:4px solid #e53935; padding:8px 10px; border-radius:6px; margin-bottom:8px; color:#b71c1c; font-weight:800; text-align:center; font-size:14px;">
-                選/抽扭蛋主題 → 複製扭蛋指令 → 開啟 Gemini 上傳全身照並貼上
+                📸 步驟一（生圖）：選扭蛋主題 → 複製扭蛋指令 → Gemini 上傳全身照生圖
             </div>
             <details id="blindbox-prompt-details" style="margin-bottom:10px;">
                 <summary style="cursor:pointer; font-weight:800; color:#c62828; font-size:14px;">查看「扭蛋開箱隱藏公仔」完整提示詞</summary>
@@ -3378,6 +3378,43 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <button type="button" onclick="window.open('https://gemini.google.com/app', '_blank')" style="flex:1; min-width:120px; background:#1e293b; color:#fff; border:none; border-radius:12px; padding:12px 14px; font-size:14px; font-weight:800; cursor:pointer;">✨ 開啟 Gemini</button>
             </div>
             <div id="blindbox-copy-status" class="travel-copy-status" style="text-align:center; margin-top:6px;"></div>
+        </div>
+
+        <!-- 步驟二：讓扭蛋公仔動起來＋穿戴配件開口說話 (圖生影片指令) -->
+        <div style="background:#f3e5f5; border:2px solid #ce93d8; border-radius:14px; padding:12px; margin-top:12px; text-align:left;">
+            <div style="background:#ede7f6; border-left:4px solid #7b1fa2; padding:8px 10px; border-radius:6px; margin-bottom:10px; color:#4a148c; font-weight:800; text-align:center; font-size:14px;">
+                🎬 步驟二（圖生影片）：把剛生成的「公仔圖」變穿戴配件＋開口說話短片！
+            </div>
+            <div style="display:grid; grid-template-columns:1fr; gap:8px; margin-bottom:10px;">
+                <div>
+                    <label style="font-size:12px; font-weight:800; color:#6a1b9a; display:block; margin-bottom:3px;">🎞️ 選擇公仔復活連續動作：</label>
+                    <select id="sel-blindbox-video-action" class="slot-select-dropdown" onchange="updateBlindboxUI()" style="width:100%; max-width:none; border-color:#8e24aa; font-size:13px; font-weight:700; padding:7px 10px; border-radius:8px; background:#fff; color:#4a148c;">
+                        <option value="equip_thumbsup" selected>🎬 同款爆紅動作：公仔自己背起斜背包 → 雙手戴正帽子 → 自信微笑對鏡頭比讚</option>
+                        <option value="unbox_jump">🎬 破殼登場動作：公仔從扭蛋殼跳上展示底座 → 360度轉身展示新裝 → 帥氣比讚</option>
+                        <option value="prop_play">🎬 主題道具把玩：公仔拿起桌上的迷你配件把玩 → 跟彩盒內分身揮手 → 開心比讚</option>
+                        <option value="dance_groove">🎬 動感搖擺熱舞：公仔在透明底座上跟著節奏俏皮扭動熱舞 → 扶眼鏡耍帥 → 比讚</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:12px; font-weight:800; color:#6a1b9a; display:block; margin-bottom:3px;">🗣️ 選擇開口說話台詞（台語 / 國語對嘴）：</label>
+                    <select id="sel-blindbox-video-voice" class="slot-select-dropdown" onchange="updateBlindboxUI()" style="width:100%; max-width:none; border-color:#8e24aa; font-size:13px; font-weight:700; padding:7px 10px; border-radius:8px; background:#fff; color:#4a148c;">
+                        <option value="tw_classic" selected>🗣️ 道地台語（同款）：「毋是咧！你這馬看著這仙，是我分身，全身配件穿好勢，夠帥對吧！」</option>
+                        <option value="tw_funny">🗣️ 臭屁台語：「免懷疑！頭殼頂的帽仔、身上的包仔攏總傳便便，這仙限定版無收藏會後悔喔！」</option>
+                        <option value="zh_cool">🗣️ 幽默國語：「嘿！沒想到我也變成隱藏版扭蛋公仔了吧！看我把裝備穿起來，帥吧！」</option>
+                        <option value="zh_cute">🗣️ 可愛國語：「叮咚！恭喜你抽中今日最稀有的限定版公仔，快幫我按個讚吧！」</option>
+                        <option value="silent_sfx">🔇 不說話純動作（搭配輕快玩具咔噠聲與活潑背景音樂）</option>
+                    </select>
+                </div>
+            </div>
+            <details id="blindbox-video-prompt-details" style="margin-bottom:10px;">
+                <summary style="cursor:pointer; font-weight:800; color:#6a1b9a; font-size:13px;">查看「公仔動起來（圖生影片）」完整提示詞</summary>
+                <pre id="blindbox-video-prompt-preview" class="travel-prompt-preview" style="margin-top:8px; max-height:200px; overflow-y:auto; font-size:12px; background:#fff;"></pre>
+            </details>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button id="blindbox-video-copy-btn" class="travel-copy-btn" type="button" onclick="copyBlindboxVideoPrompt()" style="flex:2; min-width:180px; margin:0; background:linear-gradient(135deg, #7b1fa2, #ab47bc);">🎬 複製「公仔動起來影片」指令</button>
+                <button type="button" onclick="window.open('https://www.capcut.com/', '_blank')" style="flex:1; min-width:110px; background:#4a148c; color:#fff; border:none; border-radius:12px; padding:10px 12px; font-size:13px; font-weight:800; cursor:pointer;">🎥 開啟 CapCut / Gemini</button>
+            </div>
+            <div id="blindbox-video-copy-status" class="travel-copy-status" style="text-align:center; margin-top:6px;"></div>
         </div>
     </div>
 
@@ -7273,6 +7310,95 @@ ${figurineInstruction}
         }
     }
 
+    function buildBlindboxVideoPrompt() {
+        const defaultTheme = (typeof blindboxThemes !== 'undefined')
+            ? (blindboxThemes.find(t => t.short === '台灣復古款') || blindboxThemes[0])
+            : { short: '台灣復古款', full: '台灣復古主題的小型扭蛋收藏玩具：老招牌、花磚、復古商店與懷舊街景元素。' };
+        let themeObj = (figurineStoryState && figurineStoryState.theme) ? figurineStoryState.theme : defaultTheme;
+        if (typeof blindboxThemes !== 'undefined' && themeObj && themeObj.short) {
+            const matched = blindboxThemes.find(t => t.short === themeObj.short);
+            if (matched) themeObj = matched;
+        }
+        const themeName = themeObj.short;
+        const props = themeObj.props || '斜背包、帽子與手錶配件';
+
+        const actionSel = document.getElementById('sel-blindbox-video-action');
+        const actionKey = actionSel ? actionSel.value : 'equip_thumbsup';
+
+        const voiceSel = document.getElementById('sel-blindbox-video-voice');
+        const voiceKey = voiceSel ? voiceSel.value : 'tw_classic';
+
+        const actionMap = {
+            equip_thumbsup: `【連續動作腳本（5秒圖生影片）】
+1. 第 0～1.5 秒：站在「★ ${themeName} ★」透明圓形底座上的 3D Q 版公仔突然活了過來（眨眼、露出微笑），伸手拿起右下角桌面上的隨身配件（如斜背包），俐落地背到自己肩膀上。
+2. 第 1.5～3 秒：公仔接著舉起雙手，把頭上的帽子（或頭飾/眼鏡）扶正戴好，再低頭整理一下衣服與手錶，全身裝備穿戴整齊。
+3. 第 3～5 秒：公仔轉頭正對鏡頭，露出自信又得意的笑容，右手舉起比出一個大大的「讚（Thumbs-up）」，同時生動地開口說話對嘴！`,
+            unbox_jump: `【連續動作腳本（5秒圖生影片）】
+1. 第 0～1.5 秒：畫面中央的「★ ${themeName} ★」3D Q 版公仔從左側打開的扭蛋殼旁輕盈一躍，穩穩跳上透明展示底座，雙腳落地發出可愛的玩具彈跳感。
+2. 第 1.5～3 秒：公仔在透明底座上開心地原地 360 度轉一圈，展示全身精緻的「${themeName}」服裝與背後的斜背包配件。
+3. 第 3～5 秒：公仔停下腳步面向鏡頭，單手扶正帽子、右手帥氣比讚並眨眼，同時開口說話對嘴！`,
+            prop_play: `【連續動作腳本（5秒圖生影片）】
+1. 第 0～1.5 秒：站在底座上的「★ ${themeName} ★」3D Q 版公仔活了過來，彎腰拿起右下角擺放的主題微縮配件（${props}），開心地拿在手裡展示把玩。
+2. 第 1.5～3 秒：公仔轉頭看向右側透明開窗收藏彩盒裡面的分身公仔，兩隻公仔竟然同步對看並俏皮地揮手致意。
+3. 第 3～5 秒：中央公仔轉回正面對著鏡頭露出燦爛笑容，一手拿配件、一手比出大大的讚，同時開口說話對嘴！`,
+            dance_groove: `【連續動作腳本（5秒圖生影片）】
+1. 第 0～2 秒：站在「★ ${themeName} ★」透明底座上的 3D Q 版公仔活了過來，隨著輕快節奏左右俏皮扭動身體、雙腳踏步跳起超萌的扭蛋公仔搖擺舞。
+2. 第 2～3.5 秒：公仔單手帥氣扶了一下眼鏡與帽子，背上的斜背包隨動作自然晃動。
+3. 第 3.5～5 秒：公仔定格擺出最帥氣的招牌姿勢，對鏡頭大笑並比出大大的讚，同時開口說話對嘴！`
+        };
+
+        const voiceMap = {
+            tw_classic: `【語音與口白對嘴（道地台灣台語男/女聲，語氣驕傲又逗趣）】
+- 公仔張嘴自然對嘴說出流利台語：「毋是咧！你這馬看著這仙，是我分身，全身配件穿好勢，夠帥對吧！」
+- 搭配細膩的塑膠玩具關節活動音效（咔噠聲）與歡樂輕快的背景音樂。`,
+            tw_funny: `【語音與口白對嘴（道地台灣台語，語氣幽默臭屁）】
+- 公仔張嘴自然對嘴說出流利台語：「免懷疑！頭殼頂的帽仔、身上的包仔攏總傳便便，這仙限定版無收藏會後悔喔！」
+- 搭配細膩的塑膠玩具關節活動音效與活潑背景音樂。`,
+            zh_cool: `【語音與口白對嘴（繁體中文台灣國語，語氣自信幽默）】
+- 公仔張嘴自然對嘴說出國語：「嘿！沒想到我也變成隱藏版扭蛋公仔了吧！看我把裝備穿起來，帥吧！」
+- 搭配玩具開箱音效與輕快節奏背景音樂。`,
+            zh_cute: `【語音與口白對嘴（繁體中文台灣國語，語氣活潑可愛）】
+- 公仔張嘴自然對嘴說出國語：「叮咚！恭喜你抽中今日最稀有的${themeName}限定公仔，快幫我按個讚吧！」
+- 搭配叮咚中獎音效與歡樂背景音樂。`,
+            silent_sfx: `【音效與配樂（不說話純動作）】
+- 公仔保持生動表情變化（微笑、眨眼、挑眉），不開口說話。
+- 搭配真實可愛的塑膠玩具穿戴「咔噠」音效、跳躍音效與輕快俏皮的玩具進行曲背景音樂。`
+        };
+
+        return `請將這張「★ ${themeName} ★ 盲盒扭蛋公仔開箱圖」轉化為一段 5 秒鐘的高畫質 3D 動畫短片（Image-to-Video，鏡頭聚焦於站在透明圓形底座上的主角 Q 版公仔）：
+
+${actionMap[actionKey] || actionMap.equip_thumbsup}
+
+${voiceMap[voiceKey] || voiceMap.tw_classic}
+
+【鏡頭與畫質要求】
+- 鏡頭微距特寫公仔全身與「★ ${themeName} ★」透明底座，背景的復古街景與右側限定版彩盒保持柔和景深。
+- 維持高品質 3D 搪膠玩具公仔（Pop Mart Vinyl Toy）材質與真實光影，公仔五官、眼鏡、衣服文字與配件在動作過程中保持穩定不變形。`;
+    }
+
+    async function copyBlindboxVideoPrompt() {
+        const prompt = buildBlindboxVideoPrompt();
+        const status = document.getElementById('blindbox-video-copy-status');
+        try {
+            await navigator.clipboard.writeText(prompt);
+            if (status) {
+                status.style.color = '#6a1b9a';
+                status.innerText = '✅ 已複製「公仔動起來影片」指令！請上傳公仔圖至 CapCut AI / Gemini Veo / Grok / 可靈 貼上生成影片。';
+            }
+        } catch (_) {
+            const ta = document.createElement('textarea');
+            ta.value = prompt;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            if (status) {
+                status.style.color = '#6a1b9a';
+                status.innerText = '✅ 已複製「公仔動起來影片」指令！請上傳公仔圖至 CapCut AI / Gemini Veo / Grok / 可靈 貼上生成影片。';
+            }
+        }
+    }
+
     function updateBlindboxUI() {
         if (!figurineStoryState.theme && typeof blindboxThemes !== 'undefined') {
             const defaultIdx = blindboxThemes.findIndex(t => t.short === '台灣復古款');
@@ -7287,8 +7413,12 @@ ${figurineInstruction}
         }
         const previewEl = document.getElementById('blindbox-prompt-preview');
         if (previewEl) previewEl.innerText = buildBlindboxPrompt();
+        const videoPreviewEl = document.getElementById('blindbox-video-prompt-preview');
+        if (videoPreviewEl) videoPreviewEl.innerText = buildBlindboxVideoPrompt();
         const status = document.getElementById('blindbox-copy-status');
         if (status) status.innerText = '';
+        const vStatus = document.getElementById('blindbox-video-copy-status');
+        if (vStatus) vStatus.innerText = '';
     }
 
     function updateFigurineUI() {
