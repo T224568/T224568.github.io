@@ -3963,11 +3963,11 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                         <option value="清新水彩繪本風">清新水彩繪本風（紙張紋理、柔和水彩暈染童話）</option>
                     </select>
                 </div>
-                <div class="prompt-text" id="prompt-travel-mini" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 15px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請從你前面推薦的當地必買名產裡，選 3 種最有代表性的名產。
+                <div class="prompt-text" id="prompt-travel-mini" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 15px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">針對我剛剛選擇的【台北植物園】旅行，請從你前面推薦或屬於當地的必買名產與特色美食裡，選 3 種最有代表性的名產。
 請用我的照片做成 1 張有趣的旅遊圖片：
-把我變成超迷你人物，穿梭在巨大的名產、當地街道、商店、市場和代表性景色之間。
-重點要放在當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。
-3 種名產或重要景點都要清楚出現在畫面裡，並標上正確名稱。
+把我變成超迷你人物，穿梭在【台北植物園】巨大的名產、特色街道、商店、市集和代表性景色之間。
+重點要放在【台北植物園】的當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。
+3 種名產或重要景點都要清楚出現在畫面裡，並標上正確繁體中文名稱。
 整體請用【日式手繪風】，畫面豐富、有趣、有旅行感。</div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                     <button type="button" class="copy-btn" onclick="copyTravelText(this, 'prompt-travel-mini')" style="background: #a855f7; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 巨大名產趣味指令</button>
@@ -5575,19 +5575,28 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         updateTravelSpotPrompt();
     }
 
-    function updateTravelSpotPrompt() {
+    function getSelectedTravelSpot() {
         const custom = document.getElementById('travel-custom-spot');
         const sel = document.getElementById('travel-spot-select');
-        let spot = custom && custom.value.trim() ? custom.value.trim() : (sel ? sel.value : '日本京都');
+        let spot = custom && custom.value.trim() ? custom.value.trim() : (sel ? sel.value : '台北植物園');
+        return spot || '台北植物園';
+    }
+
+    function updateTravelSpotPrompt() {
+        const spot = getSelectedTravelSpot();
         const text = '我選擇去【' + spot + '】旅行。請從你剛才推薦的景點裡，為我選一個最適合拍照的景點。\n請用我的照片做一張旅行照。\n請保持我像本人，讓我站在這個景點前面。\n背景要清楚看得到當地景點特色，請做成像旅遊拍照的照片，感覺自然、真實、開心。';
         const box = document.getElementById('prompt-travel-spot');
         if (box) box.textContent = text;
+
+        // 同步連動更新步驟 3（創意名產小人國照）的提示詞
+        updateTravelMiniPrompt();
     }
 
     function updateTravelMiniPrompt() {
         const sel = document.getElementById('travel-style-select');
         const style = sel ? sel.value : '日式手繪風';
-        const text = '請從你前面推薦的當地必買名產裡，選 3 種最有代表性的名產。\n請用我的照片做成 1 張有趣的旅遊圖片：\n把我變成超迷你人物，穿梭在巨大的名產、當地街道、商店、市場和代表性景色之間。\n重點要放在當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。\n3 種名產或重要景點都要清楚出現在畫面裡，並標上正確名稱。\n整體請用【' + style + '】，畫面豐富、有趣、有旅行感。';
+        const spot = getSelectedTravelSpot();
+        const text = '針對我剛剛選擇的【' + spot + '】旅行，請從你前面推薦或屬於當地的必買名產與特色美食裡，選 3 種最有代表性的名產。\n請用我的照片做成 1 張有趣的旅遊圖片：\n把我變成超迷你人物，穿梭在【' + spot + '】巨大的名產、特色街道、商店、市集和代表性景色之間。\n重點要放在【' + spot + '】的當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。\n3 種名產或重要景點都要清楚出現在畫面裡，並標上正確繁體中文名稱。\n整體請用【' + style + '】，畫面豐富、有趣、有旅行感。';
         const box = document.getElementById('prompt-travel-mini');
         if (box) box.textContent = text;
     }
