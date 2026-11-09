@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎹 親子鋼琴簡譜大百科（完整原曲不刪減版）：超級瑪利歐・BINGO・頑皮豹</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>🎹 親子鋼琴簡譜大百科（18 首完整原曲＋手寫樂譜數位化典藏版）</title>
 <style>
   :root {
     --primary: #ef4444;
@@ -612,7 +615,16 @@
   <!-- 頂部切換與播放控制 -->
   <div class="top-bar">
     <div class="song-tabs">
-      <div class="tab-group-label">🌟 經典動漫兒歌＆台灣世界民謠（1 ~ 10）</div>
+      <div class="tab-group-label" style="background:#fee2e2; color:#991b1b; border-left:4px solid #ef4444;">🔥 最新新增：手寫簡譜手稿數位化全曲收錄（編號 11 ~ 18，共 8 首）</div>
+      <button class="tab-btn" data-song="hw8" onclick="switchSong('hw8')">🎵 11. 小毛驢 / 歡樂進行曲 (手寫右下)</button>
+      <button class="tab-btn" data-song="hw1" onclick="switchSong('hw1')">📜 12. 手寫譜(左一)：降B調抒情曲</button>
+      <button class="tab-btn" data-song="hw2" onclick="switchSong('hw2')">📜 13. 手寫譜(左中)：經典長篇全曲</button>
+      <button class="tab-btn" data-song="hw3" onclick="switchSong('hw3')">📜 14. 手寫譜(左下)：F調練習曲</button>
+      <button class="tab-btn" data-song="hw4" onclick="switchSong('hw4')">📜 15. 手寫譜(右上)：高音旋律曲</button>
+      <button class="tab-btn" data-song="hw5" onclick="switchSong('hw5')">📜 16. 手寫譜(右二)：跳躍節奏曲</button>
+      <button class="tab-btn" data-song="hw6" onclick="switchSong('hw6')">📜 17. 手寫譜(右三)：降E調圓舞曲</button>
+      <button class="tab-btn" data-song="hw7" onclick="switchSong('hw7')">📜 18. 手寫譜(右四)：半音練習曲</button>
+      <div class="tab-group-label">🌟 經典動漫兒歌＆台灣世界民謠（編號 1 ~ 10）</div>
       <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐 (54小節)</button>
       <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌 (48小節)</button>
       <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲 (35小節)</button>
@@ -623,18 +635,36 @@
       <button class="tab-btn" data-song="peach" onclick="switchSong('peach')">🌸 8. 台灣民謠：桃花過渡 (28小節)</button>
       <button class="tab-btn" data-song="farm" onclick="switchSong('farm')">🐄 9. 王老先生有塊地 (36小節)</button>
       <button class="tab-btn" data-song="bridge" onclick="switchSong('bridge')">🌉 10. 倫敦鐵橋垮下來 (32小節)</button>
-      <div class="tab-group-label">📝 手寫簡譜手稿數位化全曲收錄（11 ~ 18）</div>
-      <button class="tab-btn" data-song="hw8" onclick="switchSong('hw8')">🎵 11. 小毛驢 / 歡樂進行曲 (手寫右下)</button>
-      <button class="tab-btn" data-song="hw1" onclick="switchSong('hw1')">📜 12. 手寫譜(左一)：降B調抒情曲</button>
-      <button class="tab-btn" data-song="hw2" onclick="switchSong('hw2')">📜 13. 手寫譜(左中)：經典長篇全曲</button>
-      <button class="tab-btn" data-song="hw3" onclick="switchSong('hw3')">📜 14. 手寫譜(左下)：F調練習曲</button>
-      <button class="tab-btn" data-song="hw4" onclick="switchSong('hw4')">📜 15. 手寫譜(右上)：高音旋律曲</button>
-      <button class="tab-btn" data-song="hw5" onclick="switchSong('hw5')">📜 16. 手寫譜(右二)：跳躍節奏曲</button>
-      <button class="tab-btn" data-song="hw6" onclick="switchSong('hw6')">📜 17. 手寫譜(右三)：降E調圓舞曲</button>
-      <button class="tab-btn" data-song="hw7" onclick="switchSong('hw7')">📜 18. 手寫譜(右四)：半音練習曲</button>
     </div>
 
     <div class="player-controls">
+      <div class="tempo-box">
+        <span>🎼 快速選曲：</span>
+        <select id="quickSongSelect" onchange="switchSong(this.value)">
+          <optgroup label="📝 手寫簡譜手稿數位化 (11~18)">
+            <option value="hw8">11. 小毛驢 / 歡樂進行曲 (手寫右下)</option>
+            <option value="hw1">12. 手寫譜(左一)：降B調抒情曲</option>
+            <option value="hw2">13. 手寫譜(左中)：經典長篇全曲</option>
+            <option value="hw3">14. 手寫譜(左下)：F調練習曲</option>
+            <option value="hw4">15. 手寫譜(右上)：高音旋律曲</option>
+            <option value="hw5">16. 手寫譜(右二)：跳躍節奏曲</option>
+            <option value="hw6">17. 手寫譜(右三)：降E調圓舞曲</option>
+            <option value="hw7">18. 手寫譜(右四)：半音練習曲</option>
+          </optgroup>
+          <optgroup label="🌟 動漫兒歌＆台灣世界民謠 (1~10)">
+            <option value="mario" selected>1. 超級瑪利歐 (54小節)</option>
+            <option value="bingo">2. BINGO 賓果歌 (48小節)</option>
+            <option value="panther">3. 頑皮豹主題曲 (35小節)</option>
+            <option value="totoro">4. 豆豆龍：散步 (36小節)</option>
+            <option value="shark">5. 鯊魚寶寶全曲 (30小節)</option>
+            <option value="doraemon">6. 哆啦A夢之歌 (33小節)</option>
+            <option value="diudiu">7. 台灣民謠：丟丟銅仔 (26小節)</option>
+            <option value="peach">8. 台灣民謠：桃花過渡 (28小節)</option>
+            <option value="farm">9. 王老先生有塊地 (36小節)</option>
+            <option value="bridge">10. 倫敦鐵橋垮下來 (32小節)</option>
+          </optgroup>
+        </select>
+      </div>
       <div class="tempo-box">
         <span>🐢 速度：</span>
         <select id="tempoSelect">
@@ -3238,7 +3268,7 @@ function renderAllScores() {
 }
 
 // ==================== 5. 歌曲切換與自動播放引擎（支援整首＆單段＆多重隨時停止） ====================
-let currentSong = 'mario';
+let currentSong = 'hw8';
 let currentSectionGrid = null;
 let playTimeouts = [];
 let isPlaying = false;
@@ -3252,6 +3282,10 @@ function switchSong(songKey) {
   document.querySelectorAll('.song-section').forEach(sec => {
     sec.classList.toggle('active', sec.id === `song-${songKey}`);
   });
+  const sel = document.getElementById('quickSongSelect');
+  if (sel && sel.value !== songKey) {
+    sel.value = songKey;
+  }
 }
 
 function stopPlayback() {
@@ -3381,6 +3415,7 @@ document.addEventListener('keydown', (e) => {
 // 初始化
 renderPiano();
 renderAllScores();
+switchSong('hw8');
 </script>
 </body>
 </html>
