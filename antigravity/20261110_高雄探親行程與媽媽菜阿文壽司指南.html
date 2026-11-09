@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-11-10 高雄探親行程 ‧ 基督教橄欖園省墓與媽媽菜阿文壽司指南</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap");
+    :root {
+      --primary: #c0392b;
+      --primary-dark: #962d22;
+      --secondary: #e67e22;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #0f766e;
+      --accent-bg: #f0fdfa;
+      --accent-border: #99f6e4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 32px 36px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    header {
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .badge-red { background: #fee2e2; color: #b91c1c; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+    .badge-blue { background: #e0f2fe; color: #0369a1; }
+    h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 24px 0 14px 0;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #e2e8f0;
+    }
+    
+    /* 表格樣式 */
+    .table-wrap {
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 800;
+      padding: 10px 12px;
+      border-bottom: 1.5px solid #cbd5e1;
+      white-space: nowrap;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+    .time-col {
+      font-weight: 800;
+      color: var(--primary);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .place-col {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    
+    /* 核心提醒卡片 */
+    .alert-card {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #92400e;
+      line-height: 1.6;
+    }
+    .alert-card strong {
+      color: #78350f;
+    }
+    
+    /* 流派卡片網格 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .dish-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dish-card.featured {
+      border-color: #fca5a5;
+      background: #fff8f8;
+    }
+    .dish-card h3 {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .dish-card .tagline {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+    .dish-list {
+      list-style: none;
+      font-size: 12.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dish-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 4px;
+    }
+    .dish-name {
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .dish-price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 11.5px;
+    }
+    .dish-tip {
+      font-size: 11px;
+      color: #059669;
+      font-weight: 600;
+      margin-top: 1px;
+    }
+    .dish-warn {
+      font-size: 11px;
+      color: #dc2626;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: #94a3b8;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @page {
+        margin: 1.5cm;
+        size: A4 portrait;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="badge-row">
+      <span class="badge badge-red">🚄 當日探親行程</span>
+      <span class="badge badge-green">🕊️ 橄欖園安息省墓</span>
+      <span class="badge badge-blue">🍱 阿文壽司長輩指南</span>
+    </div>
+    <h1>高雄探親行程與媽媽菜 ‧ 阿文壽司用餐指南</h1>
+    <p class="subtitle">日期：2026 年 11 月 10 日（二） ｜ 行程規劃與長輩軟質餐飲備忘</p>
+  </header>
+
+  <h2 class="section-title">⏱️ 今日交通接駁與行程時間軸</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>預定時間</th>
+          <th>行程節點</th>
+          <th>交通方式與重點備忘</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-col">07:31 - 09:05</td>
+          <td class="place-col">台北 ➔ 左營</td>
+          <td><strong>高鐵 109 車次</strong>（標準廂 8 車 2B，行車 1 小時 34 分）</td>
+        </tr>
+        <tr>
+          <td class="time-col">09:05 - 09:17</td>
+          <td class="place-col">高鐵左營 ➔ 新左營台鐵</td>
+          <td>站內專用連通道轉乘，步程約 3~5 分鐘</td>
+        </tr>
+        <tr>
+          <td class="time-col">09:17 - 09:32</td>
+          <td class="place-col">新左營 ➔ 鳳山車站</td>
+          <td><strong>台鐵自強號(3000) 371 次</strong>（11 車 1 號，行車 15 分鐘）</td>
+        </tr>
+        <tr>
+          <td class="time-col">09:35 - 09:55</td>
+          <td class="place-col">鳳山站 ➔ 基督教橄欖園</td>
+          <td><strong>YouBike 2.0 騎乘</strong>（經鳳頂路/高鳳路/內坑路，約 4.5 km，20 分鐘）</td>
+        </tr>
+        <tr>
+          <td class="time-col">09:55 - 10:15</td>
+          <td class="place-col">基督教橄欖園</td>
+          <td>高雄市大寮區內坑路158-120號，爸爸墓園獻花悼念追思（停留 20 分鐘）</td>
+        </tr>
+        <tr>
+          <td class="time-col">10:15 - 10:38</td>
+          <td class="place-col">橄欖園 ➔ 捷運草衙站</td>
+          <td><strong>YouBike 2.0 騎乘</strong>（沿高鳳路接中安路直騎到底，約 5.2 km，草衙站還車）</td>
+        </tr>
+        <tr>
+          <td class="time-col">10:42 - 10:52</td>
+          <td class="place-col">捷運草衙站 ➔ 三多商圈站</td>
+          <td><strong>高雄捷運紅線</strong>（搭乘 5 站約 9 分鐘，R4A ➔ R8）</td>
+        </tr>
+        <tr>
+          <td class="time-col">11:00</td>
+          <td class="place-col">方舟 2、3F</td>
+          <td><strong>準時抵達方舟護理之家</strong>接媽媽外出用餐（符合 LINE 預約時間）</td>
+        </tr>
+        <tr>
+          <td class="time-col">11:15 - 12:30</td>
+          <td class="place-col">阿文壽司（苓雅二路163號）</td>
+          <td>享用軟嫩易嚼的長輩友善「媽媽菜」午餐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">💡 長輩用餐必點核心原則</h2>
+  <div class="alert-card">
+    <p>✨ <strong>每人必備標配：茶碗蒸（$40）</strong> —— 質地極嫩好吞嚥、高營養無負擔，是長輩每一餐的標配（歷史點擊率 100%）。</p>
+    <p style="margin-top: 4px;">⚠️ <strong>生食握壽司特別備註</strong>：凡點選炙燒握壽司（如比目魚側緣、干貝），<strong>務必交代店家師傅「全熟」</strong>！</p>
+    <p style="margin-top: 4px;">🥢 <strong>炸豆腐吃法技巧</strong>：請店家「<strong>醬汁淋濕泡軟</strong>」外皮，或讓長輩專享內部滑嫩白豆腐。</p>
+  </div>
+
+  <h2 class="section-title">🌟 阿文壽司 ‧ 長輩三組精選點餐流派</h2>
+  <div class="grid-3">
+    <!-- 第一組 -->
+    <div class="dish-card">
+      <h3>🍵 溫補暖胃流</h3>
+      <div class="tagline">消化溫和 ‧ 胃口舒緩首選</div>
+      <ul class="dish-list">
+        <li>
+          <div>
+            <div class="dish-name">馬鈴薯燉肉</div>
+            <div class="dish-tip">鬆軟綿密、湯汁拌飯佳</div>
+          </div>
+          <div class="dish-price">$160</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">味噌魚皮湯</div>
+            <div class="dish-tip">高膠原極軟滑好嚥</div>
+          </div>
+          <div class="dish-price">$55</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">蔥燒烘蛋</div>
+            <div class="dish-tip">厚實鬆軟富香氣</div>
+          </div>
+          <div class="dish-price">$70</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">豆皮壽司</div>
+            <div class="dish-tip">甜潤多汁好下嚥</div>
+          </div>
+          <div class="dish-price">$50</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 第二組 -->
+    <div class="dish-card featured">
+      <h3>💪 豐富蛋白質流</h3>
+      <div class="tagline">補充體力 ‧ 軟嫩入口即化（首選）</div>
+      <ul class="dish-list">
+        <li>
+          <div>
+            <div class="dish-name">炙燒比目魚側緣</div>
+            <div class="dish-warn">★ 務必備註「全熟」</div>
+          </div>
+          <div class="dish-price">$160</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">蕃茄蛋包飯</div>
+            <div class="dish-tip">濕潤順口減輕吞嚥負擔</div>
+          </div>
+          <div class="dish-price">$90</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">芋頭沙拉</div>
+            <div class="dish-tip">芋泥細緻綿密天然</div>
+          </div>
+          <div class="dish-price">$80</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">紫菜蛋花湯</div>
+            <div class="dish-tip">清淡暖胃無負擔</div>
+          </div>
+          <div class="dish-price">$30</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 第三組 -->
+    <div class="dish-card">
+      <h3>🍲 日式熱炒經典流</h3>
+      <div class="tagline">多樣風味 ‧ 軟Q麵食享受</div>
+      <ul class="dish-list">
+        <li>
+          <div>
+            <div class="dish-name">炒烏龍麵</div>
+            <div class="dish-tip">滑Q軟潤適合長輩牙口</div>
+          </div>
+          <div class="dish-price">$90</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">炸豆腐</div>
+            <div class="dish-tip">醬汁淋濕泡軟外皮</div>
+          </div>
+          <div class="dish-price">$70</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">炙燒干貝握壽司</div>
+            <div class="dish-warn">★ 務必備註「全熟」</div>
+          </div>
+          <div class="dish-price">$160</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish-name">蛤蜊湯</div>
+            <div class="dish-tip">鮮美湯頭補充元氣</div>
+          </div>
+          <div class="dish-price">$70</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div>阿文壽司地址：高雄市苓雅區苓雅二路 163 號 ｜ 電話：07-3333033</div>
+    <div>手冊線上版：<a href="https://is.gd/5PwNHx" target="_blank">https://is.gd/5PwNHx</a></div>
+  </footer>
+</div>
+
+</body>
+</html>
