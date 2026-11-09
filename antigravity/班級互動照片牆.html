@@ -3346,15 +3346,33 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <div style="clear:both;"></div>
 
     <div class="blindbox-box">
-        <div class="blindbox-title">盲盒扭蛋抽抽樂</div>
-        <div class="blindbox-subtitle">抽出今天的小扭蛋收藏主題</div>
+        <div class="blindbox-title">盲盒扭蛋抽抽樂（隱藏版公仔開箱）</div>
+        <div class="blindbox-subtitle">抽出或自選扭蛋主題 → 產生「扭蛋殼＋限定收藏盒＋隨身配件」3D 公仔開箱圖！</div>
         <div class="capsule-display">
             <div class="capsule-top"></div>
-            <div class="capsule-window" id="blindbox-theme-result">準備抽扭蛋</div>
+            <div class="capsule-window" id="blindbox-theme-result">台灣復古款</div>
             <div class="capsule-bottom"></div>
         </div>
-        <button id="blindbox-draw-btn" class="blindbox-draw-btn" type="button" onclick="spinBlindboxTheme()">抽一顆扭蛋！</button>
-        <div class="blindbox-hint">每一款都做成小小的扭蛋收藏玩具</div>
+        <div style="max-width:340px; margin:8px auto 10px;">
+            <select class="slot-select-dropdown" id="sel-blindbox-theme" onchange="onManualSelectBlindbox(this.value)" style="width:100%; max-width:none; border-color:#ef5350; font-size:14px; font-weight:800; padding:8px 10px; border-radius:10px; background:#fff; color:#b71c1c;"></select>
+        </div>
+        <button id="blindbox-draw-btn" class="blindbox-draw-btn" type="button" onclick="spinBlindboxTheme()">🎲 隨機抽一顆扭蛋！</button>
+        <div class="blindbox-hint" style="margin-bottom:12px;">每一款都自動依據你的照片生成「Q版公仔＋專屬底座＋限定包裝盒＋3件隨身配件」</div>
+
+        <div style="background:#fff; border:2px solid #ffcdd2; border-radius:14px; padding:12px; margin-top:8px; text-align:left;">
+            <div style="background:#ffebee; border-left:4px solid #e53935; padding:8px 10px; border-radius:6px; margin-bottom:8px; color:#b71c1c; font-weight:800; text-align:center; font-size:14px;">
+                選/抽扭蛋主題 → 複製扭蛋指令 → 開啟 Gemini 上傳全身照並貼上
+            </div>
+            <details id="blindbox-prompt-details" style="margin-bottom:10px;">
+                <summary style="cursor:pointer; font-weight:800; color:#c62828; font-size:14px;">查看「扭蛋開箱隱藏公仔」完整提示詞</summary>
+                <pre id="blindbox-prompt-preview" class="travel-prompt-preview" style="margin-top:8px; max-height:220px; overflow-y:auto; font-size:12px;"></pre>
+            </details>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button id="blindbox-copy-btn" class="travel-copy-btn" type="button" onclick="copyBlindboxPrompt()" style="flex:2; min-width:180px; margin:0; background:linear-gradient(135deg, #e53935, #ff7043);">📋 複製「扭蛋開箱公仔」指令</button>
+                <button type="button" onclick="window.open('https://gemini.google.com/app', '_blank')" style="flex:1; min-width:120px; background:#1e293b; color:#fff; border:none; border-radius:12px; padding:12px 14px; font-size:14px; font-weight:800; cursor:pointer;">✨ 開啟 Gemini</button>
+            </div>
+            <div id="blindbox-copy-status" class="travel-copy-status" style="text-align:center; margin-top:6px;"></div>
+        </div>
     </div>
 
     <div class="travel-hero figurine-mini-hero">
@@ -4833,6 +4851,19 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         }
 
         // 5. 初始化 AI 公仔系列 下拉選單
+        if (typeof blindboxThemes !== 'undefined') {
+            const selBlindbox = document.getElementById('sel-blindbox-theme');
+            if (selBlindbox && selBlindbox.options.length <= 1) {
+                selBlindbox.innerHTML = blindboxThemes.map((t, idx) => `<option value="${idx}">🎁 扭蛋主題：${t.short}</option>`).join('');
+                // 預設選中「台灣復古款」(index 15)
+                const defaultIdx = blindboxThemes.findIndex(t => t.short === '台灣復古款');
+                const targetIdx = defaultIdx >= 0 ? defaultIdx : 0;
+                selBlindbox.value = String(targetIdx);
+                if (typeof figurineStoryState !== 'undefined' && !figurineStoryState.theme) {
+                    figurineStoryState.theme = blindboxThemes[targetIdx];
+                }
+            }
+        }
         if (typeof figurineRoles !== 'undefined') {
             const selRole = document.getElementById('sel-figurine-role');
             if (selRole && selRole.options.length <= 1) {
@@ -6883,9 +6914,87 @@ ${heroJourneyPlan}
 不要提問，直接生成圖片。`;
     }
 
+    function buildBlindboxPrompt() {
+        const defaultTheme = (typeof blindboxThemes !== 'undefined')
+            ? (blindboxThemes.find(t => t.short === '台灣復古款') || blindboxThemes[0])
+            : { short: '台灣復古款', full: '台灣復古主題的小型扭蛋收藏玩具：老招牌、花磚、復古商店與懷舊街景元素。' };
+        const themeObj = (figurineStoryState && figurineStoryState.theme) ? figurineStoryState.theme : defaultTheme;
+        const themeName = themeObj.short;
+        const themeDesc = themeObj.full;
+
+        return `請根據我上傳的照片人物，製作一張超精緻的「3D 盲盒扭蛋抽抽樂隱藏版公仔開箱展示圖」（溫暖木桌微距商品攝影風格）：
+
+【1. 主角 Q 版公仔（畫面中央）】
+- 嚴格保留照片中人物的五官神韻、髮型、眼鏡、帽子與表情（臉部微帶自信微笑，右手比讚）。
+- 完整還原照片中人物的全身穿搭細節：包含上衣顏色、衣服上的文字與圖案、褲子/裙子款式、襪子與球鞋配色，轉化為 3.5～4 頭身的 Pop Mart 風格高品質 3D 搪膠塗裝公仔（Chibi Vinyl Art Toy Figurine）。
+- 公仔站立在一個透明圓形壓克力展示底座上，底座正前方貼有一塊黑底金字立體銘牌，上面清楚寫著：「★ ${themeName} ★」。
+
+【2. 扭蛋殼與包裝彩盒（左右兩側）】
+- 左側：放著一顆剛打開的巨大紅白雙色半透明塑膠扭蛋殼（上半部透明蓋掀起、下半部紅色碗狀底座）。
+- 右側：直立擺放一個同款公仔的「透明開窗收藏包裝彩盒（Window Box Packaging）」，彩盒上方印著醒目的繁體中文標題「★ ${themeName} ★」，右上角有紅色圓形皇冠徽章寫著「限定版」，盒身側邊有直排文字「經典不敗・值得收藏」與右下角「台灣限定」標章；彩盒外盒插畫融合「${themeDesc}」的精美視覺，且透明櫥窗內也展示著一隻同款公仔。
+
+【3. 隨身配件微縮模型（右下角桌面）】
+- 在公仔與彩盒前方的木桌面上，整齊陳列 3 件從照片人物身上拆解出來的迷你微縮配件模型（例如照片中的斜背包/包包、帽子、手錶、眼鏡或相機等），旁邊附一個小巧的透明圓形配件座。
+
+【4. 左上角復古開箱標牌】
+- 畫面左上角浮現復古奶油色貼紙標牌，大字寫著：
+  「扭蛋抽抽樂！ ★ 你的隱藏公仔！」
+- 下方副標貼紙寫著：
+  「我抽到的是：${themeName}公仔」並蓋上一個紅色圓形「限定版」印章。
+
+【5. 畫質與光影要求】
+- 背景為柔和景深虛化的「${themeDesc}」懷舊街景或主題場景，桌面為真實溫潤木紋。
+- 商業級玩具商品攝影光影、PBR 細膩塑膠與布料紋理塗裝、所有繁體中文字體清晰工整無亂碼。不要提問，直接生成圖片。`;
+    }
+
+    function onManualSelectBlindbox(idxStr) {
+        if (idxStr === '' || typeof blindboxThemes === 'undefined') return;
+        const idx = parseInt(idxStr, 10);
+        if (isNaN(idx) || !blindboxThemes[idx]) return;
+        figurineStoryState.theme = blindboxThemes[idx];
+        saveFigurineStory();
+        updateBlindboxUI();
+    }
+
+    async function copyBlindboxPrompt() {
+        const prompt = buildBlindboxPrompt();
+        const status = document.getElementById('blindbox-copy-status');
+        try {
+            await navigator.clipboard.writeText(prompt);
+            if (status) {
+                status.style.color = '#2e7d32';
+                status.innerText = '✅ 已複製「扭蛋開箱公仔」指令！請點右側「開啟 Gemini」上傳全身照並貼上。';
+            }
+        } catch (_) {
+            const ta = document.createElement('textarea');
+            ta.value = prompt;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            if (status) {
+                status.style.color = '#2e7d32';
+                status.innerText = '✅ 已複製「扭蛋開箱公仔」指令！請點右側「開啟 Gemini」上傳全身照並貼上。';
+            }
+        }
+    }
+
     function updateBlindboxUI() {
+        if (!figurineStoryState.theme && typeof blindboxThemes !== 'undefined') {
+            const defaultIdx = blindboxThemes.findIndex(t => t.short === '台灣復古款');
+            figurineStoryState.theme = blindboxThemes[defaultIdx >= 0 ? defaultIdx : 0];
+        }
         const el = document.getElementById('blindbox-theme-result');
-        if (el) el.innerText = figurineStoryState.theme ? figurineStoryState.theme.short : '準備抽扭蛋';
+        if (el) el.innerText = figurineStoryState.theme ? figurineStoryState.theme.short : '台灣復古款';
+        const sel = document.getElementById('sel-blindbox-theme');
+        if (sel && figurineStoryState.theme && typeof blindboxThemes !== 'undefined') {
+            const idx = blindboxThemes.findIndex(t => t.short === figurineStoryState.theme.short);
+            if (idx >= 0) sel.value = String(idx);
+        }
+        const previewEl = document.getElementById('blindbox-prompt-preview');
+        if (previewEl) previewEl.innerText = buildBlindboxPrompt();
+        const status = document.getElementById('blindbox-copy-status');
+        if (status) status.innerText = '';
     }
 
     function updateFigurineUI() {
@@ -6915,7 +7024,10 @@ ${heroJourneyPlan}
 
     function restoreFigurineStory() {
         const raw = sessionStorage.getItem('slots_figurine_story');
-        if (!raw) return;
+        if (!raw) {
+            updateBlindboxUI();
+            return;
+        }
         try {
             const saved = JSON.parse(raw);
             if (saved) {
@@ -6928,7 +7040,9 @@ ${heroJourneyPlan}
                 };
                 updateFigurineUI();
             }
-        } catch (_) {}
+        } catch (_) {
+            updateBlindboxUI();
+        }
     }
 
     function setBlindboxButtonsDisabled(disabled) {
