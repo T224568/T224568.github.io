@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>媽媽菜 ‧ 阿文壽司長輩用餐指南與菜單收據整理</title>
+  <style>
+    :root {
+      --primary: #c0392b;
+      --primary-light: #f9ebea;
+      --secondary: #d35400;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #2c3e50;
+      --text-muted: #7f8c8d;
+      --border: #e2e8f0;
+      --accent: #27ae60;
+      --accent-soft: #eafaf1;
+      --tag-warn: #e67e22;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang TC", "Noto Sans TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1.5rem 1rem 4rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #c0392b 0%, #e67e22 100%);
+      color: white;
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(192, 57, 43, 0.2);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.92;
+    }
+    .info-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .info-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.5rem;
+    }
+    .rule-box {
+      background: #fef9e7;
+      border-left: 4px solid #f39c12;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+      color: #7d6608;
+    }
+    .recommend-item {
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    .recommend-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .dish-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #2c3e50;
+      margin-bottom: 0.25rem;
+    }
+    .dish-price {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .dish-desc {
+      font-size: 0.88rem;
+      color: #555;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    .badge-soft { background: #e8f8f5; color: #16a085; }
+    .badge-warm { background: #fef5e7; color: #d35400; }
+    .badge-meat { background: #ebf5fb; color: #2980b9; }
+    .badge-note { background: #fbeee6; color: #c0392b; font-weight: bold; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+    }
+    th, td {
+      padding: 0.6rem 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+    }
+    .num { text-align: right; }
+    .total-row {
+      font-weight: 700;
+      background: #fdf2e9;
+      color: #c0392b;
+    }
+
+    .stat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .stat-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+    }
+    .stat-name { font-weight: 600; }
+    .stat-count {
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+    .file-tree {
+      background: #1e293b;
+      color: #f1f5f9;
+      padding: 1.2rem;
+      border-radius: 10px;
+      font-family: ui-monospace, Menlo, Monaco, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+    .file-tree span.dir { color: #38bdf8; font-weight: bold; }
+    .file-tree span.file { color: #e2e8f0; }
+    .file-tree span.tag { color: #facc15; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🍱 媽媽菜 ‧ 阿文壽司長輩用餐指南與收據整理</h1>
+    <p>阿文壽司（苓雅店）‧ 專為長輩牙口消化設計的點餐指南與歷次消費紀錄</p>
+    <div class="info-bar">
+      <span class="info-badge">📍 地址：阿文壽司 苓雅店</span>
+      <span class="info-badge">📞 電話：07-3333090 / 0903-450799</span>
+      <span class="info-badge">🗓 整理日期：2026-11-10</span>
+    </div>
+  </header>
+
+  <!-- 長輩黃金點餐法則 -->
+  <div class="card" style="margin-bottom: 1.5rem;">
+    <h2 class="card-title">💡 長輩用餐必點核心原則</h2>
+    <div class="rule-box">
+      <strong>✨ 萬年必備：每組必點「茶碗蒸」</strong><br>
+      茶碗蒸質地極嫩好吞嚥、高營養無負擔，是長輩每一餐的標配（歷史單據點擊率 100%）。<br>
+      <strong>⚠️ 點壽司特別注意事項：</strong>凡點選握壽司（如比目魚、干貝），務必請店家備註<strong>「全熟」</strong>！
+    </div>
+  </div>
+
+  <!-- 三大精選套餐流派 -->
+  <h2 style="font-size: 1.3rem; margin-bottom: 1rem; color: #2c3e50;">🌟 長輩三組精選點餐流派</h2>
+  <div class="grid grid-3">
+    
+    <!-- 第一組 -->
+    <div class="card">
+      <h3 class="card-title" style="font-size: 1.05rem;">🍵 第一組：溫補暖胃流</h3>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">適合：天氣稍涼、胃口較差或消化較慢時</p>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>馬鈴薯燉肉</span>
+          <span class="dish-price">$160</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-warm">首選推薦</span>馬鈴薯與紅蘿蔔燉至綿軟，肉塊易咀嚼，湯汁拌飯極佳。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>味噌魚皮湯</span>
+          <span class="dish-price">$55</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-soft">高膠原</span>魚皮極軟滑，富含膠原蛋白，比一般魚塊更順口好嚥。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>蔥燒烘蛋</span>
+          <span class="dish-price">$70</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-warm">鬆軟飽足</span>口感厚實但質地鬆軟，比傳統炒蛋更具香氣與飽足感。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>豆皮壽司</span>
+          <span class="dish-price">$50-60</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-soft">甜潤好嚥</span>豆皮軟甜多汁，好下嚥且米飯濕潤。</p>
+      </div>
+    </div>
+
+    <!-- 第二組 -->
+    <div class="card">
+      <h3 class="card-title" style="font-size: 1.05rem;">💪 第二組：豐富蛋白質流</h3>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">適合：需要補充體力、吸收高優質蛋白的長輩</p>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>炙燒比目魚側緣握壽司</span>
+          <span class="dish-price">$160</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-note">全熟備註</span>壽司中最軟、油脂最豐厚的品項，入口即化（務必備註全熟）。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>蕃茄蛋包飯</span>
+          <span class="dish-price">$90</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-soft">濕潤順口</span>比炒飯更濕潤，搭配滑嫩煎蛋，吞嚥負擔小。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>芋頭沙拉</span>
+          <span class="dish-price">$80</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-warm">優質澱粉</span>芋泥口感綿密細緻，天然好消化。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>紫菜蛋花湯</span>
+          <span class="dish-price">$30</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-soft">清爽無負擔</span>簡單清淡，暖胃解膩無腸胃負擔。</p>
+      </div>
+    </div>
+
+    <!-- 第三組 -->
+    <div class="card">
+      <h3 class="card-title" style="font-size: 1.05rem;">🍲 第三組：日式熱炒經典流</h3>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">適合：喜愛豐富熱炒風味與麵食的長輩</p>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>炒烏龍麵</span>
+          <span class="dish-price">$90</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-soft">軟Q滑順</span>麵條滑潤軟Q，比起意麵或炒飯更適合牙口不好的長輩。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>炸豆腐</span>
+          <span class="dish-price">$70-80</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-note">吃法技巧</span>提醒店家「醬汁淋濕」泡軟外皮，或只吃內部滑嫩豆腐。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>蛤蜊湯</span>
+          <span class="dish-price">$70</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-soft">鮮味補鋅</span>湯頭鮮味十足；肉質若覺韌可只喝湯，補足礦物質。</p>
+      </div>
+
+      <div class="recommend-item">
+        <div class="dish-head">
+          <span>炙燒干貝握壽司</span>
+          <span class="dish-price">$160-170</span>
+        </div>
+        <p class="dish-desc"><span class="badge badge-note">全熟備註</span>干貝纖維極短，炙燒至全熟依然軟嫩香甜（務必備註全熟）。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 點播排行榜與消費統計 -->
+  <div class="grid grid-2">
+    <div class="card">
+      <h3 class="card-title">🏆 媽媽菜 ‧ 高頻率愛點排行榜</h3>
+      <div class="stat-list">
+        <div class="stat-item">
+          <span class="stat-name">🥇 茶碗蒸（極嫩/好吞/必點）</span>
+          <span class="stat-count">5 / 5 次必點</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-name">🥈 涼拌冷豆腐（清爽/高蛋白）</span>
+          <span class="stat-count">4 次點閱</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-name">🥉 炙燒比目魚側緣握壽司（全熟/入口化）</span>
+          <span class="stat-count">3 次點閱</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-name">🎖 味噌魚皮湯 / 味噌湯（暖胃順口）</span>
+          <span class="stat-count">4 次點閱</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-name">🎖 洋芋沙拉 / 芋頭沙拉（綿密澱粉）</span>
+          <span class="stat-count">3 次點閱</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-name">🎖 炒烏龍麵 / 和風鱈魚肝</span>
+          <span class="stat-count">2 次點閱</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">📊 歷次單據金額一覽</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>日期 / 類型</th>
+            <th>人數 / 規格</th>
+            <th class="num">金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-05-20（內用）</td>
+            <td>1大0小（5桌）</td>
+            <td class="num">$665</td>
+          </tr>
+          <tr>
+            <td>2026-04-15（內用）</td>
+            <td>1大0小（5桌）</td>
+            <td class="num">$520</td>
+          </tr>
+          <tr>
+            <td>2025-08-08（內用）</td>
+            <td>1大0小（6桌）</td>
+            <td class="num">$875</td>
+          </tr>
+          <tr>
+            <td>2025-07-03（內用）</td>
+            <td>3大0小（5桌）</td>
+            <td class="num">$1,425</td>
+          </tr>
+          <tr>
+            <td>補印單據（內用）</td>
+            <td>4大0小（5桌）</td>
+            <td class="num">$1,700</td>
+          </tr>
+          <tr>
+            <td>外帶紀錄（阿文＋果汁）</td>
+            <td>外帶 + 酪梨牛奶×2</td>
+            <td class="num">$1,020</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">合計紀錄（6筆）</td>
+            <td class="num">$6,205</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 資料夾檔案對照表 -->
+  <div class="card">
+    <h3 class="card-title">📁 本地歸檔目錄結構 (512G)</h3>
+    <div class="file-tree">
+<span class="dir">/Volumes/512G/ChromeDownload_512G/媽媽菜/</span>
+├── <span class="file">01_阿文壽司_菜單_壽司刺身手捲冷物沙拉.jpg</span>      <span class="tag">[完整價目表 1]</span>
+├── <span class="file">02_阿文壽司_菜單_熱炒揚物煮物燒物丼物鍋燒.jpg</span>  <span class="tag">[完整價目表 2]</span>
+├── <span class="file">03_點餐收據_2026-05-20_5桌1人_665元.jpg</span>         <span class="tag">[收據記錄]</span>
+├── <span class="file">04_點餐收據_2026-04-15_5桌1人_520元.jpg</span>         <span class="tag">[收據記錄]</span>
+├── <span class="file">05_點餐收據_日期未明_5桌4人_1700元.jpg</span>          <span class="tag">[收據記錄]</span>
+├── <span class="file">06_外帶單據與酪梨牛奶_對話紀錄_1020元.jpg</span>       <span class="tag">[對話紀錄]</span>
+├── <span class="file">07_點餐收據_2025-08-08_6桌1人_875元.jpg</span>         <span class="tag">[收據記錄]</span>
+├── <span class="file">08_點餐收據_2025-07-03_5桌3人_1425元.jpg</span>        <span class="tag">[收據記錄]</span>
+└── <span class="file">09_長輩適合菜色推薦指南_三組菜單.jpg</span>            <span class="tag">[分析手冊]</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
