@@ -1251,117 +1251,117 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
 <!-- ========================================== -->
 <!-- ========================================== -->
-<!-- 📰 世界新聞指令產生器專區 (NewsOps) -->
+<!-- 📰 24小時世界新聞精準指令抽籤機 (NewsOps 懶人直達版) -->
 <!-- ========================================== -->
-<div id="view-news-generator" class="view-section container" style="max-width: 980px; padding: 0;">
-    <div style="padding: 16px 20px 0;">
-        <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 14px;">回首頁</button>
-    </div>
+<div id="view-news-generator" class="view-section container travel-shell" style="max-width: 980px;">
+    <button class="back-btn" onclick="switchView('view-upload')">回首頁</button>
     <div style="clear: both;"></div>
 
-    <header class="news-masthead">
-      <div class="news-masthead-title">NewsOps</div>
-      <div class="news-masthead-sub">24小時世界新聞精準指令 · Command Generator</div>
-      <div class="news-masthead-date" id="news-live-date"></div>
-    </header>
-
-    <div class="news-hero-strip">
-      <div class="news-hero-kicker">⚡ Real-time · 即時新聞指令工具</div>
-      <h1 class="news-hero-headline">24小時 <em>世界新聞</em> 精準指令</h1>
-      <p class="news-hero-desc">設定主題類別、時間與來源，即時產生可直接複製的 Google 搜尋指令與 AI 深度對話提示詞。</p>
+    <!-- 頂部 Hero -->
+    <div class="travel-hero" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 20px; color: #ffffff; box-shadow: 0 6px 20px rgba(15,23,42,0.25);">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.25); border: 1px solid #f59e0b; color: #fef3c7; padding: 4px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; margin-bottom: 10px;">
+            ⚡ 24H REAL-TIME · 世界新聞精準指令產生器
+        </div>
+        <h1 style="color: #ffffff; margin: 4px 0 10px; font-size: 26px; font-weight: 900;">24小時世界新聞精準指令</h1>
+        <p style="color: #cbd5e1; font-size: 15px; line-height: 1.6; margin: 0 auto; max-width: 720px;">
+            一鍵隨機抽籤或手動挑選「類別、熱門焦點、時間範圍與權威來源」，即時自動產出可一鍵直達 Gemini、ChatGPT 與 Google 搜尋列的精準指令！
+        </p>
     </div>
 
-    <div class="news-main">
-      <!-- 篩選控制項 -->
-      <div class="news-section-rule"><span class="news-section-label">⚙️ 設定篩選條件</span></div>
-
-      <div class="news-controls">
-        <div class="news-ctrl-group">
-          <span class="news-ctrl-label">新聞類別</span>
-          <select id="news-category" onchange="generateNewsCommands()">
-            <option value="">全方位（All）</option>
-            <option value="AI 技術">🤖 AI 技術</option>
-            <option value="地緣政治">🌍 地緣政治</option>
-            <option value="金融市場">📈 金融市場</option>
-            <option value="氣候環境">🌿 氣候環境</option>
-            <option value="科技產業">💻 科技產業</option>
-            <option value="衝突戰爭">⚔️ 衝突與戰爭</option>
-            <option value="健康醫療">🏥 健康醫療</option>
-            <option value="體育新聞">⚽ 體育新聞</option>
-            <option value="娛樂新聞">🎬 娛樂新聞</option>
-          </select>
+    <!-- 🎰 四軸懶人抽籤拉霸機 -->
+    <div class="travel-draw-box" style="background:#ffffff; border:2px solid #cbd5e1; border-radius:18px; padding:18px; margin-bottom:20px; box-shadow:0 4px 15px rgba(0,0,0,0.04);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+            <div style="font-size:16px; font-weight:900; color:#0f172a;">🎰 懶人抽籤機（已預先配置好，免打字即選即用）：</div>
+            <div id="news-live-date-badge" style="background:#f1f5f9; color:#475569; padding:4px 10px; border-radius:8px; font-size:12px; font-weight:700; font-family:monospace;"></div>
         </div>
 
-        <div class="news-ctrl-group">
-          <span class="news-ctrl-label">時間範圍</span>
-          <select id="news-timerange" onchange="generateNewsCommands()">
-            <option value="24小時">過去 24 小時</option>
-            <option value="12小時">過去 12 小時</option>
-            <option value="48小時">過去 48 小時</option>
-            <option value="一週">過去一週</option>
-          </select>
+        <div class="travel-results" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:15px;">
+            <!-- 輪盤 1: 新聞類別 -->
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:12px 10px; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px;">
+                <div class="travel-card-label" style="font-size:12px; font-weight:800; color:#0284c7; margin-bottom:4px;">1️⃣ 新聞類別</div>
+                <div class="travel-card-value" id="slot-news-cat-result" style="font-size:15px; font-weight:900; color:#0f172a; margin-bottom:8px;">🤖 AI 技術</div>
+                <select class="slot-select-dropdown" id="sel-news-cat" onchange="onManualSelectNewsSlot('cat', this.value)" style="width:100%; border-color:#0284c7; font-size:13px; font-weight:700; padding:6px 8px; border-radius:8px; background:#fff; color:#0f172a;"></select>
+            </div>
+
+            <!-- 輪盤 2: 熱門追蹤焦點 -->
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:12px 10px; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px;">
+                <div class="travel-card-label" style="font-size:12px; font-weight:800; color:#d97706; margin-bottom:4px;">2️⃣ 追蹤主題 / 焦點</div>
+                <div class="travel-card-value" id="slot-news-topic-result" style="font-size:15px; font-weight:900; color:#0f172a; margin-bottom:8px;">Nvidia 與 OpenAI 最新突破</div>
+                <select class="slot-select-dropdown" id="sel-news-topic" onchange="onManualSelectNewsSlot('topic', this.value)" style="width:100%; border-color:#d97706; font-size:13px; font-weight:700; padding:6px 8px; border-radius:8px; background:#fff; color:#0f172a;"></select>
+            </div>
+
+            <!-- 輪盤 3: 時間範圍 -->
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:12px 10px; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px;">
+                <div class="travel-card-label" style="font-size:12px; font-weight:800; color:#16a34a; margin-bottom:4px;">3️⃣ 時間範圍</div>
+                <div class="travel-card-value" id="slot-news-time-result" style="font-size:15px; font-weight:900; color:#0f172a; margin-bottom:8px;">過去 24 小時</div>
+                <select class="slot-select-dropdown" id="sel-news-time" onchange="onManualSelectNewsSlot('time', this.value)" style="width:100%; border-color:#16a34a; font-size:13px; font-weight:700; padding:6px 8px; border-radius:8px; background:#fff; color:#0f172a;"></select>
+            </div>
+
+            <!-- 輪盤 4: 新聞來源媒體 -->
+            <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:12px 10px; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px;">
+                <div class="travel-card-label" style="font-size:12px; font-weight:800; color:#7c3aed; margin-bottom:4px;">4️⃣ 來源媒體</div>
+                <div class="travel-card-value" id="slot-news-src-result" style="font-size:15px; font-weight:900; color:#0f172a; margin-bottom:8px;">Reuters 路透社</div>
+                <select class="slot-select-dropdown" id="sel-news-src" onchange="onManualSelectNewsSlot('src', this.value)" style="width:100%; border-color:#7c3aed; font-size:13px; font-weight:700; padding:6px 8px; border-radius:8px; background:#fff; color:#0f172a;"></select>
+            </div>
         </div>
 
-        <div class="news-ctrl-group">
-          <span class="news-ctrl-label">新聞來源</span>
-          <select id="news-source" onchange="generateNewsCommands()">
-            <option value="">所有來源</option>
-            <option value="site:bbc.com">BBC</option>
-            <option value="site:reuters.com">Reuters 路透社</option>
-            <option value="site:apnews.com">AP News 美聯社</option>
-            <option value="site:nytimes.com">NY Times</option>
-            <option value="site:theguardian.com">The Guardian</option>
-            <option value="site:cna.com.tw">中央社 (CNA)</option>
-            <option value="site:udn.com">聯合新聞網 (UDN)</option>
-            <option value="site:ltn.com.tw">自由時報 (Liberty Times)</option>
-            <option value="site:cnyes.com">鉅亨網 (cnyes)</option>
-          </select>
-        </div>
-
-        <div class="news-ctrl-group keyword-input">
-          <span class="news-ctrl-label">關鍵字（選填）</span>
-          <input type="text" id="news-keyword" placeholder="例：Nvidia / 台灣 / 聯準會" oninput="generateNewsCommands()" />
-        </div>
-
-        <div class="news-ctrl-group">
-          <span class="news-ctrl-label">排除字（選填）</span>
-          <input type="text" id="news-exclude" placeholder="例：sports / 娛樂" oninput="generateNewsCommands()" />
-        </div>
-
-        <button class="news-gen-btn" type="button" onclick="generateNewsCommands()">▶ 立即產生</button>
-      </div>
-
-      <!-- 產生的指令卡片清單 -->
-      <div class="news-section-rule"><span class="news-section-label">📋 即時產生的 6 款精準指令</span></div>
-      <div class="news-cards-grid" id="news-cards-output"></div>
-
-      <!-- 常用指令速查表 -->
-      <div class="news-section-rule" style="margin-top:36px;"><span class="news-section-label">⚡ 常用指令速查表（點擊任一指令即可複製）</span></div>
-      <div class="news-table-wrap">
-        <table id="news-ref-table">
-          <thead>
-            <tr>
-              <th style="width:18%;">需求類型</th>
-              <th style="width:52%;">指令範例（點擊複製）</th>
-              <th style="width:30%;">說明</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <!-- 進階技巧 -->
-      <div class="news-section-rule" style="margin-top:36px;"><span class="news-section-label">💡 讓指令更精準的 4 個訣竅</span></div>
-      <div class="news-tips-box">
-        <h3>專業新聞檢索 4 大秘訣：</h3>
-        <ul class="news-tips-list">
-          <li>使用 <strong>after:YYYY-MM-DD</strong> 時間運算子，確保只取特定日期後的即時報導。</li>
-          <li>加上 <strong>site:</strong> 限定知名國際媒體（如 <code>site:reuters.com</code>）可大幅提升可信度與資訊品質。</li>
-          <li>用 <strong>-</strong> 減號精準排除無關雜訊，例如 <code>-sports -entertainment</code>。</li>
-          <li>搭配 Google Trends Real-time 可看到過去 24 小時搜尋量 <em>Breakout</em> 的爆發話題，直擊全球焦點。</li>
-        </ul>
-      </div>
+        <button id="btn-spin-news-slots" class="travel-main-draw" type="button" onclick="spinNewsSlots()" style="width:100%; background:linear-gradient(135deg, #0f172a, #334155); color:#fff; font-size:18px; font-weight:900; padding:14px; border-radius:12px; border:none; cursor:pointer; box-shadow:0 4px 12px rgba(15,23,42,0.3);">
+            🎲 一鍵抽出即時新聞主題！
+        </button>
     </div>
+
+    <!-- ⚡ 精選 1 號主指令面板（懶人一鍵直達首選） -->
+    <div style="background:#fff; border:2px solid #0f172a; border-radius:16px; padding:20px; margin-bottom:24px; box-shadow:0 6px 20px rgba(0,0,0,0.06); text-align:left;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="background:#0f172a; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">⭐ 推薦首選</span>
+                <span style="font-size:18px; font-weight:900; color:#0f172a;">全方位新聞深度摘要指令</span>
+            </div>
+            <span style="color:#64748b; font-size:13px;">隨抽籤結果即時更新</span>
+        </div>
+
+        <div style="background:#fff8e1; border-left:4px solid #f59e0b; padding:10px 14px; border-radius:8px; margin-bottom:12px; color:#78350f; font-weight:800; font-size:14px;">
+            抽新聞靈感 → 複製指令 → 點旁邊「✨ 開啟 Gemini」或「🤖 ChatGPT」貼上立即總結！
+        </div>
+
+        <div id="news-main-prompt-box" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:14px; line-height:1.7; padding:14px 16px; border-radius:10px; margin-bottom:14px; word-break:break-word; white-space:pre-wrap;">請幫我整理過去 24 小時內【AI 技術】領域最重大的 10 則【Nvidia 與 OpenAI 最新突破】頭條新聞，來源限定 Reuters 路透社，並提供每則的一句核心摘要與深度影響解析。</div>
+
+        <!-- 一鍵直達按鈕群 -->
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="copy-btn" id="btn-copy-news-main" onclick="copyNewsSlotMain(this)" style="background:#0f172a; flex:2; min-width:200px; padding:12px 18px; font-size:15px; font-weight:800; border-radius:10px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製新聞指令</button>
+            <button type="button" onclick="openNewsGeminiDirect()" style="background:#1e1f20; color:#fff; border:1px solid #475569; border-radius:10px; padding:12px 18px; font-size:14px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px;">✨ 開啟 Gemini</button>
+            <button type="button" onclick="openNewsChatGPTDirect()" style="background:#10a37f; color:#fff; border:none; border-radius:10px; padding:12px 18px; font-size:14px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px;">🤖 開啟 ChatGPT</button>
+            <button type="button" onclick="openNewsGoogleDirect()" style="background:#2563eb; color:#fff; border:none; border-radius:10px; padding:12px 18px; font-size:14px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px;">🔍 Google 搜尋</button>
+        </div>
+        <div id="news-main-copy-status" style="font-size:13px; font-weight:800; color:#16a34a; text-align:center; margin-top:8px;"></div>
+    </div>
+
+    <!-- 📋 產生的其餘 5 款精準指令卡片（折疊展開） -->
+    <details id="news-more-prompts-details" style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:14px; padding:12px 16px; margin-bottom:24px; text-align:left;">
+        <summary style="cursor:pointer; font-size:15px; font-weight:800; color:#0f172a; padding:6px 0;">
+            📂 查看其餘 5 種新聞指令格式（Google 精準過濾、數據摘要、30秒速報等）
+        </summary>
+        <div class="news-cards-grid" id="news-cards-output" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px;"></div>
+    </details>
+
+    <!-- ⚡ 常用指令速查表 -->
+    <details style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:14px; padding:12px 16px; margin-bottom:20px; text-align:left;">
+        <summary style="cursor:pointer; font-size:15px; font-weight:800; color:#475569; padding:6px 0;">
+            ⚡ 常用世界新聞指令速查表（點擊任一指令即可複製）
+        </summary>
+        <div class="news-table-wrap" style="overflow-x:auto; margin-top:10px;">
+            <table id="news-ref-table" style="width:100%; border-collapse:collapse; font-size:13px;">
+                <thead>
+                    <tr style="background:#f1f5f9; text-align:left;">
+                        <th style="padding:10px 12px; border-bottom:2px solid #cbd5e1; width:20%;">需求類型</th>
+                        <th style="padding:10px 12px; border-bottom:2px solid #cbd5e1; width:52%;">指令範例（點擊複製）</th>
+                        <th style="padding:10px 12px; border-bottom:2px solid #cbd5e1; width:28%;">說明</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </details>
 </div>
 
 <!-- ========================================== -->
@@ -6195,7 +6195,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         setupSSEConnection();
         setupClipboardBtns();
-        if (typeof generateNewsCommands === 'function') generateNewsCommands();
+        if (typeof initNewsOpsSlots === 'function') initNewsOpsSlots();
 
         setupLineExternalBrowserFallback();
         updateHomeVoteCTA(isVotingActive);
@@ -10229,6 +10229,322 @@ window.addEventListener('pageshow', (event) => {
     scrollToTopForceGlobal();
     setTimeout(scrollToTopForceGlobal, 80);
 });
+
+
+    
+    // ==========================================
+    // 📰 24小時世界新聞精準指令抽籤機 (NewsOps 懶人直達版 JS)
+    // ==========================================
+    const NEWS_SLOT_DATA = {
+        cats: [
+            { id: "ai", name: "🤖 AI 技術", searchKw: "AI artificial intelligence" },
+            { id: "geopolitics", name: "🌍 地緣政治", searchKw: "geopolitics world diplomacy" },
+            { id: "finance", name: "📈 金融市場", searchKw: "global financial markets economy" },
+            { id: "tech", name: "💻 科技產業", searchKw: "tech industry semiconductors" },
+            { id: "climate", name: "🌿 氣候環境", searchKw: "climate change renewable energy" },
+            { id: "conflict", name: "⚔️ 衝突戰爭", searchKw: "international security conflicts" },
+            { id: "health", name: "🏥 健康醫療", searchKw: "medical research healthcare" },
+            { id: "sports", name: "⚽ 體育新聞", searchKw: "global sports athletics" },
+            { id: "entertainment", name: "🎬 娛樂新聞", searchKw: "entertainment film culture" }
+        ],
+        topics: [
+            "Nvidia 與 OpenAI 最新突破",
+            "全球股市美股台股最新收盤與波動",
+            "美國聯準會 (Fed) 降息最新動向",
+            "台積電全球晶圓廠布局與先進製程",
+            "全球地緣情勢最新談判進展",
+            "新能源電動車與固態電池技術競賽",
+            "最新醫學突破與重大癌症新藥研發",
+            "歐盟最新 AI 監管法規與科技巨頭動態",
+            "太空探索星艦星鏈最新發射任務",
+            "全球氣候極端天氣與低碳轉型政策"
+        ],
+        times: [
+            { label: "過去 12 小時", span: "12小時" },
+            { label: "過去 24 小時", span: "24小時" },
+            { label: "過去 48 小時", span: "48小時" },
+            { label: "過去一週", span: "一週" }
+        ],
+        sources: [
+            { label: "Reuters 路透社", site: "site:reuters.com", tag: "路透社" },
+            { label: "BBC 國際新聞", site: "site:bbc.com", tag: "BBC" },
+            { label: "AP News 美聯社", site: "site:apnews.com", tag: "美聯社" },
+            { label: "NY Times 紐約時報", site: "site:nytimes.com", tag: "紐約時報" },
+            { label: "The Guardian 衛報", site: "site:theguardian.com", tag: "衛報" },
+            { label: "中央社 (CNA)", site: "site:cna.com.tw", tag: "中央社" },
+            { label: "鉅亨網 (cnyes)", site: "site:cnyes.com", tag: "鉅亨網" },
+            { label: "所有權威來源", site: "", tag: "所有來源" }
+        ]
+    };
+
+    let newsSlotState = {
+        cat: NEWS_SLOT_DATA.cats[0],
+        topic: NEWS_SLOT_DATA.topics[0],
+        time: NEWS_SLOT_DATA.times[1], // 24小時
+        src: NEWS_SLOT_DATA.sources[0]  // 路透社
+    };
+
+    let newsSlotSpinning = false;
+
+    function initNewsOpsSlots() {
+        const selCat = document.getElementById('sel-news-cat');
+        if (selCat && selCat.options.length === 0) {
+            selCat.innerHTML = NEWS_SLOT_DATA.cats.map((c, i) => `<option value="${i}">${c.name}</option>`).join('');
+            selCat.value = "0";
+        }
+
+        const selTopic = document.getElementById('sel-news-topic');
+        if (selTopic && selTopic.options.length === 0) {
+            selTopic.innerHTML = NEWS_SLOT_DATA.topics.map((t, i) => `<option value="${i}">${t}</option>`).join('');
+            selTopic.value = "0";
+        }
+
+        const selTime = document.getElementById('sel-news-time');
+        if (selTime && selTime.options.length === 0) {
+            selTime.innerHTML = NEWS_SLOT_DATA.times.map((t, i) => `<option value="${i}">${t.label}</option>`).join('');
+            selTime.value = "1"; // 預設 24小時
+        }
+
+        const selSrc = document.getElementById('sel-news-src');
+        if (selSrc && selSrc.options.length === 0) {
+            selSrc.innerHTML = NEWS_SLOT_DATA.sources.map((s, i) => `<option value="${i}">${s.label}</option>`).join('');
+            selSrc.value = "0";
+        }
+
+        const dateBadge = document.getElementById('news-live-date-badge');
+        if (dateBadge) {
+            const now = new Date();
+            dateBadge.textContent = "📅 " + now.toLocaleDateString('zh-TW', { month:'long', day:'numeric', weekday:'short' });
+        }
+
+        initNewsOpsTableStatic();
+        updateNewsSlotUI();
+    }
+
+    function onManualSelectNewsSlot(type, idxStr) {
+        const idx = parseInt(idxStr, 10);
+        if (isNaN(idx)) return;
+        if (type === 'cat' && NEWS_SLOT_DATA.cats[idx]) newsSlotState.cat = NEWS_SLOT_DATA.cats[idx];
+        if (type === 'topic' && NEWS_SLOT_DATA.topics[idx]) newsSlotState.topic = NEWS_SLOT_DATA.topics[idx];
+        if (type === 'time' && NEWS_SLOT_DATA.times[idx]) newsSlotState.time = NEWS_SLOT_DATA.times[idx];
+        if (type === 'src' && NEWS_SLOT_DATA.sources[idx]) newsSlotState.src = NEWS_SLOT_DATA.sources[idx];
+        updateNewsSlotUI();
+    }
+
+    function spinNewsSlots() {
+        if (newsSlotSpinning) return;
+        newsSlotSpinning = true;
+        const btn = document.getElementById('btn-spin-news-slots');
+        if (btn) btn.disabled = true;
+
+        const started = Date.now();
+        const timer = setInterval(() => {
+            const rCat = NEWS_SLOT_DATA.cats[Math.floor(Math.random() * NEWS_SLOT_DATA.cats.length)];
+            const rTopic = NEWS_SLOT_DATA.topics[Math.floor(Math.random() * NEWS_SLOT_DATA.topics.length)];
+            const rTime = NEWS_SLOT_DATA.times[Math.floor(Math.random() * NEWS_SLOT_DATA.times.length)];
+            const rSrc = NEWS_SLOT_DATA.sources[Math.floor(Math.random() * NEWS_SLOT_DATA.sources.length)];
+
+            const elCat = document.getElementById('slot-news-cat-result');
+            const elTopic = document.getElementById('slot-news-topic-result');
+            const elTime = document.getElementById('slot-news-time-result');
+            const elSrc = document.getElementById('slot-news-src-result');
+
+            if (elCat) elCat.textContent = rCat.name;
+            if (elTopic) elTopic.textContent = rTopic;
+            if (elTime) elTime.textContent = rTime.label;
+            if (elSrc) elSrc.textContent = rSrc.label;
+
+            if (Date.now() - started >= 1200) {
+                clearInterval(timer);
+                newsSlotState.cat = NEWS_SLOT_DATA.cats[Math.floor(Math.random() * NEWS_SLOT_DATA.cats.length)];
+                newsSlotState.topic = NEWS_SLOT_DATA.topics[Math.floor(Math.random() * NEWS_SLOT_DATA.topics.length)];
+                newsSlotState.time = NEWS_SLOT_DATA.times[Math.floor(Math.random() * NEWS_SLOT_DATA.times.length)];
+                newsSlotState.src = NEWS_SLOT_DATA.sources[Math.floor(Math.random() * NEWS_SLOT_DATA.sources.length)];
+
+                // 同步下拉選單
+                const sCat = document.getElementById('sel-news-cat');
+                if (sCat) sCat.value = String(NEWS_SLOT_DATA.cats.indexOf(newsSlotState.cat));
+                const sTopic = document.getElementById('sel-news-topic');
+                if (sTopic) sTopic.value = String(NEWS_SLOT_DATA.topics.indexOf(newsSlotState.topic));
+                const sTime = document.getElementById('sel-news-time');
+                if (sTime) sTime.value = String(NEWS_SLOT_DATA.times.indexOf(newsSlotState.time));
+                const sSrc = document.getElementById('sel-news-src');
+                if (sSrc) sSrc.value = String(NEWS_SLOT_DATA.sources.indexOf(newsSlotState.src));
+
+                updateNewsSlotUI();
+                newsSlotSpinning = false;
+                if (btn) btn.disabled = false;
+            }
+        }, 80);
+    }
+
+    function buildCurrentNewsMainPrompt() {
+        const catName = newsSlotState.cat ? newsSlotState.cat.name.replace(/^[^\s]+\s/, '') : '全球';
+        const topic = newsSlotState.topic || '重要頭條';
+        const timeSpan = newsSlotState.time ? newsSlotState.time.span : '24小時';
+        const srcTag = newsSlotState.src && newsSlotState.src.tag !== '所有來源' ? `，來源限定 ${newsSlotState.src.tag}` : '';
+
+        return `請幫我整理過去 ${timeSpan} 內【${catName}】領域最重大的 10 則【${topic}】頭條新聞${srcTag}，並提供每則的一句核心摘要與深度影響解析。`;
+    }
+
+    function buildCurrentGoogleSearchCmd() {
+        const catKw = newsSlotState.cat ? newsSlotState.cat.searchKw : 'world news';
+        const topic = newsSlotState.topic || '';
+        const srcSite = newsSlotState.src && newsSlotState.src.site ? `${newsSlotState.src.site} ` : '';
+        const now = new Date();
+        const yesterday = new Date(now - 86400000);
+        const ymd = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        return `"${topic}" ${catKw} after:${ymd(yesterday)} ${srcSite}`.trim();
+    }
+
+    function updateNewsSlotUI() {
+        const elCat = document.getElementById('slot-news-cat-result');
+        const elTopic = document.getElementById('slot-news-topic-result');
+        const elTime = document.getElementById('slot-news-time-result');
+        const elSrc = document.getElementById('slot-news-src-result');
+
+        if (elCat && newsSlotState.cat) elCat.textContent = newsSlotState.cat.name;
+        if (elTopic && newsSlotState.topic) elTopic.textContent = newsSlotState.topic;
+        if (elTime && newsSlotState.time) elTime.textContent = newsSlotState.time.label;
+        if (elSrc && newsSlotState.src) elSrc.textContent = newsSlotState.src.label;
+
+        const mainPromptBox = document.getElementById('news-main-prompt-box');
+        const mainPrompt = buildCurrentNewsMainPrompt();
+        if (mainPromptBox) mainPromptBox.textContent = mainPrompt;
+
+        const status = document.getElementById('news-main-copy-status');
+        if (status) status.textContent = '';
+
+        // 更新折疊區的 5 款卡片
+        renderMoreNewsCards();
+    }
+
+    function renderMoreNewsCards() {
+        const container = document.getElementById('news-cards-output');
+        if (!container) return;
+
+        const catName = newsSlotState.cat ? newsSlotState.cat.name.replace(/^[^\s]+\s/, '') : '全球';
+        const topic = newsSlotState.topic || '重要頭條';
+        const timeSpan = newsSlotState.time ? newsSlotState.time.span : '24小時';
+        const googleCmd = buildCurrentGoogleSearchCmd();
+        const srcTag = newsSlotState.src && newsSlotState.src.tag !== '所有來源' ? `，來源限定 ${newsSlotState.src.tag}` : '';
+
+        const extraCmds = [
+            {
+                type: '🔍 Google 精準搜尋指令',
+                cmd: googleCmd,
+                desc: '貼入 Google 搜尋列，利用 after: 與 site: 精準過濾最新報導'
+            },
+            {
+                type: '📰 多角度深度立場分析',
+                cmd: `針對過去 ${timeSpan} 內「${topic}」新聞，請分別整理：① 核心事件摘要 ② 各國或各方立場與反應 ③ 預期後續市場與社會影響${srcTag}。`,
+                desc: '用於深度透析事件脈絡與利益衝突'
+            },
+            {
+                type: '📊 關鍵數據與市場指標',
+                cmd: `過去 ${timeSpan} 內，在「${topic}」相關領域最重要的數據變動或市場指標是什麼？請列出 3 個關鍵數字並解析其代表意義。`,
+                desc: '迅速掌握量化數據與市場指標'
+            },
+            {
+                type: '⚡ 30 秒即時速報格式',
+                cmd: `以「極簡即時速報」格式整理過去 ${timeSpan} 的「${topic}」即時動態，每則嚴格不超過 30 字，列出最多 10 則精要${srcTag}。`,
+                desc: '適合手機碎片時間快速瀏覽重點'
+            },
+            {
+                type: '🌐 Google Trends 爆發熱搜話題',
+                cmd: `Google Trends Global Real-time — 搜尋 "${topic}" 並篩選過去 24 小時 Breakout 爆發話題`,
+                desc: '探測社群討論熱門爆點與最新熱搜'
+            }
+        ];
+
+        container.innerHTML = extraCmds.map(c => `
+            <div class="news-card" style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:14px; text-align:left; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
+                <div style="font-size:12px; font-weight:800; color:#0284c7; margin-bottom:6px;">${c.type}</div>
+                <div style="font-family:Menlo,monospace; font-size:12.5px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin-bottom:8px; word-break:break-word; color:#1e293b;">${c.cmd}</div>
+                <div style="font-size:11.5px; color:#64748b; margin-bottom:10px;">${c.desc}</div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                    <button type="button" class="copy-btn" onclick="copyNewsGenericPrompt(this, \`${c.cmd.replace(/`/g, '\\`')}\`)" style="flex:1; padding:8px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#0f172a; color:#fff; cursor:pointer;">📋 複製</button>
+                    <button type="button" onclick="window.open('https://gemini.google.com/', '_blank')" style="padding:8px 10px; font-size:12px; font-weight:700; border-radius:6px; border:1px solid #cbd5e1; background:#f8fafc; color:#334155; cursor:pointer;">✨ Gemini</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    async function copyNewsSlotMain(btn) {
+        const text = buildCurrentNewsMainPrompt();
+        const status = document.getElementById('news-main-copy-status');
+        try {
+            await navigator.clipboard.writeText(text);
+            if (status) status.innerText = '✅ 已複製新聞指令！點右側按鈕可一鍵直達 Gemini 或 ChatGPT 貼上。';
+        } catch (_) {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta);
+            if (status) status.innerText = '✅ 已複製新聞指令！點右側按鈕可一鍵直達 Gemini 或 ChatGPT 貼上。';
+        }
+        if (btn) {
+            const orig = btn.innerText;
+            btn.innerText = '✓ 已複製！';
+            setTimeout(() => { btn.innerText = orig; }, 1800);
+        }
+    }
+
+    function copyNewsGenericPrompt(btn, text) {
+        navigator.clipboard.writeText(text).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta);
+        });
+        if (btn) {
+            const orig = btn.innerText;
+            btn.innerText = '✓ 已複製';
+            setTimeout(() => { btn.innerText = orig; }, 1800);
+        }
+    }
+
+    function openNewsGeminiDirect() {
+        copyNewsSlotMain(null);
+        window.open('https://gemini.google.com/', '_blank');
+    }
+
+    function openNewsChatGPTDirect() {
+        const prompt = buildCurrentNewsMainPrompt();
+        window.open('https://chat.openai.com/?q=' + encodeURIComponent(prompt), '_blank');
+    }
+
+    function openNewsGoogleDirect() {
+        const cmd = buildCurrentGoogleSearchCmd();
+        window.open('https://www.google.com/search?q=' + encodeURIComponent(cmd), '_blank');
+    }
+
+    function initNewsOpsTableStatic() {
+        const tbody = document.querySelector('#news-ref-table tbody');
+        if (!tbody || tbody.children.length > 0) return;
+        const now = new Date();
+        const yesterday = new Date(now - 86400000);
+        const ymd = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        const ydayStr = ymd(yesterday);
+
+        const refRows = [
+            {need:'全方位懶人包', cmd:`總結最近 24 小時全球發生的大事，包含政治、科技與經濟各一則。`, desc:'適合每日晨間快速掌握'},
+            {need:'特定領域追蹤', cmd:`搜尋過去 24 小時內與 Nvidia 或 OpenAI 相關的最新國際新聞。`, desc:'替換公司/人物名稱即可'},
+            {need:'多角度對比', cmd:`針對 [某國際事件]，請列出過去一天內路透社與美聯社的不同報導重點。`, desc:'比較媒體立場差異'},
+            {need:'數據與股市', cmd:`過去 24 小時內，全球金融市場最顯著的變動與相關新聞為何？`, desc:'適合盤前盤後研究'},
+            {need:'Google 搜尋', cmd:`world news after:${ydayStr}`, desc:'直接貼入 Google 搜尋列'},
+            {need:'指定媒體', cmd:`world news site:bbc.com after:${ydayStr}`, desc:'限定 BBC 報導'},
+            {need:'排除雜訊', cmd:`world news -sports after:${ydayStr}`, desc:'去除體育相關報導'},
+            {need:'Google Trends', cmd:`Google Trends Global Real-time`, desc:'看 24h 搜尋量爆升話題'}
+        ];
+
+        refRows.forEach(r => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td style="padding:10px 12px; border-bottom:1px solid #e2e8f0;"><strong>${r.need}</strong></td><td style="padding:10px 12px; border-bottom:1px solid #e2e8f0; font-family:Menlo,monospace; color:#0369a1; cursor:pointer;" title="點擊複製">${r.cmd}</td><td style="padding:10px 12px; border-bottom:1px solid #e2e8f0; color:#64748b;">${r.desc}</td>`;
+            tr.querySelector('td:nth-child(2)').onclick = () => copyNewsGenericPrompt(null, r.cmd);
+            tbody.appendChild(tr);
+        });
+    }
 
 
     // ==========================================
