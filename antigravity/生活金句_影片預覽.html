@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生活金句短影音 - Concat 自動化剪輯</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card: #151c2e;
+      --text: #f1f5f9;
+      --accent: #f59e0b;
+      --gold: #ffd54f;
+      --mint: #6ee7b7;
+      --subtext: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+    .container {
+      max-width: 860px;
+      width: 100%;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead {
+      color: var(--subtext);
+      font-size: 0.95rem;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .video-wrapper {
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      aspect-ratio: 9 / 16;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .quote-card {
+      background: rgba(255,255,255,0.03);
+      border-left: 4px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #e2e8f0;
+    }
+    .highlight-mint {
+      color: var(--mint);
+      font-weight: 700;
+    }
+    .highlight-gold {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .meta-box {
+      background: rgba(0,0,0,0.25);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .meta-item:last-child {
+      border-bottom: none;
+    }
+    .meta-label {
+      color: var(--subtext);
+    }
+    .meta-value {
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: #f59e0b;
+      color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: #d97706;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">✦ Concat MCP 自動化影片 ✦</div>
+      <h1>生活金句・心若從容</h1>
+      <p class="lead">9:16 直式短影音 | Google Nano Banana 意境底圖 | 雙軌配樂與原聲旁白</p>
+    </header>
+
+    <div class="content-grid">
+      <div class="video-wrapper">
+        <video controls poster="生活金句_preview.png" playsinline preload="metadata">
+          <source src="生活金句_心若從容.mp4" type="video/mp4">
+          您的瀏覽器不支援 HTML5 影片播放。
+        </video>
+      </div>
+
+      <div class="details">
+        <div class="quote-card">
+          心若從容，處處皆是<span class="highlight-mint">風景</span>；<br>
+          心若計較，步步皆是泥濘。<br><br>
+          把平凡的日子，<br>
+          過成<span class="highlight-gold">自己喜歡的模樣</span>。
+        </div>
+
+        <div class="meta-box">
+          <div class="meta-item">
+            <span class="meta-label">影片規格</span>
+            <span class="meta-value">1080 × 1920 (9:16 Shorts/Reels)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">幀率與時長</span>
+            <span class="meta-value">30 fps / 12.0 秒 (360 幀)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">視覺背景</span>
+            <span class="meta-value">Google Nano Banana 溫暖極簡晨光</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">音效設計</span>
+            <span class="meta-value">美佳台灣華語女聲 + 輕柔環境 BGM (-22dB)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">剪輯引擎</span>
+            <span class="meta-value">Concat Rust 本地原生引擎 (0.2.9)</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="生活金句_心若從容.mp4" download>下載 MP4 檔案</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
