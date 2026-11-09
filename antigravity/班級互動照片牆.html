@@ -819,6 +819,310 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     }
 }
 
+
+
+/* ========================================== */
+/* 📰 世界新聞指令產生器 樣式 (Scoped) */
+/* ========================================== */
+#view-news-generator {
+  --news-ink: #0d0d0d;
+  --news-paper: #f5f0e8;
+  --news-amber: #d4780a;
+  --news-red: #c0392b;
+  --news-muted: #7a7065;
+  --news-rule: #2a2a2a;
+  --news-tag-bg: #1a1a1a;
+  --news-tag-fg: #f5f0e8;
+  background: var(--news-paper);
+  color: var(--news-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Serif TC", serif;
+  border-radius: 20px;
+  padding: 0 0 40px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+#view-news-generator .news-masthead {
+  border-bottom: 2px solid var(--news-rule);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--news-paper);
+}
+#view-news-generator .news-masthead-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  color: var(--news-ink);
+}
+#view-news-generator .news-masthead-sub {
+  font-size: 11px;
+  color: var(--news-muted);
+  letter-spacing: 0.08em;
+  font-family: monospace;
+}
+#view-news-generator .news-masthead-date {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--news-muted);
+  font-family: monospace;
+}
+
+#view-news-generator .news-hero-strip {
+  background: var(--news-ink);
+  color: var(--news-paper);
+  padding: 36px 28px 30px;
+  position: relative;
+  text-align: left;
+}
+#view-news-generator .news-hero-kicker {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--news-amber);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+#view-news-generator .news-hero-headline {
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.15;
+  font-weight: 900;
+  color: #ffffff;
+}
+#view-news-generator .news-hero-headline em {
+  font-style: italic;
+  color: var(--news-amber);
+}
+#view-news-generator .news-hero-desc {
+  margin-top: 12px;
+  font-size: 14px;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.6;
+}
+
+#view-news-generator .news-main {
+  padding: 24px 20px 40px;
+  text-align: left;
+}
+
+#view-news-generator .news-section-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 16px;
+  border-bottom: 1.5px solid rgba(0,0,0,0.15);
+  padding-bottom: 6px;
+}
+#view-news-generator .news-section-label {
+  font-size: 13px;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--news-muted);
+  font-weight: 700;
+}
+
+#view-news-generator .news-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #ffffff;
+  border: 1.5px solid #dcd7ce;
+  border-radius: 14px;
+  padding: 16px;
+  align-items: flex-end;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+}
+#view-news-generator .news-ctrl-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 130px;
+}
+#view-news-generator .news-ctrl-group.keyword-input {
+  flex: 2;
+  min-width: 180px;
+}
+#view-news-generator .news-ctrl-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--news-muted);
+  font-family: monospace;
+}
+#view-news-generator select, #view-news-generator input[type="text"] {
+  background: #fbf9f5;
+  border: 1.5px solid #c8c2b8;
+  color: var(--news-ink);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+}
+#view-news-generator select:focus, #view-news-generator input[type="text"]:focus {
+  border-color: var(--news-amber);
+  background: #ffffff;
+}
+
+#view-news-generator .news-gen-btn {
+  background: var(--news-ink);
+  color: var(--news-paper);
+  border: 1.5px solid var(--news-ink);
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 40px;
+  white-space: nowrap;
+}
+#view-news-generator .news-gen-btn:hover {
+  background: var(--news-amber);
+  border-color: var(--news-amber);
+  color: #ffffff;
+}
+
+#view-news-generator .news-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+#view-news-generator .news-card {
+  background: #ffffff;
+  border: 1.5px solid #dcd7ce;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+#view-news-generator .news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border-color: var(--news-amber);
+}
+#view-news-generator .news-card-type {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--news-amber);
+  margin-bottom: 8px;
+}
+#view-news-generator .news-card-command {
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  background: #f8f6f0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e0d6;
+  margin-bottom: 8px;
+  word-break: break-all;
+  color: #1e293b;
+}
+#view-news-generator .news-card-command strong {
+  color: var(--news-red);
+  background: #ffebeb;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+#view-news-generator .news-card-desc {
+  font-size: 12px;
+  color: var(--news-muted);
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+#view-news-generator .news-card-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+#view-news-generator .news-card-btn {
+  background: var(--news-paper);
+  border: 1px solid #c8c2b8;
+  color: var(--news-ink);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+#view-news-generator .news-card-btn:hover {
+  background: var(--news-ink);
+  color: #ffffff;
+}
+#view-news-generator .news-card-btn.copied {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
+}
+
+#view-news-generator .news-table-wrap {
+  overflow-x: auto;
+  border: 1.5px solid #dcd7ce;
+  border-radius: 12px;
+  background: #ffffff;
+}
+#view-news-generator table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+#view-news-generator th {
+  background: #eae5dc;
+  color: var(--news-ink);
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 800;
+  border-bottom: 1.5px solid #dcd7ce;
+}
+#view-news-generator td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0ece3;
+  vertical-align: middle;
+}
+#view-news-generator td:nth-child(2) {
+  font-family: monospace;
+  cursor: pointer;
+  color: #0369a1;
+  font-weight: 600;
+}
+#view-news-generator td:nth-child(2):hover {
+  background: #f0f9ff;
+  text-decoration: underline;
+}
+
+#view-news-generator .news-tips-box {
+  background: #ffffff;
+  border: 1.5px solid #dcd7ce;
+  border-left: 5px solid var(--news-amber);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+#view-news-generator .news-tips-box h3 {
+  font-size: 15px;
+  color: var(--news-ink);
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+#view-news-generator .news-tips-list {
+  padding-left: 20px;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.8;
+}
+
 </style>
 </head>
 <body>
@@ -908,7 +1212,11 @@ button:disabled { background: #ccc; cursor: not-allowed; }
        class="home-checkin-btn"
        style="display: none;">📍 點我上課打卡</a>
 
-    <button onclick="openExternalView('view-nano-banana')"
+        <button onclick="openExternalView('view-news-generator')"
+            class="home-full-width-btn"
+            style="background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(30,41,59,0.35); font-size:17px; margin-bottom: 10px;">📰 24小時世界新聞精準指令產生器</button>
+
+<button onclick="openExternalView('view-nano-banana')"
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(217,119,6,0.35); font-size:17px; margin-bottom: 10px;">🍌 Google Gemini Nano Banana：12 大實測指令</button>
 
@@ -946,6 +1254,120 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <!-- ========================================== -->
 
 <!-- ========================================== -->
+<!-- ========================================== -->
+<!-- 📰 世界新聞指令產生器專區 (NewsOps) -->
+<!-- ========================================== -->
+<div id="view-news-generator" class="view-section container" style="max-width: 980px; padding: 0;">
+    <div style="padding: 16px 20px 0;">
+        <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 14px;">回首頁</button>
+    </div>
+    <div style="clear: both;"></div>
+
+    <header class="news-masthead">
+      <div class="news-masthead-title">NewsOps</div>
+      <div class="news-masthead-sub">24小時世界新聞精準指令 · Command Generator</div>
+      <div class="news-masthead-date" id="news-live-date"></div>
+    </header>
+
+    <div class="news-hero-strip">
+      <div class="news-hero-kicker">⚡ Real-time · 即時新聞指令工具</div>
+      <h1 class="news-hero-headline">24小時 <em>世界新聞</em> 精準指令</h1>
+      <p class="news-hero-desc">設定主題類別、時間與來源，即時產生可直接複製的 Google 搜尋指令與 AI 深度對話提示詞。</p>
+    </div>
+
+    <div class="news-main">
+      <!-- 篩選控制項 -->
+      <div class="news-section-rule"><span class="news-section-label">⚙️ 設定篩選條件</span></div>
+
+      <div class="news-controls">
+        <div class="news-ctrl-group">
+          <span class="news-ctrl-label">新聞類別</span>
+          <select id="news-category" onchange="generateNewsCommands()">
+            <option value="">全方位（All）</option>
+            <option value="AI 技術">🤖 AI 技術</option>
+            <option value="地緣政治">🌍 地緣政治</option>
+            <option value="金融市場">📈 金融市場</option>
+            <option value="氣候環境">🌿 氣候環境</option>
+            <option value="科技產業">💻 科技產業</option>
+            <option value="衝突戰爭">⚔️ 衝突與戰爭</option>
+            <option value="健康醫療">🏥 健康醫療</option>
+            <option value="體育新聞">⚽ 體育新聞</option>
+            <option value="娛樂新聞">🎬 娛樂新聞</option>
+          </select>
+        </div>
+
+        <div class="news-ctrl-group">
+          <span class="news-ctrl-label">時間範圍</span>
+          <select id="news-timerange" onchange="generateNewsCommands()">
+            <option value="24小時">過去 24 小時</option>
+            <option value="12小時">過去 12 小時</option>
+            <option value="48小時">過去 48 小時</option>
+            <option value="一週">過去一週</option>
+          </select>
+        </div>
+
+        <div class="news-ctrl-group">
+          <span class="news-ctrl-label">新聞來源</span>
+          <select id="news-source" onchange="generateNewsCommands()">
+            <option value="">所有來源</option>
+            <option value="site:bbc.com">BBC</option>
+            <option value="site:reuters.com">Reuters 路透社</option>
+            <option value="site:apnews.com">AP News 美聯社</option>
+            <option value="site:nytimes.com">NY Times</option>
+            <option value="site:theguardian.com">The Guardian</option>
+            <option value="site:cna.com.tw">中央社 (CNA)</option>
+            <option value="site:udn.com">聯合新聞網 (UDN)</option>
+            <option value="site:ltn.com.tw">自由時報 (Liberty Times)</option>
+            <option value="site:cnyes.com">鉅亨網 (cnyes)</option>
+          </select>
+        </div>
+
+        <div class="news-ctrl-group keyword-input">
+          <span class="news-ctrl-label">關鍵字（選填）</span>
+          <input type="text" id="news-keyword" placeholder="例：Nvidia / 台灣 / 聯準會" oninput="generateNewsCommands()" />
+        </div>
+
+        <div class="news-ctrl-group">
+          <span class="news-ctrl-label">排除字（選填）</span>
+          <input type="text" id="news-exclude" placeholder="例：sports / 娛樂" oninput="generateNewsCommands()" />
+        </div>
+
+        <button class="news-gen-btn" type="button" onclick="generateNewsCommands()">▶ 立即產生</button>
+      </div>
+
+      <!-- 產生的指令卡片清單 -->
+      <div class="news-section-rule"><span class="news-section-label">📋 即時產生的 6 款精準指令</span></div>
+      <div class="news-cards-grid" id="news-cards-output"></div>
+
+      <!-- 常用指令速查表 -->
+      <div class="news-section-rule" style="margin-top:36px;"><span class="news-section-label">⚡ 常用指令速查表（點擊任一指令即可複製）</span></div>
+      <div class="news-table-wrap">
+        <table id="news-ref-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">需求類型</th>
+              <th style="width:52%;">指令範例（點擊複製）</th>
+              <th style="width:30%;">說明</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- 進階技巧 -->
+      <div class="news-section-rule" style="margin-top:36px;"><span class="news-section-label">💡 讓指令更精準的 4 個訣竅</span></div>
+      <div class="news-tips-box">
+        <h3>專業新聞檢索 4 大秘訣：</h3>
+        <ul class="news-tips-list">
+          <li>使用 <strong>after:YYYY-MM-DD</strong> 時間運算子，確保只取特定日期後的即時報導。</li>
+          <li>加上 <strong>site:</strong> 限定知名國際媒體（如 <code>site:reuters.com</code>）可大幅提升可信度與資訊品質。</li>
+          <li>用 <strong>-</strong> 減號精準排除無關雜訊，例如 <code>-sports -entertainment</code>。</li>
+          <li>搭配 Google Trends Real-time 可看到過去 24 小時搜尋量 <em>Breakout</em> 的爆發話題，直擊全球焦點。</li>
+        </ul>
+      </div>
+    </div>
+</div>
+
 <!-- ========================================== -->
 <!-- 🍌 Google Gemini Nano Banana：12 大實測指令專區 -->
 <!-- ========================================== -->
@@ -5777,6 +6199,8 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         setupSSEConnection();
         setupClipboardBtns();
+        if (typeof generateNewsCommands === 'function') generateNewsCommands();
+
         setupLineExternalBrowserFallback();
         updateHomeVoteCTA(isVotingActive);
 
