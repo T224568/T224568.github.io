@@ -141,6 +141,24 @@
     color: #fff;
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
   }
+  .tab-btn.active[data-song^="hw"] {
+    background: #b45309;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(180, 83, 9, 0.35);
+  }
+  .tab-group-label {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 800;
+    color: #92400e;
+    background: #fef3c7;
+    padding: 5px 12px;
+    border-radius: 8px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
   .player-controls {
     display: flex;
     flex-wrap: wrap;
@@ -587,23 +605,33 @@
 
 <div class="container">
   <header>
-    <h1>🎹 親子鋼琴簡譜大百科（10 首完整原曲不刪減版）</h1>
-    <p>動漫遊戲名曲 ＋ 台灣經典童謠（丟丟銅仔・桃花過渡） ＋ 世界民謠（王老先生有塊地・倫敦鐵橋）</p>
+    <h1>🎹 親子鋼琴簡譜大百科（18 首完整原曲＋手寫樂譜數位化典藏版）</h1>
+    <p>動漫兒歌名曲・台灣與世界民謠・手寫珍藏簡譜 8 首完整轉錄（支援隨時立即停止・自動捲動亮燈跟彈）</p>
   </header>
 
   <!-- 頂部切換與播放控制 -->
   <div class="top-bar">
     <div class="song-tabs">
+      <div class="tab-group-label">🌟 經典動漫兒歌＆台灣世界民謠（1 ~ 10）</div>
       <button class="tab-btn active" data-song="mario" onclick="switchSong('mario')">🍄 1. 超級瑪利歐 (54小節)</button>
       <button class="tab-btn" data-song="bingo" onclick="switchSong('bingo')">🐶 2. BINGO 賓果歌 (48小節)</button>
       <button class="tab-btn" data-song="panther" onclick="switchSong('panther')">🐾 3. 頑皮豹主題曲 (35小節)</button>
       <button class="tab-btn" data-song="totoro" onclick="switchSong('totoro')">🌱 4. 豆豆龍：散步 (36小節)</button>
       <button class="tab-btn" data-song="shark" onclick="switchSong('shark')">🦈 5. 鯊魚寶寶全曲 (30小節)</button>
       <button class="tab-btn" data-song="doraemon" onclick="switchSong('doraemon')">🔔 6. 哆啦A夢之歌 (33小節)</button>
-      <button class="tab-btn" data-song="diudiu" onclick="switchSong('diudiu')">🚂 7. 台灣民謠：丟丟銅仔 (32小節)</button>
-      <button class="tab-btn" data-song="peach" onclick="switchSong('peach')">🌸 8. 台灣民謠：桃花過渡 (32小節)</button>
-      <button class="tab-btn" data-song="farm" onclick="switchSong('farm')">🐄 9. 世界民謠：王老先生有塊地 (36小節)</button>
-      <button class="tab-btn" data-song="bridge" onclick="switchSong('bridge')">🌉 10. 世界民謠：倫敦鐵橋垮下來 (32小節)</button>
+      <button class="tab-btn" data-song="diudiu" onclick="switchSong('diudiu')">🚂 7. 台灣民謠：丟丟銅仔 (26小節)</button>
+      <button class="tab-btn" data-song="peach" onclick="switchSong('peach')">🌸 8. 台灣民謠：桃花過渡 (28小節)</button>
+      <button class="tab-btn" data-song="farm" onclick="switchSong('farm')">🐄 9. 王老先生有塊地 (36小節)</button>
+      <button class="tab-btn" data-song="bridge" onclick="switchSong('bridge')">🌉 10. 倫敦鐵橋垮下來 (32小節)</button>
+      <div class="tab-group-label">📝 手寫簡譜手稿數位化全曲收錄（11 ~ 18）</div>
+      <button class="tab-btn" data-song="hw8" onclick="switchSong('hw8')">🎵 11. 小毛驢 / 歡樂進行曲 (手寫右下)</button>
+      <button class="tab-btn" data-song="hw1" onclick="switchSong('hw1')">📜 12. 手寫譜(左一)：降B調抒情曲</button>
+      <button class="tab-btn" data-song="hw2" onclick="switchSong('hw2')">📜 13. 手寫譜(左中)：經典長篇全曲</button>
+      <button class="tab-btn" data-song="hw3" onclick="switchSong('hw3')">📜 14. 手寫譜(左下)：F調練習曲</button>
+      <button class="tab-btn" data-song="hw4" onclick="switchSong('hw4')">📜 15. 手寫譜(右上)：高音旋律曲</button>
+      <button class="tab-btn" data-song="hw5" onclick="switchSong('hw5')">📜 16. 手寫譜(右二)：跳躍節奏曲</button>
+      <button class="tab-btn" data-song="hw6" onclick="switchSong('hw6')">📜 17. 手寫譜(右三)：降E調圓舞曲</button>
+      <button class="tab-btn" data-song="hw7" onclick="switchSong('hw7')">📜 18. 手寫譜(右四)：半音練習曲</button>
     </div>
 
     <div class="player-controls">
@@ -1099,6 +1127,222 @@
       <button class="btn-part-play" onclick="playSection('bridge', 'grid-bridge-v4')">▶ 單獨播放本段</button>
     </div>
     <div class="score-grid" id="grid-bridge-v4"></div>
+  </section>
+
+  <!-- ==================== 11. 手寫譜(右下)：小毛驢 / 歡樂進行曲 (3331355) ==================== -->
+  <section class="song-section" id="song-hw8">
+    <div class="song-title-bar">
+      <h2>🎵 11. 小毛驢 / 歡樂進行曲（手寫譜右下角第 8 區完整數位化）</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：3 3 3 1 3 5 5 | 1 5 3 6 7 7b 6 5</span>
+        <span class="badge badge-beat">調號：F 大調固定音高（含 7b 降Si 黑鍵）</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（右下角區塊）：</strong><br>
+      這首是您手寫譜右下角最朗朗上口的歡樂曲目（旋律對應經典童謠《我有一隻小毛驢》變奏進行曲）！原譜中的 <strong>7b（降Si）</strong> 與 <strong>6b（降La）</strong> 已全部自動對應到上方鋼琴鍵盤的黑鍵，點擊播放即可跟著亮燈彈奏！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【第 1 段：主歌第一樂句（3331355 153677b65）】</div>
+      <button class="btn-part-play" onclick="playSection('hw8', 'grid-hw8-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw8-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【第 2 段：副歌高音展開與再現收尾（3̇6b6161̇ 2̇55...）】</div>
+      <button class="btn-part-play" onclick="playSection('hw8', 'grid-hw8-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw8-b"></div>
+  </section>
+
+  <!-- ==================== 12. 手寫譜(左一)：降B調抒情曲 (7b77b735) ==================== -->
+  <section class="song-section" id="song-hw1">
+    <div class="song-title-bar">
+      <h2>📜 12. 手寫譜(左欄第 1 首)：降B調經典抒情曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：7b 7 7b 7 3̇ 5 | 7b 6 5 7b 6 1̇</span>
+        <span class="badge badge-beat">左上欄完整 7 行＋頂部手寫註記 (45667b67b71̇7b66b51)</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（左欄最上方區塊＋頁首加註）：</strong><br>
+      完整收錄左欄第 1 區全部 7 行旋律，以及紙張最上方特別手寫標註的 <code>4 5 6 6 7b 6 7b 7 1̇ 7b 6 6b 5 1</code> 引子樂句！
+    </div>
+    <div class="part-header">
+      <div class="part-title">✨ 【前奏引子：頁首手寫樂句（4 5 6 6 7b 6 7b 7 1̇ 7b 6 6b 5 1）】</div>
+      <button class="btn-part-play" onclick="playSection('hw1', 'grid-hw1-intro')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw1-intro"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【A 段：左一區前半部（第 1 ~ 4 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw1', 'grid-hw1-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw1-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【B 段：左一區後半部（第 5 ~ 7 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw1', 'grid-hw1-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw1-b"></div>
+  </section>
+
+  <!-- ==================== 13. 手寫譜(左中)：經典長篇全曲 (717523343165) ==================== -->
+  <section class="song-section" id="song-hw2">
+    <div class="song-title-bar">
+      <h2>📜 13. 手寫譜(左欄第 2 首)：經典長篇敘事全曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：7̣ 1 7̣ 5̣ 2 3 3 4 3 1 6̣ 5̣</span>
+        <span class="badge badge-beat">左欄中央最大篇幅（完整三段體 A-B-A 再現）</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（左欄中央主曲）：</strong><br>
+      這是整張手稿篇幅最長、結構最完整的一首曲子！由三個大循環組成：主歌 <code>3 4 1 5 6 5 4 3 4 3 5 1 3 4 3 2</code> 進入降記號轉調橋段 <code>4 5b 4 2b 6b 7b...</code>，最後再回到 <code>3 4 6̣ 7̣ 1 7̣ 5 5 2 7̣ 5</code>，一字不漏完整轉錄！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【第 1 段：第一樂章主題與轉調展開】</div>
+      <button class="btn-part-play" onclick="playSection('hw2', 'grid-hw2-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw2-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【第 2 段：第二樂章變奏與半音階橋段】</div>
+      <button class="btn-part-play" onclick="playSection('hw2', 'grid-hw2-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw2-b"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【第 3 段：第三樂章主題再現與華麗終止】</div>
+      <button class="btn-part-play" onclick="playSection('hw2', 'grid-hw2-c')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw2-c"></div>
+  </section>
+
+  <!-- ==================== 14. 手寫譜(左下)：F調練習曲 (6412442144165) ==================== -->
+  <section class="song-section" id="song-hw3">
+    <div class="song-title-bar">
+      <h2>📜 14. 手寫譜(左欄第 3 首)：F調輕快練習曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：6̣ 4 1 2 4 4 2 1 4 4 1 6 5</span>
+        <span class="badge badge-beat">左欄最下方區塊（完整雙樂句對稱結構）</span>
+        <span class="badge badge-level">★☆☆ 極易上手</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（左下角區塊）：</strong><br>
+      整首以 F 大調和弦音 <code>1 (Do)、4 (Fa)、6 (La)</code> 為核心不斷重複交替（<code>1 6̣ 4 1 2 4 4 2 1 4 7̣ 6̣ 5̣ 4</code>），節奏非常規律好記！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【全曲完整段落（6412442144165...）】</div>
+      <button class="btn-part-play" onclick="playSection('hw3', 'grid-hw3-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw3-a"></div>
+  </section>
+
+  <!-- ==================== 15. 手寫譜(右上)：高音旋律曲 (56565565655632) ==================== -->
+  <section class="song-section" id="song-hw4">
+    <div class="song-title-bar">
+      <h2>📜 15. 手寫譜(右欄第 1 首)：高音迴旋旋律曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：5 6 5 6 5 5 6 5 6 5 5 6 3 2 1̇</span>
+        <span class="badge badge-beat">右欄最上方區塊（完整 6 行含 5656 雙音顫音段落）</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（右上角第 1 區塊）：</strong><br>
+      特色是輕快的 <code>5 6 5 6 5</code> 交替音型與高音區 <code>1̇ 7 6 7 2̇ 7 6 5</code> 優美旋律線，中段還有連續的 <code>5 6 5 6 5 6</code> 手指靈活度訓練！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【A 段：前半部高音主題（第 1 ~ 3 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw4', 'grid-hw4-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw4-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【B 段：後半部顫音展開與再現（第 4 ~ 6 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw4', 'grid-hw4-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw4-b"></div>
+  </section>
+
+  <!-- ==================== 16. 手寫譜(右二)：跳躍節奏曲 (2b22b27b57b525) ==================== -->
+  <section class="song-section" id="song-hw5">
+    <div class="song-title-bar">
+      <h2>📜 16. 手寫譜(右欄第 2 首)：黑鍵跳躍節奏曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：2b 2 2b 2 7b 5 7b 5 2 5</span>
+        <span class="badge badge-beat">右欄第 2 區塊（完整 4 行）</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（右欄第 2 區塊）：</strong><br>
+      開頭使用非常俏皮的半音鄰音 <code>2b 2 2b 2 | 7b 5 7b 5 | 2 5</code>，充滿動感與爵士切分趣味！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【全曲完整段落（2b22b27b57b525...）】</div>
+      <button class="btn-part-play" onclick="playSection('hw5', 'grid-hw5-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw5-a"></div>
+  </section>
+
+  <!-- ==================== 17. 手寫譜(右三)：降E調圓舞曲 (45b6145b61) ==================== -->
+  <section class="song-section" id="song-hw6">
+    <div class="song-title-bar">
+      <h2>📜 17. 手寫譜(右欄第 3 首)：降記號優雅練習曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：4 5b 6 1̇ 4 5b 6 1̇ | 4 4 4 4 3 5b</span>
+        <span class="badge badge-beat">右欄第 3 區塊（完整 5 行）</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（右欄第 3 區塊）：</strong><br>
+      以琶音上行 <code>4 5b 6 1̇</code> 揭開序幕，搭配同音反覆 <code>4 4 4 4 3 5b 4 3 5b</code> 與下行模進，結構對稱優美！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【A 段：前半部（第 1 ~ 3 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw6', 'grid-hw6-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw6-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【B 段：後半部再現與結尾（第 4 ~ 5 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw6', 'grid-hw6-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw6-b"></div>
+  </section>
+
+  <!-- ==================== 18. 手寫譜(右四)：半音練習曲 (2426b34347b2b) ==================== -->
+  <section class="song-section" id="song-hw7">
+    <div class="song-title-bar">
+      <h2>📜 18. 手寫譜(右欄第 4 首)：半音階迴旋練習曲</h2>
+      <div class="badge-group">
+        <span class="badge badge-key">原譜開頭：2 4 2 6b 3 4 3 4 7b 2b | 3 3 3 3b 2b 3 3b</span>
+        <span class="badge badge-beat">右欄第 4 區塊（完整 6 行）</span>
+        <span class="badge badge-level">手寫原譜 1:1 完整收錄</span>
+      </div>
+    </div>
+    <div class="kid-tip">
+      💡 <strong>手寫原譜數位化導覽（右欄第 4 區塊）：</strong><br>
+      包含密集的 <code>3 3 3 3b 2b 3 3b</code> 與 <code>4 3 3b 2 7b</code> 半音階迴旋手指練習，上方鋼琴鍵盤會同步標示每一個黑鍵與白鍵的落點！
+    </div>
+    <div class="part-header">
+      <div class="part-title">🎼 【A 段：前半部（第 1 ~ 3 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw7', 'grid-hw7-a')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw7-a"></div>
+
+    <div class="part-header">
+      <div class="part-title">🎼 【B 段：後半部（第 4 ~ 6 行）】</div>
+      <button class="btn-part-play" onclick="playSection('hw7', 'grid-hw7-b')">▶ 單獨播放本段</button>
+    </div>
+    <div class="score-grid" id="grid-hw7-b"></div>
   </section>
 
   <!-- 底部輔助教學區 -->
@@ -2695,6 +2939,253 @@ const SONGS_DATA = {
         ]}
       ]
     }
+  }
+};
+
+// ==================== 3.5 手寫簡譜手稿 8 首完整數位化解析器 ====================
+// 支援語法: '1', '2b', '3^'(高音), '5_'(低音), '7b^'(高音降7), '6b_'(低音降6)
+function parseHWMeasures(startMeasure, chordLabel, measureStrings) {
+  const degMap = { '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7' };
+  const solMap = {
+    '1':'Do', '2b':'bRe', '2':'Re', '3b':'bMi', '3':'Mi',
+    '4':'Fa', '5b':'bSol', '5':'Sol', '6b':'bLa', '6':'La', '7b':'bSi', '7':'Si'
+  };
+  const keyMapByOct = {
+    low: {
+      '2':'D3', '3b':'D#3', '3':'E3', '4':'F3', '5b':'F#3', '5':'G3', '6b':'G#3', '6':'A3', '7b':'A#3', '7':'B3', '1':'C4', '2b':'C#4'
+    },
+    mid: {
+      '1':'C4', '2b':'C#4', '2':'D4', '3b':'D#4', '3':'E4', '4':'F4', '5b':'F#4', '5':'G4', '6b':'G#4', '6':'A4', '7b':'A#4', '7':'B4'
+    },
+    high: {
+      '1':'C5', '2b':'C#5', '2':'D5', '3b':'D#5', '3':'E5', '4':'F5', '5b':'F#5', '5':'G5', '6b':'G#5', '6':'A5', '7b':'A#4', '7':'B4'
+    }
+  };
+
+  return measureStrings.map((mStr, idx) => {
+    const tokens = mStr.trim().split(/\s+/);
+    const durPerNote = Number((4.0 / Math.max(tokens.length, 1)).toFixed(2));
+    const notes = tokens.map(tok => {
+      if (tok === '0') return N('0', '', durPerNote, 'REST', '(休)', '0');
+      let oct = '';
+      let clean = tok;
+      if (clean.endsWith('^')) { oct = 'high'; clean = clean.slice(0, -1); }
+      else if (clean.endsWith('_')) { oct = 'low'; clean = clean.slice(0, -1); }
+
+      const isFlat = clean.includes('b');
+      const baseNum = clean.replace('b', '');
+      const disp = isFlat ? `b${baseNum}` : baseNum;
+      const deg = isFlat ? 'sharp' : (degMap[baseNum] || '1');
+      const octGroup = oct === 'high' ? 'high' : (oct === 'low' ? 'low' : 'mid');
+      const keyId = (keyMapByOct[octGroup] && keyMapByOct[octGroup][clean]) || 'C4';
+      const lyr = (oct === 'high' ? '高' : (oct === 'low' ? '低' : '')) + (solMap[clean] || clean);
+      return N(disp, oct, durPerNote, keyId, lyr, deg);
+    });
+    return {
+      measure: startMeasure + idx,
+      chord: `${chordLabel}`,
+      notes
+    };
+  });
+}
+
+// 11. 手寫譜(右下 #8)：小毛驢 / 歡樂進行曲 (3331355...)
+SONGS_DATA.hw8 = {
+  bpm: 112,
+  sections: {
+    'grid-hw8-a': parseHWMeasures(1, 'F調手稿', [
+      '3 3 3 1 3 5 5',
+      '1 5 3 6 7 7b 6 5',
+      '3 5 6 4 5 3 1 2',
+      '7_ 1 5 3 6 7 7b 6 5',
+      '3 5 6 1^'
+    ]),
+    'grid-hw8-b': parseHWMeasures(6, 'F調副歌', [
+      '3^ 6b 6 1 6 1^ 2^ 5 5',
+      '4 3 3b 3 1 1 1 5 5',
+      '4 3 3b 3 6b 6 1 6 1^ 2^ 3^',
+      '2^ 1^ 1 1 1 1 2 3 1 6_ 5_ 1 1 1',
+      '3 3 1 3 5 5 3 1 5 1^ 6 4 1',
+      '7_ 6_ 6_ 5_ 4_ 3_ 1 6_ 5_ 3_ 1 5_ 3_ 1',
+      '5_ 4_ 4 6 7 4 4 3 2 1'
+    ])
+  }
+};
+
+// 12. 手寫譜(左一 #1)：降B調抒情曲 + 頁首手寫引子
+SONGS_DATA.hw1 = {
+  bpm: 104,
+  sections: {
+    'grid-hw1-intro': parseHWMeasures(1, '頁首手寫引子', [
+      '4 5 6 6 7b 6 7b',
+      '7 1^ 7b 6 6b 5 1'
+    ]),
+    'grid-hw1-a': parseHWMeasures(3, '左一區 A段', [
+      '7b 7 7b 7 3^ 5 7b 6 7b',
+      '7b 6 5 7b 6 1^ 3 3 1 3 1^ 3',
+      '7b 7 7b 7 3^ 5 7b 7 5 3^',
+      '7b 6 4 3 5 3 3 7 5 3 7 7b',
+      '7b 3^ 5 3^ 5 7b 7 3^ 7b 7 7b 7',
+      '3^ 5 3^ 2^ 3^ 7b 7 6 5 3 7b 6 5 3',
+      '3 7b 7 6 5 3 5 3 2 7_ 2 7_',
+      '7b 7 7b 7 3^ 5 7b 7 7b 6 5'
+    ]),
+    'grid-hw1-b': parseHWMeasures(11, '左一區 B段', [
+      '7b 6 1^ 3 3b 1 3 3b 7_ 7b_ 7_ 7b_ 7_',
+      '3 5 7 7b 5 3 7b 6 4 3 3 7 5',
+      '3 7b 7 7b 7 3^ 5 3^ 5 7 3^ 7 7b 7',
+      '3^ 5 3^ 2^ 3^ 7 7b 6 5 3',
+      '7b 6 5 2^ 3^ 7b 6 5 3 5 3^ 7 2^ 7 3^'
+    ])
+  }
+};
+
+// 13. 手寫譜(左中 #2)：經典長篇敘事全曲 (完整三段體)
+SONGS_DATA.hw2 = {
+  bpm: 108,
+  sections: {
+    'grid-hw2-a': parseHWMeasures(1, '第一樂章', [
+      '7_ 1 7_ 5_ 2 3 3 4 3 1 6_ 5_',
+      '7_ 1 7_ 5_ 2 3 2 5 1 5 6_ 5_ 4_',
+      '3 4 1 5 6_ 5_ 4_ 3 4 3 5 1 3 4 3 2',
+      '6b_ 2b 6b_ 7b_ 6b_ 5_ 5b_ 4_',
+      '5b_ 4_ 2b 6b_ 7b_ 6b_ 5_ 4_ 5b_ 4_ 6b_ 4_',
+      '2b 5b_ 4_ 2b 7b_ 1 3b 2b',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 2b 3b 2b 4',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 4',
+      '5b 4 5b 4 2b 7b_ 6b_ 4 5b 7b_ 2b 3b 2b',
+      '3_ 4_ 6_ 7_ 7_ 5_ 5_ 3_ 4_ 6_'
+    ]),
+    'grid-hw2-b': parseHWMeasures(11, '第二樂章', [
+      '7_ 7_ 1 7_ 5_ 5_ 2 7_ 5_ 3_ 4_ 6_ 7_ 7_ 1',
+      '2 3 5 4 3 4 3 2 5 1 5 6_ 5_ 4_',
+      '3 4 3 1 5 6_ 5_ 4_ 3 4 3 5 1 3 4 3 2 1 2',
+      '6b_ 2b 6b_ 7b_ 6b_ 5_ 4_ 5b_ 4_ 2b 6b_ 7b_ 6b_ 5_',
+      '4_ 5b_ 4_ 6b_ 4_ 2b 5b_ 4_ 2b 7b_ 1 3b 2b 2b',
+      '6b_ 7b_ 2b 2b 2b 3b 2b 3b 2b 4',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 4 5b 4 5b 4 2b',
+      '7b_ 6b_ 4 5b 7b_ 2b 3b 2b',
+      '3_ 4_ 6_ 7_ 7_ 5_ 5_ 3_ 4_ 6_ 7_ 7_ 1 7_ 5_ 5_ 2 7_ 5_'
+    ]),
+    'grid-hw2-c': parseHWMeasures(20, '第三樂章再現', [
+      '3_ 4_ 6_ 7_ 7_ 1 2 3 5 4 3 4 3 2 5 1 5 6_ 5_ 4_',
+      '3 4 3 1 5 6_ 5_ 4_ 3 4 3 5 1 3 4 3 2 1 2',
+      '6b_ 2b 6b_ 7b_ 6b_ 5_ 4_ 5b_ 4_ 2b 6b_ 7b_ 6b_ 5_',
+      '4_ 5b_ 4_ 6b_ 4_ 2b 5b_ 4_ 2b 7b_ 1 3b 2b',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 2b 3b 2b 4',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 4 5b 4 5b 4 2b',
+      '7b_ 6b_ 4 5b 7b_ 2b 3b 2b 3_ 4_ 6_ 7_ 7_ 5_',
+      '3_ 4_ 6_ 7_ 7_ 1 7_ 5_ 5_ 2 7_ 5_ 3_ 4_ 6_ 7_ 7_ 1',
+      '2 3 5 4 3 4 3 2 5 1 5 6_ 5_ 4_',
+      '3 4 3 1 5 6_ 5_ 4_ 3 4 3 5 1 3 4 3 2 1 2',
+      '6b_ 2b 6b_ 7b_ 6b_ 5_ 4_ 5b_ 4_ 2b 6b_ 7b_ 6b_ 5_',
+      '4_ 5b_ 4_ 6b_ 4_ 2b 5b_ 4_ 2b 7b_ 1 3b 2b',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 2b 3b 2b 4',
+      '2b 6b_ 7b_ 2b 2b 2b 3b 4 5b 4 5b 4 2b',
+      '7b_ 6b_ 4 5b 7b_ 2b 3b 2b',
+      '2b 4 1 6b_ 7b_ 2b 2 2b 3 4 5b 4 5b 4 2b 7b_ 1 3b 2b'
+    ])
+  }
+};
+
+// 14. 手寫譜(左下 #3)：F調輕快練習曲 (6412442144165)
+SONGS_DATA.hw3 = {
+  bpm: 110,
+  sections: {
+    'grid-hw3-a': parseHWMeasures(1, 'F調練習曲', [
+      '6_ 4 1 2 4 4 2 1',
+      '4 4 1 6 5 1 6_ 4',
+      '1 2 4 4 2 1 4 7_ 6_ 5_ 4_',
+      '6_ 4 1 2 4 4 2 1',
+      '4 4 1 6 5 1 6_ 4',
+      '1 2 4 4 2 1 4 7_ 6_ 5_ 4_'
+    ])
+  }
+};
+
+// 15. 手寫譜(右上 #4)：高音迴旋旋律曲 (56565565655632...)
+SONGS_DATA.hw4 = {
+  bpm: 112,
+  sections: {
+    'grid-hw4-a': parseHWMeasures(1, '右上區 A段', [
+      '5 6 5 6 5 5 6 5 6 5 5 6 3 2',
+      '1^ 6 6 5 4 5 4 5 5 5 6 7 7 1^ 3^ 6 5',
+      '6 1^ 7 6 7 5 2^ 4 5 4 5 6 7 1^ 3^ 6 5 5 6',
+      '1^ 7 6 7 2^ 7 6 5 5 5 6 1^ 6 5 3',
+      '7 3 5 6 7 1^ 3^ 5^ 7 6 3 3 6 6 7 1^ 7 6 7 1^',
+      '2^ 7 5 3^ 5 5b 6 6b 6 6 7 1^ 2^ 3^ 6 5 4 5 5b 4'
+    ]),
+    'grid-hw4-b': parseHWMeasures(7, '右上區 B段', [
+      '2^ 7 5 5 6 5 6 5 6 5 6 5 6 5 6 5',
+      '6 5 4 3 4 5 6 7 1^ 3^ 6 5 6 7 1^ 2^ 2b^ 2^ 3^ 3b^ 3^ 6',
+      '2^ 3^ 3b^ 3^ 1^ 5 5 6 5 6 5 6 5 6 5 6 5 6 5 6 5',
+      '6 5 6 5 6 5 6 5 6 2^ 1^ 7 6 5 4 5 5 5 6 7 7 1^ 3^ 6 5',
+      '6 1^ 7 6 7 5 2^ 4 5 5 6 7 1^ 3^ 6 5 5 6',
+      '1^ 7 6 7 2^ 7 6 5 5 5 6 1^ 6 5 3 7 3 5 6 7 1^ 3^ 5^ 7 6',
+      '3 3 6 6 7 1^ 7 6 1^ 2^ 7 5 3^ 5 5b 6 6b 6 6 7 1^ 2^ 3^ 6 5 4 5 5b 4',
+      '2^ 7 5 5 6 5 6 5 6 5 6 5 6 5 6 5 4 3 4 5 6 7 1^ 3^ 6 5',
+      '6 7 1^ 2^ 2b^ 2^ 3^ 3b^ 3^ 6 2^ 3^ 3b^ 3^ 1^ 5'
+    ])
+  }
+};
+
+// 16. 手寫譜(右二 #5)：黑鍵跳躍節奏曲 (2b22b27b57b525...)
+SONGS_DATA.hw5 = {
+  bpm: 108,
+  sections: {
+    'grid-hw5-a': parseHWMeasures(1, '右二區全曲', [
+      '2b 2 2b 2 7b_ 5_ 7b_ 5_ 2 5',
+      '2b 2 2b 2 7b_ 5_ 7b_ 5_ 2 5 2b 2',
+      '5 6 7b 6 7b 5 2 2b 2 5 7b_ 2b 2 5 7b_',
+      '2b 2 2b 2 7b_ 5_ 7b_ 5_ 2 5 6 7b 6 7b 5',
+      '2 2b 2 5 7b_ 2b 2 5 7b_ 2b 2 2b 2 7b_ 5_ 7b_ 5_ 2 5',
+      '2b 2 2b 2 7b_ 5_ 7b_ 5_ 2 5 5 2 7b_ 5_ 4 3b 2 6_ 5_ 6b_ 3b_ 2_ 5_ 2_ 7b_',
+      '5 4 3b 2 3b 2 3b 2 1 7b_ 5_ 5_ 5_ 6_ 7b_ 2 3b 1 3b 5 7b',
+      '1^ 2^ 6 4 2 2 1 7b_ 7_ 7b_ 4 2 3b 1 3b 5 7b_ 2 7b_ 5_ 1 6_ 4_ 5_'
+    ])
+  }
+};
+
+// 17. 手寫譜(右三 #6)：降E調圓舞曲 (45b6145b61...)
+SONGS_DATA.hw6 = {
+  bpm: 108,
+  sections: {
+    'grid-hw6-a': parseHWMeasures(1, '右三區 A段', [
+      '4 5b 6 1^ 4 5b 6 1^ 4 5b 6 1^ 4 5b 4 5b 4 5b 4',
+      '4 4 4 4 3 5b 4 4 4 4 3 5b 4 3 5b 4 5b 7b 6 5b',
+      '4 3b 4 4 3b 5 4 5b 2b 1 7b_ 6_ 5_ 4_ 7b_ 1',
+      '2b 7b_ 4 3 1 7b_ 1 2b 7b_ 5b_ 4_ 2b_ 1_ 7b_ 1 2b 7b_ 4 3b'
+    ]),
+    'grid-hw6-b': parseHWMeasures(5, '右三區 B段', [
+      '7b_ 1 2 3b 5b 6b 2b^ 1^ 7b 2^ 7b 2b 4 4 5 6b 7b 5b',
+      '4 4 4 4 3 5b 4 4 4 4 3 5b 4 3 5b 4 5b 7b 6 5b',
+      '4 4 3 5b 4 5b 2b 1 7b_ 6_ 5_ 4_ 7b_ 1',
+      '2b 7b_ 4 3 1 7b_ 1 2b 7b_ 5b_ 4_ 2b_ 1_ 7b_ 1 2b 7b_ 3b 7b_ 2 3b 5b 6b',
+      '2b^ 1^ 7b 2^ 7b 2b 4 4 5 6b 7b 5 4'
+    ])
+  }
+};
+
+// 18. 手寫譜(右四 #7)：半音階迴旋練習曲 (2426b34347b2b...)
+SONGS_DATA.hw7 = {
+  bpm: 106,
+  sections: {
+    'grid-hw7-a': parseHWMeasures(1, '右四區 A段', [
+      '2 4 2 6b 3 4 3 4 7b 2b',
+      '3 3 3 3b 2b 3 3b 3 4 3 4 7b 2b',
+      '4 3 2 7b_ 3 3b 1 6_ 3b 2b 3 4 3 4 7b 2b',
+      '3 3 3 3b 2b 3 3b 2b 7b_ 4 2 3b 3 4 3 2b 7b_ 3 3b 1 6_ 3b',
+      '2 4 3 3b 2 7b_ 3 3b 2b 7b_ 4 3 3b 2 7b_ 2b 6_ 6b_',
+      '4 3 3b 2 7b_ 3 3b 2b 6b_ 7b_ 3 3b 5 5b 7b_ 7b_ 2b 2 4 4 6b 6 7b',
+      '2b 3 4 6b 7b 3 4 3 4 7b 2b 3 3 3 3b'
+    ]),
+    'grid-hw7-b': parseHWMeasures(8, '右四區 B段', [
+      '2b 3 3b 3 4 3 4 7b 2b 4 3 2 7b_ 3 3b 1 6_ 3b 2b 3 4 3 4 7b 2b',
+      '3 3 3 3b 2b 3 3b 2b 7b_ 4 2 3b 3 4 3 2b',
+      '3 3b 1 6_ 3b 2b 4 3 3b 2 7b_ 3 3b 2b 7b_ 4 3 3b 2 7b_ 1 3b 2b 6_ 7b_',
+      '4 3 3b 2 6b_ 7b_ 2b 6b_',
+      '3 3b 2b 6b_ 7b_ 3 3b 5 5b 7b_ 7b_ 2b 2 4 4 6b 6 7b 2b 3b 4 6b 7b'
+    ])
   }
 };
 
