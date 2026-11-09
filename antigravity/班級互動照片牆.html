@@ -906,7 +906,11 @@ button:disabled { background: #ccc; cursor: not-allowed; }
        target="_blank"
        class="home-checkin-btn">📍 點我上課打卡</a>
 
-    <button onclick="openExternalView('view-gemini-prompts')"
+        <button onclick="openExternalView('view-nano-banana')"
+            class="home-full-width-btn"
+            style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(217,119,6,0.35); font-size:17px; margin-bottom: 10px;">🍌 Google Gemini Nano Banana：12 大實測指令</button>
+
+<button onclick="openExternalView('view-gemini-prompts')"
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(67,56,202,0.35); font-size:17px; margin-bottom: 10px;">✨ 20 款爆款 Gemini 影像指令速查</button>
 
@@ -940,6 +944,599 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <!-- ========================================== -->
 
 <!-- ========================================== -->
+<!-- ========================================== -->
+<!-- 🍌 Google Gemini Nano Banana：12 大實測指令專區 -->
+<!-- ========================================== -->
+<div id="view-nano-banana" class="view-section container" style="max-width: 960px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div class="gemini-prompts-shell">
+        <!-- 頂部 Hero 總覽 -->
+        <div class="gemini-hero" style="background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #f59e0b 100%); border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 20px; color: #ffffff; box-shadow: 0 6px 20px rgba(180,83,9,0.25);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: #fffbeb; padding: 4px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; margin-bottom: 10px;">
+                🍌 GEMINI NANO BANANA (2.5 FLASH IMAGE) 12 大精選指令
+            </div>
+            <h1 style="color: #ffffff; margin: 4px 0 10px; font-size: 26px; font-weight: 900;">Google Gemini Nano Banana：12 個實測指令手冊</h1>
+            <p style="color: #fef3c7; font-size: 15px; line-height: 1.6; margin: 0 auto 16px; max-width: 740px;">
+                收錄自 Learn AI 實測精華！涵蓋<b>地圖等距 3D、視角轉換、食材拆解、剖面設計、服裝試穿、多圖融合、包裝與室內設計</b>等 12 大黑科技應用。每款均配備 6 組量身預設情境與自訂調整，點選「複製指令」貼給 Gemini 立即出圖！
+            </p>
+
+            <!-- 全域一鍵隨機靈感控制列 -->
+            <div style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 14px; padding: 12px 16px; margin: 0 auto; max-width: 620px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                <span style="font-size: 14px; font-weight: bold; color: #fffbeb;">✨ 12 款皆已對齊專屬情境：</span>
+                <button type="button" onclick="randomizeAllBananaCards()" style="padding: 9px 18px; font-size: 14px; font-weight: 800; border-radius: 999px; border: none; background: #ffffff; color: #b45309; cursor: pointer; white-space: nowrap; width: auto; margin: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">🎲 全部 12 款隨機換一組情境</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; padding: 9px 18px; font-size: 14px; font-weight: 800; border-radius: 999px; background: #1e1f20; color: #ffffff; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.2);">✨ 開啟 Gemini</a>
+            </div>
+        </div>
+
+        <!-- 12 張實測卡片容器 -->
+        <div id="nano-banana-cards-container">
+        <!-- Card Banana 01 -->
+        <div class="banana-prompt-card" data-num="01" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #ea580c;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#ea580c; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">01</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">Google Map 座標轉等距圖像</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/map3d</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">輸入任意地標或 Google 地圖座標，轉換為如遊戲主題公園般的等距視角 3D 立體建築模型，並精準套疊在原始地形上。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-01" onchange="onSelectBananaOption('01', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="台北 101 大樓與周邊信義商圈 (Taipei 101, Coordinates: 25.033976, 121.564472)">台北 101 大樓與周邊信義商圈</option>
+                    <option value="日本東京淺草寺雷門與仲見世商店街 (Tokyo Asakusa Sensoji)">日本東京淺草寺雷門與仲見世街</option>
+                    <option value="巴黎艾菲爾鐵塔與戰神廣場花園 (Paris Eiffel Tower &amp; Champ de Mars)">巴黎艾菲爾鐵塔與戰神廣場</option>
+                    <option value="紐約時代廣場十字路口與霓虹招牌建築 (Times Square Intersection, NYC)">紐約時代廣場十字路口</option>
+                    <option value="台南安平古堡與老街紅磚聚落 (Tainan Anping Old Fort &amp; Historic Quarter)">台南安平古堡與老街紅磚聚落</option>
+                    <option value="瑞士策馬特馬特洪峰山腳童話木屋小鎮 (Zermatt Village &amp; Matterhorn Base)">瑞士策馬特山腳童話木屋小鎮</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('01')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#ea580c; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-01" value="台北 101 大樓與周邊信義商圈 (Taipei 101, Coordinates: 25.033976, 121.564472)" oninput="updateBananaPrompt('01')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-01" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">使用這個 Google 地圖座標 台北 101 大樓與周邊信義商圈 (Taipei 101, Coordinates: 25.033976, 121.564472) 生成等距視角的 3D 建築圖像，以遊戲主題公園風格呈現，並套疊在原始地圖上。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">地圖等距3D</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-01')" style="background:#ea580c; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 02 -->
+        <div class="banana-prompt-card" data-num="02" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #0284c7;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#0284c7; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">02</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">Google Map 視角轉換</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/pov-view</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">在 Google Map 截圖或地圖位置標記紅色箭頭，指定角度即可讓 AI 生成該位置站在地面的真實世界第一人稱視角。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-02" onchange="onSelectBananaOption('02', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="台北 101 正門抬頭仰望摩天大樓街景視角">台北 101 正門仰望街景視角</option>
+                    <option value="站在京都清水寺清水舞台欄杆遠眺整片山櫻花海">京都清水舞台遠眺山櫻花海</option>
+                    <option value="威尼斯聖馬可廣場石板路仰望聖馬可大教堂與鐘樓">威尼斯聖馬可廣場仰望大教堂</option>
+                    <option value="從九份老街阿妹茶樓紅燈籠階梯由下往上仰拍視角">九份老街阿妹茶樓階梯仰拍視角</option>
+                    <option value="倫敦泰晤士河南岸遠眺大笨鐘與西敏寺黃昏夜景">倫敦泰晤士河遠眺大笨鐘黃昏</option>
+                    <option value="紐約布魯克林大橋人行步道眺望曼哈頓天際線">布魯克林大橋眺望曼哈頓天際線</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('02')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#0284c7; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-02" value="台北 101 正門抬頭仰望摩天大樓街景視角" oninput="updateBananaPrompt('02')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-02" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">請畫出這張地圖中 台北 101 正門抬頭仰望摩天大樓街景視角 的真實世界第一人稱視角，光影逼真且細節豐富。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">視角轉換</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-02')" style="background:#0284c7; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 03 -->
+        <div class="banana-prompt-card" data-num="03" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #16a34a;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#16a34a; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">03</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">照片元素拆解（食材展示）</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/deconstruct</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">觀察上傳的料理或食品照片，自動辨識出所有可能的原始原料、辛香料與佐料，將其分別盛裝在小瓷碗與碟中進行高質感俯拍排版。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-03" onchange="onSelectBananaOption('03', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="這道台灣牛肉麵（燉牛肉塊、牛筋、手工麵條、酸菜、青蔥、牛骨八角高湯香料）">台灣牛肉麵（牛肉塊、麵條、酸菜、高湯香料）</option>
+                    <option value="這份義大利傳統窯烤瑪格麗特披薩（生麵糰、天然水牛莫札瑞拉起司、聖馬札諾蕃茄泥、新鮮羅勒葉、特級初榨橄欖油）">瑪格麗特披薩（麵糰、莫札瑞拉、蕃茄、羅勒）</option>
+                    <option value="這杯精緻手沖精品咖啡與提拉米蘇（衣索比亞咖啡熟豆、磨豆粉、濾紙手沖壺、馬斯卡彭起司、手指餅乾、可可粉）">手沖咖啡與提拉米蘇（咖啡豆、起司、手指餅乾）</option>
+                    <option value="這碗正宗日式豚骨拉麵（特製叉燒肉、溏心蛋、筍乾、濃郁豚骨白湯底、細拉麵、烘烤海苔片）">日式豚骨拉麵（叉燒、溏心蛋、筍乾、豚骨高湯）</option>
+                    <option value="這盤台灣傳統滷肉飯（五花切丁滷肉、油蔥酥、八角冰糖醬油滷汁、越光米白飯、醃黃瓜片、滷鵪鶉蛋）">台灣滷肉飯（五花滷肉、油蔥酥、醬油滷汁、白米）</option>
+                    <option value="這份英式傳統炸魚薯條（大西洋新鮮鱈魚柳、啤酒脆漿麵粉、現切馬鈴薯厚條、自製塔塔醬、青豆泥）">英式炸魚薯條（鱈魚柳、啤酒麵糊、馬鈴薯、塔塔醬）</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('03')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#16a34a; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-03" value="這道台灣牛肉麵（燉牛肉塊、牛筋、手工麵條、酸菜、青蔥、牛骨八角高湯香料）" oninput="updateBananaPrompt('03')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-03" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">觀察這張食品照片，識別 這道台灣牛肉麵（燉牛肉塊、牛筋、手工麵條、酸菜、青蔥、牛骨八角高湯香料） 中所有可能的原料與配料，分別放置在碗或碟中，搭配調味料與香料，俯拍角度（Knolling Flat Lay），背景為淺木紋與白色乾淨桌面。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">美食拆解</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-03')" style="background:#16a34a; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 04 -->
+        <div class="banana-prompt-card" data-num="04" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #9333ea;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#9333ea; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">04</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">3D 剖面設計圖</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/cutaway</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">上傳任一產品或機械照片，繪製內部立體 3D 剖面結構圖，以高擬真光影還原機械與層次，並附上清晰的英文名稱與功能指示標註。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-04" onchange="onSelectBananaOption('04', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="復古機械式單眼相機與多層鍍膜鏡頭 (Vintage Mechanical SLR Camera)">復古機械式單眼相機與多層鍍膜鏡頭</option>
+                    <option value="瑞士高級自動上鍊陀飛輪機械腕錶 (Swiss Automatic Tourbillon Watch)">瑞士高級自動上鍊陀飛輪機械腕錶</option>
+                    <option value="專業高階降噪無線藍牙耳機內部聲學單元 (Noise-Cancelling Wireless Headphones)">專業降噪無線耳機內部聲學單元</option>
+                    <option value="純電動車高性能三元鋰電池模組與冷卻系統 (EV Battery Pack &amp; Cooling System)">電動車高壓電池組與冷卻管路系統</option>
+                    <option value="義式旗艦雙鍋爐半自動旋轉泵咖啡機 (Dual-Boiler Commercial Espresso Machine)">義式雙鍋爐半自動咖啡機內部組件</option>
+                    <option value="多旋翼碳纖維航拍無人機與雲台結構 (Quadcopter Drone &amp; Gimbal Assembly)">碳纖維航拍無人機與高精度雲台</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('04')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#9333ea; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-04" value="復古機械式單眼相機與多層鍍膜鏡頭 (Vintage Mechanical SLR Camera)" oninput="updateBananaPrompt('04')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-04" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">根據這張圖片，繪製 復古機械式單眼相機與多層鍍膜鏡頭 (Vintage Mechanical SLR Camera) 的 3D 立體剖面設計圖，以高擬真方式清晰展現內部構造層次，並附精準的英文標註名稱與功能說明箭頭。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">結構剖面</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-04')" style="background:#9333ea; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 05 -->
+        <div class="banana-prompt-card" data-num="05" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #db2777;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#db2777; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">05</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">照片轉手繪過程</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/draw-step</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將真實照片轉化為 4 格專業繪畫教學分解圖：第一步鉛筆線稿草圖、第二步大面積固有色打底、第三步光影與深層陰影、第四步精細上色完成稿。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-05" onchange="onSelectBananaOption('05', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="這張人物臉部表情肖像（水彩手繪風格）">人物表情肖像（水彩手繪風格）</option>
+                    <option value="這隻可愛的毛茸茸金毛尋回犬（色鉛筆精細插畫風格）">毛茸茸金毛尋回犬（色鉛筆插畫）</option>
+                    <option value="這座充滿歷史韻味的歐洲紅磚小教堂（鋼筆淡彩速寫風格）">歐洲紅磚小教堂（鋼筆淡彩速寫）</option>
+                    <option value="這盤色彩鮮豔的水果塔甜點（日式手帳水彩風格）">色彩鮮豔水果塔（日式手帳水彩）</option>
+                    <option value="這輛經典復古老爺車（美式復古漫畫手繪風格）">經典復古老爺車（美式漫畫手繪）</option>
+                    <option value="這盆開滿花朵的陽台多肉植物（清新粉彩插畫風格）">陽台多肉植物花卉（清新粉彩插畫）</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('05')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#db2777; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-05" value="這張人物臉部表情肖像（水彩手繪風格）" oninput="updateBananaPrompt('05')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-05" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">將這張照片轉為四格繪畫過程教學圖，主題為 這張人物臉部表情肖像（水彩手繪風格）：第一步鉛筆線稿草圖、第二步填入底色固有色、第三步加上光影與層次陰影、第四步完成細緻豐富的彩色插畫。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">繪畫教學</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-05')" style="background:#db2777; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 06 -->
+        <div class="banana-prompt-card" data-num="06" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #4f46e5;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#4f46e5; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">06</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">舊照片修復與上色</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/restore-color</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">修復模糊、破損或泛黃的老照片，去除刮痕與雜訊，自動還原出自然透亮且符合歷史年代考究的鮮活色彩與清晰面部細節。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-06" onchange="onSelectBananaOption('06', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="這張珍貴的長輩黑白老結婚照片，撫平摺痕並自然還原白婚紗與西裝年代色彩">長輩黑白結婚照（修復摺痕自然上色）</option>
+                    <option value="這張 1970 年代泛黃的台灣老街全家福合照，修復褪色與模糊五官">1970 台灣老街全家福（消除泛黃雜訊）</option>
+                    <option value="這張年代久遠的童年黑白學生獨照，修復刮痕並呈現自然健康的皮膚紅潤色澤">童年黑白學生獨照（撫平刮痕潤色）</option>
+                    <option value="這張老舊的祖父母三合院門前合影，重現藍天、紅磚牆與人物親切神態">祖父母三合院合影（重現紅磚與藍天）</option>
+                    <option value="這張黑白老舊軍裝證件照，清晰修復面容與軍徽金色質感">黑白老軍裝照（清晰五官與配件上色）</option>
+                    <option value="這張磨損的黑白旅行風景照，重現當年湖泊清澈與山林翠綠色彩">磨損黑白風景照（還原湖泊翠綠生機）</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('06')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4f46e5; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-06" value="這張珍貴的長輩黑白老結婚照片，撫平摺痕並自然還原白婚紗與西裝年代色彩" oninput="updateBananaPrompt('06')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-06" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">請仔細修復這張舊照片：去除刮痕、摺痕與雜點，提升清晰度，並為 這張珍貴的長輩黑白老結婚照片，撫平摺痕並自然還原白婚紗與西裝年代色彩 進行自然細膩的上色，還原真實自然的皮膚色澤與場景光影。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">老照重生</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-06')" style="background:#4f46e5; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 07 -->
+        <div class="banana-prompt-card" data-num="07" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #0d9488;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#0d9488; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">07</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">服裝試穿（AI 虛擬換裝）</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/try-on</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">上傳第一張「本人全身照」，以及第二張「想試穿的服飾照片」，AI 自動將人物服裝精準替換，同時完美維持本人的身形、五官神韻與拍照姿勢。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-07" onchange="onSelectBananaOption('07', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="剪裁合身的米白色英倫雙排扣羊毛風衣外套與休閒長褲">米白色英倫雙排扣羊毛風衣與長褲</option>
+                    <option value="高雅奢華的深藍色金絲刺繡絲綢晚宴禮服">高雅深藍金絲刺繡絲綢晚宴禮服</option>
+                    <option value="帥氣專業的戶外機能 Gore-Tex 登山衝鋒衣與軍綠工裝長褲">戶外機能衝鋒衣與軍綠工裝長褲</option>
+                    <option value="經典日式藍染和服羽織搭配傳統腰帶與木屐">經典日式藍染和服羽織與木屐套裝</option>
+                    <option value="俐落都會商務深灰條紋西裝套裝與真皮手工皮鞋">都會商務深灰條紋西裝與真皮皮鞋</option>
+                    <option value="美式復古重磅黑皮衣夾克與經典原色丹寧牛仔褲">美式復古重磅皮夾克與丹寧牛仔褲</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('07')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#0d9488; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-07" value="剪裁合身的米白色英倫雙排扣羊毛風衣外套與休閒長褲" oninput="updateBananaPrompt('07')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-07" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">請將第一張人物照片中的服裝，完美替換為 剪裁合身的米白色英倫雙排扣羊毛風衣外套與休閒長褲 的版型與款式，生成高畫質真實全身照片。必須 100% 保留第一張人物的五官特徵、臉型髮型、身形比例與站立姿勢。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">虛擬試穿</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-07')" style="background:#0d9488; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 08 -->
+        <div class="banana-prompt-card" data-num="08" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #d97706;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#d97706; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">08</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">平面圖轉 3D 模型</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/floorplan3d</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將 2D 平面室內設計圖、戶型圖或建築平面圖，轉化為帶有逼真材質與自然光影的 3D 立體等距剖面模型，呈現於設計工作桌面上。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-08" onchange="onSelectBananaOption('08', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="現代簡約風格的三房兩廳住宅室內平面設計圖">現代簡約風三房兩廳住宅平面圖</option>
+                    <option value="溫馨日式無印風格的單身公寓與開放式廚房空間圖">溫馨日式無印風單身公寓戶型圖</option>
+                    <option value="北歐採光極佳的挑高複式閣樓公寓設計圖">北歐採光挑高複式閣樓設計圖</option>
+                    <option value="文青風複合式街角咖啡廳與烘焙工作區平面圖">複合式街角咖啡廳與烘焙區平面圖</option>
+                    <option value="帶有日式枯山水庭園與泡湯池的溫泉度假別墅平面圖">日式庭園與溫泉別墅設計平面圖</option>
+                    <option value="高科技現代化共享辦公室與創意會議室平面圖">高科技共享辦公室與會議區平面圖</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('08')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#d97706; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-08" value="現代簡約風格的三房兩廳住宅室內平面設計圖" oninput="updateBananaPrompt('08')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-08" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">將這張 現代簡約風格的三房兩廳住宅室內平面設計圖 的 2D 平面圖，轉換為逼真寫實的 3D 立體等距建築模型。場景擺放在木質設計工作桌面上，呈現出設計圖紙與微縮實體模型同時對照的展示效果。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">2D轉3D</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-08')" style="background:#d97706; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 09 -->
+        <div class="banana-prompt-card" data-num="09" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #2563eb;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#2563eb; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">09</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">多張照片融合</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/blend-scenes</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">上傳多張照片（例如人物照、寵物照與風景背景照），AI 智慧整合各張照片的光源方向、色溫調性與陰影，合成毫無破綻的全新故事畫面。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-09" onchange="onSelectBananaOption('09', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="讓第一張照片中的人物與第二張照片中的心愛寵物，悠閒坐在第三張照片中的瑞士綠油油高山草地上，手上拿著一杯熱咖啡遠眺雪山">人物＋寵物坐在瑞士雪山草地上喝咖啡</option>
+                    <option value="將第一張人物照完美融合進第二張巴黎塞納河畔黃昏街景中，倚靠在石橋欄杆旁漫步欣賞晚霞">人物融合進巴黎塞納河黃昏街景散步</option>
+                    <option value="將第一張合照中的人物與家人，置身於第二張絢麗北歐極光星空雪地小屋前，生著溫暖營火露營">全家福融合進北歐極光雪地營火旁</option>
+                    <option value="讓第一張照片的主角穿梭進入第二張賽博龐克霓虹雨夜未來城市街頭，地面倒映炫彩霓虹光澤">主角穿梭進入賽博龐克霓虹未來街頭</option>
+                    <option value="將照片中的人物自然融入日本京都伏見稻荷大社千本鳥居步道中，陽光穿透鳥居灑落斑駁光影">人物融入京都千本鳥居斑駁陽光步道</option>
+                    <option value="讓主角置身於熱帶馬爾地夫水上屋木棧道盡頭，身旁海水蔚藍清澈透明，微風吹拂">主角置身馬爾地夫水上木棧道蔚藍海景</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('09')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#2563eb; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-09" value="讓第一張照片中的人物與第二張照片中的心愛寵物，悠閒坐在第三張照片中的瑞士綠油油高山草地上，手上拿著一杯熱咖啡遠眺雪山" oninput="updateBananaPrompt('09')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-09" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">請將上傳的圖片進行深度多圖融合：讓第一張照片中的人物與第二張照片中的心愛寵物，悠閒坐在第三張照片中的瑞士綠油油高山草地上，手上拿著一杯熱咖啡遠眺雪山，嚴格統一所有素材的光源方向、透視比例、色溫與人物在地面上的自然投影，生成毫無合成瑕疵的電影級真實照片。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">多圖合成</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-09')" style="background:#2563eb; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 10 -->
+        <div class="banana-prompt-card" data-num="10" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #059669;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#059669; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">10</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">產品包裝設計模擬（Mockup）</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/packaging</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">將 2D 平面 Logo、品牌貼紙或包裝平面稿，精準貼合並曲面變形套用在真實產品模型上，產出具備商業影棚光澤與立體感的包裝宣傳照。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-10" onchange="onSelectBananaOption('10', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="這張品牌 Logo 與插畫，套用到磨砂深色玻璃精釀啤酒瓶與鋁質瓶蓋上，瓶身帶有微涼水珠">磨砂玻璃精釀啤酒瓶（附清涼水珠）</option>
+                    <option value="這個品牌標誌，印製在簡約環保牛皮紙咖啡豆密封袋與外帶紙杯上，旁邊散落幾顆新鮮咖啡豆">環保牛皮紙咖啡豆袋與外帶咖啡紙杯</option>
+                    <option value="這款美妝 Logo，燙金套印在啞光霧面粉色陶瓷護膚乳液瓶身與精美外盒上，散發奢華專櫃質感">啞光霧粉陶瓷保養品瓶身（燙金印刷）</option>
+                    <option value="這個品牌識別，套用到簡約鋁罐氣泡水上，搭配明亮清爽的水果切片在乾淨攝影棚燈光下展示">鋁罐水果氣泡水（清爽商業攝影棚光）</option>
+                    <option value="將這張文青插畫標籤，完美包覆在手工木塞封口的圓形玻璃果醬罐上，麻繩繫著手寫小卡">木塞封口玻璃果醬罐（手工麻繩質感）</option>
+                    <option value="這款奢華香水標誌，套印在多角幾何切面透明水晶香水瓶身上，陽光折射出璀璨光芒">幾何切面水晶香水瓶（奢華光芒折射）</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('10')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#059669; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-10" value="這張品牌 Logo 與插畫，套用到磨砂深色玻璃精釀啤酒瓶與鋁質瓶蓋上，瓶身帶有微涼水珠" oninput="updateBananaPrompt('10')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-10" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">將提供的設計圖稿套用到 這張品牌 Logo 與插畫，套用到磨砂深色玻璃精釀啤酒瓶與鋁質瓶蓋上，瓶身帶有微涼水珠，呈現逼真的曲面貼合、透光材質、環境反射與真實立體陰影，生成專業電商與雜誌廣告級商品展示 Mockup。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">包裝設計</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-10')" style="background:#059669; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 11 -->
+        <div class="banana-prompt-card" data-num="11" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #7c3aed;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#7c3aed; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">11</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">室內設計與裝潢風格模擬</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/interior</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">上傳一張原本房間或客廳的照片，保持原有格局、門窗與柱子位置不變，立刻將軟裝、地磚、牆色與傢俱一鍵改造為指定風格的效果圖。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-11" onchange="onSelectBananaOption('11', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="明亮溫暖的北歐斯堪地那維亞風格，純白牆面、淺橡木實木傢俱、大型綠色觀葉盆栽與大面落地自然光">明亮溫暖北歐風（淺木傢俱與自然採光）</option>
+                    <option value="經典日式侘寂無印風（Japandi），微水泥質樸牆面、低矮胡桃木茶几、棉麻軟裝與柔和間接暖光照明">日式侘寂無印風（微水泥、原木與棉麻）</option>
+                    <option value="摩登輕奢紐約現代風，大理石電視牆、黃銅金屬線條裝飾、深灰絨布沙發與精緻現代藝術吊燈">摩登輕奢風（大理石、黃銅金屬、灰沙發）</option>
+                    <option value="復古美式工業風（Loft），外露紅磚牆、黑色消光鐵件書架、復古焦糖色真皮沙發與愛迪生鎢絲吊燈">復古美式工業風（紅磚牆、鐵件與皮沙發）</option>
+                    <option value="悠閒南法鄉村田園風，奶油白微裂紋木櫃、碎花亞麻布藝抱枕、開放式紅陶磚地坪與拱型門廊">南法鄉村風（奶油白木櫃、陶磚地與拱門）</option>
+                    <option value="現代日式原木禪風和室，溫潤榻榻米地墊、障子紙推拉門、沉穩檜木茶席與竹編禪意裝飾">日式原木禪風和室（榻榻米與檜木茶席）</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('11')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#7c3aed; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-11" value="明亮溫暖的北歐斯堪地那維亞風格，純白牆面、淺橡木實木傢俱、大型綠色觀葉盆栽與大面落地自然光" oninput="updateBananaPrompt('11')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-11" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">請將這張房間照片改造為 明亮溫暖的北歐斯堪地那維亞風格，純白牆面、淺橡木實木傢俱、大型綠色觀葉盆栽與大面落地自然光，嚴格保留原本空間結構、天花板高度與門窗採光位置，生成高擬真室內設計完工效果圖。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">空間改造</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-11')" style="background:#7c3aed; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Banana 12 -->
+        <div class="banana-prompt-card" data-num="12" style="background:#ffffff; border:1px solid #fed7aa; border-radius:14px; padding:18px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.03); text-align:left; border-top:4px solid #be123c;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#be123c; color:#ffffff; font-size:12px; font-weight:900; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">12</span>
+                    <span style="font-size:17px; font-weight:800; color:#1e293b;">行銷素材快速生成（節慶與活動延伸）</span>
+                </div>
+                <span style="background:#fef3c7; color:#b45309; font-family:monospace; font-size:13px; font-weight:700; padding:2px 8px; border-radius:6px;">/marketing</span>
+            </div>
+            <div style="color:#64748b; font-size:13px; line-height:1.5; margin-bottom:10px;">根據上傳的產品照或廣告主視覺，延伸生成各大節慶（如聖誕節、農曆新年、中秋節、萬聖節）的專屬行銷推廣素材圖卡。</div>
+            
+            <!-- 專屬精準選項下拉選單 + 隨機切換 + 自訂微調框 -->
+            <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+                    <label style="font-size:12px; font-weight:800; color:#92400e; white-space:nowrap;">🎯 替換設定/主題：</label>
+                    <select id="banana-select-12" onchange="onSelectBananaOption('12', this.value)" style="flex:1; min-width:180px; padding:7px 10px; font-size:13px; font-weight:700; color:#78350f; border-radius:6px; border:1.5px solid #f59e0b; background:#ffffff; margin:0; cursor:pointer;">
+                    <option value="溫馨浪漫的聖誕節氛圍，背景飄著雪花，點綴聖誕紅、金色鈴鐺、松果與溫暖聖誕樹彩燈裝飾">聖誕節主題（雪花、松果、聖誕樹彩燈）</option>
+                    <option value="熱鬧喜慶的農曆春節過年氛圍，大紅燈籠高掛、金色祥雲剪紙圖騰、鞭炮與吉祥賀歲元素">農曆新年春節（紅燈籠、金色剪紙圖騰）</option>
+                    <option value="寧靜詩意的中秋佳節賞月氛圍，皎潔金黃滿月、典雅桂花枝枒、月餅禮盒與傳統紙雕玉兔">中秋佳節賞月（金黃滿月、桂花與玉兔）</option>
+                    <option value="熱鬧搞怪的萬聖節狂歡派對氛圍，發光南瓜燈、蝙蝠剪影、神秘紫色迷霧與童趣糖果">萬聖節狂歡派對（南瓜燈、蝙蝠與紫霧）</option>
+                    <option value="活力清涼的盛夏海灘特賣會氛圍，熱帶棕櫚樹、清爽浪花、太陽眼鏡與明亮夏日陽光">盛夏海灘特賣（棕櫚樹、浪花、夏日陽光）</option>
+                    <option value="摩登酷炫的雙十一黑金狂歡購物節氛圍，黑金霓虹流光、發光立體展台與爆炸性優惠視覺">雙11黑金狂歡節（霓虹光流、發光展台）</option>
+                    </select>
+                    <button type="button" onclick="randomizeBananaCard('12')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#be123c; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換情境</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️ 自由微調：</span>
+                    <input type="text" class="card-subject-input" id="banana-subject-12" value="溫馨浪漫的聖誕節氛圍，背景飄著雪花，點綴聖誕紅、金色鈴鐺、松果與溫暖聖誕樹彩燈裝飾" oninput="updateBananaPrompt('12')" style="flex:1; padding:5px 9px; font-size:12.5px; color:#334155; border-radius:5px; border:1px solid #cbd5e1; background:#ffffff; margin:0;">
+                </div>
+            </div>
+
+            <!-- 即時指令框 -->
+            <div class="prompt-text" id="banana-prompt-box-12" style="background:#1e293b; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:13.5px; line-height:1.6; padding:12px 14px; border-radius:8px; margin-bottom:12px; word-break:break-word; white-space:pre-wrap;">將這張商業廣告視覺的主體產品，轉換置入於 溫馨浪漫的聖誕節氛圍，背景飄著雪花，點綴聖誕紅、金色鈴鐺、松果與溫暖聖誕樹彩燈裝飾 中，保留產品本體細節無失真，完美融合整體節慶氛圍與行銷宣傳視覺。</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-size:11px; color:#94a3b8; font-weight:bold;">特色：</span>
+                    <span style="background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">行銷廣告</span>
+                    <span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Nano Banana 實測</span>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:6px;">
+                    <button type="button" class="copy-btn" onclick="copyGeminiPrompt(this, 'banana-prompt-box-12')" style="background:#be123c; flex:1; padding:10px 14px; font-size:14px; font-weight:700; border-radius:8px; border:none; color:#fff; cursor:pointer; margin:0;">📋 複製指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background:#1e1f20; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #4a5568;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- 專屬上傳區 -->
+        <div class="container" style="background:#fffbeb; border: 2px dashed #f59e0b; margin-top:30px; border-radius: 14px; padding: 20px;">
+            <h3 style="margin-top:0; color:#b45309;">🍌 專屬上傳區：Gemini Nano Banana 實測大作</h3>
+            <p style="color:#78350f; font-size:14px; margin-top:4px;">在 Gemini 完成地圖 3D、食材拆解、服裝試穿或多圖融合作品後，歡迎直接上傳到班級照片牆與大家分享！</p>
+            <input type="text" id="bananaStudentName" placeholder="輸入姓名 (系統會自動記憶)">
+            <input type="file" id="bananaPhotoInput" accept="image/*">
+            <button id="bananaSubmitBtn" class="blue-btn" style="background:#b45309; font-size: 16px; padding: 12px;" onclick="uploadPhoto(false, 'bananaStudentName', 'bananaPhotoInput', 'bananaSubmitBtn')">確認上傳作品</button>
+        </div>
+    </div>
+</div>
+
 <!-- 🌟 20 款爆款 Gemini 影像指令速查手冊 -->
 <!-- ========================================== -->
 <div id="view-gemini-prompts" class="view-section container" style="max-width: 960px;">
@@ -9210,6 +9807,50 @@ window.addEventListener('pageshow', (event) => {
     scrollToTopForceGlobal();
     setTimeout(scrollToTopForceGlobal, 80);
 });
+
+
+    // ==========================================
+    // 🍌 Google Gemini Nano Banana：12 大指令邏輯
+    // ==========================================
+    const BANANA_TEMPLATES = {"01": "使用這個 Google 地圖座標 [主體] 生成等距視角的 3D 建築圖像，以遊戲主題公園風格呈現，並套疊在原始地圖上。", "02": "請畫出這張地圖中 [主體] 的真實世界第一人稱視角，光影逼真且細節豐富。", "03": "觀察這張食品照片，識別 [主體] 中所有可能的原料與配料，分別放置在碗或碟中，搭配調味料與香料，俯拍角度（Knolling Flat Lay），背景為淺木紋與白色乾淨桌面。", "04": "根據這張圖片，繪製 [主體] 的 3D 立體剖面設計圖，以高擬真方式清晰展現內部構造層次，並附精準的英文標註名稱與功能說明箭頭。", "05": "將這張照片轉為四格繪畫過程教學圖，主題為 [主體]：第一步鉛筆線稿草圖、第二步填入底色固有色、第三步加上光影與層次陰影、第四步完成細緻豐富的彩色插畫。", "06": "請仔細修復這張舊照片：去除刮痕、摺痕與雜點，提升清晰度，並為 [主體] 進行自然細膩的上色，還原真實自然的皮膚色澤與場景光影。", "07": "請將第一張人物照片中的服裝，完美替換為 [主體] 的版型與款式，生成高畫質真實全身照片。必須 100% 保留第一張人物的五官特徵、臉型髮型、身形比例與站立姿勢。", "08": "將這張 [主體] 的 2D 平面圖，轉換為逼真寫實的 3D 立體等距建築模型。場景擺放在木質設計工作桌面上，呈現出設計圖紙與微縮實體模型同時對照的展示效果。", "09": "請將上傳的圖片進行深度多圖融合：[主體]，嚴格統一所有素材的光源方向、透視比例、色溫與人物在地面上的自然投影，生成毫無合成瑕疵的電影級真實照片。", "10": "將提供的設計圖稿套用到 [主體]，呈現逼真的曲面貼合、透光材質、環境反射與真實立體陰影，生成專業電商與雜誌廣告級商品展示 Mockup。", "11": "請將這張房間照片改造為 [主體]，嚴格保留原本空間結構、天花板高度與門窗採光位置，生成高擬真室內設計完工效果圖。", "12": "將這張商業廣告視覺的主體產品，轉換置入於 [主體] 中，保留產品本體細節無失真，完美融合整體節慶氛圍與行銷宣傳視覺。"};
+
+    function onSelectBananaOption(num, val) {
+        const inp = document.getElementById("banana-subject-" + num);
+        if (inp) {
+            inp.value = val;
+            updateBananaPrompt(num);
+        }
+    }
+
+    function updateBananaPrompt(num) {
+        const inp = document.getElementById("banana-subject-" + num);
+        const box = document.getElementById("banana-prompt-box-" + num);
+        const template = BANANA_TEMPLATES[num];
+        if (inp && box && template) {
+            const val = inp.value.trim() || "指定主題";
+            box.innerText = template.replace("[主體]", val);
+        }
+    }
+
+    function randomizeBananaCard(num) {
+        const sel = document.getElementById("banana-select-" + num);
+        if (!sel || sel.options.length <= 1) return;
+        const currentIdx = sel.selectedIndex;
+        let newIdx = Math.floor(Math.random() * sel.options.length);
+        if (newIdx === currentIdx) {
+            newIdx = (newIdx + 1) % sel.options.length;
+        }
+        sel.selectedIndex = newIdx;
+        onSelectBananaOption(num, sel.value);
+    }
+
+    function randomizeAllBananaCards() {
+        for (let i = 1; i <= 12; i++) {
+            const num = (i < 10 ? "0" : "") + i;
+            randomizeBananaCard(num);
+        }
+    }
+
 </script>
 </body>
 </html>
