@@ -4795,12 +4795,23 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     let selectedPetVoteId = null; 
     const CLASSROOM = new URLSearchParams(window.location.search).get('classroom') === 'teacher2' ? 'teacher2' : 'teacher1';
 
-
     // =========================================================================
-    // 🌟 雲端即時資料庫引擎 (Firebase Firestore: jktai1st / wordcloud-db)
-    // 支援跨手機/平板/電腦即時上傳、全班照片牆同步、即時投票、AI 評審與歷史課程封存
+    // 🌟 雲端即時資料庫引擎 (Firebase Firestore: 多老師獨立專案隔離架構)
+    // teacher1: jktai1st (wordcloud-db)
+    // teacher2: jktai-teacher2 或自訂專案 (獨立全新 1 GiB 配額)
     // =========================================================================
-    const FIRESTORE_BASE = "https://firestore.googleapis.com/v1/projects/jktai1st/databases/wordcloud-db/documents";
+    const FIRESTORE_CONFIG = {
+        teacher1: {
+            project: "jktai1st",
+            database: "wordcloud-db"
+        },
+        teacher2: {
+            project: new URLSearchParams(window.location.search).get('fs_project') || "jktai-teacher2",
+            database: new URLSearchParams(window.location.search).get('fs_db') || "(default)"
+        }
+    };
+    const currentFS = FIRESTORE_CONFIG[CLASSROOM] || FIRESTORE_CONFIG.teacher1;
+    const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${currentFS.project}/databases/${currentFS.database}/documents`;
     const GDRIVE_UPLOAD_API = "https://script.google.com/macros/s/AKfycbwhjTAwi2CpX4YRhMUM6IbQ2DEpjKL-m0vfRXIo4d4fjzgI6_LUJkRzCc2X3lRgXzzfrw/exec";
     const VALID_PASSWORDS = ["8888", "1234", "0000", "pctnm", "admin"];
     window.__PHOTO_DATA_MAP = window.__PHOTO_DATA_MAP || {};
