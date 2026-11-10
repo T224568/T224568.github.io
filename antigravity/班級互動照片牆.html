@@ -339,6 +339,55 @@ button:disabled { background: #ccc; cursor: not-allowed; }
   box-shadow:0 2px 0 #bf360c, 0 4px 10px rgba(229,57,53,.18), inset 0 2px 0 rgba(255,255,255,.35);
 }
 
+.retouch-home-btn {
+  grid-column:1 / -1;
+  width:100% !important;
+  max-width:none !important;
+  min-height:52px;
+  margin:0 !important;
+  padding:15px 6px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:19px;
+  font-weight:900;
+  color:white;
+  border:1px solid rgba(255,255,255,.78) !important;
+  border-radius:999px !important;
+  background:linear-gradient(135deg, #e91e63 0%, #9c27b0 52%, #673ab7 100%);
+  box-shadow:0 6px 0 #4a148c, 0 9px 20px rgba(156,39,176,.28), inset 0 2px 0 rgba(255,255,255,.46);
+  text-shadow:0 1px 2px rgba(0,0,0,.22);
+  transition:transform .12s ease, box-shadow .12s ease, filter .18s ease;
+}
+.retouch-home-btn:hover {
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+}
+.retouch-home-btn:active {
+  transform:translateY(4px);
+  box-shadow:0 2px 0 #4a148c, 0 4px 10px rgba(156,39,176,.2), inset 0 2px 0 rgba(255,255,255,.35);
+}
+
+.retouch-tab {
+  padding: 8px 10px;
+  border: 1px solid #e1bee7;
+  background: #fdf7ff;
+  color: #6a1b9a;
+  font-size: 13.5px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.retouch-tab.active {
+  background: #8e24aa;
+  color: #fff;
+  border-color: #8e24aa;
+  box-shadow: 0 2px 6px rgba(142,36,170,0.3);
+}
+
 .sticker-video-hero {
   width:94%;
   margin:8px auto 10px;
@@ -1195,6 +1244,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <button class="travel-home-btn" onclick="openExternalView('view-travel-comic')">AI 旅行四格漫畫</button>
         <button class="figurine-home-btn" onclick="openExternalView('view-figurine-story')">AI 公仔系列</button>
         <button class="sticker-video-home-btn" onclick="openExternalView('view-sticker-video')">AI 貼圖影片指令</button>
+        <button class="retouch-home-btn" onclick="openExternalView('view-photo-retouch')">✨ AI 專業相片修圖大師</button>
 
         <button class="home-course-btn" style="background:#9c27b0;" onclick="openExternalView('view-9104')">AI 藝術創作</button>
         <button class="home-course-btn" style="background:#e91e63;" onclick="openExternalView('view-9106')">AI 商業廣告</button>
@@ -4560,6 +4610,109 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 </div>
 
 <!-- ========================================== -->
+<!-- 🌟 AI 專業相片修圖大師 (4大IG神級攻略精華) -->
+<!-- ========================================== -->
+<div id="view-photo-retouch" class="view-section container travel-shell" style="max-width: 960px;">
+    <button class="back-btn" onclick="switchView('view-upload')">回首頁</button>
+    
+    <div class="retouch-hero-card" style="background: linear-gradient(135deg, #1f1035 0%, #4a148c 50%, #9c27b0 100%); border-radius: 18px; padding: 22px 18px; color: #fff; text-align: center; margin-top: 15px; box-shadow: 0 10px 25px rgba(74, 20, 140, 0.35);">
+        <h2 style="margin: 0 0 6px 0; font-size: 26px; font-weight: 900; letter-spacing: 1px;">📸 AI 專業相片修圖大師</h2>
+        <p style="margin: 0; font-size: 14.5px; opacity: 0.95; line-height: 1.5;">整合 4 大 IG 熱門修圖教學・19 組攝影級提示詞・嚴格鎖定臉部特徵絕不變臉</p>
+    </div>
+
+    <!-- 💡 AI 修圖心法叮嚀 -->
+    <div style="background: #fff8e1; border-left: 5px solid #ffb300; padding: 12px 16px; border-radius: 10px; margin: 15px 0; font-size: 13.5px; color: #6d4c41; line-height: 1.6; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+        <strong>💡 AI 修圖 3 步驟必勝法：</strong><br>
+        1. 點擊下方 <b>「開啟 Gemini」</b> 或 <b>「開啟 ChatGPT」</b>，點 <b>➕ 附圖上傳</b> 您的原始照片。<br>
+        2. 在本頁選擇修圖情境（可隨機抽籤或自訂內容），點 <b>「📋 複製修圖指令」</b>。<br>
+        3. 貼到對話框直接送出！指令已加入「鎖定五官身分、寫實皮膚紋理、拒絕 AI 假磨皮」等專業約束。
+    </div>
+
+    <!-- 輪盤與模式選擇 -->
+    <div style="background: #ffffff; border-radius: 16px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 18px; border: 1px solid #f0e6f6;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <div style="font-weight: 900; font-size: 17px; color: #4a148c; display: flex; align-items: center; gap: 6px;">
+                <span>🎯 選擇修圖功能模式</span>
+            </div>
+            <button onclick="randomizeRetouch()" style="background: linear-gradient(135deg, #e91e63, #9c27b0); color: white; border: none; border-radius: 20px; padding: 7px 18px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 8px rgba(156,39,176,0.3); transition: transform 0.1s;">
+                🎲 懶人隨機抽籤
+            </button>
+        </div>
+
+        <!-- 4 大分類 Tab -->
+        <div id="retouch-tabs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-bottom: 14px;">
+            <button class="retouch-tab active" onclick="switchRetouchCategory('fix', this)">🛠️ 瑕疵修復</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('portrait', this)">🌟 攝影人像</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('scene', this)">🌍 場景穿搭</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('lock', this)">🛡️ 防翻車鎖定</button>
+        </div>
+
+        <!-- 模式下拉選擇 -->
+        <div style="margin-bottom: 10px;">
+            <label style="display: block; font-size: 13px; font-weight: bold; color: #555; margin-bottom: 5px;">選擇情境項目：</label>
+            <select id="retouch-item-select" onchange="onRetouchItemChange(this.value)" style="width: 100%; padding: 10px 12px; font-size: 15px; font-weight: bold; color: #333; border: 2px solid #ab47bc; border-radius: 10px; background: #faf5fc; outline: none;"></select>
+        </div>
+
+        <!-- 模式描述與來源 -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
+            <div id="retouch-item-desc" style="font-size: 13px; color: #666; line-height: 1.4; background: #fdf7ff; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ab47bc; flex: 1;"></div>
+            <span id="retouch-source-badge" style="font-size: 11px; background: #ede7f6; color: #512da8; padding: 4px 10px; border-radius: 12px; font-weight: bold; white-space: nowrap;"></span>
+        </div>
+
+        <!-- ✏️ 自由自訂微調輸入框（動態顯示/隱藏） -->
+        <div id="retouch-custom-section" style="margin-bottom: 16px; display: none; background: #fff5f8; padding: 12px; border-radius: 10px; border: 1px dashed #f06292;">
+            <label id="retouch-custom-label" style="display: block; font-size: 13.5px; font-weight: bold; color: #c2185b; margin-bottom: 6px;">✏️ 自訂修改內容：</label>
+            <input type="text" id="retouch-custom-input" oninput="onRetouchCustomInput(this.value)" placeholder="" style="width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 15px; border: 2px solid #ec407a; border-radius: 8px; outline: none; background: #ffffff;">
+            <div style="font-size: 12px; color: #888; margin-top: 5px;">💡 輸入或修改自訂文字，下方提示詞將即時自動連動更新！</div>
+        </div>
+
+        <!-- 完整指令卡片 -->
+        <div style="margin-top: 14px;">
+            <label style="display: block; font-size: 14px; font-weight: bold; color: #333; margin-bottom: 6px;">📜 完整修圖提示詞 (點擊下方按鈕一鍵複製)：</label>
+            <textarea id="retouch-prompt-output" rows="6" style="width: 100%; box-sizing: border-box; padding: 12px; font-size: 14.5px; line-height: 1.6; color: #222; border: 2px solid #7e57c2; border-radius: 12px; background: #fbf9fe; resize: vertical; outline: none; font-family: inherit;"></textarea>
+        </div>
+
+        <!-- 動作按鈕 -->
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+            <button id="retouch-copy-btn" onclick="copyRetouchPrompt()" style="background: linear-gradient(135deg, #e91e63, #9c27b0); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 17px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 12px rgba(233,30,99,0.3); transition: transform 0.1s;">
+                📋 複製修圖指令
+            </button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button onclick="window.open('https://gemini.google.com/app', '_blank')" style="background: linear-gradient(135deg, #1a73e8, #4285f4); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 3px 8px rgba(26,115,232,0.25);">
+                    ✨ 開啟 Gemini
+                </button>
+                <button onclick="window.open('https://chatgpt.com/', '_blank')" style="background: linear-gradient(135deg, #10a37f, #0d8a6a); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 3px 8px rgba(16,163,127,0.25);">
+                    🤖 開啟 ChatGPT
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4 大 IG 原文素材出處卡片 -->
+    <div style="background: #fdfbff; border-radius: 16px; padding: 16px; border: 1px solid #ebdcf5; margin-bottom: 20px;">
+        <h4 style="margin: 0 0 10px 0; color: #4a148c; font-size: 15px;">📚 本功能整合之 4 大 IG 熱門修圖教學源：</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 12.5px;">
+            <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid #e0d0f0;">
+                <b style="color: #c2185b;">📌 貼文 1 (ChatGPT 10大指令)</b><br>
+                別再叫ChatGPT幫我修圖，改用這10個專業指令（人像、背景、畫質、換裝）。
+            </div>
+            <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid #e0d0f0;">
+                <b style="color: #7b1fa2;">📌 貼文 2 (ChatGPT 提示詞)</b><br>
+                別再只會說「幫我修圖」，10個提示詞讓照片直接變專業攝影作品。
+            </div>
+            <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid #e0d0f0;">
+                <b style="color: #1565c0;">📌 貼文 3 (ChatGPT 5大防翻車)</b><br>
+                修圖總是把臉改掉？/identitylock、/cleanup、/poseonly 鎖臉技巧。
+            </div>
+            <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid #e0d0f0;">
+                <b style="color: #2e7d32;">📌 貼文 4 (GEMINI 攝影師 6組)</b><br>
+                像專業攝影師一樣！專業單眼、電影形象、高端IG照、老照片修復。
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
 <!-- 🌟 9104 AI 藝術老虎機區 -->
 <!-- ========================================== -->
 <div id="view-9104" class="view-section container">
@@ -5817,8 +5970,359 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         }
     }
 
+    // =========================================================================
+    // 🌟 AI 專業相片修圖大師邏輯 (4大IG神級攻略精華整合)
+    // =========================================================================
+    const RETOUCH_CATEGORIES = [
+        {
+            id: 'fix',
+            name: '🛠️ 瑕疵拯救與畫質修復',
+            items: [
+                {
+                    id: 'cleanup',
+                    title: '移除背景路人與雜物 (/cleanup)',
+                    desc: '清除畫面背景中的路人、障礙物或垃圾桶，乾淨無痕自然修補。',
+                    source: 'ChatGPT 10大指令 & /cleanup',
+                    custom_label: '✏️ 想移除的人物或物件：',
+                    custom_placeholder: '例如：右後方的路人與地上的垃圾桶',
+                    custom_default: '右側走過的路人與背景雜物',
+                    template: '請從這張圖片中移除【CUSTOM】，並以真實自然的方式重建其後方區域。延續原始背景、光線、陰影、材質、反射、景深與透視，讓修改處完全無接縫、看不出任何修圖痕跡。'
+                },
+                {
+                    id: 'upscale',
+                    title: '提升畫質 / 舊照超解析度 (/upscale)',
+                    desc: '模糊照片秒變清晰，改善細節與銳利度，拒絕假假 AI 塑膠感。',
+                    source: 'ChatGPT 10大指令 & /upscale',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請提升這張圖片的畫質，使畫面更清晰、乾淨且專業，同時完整保持原始構圖與所有內容不變。請改善細節、光線、曝光、色彩準確度、對比與銳利度；避免產生假細節、過度銳化或不自然的 AI 塑膠人工感。'
+                },
+                {
+                    id: 'eyefix',
+                    title: '修復閉眼與半閉眼',
+                    desc: '自然修復眨眼失誤，眼神視線精準協調，不改臉型。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請自然修復照片中人物閉起或半閉的眼睛，讓雙眼自然睜開，並與其原本的臉部神情完全一致。請保留表情、視線方向、光線、眼型、身分辨識特徵及整體外觀。修改必須細微、真實自然且左右協調，絕不改變人物身分。'
+                },
+                {
+                    id: 'clothwrinkle',
+                    title: '撫平衣服皺褶 (燙衣效果)',
+                    desc: '去除衣服凌亂摺痕，宛如剛燙好，保留布料垂墜與真實紋理。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請修整人物衣服上明顯的皺褶、摺痕、布料堆積及不平整處，同時真實保留服裝的材質、縫線、合身程度、光影與原本輪廓。讓服裝看起來整潔得體，但仍保有自然的布料垂墜感，避免過度平滑或出現數位塗繪合成感。'
+                },
+                {
+                    id: 'oldphoto',
+                    title: '老照片現代化修復',
+                    desc: '將低畫質泛黃舊照，提升至宛如現代高階相機今天剛拍的效果。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請修復我上傳的老照片或低畫質照片，將它轉換成現代、專業的高解析度人像照。完整保留人物真實身分與自然五官結構，同時改善光線、構圖清晰度、皮膚細節、曝光、色彩與整體影像品質。成品應像原始照片是在今天使用專業相機與高品質人像鏡頭拍攝，不得改變人物長相或生成不存在的五官細節。'
+                }
+            ]
+        },
+        {
+            id: 'portrait',
+            name: '🌟 攝影大師級人像風格',
+            items: [
+                {
+                    id: 'dslr_portrait',
+                    title: '專業單眼相機人像',
+                    desc: '自然真實透視、淺景深、細緻分離背景，告別 AI 假人感。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '✏️ 想置身的地點：',
+                    custom_placeholder: '輸入拍攝地點，例如：台北市立美術館戶外庭園',
+                    custom_default: '戶外自然景觀步道前',
+                    template: '請將我上傳的照片轉換成專業單眼相機拍攝的人像照。完整保留我的臉部、五官結構、膚色、髮型與身分辨識度，呈現自然且真實的樣貌。將我置於【CUSTOM】，使用寫實光線、自然皮膚紋理、淺景深、細緻的背景分離、真實鏡頭透視與專業人像構圖。成品必須像由真人專業攝影師使用頂級單眼相機實體拍攝，絕非 AI 生成假圖。'
+                },
+                {
+                    id: 'cinematic_portrait',
+                    title: '電影感形象照 (海報級光影)',
+                    desc: '戲劇性寫實光線與陰影，高階電影劇照質感，保證不改臉型。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '✏️ 電影感場景風格：',
+                    custom_placeholder: '輸入電影感場景，例如：大都會霓虹雨夜街道 / 復古文藝咖啡館',
+                    custom_default: '復古文藝光影氛圍的室內場景',
+                    template: '請將我上傳的照片轉換成專業電影感形象照，把我放在【CUSTOM】中。使用戲劇性但寫實的光線、自然陰影、淺景深、細緻背景模糊、電影式寬景構圖、真實皮膚紋理、完整服裝細節與專業電影調色。請完整保留我的身分與五官特徵，不得改變臉型，最終畫面應呈現高階電影形象攝影的真實感。'
+                },
+                {
+                    id: 'ig_luxury',
+                    title: '高級感 IG 精品生活照',
+                    desc: '雜誌編輯感、精品場景與自然姿勢，真實不做作。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '✏️ 高級場所與氛圍：',
+                    custom_placeholder: '輸入高級場所，例如：米其林星級法式餐廳露台',
+                    custom_default: '陽光明媚的精緻景觀咖啡館露台',
+                    template: '請將我上傳的照片轉換成適合高端 Instagram 個人頁面的精品生活風格照片。把我放在【CUSTOM】，穿著合身質感的服裝，使用精緻自然光線、寫實環境細節、自然放鬆姿勢、專業攝影構圖、淺景深與真實皮膚紋理。畫面要有時尚雜誌編輯感，但不能顯得虛假或過度修圖；完整保留我的真實臉部與身分特徵。'
+                },
+                {
+                    id: 'linkedin_headshot',
+                    title: 'LinkedIn / 求職商務專業頭像',
+                    desc: '乾淨俐落、具專業信賴感，不假過度磨皮，履歷最佳門面。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請將我上傳的照片轉換成適合 LinkedIn、公司官方網站或個人專業品牌使用的專業頭像。完整保留我的臉部、五官結構、膚色、髮型與身分辨識度，呈現自然自信的微笑與表情。使用乾淨柔和的專業攝影光線、真實皮膚紋理、柔和背景分離、清晰五官細節與俐落構圖。成品要像專業商業攝影師使用高階相機拍攝的真實人像，絕不過度磨皮或改變臉型。'
+                },
+                {
+                    id: 'natural_retouch',
+                    title: '自然級人像精修 (微調光影)',
+                    desc: '改善光線、白平衡與清晰度，拒絕過度磨皮，美得毫不費力。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請以專業修圖方式優化這張照片，同時完整保留人物身分、五官特徵、自然膚質、身體比例、髮型、服裝與整體外觀。改善光線、清晰度、白平衡、色彩與曝光，成品必須自然、真實，不要出現過度磨皮或 AI 塑膠假人感。'
+                }
+            ]
+        },
+        {
+            id: 'scene',
+            name: '🌍 場景時空與穿搭變身',
+            items: [
+                {
+                    id: 'change_bg',
+                    title: '更換照片背景',
+                    desc: '光線、陰影、透視自然配合新背景，人物完全不失真。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 想更換的新背景：',
+                    custom_placeholder: '輸入新背景，例如：日本京都清水寺楓葉林 / 巴黎鐵塔前',
+                    custom_default: '陽光明媚的綠意森林步道',
+                    template: '請把目前背景更換成【CUSTOM】，主題人物保持完全不變。完整保留臉部、身形、服裝、髮型、姿勢、比例與細節，並重新調整光線方向、陰影、色溫與透視，讓人物自然無縫融入新環境中。'
+                },
+                {
+                    id: 'change_outfit',
+                    title: '自然更換穿搭服裝',
+                    desc: '換上指定西裝、風衣或運動裝，五官身型姿勢完美保留。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 想換上的新穿搭：',
+                    custom_placeholder: '輸入服裝描述，例如：深藍色英倫風格修身西裝搭配白襯衫',
+                    custom_default: '優雅俐落的深色商務休閒服飾',
+                    template: '請把人物目前的服裝更換成【CUSTOM】，並完整保留人物身分、臉部、髮型、身形、姿勢、手部、膚色、比例、表情與背景。新服裝必須完美符合身體結構與姿勢，布料材質、皺褶垂墜、光影反光都要自然真實。'
+                },
+                {
+                    id: 'change_time',
+                    title: '改變拍攝時間氛圍 (日落/夜景)',
+                    desc: '白天秒變黃昏黃金時刻或繁星雨夜，光影氛圍完全匹配。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 想變換的拍攝時間/氛圍：',
+                    custom_placeholder: '輸入目標時段，例如：日落黃金時刻 (Golden Hour) / 繁華夜景',
+                    custom_default: '夕陽西下的溫暖黃金時刻 (Golden Hour)',
+                    template: '請把場景拍攝時間改成【CUSTOM】。同步調整天空、光線方向、色溫、反射、陰影、窗戶與周遭環境，讓整個畫面符合新的時間氛圍與光影，同時保持人物五官身分和構圖完全不變。'
+                },
+                {
+                    id: 'outpaint',
+                    title: '自然延伸照片畫面 (外擴補景)',
+                    desc: '直照片延伸成寬螢幕桌布，自然補齊周圍景物無縫接合。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 延伸方向與比例：',
+                    custom_placeholder: '輸入延伸方向與比例，例如：橫向 16:9 比例 / 向左右自然延伸',
+                    custom_default: '橫向 16:9 比例',
+                    template: '請將這張照片向原本邊界以外自然延伸至【CUSTOM】，原始畫面中的人物、主體與物件嚴格保持不變。自然補齊周圍環境、地面、牆面、天空、景物、紋理與光影，使延伸區域與原始照片無縫銜接。'
+                },
+                {
+                    id: 'travel_photo',
+                    title: '世界各地專業旅遊照',
+                    desc: '換旅遊目的地，光線、天氣、景深自然融合，不生硬摳圖。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '✏️ 想去的旅遊目的地：',
+                    custom_placeholder: '輸入旅遊目的地，例如：瑞士阿爾卑斯山雪峰前 / 日本富士山腳下',
+                    custom_default: '瑞士雪山下的美麗小鎮風景',
+                    template: '將我上傳的照片轉換成在【CUSTOM】拍攝的專業、真實旅遊照。保留我的臉部與身分特徵，並自然融入當地環境。請依照目的地合理調整光線、陰影、透視、天氣、服裝與周遭景物，使用專業旅遊攝影構圖、真實景深、自然色彩與柔和背景分離，避免人物像被直接貼到背景上。'
+                }
+            ]
+        },
+        {
+            id: 'lock',
+            name: '🛡️ 防翻車鎖定咒語 (絕不換臉)',
+            items: [
+                {
+                    id: 'identity_lock',
+                    title: '鎖定五官特徵不改臉 (/identitylock)',
+                    desc: '搭配修圖要求使用，強制 AI 優先鎖定臉部五官，防止被換臉。',
+                    source: 'DeeV-vnEim1 /identitylock',
+                    custom_label: '✏️ 搭配的修圖需求：',
+                    custom_placeholder: '例如：請將背景調亮並修整光線細節',
+                    custom_default: '請改善光線與整體清晰度',
+                    template: '【/identitylock】請執行以下修圖需求：【CUSTOM】。\n【絕對核心要求】：優先強制鎖定原圖人物的臉部結構、五官特徵、眼睛形狀、膚色與身分辨識度，嚴禁改變臉型、替換五官或生成假人臉孔，修圖效果僅限於光影與細節優化。'
+                },
+                {
+                    id: 'pose_only',
+                    title: '只改變姿勢動作 (/poseonly)',
+                    desc: '僅調整肢體動作，臉部、髮型、服裝完全不動。',
+                    source: 'DeeV-vnEim1 /poseonly',
+                    custom_label: '✏️ 想換成的新姿勢：',
+                    custom_placeholder: '例如：改為雙手插口袋、微笑看向鏡頭',
+                    custom_default: '改為一手插在褲子口袋、輕鬆自然的站姿',
+                    template: '【/poseonly】請調整照片中人物的姿勢為：【CUSTOM】。\n【嚴格約束】：僅改變身體與四肢姿勢，絕對不修改臉部、五官、髮型、服裝材質與環境背景，確保人物身分 100% 相同且動作真實自然。'
+                },
+                {
+                    id: 'studio_quality',
+                    title: '攝影棚柔光與立體感 (/studioquality)',
+                    desc: '改善光線、銳利度與立體質感，瞬間具備專業棚拍效果。',
+                    source: 'DeeV-vnEim1 /studioquality',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '【/studioquality】請優化這張照片的光線、銳利度與質感，呈現專業商業攝影棚的柔光打光效果。加強人物主體立體感、改善眼神光與邊緣光，同時保留天然毛孔與肌膚紋理，讓整體視覺效果精緻立體。'
+                },
+                {
+                    id: 'movie_color',
+                    title: '電影感專業調色',
+                    desc: '微調對比、色溫與色調，整體氛圍精緻且維持自然膚色。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '',
+                    custom_placeholder: '',
+                    custom_default: '',
+                    template: '請為這張照片套用專業的電影感調色，同時維持自然的真實膚色，人物五官與畫面主體內容嚴格不得改變。平衡亮部與陰影、細緻調整對比、飽和度、色溫與色調，使整體色調風格一致、精緻且極具質感。'
+                }
+            ]
+        }
+    ];
+
+    let currentRetouchCatId = 'fix';
+    let currentRetouchItem = null;
+    let retouchInitialized = false;
+
+    function initRetouchView() {
+        if (!retouchInitialized) {
+            switchRetouchCategory('fix');
+            retouchInitialized = true;
+        }
+    }
+
+    function switchRetouchCategory(catId, btnEl) {
+        currentRetouchCatId = catId;
+        const cat = RETOUCH_CATEGORIES.find(c => c.id === catId);
+        if (!cat) return;
+
+        document.querySelectorAll('.retouch-tab').forEach(b => b.classList.remove('active'));
+        if (btnEl) {
+            btnEl.classList.add('active');
+        } else {
+            const tabs = document.querySelectorAll('.retouch-tab');
+            const idx = RETOUCH_CATEGORIES.findIndex(c => c.id === catId);
+            if (tabs[idx]) tabs[idx].classList.add('active');
+        }
+
+        const sel = document.getElementById('retouch-item-select');
+        if (!sel) return;
+        sel.innerHTML = '';
+        cat.items.forEach((item, index) => {
+            const opt = document.createElement('option');
+            opt.value = item.id;
+            opt.textContent = `${index + 1}. ${item.title}`;
+            sel.appendChild(opt);
+        });
+
+        if (cat.items.length > 0) {
+            selectRetouchItem(cat.items[0]);
+        }
+    }
+
+    function selectRetouchItem(item) {
+        if (!item) return;
+        currentRetouchItem = item;
+
+        const sel = document.getElementById('retouch-item-select');
+        if (sel) sel.value = item.id;
+
+        const desc = document.getElementById('retouch-item-desc');
+        if (desc) desc.textContent = item.desc;
+
+        const badge = document.getElementById('retouch-source-badge');
+        if (badge) badge.textContent = `來源：${item.source}`;
+
+        const customSec = document.getElementById('retouch-custom-section');
+        const customInput = document.getElementById('retouch-custom-input');
+        const customLabel = document.getElementById('retouch-custom-label');
+
+        if (item.template.includes('【CUSTOM】')) {
+            if (customSec) customSec.style.display = 'block';
+            if (customLabel) customLabel.textContent = item.custom_label || '✏️ 自訂修改內容：';
+            if (customInput) {
+                customInput.placeholder = item.custom_placeholder || '';
+                customInput.value = item.custom_default || '';
+            }
+        } else {
+            if (customSec) customSec.style.display = 'none';
+        }
+
+        updateRetouchPrompt();
+    }
+
+    function onRetouchItemChange(itemId) {
+        const cat = RETOUCH_CATEGORIES.find(c => c.id === currentRetouchCatId);
+        if (!cat) return;
+        const item = cat.items.find(i => i.id === itemId);
+        if (item) selectRetouchItem(item);
+    }
+
+    function onRetouchCustomInput(val) {
+        updateRetouchPrompt();
+    }
+
+    function updateRetouchPrompt() {
+        if (!currentRetouchItem) return;
+        let promptText = currentRetouchItem.template;
+        if (promptText.includes('【CUSTOM】')) {
+            const input = document.getElementById('retouch-custom-input');
+            const customVal = (input && input.value.trim()) ? input.value.trim() : (currentRetouchItem.custom_default || '');
+            promptText = promptText.replace('【CUSTOM】', customVal);
+        }
+        const box = document.getElementById('retouch-prompt-output');
+        if (box) box.value = promptText;
+    }
+
+    function randomizeRetouch() {
+        const randomCat = RETOUCH_CATEGORIES[Math.floor(Math.random() * RETOUCH_CATEGORIES.length)];
+        switchRetouchCategory(randomCat.id);
+        const randomItem = randomCat.items[Math.floor(Math.random() * randomCat.items.length)];
+        selectRetouchItem(randomItem);
+    }
+
+    function copyRetouchPrompt() {
+        const box = document.getElementById('retouch-prompt-output');
+        const btn = document.getElementById('retouch-copy-btn');
+        if (!box) return;
+        const text = box.value;
+        const orig = btn.innerText;
+
+        const done = () => {
+            btn.innerText = '✅ 已成功複製指令！請前往貼上送出';
+            btn.style.background = 'linear-gradient(135deg, #43a047, #2e7d32)';
+            setTimeout(() => {
+                btn.innerText = orig;
+                btn.style.background = 'linear-gradient(135deg, #e91e63, #9c27b0)';
+            }, 2500);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => {
+                fallbackCopyTextToClipboard(text);
+                done();
+            });
+        } else {
+            fallbackCopyTextToClipboard(text);
+            done();
+        }
+    }
+
     function openRequestedView(viewId) {
-        if (viewId === 'view-gemini-prompts') {
+        if (viewId === 'view-photo-retouch') {
+            switchView('view-photo-retouch');
+            initRetouchView();
+        } else if (viewId === 'view-gemini-prompts') {
             switchView('view-gemini-prompts');
             initializeGeminiPrompts();
         } else if (viewId === 'view-travel-planner') {
