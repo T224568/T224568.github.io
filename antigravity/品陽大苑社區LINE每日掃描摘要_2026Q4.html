@@ -303,10 +303,15 @@
     </div>
     <nav class="nav-list" id="navList">
       
-    <a href="#entry-20261106-0" class="nav-item active" onclick="selectNav(this)">
+    <a href="#entry-20261108-0" class="nav-item active" onclick="selectNav(this)">
+      <span class="nav-dot"></span>
+      <span class="nav-date">2026-11-08 ~ 11-11</span>
+      <span class="nav-badge" style="background:var(--accent);color:#0b0f19;padding:2px 6px;border-radius:10px;font-size:11px;font-weight:700;margin-left:auto;">最新</span>
+    </a>
+
+    <a href="#entry-20261106-0" class="nav-item" onclick="selectNav(this)">
       <span class="nav-dot"></span>
       <span class="nav-date">2026-11-06 ~ 11-07</span>
-      <span class="nav-badge" style="background:var(--accent);color:#0b0f19;padding:2px 6px;border-radius:10px;font-size:11px;font-weight:700;margin-left:auto;">最新</span>
     </a>
     
     <a href="#entry-20261102-0" class="nav-item" onclick="selectNav(this)">
@@ -400,11 +405,11 @@
         </div>
         <div class="stat-card">
           <div class="stat-label">最新巡檢日期</div>
-          <div class="stat-value" style="font-size:17px;">2026-11-06 ~ 2026-11-07</div>
+          <div class="stat-value" style="font-size:17px;">2026-11-08 ~ 2026-11-11</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">重大公設議題</div>
-          <div class="stat-value" style="font-size:16px; color:var(--danger);">門禁脫落 / 曬衣架銹蝕 / 水錘</div>
+          <div class="stat-value" style="font-size:16px; color:var(--danger);">國霖初驗清冊列管 / 水錘</div>
         </div>
       </div>
     </header>
@@ -414,12 +419,58 @@
     </div>
 
     <section id="cardsContainer">
-          <article id="entry-20261106-0" class="summary-card card-latest">
+          <article id="entry-20261108-0" class="summary-card card-latest">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="calendar-icon">📅</span>
+          <span class="header-date">2026-11-08 ~ 2026-11-11</span>
+          <span class="badge-latest">LATEST 最新</span>
+        </div>
+        <div class="header-actions">
+          <button class="btn-copy" onclick="copyCardText('entry-20261108-0')">📋 複製內容</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2 class="entry-title">品陽大苑社區 LINE 每日掃描摘要 (2026-11-08 ~ 2026-11-11)</h2>
+<ul class="info-list">
+<li><strong>掃描時間</strong>：2026-11-11 06:40</li>
+<li><strong>目標社群</strong>：品陽大苑社區｜公告與通知</li>
+<li><strong>檢閱區間</strong>：2026-11-08 00:00 至 2026-11-11 06:40（橫跨 3 日深度巡檢與系統維護）</li>
+<li><strong>關鍵事件分類</strong>：國霖機電初驗報告書與住戶意見清冊雲端彙整進程、管委會正式函送品陽建商要求改善列管、全區公設缺失 84 筆系統每日定時維護與雙端鏡像備份穩定運作、窩福瓦斯抄表複核</li>
+</ul>
+<hr class="divider">
+<h3 class="section-title">一、重大公設與會議進程【國霖初驗報告正式進入建商改善期】</h3>
+<h4 class="sub-title">1. 【國霖初驗兩大本報告書與住戶意見清冊彙整完竣】</h4>
+<ul class="nested-list">
+<li><strong>管委會作業進度</strong>：管委會李主委與幹部團隊遵照承諾，將「國霖機電初驗兩大本完整報告書（涵蓋機電、消防、弱電、公共空間）」連同「會前全體住戶反映意見彙整清單」整理完竣並分流上傳至社區雲端硬碟，供全體區分所有權人下載閱覽。</li>
+<li><strong>改善要求與複驗機制</strong>：
+  <ul style="margin-left: 20px; list-style-type: circle;">
+    <li>管委會彙整各項初驗缺失項目，已正式發函要求品陽建設於規定期限內逐項進場修繕改善。</li>
+    <li>待品陽建商回覆改善對策並完成修繕後，將由管委會偕同國霖機電安排第二階段公設複驗作業，落實嚴格點交把關。</li>
+  </ul>
+</li>
+</ul>
+<hr class="divider">
+<h3 class="section-title">二、公設缺失資料庫維護【全區 84 筆案件穩定鏡像備份】</h3>
+<h4 class="sub-title">1. 【系統維護與 Google Sheet 鏡像備份 100% 齊全】</h4>
+<ul class="nested-list">
+<li>經每日排程維護腳本（<code>run_pinyang_daily_maintenance.sh</code>）持續連線監控，全區公設缺失立案總數維持 <strong>84 筆</strong>。</li>
+<li>今日清晨（11/11 05:07）系統已全量自動同步並將 84 筆案件完整備份至「公設缺失備份」工作表，三端（主試算表、鏡像表、GitHub Pages 線上系統）資料保持零誤差同步。</li>
+</ul>
+<hr class="divider">
+<h3 class="section-title">三、社區生活與例行事務</h3>
+<h4 class="sub-title">1. 【115年11月份瓦斯度數抄報結算】</h4>
+<ul class="nested-list">
+<li>11/03～11/09 窩福 APP 瓦斯度數抄表期程已截止，管理中心完成資料統計並針對少數未填報戶進行現場複核與提醒，確保本期公用瓦斯度數計費準確。</li>
+</ul>
+      </div>
+    </article>
+
+          <article id="entry-20261106-0" class="summary-card">
       <div class="card-header">
         <div class="header-left">
           <span class="calendar-icon">📅</span>
           <span class="header-date">2026-11-06 ~ 2026-11-07</span>
-          <span class="badge-latest">LATEST 最新</span>
         </div>
         <div class="header-actions">
           <button class="btn-copy" onclick="copyCardText('entry-20261106-0')">📋 複製內容</button>
