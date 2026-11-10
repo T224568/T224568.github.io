@@ -253,6 +253,17 @@
       BASE_PATH = '../IG/';
     }
 
+    const R2_VIDEO_BASE = 'https://pub-78ea0d4b46964114ac28dd5c6e53460d.r2.dev/ig_videos/';
+
+    function getMediaUrl(item) {
+      const isVid = item.ext in { 'mp4': 1, 'mov': 1, 'webm': 1 };
+      const isOnline = window.location.hostname.includes('fun.jktai123.com') || window.location.hostname.includes('github.io');
+      if (isVid && isOnline) {
+        return R2_VIDEO_BASE + encodeURIComponent(item.filename);
+      }
+      return BASE_PATH + encodeURIComponent(item.filename);
+    }
+
     // State
     let currentFilter = 'all';
     let searchQuery = '';
@@ -346,7 +357,7 @@
       postsGrid.innerHTML = posts.map(post => {
         const cover = post.items[0];
         const isVid = cover.ext in { 'mp4': 1, 'mov': 1, 'webm': 1 };
-        const coverSrc = BASE_PATH + encodeURIComponent(cover.filename);
+        const coverSrc = getMediaUrl(cover);
 
         // Slide dots or mini previews
         const thumbsHtml = post.items.slice(0, 5).map((it, idx) => `
@@ -417,7 +428,7 @@ IG 發布：${post.mtime_str}">
       tableBody.innerHTML = posts.map(post => {
         const cover = post.items[0];
         const isVid = cover.ext in { 'mp4': 1, 'mov': 1 };
-        const coverSrc = BASE_PATH + encodeURIComponent(cover.filename);
+        const coverSrc = getMediaUrl(cover);
 
         return `
           <tr class="hover:bg-slate-800/40 transition-colors group">
@@ -494,7 +505,7 @@ IG 發布：${post.mtime_str}">
       if (!activePost || !activePost.items[activeSlideIndex]) return;
       const currentItem = activePost.items[activeSlideIndex];
       const isVid = currentItem.ext in { 'mp4': 1, 'mov': 1, 'webm': 1 };
-      const mediaSrc = BASE_PATH + encodeURIComponent(currentItem.filename);
+      const mediaSrc = getMediaUrl(currentItem);
 
       // Header info
       modalTitle.textContent = currentItem.title || activePost.title;
