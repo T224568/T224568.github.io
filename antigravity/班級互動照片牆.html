@@ -7333,7 +7333,6 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     let currentVisualCodeIndex = 0;
     let visualCodesInitialized = false;
     let visualCodesUnlockedAll = false;
-
     let currentVisualTopicCat = 'all';
 
     function initVisualCodesView() {
@@ -7383,7 +7382,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'quick-topic-chip' + (idx === currentVisualTopicIndex ? ' active' : '');
-            btn.textContent = `${idx + 1}. ${t.name}`;
+            btn.textContent = (idx + 1) + '. ' + t.name;
             btn.title = t.desc;
             btn.onclick = () => selectVisualTopic(idx);
             container.appendChild(btn);
@@ -7395,10 +7394,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const topic = VISUAL_TOPICS_50[index];
         if (!topic) return;
 
-        // 高亮當前主題按鈕 (比對編號)
+        // 高亮當前主題按鈕
         const chips = document.querySelectorAll('#visual-topics-container .quick-topic-chip');
         chips.forEach(c => {
-            if (c.textContent.startsWith(`${index + 1}.`)) {
+            if (c.textContent.startsWith((index + 1) + '.')) {
                 c.classList.add('active');
             } else {
                 c.classList.remove('active');
@@ -7426,65 +7425,36 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const countEl = document.getElementById('vc-suitable-count');
         const hintEl = document.getElementById('vc-topic-hint');
         if (countEl) {
-            countEl.textContent = visualCodesUnlockedAll ? '已解鎖全部 15 款' : `推薦 ${suitable.length} 款適用模式`;
+            countEl.textContent = visualCodesUnlockedAll ? '已解鎖全部 15 款' : '推薦 ' + suitable.length + ' 款適用模式';
         }
         if (hintEl) {
             if (visualCodesUnlockedAll) {
-                hintEl.innerHTML = '🔓 <b>自由混搭模式</b>：已解除限制，您可以為當前主題嘗試全部 15 款視覺代碼。';
-                hintEl.style.color = '#7c3aed';
-                hintEl.style.background = '#f5f3ff';
-                hintEl.style.borderLeftColor = '#7c3aed';
+                hintEl.innerHTML = '<span>🔓 <b>自由混搭模式已開啟</b>：全部 15 種視覺圖表皆可任意實驗選取！</span>';
+                hintEl.style.background = '#fef3c7';
+                hintEl.style.color = '#b45309';
+                hintEl.style.borderLeftColor = '#f59e0b';
             } else {
-                hintEl.innerHTML = `💡 <b>智能約束中</b>：當前主題推薦使用 <b>${suitable.length} 款</b> 最佳圖表代碼（標註 ⭐），其餘代碼已暫時鎖定 🔒。若想任意實驗可勾選右上角「🔓 解鎖全部」。`;
-                hintEl.style.color = '#0284c7';
+                hintEl.innerHTML = '<span>💡 <b>智能合適性限制已生效</b>：針對「' + (topic ? topic.name : '') + '」，已推薦高亮 ' + suitable.length + ' 款最佳圖表 (⭐)，' + (topic ? topic.desc : '') + '。</span>';
                 hintEl.style.background = '#f0f9ff';
+                hintEl.style.color = '#0284c7';
                 hintEl.style.borderLeftColor = '#0284c7';
             }
         }
 
-        // 遍歷所有 15 款代碼按鈕，更新鎖定/解鎖狀態
-        const cards = document.querySelectorAll('#visual-codes-grid .vc-card-item');
-        cards.forEach(card => {
-            const code = card.getAttribute('data-code');
-            const badge = card.querySelector('.vc-suit-badge');
-            const isSuitable = suitable.includes(code);
-
-            if (visualCodesUnlockedAll) {
-                card.classList.remove('locked');
-                if (badge) {
-                    if (isSuitable) {
-                        badge.textContent = '⭐ 推薦';
-                        badge.style.display = 'block';
-                        badge.style.background = '#0284c7';
-                    } else {
-                        badge.textContent = '自由';
-                        badge.style.display = 'block';
-                        badge.style.background = '#64748b';
-                    }
-                }
-            } else {
-                if (isSuitable) {
-                    card.classList.remove('locked');
-                    if (badge) {
-                        badge.textContent = '⭐ 適合';
-                        badge.style.display = 'block';
-                        badge.style.background = '#0284c7';
-                    }
-                } else {
-                    card.classList.add('locked');
-                    if (badge) {
-                        badge.textContent = '🔒 不適用';
-                        badge.style.display = 'block';
-                        badge.style.background = '#94a3b8';
-                    }
+        // 若當前選中的代碼不在合適清單內且未解鎖，自動跳轉到第 1 個適合的代碼
+        if (VISUAL_CODES_DATA[currentVisualCodeIndex]) {
+            const currentCode = VISUAL_CODES_DATA[currentVisualCodeIndex].code;
+            if (!visualCodesUnlockedAll && !suitable.includes(currentCode)) {
+                const firstSuitableIdx = VISUAL_CODES_DATA.findIndex(item => suitable.includes(item.code));
+                if (firstSuitableIdx !== -1) {
+                    currentVisualCodeIndex = firstSuitableIdx;
                 }
             }
-        });
-
-        // 檢查如果當前選中的代碼不在適合清單中且未解鎖，自動切換至第一款適合的代碼
-        if (!visualCodesUnlockedAll && !suitable.includes(currentVisualCode) && suitable.length > 0) {
-            selectVisualCode(suitable[0]);
         }
+
+        // 重新渲染卡片狀態
+        renderVisualCodesGrid();
+        selectVisualCode(currentVisualCodeIndex, true);
     }
 
     function renderVisualCodesGrid() {
@@ -7495,64 +7465,131 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const topic = VISUAL_TOPICS_50[currentVisualTopicIndex];
         const suitable = (topic && topic.suitable) ? topic.suitable : [];
 
-        VISUAL_CODES_DATA.forEach(item => {
-            const isSelected = item.code === currentVisualCode;
-            const isSuitable = suitable.includes(item.code);
-            const isLocked = !visualCodesUnlockedAll && !isSuitable;
+        VISUAL_CODES_DATA.forEach((item, idx) => {
+            const isSuitable = visualCodesUnlockedAll || suitable.includes(item.code);
+            const isSelected = (idx === currentVisualCodeIndex);
 
             const card = document.createElement('div');
-            card.className = 'vc-card-item' + (isSelected ? ' selected' : '') + (isLocked ? ' locked' : '');
-            card.setAttribute('data-code', item.code);
-            card.onclick = () => {
-                if (!visualCodesUnlockedAll && !suitable.includes(item.code)) {
-                    // 點擊不適用的代碼給予告知並提供一鍵解鎖
-                    const proceed = confirm(`⚠️ 提示：【${item.code}】通常不適合直接呈現當前主題。
-
-您是否要開啟「自由混搭模式」以解鎖全部 15 款代碼？`);
-                    if (proceed) {
-                        const cb = document.getElementById('vc-unlock-all-checkbox');
-                        if (cb) cb.checked = true;
-                        toggleUnlockAllVisualCodes(true);
-                        selectVisualCode(item.code);
-                    }
-                    return;
-                }
-                selectVisualCode(item.code);
-            };
+            card.className = 'vc-card-item' + (isSelected ? ' active' : '') + (isSuitable ? '' : ' disabled');
 
             let badgeHtml = '';
             if (visualCodesUnlockedAll) {
-                const bText = isSuitable ? '⭐ 推薦' : '自由';
-                const bBg = isSuitable ? '#0284c7' : '#64748b';
-                badgeHtml = `<span class="vc-suit-badge" style="background:${bBg};">${bText}</span>`;
+                const bBg = suitable.includes(item.code) ? '#0284c7' : '#64748b';
+                const bText = suitable.includes(item.code) ? '⭐ 推薦' : '自由';
+                badgeHtml = '<span style="position:absolute; top:6px; right:6px; font-size:10px; background:' + bBg + '; color:#fff; padding:2px 6px; border-radius:10px; font-weight:bold;">' + bText + '</span>';
             } else {
-                const bText = isSuitable ? '⭐ 適合' : '🔒 不適用';
-                const bBg = isSuitable ? '#0284c7' : '#94a3b8';
-                badgeHtml = `<span class="vc-suit-badge" style="background:${bBg};">${bText}</span>`;
+                if (isSuitable) {
+                    badgeHtml = '<span style="position:absolute; top:6px; right:6px; font-size:10px; background:#0284c7; color:#fff; padding:2px 6px; border-radius:10px; font-weight:bold;">⭐ 推薦</span>';
+                } else {
+                    badgeHtml = '<span style="position:absolute; top:6px; right:6px; font-size:10px; background:#94a3b8; color:#fff; padding:2px 6px; border-radius:10px; font-weight:bold;">🔒 不合適</span>';
+                }
             }
 
-            card.innerHTML = `
-                ${badgeHtml}
-                <div style="font-size: 24px; margin-bottom: 4px;">${item.icon}</div>
-                <div class="vc-code-title">${item.code}</div>
-                <div class="vc-code-name">${item.name}</div>
-                <div class="vc-code-desc">${item.desc}</div>
-            `;
+            card.innerHTML = badgeHtml +
+                '<div style="font-size:24px; margin-bottom:4px;">' + item.icon + '</div>' +
+                '<div style="font-size:12px; font-family:monospace; font-weight:bold; color:#0284c7;">' + item.code + '</div>' +
+                '<div style="font-size:14px; font-weight:900; color:#1e293b; margin:2px 0;">' + item.name + '</div>' +
+                '<div style="font-size:11.5px; color:#64748b; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">' + item.scenes.split('、')[0] + '</div>';
+
+            card.onclick = () => {
+                if (!isSuitable) {
+                    const unlock = confirm('⚠️ 此代碼 [' + item.code + '] 與當前主題邏輯較不相符。\n\n是否開啟「🔓 自由混搭模式」以解鎖全部 15 款代碼？');
+                    if (unlock) {
+                        const cb = document.getElementById('vc-unlock-all-checkbox');
+                        if (cb) cb.checked = true;
+                        toggleUnlockAllVisualCodes(true);
+                        selectVisualCode(idx);
+                    }
+                    return;
+                }
+                selectVisualCode(idx);
+            };
+
             grid.appendChild(card);
         });
     }
 
+    function renderVisualCodesSummaryTable() {
+        const tbody = document.getElementById('vc-summary-tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        VISUAL_CODES_DATA.forEach((item) => {
+            const tr = document.createElement('tr');
+            tr.style.borderBottom = '1px solid #e2e8f0';
+            tr.innerHTML = 
+                '<td style="padding:8px 10px; font-family:monospace; font-weight:bold; color:#0284c7; white-space:nowrap;">' + item.icon + ' ' + item.code + '</td>' +
+                '<td style="padding:8px 10px; font-weight:bold; color:#1e293b; white-space:nowrap;">' + item.name + '</td>' +
+                '<td style="padding:8px 10px; color:#475569;">' + item.style_desc + '</td>' +
+                '<td style="padding:8px 10px; color:#64748b;">' + item.scenes + '</td>';
+            tbody.appendChild(tr);
+        });
+    }
+
+    function selectVisualCode(index, skipRenderGrid) {
+        currentVisualCodeIndex = index;
+        const item = VISUAL_CODES_DATA[index];
+        if (!item) return;
+
+        if (!skipRenderGrid) {
+            const cards = document.querySelectorAll('#visual-codes-grid .vc-card-item');
+            cards.forEach((c, i) => {
+                if (i === index) c.classList.add('active');
+                else c.classList.remove('active');
+            });
+        }
+
+        const iconEl = document.getElementById('vc-active-icon');
+        const codeEl = document.getElementById('vc-active-code');
+        const nameEl = document.getElementById('vc-active-name');
+        const styleEl = document.getElementById('vc-active-style');
+        const scenesEl = document.getElementById('vc-active-scenes');
+        const exampleEl = document.getElementById('vc-active-example');
+
+        if (iconEl) iconEl.textContent = item.icon;
+        if (codeEl) codeEl.textContent = item.code;
+        if (nameEl) nameEl.textContent = item.name;
+        if (styleEl) styleEl.textContent = item.style_desc;
+        if (scenesEl) scenesEl.textContent = item.scenes;
+        if (exampleEl) exampleEl.textContent = item.coffee_example;
+
+        updateVisualPrompt();
+    }
+
+    function onVisualTopicInput(val) {
+        updateVisualPrompt();
+    }
+
+    function onVisualRatioChange(ratio) {
+        updateVisualPrompt();
+    }
+
+    function updateVisualPrompt() {
+        const item = VISUAL_CODES_DATA[currentVisualCodeIndex];
+        if (!item) return;
+
+        const input = document.getElementById('visual-topic-input');
+        const topic = (input && input.value.trim()) ? input.value.trim() : '精品咖啡從生豆處理到杯中萃取的完整科學工藝';
+
+        const ratioSelect = document.getElementById('vc-ratio-select');
+        const ratio = ratioSelect ? ratioSelect.value : '--ar 9:16';
+
+        let prompt = item.prompt_template.replace('【TOPIC】', topic);
+        prompt = prompt + ' ' + ratio;
+
+        const box = document.getElementById('vc-prompt-output');
+        if (box) box.value = prompt;
+    }
+
     function randomizeVisualCode() {
-        // 從全部 50 組中隨機挑選一個主題
+        // 從 50 組中隨機挑選主題
         const randomTopicIdx = Math.floor(Math.random() * VISUAL_TOPICS_50.length);
         const topic = VISUAL_TOPICS_50[randomTopicIdx];
 
-        // 若目前篩選分類不包含抽中的主題，切換至該主題分類或全部分類
+        // 若目前分類不包含該主題，切換至全部
         if (currentVisualTopicCat !== 'all' && topic.cat !== currentVisualTopicCat) {
             currentVisualTopicCat = 'all';
             renderVisualTopicCategories();
         }
-
         renderVisualTopics();
         selectVisualTopic(randomTopicIdx);
 
@@ -7560,7 +7597,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const suitable = topic.suitable || [];
         if (suitable.length > 0) {
             const randomCode = suitable[Math.floor(Math.random() * suitable.length)];
-            selectVisualCode(randomCode);
+            const targetIdx = VISUAL_CODES_DATA.findIndex(item => item.code === randomCode);
+            if (targetIdx !== -1) {
+                selectVisualCode(targetIdx);
+            }
         }
     }
 
