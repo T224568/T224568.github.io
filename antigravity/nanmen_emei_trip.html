@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南門教會夫婦團契 115年新竹峨眉一日遊活動企劃 (雙步道實測GPX版)</title>
+<title>南門教會夫婦團契 115年新竹峨眉一日遊活動企劃</title>
 <!-- Leaflet CSS for Map -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
@@ -66,22 +66,16 @@
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 9px 15px;
+    gap: 8px;
+    padding: 10px 20px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.2s ease;
   }
   .btn-map { background: #2563eb; color: #ffffff; }
   .btn-map:hover { background: #1d4ed8; }
-  .btn-gpx-main { background: #0f766e; color: #ffffff; }
-  .btn-gpx-main:hover { background: #115e59; }
-  .btn-gpx-trail { background: #0284c7; color: #ffffff; }
-  .btn-gpx-trail:hover { background: #0369a1; }
-  .btn-gpx-lake { background: #16a34a; color: #ffffff; }
-  .btn-gpx-lake:hover { background: #15803d; }
 
   .info-grid {
     display: grid;
@@ -237,19 +231,10 @@
     <span>👥 <strong>名額：</strong>限額 40 位（額滿為止）</span>
   </div>
 
-  <!-- 導航與 GPX 快速操作區 -->
+  <!-- 導航操作區：僅保留 Google Maps 導航路線 -->
   <div class="action-buttons">
     <a href="https://www.google.com/maps/dir/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E9%87%8D%E6%85%B6%E5%8D%97%E8%B7%AF%E4%B8%89%E6%AE%B527%E5%B7%B74%E8%99%9F/24.65534,121.02434/24.68650,121.01078/24.68828,120.98881/24.68101,120.98264/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E9%87%8D%E6%85%B6%E5%8D%97%E8%B7%AF%E4%B8%89%E6%AE%B527%E5%B7%B74%E8%99%9F" target="_blank" class="btn btn-map">
-      🗺️ Google Maps 導航路線
-    </a>
-    <a href="南門夫婦團契_20261212新竹峨眉一日遊.gpx" download="南門夫婦團契_20261212新竹峨眉一日遊.gpx" class="btn btn-gpx-main">
-      📍 下載整合版 GPX (含雙步道)
-    </a>
-    <a href="水濂橋步道1.3Km.gpx" download="水濂橋步道1.3Km.gpx" class="btn btn-gpx-trail">
-      🥾 下載水濂橋步道 GPX (1.3Km)
-    </a>
-    <a href="峨眉湖巡禮 · 富興老街與環湖步道漫步 1.7Km.gpx" download="峨眉湖巡禮 · 富興老街與環湖步道漫步 1.7Km.gpx" class="btn btn-gpx-lake">
-      🌿 下載峨眉湖環湖 GPX (1.7Km)
+      🗺️ 開啟 Google Maps 完整導航路線
     </a>
   </div>
 
