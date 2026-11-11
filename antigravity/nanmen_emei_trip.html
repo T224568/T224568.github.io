@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南門教會夫婦團契 115年新竹峨眉一日遊活動企劃</title>
+<title>南門教會夫婦團契 115年新竹峨眉一日遊活動企劃 (精確導航版)</title>
 <!-- Leaflet CSS for Map -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
@@ -25,7 +25,7 @@
     line-height: 1.65;
   }
   .container {
-    max-width: 880px;
+    max-width: 900px;
     margin: 0 auto;
     background: var(--bg-card);
     padding: 36px 32px;
@@ -61,7 +61,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
   .btn {
     display: inline-flex;
@@ -110,11 +110,20 @@
   }
   /* Map container */
   #map {
-    height: 380px;
+    height: 420px;
     border-radius: 12px;
     border: 1px solid var(--border);
     margin-bottom: 28px;
     z-index: 1;
+  }
+  .map-note {
+    background: #f1f5f9;
+    border-left: 4px solid var(--primary);
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: #475569;
+    border-radius: 4px;
+    margin-bottom: 28px;
   }
   .timeline {
     position: relative;
@@ -216,17 +225,17 @@
   <h1>115年秋季旅遊：新竹峨眉人文生態一日遊</h1>
   <div class="meta-bar">
     <span>📅 <strong>活動日期：</strong>115 年 12 月 12 日（六）</span>
-    <span>📍 <strong>地點：</strong>新竹縣峨眉鄉</span>
+    <span>📍 <strong>地點：</strong>新竹縣峨眉鄉（獅頭山 · 好景莊 · 峨眉湖）</span>
     <span>👥 <strong>名額：</strong>限額 40 位（額滿為止）</span>
   </div>
 
   <!-- 導航與 GPX 快速操作區 -->
   <div class="action-buttons">
-    <a href="https://www.google.com/maps/dir/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E9%87%8D%E6%85%B6%E5%8D%97%E8%B7%AF%E4%B8%89%E6%AE%B527%E5%B7%B74%E8%99%9F/%E7%8D%85%E5%B1%B1%E9%81%8A%E5%AE%A2%E4%B8%AD%E5%BF%83%2C%20315%E6%96%B0%E7%AB%B9%E7%B8%A3%E5%B3%A8%E7%9C%89%E9%84%89%E4%B8%83%E6%98%9F%E6%9D%91%E5%85%AD%E5%AF%AE60-8%E8%99%9F/%E5%A5%BD%E6%99%AF%E8%8E%8A%E4%BC%91%E9%96%92%E8%BE%B2%E5%A0%B4%2C%20315%E6%96%B0%E7%AB%B9%E7%B8%A3%E5%B3%A8%E7%9C%89%E9%84%89%E6%B9%96%E5%85%89%E6%9D%911%E9%84%B026%E4%B9%8B16%E8%99%9F/%E5%AF%8C%E8%88%88%E8%80%81%E8%A1%97%E9%9A%86%E8%81%96%E5%AE%AE%2C%20315%E6%96%B0%E7%AB%B9%E7%B8%A3%E5%B3%A8%E7%9C%89%E9%84%89%E5%A4%A7%E5%90%8C%E8%A1%978%E8%99%9F/%E5%A4%A7%E8%87%AA%E7%84%B6%E6%96%87%E5%8C%96%E4%B8%96%E7%95%8C%2C%20315%E6%96%B0%E7%AB%B9%E7%B8%A3%E5%B3%A8%E7%9C%89%E9%84%89%E5%BF%AB%E6%A8%82%E8%B7%AF1%E8%99%9F/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E9%87%8D%E6%85%B6%E5%8D%97%E8%B7%AF%E4%B8%89%E6%AE%B527%E5%B7%B74%E8%99%9F" target="_blank" class="btn btn-map">
+    <a href="https://www.google.com/maps/dir/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E9%87%8D%E6%85%B6%E5%8D%97%E8%B7%AF%E4%B8%89%E6%AE%B527%E5%B7%B74%E8%99%9F/24.65534,121.02434/24.68650,121.01078/24.68868,120.98858/24.68110,120.98650/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E9%87%8D%E6%85%B6%E5%8D%97%E8%B7%AF%E4%B8%89%E6%AE%B527%E5%B7%B74%E8%99%9F" target="_blank" class="btn btn-map">
       🗺️ 開啟 Google Maps 完整導航路線
     </a>
     <a href="南門夫婦團契_20261212新竹峨眉一日遊.gpx" download="南門夫婦團契_20261212新竹峨眉一日遊.gpx" class="btn btn-gpx">
-      📍 下載一日遊 GPX 軌跡檔
+      📍 下載一日遊精確 GPX 軌跡檔
     </a>
   </div>
 
@@ -250,8 +259,14 @@
   </div>
 
   <!-- 互動景點地圖 -->
-  <h2>🗺️ 景點與健行路線地圖</h2>
+  <h2>🗺️ 景點與健行路線地圖（精確座標校正版）</h2>
   <div id="map"></div>
+  <div class="map-note">
+    💡 <strong>地圖座標已全面校正：</strong><br>
+    • <strong>峨眉湖景區（西側）：</strong>富興老街隆聖宮（下車點）、茶業文化館、細茅埔吊橋、大自然文化世界彌勒佛、大客車停車場（上車點）。<br>
+    • <strong>好景莊（中區山坳）：</strong>赤柯山農路竹49線深處，苦茶油體驗工坊。<br>
+    • <strong>獅頭山風景區（南側獅尾）：</strong>獅山遊客中心、水濂橋糯米橋步道、歇心茶樓。
+  </div>
 
   <h2>📅 當日詳細時程表</h2>
   <div class="timeline">
@@ -268,9 +283,9 @@
       <div class="time-badge">09:15 ~ 11:15</div>
       <div class="timeline-title">獅頭山風景區 · 水濂橋步道芬多精健行</div>
       <p class="timeline-desc">
-        • <strong>獅頭山遊客中心：</strong>客家文化導覽、戶外水車景觀區休憩合影、整裝。<br>
+        • <strong>獅山遊客中心：</strong>客家文化導覽、戶外水車景觀區休憩合影、整裝。<br>
         • <strong>水濂橋林蔭步道：</strong>由遊客中心向北出發，沿途林蔭蔽日、平緩好走。欣賞杉木林、客庄山景、岩穴、壺穴峽谷、一線天及百年歷史糯米橋。<br>
-        • 📍 導航：<a href="https://maps.google.com/?q=獅山遊客中心" target="_blank">獅山遊客中心 (Google Maps)</a>
+        • 📍 導航：<a href="https://maps.google.com/?q=24.65534,121.02434" target="_blank">獅山遊客中心 (Google Maps)</a>
       </p>
     </div>
 
@@ -305,7 +320,7 @@
       <p class="timeline-desc">
         榮獲「特色農業旅遊場域認證」。親手體驗客家冷壓苦茶油 DIY 手作樂趣，聆聽專業苦茶油食農教育與生態解說（體驗費用每人 350 元已含於團費內）。<br>
         <em>* 遊覽車停放於山腳下，全體步行約 5 分鐘抵達農場。</em><br>
-        • 📍 導航：<a href="https://maps.google.com/?q=好景莊休閒農場" target="_blank">好景莊休閒農場 (Google Maps)</a>
+        • 📍 導航：<a href="https://maps.google.com/?q=24.68650,121.01078" target="_blank">好景莊休閒農場 (Google Maps)</a>
       </p>
     </div>
 
@@ -317,8 +332,8 @@
         • <strong>人文古蹟：</strong>漫步富興老街、參觀富興茶業文化館、細茅埔吊橋遠眺湖光山色。<br>
         • <strong>世界地標：</strong>遠眺世界最高青銅彌勒佛坐像。<br>
         • <strong>生態步道：</strong>走訪 3D 水上立體彩繪、環湖棧道生態濕地景觀。<br>
-        <em>* 下車點：富興老街口（隆聖宮前）；上車點：大自然文化世界大客車停車場。</em><br>
-        • 📍 導航：<a href="https://maps.google.com/?q=富興老街隆聖宮" target="_blank">富興老街隆聖宮 (下車點)</a> ➔ <a href="https://maps.google.com/?q=大自然文化世界" target="_blank">大自然文化世界 (上車點)</a>
+        <em>* 下車點：富興老街口隆聖宮（忠義街）；上車點：大自然文化世界大客車停車場。</em><br>
+        • 📍 導航：<a href="https://maps.google.com/?q=24.68868,120.98858" target="_blank">富興老街隆聖宮 (下車點)</a> ➔ <a href="https://maps.google.com/?q=24.68110,120.98650" target="_blank">大客車停車場 (上車點)</a>
       </p>
     </div>
 
@@ -349,30 +364,32 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
   // 初始化地圖（以峨眉鄉中心為預設視角）
-  const map = L.map('map').setView([24.665, 121.015], 13);
+  const map = L.map('map').setView([24.672, 121.005], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'
   }).addTo(map);
 
+  // 精確校正後的景點座標
   const spots = [
-    { name: '1. 獅山遊客中心 / 水濂橋步道', lat: 24.64679, lon: 121.02568, desc: '客家文化導覽、水濂橋糯米橋步道健行' },
-    { name: '2. 歇心茶樓 (午餐)', lat: 24.64685, lon: 121.02595, desc: '享用 5,000 元客家合菜 (10菜1湯)' },
-    { name: '3. 好景莊休閒農場', lat: 24.66870, lon: 121.00285, desc: '冷壓苦茶油 DIY 體驗、食農教育' },
-    { name: '4. 富興老街隆聖宮 (下車點)', lat: 24.68652, lon: 121.01825, desc: '富興老街、茶業文化館' },
-    { name: '5. 細茅埔吊橋', lat: 24.68532, lon: 121.01890, desc: '湖景漫遊、遠眺彌勒佛' },
-    { name: '6. 大自然文化世界 (上車點)', lat: 24.68140, lon: 121.02260, desc: '環湖步道3D彩繪、大客車停車場上車' }
+    { name: '1. 獅山遊客中心 / 水濂橋步道', lat: 24.65534, lon: 121.02434, desc: '客家文化導覽、水濂橋糯米橋步道健行' },
+    { name: '2. 歇心茶樓 (午餐)', lat: 24.65540, lon: 121.02450, desc: '享用 5,000 元客家合菜 (10菜1湯)' },
+    { name: '3. 好景莊休閒農場', lat: 24.68650, lon: 121.01078, desc: '冷壓苦茶油 DIY 體驗、食農教育' },
+    { name: '4. 富興老街隆聖宮 (下車點)', lat: 24.68868, lon: 120.98858, desc: '富興老街、富興茶業文化館巡禮' },
+    { name: '5. 細茅埔吊橋', lat: 24.68327, lon: 120.98758, desc: '湖景漫遊、遠眺彌勒佛' },
+    { name: '6. 大自然文化世界 (青銅彌勒佛)', lat: 24.68190, lon: 120.98740, desc: '世界最高青銅彌勒佛' },
+    { name: '7. 大客車停車場 (上車點)', lat: 24.68110, lon: 120.98650, desc: '環湖步道終點、大客車停車場上車' }
   ];
 
   const latlngs = [];
   spots.forEach(s => {
     latlngs.push([s.lat, s.lon]);
     L.marker([s.lat, s.lon]).addTo(map)
-      .bindPopup(`<b>${s.name}</b><br>${s.desc}`);
+      .bindPopup(`<b>${s.name}</b><br>${s.desc}<br><small style=\"color:#64748b;\">經緯度: ${s.lat}, ${s.lon}</small>`);
   });
 
-  // 繪製景點連線軌跡
+  // 繪製景點動線
   const polyline = L.polyline(latlngs, {color: '#0f766e', weight: 4, dashArray: '6, 8'}).addTo(map);
-  map.fitBounds(polyline.getBounds().pad(0.15));
+  map.fitBounds(polyline.getBounds().pad(0.12));
 </script>
 </body>
 </html>

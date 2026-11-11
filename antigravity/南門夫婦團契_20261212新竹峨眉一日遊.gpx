@@ -1,208 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="Antigravity GPX Generator" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<gpx version="1.1" creator="Antigravity GPX Generator (Accurate)" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <name>115年南門教會夫婦團契新竹峨眉一日遊</name>
-    <desc>南門基督長老教會夫婦團契 115/12/12 新竹峨眉一日遊（獅頭山水濂橋步道、歇心茶樓、好景莊苦茶油DIY、富興老街、峨眉湖環湖步道）</desc>
+    <name>115年南門教會夫婦團契新竹峨眉一日遊(精確校正版)</name>
+    <desc>南門基督長老教會夫婦團契 115/12/12 新竹峨眉一日遊精確定位軌跡（獅頭山水濂橋步道、歇心茶樓、好景莊苦茶油DIY、富興老街隆聖宮、細茅埔吊橋、大自然文化世界）</desc>
     <time>2026-12-12T07:30:00Z</time>
   </metadata>
-  <wpt lat="25.02981" lon="121.51467">
+  <wpt lat="25.029810" lon="121.514670">
     <ele>10</ele>
     <name>南門基督長老教會(集合出發點)</name>
+    <desc>台北市中正區重慶南路三段27巷4號</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.64679" lon="121.02568">
+  <wpt lat="24.655340" lon="121.024340">
     <ele>160</ele>
-    <name>獅山遊客中心(休憩/導覽)</name>
+    <name>獅山遊客中心(導覽休憩)</name>
+    <desc>新竹縣峨眉鄉七星村六寮60-8號</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.64731" lon="121.02521">
-    <ele>155</ele>
-    <name>水濂橋步道入口</name>
+  <wpt lat="24.655700" lon="121.023800">
+    <ele>150</ele>
+    <name>水濂橋步道/糯米橋/一線天</name>
+    <desc>獅山遊客中心旁步道</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.64812" lon="121.02465">
-    <ele>145</ele>
-    <name>糯米橋歷史景觀</name>
-    <sym>Scenic Area</sym>
-  </wpt>
-  <wpt lat="24.6485" lon="121.0243">
-    <ele>140</ele>
-    <name>一線天峽谷岩穴</name>
-    <sym>Scenic Area</sym>
-  </wpt>
-  <wpt lat="24.6492" lon="121.0248">
-    <ele>142</ele>
-    <name>水濂洞步道出口</name>
-    <sym>Scenic Area</sym>
-  </wpt>
-  <wpt lat="24.64685" lon="121.02595">
+  <wpt lat="24.655400" lon="121.024500">
     <ele>162</ele>
-    <name>歇心茶樓(午餐)</name>
+    <name>歇心茶樓(午餐合菜)</name>
+    <desc>獅山遊客中心旁</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.6687" lon="121.00285">
-    <ele>130</ele>
+  <wpt lat="24.686500" lon="121.010780">
+    <ele>110</ele>
     <name>好景莊休閒農場(苦茶油DIY)</name>
+    <desc>新竹縣峨眉鄉湖光村1鄰赤柯山26-16號</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.68652" lon="121.01825">
-    <ele>95</ele>
+  <wpt lat="24.688680" lon="120.988580">
+    <ele>85</ele>
     <name>富興老街隆聖宮(下車點)</name>
+    <desc>新竹縣峨眉鄉富興村忠義街16號</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.68605" lon="121.01845">
-    <ele>96</ele>
+  <wpt lat="24.688300" lon="120.988000">
+    <ele>85</ele>
     <name>富興茶業文化館</name>
+    <desc>富興老街巡禮</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.68532" lon="121.0189">
-    <ele>90</ele>
-    <name>細茅埔吊橋(湖景)</name>
+  <wpt lat="24.683270" lon="120.987580">
+    <ele>80</ele>
+    <name>細茅埔吊橋(湖景步道)</name>
+    <desc>跨越峨眉湖景觀吊橋</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="24.68285" lon="121.0205">
-    <ele>105</ele>
-    <name>大自然文化世界(青銅彌勒佛)</name>
-    <sym>Scenic Area</sym>
-  </wpt>
-  <wpt lat="24.68195" lon="121.0218">
-    <ele>92</ele>
-    <name>峨眉湖環湖步道3D立體彩繪</name>
-    <sym>Scenic Area</sym>
-  </wpt>
-  <wpt lat="24.6814" lon="121.0226">
+  <wpt lat="24.681900" lon="120.987400">
     <ele>95</ele>
-    <name>大自然文化世界大客車停車場(上車點)</name>
+    <name>大自然文化世界(青銅彌勒佛)</name>
+    <desc>世界最高青銅彌勒佛</desc>
     <sym>Scenic Area</sym>
   </wpt>
-  <wpt lat="25.02981" lon="121.51467">
+  <wpt lat="24.681100" lon="120.986500">
+    <ele>90</ele>
+    <name>大自然文化世界大客車停車場(上車點)</name>
+    <desc>環湖步道終點上車處</desc>
+    <sym>Scenic Area</sym>
+  </wpt>
+  <wpt lat="25.029810" lon="121.514670">
     <ele>10</ele>
     <name>南門基督長老教會(賦歸終點)</name>
+    <desc>返抵教會</desc>
     <sym>Scenic Area</sym>
   </wpt>
   <rte>
-    <name>新竹峨眉一日遊行車與步行路線</name>
-    <rtept lat="25.02981" lon="121.51467">
+    <name>新竹峨眉一日遊精確導航路線</name>
+    <rtept lat="25.029810" lon="121.514670">
       <ele>10</ele>
       <name>南門基督長老教會(集合出發點)</name>
     </rtept>
-    <rtept lat="24.64679" lon="121.02568">
+    <rtept lat="24.655340" lon="121.024340">
       <ele>160</ele>
-      <name>獅山遊客中心(休憩/導覽)</name>
+      <name>獅山遊客中心(導覽休憩)</name>
     </rtept>
-    <rtept lat="24.64731" lon="121.02521">
-      <ele>155</ele>
-      <name>水濂橋步道入口</name>
+    <rtept lat="24.655700" lon="121.023800">
+      <ele>150</ele>
+      <name>水濂橋步道/糯米橋/一線天</name>
     </rtept>
-    <rtept lat="24.64812" lon="121.02465">
-      <ele>145</ele>
-      <name>糯米橋歷史景觀</name>
-    </rtept>
-    <rtept lat="24.6485" lon="121.0243">
-      <ele>140</ele>
-      <name>一線天峽谷岩穴</name>
-    </rtept>
-    <rtept lat="24.6492" lon="121.0248">
-      <ele>142</ele>
-      <name>水濂洞步道出口</name>
-    </rtept>
-    <rtept lat="24.64685" lon="121.02595">
+    <rtept lat="24.655400" lon="121.024500">
       <ele>162</ele>
-      <name>歇心茶樓(午餐)</name>
+      <name>歇心茶樓(午餐合菜)</name>
     </rtept>
-    <rtept lat="24.6687" lon="121.00285">
-      <ele>130</ele>
+    <rtept lat="24.686500" lon="121.010780">
+      <ele>110</ele>
       <name>好景莊休閒農場(苦茶油DIY)</name>
     </rtept>
-    <rtept lat="24.68652" lon="121.01825">
-      <ele>95</ele>
+    <rtept lat="24.688680" lon="120.988580">
+      <ele>85</ele>
       <name>富興老街隆聖宮(下車點)</name>
     </rtept>
-    <rtept lat="24.68605" lon="121.01845">
-      <ele>96</ele>
+    <rtept lat="24.688300" lon="120.988000">
+      <ele>85</ele>
       <name>富興茶業文化館</name>
     </rtept>
-    <rtept lat="24.68532" lon="121.0189">
-      <ele>90</ele>
-      <name>細茅埔吊橋(湖景)</name>
+    <rtept lat="24.683270" lon="120.987580">
+      <ele>80</ele>
+      <name>細茅埔吊橋(湖景步道)</name>
     </rtept>
-    <rtept lat="24.68285" lon="121.0205">
-      <ele>105</ele>
+    <rtept lat="24.681900" lon="120.987400">
+      <ele>95</ele>
       <name>大自然文化世界(青銅彌勒佛)</name>
     </rtept>
-    <rtept lat="24.68195" lon="121.0218">
-      <ele>92</ele>
-      <name>峨眉湖環湖步道3D立體彩繪</name>
-    </rtept>
-    <rtept lat="24.6814" lon="121.0226">
-      <ele>95</ele>
+    <rtept lat="24.681100" lon="120.986500">
+      <ele>90</ele>
       <name>大自然文化世界大客車停車場(上車點)</name>
     </rtept>
-    <rtept lat="25.02981" lon="121.51467">
+    <rtept lat="25.029810" lon="121.514670">
       <ele>10</ele>
       <name>南門基督長老教會(賦歸終點)</name>
     </rtept>
   </rte>
   <trk>
-    <name>新竹峨眉一日遊全紀錄軌跡</name>
+    <name>新竹峨眉一日遊精確全紀錄軌跡</name>
     <trkseg>
-      <trkpt lat="25.02981" lon="121.51467">
+      <trkpt lat="25.029810" lon="121.514670">
         <ele>10</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.64679" lon="121.02568">
+      <trkpt lat="24.655340" lon="121.024340">
         <ele>160</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.64731" lon="121.02521">
-        <ele>155</ele>
+      <trkpt lat="24.655700" lon="121.023800">
+        <ele>150</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.64812" lon="121.02465">
-        <ele>145</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="24.6485" lon="121.0243">
-        <ele>140</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="24.6492" lon="121.0248">
-        <ele>142</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="24.64685" lon="121.02595">
+      <trkpt lat="24.655400" lon="121.024500">
         <ele>162</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.6687" lon="121.00285">
-        <ele>130</ele>
+      <trkpt lat="24.686500" lon="121.010780">
+        <ele>110</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.68652" lon="121.01825">
+      <trkpt lat="24.688680" lon="120.988580">
+        <ele>85</ele>
+        <time>2026-12-12T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="24.688300" lon="120.988000">
+        <ele>85</ele>
+        <time>2026-12-12T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="24.683270" lon="120.987580">
+        <ele>80</ele>
+        <time>2026-12-12T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="24.681900" lon="120.987400">
         <ele>95</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.68605" lon="121.01845">
-        <ele>96</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="24.68532" lon="121.0189">
+      <trkpt lat="24.681100" lon="120.986500">
         <ele>90</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
-      <trkpt lat="24.68285" lon="121.0205">
-        <ele>105</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="24.68195" lon="121.0218">
-        <ele>92</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="24.6814" lon="121.0226">
-        <ele>95</ele>
-        <time>2026-12-12T08:00:00Z</time>
-      </trkpt>
-      <trkpt lat="25.02981" lon="121.51467">
+      <trkpt lat="25.029810" lon="121.514670">
         <ele>10</ele>
         <time>2026-12-12T08:00:00Z</time>
       </trkpt>
