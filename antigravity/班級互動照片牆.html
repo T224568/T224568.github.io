@@ -388,6 +388,43 @@ button:disabled { background: #ccc; cursor: not-allowed; }
   box-shadow: 0 2px 6px rgba(142,36,170,0.3);
 }
 
+.quick-topic-chip {
+  padding: 6px 12px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.quick-topic-chip:hover {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #38bdf8;
+}
+
+.vc-card-item {
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+.vc-card-item:hover {
+  border-color: #38bdf8;
+  background: #f0f9ff;
+  transform: translateY(-2px);
+}
+.vc-card-item.active {
+  border-color: #0284c7;
+  background: #e0f2fe;
+  box-shadow: 0 4px 12px rgba(2,132,199,0.25);
+}
+
 .sticker-video-hero {
   width:94%;
   margin:8px auto 10px;
@@ -1262,6 +1299,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(30,41,59,0.35); font-size:17px; margin-bottom: 10px;">📰 24小時世界新聞精準指令產生器</button>
 
+    <button onclick="openExternalView('view-visual-codes')"
+            class="home-full-width-btn"
+            style="background: linear-gradient(135deg, #09203f 0%, #1e3a8a 50%, #0284c7 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(2,132,199,0.35); font-size:17px; margin-bottom: 10px;">📊 15 組視覺學習神級代碼：AI 視覺圖表拆解複雜知識</button>
+
 <button onclick="openExternalView('view-nano-banana')"
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(217,119,6,0.35); font-size:17px; margin-bottom: 10px;">🍌 Google Gemini Nano Banana：12 大實測指令</button>
@@ -1426,6 +1467,153 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 </thead>
                 <tbody></tbody>
             </table>
+        </div>
+    </details>
+</div>
+
+<!-- ========================================== -->
+<!-- 📊 15 組視覺學習神級代碼：AI 視覺圖表拆解器 -->
+<!-- ========================================== -->
+<div id="view-visual-codes" class="view-section container travel-shell" style="max-width: 980px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div style="background: linear-gradient(135deg, #09203f 0%, #1e3a8a 50%, #0284c7 100%); border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 20px; color: #ffffff; box-shadow: 0 8px 25px rgba(2,132,199,0.3);">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #e0f2fe; padding: 4px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; margin-bottom: 10px;">
+            📊 視覺解構思維・VISUAL CODES FOR KNOWLEDGE
+        </div>
+        <h1 style="color: #ffffff; margin: 4px 0 10px; font-size: 26px; font-weight: 900; letter-spacing: 0.5px;">15 組視覺學習神級代碼：AI 視覺圖表拆解器</h1>
+        <p style="margin: 0 auto; max-width: 760px; font-size: 14.5px; line-height: 1.6; color: #bae6fd;">
+            將任何抽象龐雜的知識，透過 15 種特定的「視覺語法代碼」精準拆解為一眼看懂的直觀圖表。支援 Nano Banana、ChatGPT 與 Midjourney 直出！
+        </p>
+    </div>
+
+    <!-- 💡 核心心法叮嚀 -->
+    <div style="background: #f0f9ff; border-left: 5px solid #0284c7; padding: 14px 18px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; color: #0369a1; line-height: 1.6; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <strong>💡 視覺學習 3 步驟神級用法：</strong><br>
+        1. <b>填寫或選擇想拆解的主題</b>（如：咖啡、晶圓製程、登山安全、基督信仰、Python學習...）。<br>
+        2. <b>點選下方 15 組視覺代碼</b>（工程藍圖、學習路線、決策矩陣、冰山模型、爆炸圖...）。<br>
+        3. 點擊 <b>「📋 複製圖表指令」</b>，前往 <b>✨ Gemini</b> 或 <b>🤖 ChatGPT</b> 貼上送出，秒產出專業級知識圖表！
+    </div>
+
+    <!-- 主題設定卡片 -->
+    <div style="background: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+            <label style="font-size: 16px; font-weight: 900; color: #0f172a; display: flex; align-items: center; gap: 6px;">
+                <span>🎯 第一步：設定想拆解的知識主題</span>
+            </label>
+            <button onclick="randomizeVisualCode()" style="background: linear-gradient(135deg, #0284c7, #2563eb); color: white; border: none; border-radius: 20px; padding: 7px 16px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 8px rgba(37,99,235,0.3); transition: transform 0.1s;">
+                🎲 懶人隨機抽籤
+            </button>
+        </div>
+
+        <!-- 快速主題標籤 -->
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('咖啡從生豆到杯中的完整探索')">☕ 咖啡探索 (原片範例)</button>
+            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('戶外登山健行裝備與安全指南')">⛰️ 登山健行裝備與安全</button>
+            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('半導體晶圓製造端到端完整製程')">🔬 半導體晶圓製造</button>
+            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('基督信仰門徒靈修成長旅程')">✝️ 門徒靈修成長旅程</button>
+            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('Python 與 AI 程式語言學習路徑')">💻 Python 與 AI 學習路徑</button>
+            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('個人財務自由與資產配置全景')">💰 個人理財與資產配置</button>
+        </div>
+
+        <!-- 自由自訂輸入框 -->
+        <input type="text" id="visual-topic-input" oninput="onVisualTopicInput(this.value)" value="咖啡從生豆到杯中的完整探索" placeholder="請輸入您想用圖表拆解的任何主題（例如：人工智慧大模型架構、太極拳基本功法...）" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-size: 15px; font-weight: bold; color: #1e293b; border: 2px solid #0284c7; border-radius: 10px; outline: none; background: #f8fafc;">
+    </div>
+
+    <!-- 15 組代碼網格選擇 -->
+    <div style="background: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; margin-bottom: 20px;">
+        <label style="display: block; font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 14px;">
+            🧩 第二步：選擇視覺架構代碼 (點選即時切換)
+        </label>
+        
+        <div id="visual-codes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px;">
+            <!-- 由 JS 動態生成 15 個卡片 -->
+        </div>
+    </div>
+
+    <!-- 當前代碼詳情與 Prompt 產出 -->
+    <div style="background: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; margin-bottom: 20px;">
+        <!-- 當前選中狀態標頭 -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="vc-active-icon" style="font-size: 24px;">📐</span>
+                <div>
+                    <span id="vc-active-code" style="font-size: 15px; font-family: monospace; font-weight: 900; color: #0284c7; background: #e0f2fe; padding: 2px 8px; border-radius: 6px;">/blueprint</span>
+                    <strong id="vc-active-name" style="font-size: 16px; color: #0f172a; margin-left: 6px;">工程藍圖架構圖</strong>
+                </div>
+            </div>
+            <!-- 比例切換 -->
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 13px; color: #64748b; font-weight: bold;">圖片比例：</span>
+                <select id="vc-ratio-select" onchange="onVisualRatioChange(this.value)" style="padding: 5px 8px; font-size: 13px; font-weight: bold; border-radius: 6px; border: 1px solid #cbd5e1; outline: none;">
+                    <option value="--ar 9:16">📱 直式 9:16 (手機資訊圖)</option>
+                    <option value="--ar 16:9">💻 橫式 16:9 (簡報/電腦)</option>
+                    <option value="--ar 1:1">🖼️ 方形 1:1 (社群卡片)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 模式細節說明卡片 -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 16px; font-size: 13px; line-height: 1.5;">
+            <div style="background: #f8fafc; padding: 10px 12px; border-radius: 8px; border-left: 3px solid #0284c7;">
+                <strong style="color: #0369a1;">🎨 視覺形式：</strong>
+                <span id="vc-active-style" style="color: #334155;"></span>
+            </div>
+            <div style="background: #f8fafc; padding: 10px 12px; border-radius: 8px; border-left: 3px solid #0d9488;">
+                <strong style="color: #0f766e;">🎯 適用場景：</strong>
+                <span id="vc-active-scenes" style="color: #334155;"></span>
+            </div>
+            <div style="background: #f8fafc; padding: 10px 12px; border-radius: 8px; border-left: 3px solid #f59e0b; grid-column: 1 / -1;">
+                <strong style="color: #b45309;">☕ 影片咖啡範例：</strong>
+                <span id="vc-active-example" style="color: #334155;"></span>
+            </div>
+        </div>
+
+        <!-- 提示詞文字框 -->
+        <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 14px; font-weight: bold; color: #1e293b; margin-bottom: 6px;">
+                📜 完整 AI 圖表生成指令 (Prompt)：
+            </label>
+            <textarea id="vc-prompt-output" rows="6" style="width: 100%; box-sizing: border-box; padding: 12px; font-size: 14.5px; line-height: 1.6; color: #0f172a; border: 2px solid #0284c7; border-radius: 12px; background: #f0f9ff; resize: vertical; outline: none; font-family: inherit;"></textarea>
+        </div>
+
+        <!-- 動作按鈕 -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button id="vc-copy-btn" onclick="copyVisualCodePrompt()" style="background: linear-gradient(135deg, #0284c7, #2563eb); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 17px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: transform 0.1s;">
+                📋 複製視覺圖表指令
+            </button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button onclick="window.open('https://gemini.google.com/app', '_blank')" style="background: linear-gradient(135deg, #1a73e8, #4285f4); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 3px 8px rgba(26,115,232,0.25);">
+                    ✨ 開啟 Gemini
+                </button>
+                <button onclick="window.open('https://chatgpt.com/', '_blank')" style="background: linear-gradient(135deg, #10a37f, #0d8a6a); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 3px 8px rgba(16,163,127,0.25);">
+                    🤖 開啟 ChatGPT
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 15 組代碼全覽速查 -->
+    <details style="background: #ffffff; border-radius: 16px; padding: 16px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; margin-bottom: 20px;">
+        <summary style="font-size: 15px; font-weight: 900; color: #0284c7; cursor: pointer;">📖 查看 15 組視覺代碼完整對照表與查核說明</summary>
+        <div style="overflow-x: auto; margin-top: 14px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+                <thead>
+                    <tr style="background: #f1f5f9; color: #334155; border-bottom: 2px solid #cbd5e1;">
+                        <th style="padding: 8px 10px;">代碼</th>
+                        <th style="padding: 8px 10px;">圖表名稱</th>
+                        <th style="padding: 8px 10px;">核心特點與形式</th>
+                        <th style="padding: 8px 10px;">最佳應用場景</th>
+                    </tr>
+                </thead>
+                <tbody id="vc-summary-tbody">
+                    <!-- JS 自動填入 -->
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top: 14px; font-size: 12px; color: #64748b; line-height: 1.6; background: #f8fafc; padding: 10px 14px; border-radius: 8px;">
+            🟢 <b>查核證實</b>：本套 15 組代碼為 @create_daniel2 實測歸納之成熟認知思維模型，加入 Style Modifier 能顯著約束 AI 影像模型產出結構化圖表。若需極高精度之表格小字，建議以本指令直出圖表背景與骨架，再以 SVG/Canva/PPT 疊加文字。
         </div>
     </details>
 </div>
@@ -6318,8 +6506,304 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         }
     }
 
+    // =========================================================================
+    // 📊 15 組視覺學習神級代碼邏輯 (AI 視覺圖表拆解器)
+    // =========================================================================
+    const VISUAL_CODES_DATA = [
+        {
+            code: "/blueprint",
+            name: "工程藍圖架構圖",
+            icon: "📐",
+            style_desc: "經典深藍色工程圖紙底色、白色與青色精確線條、技術標籤與網格座標",
+            scenes: "系統架構設計、端到端完整管線 (Pipeline)、機械或製程規劃",
+            coffee_example: "咖啡生豆處理到萃取技術參數工程藍圖",
+            prompt_template: "A technical engineering blueprint diagram of 【TOPIC】, classic deep blue drafting paper background with crisp white and cyan architectural lines, technical specifications, measurement markings, precision grid lines, modular pipeline stages, highly detailed schematic breakdown, vector infographic illustration, professional blueprint aesthetic"
+        },
+        {
+            code: "/roadmap",
+            name: "學習路線與里程碑圖",
+            icon: "🗺️",
+            style_desc: "蜿蜒延伸的學習地圖、帶有檢查站標記、階段徽章與成就里程碑",
+            scenes: "技能學習路徑、專案季度交付規劃、產品發布期程",
+            coffee_example: "咖啡風味探索路線，從基礎產地辨識到高階杯測師里程碑",
+            prompt_template: "An illustrative learning roadmap for 【TOPIC】, winding journey path with milestone waypoints, clear progressive stages from beginner to master, checkpoint badges, directional arrows, clean visual hierarchy, modern flat vector infographic style, visually engaging educational map"
+        },
+        {
+            code: "/handwritten",
+            name: "手寫塗鴉溫度筆記",
+            icon: "✍️",
+            style_desc: "仿牛皮紙或格子筆記本底色、手寫字體感、隨性手繪箭頭與螢光筆標記",
+            scenes: "心得隨筆、讀書筆記精華、快速備忘錄",
+            coffee_example: "從生豆到杯中的手寫隨手筆記（採收紅果、蜜處理法、研磨粗細要點）",
+            prompt_template: "A cozy handwritten doodle notebook page explaining 【TOPIC】, warm paper texture background, casual hand-drawn sketches, organic arrows, highlighter marks, margin notes, friendly sketch bullet points, tactile scrapbook infographic aesthetic, charming educational visual notes"
+        },
+        {
+            code: "/decision-matrix",
+            name: "多維度決策矩陣",
+            icon: "⚖️",
+            style_desc: "橫縱交叉對比表格、多維度評分權重、對比條形圖與勝出標記",
+            scenes: "產品選型、策略比較、方案優先級評選",
+            coffee_example: "咖啡沖煮方式決策表，對比濃縮、手沖、法壓、冷萃之「風味、速度、成本、難易度」",
+            prompt_template: "A clean visual decision matrix table comparing methods of 【TOPIC】, grid matrix layout with evaluation criteria (Speed, Quality, Cost, Difficulty), score bars, checkmarks, highlighted winner badge, clean typography, minimalist modern UI dashboard infographic style"
+        },
+        {
+            code: "/flowchart",
+            name: "邏輯判斷流程圖",
+            icon: "🔀",
+            style_desc: "標準幾何菱形決策節點、圓角判斷方塊、清晰的是/否引導分支路徑",
+            scenes: "標準作業程序 (SOP)、邏輯決策樹、故障排錯指南",
+            coffee_example: "依據當下時間與咖啡豆烘焙度，分支引導至最佳沖煮手法",
+            prompt_template: "A sleek modern flowchart diagram for 【TOPIC】, diamond decision nodes, rounded rectangular process blocks, directional flow arrows, clear Yes/No conditional branching, step-by-step logic troubleshooting SOP, clean color-coded status, high readability vector workflow chart"
+        },
+        {
+            code: "/infographic",
+            name: "綜合視覺資訊圖表",
+            icon: "📊",
+            style_desc: "圖文並茂的現代扁平資訊圖、統計指標圓環、步驟插圖與結構化模組",
+            scenes: "社群知識科普、簡報總結、大眾化知識傳播",
+            coffee_example: "極品咖啡之旅（種植→採收→處理→烘焙→沖煮五大階段全景圖）",
+            prompt_template: "A comprehensive modern vertical infographic about 【TOPIC】, visual storytelling layout, numbered sequential steps, clean icon illustrations, callout cards, data stats badges, vibrant color palette, professional editorial educational poster, crisp graphic design"
+        },
+        {
+            code: "/canvas",
+            name: "商業模式九宮格畫布",
+            icon: "🧱",
+            style_desc: "經典 Business Model Canvas 九宮格板塊、便簽紙卡片式架構",
+            scenes: "新創企劃、商業模式驗證、業務全貌拆解",
+            coffee_example: "精品咖啡館商業模式畫布（關鍵夥伴、價值主張、顧客關係、營收流）",
+            prompt_template: "A structured Business Model Canvas layout analyzing 【TOPIC】, organized into modular grid sections (Key Partners, Value Proposition, Customer Segments, Revenue Streams), sticky notes visual style, structured strategic framework, clean corporate workshop poster aesthetic"
+        },
+        {
+            code: "/layers",
+            name: "水平剖面分層結構圖",
+            icon: "🥞",
+            style_desc: "垂直立體堆疊切片、各層比例引線標註、材質與色彩鮮明對比",
+            scenes: "技術架構堆疊 (Tech Stack)、產品組成結構、地質或化學配方分層",
+            coffee_example: "經典卡布奇諾分層圖（可可粉、綿密微奶泡、溫熱蒸奶、濃縮咖啡）",
+            prompt_template: "An isometric 3D layered cross-section diagram of 【TOPIC】, vertically stacked sliced tiers showing internal layers, ingredient/component proportions, side callout labels with pointer lines, transparent material depth, clean modern 3D vector illustration"
+        },
+        {
+            code: "/cycle",
+            name: "閉環生命週期循環圖",
+            icon: "🔄",
+            style_desc: "連續環形閉合箭頭迴路、階段圖標環繞、強調永續循環與再生反饋",
+            scenes: "敏捷開發迭代、永續生態循環、產品生命週期 (PLM)",
+            coffee_example: "咖啡完整生命循環（種植→採收→烘焙→沖煮→咖啡渣堆肥回歸土壤）",
+            prompt_template: "A closed-loop circular lifecycle diagram illustrating 【TOPIC】, continuous circular flow arrows connecting chronological phases, central core icon, eco-friendly regenerative feedback loop, step-by-step cycle stages, clean modern circular infographic"
+        },
+        {
+            code: "/diagram",
+            name: "實物結構解剖構造圖",
+            icon: "🔍",
+            style_desc: "半剖面真實構造、精確引線拉出解說標籤、內部組織層次分明",
+            scenes: "解剖學、硬體構造、植物果實結構、生物組織",
+            coffee_example: "咖啡櫻桃果實構造解剖（外果皮、果肉、羊皮紙層、銀皮、核心生豆）",
+            prompt_template: "A scientific cross-section anatomical diagram of 【TOPIC】, detailed cutaway revealing inner structures and microscopic layers, precision pointer lines labeling each component, realistic botanical/scientific textbook illustration aesthetic, hyper-clear educational rendering"
+        },
+        {
+            code: "/sketchnotes",
+            name: "圖文塗鴉視覺筆記",
+            icon: "🎨",
+            style_desc: "動態手繪圖標、粗黑輪廓線、對話氣泡、精練手寫字體與亮眼跳色",
+            scenes: "演講速記、會議紀錄、工作坊即時視覺記錄",
+            coffee_example: "陽光加時間創造好豆：生豆到熟豆的八大視覺筆記手札",
+            prompt_template: "A vibrant visual sketchnote summary about 【TOPIC】, graphic recording style, hand-drawn speech bubbles, cartoon iconography, bold marker typography, dual-color accent highlights, dynamic visual hierarchy, creative workshop sketch notes"
+        },
+        {
+            code: "/iceberg",
+            name: "顯性與隱性冰山模型",
+            icon: "🧊",
+            style_desc: "水面上顯露的微小表象，水面下龐大深厚的隱性根基與底層邏輯",
+            scenes: "認知偏差分析、隱性成本發掘、底層邏輯洞察",
+            coffee_example: "一杯好咖啡的冰山模型（水面上是好咖啡豆，水面下是水質純度、均勻度與溫度支撐）",
+            prompt_template: "A metaphorical iceberg model diagram explaining 【TOPIC】, cross-section showing waterline, small visible tip above the surface labeled 'Visible Results', massive underwater submerged iceberg labeled with 'Underlying Foundations and Hidden Variables', clear contrast between obvious and invisible factors, deep ocean gradient, conceptual educational infographic"
+        },
+        {
+            code: "/exploded-view",
+            name: "機械爆炸分解視圖",
+            icon: "💥",
+            style_desc: "沿中央軸線懸浮拆解展開、各部件懸空對齊、展示組裝工藝與內部零件",
+            scenes: "工業設計、硬體製造、設備維修指南",
+            coffee_example: "專業濃縮咖啡把手 (Portafilter) 零件爆炸圖（手柄、密封圈、彈簧、粉碗、導流嘴）",
+            prompt_template: "An exploded view mechanical assembly diagram of 【TOPIC】, precision components suspended and aligned along center assembly axes, floating disassembled parts, metallic textures, ghosted outline guides, technical CAD industrial design rendering, ultra-detailed engineering visual"
+        },
+        {
+            code: "/tree",
+            name: "層級樹狀分支分類圖",
+            icon: "🌳",
+            style_desc: "樹幹為核心根源、枝幹向外層層分岔、葉節點展示具體細分品類",
+            scenes: "知識分類體系、組織架構、演算法決策樹、產品品類細分",
+            coffee_example: "咖啡飲品譜系樹（濃縮為根節點，分岔為黑咖啡體系與牛奶特調體系）",
+            prompt_template: "A hierarchical taxonomic tree diagram classifying 【TOPIC】, rooted tree structure branching into categories and specialized sub-types, clear nodes and branch connections, family tree genealogy style, high clarity knowledge hierarchy chart"
+        },
+        {
+            code: "/timeline",
+            name: "歷史演進橫向時間軸",
+            icon: "⏳",
+            style_desc: "橫向/縱向年代刻度尺、關鍵年代節點標記、各時期代表性里程碑圖示",
+            scenes: "歷史沿革、公司發展史、技術演進脈絡",
+            coffee_example: "咖啡全球演進史（850年牧羊人傳說→1400年代葉門→歐洲啟蒙→現代第三波精品浪潮）",
+            prompt_template: "A chronological historical timeline infographic of 【TOPIC】, chronological axis line spanning major eras, date badge milestone nodes, vintage to modern progression icons, evolutionary narrative flow, elegant historical educational infographic"
+        }
+    ];
+
+    let currentVisualCodeIndex = 0;
+    let visualCodesInitialized = false;
+
+    function initVisualCodesView() {
+        if (!visualCodesInitialized) {
+            renderVisualCodesGrid();
+            renderVisualCodesSummaryTable();
+            selectVisualCode(0);
+            visualCodesInitialized = true;
+        }
+    }
+
+    function renderVisualCodesGrid() {
+        const grid = document.getElementById('visual-codes-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        VISUAL_CODES_DATA.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'vc-card-item' + (idx === currentVisualCodeIndex ? ' active' : '');
+            card.onclick = () => selectVisualCode(idx);
+            card.innerHTML = `
+                <div style="font-size:20px; margin-bottom:4px;">${item.icon}</div>
+                <div style="font-size:12px; font-family:monospace; font-weight:bold; color:#0284c7;">${item.code}</div>
+                <div style="font-size:13.5px; font-weight:900; color:#1e293b; margin:2px 0;">${item.name}</div>
+                <div style="font-size:11px; color:#64748b; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${item.scenes.split('、')[0]}</div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function renderVisualCodesSummaryTable() {
+        const tbody = document.getElementById('vc-summary-tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        VISUAL_CODES_DATA.forEach((item) => {
+            const tr = document.createElement('tr');
+            tr.style.borderBottom = '1px solid #e2e8f0';
+            tr.innerHTML = `
+                <td style="padding:8px 10px; font-family:monospace; font-weight:bold; color:#0284c7; white-space:nowrap;">${item.icon} ${item.code}</td>
+                <td style="padding:8px 10px; font-weight:bold; color:#1e293b; white-space:nowrap;">${item.name}</td>
+                <td style="padding:8px 10px; color:#475569;">${item.style_desc}</td>
+                <td style="padding:8px 10px; color:#64748b;">${item.scenes}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function selectVisualCode(index) {
+        currentVisualCodeIndex = index;
+        const item = VISUAL_CODES_DATA[index];
+        if (!item) return;
+
+        const cards = document.querySelectorAll('.vc-card-item');
+        cards.forEach((c, i) => {
+            if (i === index) c.classList.add('active');
+            else c.classList.remove('active');
+        });
+
+        const iconEl = document.getElementById('vc-active-icon');
+        const codeEl = document.getElementById('vc-active-code');
+        const nameEl = document.getElementById('vc-active-name');
+        const styleEl = document.getElementById('vc-active-style');
+        const scenesEl = document.getElementById('vc-active-scenes');
+        const exampleEl = document.getElementById('vc-active-example');
+
+        if (iconEl) iconEl.textContent = item.icon;
+        if (codeEl) codeEl.textContent = item.code;
+        if (nameEl) nameEl.textContent = item.name;
+        if (styleEl) styleEl.textContent = item.style_desc;
+        if (scenesEl) scenesEl.textContent = item.scenes;
+        if (exampleEl) exampleEl.textContent = item.coffee_example;
+
+        updateVisualPrompt();
+    }
+
+    function setVisualTopic(topic) {
+        const input = document.getElementById('visual-topic-input');
+        if (input) input.value = topic;
+        updateVisualPrompt();
+    }
+
+    function onVisualTopicInput(val) {
+        updateVisualPrompt();
+    }
+
+    function onVisualRatioChange(ratio) {
+        updateVisualPrompt();
+    }
+
+    function updateVisualPrompt() {
+        const item = VISUAL_CODES_DATA[currentVisualCodeIndex];
+        if (!item) return;
+
+        const input = document.getElementById('visual-topic-input');
+        const topic = (input && input.value.trim()) ? input.value.trim() : '咖啡從生豆到杯中的完整探索';
+
+        const ratioSelect = document.getElementById('vc-ratio-select');
+        const ratio = ratioSelect ? ratioSelect.value : '--ar 9:16';
+
+        let prompt = item.prompt_template.replace('【TOPIC】', topic);
+        prompt = `${prompt} ${ratio}`;
+
+        const box = document.getElementById('vc-prompt-output');
+        if (box) box.value = prompt;
+    }
+
+    function randomizeVisualCode() {
+        const sampleTopics = [
+            '咖啡從生豆到杯中的完整探索',
+            '戶外登山健行裝備與安全指南',
+            '半導體晶圓製造端到端完整製程',
+            '基督信仰門徒靈修成長旅程',
+            'Python 與 AI 程式語言學習路徑',
+            '個人財務自由與資產配置全景',
+            '人類歷史重大科技革命演進',
+            '人體心血管系統與健康機制',
+            '敏捷專案管理與 Scrum 核心工作流'
+        ];
+        const randomTopic = sampleTopics[Math.floor(Math.random() * sampleTopics.length)];
+        setVisualTopic(randomTopic);
+
+        const randomIndex = Math.floor(Math.random() * VISUAL_CODES_DATA.length);
+        selectVisualCode(randomIndex);
+    }
+
+    function copyVisualCodePrompt() {
+        const box = document.getElementById('vc-prompt-output');
+        const btn = document.getElementById('vc-copy-btn');
+        if (!box) return;
+        const text = box.value;
+        const orig = btn.innerText;
+
+        const done = () => {
+            btn.innerText = '✅ 已成功複製視覺圖表指令！請前往貼上送出';
+            btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            setTimeout(() => {
+                btn.innerText = orig;
+                btn.style.background = 'linear-gradient(135deg, #0284c7, #2563eb)';
+            }, 2500);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => {
+                fallbackCopyTextToClipboard(text);
+                done();
+            });
+        } else {
+            fallbackCopyTextToClipboard(text);
+            done();
+        }
+    }
+
     function openRequestedView(viewId) {
-        if (viewId === 'view-photo-retouch') {
+        if (viewId === 'view-visual-codes') {
+            switchView('view-visual-codes');
+            initVisualCodesView();
+        } else if (viewId === 'view-photo-retouch') {
             switchView('view-photo-retouch');
             initRetouchView();
         } else if (viewId === 'view-gemini-prompts') {
