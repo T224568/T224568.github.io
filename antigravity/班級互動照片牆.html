@@ -406,6 +406,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 }
 
 .vc-card-item {
+  position: relative;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
   padding: 10px 12px;
@@ -423,6 +424,26 @@ button:disabled { background: #ccc; cursor: not-allowed; }
   border-color: #0284c7;
   background: #e0f2fe;
   box-shadow: 0 4px 12px rgba(2,132,199,0.25);
+}
+.vc-card-item.disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  filter: grayscale(85%);
+  box-shadow: none !important;
+}
+.vc-card-item.disabled:hover {
+  transform: none;
+  border-color: #e2e8f0 !important;
+  background: #f8fafc !important;
+}
+
+.quick-topic-chip.active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 2px 8px rgba(2,132,199,0.35);
 }
 
 .sticker-video-hero {
@@ -1496,36 +1517,41 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         3. 點擊 <b>「📋 複製圖表指令」</b>，前往 <b>✨ Gemini</b> 或 <b>🤖 ChatGPT</b> 貼上送出，秒產出專業級知識圖表！
     </div>
 
-    <!-- 主題設定卡片 -->
+    <!-- 主題設定卡片 (20 組精選主題 + 自由輸入) -->
     <div style="background: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; margin-bottom: 20px;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
             <label style="font-size: 16px; font-weight: 900; color: #0f172a; display: flex; align-items: center; gap: 6px;">
-                <span>🎯 第一步：設定想拆解的知識主題</span>
+                <span>🎯 第一步：設定想拆解的知識主題 (精選 20 組熱門主題)</span>
             </label>
             <button onclick="randomizeVisualCode()" style="background: linear-gradient(135deg, #0284c7, #2563eb); color: white; border: none; border-radius: 20px; padding: 7px 16px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 8px rgba(37,99,235,0.3); transition: transform 0.1s;">
                 🎲 懶人隨機抽籤
             </button>
         </div>
 
-        <!-- 快速主題標籤 -->
-        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('咖啡從生豆到杯中的完整探索')">☕ 咖啡探索 (原片範例)</button>
-            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('戶外登山健行裝備與安全指南')">⛰️ 登山健行裝備與安全</button>
-            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('半導體晶圓製造端到端完整製程')">🔬 半導體晶圓製造</button>
-            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('基督信仰門徒靈修成長旅程')">✝️ 門徒靈修成長旅程</button>
-            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('Python 與 AI 程式語言學習路徑')">💻 Python 與 AI 學習路徑</button>
-            <button type="button" class="quick-topic-chip" onclick="setVisualTopic('個人財務自由與資產配置全景')">💰 個人理財與資產配置</button>
+        <!-- 20 組快速主題標籤 (由 JS 動態生成) -->
+        <div id="visual-topics-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; max-height: 220px; overflow-y: auto; padding: 4px; border: 1px dashed #cbd5e1; border-radius: 10px; background: #f8fafc;">
+            <!-- JS 自動填入 20 組標籤 -->
         </div>
 
         <!-- 自由自訂輸入框 -->
-        <input type="text" id="visual-topic-input" oninput="onVisualTopicInput(this.value)" value="咖啡從生豆到杯中的完整探索" placeholder="請輸入您想用圖表拆解的任何主題（例如：人工智慧大模型架構、太極拳基本功法...）" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-size: 15px; font-weight: bold; color: #1e293b; border: 2px solid #0284c7; border-radius: 10px; outline: none; background: #f8fafc;">
+        <input type="text" id="visual-topic-input" oninput="onVisualTopicInput(this.value)" value="精品咖啡從生豆處理到杯中萃取的完整科學工藝" placeholder="請輸入您想用圖表拆解的任何主題（例如：人工智慧大模型架構、太極拳基本功法...）" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-size: 15px; font-weight: bold; color: #1e293b; border: 2px solid #0284c7; border-radius: 10px; outline: none; background: #ffffff;">
     </div>
 
-    <!-- 15 組代碼網格選擇 -->
+    <!-- 15 組代碼網格選擇 (具備合適性智能限制) -->
     <div style="background: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; margin-bottom: 20px;">
-        <label style="display: block; font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 14px;">
-            🧩 第二步：選擇視覺架構代碼 (點選即時切換)
-        </label>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+            <label style="font-size: 16px; font-weight: 900; color: #0f172a; margin: 0;">
+                🧩 第二步：選擇視覺架構代碼 (<span id="vc-suitable-count" style="color: #0284c7; font-weight: bold;">推薦合適模式</span>)
+            </label>
+            <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #475569; cursor: pointer; user-select: none; background: #f1f5f9; padding: 4px 10px; border-radius: 20px;">
+                <input type="checkbox" id="vc-unlock-all-checkbox" onchange="toggleUnlockAllVisualCodes(this.checked)">
+                <span>🔓 解鎖全部 15 款 (自由混搭)</span>
+            </label>
+        </div>
+        
+        <div id="vc-topic-hint" style="font-size: 12.5px; color: #0284c7; background: #f0f9ff; padding: 8px 12px; border-radius: 8px; margin-bottom: 14px; border-left: 3px solid #0284c7;">
+            💡 智能約束中：只有符合當前主題邏輯的圖表代碼才可選取（標註 ⭐），避免產出語意矛盾的怪圖。
+        </div>
         
         <div id="visual-codes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px;">
             <!-- 由 JS 動態生成 15 個卡片 -->
@@ -6509,6 +6535,129 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     // =========================================================================
     // 📊 15 組視覺學習神級代碼邏輯 (AI 視覺圖表拆解器)
     // =========================================================================
+    const VISUAL_TOPICS_20 = [
+        {
+            name: "☕ 精品咖啡從生豆到萃取",
+            full: "精品咖啡從生豆處理、烘焙曲線到杯中萃取的完整科學工藝",
+            suitable: ["/cycle", "/flowchart", "/layers", "/decision-matrix", "/handwritten", "/diagram"],
+            desc: "最適合生命週期循環、水平剖面分層與沖煮SOP流程圖"
+        },
+        {
+            name: "⛰️ 登山健行裝備與安全",
+            full: "高山健行登山裝備全清單與野外迷途求生安全指南",
+            suitable: ["/exploded-view", "/flowchart", "/roadmap", "/decision-matrix", "/sketchnotes"],
+            desc: "最適合裝備爆炸圖、高山排錯SOP與攻頂路線圖"
+        },
+        {
+            name: "🔬 半導體晶圓製造製程",
+            full: "半導體晶圓製造、微影蝕刻與先進封裝完整製程",
+            suitable: ["/blueprint", "/layers", "/flowchart", "/timeline", "/infographic"],
+            desc: "最適合工程藍圖、多層堆疊剖面與SOP流程"
+        },
+        {
+            name: "✝️ 基督信仰門徒成長旅程",
+            full: "基督信仰門徒訓練、靈修操練與生命成長里程碑",
+            suitable: ["/roadmap", "/tree", "/iceberg", "/handwritten", "/cycle"],
+            desc: "最適合信仰成長路線圖、聖經分支樹與靈命冰山模型"
+        },
+        {
+            name: "💻 Python 與 AI 學習地圖",
+            full: "Python 程式語言、資料科學到生成式 AI 完整學習路徑",
+            suitable: ["/roadmap", "/tree", "/blueprint", "/flowchart", "/infographic"],
+            desc: "最適合技能里程碑路線圖、知識體系樹與演算法流程"
+        },
+        {
+            name: "💰 個人理財與資產配置",
+            full: "個人財務自由、資產配置金字塔與投資風險管理矩陣",
+            suitable: ["/decision-matrix", "/layers", "/iceberg", "/cycle", "/canvas"],
+            desc: "最適合資產分層金字塔、決策矩陣與複利循環"
+        },
+        {
+            name: "🚗 電動車動力與電池構造",
+            full: "純電動車高壓三電系統、底盤電池包與馬達機械構造",
+            suitable: ["/exploded-view", "/diagram", "/blueprint", "/flowchart"],
+            desc: "最適合電池包爆炸圖、馬達解剖構造與高壓電路藍圖"
+        },
+        {
+            name: "🍵 台灣高山茶品茗工藝",
+            full: "台灣六大茶系發酵度分類與功夫茶沖泡時間水溫SOP",
+            suitable: ["/tree", "/flowchart", "/decision-matrix", "/handwritten", "/sketchnotes"],
+            desc: "最適合茶系發酵樹狀圖、沖泡水溫流程與品茗手寫筆記"
+        },
+        {
+            name: "🏃 馬拉松破四訓練週期",
+            full: "全馬破四 16 週漸進式週期課表與補給配速撞牆應對",
+            suitable: ["/roadmap", "/cycle", "/flowchart", "/decision-matrix"],
+            desc: "最適合訓練週期路線圖、超量補償循環與配速SOP"
+        },
+        {
+            name: "🏥 人體心臟血液循環系統",
+            full: "人體心臟四腔室解剖構造與大循環微血管體液交換",
+            suitable: ["/diagram", "/cycle", "/layers", "/blueprint"],
+            desc: "最適合心臟解剖剖面圖、體肺循環閉環與血管壁分層"
+        },
+        {
+            name: "🏢 現代新創商業模式設計",
+            full: "新創公司商業模式九宮格、核心價值主張與隱性護城河",
+            suitable: ["/canvas", "/iceberg", "/tree", "/decision-matrix"],
+            desc: "最適合九宮格畫布、隱性技術冰山模型與商業決策矩陣"
+        },
+        {
+            name: "📸 單眼相機曝光三要素",
+            full: "單眼相機光圈、快門、ISO感光度平衡矩陣與鏡頭結構",
+            suitable: ["/decision-matrix", "/diagram", "/sketchnotes", "/flowchart"],
+            desc: "最適合曝光三要素矩陣、鏡頭鏡片光學圖與測光SOP"
+        },
+        {
+            name: "🌍 人類工業革命演進史",
+            full: "人類歷次科技與工業革命演進脈絡：從蒸汽機到通用AI",
+            suitable: ["/timeline", "/roadmap", "/tree", "/infographic"],
+            desc: "最適合百年歷史時間軸、科技里程碑與科技譜系樹"
+        },
+        {
+            name: "🍞 歐式酸種麵包發酵科學",
+            full: "天然酵母酸種麵包發酵水合科學、內部氣孔分層與烤焙",
+            suitable: ["/layers", "/cycle", "/flowchart", "/handwritten"],
+            desc: "最適合蜂巢氣孔剖面圖、起種餵養循環與手繪配方筆記"
+        },
+        {
+            name: "🧠 番茄鐘與大腦專注心流",
+            full: "深度工作心流狀態、番茄鐘專注循環與時間管理決策",
+            suitable: ["/cycle", "/iceberg", "/sketchnotes", "/flowchart"],
+            desc: "最適合25分鐘工作循環、拖延心理冰山與思維塗鴉筆記"
+        },
+        {
+            name: "🎹 交響樂團編制與樂器家族",
+            full: "古典交響樂團四大家族樂器編制、聲部音域與舞台座位席",
+            suitable: ["/tree", "/diagram", "/layers", "/timeline"],
+            desc: "最適合樂器分類體系樹、舞台坐席分布圖與聲部垂直堆疊"
+        },
+        {
+            name: "🏕️ 露營野炊裝備挑選指南",
+            full: "風格露營帳篷天幕抗風抗水評比與戶外野炊爐具爆炸分解",
+            suitable: ["/exploded-view", "/decision-matrix", "/sketchnotes", "/flowchart"],
+            desc: "最適合帳篷汽化爐爆炸圖、營帳評比矩陣與營地手札"
+        },
+        {
+            name: "🍔 美式手工牛肉漢堡黃金比例",
+            full: "頂級美式手工牛肉漢堡黃金比例：布里歐麵包至醬料層次",
+            suitable: ["/layers", "/exploded-view", "/handwritten", "/diagram"],
+            desc: "最適合垂直堆疊剖面圖、食材懸浮爆炸圖與主廚手寫筆記"
+        },
+        {
+            name: "🥋 日本劍道晉段修煉體系",
+            full: "日本劍道段位考核晉升標準、竹刀防具結構與氣劍體一致",
+            suitable: ["/roadmap", "/diagram", "/sketchnotes", "/flowchart"],
+            desc: "最適合段位晉升學習路線圖、竹刀防具構造與評判流程"
+        },
+        {
+            name: "🚀 SpaceX 星艦火箭發射回收",
+            full: "SpaceX 星艦超重型火箭分級構造、猛禽發動機與筷子捕獲",
+            suitable: ["/blueprint", "/exploded-view", "/flowchart", "/cycle"],
+            desc: "最適合火箭工程藍圖、發動機爆炸圖與升空回收閉環SOP"
+        }
+    ];
+
     const VISUAL_CODES_DATA = [
         {
             code: "/blueprint",
@@ -6647,32 +6796,139 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         }
     ];
 
+    let currentVisualTopicIndex = 0;
     let currentVisualCodeIndex = 0;
     let visualCodesInitialized = false;
+    let visualCodesUnlockedAll = false;
 
     function initVisualCodesView() {
         if (!visualCodesInitialized) {
+            renderVisualTopics();
             renderVisualCodesGrid();
             renderVisualCodesSummaryTable();
-            selectVisualCode(0);
+            selectVisualTopic(0);
             visualCodesInitialized = true;
         }
+    }
+
+    function renderVisualTopics() {
+        const container = document.getElementById('visual-topics-container');
+        if (!container) return;
+        container.innerHTML = '';
+        VISUAL_TOPICS_20.forEach((t, idx) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'quick-topic-chip' + (idx === currentVisualTopicIndex ? ' active' : '');
+            btn.textContent = `${idx + 1}. ${t.name}`;
+            btn.title = t.desc;
+            btn.onclick = () => selectVisualTopic(idx);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectVisualTopic(index) {
+        currentVisualTopicIndex = index;
+        const topic = VISUAL_TOPICS_20[index];
+        if (!topic) return;
+
+        // 高亮當前主題按鈕
+        const chips = document.querySelectorAll('#visual-topics-container .quick-topic-chip');
+        chips.forEach((c, i) => {
+            if (i === index) c.classList.add('active');
+            else c.classList.remove('active');
+        });
+
+        // 填入輸入框
+        const input = document.getElementById('visual-topic-input');
+        if (input) input.value = topic.full;
+
+        // 更新代碼的可用狀態
+        applyTopicSuitableCodes();
+    }
+
+    function toggleUnlockAllVisualCodes(unlocked) {
+        visualCodesUnlockedAll = unlocked;
+        applyTopicSuitableCodes();
+    }
+
+    function applyTopicSuitableCodes() {
+        const topic = VISUAL_TOPICS_20[currentVisualTopicIndex];
+        const suitable = (topic && topic.suitable) ? topic.suitable : [];
+
+        // 更新提示文字
+        const countEl = document.getElementById('vc-suitable-count');
+        const hintEl = document.getElementById('vc-topic-hint');
+        if (countEl) {
+            countEl.textContent = visualCodesUnlockedAll ? '已解鎖全部 15 款' : `推薦 ${suitable.length} 款適用模式`;
+        }
+        if (hintEl) {
+            if (visualCodesUnlockedAll) {
+                hintEl.innerHTML = `<span>🔓 自由混搭模式已開啟：15 種視覺圖表皆可任意搭配當前主題！</span>`;
+                hintEl.style.background = '#fef3c7';
+                hintEl.style.color = '#b45309';
+                hintEl.style.borderLeftColor = '#f59e0b';
+            } else {
+                hintEl.innerHTML = `<span>💡 <b>智能合適性限制已生效</b>：針對「${topic ? topic.name : ''}」，已高亮合適之 ${suitable.length} 款圖表 (⭐)，${topic ? topic.desc : ''}。</span>`;
+                hintEl.style.background = '#f0f9ff';
+                hintEl.style.color = '#0284c7';
+                hintEl.style.borderLeftColor = '#0284c7';
+            }
+        }
+
+        // 若當前選中的代碼不在合適清單內且未解鎖，自動跳轉到第 1 個適合的代碼
+        const currentCode = VISUAL_CODES_DATA[currentVisualCodeIndex].code;
+        if (!visualCodesUnlockedAll && !suitable.includes(currentCode)) {
+            const firstSuitableIdx = VISUAL_CODES_DATA.findIndex(item => suitable.includes(item.code));
+            if (firstSuitableIdx !== -1) {
+                currentVisualCodeIndex = firstSuitableIdx;
+            }
+        }
+
+        // 重新渲染卡片狀態
+        renderVisualCodesGrid();
+        selectVisualCode(currentVisualCodeIndex, true);
     }
 
     function renderVisualCodesGrid() {
         const grid = document.getElementById('visual-codes-grid');
         if (!grid) return;
         grid.innerHTML = '';
+
+        const topic = VISUAL_TOPICS_20[currentVisualTopicIndex];
+        const suitable = (topic && topic.suitable) ? topic.suitable : [];
+
         VISUAL_CODES_DATA.forEach((item, idx) => {
+            const isSuitable = visualCodesUnlockedAll || suitable.includes(item.code);
+            const isSelected = (idx === currentVisualCodeIndex);
+
             const card = document.createElement('div');
-            card.className = 'vc-card-item' + (idx === currentVisualCodeIndex ? ' active' : '');
-            card.onclick = () => selectVisualCode(idx);
+            card.className = 'vc-card-item' + (isSelected ? ' active' : '') + (isSuitable ? '' : ' disabled');
+
+            let badgeHtml = '';
+            if (!visualCodesUnlockedAll) {
+                if (isSuitable) {
+                    badgeHtml = `<span style="position:absolute; top:6px; right:6px; font-size:10px; background:#0284c7; color:#fff; padding:2px 6px; border-radius:10px; font-weight:bold;">⭐ 推薦</span>`;
+                } else {
+                    badgeHtml = `<span style="position:absolute; top:6px; right:6px; font-size:10px; background:#94a3b8; color:#fff; padding:2px 6px; border-radius:10px; font-weight:bold;">🔒 不合適</span>`;
+                }
+            }
+
             card.innerHTML = `
-                <div style="font-size:20px; margin-bottom:4px;">${item.icon}</div>
+                ${badgeHtml}
+                <div style="font-size:22px; margin-bottom:4px;">${item.icon}</div>
                 <div style="font-size:12px; font-family:monospace; font-weight:bold; color:#0284c7;">${item.code}</div>
                 <div style="font-size:13.5px; font-weight:900; color:#1e293b; margin:2px 0;">${item.name}</div>
                 <div style="font-size:11px; color:#64748b; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${item.scenes.split('、')[0]}</div>
             `;
+
+            card.onclick = () => {
+                if (!isSuitable) {
+                    alert(`⚠️ 此代碼 [${item.code}] 不適合當前主題「${topic.name}」！\n\n原因：${item.name} 與本主題邏輯較不相符。\n請選擇標註 ⭐ 推薦的視覺模式，或勾選右上角「🔓 解鎖全部」自由混搭。`);
+                    return;
+                }
+                selectVisualCode(idx);
+            };
+
             grid.appendChild(card);
         });
     }
@@ -6694,16 +6950,18 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         });
     }
 
-    function selectVisualCode(index) {
+    function selectVisualCode(index, skipRenderGrid) {
         currentVisualCodeIndex = index;
         const item = VISUAL_CODES_DATA[index];
         if (!item) return;
 
-        const cards = document.querySelectorAll('.vc-card-item');
-        cards.forEach((c, i) => {
-            if (i === index) c.classList.add('active');
-            else c.classList.remove('active');
-        });
+        if (!skipRenderGrid) {
+            const cards = document.querySelectorAll('.vc-card-item');
+            cards.forEach((c, i) => {
+                if (i === index) c.classList.add('active');
+                else c.classList.remove('active');
+            });
+        }
 
         const iconEl = document.getElementById('vc-active-icon');
         const codeEl = document.getElementById('vc-active-code');
@@ -6722,12 +6980,6 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         updateVisualPrompt();
     }
 
-    function setVisualTopic(topic) {
-        const input = document.getElementById('visual-topic-input');
-        if (input) input.value = topic;
-        updateVisualPrompt();
-    }
-
     function onVisualTopicInput(val) {
         updateVisualPrompt();
     }
@@ -6741,7 +6993,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         if (!item) return;
 
         const input = document.getElementById('visual-topic-input');
-        const topic = (input && input.value.trim()) ? input.value.trim() : '咖啡從生豆到杯中的完整探索';
+        const topic = (input && input.value.trim()) ? input.value.trim() : '精品咖啡從生豆處理到杯中萃取的完整科學工藝';
 
         const ratioSelect = document.getElementById('vc-ratio-select');
         const ratio = ratioSelect ? ratioSelect.value : '--ar 9:16';
@@ -6754,22 +7006,18 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     }
 
     function randomizeVisualCode() {
-        const sampleTopics = [
-            '咖啡從生豆到杯中的完整探索',
-            '戶外登山健行裝備與安全指南',
-            '半導體晶圓製造端到端完整製程',
-            '基督信仰門徒靈修成長旅程',
-            'Python 與 AI 程式語言學習路徑',
-            '個人財務自由與資產配置全景',
-            '人類歷史重大科技革命演進',
-            '人體心血管系統與健康機制',
-            '敏捷專案管理與 Scrum 核心工作流'
-        ];
-        const randomTopic = sampleTopics[Math.floor(Math.random() * sampleTopics.length)];
-        setVisualTopic(randomTopic);
+        // 隨機選一個主題
+        const randomTopicIdx = Math.floor(Math.random() * VISUAL_TOPICS_20.length);
+        selectVisualTopic(randomTopicIdx);
 
-        const randomIndex = Math.floor(Math.random() * VISUAL_CODES_DATA.length);
-        selectVisualCode(randomIndex);
+        // 從該主題合適的代碼中隨機選一個
+        const topic = VISUAL_TOPICS_20[randomTopicIdx];
+        const suitable = topic.suitable;
+        const randomCode = suitable[Math.floor(Math.random() * suitable.length)];
+        const targetIdx = VISUAL_CODES_DATA.findIndex(item => item.code === randomCode);
+        if (targetIdx !== -1) {
+            selectVisualCode(targetIdx);
+        }
     }
 
     function copyVisualCodePrompt() {
