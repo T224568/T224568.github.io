@@ -7632,7 +7632,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     }
 
     function openRequestedView(viewId) {
-        if (viewId === 'view-visual-codes') {
+        if (viewId === 'view-news-generator') {
+            switchView('view-news-generator');
+            initNewsOpsSlots();
+        } else if (viewId === 'view-visual-codes') {
             switchView('view-visual-codes');
             initVisualCodesView();
         } else if (viewId === 'view-photo-retouch') {
@@ -12093,27 +12096,141 @@ window.addEventListener('pageshow', (event) => {
     // ==========================================
     const NEWS_SLOT_DATA = {
         cats: [
-            { id: "ai", name: "🤖 AI 技術", searchKw: "AI artificial intelligence" },
-            { id: "geopolitics", name: "🌍 地緣政治", searchKw: "geopolitics world diplomacy" },
-            { id: "finance", name: "📈 金融市場", searchKw: "global financial markets economy" },
-            { id: "tech", name: "💻 科技產業", searchKw: "tech industry semiconductors" },
-            { id: "climate", name: "🌿 氣候環境", searchKw: "climate change renewable energy" },
-            { id: "conflict", name: "⚔️ 衝突戰爭", searchKw: "international security conflicts" },
-            { id: "health", name: "🏥 健康醫療", searchKw: "medical research healthcare" },
-            { id: "sports", name: "⚽ 體育新聞", searchKw: "global sports athletics" },
-            { id: "entertainment", name: "🎬 娛樂新聞", searchKw: "entertainment film culture" }
-        ],
-        topics: [
-            "Nvidia 與 OpenAI 最新突破",
-            "全球股市美股台股最新收盤與波動",
-            "美國聯準會 (Fed) 降息最新動向",
-            "台積電全球晶圓廠布局與先進製程",
-            "全球地緣情勢最新談判進展",
-            "新能源電動車與固態電池技術競賽",
-            "最新醫學突破與重大癌症新藥研發",
-            "歐盟最新 AI 監管法規與科技巨頭動態",
-            "太空探索星艦星鏈最新發射任務",
-            "全球氣候極端天氣與低碳轉型政策"
+            {
+                id: "ai",
+                name: "🤖 AI 技術與大模型",
+                searchKw: "AI artificial intelligence LLM OpenAI Nvidia",
+                topics: [
+                    "OpenAI GPT-5 與 o 系列推理模型最新突破",
+                    "Nvidia 次世代 Blackwell AI 晶片與伺服器供應鏈",
+                    "Google Gemini 2.5 / Flash 與開源大模型生態進展",
+                    "AI Agent 自主智慧體與程式碼工程全自動化",
+                    "具身智能 (Embodied AI) 與人形機器人量產商用",
+                    "Apple Intelligence 繁體中文與全球生態佈局",
+                    "AI 影像/影片生成模型 (Sora/Runway/Nano Banana)",
+                    "歐盟與全球 AI 監管法規、版權與資料安全訴訟"
+                ]
+            },
+            {
+                id: "finance",
+                name: "📈 金融市場與總體經濟",
+                searchKw: "financial markets economy stocks Fed interest rate",
+                topics: [
+                    "美國聯準會 (Fed) 降息決策與美債殖利率動向",
+                    "美股科技七巨頭 (Magnificent 7) 財報與股價波動",
+                    "台股加權指數多空攻防與台積電千元行情展望",
+                    "日本央行 (BOJ) 升息步調與日圓匯率劇烈波動",
+                    "全球通膨指數 CPI/PCE 與非農就業景氣指標",
+                    "國際黃金與白銀價格創高與避險資金走向",
+                    "比特幣與加密貨幣 ETF 資金流向與監管法規",
+                    "台灣央行房市信用管制與打炒房政策最新成效"
+                ]
+            },
+            {
+                id: "tech",
+                name: "💻 科技產業與半導體",
+                searchKw: "semiconductor tech TSMC chips hardware ASML",
+                topics: [
+                    "台積電 2nm 先進製程試產與海外晶圓廠進度",
+                    "艾司摩爾 (ASML) High-NA EUV 光刻機出貨動態",
+                    "美歐晶片法案補貼落實與全球半導體供應鏈重組",
+                    "三星電子與英特爾晶圓代工良率突破與轉型",
+                    "SpaceX 星鏈 (Starlink) 低軌通訊與太空經濟商機",
+                    "固態電池技術突破與次世代電動車平台競逐",
+                    "量子電腦商業化運算試點與超導晶片研發",
+                    "旗艦手機處理器高通 Snapdragon 與聯發科天璣大戰"
+                ]
+            },
+            {
+                id: "geopolitics",
+                name: "🌍 地緣政治與國際外交",
+                searchKw: "geopolitics diplomacy international relations world news",
+                topics: [
+                    "美國新政府對外貿易關稅與國際地緣政策走向",
+                    "烏克蘭戰局最新戰況與美歐和平談判斡旋進展",
+                    "中東以巴情勢與紅海航運危機停火談判進度",
+                    "美中科技戰出口管制與關鍵稀土物資戰略博弈",
+                    "兩岸局勢演變與台海周邊軍事外交最新動態",
+                    "北約 (NATO) 國防預算佔比提升與防衛戰略部署",
+                    "東協 (ASEAN) 經貿整合與全球供應鏈外移佈局",
+                    "全球南方國家 (Global South) 與金磚集團擴張影響力"
+                ]
+            },
+            {
+                id: "climate",
+                name: "🌿 氣候變遷與綠色能源",
+                searchKw: "climate renewable energy green transition net zero",
+                topics: [
+                    "全球極端氣候高溫紀錄與聖嬰/反聖嬰現象監測",
+                    "核能復興：小型模組化反應爐 (SMR) 獲科技大廠支持",
+                    "OPEC+ 原油減產策略與全球能源市場價格波動",
+                    "歐洲碳邊境調整機制 (CBAM) 申報與碳權交易制度",
+                    "太陽能光電與離岸風電建置進展與綠電電網韌性",
+                    "國際能源署 (IEA) 全球綠能轉型與減碳進程評估",
+                    "全球水資源枯竭與半導體高科技產業用水安全",
+                    "全球塑膠減量公約與循環經濟最新國際談判"
+                ]
+            },
+            {
+                id: "health",
+                name: "🏥 生物醫學與公共衛生",
+                searchKw: "medical research healthcare biotechnology medicine",
+                topics: [
+                    "GLP-1 瘦瘦針降脂與慢性心血管疾病擴大適應症",
+                    "mRNA 癌症治療疫苗與個人化免疫療法最新臨床",
+                    "阿茲海默症新藥減緩認知衰退真實世界追蹤",
+                    "Neuralink 腦機介面人體臨床實驗與功能進展",
+                    "全球新興呼吸道傳染病監測與次世代疫苗研發",
+                    "CRISPR 基因編輯療法突破與罕見遺傳疾病臨床",
+                    "醫療 AI 輔助影像判讀與智慧診斷合規落地",
+                    "全民健保財務改革與新藥納入健保給付爭議"
+                ]
+            },
+            {
+                id: "defense",
+                name: "⚔️ 全球防衛與軍事科技",
+                searchKw: "defense military technology security aerospace weapons",
+                topics: [
+                    "軍用無人機蜂群戰術與反制干擾電子防禦系統",
+                    "極音速武器試射研發與新一代飛彈防禦網部署",
+                    "國家級關鍵基礎設施遭受網路攻擊與資安防禦",
+                    "太平洋第一島鏈各國海空聯合軍事演訓動態",
+                    "AI 自主武器系統 (AWS) 倫理限制與作戰評估",
+                    "國防自主軍工製造擴產與全球彈藥庫存調度",
+                    "低軌反衛星武器威脅與太空防禦戰略構想",
+                    "各國國防支出攀升對財政與總體經濟之連鎖效應"
+                ]
+            },
+            {
+                id: "hiking",
+                name: "🏔️ 戶外健行與山林安全",
+                searchKw: "hiking mountaineering trail safety outdoor rescue",
+                topics: [
+                    "台灣百岳登山步道災後修復與入山入園申請現況",
+                    "高山迷途搜救案例分析與離線地圖 GPX 導航宣導",
+                    "國家公園山屋預約改制與無痕山林 (LNT) 實踐",
+                    "超輕量化 (Ultralight) 登山裝備與高山防水防寒科技",
+                    "全球著名健行步道 (熊野古道/朝聖之路) 最新規定",
+                    "高山衛星 SOS 雙向通訊緊急求救實測與普及",
+                    "台灣越野跑與百公里長距離健行賽事熱門動態",
+                    "急性高山症 (AMS) 預防藥物與快速高度適應指南"
+                ]
+            },
+            {
+                id: "entertainment",
+                name: "🎬 文化娛樂與社群浪潮",
+                searchKw: "entertainment culture streaming box office social media",
+                topics: [
+                    "全球串流巨頭打擊寄生帳號與訂閱價格調整策略",
+                    "國際級巨星巡迴演唱會帶動的龐大城市經濟效應",
+                    "短影音演算法 (TikTok/Reels) 與社群注意力經濟研究",
+                    "3A 遊戲大作發布、遊戲引擎升級與硬體效能評測",
+                    "AI 生成音樂與數位虛擬人版權法規跨國訴訟",
+                    "日圓匯率變動下之全球觀光深度旅遊與消費熱潮",
+                    "國際影展黑馬電影與原創影集口碑話題焦點",
+                    "知名 Podcast 節目與自媒體社群商業變現新模式"
+                ]
+            }
         ],
         times: [
             { label: "過去 12 小時", span: "12小時" },
@@ -12135,34 +12252,49 @@ window.addEventListener('pageshow', (event) => {
 
     let newsSlotState = {
         cat: NEWS_SLOT_DATA.cats[0],
-        topic: NEWS_SLOT_DATA.topics[0],
+        topic: NEWS_SLOT_DATA.cats[0].topics[0],
         time: NEWS_SLOT_DATA.times[1], // 24小時
         src: NEWS_SLOT_DATA.sources[0]  // 路透社
     };
 
     let newsSlotSpinning = false;
 
+    // 依據新聞類別，動態填入專屬且合理的主題焦點
+    function populateNewsTopicsForCat(catIdx, selectedTopic) {
+        const selTopic = document.getElementById('sel-news-topic');
+        if (!selTopic) return;
+        const cat = NEWS_SLOT_DATA.cats[catIdx] || NEWS_SLOT_DATA.cats[0];
+        const topics = cat.topics || [];
+
+        selTopic.innerHTML = topics.map((t, i) => `<option value="${i}">${t}</option>`).join('');
+
+        if (selectedTopic && topics.includes(selectedTopic)) {
+            selTopic.value = String(topics.indexOf(selectedTopic));
+            newsSlotState.topic = selectedTopic;
+        } else {
+            selTopic.value = "0";
+            newsSlotState.topic = topics[0] || '';
+        }
+    }
+
     function initNewsOpsSlots() {
         const selCat = document.getElementById('sel-news-cat');
-        if (selCat && selCat.options.length === 0) {
+        if (selCat) {
             selCat.innerHTML = NEWS_SLOT_DATA.cats.map((c, i) => `<option value="${i}">${c.name}</option>`).join('');
             selCat.value = "0";
         }
 
-        const selTopic = document.getElementById('sel-news-topic');
-        if (selTopic && selTopic.options.length === 0) {
-            selTopic.innerHTML = NEWS_SLOT_DATA.topics.map((t, i) => `<option value="${i}">${t}</option>`).join('');
-            selTopic.value = "0";
-        }
+        // 連動填入第一個類別 (AI) 的主題
+        populateNewsTopicsForCat(0);
 
         const selTime = document.getElementById('sel-news-time');
-        if (selTime && selTime.options.length === 0) {
+        if (selTime) {
             selTime.innerHTML = NEWS_SLOT_DATA.times.map((t, i) => `<option value="${i}">${t.label}</option>`).join('');
             selTime.value = "1"; // 預設 24小時
         }
 
         const selSrc = document.getElementById('sel-news-src');
-        if (selSrc && selSrc.options.length === 0) {
+        if (selSrc) {
             selSrc.innerHTML = NEWS_SLOT_DATA.sources.map((s, i) => `<option value="${i}">${s.label}</option>`).join('');
             selSrc.value = "0";
         }
@@ -12182,13 +12314,21 @@ window.addEventListener('pageshow', (event) => {
         if (isNaN(idx)) return;
         if (type === 'cat' && NEWS_SLOT_DATA.cats[idx]) {
             newsSlotState.cat = NEWS_SLOT_DATA.cats[idx];
+            // 🌟 核心連動：切換新聞類別時，主題下拉選單立即重新填充該類別專屬主題！
+            populateNewsTopicsForCat(idx);
             const custom = document.getElementById('news-custom-cat');
             if (custom) custom.value = '';
+            const customT = document.getElementById('news-custom-topic');
+            if (customT) customT.value = '';
         }
-        if (type === 'topic' && NEWS_SLOT_DATA.topics[idx]) {
-            newsSlotState.topic = NEWS_SLOT_DATA.topics[idx];
-            const custom = document.getElementById('news-custom-topic');
-            if (custom) custom.value = '';
+        if (type === 'topic') {
+            const cat = newsSlotState.cat || NEWS_SLOT_DATA.cats[0];
+            const topics = cat.topics || [];
+            if (topics[idx]) {
+                newsSlotState.topic = topics[idx];
+                const custom = document.getElementById('news-custom-topic');
+                if (custom) custom.value = '';
+            }
         }
         if (type === 'time' && NEWS_SLOT_DATA.times[idx]) {
             newsSlotState.time = NEWS_SLOT_DATA.times[idx];
@@ -12207,19 +12347,22 @@ window.addEventListener('pageshow', (event) => {
         const trimmed = val.trim();
         if (type === 'cat') {
             if (trimmed) {
-                newsSlotState.cat = { id: 'custom', name: trimmed, searchKw: trimmed };
+                newsSlotState.cat = { id: 'custom', name: trimmed, searchKw: trimmed, topics: [trimmed] };
             } else {
                 const sel = document.getElementById('sel-news-cat');
                 const idx = sel ? parseInt(sel.value, 10) : 0;
                 newsSlotState.cat = NEWS_SLOT_DATA.cats[idx] || NEWS_SLOT_DATA.cats[0];
+                populateNewsTopicsForCat(idx);
             }
         } else if (type === 'topic') {
             if (trimmed) {
                 newsSlotState.topic = trimmed;
             } else {
                 const sel = document.getElementById('sel-news-topic');
+                const cat = newsSlotState.cat || NEWS_SLOT_DATA.cats[0];
+                const topics = cat.topics || [];
                 const idx = sel ? parseInt(sel.value, 10) : 0;
-                newsSlotState.topic = NEWS_SLOT_DATA.topics[idx] || NEWS_SLOT_DATA.topics[0];
+                newsSlotState.topic = topics[idx] || topics[0] || '焦點新聞';
             }
         } else if (type === 'time') {
             if (trimmed) {
@@ -12255,8 +12398,10 @@ window.addEventListener('pageshow', (event) => {
 
         const started = Date.now();
         const timer = setInterval(() => {
-            const rCat = NEWS_SLOT_DATA.cats[Math.floor(Math.random() * NEWS_SLOT_DATA.cats.length)];
-            const rTopic = NEWS_SLOT_DATA.topics[Math.floor(Math.random() * NEWS_SLOT_DATA.topics.length)];
+            // 隨機選一個類別，並從該類別綁定的主題中選一個，確保動畫過程邏輯一致
+            const rCatIdx = Math.floor(Math.random() * NEWS_SLOT_DATA.cats.length);
+            const rCat = NEWS_SLOT_DATA.cats[rCatIdx];
+            const rTopic = rCat.topics[Math.floor(Math.random() * rCat.topics.length)];
             const rTime = NEWS_SLOT_DATA.times[Math.floor(Math.random() * NEWS_SLOT_DATA.times.length)];
             const rSrc = NEWS_SLOT_DATA.sources[Math.floor(Math.random() * NEWS_SLOT_DATA.sources.length)];
 
@@ -12272,16 +12417,22 @@ window.addEventListener('pageshow', (event) => {
 
             if (Date.now() - started >= 1200) {
                 clearInterval(timer);
-                newsSlotState.cat = NEWS_SLOT_DATA.cats[Math.floor(Math.random() * NEWS_SLOT_DATA.cats.length)];
-                newsSlotState.topic = NEWS_SLOT_DATA.topics[Math.floor(Math.random() * NEWS_SLOT_DATA.topics.length)];
+                const finalCatIdx = Math.floor(Math.random() * NEWS_SLOT_DATA.cats.length);
+                const finalCat = NEWS_SLOT_DATA.cats[finalCatIdx];
+                const finalTopic = finalCat.topics[Math.floor(Math.random() * finalCat.topics.length)];
+
+                newsSlotState.cat = finalCat;
+                newsSlotState.topic = finalTopic;
                 newsSlotState.time = NEWS_SLOT_DATA.times[Math.floor(Math.random() * NEWS_SLOT_DATA.times.length)];
                 newsSlotState.src = NEWS_SLOT_DATA.sources[Math.floor(Math.random() * NEWS_SLOT_DATA.sources.length)];
 
-                // 同步下拉選單
+                // 同步類別下拉選單
                 const sCat = document.getElementById('sel-news-cat');
-                if (sCat) sCat.value = String(NEWS_SLOT_DATA.cats.indexOf(newsSlotState.cat));
-                const sTopic = document.getElementById('sel-news-topic');
-                if (sTopic) sTopic.value = String(NEWS_SLOT_DATA.topics.indexOf(newsSlotState.topic));
+                if (sCat) sCat.value = String(finalCatIdx);
+
+                // 🌟 連動重整主題下拉選單，並選定抽中的該類別主題！
+                populateNewsTopicsForCat(finalCatIdx, finalTopic);
+
                 const sTime = document.getElementById('sel-news-time');
                 if (sTime) sTime.value = String(NEWS_SLOT_DATA.times.indexOf(newsSlotState.time));
                 const sSrc = document.getElementById('sel-news-src');
@@ -12379,7 +12530,7 @@ window.addEventListener('pageshow', (event) => {
                 <div style="font-family:Menlo,monospace; font-size:12.5px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin-bottom:8px; word-break:break-word; color:#1e293b;">${c.cmd}</div>
                 <div style="font-size:11.5px; color:#64748b; margin-bottom:10px;">${c.desc}</div>
                 <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                    <button type="button" class="copy-btn" onclick="copyNewsGenericPrompt(this, \`${c.cmd.replace(/`/g, '\\`')}\`)" style="flex:1; padding:8px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#0f172a; color:#fff; cursor:pointer;">📋 複製</button>
+                    <button type="button" class="copy-btn" onclick="copyNewsGenericPrompt(this, \`${c.cmd.replace(/`/g, '\`')}\`)" style="flex:1; padding:8px 10px; font-size:12px; font-weight:700; border-radius:6px; border:none; background:#0f172a; color:#fff; cursor:pointer;">📋 複製</button>
                     <button type="button" onclick="window.open('https://gemini.google.com/', '_blank')" style="padding:8px 10px; font-size:12px; font-weight:700; border-radius:6px; border:1px solid #cbd5e1; background:#f8fafc; color:#334155; cursor:pointer;">✨ Gemini</button>
                 </div>
             </div>
@@ -12401,38 +12552,50 @@ window.addEventListener('pageshow', (event) => {
         }
         if (btn) {
             const orig = btn.innerText;
-            btn.innerText = '✓ 已複製！';
-            setTimeout(() => { btn.innerText = orig; }, 1800);
-        }
-    }
-
-    function copyNewsGenericPrompt(btn, text) {
-        navigator.clipboard.writeText(text).catch(() => {
-            const ta = document.createElement('textarea');
-            ta.value = text; document.body.appendChild(ta);
-            ta.select(); document.execCommand('copy');
-            document.body.removeChild(ta);
-        });
-        if (btn) {
-            const orig = btn.innerText;
-            btn.innerText = '✓ 已複製';
-            setTimeout(() => { btn.innerText = orig; }, 1800);
+            btn.innerText = '✅ 已成功複製！';
+            btn.style.background = '#16a34a';
+            setTimeout(() => {
+                btn.innerText = orig;
+                btn.style.background = '#0f172a';
+            }, 2000);
         }
     }
 
     function openNewsGeminiDirect() {
+        const text = buildCurrentNewsMainPrompt();
         copyNewsSlotMain(null);
         window.open('https://gemini.google.com/', '_blank');
     }
 
     function openNewsChatGPTDirect() {
-        const prompt = buildCurrentNewsMainPrompt();
-        window.open('https://chat.openai.com/?q=' + encodeURIComponent(prompt), '_blank');
+        const text = buildCurrentNewsMainPrompt();
+        copyNewsSlotMain(null);
+        window.open('https://chatgpt.com/', '_blank');
     }
 
     function openNewsGoogleDirect() {
         const cmd = buildCurrentGoogleSearchCmd();
-        window.open('https://www.google.com/search?q=' + encodeURIComponent(cmd), '_blank');
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(cmd)}`, '_blank');
+    }
+
+    async function copyNewsGenericPrompt(btn, text) {
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (_) {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+        if (btn) {
+            const orig = btn.innerText;
+            btn.innerText = '✅ 已複製';
+            btn.style.background = '#16a34a';
+            setTimeout(() => {
+                btn.innerText = orig;
+                btn.style.background = '#0f172a';
+            }, 1500);
+        }
     }
 
     function initNewsOpsTableStatic() {
