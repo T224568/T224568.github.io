@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>膝蓋最喜歡的 12 個強化動作 - 影音版教學</title>
+  <style>
+    :root {
+      --bg: #090e17;
+      --card: #131c2e;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --subtext: #94a3b8;
+      --emerald: #10b981;
+      --emerald-light: #34d399;
+      --gold: #fbbf24;
+      --cyan: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+    .container {
+      max-width: 1080px;
+      width: 100%;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      border: 1px solid var(--card-border);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.4rem 1.2rem;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--emerald-light);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--emerald-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    p.lead {
+      color: var(--subtext);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .video-wrapper {
+      background: #000;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 2rem;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .meta-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+    }
+    .meta-label {
+      color: var(--subtext);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .meta-value {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-1px);
+    }
+    .exercise-list {
+      background: rgba(0,0,0,0.25);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .list-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--emerald-light);
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .item-card {
+      background: rgba(255,255,255,0.03);
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    .item-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .tag-thigh { background: rgba(16,185,129,0.2); color: #34d399; }
+    .tag-glute { background: rgba(245,158,11,0.2); color: #fbbf24; }
+    .tag-calf { background: rgba(14,165,233,0.2); color: #38bdf8; }
+    .tag-stab { background: rgba(168,85,247,0.2); color: #c084fc; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">🛡️ 關節避震修復指南・全圖解影音教學</div>
+      <h1>膝蓋最喜歡的 12 個強化動作</h1>
+      <p class="lead">膝蓋不舒服，不要只休息！把周圍的肌肉練成天然護膝。從大腿前側、臀中肌到小腿足踝，零磨損動態保養全收錄。</p>
+    </header>
+
+    <div class="video-wrapper">
+      <video controls poster="膝蓋最喜歡的12個強化動作_cover.png" playsinline preload="metadata">
+        <source src="膝蓋最喜歡的12個強化動作.mp4" type="video/mp4">
+        您的瀏覽器不支援 HTML5 影片播放。
+      </video>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">影片規格</div>
+        <div class="meta-value">1920 × 1080 (16:9 Full HD)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">時長與動作</div>
+        <div class="meta-value">2 分 55 秒 (12 組動作)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">語音導讀</div>
+        <div class="meta-value">美佳台灣華語專業解說</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">自動配樂</div>
+        <div class="meta-value">Carefree 輕柔吉他演奏曲 (-20dB)</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="膝蓋最喜歡的12個強化動作.mp4" download>
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        下載完整 MP4 影片 (5.7 MB)
+      </a>
+      <a class="btn btn-secondary" href="knee_exercises.html">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        查看原始圖解手冊網頁
+      </a>
+    </div>
+
+    <div class="exercise-list">
+      <div class="list-title">📋 影片內含 12 個核心動作目錄</div>
+      <div class="cards-grid">
+        <div class="item-card"><span class="item-tag tag-thigh">練大腿</span><span>01. 仰躺直腿抬高</span></div>
+        <div class="item-card"><span class="item-tag tag-thigh">練大腿</span><span>02. 坐姿伸膝</span></div>
+        <div class="item-card"><span class="item-tag tag-thigh">練大腿</span><span>03. 椅子坐站</span></div>
+        <div class="item-card"><span class="item-tag tag-thigh">練大腿</span><span>04. 扶椅微蹲</span></div>
+        <div class="item-card"><span class="item-tag tag-thigh">練大腿</span><span>05. 低台階上踩</span></div>
+        <div class="item-card"><span class="item-tag tag-thigh">練大腿</span><span>06. 扶椅分腿蹲</span></div>
+        <div class="item-card"><span class="item-tag tag-glute">練臀部</span><span>07. 臀橋</span></div>
+        <div class="item-card"><span class="item-tag tag-glute">練臀部</span><span>08. 側躺抬腿</span></div>
+        <div class="item-card"><span class="item-tag tag-glute">練臀部</span><span>09. 站姿側抬腿</span></div>
+        <div class="item-card"><span class="item-tag tag-calf">練小腿</span><span>10. 雙腳提踵</span></div>
+        <div class="item-card"><span class="item-tag tag-calf">練小腿</span><span>11. 站姿勾腳尖</span></div>
+        <div class="item-card"><span class="item-tag tag-stab">練穩定</span><span>12. 扶椅單腳站</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

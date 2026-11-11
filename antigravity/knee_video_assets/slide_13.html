@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1920px; height: 1080px;
+  background: radial-gradient(circle at 70% 30%, #064e3b 0%, #0f172a 55%, #020617 100%);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Segoe UI", sans-serif;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 60px 80px; overflow: hidden;
+}
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 24px;
+}
+.brand { display: flex; align-items: center; gap: 16px; }
+.logo-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white; font-size: 28px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.brand-title { font-size: 28px; font-weight: 800; }
+main {
+  display: flex; flex-direction: column; justify-content: center; gap: 40px; flex: 1; padding: 40px 0;
+}
+.outro-title {
+  font-size: 52px; font-weight: 900; text-align: center;
+  background: linear-gradient(135deg, #ffffff 0%, #34d399 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.menus-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1500px; margin: 0 auto; width: 100%;
+}
+.menu-card {
+  background: rgba(255,255,255,0.04); border-radius: 24px; padding: 36px 40px;
+  border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+}
+.card-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+}
+.menu-tag {
+  padding: 8px 20px; border-radius: 30px; font-size: 20px; font-weight: 800;
+}
+.tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+.tag-blue { background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid #0ea5e9; }
+.menu-list {
+  display: flex; flex-direction: column; gap: 14px; font-size: 22px; color: #cbd5e1; line-height: 1.5;
+}
+.menu-item { display: flex; align-items: center; gap: 12px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
+.golden-tip {
+  background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 20px 30px; border-radius: 18px; text-align: center; font-size: 24px; font-weight: 700; color: #fbbf24;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+}
+footer {
+  border-top: 1px solid rgba(255,255,255,0.12); padding-top: 24px;
+  display: flex; justify-content: space-between; font-size: 18px; color: #94a3b8;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo-icon">膝</div>
+    <div class="brand-title">膝蓋最喜歡的 12 個強化動作</div>
+  </div>
+  <div style="font-size: 18px; color: #34d399; font-weight: 700;">每天 10 分鐘・動態修復不磨損</div>
+</header>
+<main>
+  <div class="outro-title">如何安排你的護膝菜單？</div>
+  <div class="menus-grid">
+    <div class="menu-card">
+      <div class="card-header">
+        <span class="menu-tag tag-green">🟢 易痠痛入門推薦</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-item"><span class="dot"></span>01. 仰躺直腿抬高（膝蓋零負擔，鎖定股四頭肌）</div>
+        <div class="menu-item"><span class="dot"></span>02. 坐姿伸膝（強健內側肌群，導正髕骨軌道）</div>
+        <div class="menu-item"><span class="dot"></span>07. 臀橋（激活臀大肌，矯正骨盆前傾）</div>
+        <div class="menu-item"><span class="dot"></span>10. 雙腳提踵（小腿肌力與足底彈性）</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="card-header">
+        <span class="menu-tag tag-blue">🔵 健行日常進階</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-item"><span class="dot" style="background: #38bdf8;"></span>03. 椅子坐站（強化下肢功能性起立力量）</div>
+        <div class="menu-item"><span class="dot" style="background: #38bdf8;"></span>05. 低台階上踩（模擬爬樓梯與無痛登高）</div>
+        <div class="menu-item"><span class="dot" style="background: #38bdf8;"></span>08. 側躺抬腿（鍛鍊臀中肌，防止膝蓋內扣）</div>
+        <div class="menu-item"><span class="dot" style="background: #38bdf8;"></span>12. 扶椅單腳站（深層本體感覺，防扭防跌）</div>
+      </div>
+    </div>
+  </div>
+  <div class="golden-tip">
+    💡 建議：每次挑選 3~4 個動作搭配練習，動作品質大於次數，膝關節微溫微痠即可！
+  </div>
+</main>
+<footer>
+  <div>膝關節避震修復指南</div>
+  <div>祝您雙腿穩健・步步從容</div>
+</footer>
+</body>
+</html>
