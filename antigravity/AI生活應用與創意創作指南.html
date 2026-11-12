@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 生活應用與創意創作實戰手冊</title>
+  <title>🧸 AI 專屬 3D 收藏公仔旗艦產生器</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
       --secondary: #7209b7;
       --accent: #f72585;
       --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-bg: rgba(255, 255, 255, 0.98);
       --card-border: rgba(255, 255, 255, 0.2);
       --text-main: #1e293b;
       --text-muted: #64748b;
@@ -39,23 +39,23 @@
     .hero {
       background: linear-gradient(135deg, #1e1b4b 0%, #3a0ca3 50%, #4361ee 100%);
       color: white;
-      padding: 60px 24px 50px;
+      padding: 50px 24px 40px;
       text-align: center;
       position: relative;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
     .hero h1 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 900;
       letter-spacing: -0.5px;
       margin-bottom: 12px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
     .hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
+      font-size: 1.05rem;
+      opacity: 0.92;
       max-width: 700px;
-      margin: 0 auto 20px;
+      margin: 0 auto 18px;
     }
     .badge-bar {
       display: flex;
@@ -66,18 +66,18 @@
     .badge {
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(8px);
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 999px;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
     /* Navigation */
     .nav-tabs {
-      max-width: 1000px;
-      margin: -24px auto 30px;
+      max-width: 960px;
+      margin: -20px auto 24px;
       padding: 0 20px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       overflow-x: auto;
       scrollbar-width: none;
       position: relative;
@@ -86,12 +86,12 @@
     .nav-tabs::-webkit-scrollbar { display: none; }
     .nav-tab {
       background: white;
-      padding: 10px 20px;
+      padding: 9px 18px;
       border-radius: 999px;
       text-decoration: none;
       color: #334155;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       white-space: nowrap;
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       transition: all 0.2s ease;
@@ -105,7 +105,7 @@
 
     /* Container */
     .container {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -114,8 +114,8 @@
     .section-card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 36px 32px;
-      margin-bottom: 36px;
+      padding: 32px 28px;
+      margin-bottom: 30px;
       box-shadow: var(--shadow);
       border: 1px solid var(--card-border);
       position: relative;
@@ -124,11 +124,11 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 900;
       color: #0f172a;
-      margin-bottom: 24px;
-      padding-bottom: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
       border-bottom: 3px solid #e2e8f0;
     }
     .section-icon {
@@ -144,13 +144,39 @@
       flex-shrink: 0;
     }
 
+    /* Steps */
+    .step-item {
+      margin-bottom: 30px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #0f172a;
+    }
+    .step-num {
+      background: #e2e8f0;
+      color: #334155;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
     /* Prompt Box */
     .prompt-box {
       background: var(--code-bg);
       border: 1px solid var(--code-border);
       border-radius: 12px;
-      padding: 20px;
-      margin: 16px 0 24px;
+      padding: 18px;
+      margin: 14px 0 20px;
       position: relative;
     }
     .prompt-header {
@@ -158,12 +184,13 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 6px;
     }
     .prompt-label {
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--primary);
-      text-transform: uppercase;
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
@@ -172,16 +199,14 @@
     .copy-btn {
       background: white;
       border: 1px solid #cbd5e1;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.85rem;
+      font-weight: 700;
       cursor: pointer;
       color: #334155;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.15s ease;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     .copy-btn:hover {
       background: var(--primary);
@@ -189,60 +214,12 @@
       border-color: var(--primary);
     }
     .prompt-content {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-family: inherit;
       font-size: 0.95rem;
-      line-height: 1.65;
       color: #1e293b;
       white-space: pre-wrap;
       word-break: break-word;
-    }
-
-    /* Steps & Grid */
-    .step-item {
-      margin-bottom: 24px;
-    }
-    .step-header {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .step-num {
-      background: #eff6ff;
-      color: var(--primary);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.88rem;
-      font-weight: 900;
-      flex-shrink: 0;
-    }
-
-    /* Formula Banner */
-    .formula-banner {
-      background: linear-gradient(135deg, #eef2ff 0%, #fae8ff 100%);
-      border: 2px dashed #a855f7;
-      border-radius: 14px;
-      padding: 20px 24px;
-      margin: 20px 0;
-      text-align: center;
-    }
-    .formula-title {
-      font-weight: 900;
-      color: #6b21a8;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
-    .formula-text {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1e1b4b;
+      line-height: 1.8;
     }
 
     /* Style Tag Grid */
@@ -250,7 +227,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 12px 0 18px;
+      margin: 10px 0;
     }
     .style-pill {
       background: #f1f5f9;
@@ -258,71 +235,57 @@
       padding: 6px 14px;
       border-radius: 8px;
       font-size: 0.88rem;
-      font-weight: 600;
-      border: 1px solid #e2e8f0;
-    }
-
-    /* Table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      font-size: 0.95rem;
-    }
-    th, td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    th {
-      background: #f8fafc;
-      color: #475569;
       font-weight: 700;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
     }
-
-    /* Safety Alert */
-    .alert-box {
-      background: #fef2f2;
-      border-left: 5px solid #ef4444;
-      padding: 16px 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-      color: #991b1b;
+    .style-pill:hover {
+      background: #e2e8f0;
+      color: #0f172a;
     }
-    .alert-title {
-      font-weight: 800;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .style-pill.active {
+      background: #4361ee !important;
+      color: #ffffff !important;
+      border-color: #3a0ca3 !important;
+      box-shadow: 0 2px 8px rgba(67,97,238,0.35);
+    }
+    #toy-director-tag-grid .style-pill.active {
+      background: #ea580c !important;
+      color: #ffffff !important;
+      border-color: #9a3412 !important;
+      box-shadow: 0 2px 8px rgba(234,88,12,0.35);
     }
 
     /* Toast */
     .toast {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #10b981;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
       color: white;
       padding: 12px 24px;
       border-radius: 999px;
+      font-size: 0.95rem;
       font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transform: translateY(100px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 100;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .toast.show {
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
 
     @media (max-width: 768px) {
-      .hero { padding: 40px 16px 36px; }
-      .hero h1 { font-size: 1.8rem; }
-      .section-card { padding: 24px 18px; }
-      .section-title { font-size: 1.3rem; }
+      .hero { padding: 36px 16px 28px; }
+      .hero h1 { font-size: 1.7rem; }
+      .section-card { padding: 20px 16px; }
+      .section-title { font-size: 1.25rem; }
     }
   </style>
 </head>
@@ -330,87 +293,170 @@
 
   <!-- Hero Header -->
   <header class="hero">
-    <h1>AI 生活應用與創意創作指南</h1>
-    <p>匯整 100 堂生活化實作精華：從個人公仔、旅遊打卡到時光回憶錄</p>
+    <h1>🧸 AI 專屬 3D 收藏公仔旗艦產生器</h1>
+    <p>測算命定稱號超能力 · 10 大熱門公仔風格 · 5 大作品角色企劃 · Gemini & CapCut 影音直出</p>
     <div class="badge-bar">
-      <span class="badge">💡 講師：黃子恬 理事長</span>
-      <span class="badge">🎨 100 張精選圖解</span>
-      <span class="badge">📱 ChatGPT · Gemini · CapCut 實戰</span>
+      <span class="badge">🔮 命運鑑定</span>
+      <span class="badge">💎 10 款風格抽籤</span>
+      <span class="badge">🎬 5 大作品企劃</span>
+      <span class="badge">🎥 Gemini Veo & CapCut 短片</span>
       <span class="badge">⚡ 一鍵複製提示詞</span>
     </div>
   </header>
 
   <!-- Sticky Navigator -->
   <nav class="nav-tabs">
-    <a href="#mod1" class="nav-tab">🧸 1. 個人公仔&短片</a>
-    <a href="#mod2" class="nav-tab">✈️ 2. AI 旅遊規劃</a>
-    <a href="#mod3" class="nav-tab">🎨 3. 塗鴉與世界名畫</a>
-    <a href="#mod4" class="nav-tab">⏳ 4. 時光寶盒回憶錄</a>
-    <a href="#mod5" class="nav-tab">✨ 5. 美圖形象改造</a>
-    <a href="#formula" class="nav-tab">🎯 四要素黃金公式</a>
+    <a href="#step1" class="nav-tab">🔮 1. 命運鑑定所</a>
+    <a href="#step2" class="nav-tab">💎 2. 10大公仔風格</a>
+    <a href="#step3" class="nav-tab">🎬 3. 5大作品選角</a>
+    <a href="#step4" class="nav-tab">🎥 4. Gemini/CapCut 影音短片</a>
   </nav>
 
   <main class="container">
 
-    <!-- Module 1 -->
-    <section id="mod1" class="section-card">
+    <!-- Single Unified Module: 3D Collectible Figurine & Video Generator -->
+    <section class="section-card">
       <div class="section-title">
         <div class="section-icon">🧸</div>
-        <div>單元一：如果我變成公仔！打造專屬 3D 收藏公仔與 CapCut 廣告短片</div>
+        <div>如果我變成公仔！打造專屬 3D 收藏公仔與 AI 影音廣告短片</div>
       </div>
-      <p style="color: #64748b; margin-bottom: 20px;">把自己的照片化身為百貨公司展示架上的限定版 3D 收藏公仔，並自動生成 5 秒動態玩具廣告短片！</p>
+      <p style="color: #64748b; margin-bottom: 24px; font-size: 1rem;">把自己的照片化身為百貨公司展示架上的限定版 3D 收藏公仔，並自動生成 5 秒電影級動態玩具廣告短片！</p>
 
-      <div class="step-item">
+      <!-- Step 1 -->
+      <div class="step-item" id="step1">
         <div class="step-header">
           <span class="step-num">1</span>
           <span>第一步：AI 公仔命運鑑定所（測算稱號與超能力）</span>
         </div>
-        <p style="font-size: 0.92rem; color: #475569;">先上傳個人照片給 ChatGPT，透過趣味互動算命測出三樣配件與隱藏超能力：</p>
+        <p style="font-size: 0.92rem; color: #475569;">先上傳個人照片給 ChatGPT 或 Gemini，透過趣味互動算命測出三樣配件與隱藏超能力：</p>
         <div class="prompt-box">
           <div class="prompt-header">
-            <span class="prompt-label">🤖 ChatGPT 命運鑑定所指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+            <span class="prompt-label">🤖 AI 命運鑑定所指令</span>
+            <div style="display:flex; gap:6px;">
+              <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+              <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding:6px 12px; font-size:0.85rem; font-weight:700; border-radius:8px; background:#1e1f20; color:#fff; text-decoration:none; display:inline-flex; align-items:center;">✨ 開啟 Gemini</a>
+            </div>
           </div>
           <div class="prompt-content">你現在是一位神準又幽默的算命師！
 請先看看我的照片，幫我看相，並且一次問我三個生活問題。
 等我回答完，就幫我算出我的專屬公仔稱號、隱藏超能力、三個命定配件，最後加上一句有趣的算命評語。
-先問我三題就好！</div>
+先問我三題就好，等我回答後再揭曉結果！</div>
         </div>
       </div>
 
-      <div class="step-item">
+      <!-- Step 2 -->
+      <div class="step-item" id="step2">
         <div class="step-header">
           <span class="step-num">2</span>
-          <span>第二步：生成百貨公司 3D 收藏公仔商品圖</span>
+          <span>第二步：生成百貨公司 3D 收藏公仔商品圖（10 款熱門風格）</span>
         </div>
-        <div class="tag-grid">
-          <span class="style-pill">🧸 毛線編織娃娃</span>
-          <span class="style-pill">🧱 積木人偶風 (LEGO)</span>
-          <span class="style-pill">💎 寫實收藏公仔</span>
-          <span class="style-pill">🍭 Q版黏土可愛公仔</span>
+
+        <!-- 🎲 10 款公仔風格控制列 (抽籤 / 點選 / 自訂輸入) -->
+        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 14px; padding: 16px; margin: 12px 0 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+            <div style="font-size: 0.95rem; font-weight: 800; color: #1e293b;">
+              🎲 10 款熱門公仔風格（點選或抽籤即刻帶入指令）：
+            </div>
+            <button type="button" onclick="randomizeToyStyleGuide()" style="background: linear-gradient(135deg, #4361ee, #7209b7); color: #fff; border: none; border-radius: 20px; padding: 6px 16px; font-size: 0.88rem; font-weight: 800; cursor: pointer; box-shadow: 0 3px 8px rgba(67,97,238,0.3); transition: transform 0.1s;">
+              🎲 隨機抽籤
+            </button>
+          </div>
+
+          <!-- 10 款風格標籤 -->
+          <div class="tag-grid" id="toy-style-tag-grid" style="margin: 0 0 12px 0;">
+            <span class="style-pill active" onclick="selectToyStyleGuide('💎 寫實精緻收藏公仔', this)">💎 寫實精緻收藏公仔</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🍭 Q版日系黏土可愛公仔', this)">🍭 Q版日系黏土可愛公仔</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🧱 積木人偶風 (LEGO)', this)">🧱 積木人偶風 (LEGO)</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🧸 毛線編織娃娃', this)">🧸 毛線編織娃娃</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🔮 盲盒潮流搪膠公仔', this)">🔮 盲盒潮流搪膠公仔</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🤖 復古發條錫鐵玩具', this)">🤖 復古發條錫鐵玩具</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🪵 北歐原木手工雕刻', this)">🪵 北歐原木手工雕刻</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🦸 美漫經典可動模型', this)">🦸 美漫經典可動模型</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🪟 像素復古點陣公仔', this)">🪟 像素復古點陣公仔</span>
+            <span class="style-pill" onclick="selectToyStyleGuide('🏺 陶瓷古典釉彩玩偶', this)">🏺 陶瓷古典釉彩玩偶</span>
+          </div>
+
+          <!-- 下拉選單與自訂輸入框 -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <select id="toy-style-select-guide" onchange="selectToyStyleGuide(this.value)" style="flex: 1; min-width: 180px; padding: 8px 12px; font-size: 0.9rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #cbd5e1; background: #fff; color: #1e293b;">
+              <option value="💎 寫實精緻收藏公仔">💎 寫實精緻收藏公仔（高級雕像塗裝）</option>
+              <option value="🍭 Q版日系黏土可愛公仔">🍭 Q版日系黏土可愛公仔（圓潤大頭手工陶）</option>
+              <option value="🧱 積木人偶風 (LEGO)">🧱 積木人偶風 (LEGO 樂高微型積木)</option>
+              <option value="🧸 毛線編織娃娃">🧸 毛線編織娃娃（Amigurumi 針織手感）</option>
+              <option value="🔮 盲盒潮流搪膠公仔">🔮 盲盒潮流搪膠公仔（Pop Mart 潮流軟膠）</option>
+              <option value="🤖 復古發條錫鐵玩具">🤖 復古發條錫鐵玩具（復古鐵皮機械發條）</option>
+              <option value="🪵 北歐原木手工雕刻">🪵 北歐原木手工雕刻（溫潤木紋匠人雕琢）</option>
+              <option value="🦸 美漫經典可動模型">🦸 美漫經典可動模型（Action Figure 關節可動）</option>
+              <option value="🪟 像素復古點陣公仔">🪟 像素復古點陣公仔（Retro 8-bit 像素風）</option>
+              <option value="🏺 陶瓷古典釉彩玩偶">🏺 陶瓷古典釉彩玩偶（青花瓷亮面釉彩瓷器）</option>
+            </select>
+            <input type="text" id="toy-style-input-guide" oninput="customToyStyleGuide(this.value)" placeholder="✏️ 或自由輸入自訂公仔風格（例：蒸氣龐克、賽博朋克...）" style="flex: 2; min-width: 220px; padding: 8px 12px; font-size: 0.9rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #4361ee; background: #fff; color: #1e293b;">
+          </div>
         </div>
+
         <div class="prompt-box">
           <div class="prompt-header">
             <span class="prompt-label">🖼️ 3D 收藏公仔商品圖指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+            <div style="display:flex; gap:6px;">
+              <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+              <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding:6px 12px; font-size:0.85rem; font-weight:700; border-radius:8px; background:#1e1f20; color:#fff; text-decoration:none; display:inline-flex; align-items:center;">✨ 開啟 Gemini</a>
+            </div>
           </div>
           <div class="prompt-content">現在請用我剛剛上傳的照片，還有你幫我算出來的「稱號」、「超能力」和「三個配件」，幫我做成一張像百貨公司販售的 3D 收藏公仔商品圖。
-風格選擇：【寫實收藏公仔 / Q版黏土可愛公仔 / 積木人偶風 / 毛線編織娃娃】。
+風格選擇：【<span id="toy-style-display-guide" style="color: #f72585; font-weight: 900; background: #fdf2f8; padding: 2px 8px; border-radius: 6px; border: 1px dashed #f472b6;">寫實精緻收藏公仔</span>】。
 要求：保留我的髮型、面部神韻與年齡特徵，整體看起來像真正精緻的玩具包裝盒，包含透明展示盒與配件陳列。</div>
         </div>
       </div>
 
-      <div class="step-item">
+      <!-- Step 3 -->
+      <div class="step-item" id="step3">
         <div class="step-header">
           <span class="step-num">3</span>
           <span>第三步：AI 選角導演（經典動漫/電影公仔企劃）</span>
         </div>
+
+        <!-- 🎲 5 款作品世界控制列 (抽籤 / 點選 / 自訂輸入) -->
+        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 14px; padding: 16px; margin: 12px 0 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+            <div style="font-size: 0.95rem; font-weight: 800; color: #1e293b;">
+              🎬 5 款經典角色世界（點選或抽籤即刻帶入指令）：
+            </div>
+            <button type="button" onclick="randomizeToyDirectorGuide()" style="background: linear-gradient(135deg, #ea580c, #c2410c); color: #fff; border: none; border-radius: 20px; padding: 6px 16px; font-size: 0.88rem; font-weight: 800; cursor: pointer; box-shadow: 0 3px 8px rgba(234,88,12,0.3); transition: transform 0.1s;">
+              🎲 隨機抽籤
+            </button>
+          </div>
+
+          <!-- 5 款世界標籤 -->
+          <div class="tag-grid" id="toy-director-tag-grid" style="margin: 0 0 12px 0;">
+            <span class="style-pill active" onclick="selectToyDirectorGuide('🎬 真人好萊塢與華語經典電影', this)">🎬 真人經典電影</span>
+            <span class="style-pill" onclick="selectToyDirectorGuide('🎌 日本熱血冒險動漫', this)">🎌 日本熱血動漫</span>
+            <span class="style-pill" onclick="selectToyDirectorGuide('🏰 迪士尼與皮克斯奇幻動畫', this)">🏰 迪士尼與皮克斯動畫</span>
+            <span class="style-pill" onclick="selectToyDirectorGuide('🎮 全球熱門經典電玩遊戲', this)">🎮 全球經典電玩世界</span>
+            <span class="style-pill" onclick="selectToyDirectorGuide('📚 東方武俠神話與科幻傳奇', this)">📚 東方武俠神話與傳奇</span>
+          </div>
+
+          <!-- 下拉選單與自訂輸入框 -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <select id="toy-director-select-guide" onchange="selectToyDirectorGuide(this.value)" style="flex: 1; min-width: 180px; padding: 8px 12px; font-size: 0.9rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #cbd5e1; background: #fff; color: #1e293b;">
+              <option value="🎬 真人好萊塢與華語經典電影">🎬 真人好萊塢與華語經典電影（漫威、哈利波特、星戰、星爺）</option>
+              <option value="🎌 日本熱血冒險動漫">🎌 日本熱血冒險動漫（海賊王、鬼滅之刃、灌籃高手、吉卜力）</option>
+              <option value="🏰 迪士尼與皮克斯奇幻動畫">🏰 迪士尼與皮克斯奇幻動畫（玩具總動員、怪獸電力公司、冰雪奇緣）</option>
+              <option value="🎮 全球熱門經典電玩遊戲">🎮 全球熱門經典電玩遊戲（瑪利歐、薩爾達傳說、寶可夢、艾爾登法環）</option>
+              <option value="📚 東方武俠神話與科幻傳奇">📚 東方武俠神話與科幻傳奇（三國演義、西遊記、金庸江湖、賽博龐克）</option>
+            </select>
+            <input type="text" id="toy-director-input-guide" oninput="customToyDirectorGuide(this.value)" placeholder="✏️ 或自由輸入作品世界（例：周星馳喜劇電影、星際大戰絕地武士...）" style="flex: 2; min-width: 220px; padding: 8px 12px; font-size: 0.9rem; font-weight: 700; border-radius: 8px; border: 1.5px solid #ea580c; background: #fff; color: #1e293b;">
+          </div>
+        </div>
+
         <div class="prompt-box">
           <div class="prompt-header">
             <span class="prompt-label">🎬 經典角色造型導演指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+            <div style="display:flex; gap:6px;">
+              <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+              <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding:6px 12px; font-size:0.85rem; font-weight:700; border-radius:8px; background:#1e1f20; color:#fff; text-decoration:none; display:inline-flex; align-items:center;">✨ 開啟 Gemini</a>
+            </div>
           </div>
-          <div class="prompt-content">請當我的公仔選角導演。我選的是【動畫/漫畫/真人電影】世界。
+          <div class="prompt-content">請當我的公仔選角導演。我選的是【<span id="toy-director-display-guide" style="color: #ea580c; font-weight: 900; background: #fff7ed; padding: 2px 8px; border-radius: 6px; border: 1px dashed #fdba74;">真人好萊塢與華語經典電影</span>】世界。
 請看我的照片，選一位適合我的感覺、大家也容易認出的經典角色。
 請告訴我這位角色是誰、哪部作品，幫我規劃公仔造型：
 最重要的角色特徵、服裝、髮型、三樣代表性配件、玩具包裝的設計，以及一句有趣為什麼適合我的標語。
@@ -418,257 +464,52 @@
         </div>
       </div>
 
-      <div class="step-item">
+      <!-- Step 4: Video Generation (Dual Engine: Gemini Veo & CapCut) -->
+      <div class="step-item" id="step4">
         <div class="step-header">
           <span class="step-num">4</span>
-          <span>第四步：CapCut 自動生成 5 秒公仔活化短影片</span>
+          <span>第四步：AI 影音動態短片生成（Google Gemini Veo 與 手機 CapCut 雙軌直出）</span>
         </div>
-        <p style="font-size: 0.92rem; color: #475569;">打開手機 <b>CapCut App</b> → 底部「<b>AI Lab</b>」→ 按「<b>+</b>」上傳公仔圖 → 語音或文字送出：</p>
-        <div class="prompt-box">
+        <p style="font-size: 0.92rem; color: #475569; margin-bottom: 12px;">公仔完成後，可直接透過 <b>Google Gemini (Veo 視訊模型)</b> 產生 5 秒電影廣告短片，或在手機上使用 <b>CapCut AI Lab</b> 一鍵生成！</p>
+
+        <!-- 雙軌引擎切換 Tab -->
+        <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+          <button type="button" id="tab-engine-gemini" onclick="switchVideoEngine('gemini')" style="flex: 1; padding: 10px 14px; font-size: 0.95rem; font-weight: 800; border-radius: 10px; border: 2px solid #4361ee; background: #4361ee; color: #fff; cursor: pointer; transition: all 0.2s;">
+            ✨ 引擎 A：Google Gemini (Veo) 影音生成
+          </button>
+          <button type="button" id="tab-engine-capcut" onclick="switchVideoEngine('capcut')" style="flex: 1; padding: 10px 14px; font-size: 0.95rem; font-weight: 800; border-radius: 10px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s;">
+            📱 引擎 B：手機 CapCut AI Lab 玩具廣告
+          </button>
+        </div>
+
+        <!-- 引擎 A: Gemini Veo -->
+        <div id="video-engine-gemini" class="prompt-box" style="border-left: 4px solid #4361ee;">
           <div class="prompt-header">
-            <span class="prompt-label">📱 CapCut 短片指令</span>
+            <span class="prompt-label">✨ Google Gemini Veo 影音動態指令（上傳公仔圖後送出）</span>
+            <div style="display:flex; gap:6px;">
+              <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
+              <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding:6px 14px; font-size:0.85rem; font-weight:700; border-radius:8px; background:#1e1f20; color:#fff; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">✨ 開啟 Gemini 貼上</a>
+            </div>
+          </div>
+          <div class="prompt-content">請將我上傳的這張 3D 收藏公仔商品圖，轉化為一段 5 秒鐘高質感的電影級玩具廣告動態短片！
+鏡頭運動：低角度緩慢平滑推進（Slow Dolly-in），聚光燈在壓克力透明包裝盒上呈現細膩光影流轉。
+動態表現：公仔以自然流暢的停格動畫（Stop-motion）姿態活過來，自信地拿起專屬配件展示，對著鏡頭微笑點頭致意。
+畫面質感：4K 電影感、24fps 逼真微動態模糊、真實玩具材質物理反光，整體充滿驚喜與歡樂！</div>
+        </div>
+
+        <!-- 引擎 B: CapCut -->
+        <div id="video-engine-capcut" class="prompt-box" style="display: none; border-left: 4px solid #0f172a;">
+          <div class="prompt-header">
+            <span class="prompt-label">📱 手機 CapCut 短片指令（手機打開 CapCut → AI Lab 上傳）</span>
             <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
           </div>
-          <div class="prompt-content">請把我上傳的公仔圖片，做成一支5秒鐘活潑、開心又有趣的玩具廣告！
+          <div class="prompt-content">請把我上傳的公仔圖片，做成一支 5 秒鐘活潑、開心又有趣的玩具廣告！
 請依照公仔的造型、角色和配件，自動設計一個符合主題的可愛小故事。
 讓公仔突然活過來，拿起自己的配件，做一件有趣的事，最後開心地向鏡頭亮相！
 請保留公仔原本的長相和特色，動作自然流暢，畫面充滿歡樂和驚喜！</div>
         </div>
       </div>
-    </section>
 
-    <!-- Module 2 -->
-    <section id="mod2" class="section-card">
-      <div class="section-title">
-        <div class="section-icon">✈️</div>
-        <div>單元二：AI 旅行規劃師與創意打卡美照</div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">1</span>
-          <span>AI 專屬旅行推薦卡（排版出圖）</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">🗺️ 旅行推薦卡指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請看我的照片，推薦 3 個適合我的旅行地點。
-不要只選常見的地方，世界各地都可以。
-請直接做成一張「AI 旅行推薦卡」，把畫面分成 3 個旅行地點：
-每個地點要有代表性美景、一句吸引人的推薦理由，以及推薦我的原因。
-排版要乾淨、大氣、有質感。</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">2</span>
-          <span>生成在地旅行打卡美照（神韻一致）</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">📸 景點打卡指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">我選擇去【日本京都】旅行。請從你剛才推薦的景點裡，為我選一個最適合拍照的景點。
-請用我的照片做一張旅行照。
-請保持我像本人，讓我站在這個景點前面。
-背景要清楚看得到當地景點特色，請做成像旅遊拍照的照片，感覺自然、真實、開心。</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">3</span>
-          <span>創意名產小人國照（趣味微縮穿梭）</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">🍡 巨大名產趣味指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請從你前面推薦的當地必買名產裡，選 3 種最有代表性的名產。
-請用我的照片做成 1 張有趣的旅遊圖片：
-把我變成超迷你人物，穿梭在巨大的名產、當地街道、商店、市場和代表性景色之間。
-重點要放在當地名產和地方特色。請保持我像本人，讓我看起來自然、開心。
-3 種名產或重要景點都要清楚出現在畫面裡，並標上正確名稱。
-整體請用【日式手繪風 / 黏土風 / 迪士尼風】，畫面豐富、有趣、有旅行感。</div>
-        </div>
-      </div>
-
-      <div class="alert-box">
-        <div class="alert-title">🛡️ 長輩與學員必學：AI 防詐三不原則</div>
-        <div>1. <b>先查證再轉帳</b>：聲音像、影片像，不代表人是真的！<br>
-        2. <b>不點連結不給驗證</b>：簡訊連結先懷疑，驗證碼誰都不給！<br>
-        3. <b>個資密碼不外流</b>：帳號密碼不亂送，遇到狀況打 165 查證！</div>
-      </div>
-    </section>
-
-    <!-- Module 3 -->
-    <section id="mod3" class="section-card">
-      <div class="section-title">
-        <div class="section-icon">🎨</div>
-        <div>單元三：藝術風格實驗室——塗鴉與照片變世界名畫</div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">1</span>
-          <span>手繪塗鴉變大師級名畫</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">🖌️ 塗鴉升級指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請將我提供的塗鴉轉換成【印象派 / 表現主義 / 立體派 / 水彩手繪】風格，保留原本主體的外觀與空間構圖，並呈現該風格的特色。
-畫面要有高級藝術感、細緻筆觸、豐富質感、專業光線、整體和諧，像世界級博物館中的典藏名畫。</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">2</span>
-          <span>照片變名畫（細節保留加強版）</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">🖼️ 人像轉名畫加強指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請將此照片轉變為【梵谷星夜 / 達文西蒙娜麗莎 / 戴珍珠耳環的少女】的名畫風格感覺。
-重點要求：
-1. 「嚴格保留原本人物的臉部特徵與神韻」
-2. 高解析度、細節清楚、藝術感強、光影自然，宛如真正的布面油畫原作。</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Module 4 -->
-    <section id="mod4" class="section-card">
-      <div class="section-title">
-        <div class="section-icon">⏳</div>
-        <div>單元四：時光寶盒——AI 趣味回憶錄</div>
-      </div>
-
-      <div class="formula-banner">
-        <div class="formula-title">🌟 AI 變身描述黃金公式</div>
-        <div class="formula-text">【想要誰】＋【什麼風格／變什麼／做什麼】＋【在哪裡】＋【什麼感覺】</div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">1</span>
-          <span>穿越時光：嬰兒時期（含金湯匙/抓週/包租婆）</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">👶 嬰兒回憶錄指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請把照片中這個人物變成她/他嬰兒時期的模樣。
-維持臉部特徵與神情，但看起來像剛出生幾個月到一歲的健康可愛嬰兒。
-背景在溫馨的家庭客廳中，【含著金湯匙 / 戴抓週虎頭帽 / 霸氣小包租婆造型】，畫面溫馨逗趣、真實自然。</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">2</span>
-          <span>青春無敵：青少年與學生時期</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">🎒 學生時期指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請把這張照片中的人物，變成高中/大學學生時期的樣子。
-在【校園操場 / 圖書館 / 教室課桌椅】，扮演【品學兼優班長 / 陽光運動健將】，正在【看書 / 跑步微笑】。
-畫面青春洋溢、自然明亮，宛如真實底片老照片。</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header">
-          <span class="step-num">3</span>
-          <span>夢想職業實現（歌手/作家/咖啡廳店長/名醫）</span>
-        </div>
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <span class="prompt-label">💼 理想職場指令</span>
-            <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-          </div>
-          <div class="prompt-content">請把照片中的人物變成一位【知名電視台幽默主持人 / 溫暖手沖咖啡館店長】。
-工作場景在【精緻攝影棚 / 綠意盎然木質咖啡廳】，身著專業有型的服裝。
-眼神自信專業、笑容溫暖親切，畫面真實生動。</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Module 5 -->
-    <section id="mod5" class="section-card">
-      <div class="section-title">
-        <div class="section-icon">✨</div>
-        <div>單元五：新一代美圖秀秀——老照片翻新與換景融入</div>
-      </div>
-      <p style="color: #64748b; margin-bottom: 16px;">利用雙圖上傳法：上傳自己的清晰人像 ＋ 上傳網路搜尋的夢想背景（如哈佛畢業典禮、世界奇景）：</p>
-
-      <div class="prompt-box">
-        <div class="prompt-header">
-          <span class="prompt-label">🎓 雙圖換景融合指令</span>
-          <button class="copy-btn" onclick="copyPrompt(this)">複製指令</button>
-        </div>
-        <div class="prompt-content">請將我上傳的人物照片，完美融合至第二張【目標背景，如：哈佛大學畢業典禮現場】中。
-人物身穿【學位袍 / 正式禮服】，臉部神情保持照片本人的真實特徵與微笑。
-調整整體的色溫、光線與陰影，使人物與環境毫無違和感，宛如現場親自拍攝的高清專業照片。</div>
-      </div>
-    </section>
-
-    <!-- Formula -->
-    <section id="formula" class="section-card">
-      <div class="section-title">
-        <div class="section-icon">🎯</div>
-        <div>核心心法：AI 提問四大要素（Role · Task · Goal · Constraint）</div>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>四要素</th>
-            <th>角色定義</th>
-            <th>範例：詢問旅遊建議</th>
-            <th>範例：長輩生日賀圖</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><b>角色 (Role)</b></td>
-            <td>設定 AI 的專家身份</td>
-            <td>「你是台灣第一名的導遊」</td>
-            <td>「你是有十年經驗的高級設計師」</td>
-          </tr>
-          <tr>
-            <td><b>任務 (Task)</b></td>
-            <td>明確要做什麼</td>
-            <td>「請推薦台灣一日遊地點」</td>
-            <td>「請產生一張生日祝福圖片」</td>
-          </tr>
-          <tr>
-            <td><b>目標 (Goal)</b></td>
-            <td>具體受眾與標準</td>
-            <td>「對象為60歲長者，交通方便少走路」</td>
-            <td>「對象為70歲長輩，溫暖喜氣不俗氣」</td>
-          </tr>
-          <tr>
-            <td><b>限制 (Constraints)</b></td>
-            <td>排除不想要的元素</td>
-            <td>「列出3個，須有坐著休息處與小吃」</td>
-            <td>「有蛋糕鮮花，不要英文，留白加字」</td>
-          </tr>
-        </tbody>
-      </table>
     </section>
 
   </main>
@@ -676,6 +517,158 @@
   <div id="toast" class="toast">已複製到剪貼簿！</div>
 
   <script>
+    // --- 第二步：10 款公仔風格互動邏輯 ---
+    const TOY_STYLES_10 = [
+      "寫實精緻收藏公仔",
+      "Q版日系黏土可愛公仔",
+      "積木人偶風 (LEGO)",
+      "毛線編織娃娃",
+      "盲盒潮流搪膠公仔",
+      "復古發條錫鐵玩具",
+      "北歐原木手工雕刻",
+      "美漫經典可動模型",
+      "像素復古點陣公仔",
+      "陶瓷古典釉彩玩偶"
+    ];
+
+    function selectToyStyleGuide(styleName, el) {
+      const cleanName = styleName.replace(/^[\\p{Emoji}\\s]+/u, '').trim();
+      const display = document.getElementById('toy-style-display-guide');
+      const input = document.getElementById('toy-style-input-guide');
+      const select = document.getElementById('toy-style-select-guide');
+
+      if (display) display.textContent = cleanName;
+      if (input) input.value = cleanName;
+
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.includes(cleanName)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      document.querySelectorAll('#toy-style-tag-grid .style-pill').forEach(pill => {
+        if (pill.textContent.includes(cleanName)) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+    }
+
+    function customToyStyleGuide(val) {
+      const display = document.getElementById('toy-style-display-guide');
+      const trimmed = val.trim();
+      if (display) display.textContent = trimmed || '寫實精緻收藏公仔';
+
+      document.querySelectorAll('#toy-style-tag-grid .style-pill').forEach(pill => {
+        if (trimmed && pill.textContent.includes(trimmed)) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+    }
+
+    function randomizeToyStyleGuide() {
+      const idx = Math.floor(Math.random() * TOY_STYLES_10.length);
+      const chosen = TOY_STYLES_10[idx];
+      selectToyStyleGuide(chosen);
+      showToast("🎲 已抽中公仔風格：" + chosen);
+    }
+
+    // --- 第三步：5 款作品世界選角導演互動邏輯 ---
+    const TOY_DIRECTORS_5 = [
+      "真人好萊塢與華語經典電影",
+      "日本熱血冒險動漫",
+      "迪士尼與皮克斯奇幻動畫",
+      "全球熱門經典電玩遊戲",
+      "東方武俠神話與科幻傳奇"
+    ];
+
+    function selectToyDirectorGuide(directorName, el) {
+      const cleanName = directorName.replace(/^[\\p{Emoji}\\s]+/u, '').trim();
+      const display = document.getElementById('toy-director-display-guide');
+      const input = document.getElementById('toy-director-input-guide');
+      const select = document.getElementById('toy-director-select-guide');
+
+      if (display) display.textContent = cleanName;
+      if (input) input.value = cleanName;
+
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.includes(cleanName)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      document.querySelectorAll('#toy-director-tag-grid .style-pill').forEach(pill => {
+        if (pill.textContent.includes(cleanName.substring(0, 4))) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+    }
+
+    function customToyDirectorGuide(val) {
+      const display = document.getElementById('toy-director-display-guide');
+      const trimmed = val.trim();
+      if (display) display.textContent = trimmed || '真人好萊塢與華語經典電影';
+
+      document.querySelectorAll('#toy-director-tag-grid .style-pill').forEach(pill => {
+        if (trimmed && pill.textContent.includes(trimmed)) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+    }
+
+    function randomizeToyDirectorGuide() {
+      const idx = Math.floor(Math.random() * TOY_DIRECTORS_5.length);
+      const chosen = TOY_DIRECTORS_5[idx];
+      selectToyDirectorGuide(chosen);
+      showToast("🎲 已抽中作品世界：" + chosen);
+    }
+
+    // --- 第四步：雙軌影音引擎切換 ---
+    function switchVideoEngine(engine) {
+      const btnGemini = document.getElementById('tab-engine-gemini');
+      const btnCapcut = document.getElementById('tab-engine-capcut');
+      const secGemini = document.getElementById('video-engine-gemini');
+      const secCapcut = document.getElementById('video-engine-capcut');
+
+      if (engine === 'gemini') {
+        btnGemini.style.borderColor = '#4361ee';
+        btnGemini.style.background = '#4361ee';
+        btnGemini.style.color = '#fff';
+
+        btnCapcut.style.borderColor = '#cbd5e1';
+        btnCapcut.style.background = '#f8fafc';
+        btnCapcut.style.color = '#475569';
+
+        secGemini.style.display = 'block';
+        secCapcut.style.display = 'none';
+      } else {
+        btnCapcut.style.borderColor = '#0f172a';
+        btnCapcut.style.background = '#0f172a';
+        btnCapcut.style.color = '#fff';
+
+        btnGemini.style.borderColor = '#cbd5e1';
+        btnGemini.style.background = '#f8fafc';
+        btnGemini.style.color = '#475569';
+
+        secCapcut.style.display = 'block';
+        secGemini.style.display = 'none';
+      }
+    }
+
+    // --- 複製與 Toast ---
     function copyPrompt(btn) {
       const box = btn.closest('.prompt-box');
       const text = box.querySelector('.prompt-content').innerText;
