@@ -3655,16 +3655,44 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; pointer-events: none; opacity: 0.6;">🔍</span>
             </div>
 
-            <!-- 分類標籤切換 -->
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-                <span style="font-size: 13px; font-weight: 800; color: #64748b; margin-right: 4px;">分類篩選：</span>
-                <button type="button" class="skill-cat-btn active" onclick="filterGeminiSkills('all', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #4f46e5; background: #4f46e5; color: #fff; cursor: pointer; transition: all 0.15s;">🌟 全部技能 (<span id="count-cat-all">40</span>)</button>
-                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('visual', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">📊 視覺圖卡・筆記</button>
-                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('video', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">🎬 影音轉字幕・剪輯</button>
-                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('finance', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">📈 財經金融・新聞</button>
-                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('church', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">⛪ 教會日常・靈修</button>
-                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('cloud', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">🛠️ 雲端同步・實用工具</button>
-                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('expert', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">🧠 AI 創意與專家助理</button>
+            <!-- 分類標籤切換（支援橫向流暢滑動） -->
+            <div style="margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <span style="font-size: 13px; font-weight: 800; color: #64748b;">分類篩選（可橫向滑動）：</span>
+                    <button type="button" onclick="resetGeminiSkillsFilter()" style="padding: 2px 8px; font-size: 11.5px; border-radius: 4px; border: 1px solid #cbd5e1; background: #fff; color: #475569; cursor: pointer;">重設篩選</button>
+                </div>
+                <div class="skill-cat-scroll-bar" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                    <button type="button" class="skill-cat-btn active" onclick="filterGeminiSkills('all', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #4f46e5; background: #4f46e5; color: #fff; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🌟 全部技能 (<span id="count-cat-all">40</span>)</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('visual', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">📊 視覺圖卡・筆記</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('video', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🎬 影音轉字幕・剪輯</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('finance', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">📈 財經金融・新聞</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('church', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">⛪ 教會日常・靈修</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('cloud', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🛠️ 雲端同步・實用工具</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('expert', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🧠 AI 創意與專家助理</button>
+                </div>
+            </div>
+
+            <!-- 🎯 本類別對應的所有 Skill 名稱快速選擇面板 -->
+            <div id="gemini-skills-sublist-panel" style="background: #f8fafc; border: 1.5px solid #c7d2fe; border-radius: 14px; padding: 14px 16px; margin-top: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                    <div style="font-size: 13.5px; font-weight: 800; color: #3730a3; display: flex; align-items: center; gap: 6px;">
+                        <span>🎯</span>
+                        <span id="gemini-skills-current-cat-title">本類別技能名稱清單（點擊即可快速選用）：</span>
+                    </div>
+                    <button type="button" id="btn-show-all-cat" onclick="showAllSkillsInCurrentCat()" style="padding: 4px 12px; font-size: 12px; font-weight: bold; border-radius: 6px; border: 1px solid #c7d2fe; background: #fff; color: #4338ca; cursor: pointer; transition: all 0.15s;">條列展開全部</button>
+                </div>
+
+                <!-- 下拉快速選單 -->
+                <div style="margin-bottom: 8px;">
+                    <select id="gemini-skill-quick-select" onchange="onQuickSelectSkill(this.value)" style="width: 100%; box-sizing: border-box; padding: 9px 12px; font-size: 13.5px; font-weight: bold; border-radius: 8px; border: 2px solid #4f46e5; background: #fff; color: #1e293b; outline: none;">
+                        <!-- 由 JS 動態生成 -->
+                    </select>
+                </div>
+
+                <!-- 該類別所有 Skill 名稱膠囊標籤 -->
+                <div id="gemini-skills-name-pills" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <!-- 由 JS 動態生成 -->
+                </div>
             </div>
         </div>
 
@@ -6986,8 +7014,20 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     let currentGeminiSkillCat = 'all';
     let currentGeminiSkillSearch = '';
+    let selectedSkillId = null;
+
+    const GEMINI_SKILL_CAT_NAMES = {
+        'all': '全部',
+        'visual': '視覺圖卡・筆記',
+        'video': '影音轉字幕・剪輯',
+        'finance': '財經金融・新聞',
+        'church': '教會日常・靈修',
+        'cloud': '雲端同步・實用工具',
+        'expert': 'AI 創意與專家助理'
+    };
 
     function initGeminiSkillsView() {
+        renderGeminiSkillsSublist();
         renderGeminiSkills();
         updateGeminiSkillCatCounts();
     }
@@ -6997,13 +7037,88 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         if (countAll) countAll.textContent = GEMINI_SKILLS_DATA.length;
     }
 
+    // 渲染對應類別底下的所有 Skill 名稱膠囊與下拉快選
+    function renderGeminiSkillsSublist() {
+        const titleEl = document.getElementById('gemini-skills-current-cat-title');
+        const selectEl = document.getElementById('gemini-skill-quick-select');
+        const pillsEl = document.getElementById('gemini-skills-name-pills');
+        if (!pillsEl || !selectEl) return;
+
+        const skillsInCat = GEMINI_SKILLS_DATA.filter(item => {
+            return currentGeminiSkillCat === 'all' || item.cat === currentGeminiSkillCat;
+        });
+
+        const catTitle = GEMINI_SKILL_CAT_NAMES[currentGeminiSkillCat] || '全部';
+        if (titleEl) {
+            titleEl.textContent = `【${catTitle}】所有技能名稱清單 (共 ${skillsInCat.length} 款，點擊即用)：`;
+        }
+
+        // 下拉選單
+        selectEl.innerHTML = `<option value="">👉 點此下拉快選【${catTitle}】專屬技能...</option>` +
+            skillsInCat.map(s => `<option value="${s.id}" ${selectedSkillId === s.id ? 'selected' : ''}>${s.icon} ${escapeHtml(s.name)} (${escapeHtml(s.alias)})</option>`).join('');
+
+        // 膠囊標籤
+        pillsEl.innerHTML = skillsInCat.map(s => {
+            const isActive = selectedSkillId === s.id;
+            const bg = isActive ? '#4f46e5' : '#ffffff';
+            const color = isActive ? '#ffffff' : '#1e293b';
+            const border = isActive ? '#3730a3' : '#cbd5e1';
+            const shadow = isActive ? '0 2px 8px rgba(79,70,229,0.35)' : 'none';
+            return `
+                <button type="button" class="skill-name-pill" onclick="selectSingleSkill('${s.id}')"
+                        style="background: ${bg}; color: ${color}; border: 1.5px solid ${border}; box-shadow: ${shadow}; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px;">
+                    <span>${s.icon}</span>
+                    <span>${escapeHtml(s.name)}</span>
+                </button>
+            `;
+        }).join('');
+    }
+
+    function selectSingleSkill(skillId) {
+        selectedSkillId = skillId;
+        const selectEl = document.getElementById('gemini-skill-quick-select');
+        if (selectEl) selectEl.value = skillId;
+
+        // 更新膠囊狀態
+        renderGeminiSkillsSublist();
+        // 重新渲染卡片（只顯示該技能卡片，極速直達）
+        renderGeminiSkills();
+
+        // 平滑滾動至卡片
+        setTimeout(() => {
+            const card = document.getElementById('skill-card-' + skillId);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                card.style.transform = 'scale(1.02)';
+                card.style.borderColor = '#4f46e5';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 1000);
+            }
+        }, 50);
+    }
+
+    function onQuickSelectSkill(skillId) {
+        if (!skillId) {
+            showAllSkillsInCurrentCat();
+        } else {
+            selectSingleSkill(skillId);
+        }
+    }
+
+    function showAllSkillsInCurrentCat() {
+        selectedSkillId = null;
+        renderGeminiSkillsSublist();
+        renderGeminiSkills();
+    }
+
     function renderGeminiSkills() {
         const grid = document.getElementById('gemini-skills-grid');
         const empty = document.getElementById('gemini-skills-empty');
         if (!grid) return;
 
         const q = (currentGeminiSkillSearch || '').toLowerCase().trim();
-        const filtered = GEMINI_SKILLS_DATA.filter(item => {
+        let filtered = GEMINI_SKILLS_DATA.filter(item => {
             const matchCat = currentGeminiSkillCat === 'all' || item.cat === currentGeminiSkillCat;
             if (!matchCat) return false;
             if (!q) return true;
@@ -7016,6 +7131,14 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             );
         });
 
+        // 若使用者點擊了特定的單一 Skill 快選標籤
+        if (selectedSkillId) {
+            const single = filtered.filter(item => item.id === selectedSkillId);
+            if (single.length > 0) {
+                filtered = single;
+            }
+        }
+
         if (filtered.length === 0) {
             grid.innerHTML = '';
             if (empty) empty.style.display = 'block';
@@ -7026,9 +7149,16 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         grid.innerHTML = filtered.map(item => {
             const escapedPrompt = escapeHtml(item.prompt);
+            const isSingleFocus = selectedSkillId === item.id;
             return `
-                <div class="gemini-skill-card" id="skill-card-${item.id}" style="background: #ffffff; border-radius: 14px; border: 1.5px solid #e2e8f0; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s;">
+                <div class="gemini-skill-card" id="skill-card-${item.id}" style="background: #ffffff; border-radius: 14px; border: ${isSingleFocus ? '2px solid #4f46e5' : '1.5px solid #e2e8f0'}; padding: 18px; box-shadow: ${isSingleFocus ? '0 6px 20px rgba(79,70,229,0.18)' : '0 4px 12px rgba(0,0,0,0.04)'}; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s;">
                     <div>
+                        ${isSingleFocus ? `
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #eef2ff; color: #4338ca; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; margin-bottom: 10px;">
+                                <span>🎯 目前已快速選中此技能</span>
+                                <button type="button" onclick="showAllSkillsInCurrentCat()" style="background: transparent; border: none; color: #4f46e5; font-weight: bold; cursor: pointer; text-decoration: underline; font-size: 11.5px;">顯示本類別全部</button>
+                            </div>
+                        ` : ''}
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px;">
                             <div style="display: flex; align-items: center; gap: 8px;">
                                 <span style="font-size: 26px; line-height: 1;">${item.icon}</span>
@@ -7060,6 +7190,8 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     function filterGeminiSkills(cat, btn) {
         currentGeminiSkillCat = cat;
+        selectedSkillId = null; // 切換大分類時重置單一選中
+
         document.querySelectorAll('.skill-cat-btn').forEach(b => {
             b.style.borderColor = '#cbd5e1';
             b.style.background = '#f8fafc';
@@ -7072,22 +7204,39 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             btn.style.color = '#fff';
             btn.classList.add('active');
         }
+
+        renderGeminiSkillsSublist();
         renderGeminiSkills();
     }
 
     function searchGeminiSkills(val) {
         currentGeminiSkillSearch = val || '';
+        selectedSkillId = null;
+        renderGeminiSkillsSublist();
         renderGeminiSkills();
     }
 
     function resetGeminiSkillsFilter() {
         currentGeminiSkillCat = 'all';
         currentGeminiSkillSearch = '';
+        selectedSkillId = null;
         const input = document.getElementById('gemini-skills-search-input');
         if (input) input.value = '';
         const allBtn = document.querySelector('.skill-cat-btn');
-        if (allBtn) filterGeminiSkills('all', allBtn);
-        else renderGeminiSkills();
+        if (allBtn) {
+            document.querySelectorAll('.skill-cat-btn').forEach(b => {
+                b.style.borderColor = '#cbd5e1';
+                b.style.background = '#f8fafc';
+                b.style.color = '#475569';
+                b.classList.remove('active');
+            });
+            allBtn.style.borderColor = '#4f46e5';
+            allBtn.style.background = '#4f46e5';
+            allBtn.style.color = '#fff';
+            allBtn.classList.add('active');
+        }
+        renderGeminiSkillsSublist();
+        renderGeminiSkills();
     }
 
     function copySkillPrompt(btn, encodedPrompt) {
