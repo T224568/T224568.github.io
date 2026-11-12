@@ -1342,6 +1342,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0288d1, #00acc1); color: #fff; font-size:16px;" onclick="openExternalView('view-travel-planner')">✈️ AI 旅行規劃師（5大實作單元）</button>
         <button class="home-course-btn home-wide-btn" style="background:#00bcd4;" onclick="openExternalView('view-9204')">AI 繪本故事創作器</button>
+        <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color:#fff; font-size:16px; font-weight:bold;" onclick="openExternalView('view-gemini-skills')">⚡ Google Gemini 專屬技能庫 (40款實戰指令)</button>
     </div>
     </details>
 
@@ -1359,6 +1360,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #ec4899 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(236,72,153,0.35); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer;">
         ✨ Gemini 影像創意旗艦館（20款爆款手冊・Nano Banana 12大實測・風格庫）
+    </button>
+
+    <button onclick="openExternalView('view-gemini-skills')"
+            class="home-full-width-btn"
+            style="background: linear-gradient(135deg, #3730a3 0%, #4f46e5 50%, #7c3aed 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(99,102,241,0.4); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        ⚡ Google Gemini 專屬技能庫（40款 Custom Skills 實戰指令・一鍵複製直達）
     </button>
 
     <hr class="home-course-divider" style="margin: 25px 0 20px;">
@@ -3616,6 +3623,63 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 人物特質：保留人物完全真實的身分、五官與身材比例，服裝融入細膩的未來科技感微光細節與俐落材質，呈現好萊塢科幻電影主角般的震撼視覺。不要添加文字。</div>
         </div>
 
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- ⚡ Google Gemini 專屬技能指令庫 (Custom Skills 旗艦館) -->
+<!-- ========================================== -->
+<div id="view-gemini-skills" class="view-section container" style="max-width: 980px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div class="gemini-skills-shell" style="padding-bottom: 40px;">
+        <!-- 頂部 Hero 橫幅 -->
+        <div style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 70%, #6366f1 100%); border-radius: 20px; padding: 28px 22px; text-align: center; color: #ffffff; box-shadow: 0 8px 30px rgba(67, 56, 202, 0.35); margin-bottom: 24px; position: relative; overflow: hidden;">
+            <div style="font-size: 42px; margin-bottom: 8px; line-height: 1;">⚡🧠🛠️🎨🎬</div>
+            <h1 style="font-size: 26px; font-weight: 900; margin: 4px 0 10px; color: #fff; letter-spacing: -0.5px;">Google Gemini 專屬技能指令庫</h1>
+            <p style="font-size: 14.5px; opacity: 0.95; line-height: 1.6; max-width: 760px; margin: 0 auto 16px;">
+                匯整 Antigravity / Google Gemini 40 款專屬客製化技能（Custom Skills）！涵蓋視覺圖卡、影音字幕、財經新聞、教會事工與雲端工具，<b>點擊一鍵複製指令，直接貼入 Gemini 或 Antigravity 立即執行！</b>
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" onclick="randomizeGeminiSkill()" style="padding: 10px 20px; font-size: 14px; font-weight: 800; border-radius: 999px; background: linear-gradient(135deg, #ec4899, #f43f5e); color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(244,63,94,0.35); transition: transform 0.1s;">🎲 隨機抽籤技能</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; font-size: 14px; font-weight: 800; border-radius: 999px; background: #0f172a; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.25);">✨ 開啟 Google Gemini</a>
+                <span id="gemini-skills-count-badge" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); padding: 10px 16px; border-radius: 999px; font-size: 13.5px; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">40 款全技能已就緒</span>
+            </div>
+        </div>
+
+        <!-- 即時搜尋與分類過濾列 -->
+        <div style="background: #ffffff; border-radius: 16px; padding: 18px 20px; border: 1.5px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.04); margin-bottom: 22px;">
+            <div style="position: relative; margin-bottom: 14px;">
+                <input type="text" id="gemini-skills-search-input" oninput="searchGeminiSkills(this.value)" placeholder="🔍 即時搜尋技能名稱、指令代號、用途關鍵字（例如：圖卡、字幕、財經、早安圖...）" style="width: 100%; box-sizing: border-box; padding: 12px 16px 12px 42px; font-size: 15px; font-weight: bold; border-radius: 10px; border: 2px solid #cbd5e1; background: #f8fafc; color: #1e293b; outline: none; transition: border-color 0.2s;">
+                <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; pointer-events: none; opacity: 0.6;">🔍</span>
+            </div>
+
+            <!-- 分類標籤切換 -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                <span style="font-size: 13px; font-weight: 800; color: #64748b; margin-right: 4px;">分類篩選：</span>
+                <button type="button" class="skill-cat-btn active" onclick="filterGeminiSkills('all', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #4f46e5; background: #4f46e5; color: #fff; cursor: pointer; transition: all 0.15s;">🌟 全部技能 (<span id="count-cat-all">40</span>)</button>
+                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('visual', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">📊 視覺圖卡・筆記</button>
+                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('video', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">🎬 影音轉字幕・剪輯</button>
+                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('finance', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">📈 財經金融・新聞</button>
+                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('church', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">⛪ 教會日常・靈修</button>
+                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('cloud', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">🛠️ 雲端同步・實用工具</button>
+                <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('expert', this)" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.15s;">🧠 AI 創意與專家助理</button>
+            </div>
+        </div>
+
+        <!-- 技能卡片網格 -->
+        <div id="gemini-skills-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 18px;">
+            <!-- 由 JS 動態渲染 -->
+        </div>
+
+        <!-- 無搜尋結果提示 -->
+        <div id="gemini-skills-empty" style="display: none; background: #fff; border-radius: 16px; padding: 40px 20px; text-align: center; border: 2px dashed #cbd5e1; margin-top: 10px;">
+            <div style="font-size: 40px; margin-bottom: 10px;">🔍🍃</div>
+            <div style="font-size: 17px; font-weight: bold; color: #475569;">查無符合的技能或指令</div>
+            <p style="font-size: 14px; color: #94a3b8; margin: 6px 0 16px;">請嘗試更換搜尋關鍵字，或點擊下方按鈕顯示全部技能。</p>
+            <button type="button" onclick="resetGeminiSkillsFilter()" style="padding: 8px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; background: #4f46e5; color: #fff; border: none; cursor: pointer;">顯示全部 40 款技能</button>
+        </div>
     </div>
 </div>
 
@@ -6474,6 +6538,625 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     }
 
     // =========================================================================
+    // ⚡ Google Gemini 專屬技能指令庫 (Custom Skills 旗艦館) 邏輯
+    // =========================================================================
+    const GEMINI_SKILLS_DATA = [
+        // 1. 📊 視覺圖卡・筆記與簡報
+        {
+            id: "d-infographic-notes",
+            icon: "📊",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "專業筆記與 9:16 資訊圖卡專家",
+            alias: "/d-infographic-notes (或 /d)",
+            desc: "深入分析文章或逐字稿，細列所有元素觀點與時間軸，提供獨立事實查核報告，並自動調用 Nano Banana 繪製 9:16 手機直式資訊圖卡。",
+            prompt: "/d-infographic-notes 請分析以下內容，列出詳細觀點與時間軸，並生成 9:16 繁體中文重點資訊圖卡：\n[請在此貼上文章內容、影片逐字稿或網址]"
+        },
+        {
+            id: "d-notes-line",
+            icon: "💬",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "LINE 專屬筆記與圖卡提示",
+            alias: "/d-notes-line",
+            desc: "專門針對 LINE 社群設計的條列式重點筆記，提煉核心金句與時間軸，並附帶最適合傳至 LINE 群組的繪圖提示詞。",
+            prompt: "/d-notes-line 請將以下內容轉為最適合 LINE 群組傳閱的條列筆記與資訊圖卡生成提示：\n[請在此貼上文字或逐字稿]"
+        },
+        {
+            id: "s-summary-designer",
+            icon: "📱",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "全能情報分析與 9:16 手機圖卡",
+            alias: "/s-summary-designer",
+            desc: "高強度商業情報分析、結構化趨勢拆解，直接產出排版精美、適合手機全螢幕瀏覽的 9:16 直式資訊圖卡設計。",
+            prompt: "/s-summary-designer 請針對此主題進行全能情報分析並設計手機直式 9:16 視覺資訊圖卡：\n[請在此貼上主題或長文]"
+        },
+        {
+            id: "chalkboard-infographic",
+            icon: "🖍️",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "暖心手繪黑板風圖卡",
+            alias: "/chalkboard-infographic",
+            desc: "將複雜學術或生活知識，轉化為溫馨手繪粉筆字風格黑板資訊圖卡，具備手繪線條與粉筆塗鴉質感。",
+            prompt: "/chalkboard-infographic 請將以下知識重點繪製為手繪黑板風格（Chalkboard）繁體中文資訊圖表：\n[請在此貼上內容]"
+        },
+        {
+            id: "ai-infographic-master",
+            icon: "📈",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "AI 資訊圖表架構大師",
+            alias: "/ai-infographic-master",
+            desc: "數據視覺化、流程圖、架構圖與商業心智圖 Prompt 專家，將雜亂文字整理為乾淨大氣的圖表架構。",
+            prompt: "/ai-infographic-master 請將此架構轉換為高質感的數據視覺化資訊圖表與流程圖 Prompt：\n[請在此貼上架構或數據]"
+        },
+        {
+            id: "summary-master",
+            icon: "🚀",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "總結高手 2.0 深度情報拆解",
+            alias: "/summary-master",
+            desc: "資深內容情報分析官與知識結構化專家，針對網頁、長文或 YouTube 進行教學等級結構化深度拆解。",
+            prompt: "/summary-master 請幫我深度解析這篇長文並產出具教學價值的結構化深度報告：\n[請在此貼上文章或網址]"
+        },
+        {
+            id: "tldr-summarizer",
+            icon: "🧠",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "極致 TL;DR 懶人包轉 Canva/PDF",
+            alias: "/tldr-summarizer",
+            desc: "提煉核心骨幹的極致 TL;DR 懶人包，並直接產出適配 Canva / PDF 的排版分頁文案與視覺設計規範。",
+            prompt: "/tldr-summarizer 請將以下內容提煉成極致 TL;DR 懶人包並提供 Canva 版型分頁規劃：\n[請在此貼上內容]"
+        },
+        {
+            id: "dashi-ppt",
+            icon: "📑",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "大師級 HTML / PPT 簡報製作",
+            alias: "/dashi-ppt",
+            desc: "快速將文字教材轉為可離線開啟、在瀏覽器互動編輯的精美 HTML 簡報，支援直接匯出 PPTX 與 PDF。",
+            prompt: "/dashi-ppt 請將以下教學內容製作為 10 頁大氣質感的互動式 HTML 簡報：\n[請在此貼上大綱或教材]"
+        },
+        {
+            id: "html-slide-builder",
+            icon: "🖥️",
+            cat: "visual",
+            catName: "視覺圖卡・筆記",
+            name: "Reveal.js 現代互動簡報建構器",
+            alias: "/html-slide-builder",
+            desc: "將教材轉化為現代 Reveal.js 互動投影片，具備鍵盤翻頁、全螢幕播放與一鍵自動部署發佈能力。",
+            prompt: "/html-slide-builder 請將這份演講大綱轉為現代 Reveal.js 互動投影片並發佈：\n[請在此貼上講稿大綱]"
+        },
+
+        // 2. 🎬 影音轉字幕・剪輯與短片
+        {
+            id: "srt-whiteboard-animation",
+            icon: "🎨",
+            cat: "video",
+            catName: "影音字幕・剪輯",
+            name: "字幕逐字稿轉暖米黃手繪白板動畫",
+            alias: "/srt-whiteboard-animation",
+            desc: "全自動解析 SRT 字幕或筆記分鏡，生成暖色調手繪線條插圖，搭配 YouTube 免版權音樂自動合成完整 MP4 白板手繪影片。",
+            prompt: "/srt-whiteboard-animation 請將這份字幕逐字稿進行分鏡，並製作成暖米黃紙張手繪白板動畫短片：\n[請在此貼上字幕文字或 SRT]"
+        },
+        {
+            id: "notebooklm-transcribe",
+            icon: "🎙️",
+            cat: "video",
+            catName: "影音字幕・剪輯",
+            name: "全域影音秒轉逐字稿與字幕引擎",
+            alias: "/notebooklm-transcribe",
+            desc: "字幕優先零等待管線，NotebookLM 與 Gemini 雙軌容錯，支援 YouTube、Reels、IG 與本地音訊秒級精準轉出繁體中文字幕。",
+            prompt: "/notebooklm-transcribe 請幫我將這支影音轉為精準帶時間軸的繁體中文字幕逐字稿：\n[請在此貼上 YouTube/IG 連結或本地音訊路徑]"
+        },
+        {
+            id: "download-ig",
+            icon: "📥",
+            cat: "video",
+            catName: "影音字幕・剪輯",
+            name: "Instagram & Threads 影音下載整理",
+            alias: "/download-ig",
+            desc: "下載指定 IG / Threads 貼文與高畫質影片，自動大標題命名並存放於 /Volumes/512G/IG/ 進行視覺整理。",
+            prompt: "/download-ig 請幫我下載並整理這篇 IG/Threads 的高畫質影音與文案：\n[請在此貼上貼文連結]"
+        },
+        {
+            id: "concat-video-editor",
+            icon: "🎞️",
+            cat: "video",
+            catName: "影音字幕・剪輯",
+            name: "Concat 本地影片自動化剪輯與字幕",
+            alias: "/concat-video-editor",
+            desc: "透過 Concat MCP Server 由 AI 操控時間軸、素材粗剪微調、本地 Whisper 字幕、花字標題、轉場特效與 4K 影片匯出。",
+            prompt: "/concat-video-editor 請幫我建立剪輯專案，匯入指定素材裁切前 30 秒並加上自動花字字幕與配樂"
+        },
+        {
+            id: "ffmpeg-skill",
+            icon: "🎛️",
+            cat: "video",
+            catName: "影音字幕・剪輯",
+            name: "FFmpeg 本地影音極速剪輯轉檔",
+            alias: "/ffmpeg-skill",
+            desc: "純本地快速切片、合軌、音畫同步、自動去除靜音、LUFS 音量標準化、9:16 短影音裁切直出。",
+            prompt: "/ffmpeg-skill 請幫我將指定影片裁切為 9:16 直式短影音格式並標準化聲音至 -14 LUFS"
+        },
+        {
+            id: "intro-music-sync",
+            icon: "🎵",
+            cat: "video",
+            catName: "影音字幕・剪輯",
+            name: "片頭音樂命名與雙雲端推播",
+            alias: "/intro-music-sync",
+            desc: "音訊重新命名、片頭配樂標籤化，自動同步上傳至 Cloudflare R2 (obs-media) 與 Dropbox 公開目錄。",
+            prompt: "/intro-music-sync 請將這首音樂處理為台語主日片頭音樂並同步上傳至雲端"
+        },
+
+        // 3. 📈 財經金融・新聞速報與投資顧問
+        {
+            id: "financial-news-bulletin",
+            icon: "📰",
+            cat: "finance",
+            catName: "財經金融・新聞",
+            name: "今日財經新聞速報（搜集+寄信）",
+            alias: "/financial-news-bulletin",
+            desc: "搜集美股台股、地緣政治、總經數據與科技巨頭動態，生成專業 Markdown 速報並自動發送/抄送信件至指定信箱。",
+            prompt: "/financial-news-bulletin 請搜集今日全球與台股最新財經重大動態，產出今日財經新聞速報並寄送郵件"
+        },
+        {
+            id: "stock-update",
+            icon: "💹",
+            cat: "finance",
+            catName: "財經金融・新聞",
+            name: "Yahoo 股市即時報價與庫存更新",
+            alias: "/stock-update",
+            desc: "自動爬取 Yahoo 股市即時最新報價，並同步計算損益更新至 Google 試算表「JK庫存」。",
+            prompt: "/stock-update 請立即更新目前庫存持股的最新股價與未實現損益試算表"
+        },
+        {
+            id: "taiwan-stock-advisor",
+            icon: "📊",
+            cat: "finance",
+            catName: "財經金融・新聞",
+            name: "台股專業交易顧問與籌碼技術分析",
+            alias: "/台股交易顧問-ai",
+            desc: "法人買賣超、三大法人籌碼面、主力融資券動向、K線型態與關鍵支撐壓力判斷。",
+            prompt: "/台股交易顧問-ai 請分析台積電(2330)與鴻海(2317)目前的法人籌碼動向與技術面關鍵轉折"
+        },
+
+        // 4. ⛪ 教會日常・靈修金句與主日行政
+        {
+            id: "morning-greeting",
+            icon: "🌅",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "每日 06:00 雙版本 9:16 直式早安圖",
+            alias: "/morning-greeting",
+            desc: "每天自動生成「一般版」與「信仰版」雙版本高質感早安圖（含日期、節氣、靈修金句與經文），Nano Banana 生圖並發送 LINE 群組。",
+            prompt: "/morning-greeting 請立即生成今日繁體中文「一般版」與「信仰版」雙版本 9:16 直式早安圖"
+        },
+        {
+            id: "daily-devotion",
+            icon: "📖",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "每日靈修與荒漠甘泉自動發佈",
+            alias: "/daily-devotion",
+            desc: "自動抓取今日荒漠甘泉、生成心靈默想短文、編譯 HTML 靜態頁面並同步推播至 GitHub Pages 靈修專區。",
+            prompt: "/daily-devotion 請產生今日每日靈修默想篇章並發佈至網頁"
+        },
+        {
+            id: "glorypress-devotion",
+            icon: "✍️",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "大光五書與新眼光靈修 Notion 同步",
+            alias: "/glorypress-devotion",
+            desc: "自動抓取大光五書與長老教會每日新眼光靈修經文，現場分析生成摘要感想，並寫入 Notion「每日靈修」資料庫。",
+            prompt: "/glorypress-devotion 請抓取今日大光五書與新眼光靈修經文，撰寫摘要感想並同步寫入 Notion"
+        },
+        {
+            id: "church-scripture-fetcher",
+            icon: "📜",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "巴克禮台漢本與和合本對照經文抓取",
+            alias: "/church-scripture-fetcher",
+            desc: "抓取聖經公會巴克禮台漢本（台語漢字）與中文和合本2010對照經文，清洗 HTML 並格式化輸出。",
+            prompt: "/church-scripture-fetcher 請幫我抓取約翰福音 3:16-18 的巴克禮台語漢字與中文和合本對照經文"
+        },
+        {
+            id: "church-pptx-lyrics-generator",
+            icon: "🎵",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "聖歌隊詩歌字幕 PPTX 自動產生器",
+            alias: "/church-pptx-lyrics-generator",
+            desc: "讀取純歌詞 txt 文字檔，辨識詞曲作與指揮司琴，每兩行自動分頁，套用南門教會十字架花卉邊框樣版直出 PPTX。",
+            prompt: "/church-pptx-lyrics-generator 請將這份聖歌隊詩歌歌詞文字檔轉換為南門教會主日簡報樣版的 PPTX 字幕檔"
+        },
+        {
+            id: "church-accounting",
+            icon: "📑",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "教會/團契財務收支報表 PDF 生成",
+            alias: "/church-accounting",
+            desc: "讀取會計 CSV 帳務資料，自動生成繁體中文會計傳票清冊、收支平衡表與科目明細三份標準 PDF 報表。",
+            prompt: "/church-accounting 請讀取本期帳務 CSV 資料並產生收支總表與科目明細繁體中文 PDF 報表"
+        },
+        {
+            id: "pctnm-video-updater",
+            icon: "📹",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "南門教會主日禮拜影片自動登錄試算表",
+            alias: "/pctnm-video-updater",
+            desc: "自動比對 YouTube 頻道最新主日禮拜影片，解析講題、講員、經文等 12 大欄位並增量更新至兩份 Google 試算表。",
+            prompt: "/pctnm-video-updater 請檢查南門教會最新主日禮拜影片並更新講道經文資料至 Google 試算表"
+        },
+        {
+            id: "church-weekly-background",
+            icon: "🖼️",
+            cat: "church",
+            catName: "教會日常・靈修",
+            name: "主日週報內容解析與直播片頭意象生圖",
+            alias: "/church-weekly-background",
+            desc: "爬取台北南門教會週報 PDF 內容，將講題經文代入直播片頭背景圖 AI 流程進行意象設計與 Nano Banana 生圖。",
+            prompt: "/church-weekly-background 請讀取本週主日週報並根據講題生成主日直播片頭意象背景圖"
+        },
+
+        // 5. 🛠️ 雲端同步・健行 GPX 與生活實用工具
+        {
+            id: "backup-512g",
+            icon: "🛡️",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "512G 隨身碟雙重鏡像備份與災難復原",
+            alias: "/backup-512g",
+            desc: "自動編譯 HTML 總目錄並發佈至 fun.jktai123.com，將 512G 所有逐字稿、設定、腳本增量鏡像備份至 1T_HDD_2 與 Google Drive。",
+            prompt: "/backup-512g 請立即執行 512G 隨身碟全方位增量備份與網頁總目錄編譯更新"
+        },
+        {
+            id: "upload-to-gdrive",
+            icon: "☁️",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "Google Drive 雲端資料夾一鍵上傳",
+            alias: "/upload-to-gdrive",
+            desc: "上傳圖片、截圖、GPX 軌跡或文件至指定 Google Drive，自動生成檢視連結與試算表 IMAGE 公式。",
+            prompt: "/upload-to-gdrive 請將此檔案上傳至 Google Drive 健行專用資料夾並產生直接下載分享連結"
+        },
+        {
+            id: "chingsong-gpx-sync",
+            icon: "🥾",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "青松健行隊 GPX 專屬同步與地圖導覽",
+            alias: "/chingsong-gpx-sync",
+            desc: "將 GPX 軌跡檔上傳專屬雲端，同步更新至青松健行隊地圖導覽 HTML 網頁，並自動生成 LINE 活動通告文案。",
+            prompt: "/chingsong-gpx-sync 請同步這份青松健行隊 GPX 軌跡檔至地圖導覽網頁並產出 LINE 週末揪團文案"
+        },
+        {
+            id: "short-url",
+            icon: "🔗",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "is.gd 短網址轉換與自動爬取中文標題",
+            alias: "/short-url",
+            desc: "將長網址縮短為 is.gd 短網址，並自動解析抓取網頁、影片或表單的真實繁體中文標題。",
+            prompt: "/short-url 請幫我將此長網址轉換為 is.gd 短網址並抓出該網頁的真實中文標題：\n[請在此貼上長網址]"
+        },
+        {
+            id: "send-email-attachment",
+            icon: "✉️",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "macOS Mail 實體多附件郵件自動發送",
+            alias: "/send-email-attachment",
+            desc: "透過原生 Mail.app 自動附掛多張圖片、PDF 或文件，支援 To、CC、BCC 密件副本與寄件防漏驗證。",
+            prompt: "/send-email-attachment 請發送電子郵件至 jktai123@gmail.com，主旨為「今日進度報告」，並附加指定檔案"
+        },
+        {
+            id: "sport500-auto-login",
+            icon: "🏃",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "運動部「揮汗有禮 500」進度自動查詢",
+            alias: "/sport500-auto-login",
+            desc: "自動登入 500.gov.tw 網站，即時查詢個人任務審核進度與各週運動紀錄狀態。",
+            prompt: "/sport500-auto-login 請自動登入運動部 500.gov.tw 並查詢我目前各週運動任務審核進度"
+        },
+        {
+            id: "update-shihmei-schedule",
+            icon: "🦷",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "蒔美牙醫門診表自動更新",
+            alias: "/update-shihmei-schedule",
+            desc: "抓取蒔美牙醫五間分院（汐止、金山、板橋、三重、北大）最新醫師門診表並更新至 Google 試算表。",
+            prompt: "/update-shihmei-schedule 請抓取蒔美牙醫各分院本月最新門診班表並更新至試算表"
+        },
+        {
+            id: "youtube-playlist-to-gsheet",
+            icon: "▶️",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "YouTube 播放清單全匯出至 Google Sheet",
+            alias: "/youtube-playlist-to-gsheet",
+            desc: "抓取任何 YouTube 頻道或播放清單的所有影片清單（片名、時長、觀看數、連結、日期）並匯入 Google 試算表。",
+            prompt: "/youtube-playlist-to-gsheet 請抓取此 YouTube 播放清單的所有影片資訊並寫入 Google 試算表：\n[請在此貼上播放清單網址]"
+        },
+        {
+            id: "safe-shutdown",
+            icon: "🛑",
+            cat: "cloud",
+            catName: "雲端同步・工具",
+            name: "macOS 安全關機與快取清理工具",
+            alias: "/safe-shutdown",
+            desc: "執行 512G 雙重備份、檢查背景關鍵任務、flush 磁碟快取、記錄關機時間戳並呼叫 macOS 優雅關機。",
+            prompt: "/safe-shutdown 請執行 512G 備份與磁碟快取同步後優雅關機"
+        },
+
+        // 6. 🧠 AI 創意與專家助理
+        {
+            id: "prompt-alchemist",
+            icon: "🧪",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "指令煉金術士（Prompt 結構化升級）",
+            alias: "/prompt-alchemist",
+            desc: "將口語隨意的想法轉化為包含角色、背景情境、限制條件、輸出規格的頂尖專家級高級指令。",
+            prompt: "/prompt-alchemist 請幫我將以下口語想法升級為專家級結構化提示詞：\n[請在此貼上原始構想]"
+        },
+        {
+            id: "image-expert",
+            icon: "🎨",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "Nano Banana 圖像專家指令工程",
+            alias: "/image-expert",
+            desc: "精通 Google Nano Banana 生圖語法，精確控制光影、構圖景深、材質細節與大師氛圍感。",
+            prompt: "/image-expert 請幫我設計一張 Google Nano Banana 生圖提示詞：\n[請在此描述想要生成的畫面]"
+        },
+        {
+            id: "manga-alchemy",
+            icon: "📖",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "漫畫分鏡煉金術",
+            alias: "/manga-alchemy",
+            desc: "將故事大綱或生活對話改編為專業漫畫分鏡腳本，包含鏡頭景別、對白框、人物神情與動作指引。",
+            prompt: "/manga-alchemy 請將這段情節改編為 4 頁精彩的黑白漫畫分鏡腳本：\n[請在此貼上故事大綱或對話]"
+        },
+        {
+            id: "japanese-travel-designer",
+            icon: "🗾",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "日本深度行程規劃設計師",
+            alias: "/japanese-travel-designer",
+            desc: "規劃精確到每小時交通時刻、私房美食、拍照最佳時刻與下雨備案的日本完美自由行。",
+            prompt: "/japanese-travel-designer 請為我規劃 5 天 4 夜日本深度自由行行程規劃（包含交通與美食推薦）"
+        },
+        {
+            id: "last30days",
+            icon: "🔥",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "近 30 天網路熱門話題趨勢搜尋",
+            alias: "/last30days",
+            desc: "專門聚焦近 30 天內社群、論壇與科技媒體的最新爆款話題與技術進展。",
+            prompt: "/last30days 請搜尋近 30 天內網路上關於此主題的最新討論與熱門趨勢：\n[請在此輸入主題]"
+        },
+        {
+            id: "smart-search",
+            icon: "🔍",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "全球多引擎智能搜尋路由",
+            alias: "/smart-search",
+            desc: "自動路由最佳搜尋引擎，進行多方權威資料來源交叉比對與精準資料探勘。",
+            prompt: "/smart-search 請跨多引擎精準檢索關於此專業主題的最新權威資訊：\n[請在此輸入搜尋關鍵字]"
+        },
+        {
+            id: "conversation-summarizer",
+            icon: "📋",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "歷史會話智能梳理與真鏈接產出",
+            alias: "/conversation-summarizer",
+            desc: "總結特定時間內的所有對話記錄，提煉決策與產出，並提供 100% 可點擊直達之真實會話鏈接。",
+            prompt: "/conversation-summarizer 請幫我總結今天的所有對話記錄並產出真實直達連結"
+        },
+        {
+            id: "past",
+            icon: "📜",
+            cat: "expert",
+            catName: "AI 創意・專家",
+            name: "歷史對話清單快速直達",
+            alias: "/past",
+            desc: "快速列出最新 N 個歷史對話清單，並自動生成在 Antigravity IDE 中可直接點擊開啟的直達連結。",
+            prompt: "/past 10"
+        }
+    ];
+
+    let currentGeminiSkillCat = 'all';
+    let currentGeminiSkillSearch = '';
+
+    function initGeminiSkillsView() {
+        renderGeminiSkills();
+        updateGeminiSkillCatCounts();
+    }
+
+    function updateGeminiSkillCatCounts() {
+        const countAll = document.getElementById('count-cat-all');
+        if (countAll) countAll.textContent = GEMINI_SKILLS_DATA.length;
+    }
+
+    function renderGeminiSkills() {
+        const grid = document.getElementById('gemini-skills-grid');
+        const empty = document.getElementById('gemini-skills-empty');
+        if (!grid) return;
+
+        const q = (currentGeminiSkillSearch || '').toLowerCase().trim();
+        const filtered = GEMINI_SKILLS_DATA.filter(item => {
+            const matchCat = currentGeminiSkillCat === 'all' || item.cat === currentGeminiSkillCat;
+            if (!matchCat) return false;
+            if (!q) return true;
+            return (
+                item.name.toLowerCase().includes(q) ||
+                item.alias.toLowerCase().includes(q) ||
+                item.desc.toLowerCase().includes(q) ||
+                item.prompt.toLowerCase().includes(q) ||
+                item.catName.toLowerCase().includes(q)
+            );
+        });
+
+        if (filtered.length === 0) {
+            grid.innerHTML = '';
+            if (empty) empty.style.display = 'block';
+            return;
+        }
+
+        if (empty) empty.style.display = 'none';
+
+        grid.innerHTML = filtered.map(item => {
+            const escapedPrompt = escapeHtml(item.prompt);
+            return `
+                <div class="gemini-skill-card" id="skill-card-${item.id}" style="background: #ffffff; border-radius: 14px; border: 1.5px solid #e2e8f0; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 26px; line-height: 1;">${item.icon}</span>
+                                <div>
+                                    <h3 style="margin: 0; font-size: 16px; font-weight: 900; color: #1e293b; line-height: 1.3;">${escapeHtml(item.name)}</h3>
+                                    <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #4f46e5; background: #eef2ff; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 2px;">${escapeHtml(item.alias)}</span>
+                                </div>
+                            </div>
+                            <span style="font-size: 11.5px; font-weight: bold; color: #64748b; background: #f1f5f9; padding: 3px 8px; border-radius: 999px; white-space: nowrap;">${escapeHtml(item.catName)}</span>
+                        </div>
+                        <p style="font-size: 13.5px; color: #475569; line-height: 1.55; margin: 8px 0 12px 0;">${escapeHtml(item.desc)}</p>
+                    </div>
+
+                    <div>
+                        <div style="font-size: 12px; font-weight: bold; color: #334155; margin-bottom: 4px; display: flex; justify-content: space-between;">
+                            <span>對應指令 / Prompt 範本：</span>
+                        </div>
+                        <div class="skill-prompt-box" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.5; color: #0f172a; white-space: pre-wrap; word-break: break-all; margin-bottom: 12px; max-height: 140px; overflow-y: auto; font-family: monospace;">${escapedPrompt}</div>
+                        
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" class="copy-skill-btn" onclick="copySkillPrompt(this, \`${encodeURIComponent(item.prompt)}\`)" style="flex: 1; padding: 9px 12px; font-size: 13.5px; font-weight: bold; border-radius: 8px; border: none; background: #4f46e5; color: #fff; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 6px rgba(79,70,229,0.3);">📋 複製指令</button>
+                            <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding: 9px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1px solid #cbd5e1; background: #1e1b4b; color: #fff; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;">✨ Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function filterGeminiSkills(cat, btn) {
+        currentGeminiSkillCat = cat;
+        document.querySelectorAll('.skill-cat-btn').forEach(b => {
+            b.style.borderColor = '#cbd5e1';
+            b.style.background = '#f8fafc';
+            b.style.color = '#475569';
+            b.classList.remove('active');
+        });
+        if (btn) {
+            btn.style.borderColor = '#4f46e5';
+            btn.style.background = '#4f46e5';
+            btn.style.color = '#fff';
+            btn.classList.add('active');
+        }
+        renderGeminiSkills();
+    }
+
+    function searchGeminiSkills(val) {
+        currentGeminiSkillSearch = val || '';
+        renderGeminiSkills();
+    }
+
+    function resetGeminiSkillsFilter() {
+        currentGeminiSkillCat = 'all';
+        currentGeminiSkillSearch = '';
+        const input = document.getElementById('gemini-skills-search-input');
+        if (input) input.value = '';
+        const allBtn = document.querySelector('.skill-cat-btn');
+        if (allBtn) filterGeminiSkills('all', allBtn);
+        else renderGeminiSkills();
+    }
+
+    function copySkillPrompt(btn, encodedPrompt) {
+        const text = decodeURIComponent(encodedPrompt);
+        const done = () => {
+            const oldText = btn.innerHTML;
+            btn.innerHTML = '已複製 ✓';
+            btn.style.background = '#10b981';
+            showToast('已複製技能指令！可直接貼給 Gemini 執行');
+            setTimeout(() => {
+                btn.innerHTML = oldText;
+                btn.style.background = '#4f46e5';
+            }, 2200);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => {
+                fallbackCopyTextToClipboard(text);
+                done();
+            });
+        } else {
+            fallbackCopyTextToClipboard(text);
+            done();
+        }
+    }
+
+    function randomizeGeminiSkill() {
+        if (!GEMINI_SKILLS_DATA || GEMINI_SKILLS_DATA.length === 0) return;
+        const randomItem = GEMINI_SKILLS_DATA[Math.floor(Math.random() * GEMINI_SKILLS_DATA.length)];
+        
+        currentGeminiSkillCat = 'all';
+        currentGeminiSkillSearch = '';
+        const input = document.getElementById('gemini-skills-search-input');
+        if (input) input.value = '';
+        
+        document.querySelectorAll('.skill-cat-btn').forEach((b, idx) => {
+            if (idx === 0) {
+                b.style.borderColor = '#4f46e5';
+                b.style.background = '#4f46e5';
+                b.style.color = '#fff';
+                b.classList.add('active');
+            } else {
+                b.style.borderColor = '#cbd5e1';
+                b.style.background = '#f8fafc';
+                b.style.color = '#475569';
+                b.classList.remove('active');
+            }
+        });
+        
+        renderGeminiSkills();
+        
+        setTimeout(() => {
+            const card = document.getElementById('skill-card-' + randomItem.id);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.transform = 'scale(1.04)';
+                card.style.borderColor = '#ec4899';
+                card.style.boxShadow = '0 0 20px rgba(236,72,153,0.4)';
+                showToast('🎲 抽中技能：' + randomItem.name);
+                setTimeout(() => {
+                    card.style.transform = '';
+                    card.style.borderColor = '#e2e8f0';
+                    card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.04)';
+                }, 2500);
+            }
+        }, 80);
+    }
+
+    // =========================================================================
     // 🌟 AI 專業相片修圖大師邏輯 (4大IG神級攻略精華整合)
     // =========================================================================
     const RETOUCH_CATEGORIES = [
@@ -8128,6 +8811,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         } else if (viewId === 'view-travel-planner') {
             switchView('view-travel-planner');
             initializeTravelPlanner();
+        } else if (viewId === 'view-gemini-skills') {
+            switchView('view-gemini-skills');
+            initGeminiSkillsView();
         } else
         if (viewId === 'view-wall') {
             switchView('view-wall');
