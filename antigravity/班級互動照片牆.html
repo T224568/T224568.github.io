@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>青松健行隊 AI 互動照片牆</title>
-<meta name="description" content="青松健行隊活動與 AI 創作專屬互動照片牆：內建 9 大 AI 創作指令抽籤機、繪本 PDF 合成、全班即時上傳照片牆、人氣投票與 AI 評審頒獎系統。">
+<title>AI 互動創作平台</title>
+<meta name="description" content="AI 創作專屬互動照片牆：內建 9 大 AI 創作指令抽籤機、繪本 PDF 合成、全班即時上傳照片牆、人氣投票與 AI 評審頒獎系統。">
 <!-- 🌟 引入純前端 PDF 合成套件 -->
 <style>
 body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; text-align: center; background: #f4f4f9; padding: 20px 15px; padding-top: max(20px, env(safe-area-inset-top)); margin: 0; }
@@ -1317,12 +1317,18 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <div id="view-upload" class="view-section active-view container">
     <!-- 🌟 首頁頂部歡迎與隊伍標題（防平板/手機頂部切邊） -->
     <div style="margin-top: 5px; margin-bottom: 18px; padding: 4px 10px;">
-        <h1 style="font-size: 23px; color: #1e293b; margin: 0 0 6px 0; font-weight: 900; letter-spacing: 0.5px;">🌲 青松健行隊 AI 互動創作平台</h1>
+        <h1 style="font-size: 23px; color: #1e293b; margin: 0 0 6px 0; font-weight: 900; letter-spacing: 0.5px;">🎨 AI 互動創作平台</h1>
         <div style="font-size: 14px; font-weight: bold; color: #0288d1;">點選下方功能直接創作，完成後往下滑即可上傳作品投票！</div>
     </div>
 
     <!-- 🌟 首頁課程按鈕（置頂優先） -->
-    <div class="home-course-grid" style="margin-top: 6px;">
+    <!-- 🌟 歷屆主題創作精選（折疊收攏，釋放首頁空間） -->
+    <details id="details-legacy-courses" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 12px 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+        <summary style="font-size: 15px; font-weight: 900; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;">
+            <span>🎓 AI 主題創作專區（漫畫・公仔・繪本・修圖等 10 大精選）</span>
+            <span style="font-size: 12px; color: #0284c7; background: #e0f2fe; padding: 3px 8px; border-radius: 12px;">點擊展開 ▾</span>
+        </summary>
+        <div class="home-course-grid" style="margin-top: 6px;">
         <button class="travel-home-btn" onclick="openExternalView('view-travel-comic')">AI 旅行四格漫畫</button>
         <button class="figurine-home-btn" onclick="openExternalView('view-figurine-story')">AI 公仔系列</button>
         <button class="sticker-video-home-btn" onclick="openExternalView('view-sticker-video')">AI 貼圖影片指令</button>
@@ -1337,6 +1343,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0288d1, #00acc1); color: #fff; font-size:17px; margin-top:2px;" onclick="openExternalView('view-travel-planner')">✈️ AI 旅行規劃師與生活創意創作指南</button>
         <button class="home-course-btn home-wide-btn" style="background:#00bcd4;" onclick="openExternalView('view-9204')">AI 繪本故事創作器</button>
     </div>
+    </details>
 
     <!-- 📍 點我上課打卡（已移除） -->
 
@@ -1348,24 +1355,18 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #09203f 0%, #1e3a8a 50%, #0284c7 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(2,132,199,0.35); font-size:17px; margin-bottom: 10px;">📊 19 組視覺學習神級代碼：AI 視覺圖表拆解複雜知識</button>
 
-<button onclick="openExternalView('view-nano-banana')"
-            class="home-full-width-btn"
-            style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(217,119,6,0.35); font-size:17px; margin-bottom: 10px;">🍌 Google Gemini Nano Banana：12 大實測指令</button>
-
 <button onclick="openExternalView('view-gemini-prompts')"
             class="home-full-width-btn"
-            style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%); color:#ffffff; box-shadow: 0 4px 12px rgba(67,56,202,0.35); font-size:17px; margin-bottom: 10px;">✨ 20 款爆款 Gemini 影像指令速查</button>
-
-    <button onclick="openExternalView('view-styles')"
-            class="home-full-width-btn"
-            style="background:#e65100;">🔥 熱門畫風風格指令</button>
+            style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #ec4899 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(236,72,153,0.35); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer;">
+        ✨ Gemini 影像創意旗艦館（20款爆款手冊・Nano Banana 12大實測・風格庫）
+    </button>
 
     <hr class="home-course-divider" style="margin: 25px 0 20px;">
 
     <!-- 🌟 下半部：上傳你的作品與觀看照片牆 -->
     <h2 style="margin-top:10px; margin-bottom:4px;">📷 上傳你的作品</h2>
 
-    <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前隊伍：青松健行隊</div>
+    <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前班級：AI 創作班</div>
     <input type="text" id="studentName" placeholder="輸入姓名 (系統會自動記憶)" style="margin-top:2px;">
     <input type="file" id="photoInput" accept="image/*">
     <div id="line-external-browser-banner" style="display:none; margin:2px 0 5px; font-size:13px; line-height:1.35; color:#6d4c41; white-space:nowrap;">
@@ -1486,6 +1487,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <button type="button" onclick="openNewsGoogleDirect()" style="background:#2563eb; color:#fff; border:none; border-radius:10px; padding:12px 18px; font-size:14px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px;">🔍 Google 搜尋</button>
         </div>
         <div id="news-main-copy-status" style="font-size:13px; font-weight:800; color:#16a34a; text-align:center; margin-top:8px;"></div>
+        <button type="button" onclick="sendNewsToVisualCodes()" style="background:linear-gradient(135deg, #0284c7, #2563eb); color:#fff; border:none; border-radius:12px; padding:12px 18px; font-size:14.5px; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 12px rgba(37,99,235,0.25); width:100%; margin-top:10px;">
+            📊 一鍵帶入 19 款視覺圖表拆解（將此即時焦點產出工程藍圖 / Bento / 冰山模型）
+        </button>
     </div>
 
     <!-- 📋 產生的其餘 5 款精準指令卡片（折疊展開） -->
@@ -1681,6 +1685,19 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <div style="clear: both;"></div>
 
     <div class="gemini-prompts-shell">
+        <!-- 🌟 旗艦館三合一 Tab 導覽列 -->
+        <div class="flagship-image-subnav" style="display:flex; gap:8px; justify-content:center; margin-bottom:18px; flex-wrap:wrap; background:#f1f5f9; padding:8px; border-radius:16px;">
+            <button type="button" onclick="switchView('view-gemini-prompts')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#ffffff; color:#475569; cursor:pointer; box-shadow:none; transition:all 0.15s;">
+                🔥 20款爆款影像指令
+            </button>
+            <button type="button" onclick="switchView('view-nano-banana')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#d97706; color:#ffffff; cursor:pointer; box-shadow:0 3px 8px rgba(217,119,6,0.3); transition:all 0.15s;">
+                🍌 Nano Banana 12大實測
+            </button>
+            <button type="button" onclick="switchView('view-styles')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#ffffff; color:#475569; cursor:pointer; box-shadow:none; transition:all 0.15s;">
+                🎨 經典熱門畫風庫
+            </button>
+        </div>
+        
         <!-- 頂部 Hero 總覽 -->
         <div class="gemini-hero" style="background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #f59e0b 100%); border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 20px; color: #ffffff; box-shadow: 0 6px 20px rgba(180,83,9,0.25);">
             <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: #fffbeb; padding: 4px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; margin-bottom: 10px;">
@@ -2273,6 +2290,18 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <div style="clear: both;"></div>
 
     <div class="gemini-prompts-shell">
+        <!-- 🌟 旗艦館三合一 Tab 導覽列 -->
+        <div class="flagship-image-subnav" style="display:flex; gap:8px; justify-content:center; margin-bottom:18px; flex-wrap:wrap; background:#f1f5f9; padding:8px; border-radius:16px;">
+            <button type="button" onclick="switchView('view-gemini-prompts')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; box-shadow:0 3px 8px rgba(67,56,202,0.3); transition:all 0.15s;">
+                🔥 20款爆款影像指令
+            </button>
+            <button type="button" onclick="switchView('view-nano-banana')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#ffffff; color:#475569; cursor:pointer; box-shadow:none; transition:all 0.15s;">
+                🍌 Nano Banana 12大實測
+            </button>
+            <button type="button" onclick="switchView('view-styles')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#ffffff; color:#475569; cursor:pointer; box-shadow:none; transition:all 0.15s;">
+                🎨 經典熱門畫風庫
+            </button>
+        </div>
         <!-- 頂部 Hero 總覽 -->
         <div class="gemini-hero" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%); border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 20px; color: #ffffff; box-shadow: 0 6px 20px rgba(67,56,202,0.25);">
             <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(236,72,153,0.25); border: 1px solid #ec4899; color: #fbcfe8; padding: 4px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; margin-bottom: 10px;">
@@ -2908,7 +2937,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                     <option value="TAIPEI NIGHTS with a glowing ramen bowl icon (台北夜未眠＋發光拉麵碗圖案)">TAIPEI NIGHTS with a glowing ramen bowl icon (台北夜未眠＋發光拉麵碗圖案)</option>
                     <option value="GOOD VIBES ONLY with a neon palm tree & sun icon (美好時光＋霓虹棕櫚樹圖案)">GOOD VIBES ONLY with a neon palm tree & sun icon (美好時光＋霓虹棕櫚樹圖案)</option>
                     <option value="LATE NIGHT JAZZ with a glowing saxophone icon (深夜爵士吧＋薩克斯風圖案)">LATE NIGHT JAZZ with a glowing saxophone icon (深夜爵士吧＋薩克斯風圖案)</option>
-                    <option value="CHING-SONG HIKING CLUB with mountain peak icon (青松健行隊＋山峰雲朵圖案)">CHING-SONG HIKING CLUB with mountain peak icon (青松健行隊＋山峰雲朵圖案)</option>
+                    <option value="CREATIVE DESIGN STUDIO with mountain peak icon (創意設計工作室＋山峰雲朵圖案)">CREATIVE DESIGN STUDIO with mountain peak icon (創意設計工作室＋山峰雲朵圖案)</option>
                     </select>
                     <button type="button" onclick="randomizeSingleSubject('14')" style="padding:7px 12px; font-size:12px; font-weight:800; border-radius:6px; border:none; background:#4338ca; color:#ffffff; cursor:pointer; width:auto; margin:0; white-space:nowrap;">🎲 換主體</button>
                 </div>
@@ -3220,6 +3249,18 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <div style="clear: both;"></div>
 
     <div class="story-generator-container">
+        <!-- 🌟 旗艦館三合一 Tab 導覽列 -->
+        <div class="flagship-image-subnav" style="display:flex; gap:8px; justify-content:center; margin-bottom:18px; flex-wrap:wrap; background:#f1f5f9; padding:8px; border-radius:16px;">
+            <button type="button" onclick="switchView('view-gemini-prompts')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#ffffff; color:#475569; cursor:pointer; box-shadow:none; transition:all 0.15s;">
+                🔥 20款爆款影像指令
+            </button>
+            <button type="button" onclick="switchView('view-nano-banana')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#ffffff; color:#475569; cursor:pointer; box-shadow:none; transition:all 0.15s;">
+                🍌 Nano Banana 12大實測
+            </button>
+            <button type="button" onclick="switchView('view-styles')" style="flex:1; min-width:140px; padding:11px 16px; font-size:14.5px; font-weight:900; border-radius:12px; border:none; background:#e65100; color:#ffffff; cursor:pointer; box-shadow:0 3px 8px rgba(230,81,0,0.3); transition:all 0.15s;">
+                🎨 經典熱門畫風庫
+            </button>
+        </div>
         <h1 style="color:#e65100; border-bottom-color:#e65100;">🔥 熱門畫風風格指令</h1>
         <div class="section-description" style="border-left-color:#e65100; background-color:#fff3e0;">
             <p>點擊下方按鈕，即可一鍵複製完整的「保護規則＋畫風指令」，直接貼給 AI 就能獲得完美轉換的照片！</p>
@@ -5051,7 +5092,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <button class="back-btn" onclick="switchView('view-upload')">回首頁</button>
     <h2 style="margin-top:30px;">📚 歷史作品館</h2>
     <div class="tab-container" style="gap:8px;">
-        <button class="tab-btn active" onclick="switchHistoryTab('青松健行隊')" id="tab-church" style="width:32%;">🌲 青松健行隊</button>
+        <button class="tab-btn active" onclick="switchHistoryTab('青松健行隊')" id="tab-church" style="width:32%;">🎨 精選創作展館</button>
         <button class="tab-btn" onclick="switchHistoryTab('大安區')" id="tab-daan" style="width:32%;">大安區</button>
         <button class="tab-btn" onclick="switchHistoryTab('文山區')" id="tab-wenshan" style="width:32%;">文山區</button>
     </div>
@@ -5231,7 +5272,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const cleanUrl = window.location.href.split('#')[0];
         if (img) img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=8&data=' + encodeURIComponent(cleanUrl);
         if (urlText) urlText.innerText = cleanUrl;
-        if (label) label.innerText = CLASSROOM === 'teacher2' ? '◆ 青松健行隊 (第二組)' : '● 青松健行隊';
+        if (label) label.innerText = CLASSROOM === 'teacher2' ? '◆ AI 創作班 (第二組)' : '● AI 創作班';
         if (overlay) overlay.style.display = 'block';
         if (modal) modal.style.display = 'block';
     }
@@ -5816,7 +5857,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                     return jsonResponse({ success: false, message: '目前沒有未封存的本堂課照片喔！' });
                 }
                 const courseId = Date.now();
-                const courseName = bodyObj.courseName || '青松健行隊-活動紀錄';
+                const courseName = bodyObj.courseName || 'AI創作班-活動紀錄';
                 const createdAt = photos[0]?.created_at || new Date().toISOString();
 
                 // a) 儲存課程紀錄
@@ -6565,6 +6606,86 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     // 📊 15 組視覺學習神級代碼邏輯 (AI 視覺圖表拆解器)
     // =========================================================================
     const VISUAL_TOPICS_50 = [
+    {
+        "cat": "即時時事",
+        "name": "🏦 美國聯準會降息與全球熱錢",
+        "full": "美國聯準會 (Fed) 降息路徑、美元匯率波動與全球熱錢流向決策架構",
+        "suitable": [
+            "/decision-matrix",
+            "/cycle",
+            "/roadmap",
+            "/bento",
+            "/cornell-notes",
+            "/infographic"
+        ],
+        "desc": "最適合多維決策矩陣、貨幣寬鬆循環圖與便當盒儀表板"
+    },
+    {
+        "cat": "即時時事",
+        "name": "🤖 全球 AI 晶片競爭與供應鏈",
+        "full": "全球 AI 半導體晶片競爭格局、先進封裝技術層級與供應鏈重組",
+        "suitable": [
+            "/layers",
+            "/tree",
+            "/blueprint",
+            "/exploded-view",
+            "/bento",
+            "/timeline"
+        ],
+        "desc": "最適合技術分層堆疊、產業譜系樹狀圖與機械爆炸分解圖"
+    },
+    {
+        "cat": "即時時事",
+        "name": "🌍 全球地緣政治與戰略博弈",
+        "full": "全球地緣政治戰略格局、歷史衝突沿革與深層冰山利益賽局",
+        "suitable": [
+            "/iceberg",
+            "/timeline",
+            "/decision-matrix",
+            "/cornell-notes",
+            "/bento"
+        ],
+        "desc": "最適合水下隱性利益冰山模型、歷史演進時間軸與康乃爾筆記"
+    },
+    {
+        "cat": "即時時事",
+        "name": "⚡ 全球綠能低碳與能源轉型",
+        "full": "全球淨零排放政策推進、綠能電網架構與循環再生能源生態鏈",
+        "suitable": [
+            "/cycle",
+            "/roadmap",
+            "/flowchart",
+            "/bento",
+            "/infographic"
+        ],
+        "desc": "最適合零碳再生閉環循環圖、各國轉型路線圖與便當盒網格"
+    },
+    {
+        "cat": "即時時事",
+        "name": "📈 台灣科技外銷景氣循環",
+        "full": "台灣半導體與資通訊外銷訂單景氣循環、產銷預測與市場波動",
+        "suitable": [
+            "/cycle",
+            "/flowchart",
+            "/decision-matrix",
+            "/cornell-notes",
+            "/bento"
+        ],
+        "desc": "最適合景氣循環閉環圖、出口判斷流程圖與決策矩陣"
+    },
+    {
+        "cat": "即時時事",
+        "name": "🛡️ 國家關鍵基礎建設資安韌性",
+        "full": "國家關鍵基礎設施數位韌性防護架構、零信任資安體系與事件應變流程",
+        "suitable": [
+            "/blueprint",
+            "/layers",
+            "/flowchart",
+            "/iceberg",
+            "/bento"
+        ],
+        "desc": "最適合防護工程藍圖架構、七層防禦模型與事件應變流程"
+    },
     {
         "cat": "飲食烹飪",
         "name": "☕ 精品咖啡從生豆到萃取",
@@ -7821,7 +7942,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         const second = CLASSROOM === 'teacher2';
         const banner = document.getElementById('classroom-banner');
         if (banner) {
-            banner.innerText = second ? '◆ 目前隊伍：青松健行隊 (第二組)' : '● 目前隊伍：青松健行隊';
+            banner.innerText = second ? '◆ 目前班級：AI 創作班 (第二組)' : '● 目前班級：AI 創作班';
             banner.style.color = second ? '#7b1fa2' : '#1565c0';
         }
 
@@ -7837,7 +7958,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         }
 
         const adminTitle = document.querySelector('#view-admin h2');
-        if (adminTitle) adminTitle.innerText = second ? '管理專區（第二組）' : '管理專區（青松健行隊）';
+        if (adminTitle) adminTitle.innerText = second ? '管理專區（第二組）' : '管理專區（AI 創作班）';
     }
 
     let adminKey = '';
@@ -8474,7 +8595,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         randomizePresetText('book-solution-preset', 'book-solution');
         const author = document.getElementById('book-author');
         if (author && !author.value) {
-            author.value = localStorage.getItem('studentName') || localStorage.getItem('book9204Author') || '青松創作隊員';
+            author.value = localStorage.getItem('studentName') || localStorage.getItem('book9204Author') || '創作學員';
         }
     }
 
