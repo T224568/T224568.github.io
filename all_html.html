@@ -400,6 +400,82 @@
       opacity: 0.8;
     }
 
+    
+    .card {
+      position: relative;
+    }
+
+    .card-fav-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 2;
+    }
+
+    .card-fav-btn:hover {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: #f59e0b;
+      color: #f59e0b;
+      transform: scale(1.12);
+    }
+
+    .card-fav-btn.active {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(217, 119, 6, 0.45));
+      border-color: #f59e0b;
+      color: #fbbf24;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+    }
+
+    .btn-fav {
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      border-color: var(--border-subtle);
+      flex: 0 0 auto;
+      padding: 8px 10px;
+    }
+
+    .btn-fav:hover {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: #f59e0b;
+      color: #f59e0b;
+    }
+
+    .btn-fav.active {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.35));
+      border-color: #f59e0b;
+      color: #fbbf24;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+    }
+
+    .pill-fav {
+      border-color: rgba(245, 158, 11, 0.35) !important;
+      color: #fbbf24 !important;
+    }
+
+    .pill-fav:hover {
+      border-color: #f59e0b !important;
+      background: rgba(245, 158, 11, 0.15) !important;
+    }
+
+    .pill-fav.active {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+      border-color: #f59e0b !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.45) !important;
+    }
+
     .card:hover {
       transform: translateY(-3px);
       border-color: var(--border-accent);
@@ -944,6 +1020,9 @@
           <span>👁️ HTML Viewer 即時預覽</span>
         </div>
         <div class="modal-header-actions">
+          <button id="modalFavBtn" class="modal-act-btn" onclick="if(currentModalItem) toggleFavorite(event, currentModalItem.rel, currentModalItem.title)" title="我的最愛增刪" style="color:#fbbf24;">
+            <span>⭐ 收藏</span>
+          </button>
           <button id="modalShareBtn" class="modal-act-btn modal-act-share" title="轉成短網址加標題到剪貼簿">
             <span>🔗 轉發短網址</span>
           </button>
@@ -3292,6 +3371,61 @@
     // 短網址快取字典：避免重覆請求 API
     const shortUrlCache = {};
 
+    // ⭐ 我的最愛 LocalStorage 管理
+    const FAV_STORAGE_KEY = 'fun_antigravity_favorites_v1';
+
+    function getFavorites() {
+      try {
+        const raw = localStorage.getItem(FAV_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function isFavorite(rel) {
+      return getFavorites().includes(rel);
+    }
+
+    function toggleFavorite(event, rel, title) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      let favs = getFavorites();
+      const idx = favs.indexOf(rel);
+      let added = false;
+      if (idx !== -1) {
+        favs.splice(idx, 1);
+        added = false;
+      } else {
+        favs.push(rel);
+        added = true;
+      }
+      try {
+        localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(favs));
+      } catch (e) {
+        console.error(e);
+      }
+
+      showToast(added ? `⭐ 已加入我的最愛：<b style="color:#fbbf24;">${title || rel}</b>` : `已自我的最愛移除：${title || rel}`, added);
+
+      // 若在 viewer modal 內，也同步更新 modal 內的收藏按鈕狀態
+      updateModalFavBtn();
+
+      renderPills();
+      renderContent();
+    }
+
+    function updateModalFavBtn() {
+      const modalFavBtn = document.getElementById('modalFavBtn');
+      if (modalFavBtn && currentModalItem) {
+        const favActive = isFavorite(currentModalItem.rel);
+        modalFavBtn.innerHTML = favActive ? '<span>⭐ 已收藏</span>' : '<span>☆ 加入最愛</span>';
+        modalFavBtn.style.color = favActive ? '#fbbf24' : '#94a3b8';
+      }
+    }
+
     function init() {
       renderPills();
       bindEvents();
@@ -3299,9 +3433,13 @@
     }
 
     function getFilteredItems() {
+      const favList = getFavorites();
       return items.filter(item => {
-        const matchesCat = (activeCategory === '全部') || (item.category === activeCategory);
-        if (!matchesCat) return false;
+        if (activeCategory === '我的最愛') {
+          if (!favList.includes(item.rel)) return false;
+        } else if (activeCategory !== '全部') {
+          if (item.category !== activeCategory) return false;
+        }
         if (!currentSearch) return true;
         const q = currentSearch.toLowerCase();
         return item.title.toLowerCase().includes(q) ||
@@ -3319,21 +3457,36 @@
     }
 
     function renderPills() {
+      const favCount = getFavorites().length;
       const catCounts = { '全部': items.length };
       items.forEach(it => {
         catCounts[it.category] = (catCounts[it.category] || 0) + 1;
       });
 
       const pillsBar = document.getElementById('pillsBar');
-      pillsBar.innerHTML = Object.keys(catCounts).map(cat => {
+      let html = `
+        <div class="pill ${activeCategory === '全部' ? 'active' : ''}" onclick="setCategory('全部')">
+          <span>全部</span>
+          <span class="pill-count">${items.length}</span>
+        </div>
+        <div class="pill pill-fav ${activeCategory === '我的最愛' ? 'active' : ''}" onclick="setCategory('我的最愛')">
+          <span>⭐ 我的最愛</span>
+          <span class="pill-count">${favCount}</span>
+        </div>
+      `;
+
+      Object.keys(catCounts).forEach(cat => {
+        if (cat === '全部') return;
         const isActive = cat === activeCategory ? 'active' : '';
-        return `
+        html += `
           <div class="pill ${isActive}" onclick="setCategory('${cat}')">
             <span>${cat}</span>
             <span class="pill-count">${catCounts[cat]}</span>
           </div>
         `;
-      }).join('');
+      });
+
+      pillsBar.innerHTML = html;
     }
 
     function setCategory(cat) {
@@ -3357,11 +3510,21 @@
       const tableBody = document.getElementById('tableBody');
 
       if (list.length === 0) {
+        let emptyIcon = '🍃';
+        let emptyTitle = '找不到相符的 HTML 檔案';
+        let emptyDesc = '請嘗試縮小關鍵字或重設分類篩選';
+
+        if (activeCategory === '我的最愛') {
+          emptyIcon = '⭐';
+          emptyTitle = '尚未加入任何「我的最愛」';
+          emptyDesc = '點擊卡片右上角或按鈕列中的「⭐ 收藏」按鈕，即可將常用的 HTML 頁面收藏於此，隨時快速開啟！';
+        }
+
         const emptyHtml = `
           <div class="empty-state">
-            <div class="empty-icon">🍃</div>
-            <div style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 6px;">找不到相符的 HTML 檔案</div>
-            <div style="font-size: 0.85rem; color: var(--text-dim);">請嘗試縮小關鍵字或重設分類篩選</div>
+            <div class="empty-icon">${emptyIcon}</div>
+            <div style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 6px; font-weight:bold;">${emptyTitle}</div>
+            <div style="font-size: 0.85rem; color: var(--text-dim); line-height:1.6; max-width:480px; margin:0 auto;">${emptyDesc}</div>
           </div>
         `;
         if (currentView === 'grid') {
@@ -3375,12 +3538,16 @@
       if (currentView === 'grid') {
         gridView.innerHTML = list.map(item => {
           const itemIndex = items.indexOf(item);
+          const isFav = isFavorite(item.rel);
           return `
             <div class="card" style="--cat-color: ${item.color}">
+              <button onclick="toggleFavorite(event, '${escapeJs(item.rel)}', '${escapeJs(item.title)}')" class="card-fav-btn ${isFav ? 'active' : ''}" title="${isFav ? '自我的最愛移除' : '加入我的最愛'}">
+                ${isFav ? '⭐' : '☆'}
+              </button>
               <div>
                 <div class="card-top">
                   <div class="card-icon">${item.icon}</div>
-                  <div class="card-title-box">
+                  <div class="card-title-box" style="padding-right: 32px;">
                     <span class="card-category-tag">${escapeHtml(item.category)}</span>
                     <div class="card-title" title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</div>
                     <div class="card-filename">${escapeHtml(item.rel)}</div>
@@ -3406,6 +3573,9 @@
                   <a href="${item.gdrive_url}" target="_blank" class="btn btn-gdrive" title="Google Drive 雲端檢視">
                     <span>☁️ 雲端</span>
                   </a>
+                  <button onclick="toggleFavorite(event, '${escapeJs(item.rel)}', '${escapeJs(item.title)}')" class="btn btn-fav ${isFav ? 'active' : ''}" title="${isFav ? '自我的最愛移除' : '加入我的最愛'}">
+                    <span>${isFav ? '⭐' : '☆'}</span>
+                  </button>
                   <button onclick="copyToClipboard('${escapeJs(item.full_path)}', '已複製 512G 本地絕對路徑')" class="btn btn-copy" title="複製 512G 本地路徑">
                     <span>📋</span>
                   </button>
@@ -3417,9 +3587,15 @@
       } else {
         tableBody.innerHTML = list.map(item => {
           const itemIndex = items.indexOf(item);
+          const isFav = isFavorite(item.rel);
           return `
             <tr>
-              <td style="font-size: 1.3rem;">${item.icon}</td>
+              <td style="font-size: 1.3rem; white-space:nowrap;">
+                <button onclick="toggleFavorite(event, '${escapeJs(item.rel)}', '${escapeJs(item.title)}')" class="card-fav-btn ${isFav ? 'active' : ''}" style="position:static; display:inline-flex; width:26px; height:26px; font-size:13px; vertical-align:middle; margin-right:6px;" title="${isFav ? '自我的最愛移除' : '加入我的最愛'}">
+                  ${isFav ? '⭐' : '☆'}
+                </button>
+                ${item.icon}
+              </td>
               <td>
                 <div class="tbl-title">${escapeHtml(item.title)}</div>
                 <div class="tbl-path">${escapeHtml(item.rel)}</div>
@@ -3524,6 +3700,7 @@
       extBtn.href = url;
       frame.src = url;
 
+      updateModalFavBtn();
       shareBtn.onclick = (e) => copyShareText(e, itemIndex);
 
       modal.style.display = 'flex';
