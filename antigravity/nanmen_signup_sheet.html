@@ -3,78 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南門教會夫婦團契 115年新竹峨眉一日遊 報名名冊 (可列印手寫表)</title>
+<title>南門教會夫婦團契 115年新竹峨眉一日遊 報名名冊 (單頁A4)</title>
 <style>
   @page {
     size: A4 portrait;
-    margin: 12mm 10mm 12mm 10mm;
+    margin: 6mm 8mm 6mm 8mm;
   }
   * {
     box-sizing: border-box;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-  body {
-    font-family: "PingFang TC", "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #111;
+  html, body {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: "PingFang TC", "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #0f172a;
     background: #f1f5f9;
-  }
-  .sheet {
-    max-width: 210mm;
-    margin: 0 auto;
-    background: #fff;
-    padding: 16mm 14mm;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    border-radius: 6px;
   }
   .print-btn-bar {
     max-width: 210mm;
-    margin: 0 auto 16px auto;
+    margin: 12px auto 8px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 8px;
   }
   .btn-print {
     background: #1e3a8a;
     color: #fff;
     border: none;
-    padding: 10px 22px;
+    padding: 8px 18px;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(30,58,138,0.3);
-    transition: background 0.2s;
+    box-shadow: 0 2px 6px rgba(30,58,138,0.25);
   }
   .btn-print:hover {
     background: #1d4ed8;
   }
   .hint {
-    color: #64748b;
-    font-size: 0.9rem;
+    color: #475569;
+    font-size: 0.85rem;
+  }
+  .sheet {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 8mm 10mm;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
   .header {
     text-align: center;
     border-bottom: 2px solid #1e3a8a;
-    padding-bottom: 8px;
-    margin-bottom: 10px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
   }
   .header h1 {
-    font-size: 1.45rem;
-    margin: 0 0 4px 0;
+    font-size: 1.25rem;
+    margin: 0 0 3px 0;
     color: #0f172a;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
   .header .info-bar {
-    font-size: 0.86rem;
+    font-size: 0.76rem;
     color: #334155;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    line-height: 1.5;
-    margin-top: 4px;
+    line-height: 1.35;
   }
   .info-bar span strong {
     color: #1e3a8a;
@@ -82,39 +79,44 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.82rem;
-    margin-top: 8px;
+    font-size: 0.74rem;
+    table-layout: fixed;
   }
   th, td {
     border: 1px solid #475569;
-    padding: 4.5px 4px;
+    padding: 1.8px 2px;
     text-align: center;
-    height: 24px;
+    height: 17.5px;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
   }
   th {
     background: #f1f5f9;
     color: #0f172a;
     font-weight: 700;
+    height: 20px;
   }
   td.name-cell {
     font-weight: 600;
-    font-size: 0.88rem;
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
   }
   .footer-note {
-    margin-top: 10px;
-    font-size: 0.78rem;
+    margin-top: 4px;
+    font-size: 0.72rem;
     color: #475569;
     display: flex;
     justify-content: space-between;
     border-top: 1px dashed #cbd5e1;
-    padding-top: 6px;
+    padding-top: 3px;
   }
 
   @media print {
     body {
       background: #fff;
       padding: 0;
+      margin: 0;
     }
     .print-btn-bar {
       display: none !important;
@@ -126,11 +128,11 @@
       max-width: 100%;
     }
     table {
-      font-size: 0.8rem;
+      page-break-inside: avoid;
     }
-    th, td {
-      height: 23px;
-      padding: 3.5px 3px;
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
     }
   }
 </style>
@@ -138,36 +140,36 @@
 <body>
 
 <div class="print-btn-bar">
-  <button class="btn-print" onclick="window.print()">🖨️ 列印此報名表 (A4)</button>
-  <span class="hint">💡 建議列印設定：紙張 A4、方向直向、邊界「預設」或「無」</span>
+  <button class="btn-print" onclick="window.print()">🖨️ 列印此報名表 (保證 A4 單頁)</button>
+  <span class="hint">💡 已針對 A4 單頁高度壓縮最佳化，40位全員同頁呈現。</span>
 </div>
 
 <div class="sheet">
   <div class="header">
     <h1>南門基督長老教會 夫婦團契 115年秋季旅遊 報名名冊</h1>
     <div class="info-bar">
-      <span>📅 <strong>活動時間：</strong>115年12月12日(六) 07:30出發</span>
+      <span>📅 <strong>時間：</strong>115年12月12日(六) 07:30出發</span>
       <span>📍 <strong>行程：</strong>新竹峨眉一日遊（獅頭山、好景莊、峨眉湖）</span>
       <span>💰 <strong>費用：</strong>會員 $1,200 / 非會員 $1,400</span>
     </div>
-    <div class="info-bar" style="margin-top: 2px;">
-      <span>👥 <strong>名額：</strong>40位（額滿為止）</span>
+    <div class="info-bar">
+      <span>👥 <strong>名額：</strong>40位額滿為止</span>
       <span>👔 <strong>主辦：</strong>陳震宇、林翔宇 ｜ <strong>協辦：</strong>胡忠一夫婦、會長夫婦</span>
-      <span>📝 <strong>報名繳費窗口：</strong>戴任寬執事夫婦</span>
+      <span>📝 <strong>報名窗口：</strong>戴任寬執事夫婦</span>
     </div>
   </div>
 
   <table>
     <thead>
       <tr>
-        <th style="width: 5%;">序號</th>
+        <th style="width: 5.5%;">序號</th>
         <th style="width: 14%;">姓名</th>
         <th style="width: 16%;">聯絡電話</th>
-        <th style="width: 17%;">身分證字號 (保險)</th>
+        <th style="width: 17.5%;">身分證字號 (保險)</th>
         <th style="width: 15%;">出生年月日</th>
-        <th style="width: 11%;">身分</th>
-        <th style="width: 11%;">繳費狀態</th>
-        <th style="width: 11%;">用餐 / 備註</th>
+        <th style="width: 10%;">身分</th>
+        <th style="width: 10%;">繳費狀態</th>
+        <th style="width: 12%;">用餐 / 備註</th>
       </tr>
     </thead>
     <tbody>
@@ -215,7 +217,7 @@
   </table>
 
   <div class="footer-note">
-    <span>※ 依照慣例敬備車上早餐，請於當日上午 07:30 於重慶南路三段27巷口集合準時出發。</span>
+    <span>※ 敬備車上早餐，請於當日上午 07:30 於重慶南路三段27巷口集合出發。</span>
     <span>製表時間：2026-11-13</span>
   </div>
 </div>
