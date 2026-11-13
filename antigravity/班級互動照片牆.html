@@ -3663,6 +3663,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                 </div>
                 <div class="skill-cat-scroll-bar" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                     <button type="button" class="skill-cat-btn active" onclick="filterGeminiSkills('all', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #4f46e5; background: #4f46e5; color: #fff; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🌟 全部技能 (<span id="count-cat-all">75</span>)</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('fav', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">❤️ 我的最愛 (<span id="count-cat-fav">0</span>)</button>
                     <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('gems', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">💎 自訂 Gems (35)</button>
                     <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('visual', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">📊 視覺圖卡・筆記</button>
                     <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('video', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🎬 影音轉字幕・剪輯</button>
@@ -3670,6 +3671,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                     <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('church', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">⛪ 教會日常・靈修</button>
                     <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('cloud', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🛠️ 雲端同步・實用工具</button>
                     <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('expert', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">🧠 AI 創意與專家助理</button>
+                    <button type="button" class="skill-cat-btn" onclick="filterGeminiSkills('archived', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; white-space: nowrap; transition: all 0.15s;">📦 封存庫 (<span id="count-cat-archived">0</span>)</button>
                 </div>
             </div>
 
@@ -3705,9 +3707,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <!-- 無搜尋結果提示 -->
         <div id="gemini-skills-empty" style="display: none; background: #fff; border-radius: 16px; padding: 40px 20px; text-align: center; border: 2px dashed #cbd5e1; margin-top: 10px;">
             <div style="font-size: 40px; margin-bottom: 10px;">🔍🍃</div>
-            <div style="font-size: 17px; font-weight: bold; color: #475569;">查無符合的技能或指令</div>
-            <p style="font-size: 14px; color: #94a3b8; margin: 6px 0 16px;">請嘗試更換搜尋關鍵字，或點擊下方按鈕顯示全部技能。</p>
-            <button type="button" onclick="resetGeminiSkillsFilter()" style="padding: 8px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; background: #4f46e5; color: #fff; border: none; cursor: pointer;">顯示全部 40 款技能</button>
+            <div id="gemini-skills-empty-title" style="font-size: 17px; font-weight: bold; color: #475569;">查無符合的技能或指令</div>
+            <p id="gemini-skills-empty-desc" style="font-size: 14px; color: #94a3b8; margin: 6px 0 16px;">請嘗試更換搜尋關鍵字，或點擊下方按鈕顯示全部技能。</p>
+            <button type="button" onclick="resetGeminiSkillsFilter()" style="padding: 8px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; background: #4f46e5; color: #fff; border: none; cursor: pointer;">顯示全部技能</button>
         </div>
     </div>
 </div>
@@ -7434,14 +7436,76 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     const GEMINI_SKILL_CAT_NAMES = {
         'all': '全部',
+        'fav': '❤️ 我的最愛',
         'gems': '💎 自訂 Gems',
         'visual': '視覺圖卡・筆記',
         'video': '影音轉字幕・剪輯',
         'finance': '財經金融・新聞',
         'church': '教會日常・靈修',
         'cloud': '雲端同步・實用工具',
-        'expert': 'AI 創意與專家助理'
+        'expert': 'AI 創意與專家助理',
+        'archived': '📦 封存庫'
     };
+
+    function getFavSkills() {
+        try {
+            return JSON.parse(localStorage.getItem('gemini_fav_skills') || '[]');
+        } catch(e) { return []; }
+    }
+
+    function isFavSkill(id) {
+        return getFavSkills().includes(id);
+    }
+
+    function toggleFavSkill(id, e) {
+        if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+        let favs = getFavSkills();
+        const idx = favs.indexOf(id);
+        let added = false;
+        if (idx > -1) {
+            favs.splice(idx, 1);
+        } else {
+            favs.push(id);
+            added = true;
+        }
+        try {
+            localStorage.setItem('gemini_fav_skills', JSON.stringify(favs));
+        } catch(err) {}
+        showToast(added ? '❤️ 已加入「我的最愛」' : '🤍 已從「我的最愛」移除');
+        updateGeminiSkillCatCounts();
+        renderGeminiSkillsSublist();
+        renderGeminiSkills();
+    }
+
+    function getArchivedSkills() {
+        try {
+            return JSON.parse(localStorage.getItem('gemini_archived_skills') || '[]');
+        } catch(e) { return []; }
+    }
+
+    function isArchivedSkill(id) {
+        return getArchivedSkills().includes(id);
+    }
+
+    function toggleArchiveSkill(id, e) {
+        if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+        let archived = getArchivedSkills();
+        const idx = archived.indexOf(id);
+        let isNowArchived = false;
+        if (idx > -1) {
+            archived.splice(idx, 1);
+        } else {
+            archived.push(id);
+            isNowArchived = true;
+        }
+        try {
+            localStorage.setItem('gemini_archived_skills', JSON.stringify(archived));
+        } catch(err) {}
+        showToast(isNowArchived ? '📦 已封存技能（將在一般清單中隱藏）' : '🔄 已解除封存（還原至清單）');
+        updateGeminiSkillCatCounts();
+        renderGeminiSkillsSublist();
+        renderGeminiSkills();
+    }
 
     function initGeminiSkillsView() {
         renderGeminiSkillsSublist();
@@ -7451,7 +7515,16 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     function updateGeminiSkillCatCounts() {
         const countAll = document.getElementById('count-cat-all');
-        if (countAll) countAll.textContent = GEMINI_SKILLS_DATA.length;
+        const countFav = document.getElementById('count-cat-fav');
+        const countArchived = document.getElementById('count-cat-archived');
+
+        const favCount = GEMINI_SKILLS_DATA.filter(s => isFavSkill(s.id) && !isArchivedSkill(s.id)).length;
+        const archivedCount = GEMINI_SKILLS_DATA.filter(s => isArchivedSkill(s.id)).length;
+        const activeTotal = GEMINI_SKILLS_DATA.filter(s => !isArchivedSkill(s.id)).length;
+
+        if (countAll) countAll.textContent = activeTotal;
+        if (countFav) countFav.textContent = favCount;
+        if (countArchived) countArchived.textContent = archivedCount;
     }
 
     // 渲染對應類別底下的所有 Skill 名稱膠囊與下拉快選
@@ -7462,6 +7535,14 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         if (!pillsEl || !selectEl) return;
 
         const skillsInCat = GEMINI_SKILLS_DATA.filter(item => {
+            const isArchived = isArchivedSkill(item.id);
+            if (currentGeminiSkillCat === 'archived') {
+                return isArchived;
+            }
+            if (isArchived) return false;
+            if (currentGeminiSkillCat === 'fav') {
+                return isFavSkill(item.id);
+            }
             if (currentGeminiSkillCat === 'all') return true;
             if (currentGeminiSkillCat === 'gems') return item.isGem === true;
             return item.cat === currentGeminiSkillCat;
@@ -7474,19 +7555,23 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         // 下拉選單
         selectEl.innerHTML = `<option value="">👉 點此下拉快選【${catTitle}】專屬技能...</option>` +
-            skillsInCat.map(s => `<option value="${s.id}" ${selectedSkillId === s.id ? 'selected' : ''}>${s.icon} ${escapeHtml(s.name)} (${escapeHtml(s.alias)})</option>`).join('');
+            skillsInCat.map(s => {
+                const isFav = isFavSkill(s.id);
+                return `<option value="${s.id}" ${selectedSkillId === s.id ? 'selected' : ''}>${isFav ? '❤️ ' : ''}${s.icon} ${escapeHtml(s.name)} (${escapeHtml(s.alias)})</option>`;
+            }).join('');
 
         // 膠囊標籤
         pillsEl.innerHTML = skillsInCat.map(s => {
             const isActive = selectedSkillId === s.id;
+            const isFav = isFavSkill(s.id);
             const bg = isActive ? '#4f46e5' : '#ffffff';
             const color = isActive ? '#ffffff' : '#1e293b';
-            const border = isActive ? '#3730a3' : '#cbd5e1';
+            const border = isActive ? '#3730a3' : (isFav ? '#fca5a5' : '#cbd5e1');
             const shadow = isActive ? '0 2px 8px rgba(79,70,229,0.35)' : 'none';
             return `
                 <button type="button" class="skill-name-pill" onclick="selectSingleSkill('${s.id}')"
                         style="background: ${bg}; color: ${color}; border: 1.5px solid ${border}; box-shadow: ${shadow}; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px;">
-                    <span>${s.icon}</span>
+                    <span>${isFav ? '❤️' : s.icon}</span>
                     <span>${escapeHtml(s.name)}</span>
                 </button>
             `;
@@ -7545,8 +7630,20 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         const q = (currentGeminiSkillSearch || '').toLowerCase().trim();
         let filtered = GEMINI_SKILLS_DATA.filter(item => {
-            const matchCat = currentGeminiSkillCat === 'all' || (currentGeminiSkillCat === 'gems' ? item.isGem === true : item.cat === currentGeminiSkillCat);
-            if (!matchCat) return false;
+            const isArchived = isArchivedSkill(item.id);
+            if (currentGeminiSkillCat === 'archived') {
+                if (!isArchived) return false;
+            } else {
+                if (isArchived) return false;
+                if (currentGeminiSkillCat === 'fav') {
+                    if (!isFavSkill(item.id)) return false;
+                } else if (currentGeminiSkillCat === 'gems') {
+                    if (item.isGem !== true) return false;
+                } else if (currentGeminiSkillCat !== 'all') {
+                    if (item.cat !== currentGeminiSkillCat) return false;
+                }
+            }
+
             if (!q) return true;
             return (
                 item.name.toLowerCase().includes(q) ||
@@ -7567,7 +7664,23 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         if (filtered.length === 0) {
             grid.innerHTML = '';
-            if (empty) empty.style.display = 'block';
+            if (empty) {
+                empty.style.display = 'block';
+                const emptyTitle = document.getElementById('gemini-skills-empty-title');
+                const emptyDesc = document.getElementById('gemini-skills-empty-desc');
+                if (emptyTitle && emptyDesc) {
+                    if (currentGeminiSkillCat === 'fav') {
+                        emptyTitle.textContent = '尚未加入任何最愛技能';
+                        emptyDesc.textContent = '在任何技能卡片右上角點擊 ❤️ 即可加入我的最愛，方便日後一鍵查找！';
+                    } else if (currentGeminiSkillCat === 'archived') {
+                        emptyTitle.textContent = '封存庫目前是空的';
+                        emptyDesc.textContent = '在技能卡片下方點擊「📦 封存」，可將暫時不常用的技能收納至此。';
+                    } else {
+                        emptyTitle.textContent = '查無符合的技能或指令';
+                        emptyDesc.textContent = '請嘗試更換搜尋關鍵字，或點擊下方按鈕顯示全部技能。';
+                    }
+                }
+            }
             return;
         }
 
@@ -7576,6 +7689,8 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         grid.innerHTML = filtered.map(item => {
             const escapedPrompt = escapeHtml(item.prompt);
             const isSingleFocus = selectedSkillId === item.id;
+            const isFav = isFavSkill(item.id);
+            const isArchived = isArchivedSkill(item.id);
             return `
                 <div class="gemini-skill-card" id="skill-card-${item.id}" style="background: #ffffff; border-radius: 14px; border: ${isSingleFocus ? '2px solid #4f46e5' : '1.5px solid #e2e8f0'}; padding: 18px; box-shadow: ${isSingleFocus ? '0 6px 20px rgba(79,70,229,0.18)' : '0 4px 12px rgba(0,0,0,0.04)'}; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s;">
                     <div>
@@ -7593,7 +7708,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                                     <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #4f46e5; background: #eef2ff; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 2px;">${escapeHtml(item.alias)}</span>
                                 </div>
                             </div>
-                            <span style="font-size: 11.5px; font-weight: bold; color: #64748b; background: #f1f5f9; padding: 3px 8px; border-radius: 999px; white-space: nowrap;">${escapeHtml(item.catName)}</span>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <button type="button" title="${isFav ? '從我的最愛移除' : '加入我的最愛'}" onclick="toggleFavSkill('${item.id}', event)" style="background: ${isFav ? '#fee2e2' : '#f8fafc'}; border: 1.5px solid ${isFav ? '#f87171' : '#cbd5e1'}; border-radius: 999px; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 15px; padding: 0; transition: all 0.15s;">
+                                    ${isFav ? '❤️' : '🤍'}
+                                </button>
+                                <span style="font-size: 11.5px; font-weight: bold; color: #64748b; background: #f1f5f9; padding: 3px 8px; border-radius: 999px; white-space: nowrap;">${escapeHtml(item.catName)}</span>
+                            </div>
                         </div>
                         <p style="font-size: 13.5px; color: #475569; line-height: 1.55; margin: 8px 0 12px 0;">${escapeHtml(item.desc)}</p>
                     </div>
@@ -7604,9 +7724,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                         </div>
                         <div class="skill-prompt-box" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.5; color: #0f172a; white-space: pre-wrap; word-break: break-all; margin-bottom: 12px; max-height: 140px; overflow-y: auto; font-family: monospace;">${escapedPrompt}</div>
                         
-                        <div style="display: flex; gap: 8px;">
-                            <button type="button" class="copy-skill-btn" onclick="copySkillPrompt(this, \`${encodeURIComponent(item.prompt)}\`)" style="flex: 1; padding: 9px 12px; font-size: 13.5px; font-weight: bold; border-radius: 8px; border: none; background: #4f46e5; color: #fff; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 6px rgba(79,70,229,0.3);">📋 複製指令</button>
-                            <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding: 9px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1px solid #cbd5e1; background: #1e1b4b; color: #fff; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;">✨ Gemini</a>
+                        <div style="display: flex; gap: 6px; align-items: center;">
+                            <button type="button" class="copy-skill-btn" onclick="copySkillPrompt(this, \`${encodeURIComponent(item.prompt)}\`)" style="flex: 1; padding: 9px 10px; font-size: 13px; font-weight: bold; border-radius: 8px; border: none; background: #4f46e5; color: #fff; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 6px rgba(79,70,229,0.3); white-space: nowrap;">📋 複製指令</button>
+                            <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="padding: 9px 12px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1px solid #cbd5e1; background: #1e1b4b; color: #fff; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;">✨ Gemini</a>
+                            <button type="button" title="${isArchived ? '解除封存（還原至清單）' : '封存此技能（從一般清單隱藏）'}" onclick="toggleArchiveSkill('${item.id}', event)" style="padding: 9px 10px; font-size: 12px; font-weight: bold; border-radius: 8px; border: 1px solid ${isArchived ? '#10b981' : '#cbd5e1'}; background: ${isArchived ? '#ecfdf5' : '#f8fafc'}; color: ${isArchived ? '#065f46' : '#64748b'}; cursor: pointer; white-space: nowrap; transition: all 0.15s;">
+                                ${isArchived ? '🔄 還原' : '📦 封存'}
+                            </button>
                         </div>
                     </div>
                 </div>
