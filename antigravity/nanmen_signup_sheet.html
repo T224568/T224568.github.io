@@ -7,7 +7,7 @@
 <style>
   @page {
     size: A4 portrait;
-    margin: 6mm 8mm 6mm 8mm;
+    margin: 4mm 6mm 4mm 6mm;
   }
   * {
     box-sizing: border-box;
@@ -20,10 +20,11 @@
     font-family: "PingFang TC", "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
     color: #0f172a;
     background: #f1f5f9;
+    -webkit-text-size-adjust: 100%;
   }
   .print-btn-bar {
     max-width: 210mm;
-    margin: 12px auto 8px auto;
+    margin: 10px auto 6px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,9 +34,9 @@
     background: #1e3a8a;
     color: #fff;
     border: none;
-    padding: 8px 18px;
+    padding: 6px 16px;
     border-radius: 6px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(30,58,138,0.25);
@@ -45,33 +46,34 @@
   }
   .hint {
     color: #475569;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   .sheet {
     max-width: 210mm;
     margin: 0 auto;
     background: #fff;
-    padding: 8mm 10mm;
+    padding: 5mm 8mm;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
   .header {
     text-align: center;
     border-bottom: 2px solid #1e3a8a;
-    padding-bottom: 4px;
-    margin-bottom: 4px;
+    padding-bottom: 2px;
+    margin-bottom: 3px;
   }
   .header h1 {
-    font-size: 1.25rem;
-    margin: 0 0 3px 0;
+    font-size: 1.15rem;
+    margin: 0 0 2px 0;
     color: #0f172a;
     letter-spacing: 0.5px;
+    line-height: 1.2;
   }
   .header .info-bar {
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     color: #334155;
     display: flex;
     justify-content: space-between;
-    line-height: 1.35;
+    line-height: 1.25;
   }
   .info-bar span strong {
     color: #1e3a8a;
@@ -79,15 +81,15 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.74rem;
+    font-size: 0.7rem;
     table-layout: fixed;
   }
   th, td {
     border: 1px solid #475569;
-    padding: 1.8px 2px;
+    padding: 0.5px 2px;
     text-align: center;
-    height: 17.5px;
-    line-height: 1.15;
+    height: 15px;
+    line-height: 1.1;
     white-space: nowrap;
     overflow: hidden;
   }
@@ -95,44 +97,51 @@
     background: #f1f5f9;
     color: #0f172a;
     font-weight: 700;
-    height: 20px;
+    height: 18px;
+    font-size: 0.72rem;
   }
   td.name-cell {
     font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
   }
   .footer-note {
-    margin-top: 4px;
-    font-size: 0.72rem;
+    margin-top: 3px;
+    font-size: 0.68rem;
     color: #475569;
     display: flex;
     justify-content: space-between;
     border-top: 1px dashed #cbd5e1;
-    padding-top: 3px;
+    padding-top: 2px;
+    line-height: 1.2;
   }
 
   @media print {
+    @page {
+      size: A4 portrait;
+      margin: 4mm 6mm;
+    }
     body {
       background: #fff;
-      padding: 0;
-      margin: 0;
+      padding: 0 !important;
+      margin: 0 !important;
     }
     .print-btn-bar {
       display: none !important;
     }
     .sheet {
-      box-shadow: none;
-      padding: 0;
-      margin: 0;
-      max-width: 100%;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
     }
     table {
-      page-break-inside: avoid;
+      page-break-inside: avoid !important;
     }
     tr {
-      page-break-inside: avoid;
-      page-break-after: auto;
+      page-break-inside: avoid !important;
+      page-break-after: auto !important;
     }
   }
 </style>
