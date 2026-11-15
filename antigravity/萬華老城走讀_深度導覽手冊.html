@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>萬華老城走讀・深度導覽手冊 (西門至龍山寺 5.4km)</title>
+  <meta name="description" content="青松健行隊精選路線：萬華老城深度走讀5.4km詳細景點解說手冊，包含西門紅樓、西本願寺、清水祖師廟、青山宮、華西街、糖廍文化園區、大理街服飾商圈、東三水街市場、剝皮寮、青草巷、龍山寺等15大景點歷史沿革、解說口條與美食筆記。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #991b1b;
+      --primary-light: #fef2f2;
+      --primary-border: #fecaca;
+      --accent: #b45309;
+      --accent-gold: #d97706;
+      --bg: #fafaf9;
+      --card-bg: #ffffff;
+      --text-main: #1c1917;
+      --text-muted: #57534e;
+      --border: #e7e5e4;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Noto Sans TC', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.75;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 頂部固定導覽列 */
+    header.sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-title {
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-tools {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-tool {
+      background: #f5f5f4;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-tool:hover { background: #e7e5e4; }
+    .btn-tool.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* 主橫幅 Hero */
+    .hero-banner {
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 60%, #b45309 100%);
+      color: #ffffff;
+      padding: 36px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .hero-banner h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .hero-banner p.subtitle {
+      font-size: 1.05rem;
+      opacity: 0.92;
+      max-width: 650px;
+      margin: 0 auto 20px;
+    }
+
+    .route-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-box .val {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fef08a;
+    }
+    .stat-box .lbl {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* 快捷操作條 */
+    .action-bar {
+      max-width: 860px;
+      margin: 16px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 16px;
+    }
+
+    .action-btn {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+    .action-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+    .action-btn.fill {
+      background: var(--primary);
+      color: #fff;
+    }
+    .action-btn.fill:hover {
+      background: #7f1d1d;
+    }
+
+    /* 容器架構 */
+    .container {
+      max-width: 880px;
+      margin: 24px auto 60px;
+      padding: 0 16px;
+    }
+
+    /* 地圖卡片區塊 */
+    .map-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .map-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .map-wrapper {
+      text-align: center;
+      background: #f5f5f4;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .map-wrapper img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+
+    /* 走讀地圖亮點圖組 */
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .mini-gallery-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+    .mini-gallery-item img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .mini-gallery-item .cap {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* 快速索引選單 (Table of Contents) */
+    .toc-card {
+      background: #fbfbfa;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 30px;
+    }
+    .toc-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 8px;
+    }
+    .toc-link {
+      display: block;
+      padding: 6px 10px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: all 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toc-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .toc-link .num-badge {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      background: #f5f5f4;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.75rem;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    /* 景點主卡片 */
+    .spot-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      scroll-margin-top: 70px;
+      transition: border-color 0.2s;
+    }
+    .spot-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .spot-header {
+      background: linear-gradient(to right, #fbfbfa, #ffffff);
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .spot-title-wrap {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .spot-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(153, 27, 27, 0.3);
+    }
+
+    .spot-names h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #1c1917;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .spot-names .spot-subtitle {
+      font-size: 0.92rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .spot-meta-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .badge-info {
+      background: #f5f5f4;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .badge-info.highlight {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    /* 語音解說列 */
+    .spot-audio-bar {
+      background: #fffbeb;
+      border-bottom: 1px solid #fef3c7;
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .audio-hint {
+      font-size: 0.85rem;
+      color: #92400e;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-speak {
+      background: #d97706;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+    .btn-speak:hover { background: #b45309; }
+    .btn-speak.speaking { background: #dc2626; }
+
+    /* 內文主體 */
+    .spot-body {
+      padding: 22px;
+    }
+
+    .spot-summary-quote {
+      background: #f8fafc;
+      border-left: 4px solid var(--accent-gold);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-weight: 500;
+      font-size: 0.98rem;
+      color: #334155;
+      margin-bottom: 20px;
+    }
+
+    .section-block {
+      margin-bottom: 22px;
+    }
+    .section-block:last-child { margin-bottom: 0; }
+
+    .section-block-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .speech-box {
+      background: #fdf6ec;
+      border: 1px dashed #f59e0b;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: #78350f;
+      position: relative;
+    }
+    .speech-box::before {
+      content: "🎙️ 帶隊導覽解說詞（可直接唸給隊友聽）：";
+      display: block;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #b45309;
+      margin-bottom: 6px;
+    }
+
+    .history-text {
+      color: #374151;
+      text-align: justify;
+      font-size: 0.96rem;
+      line-height: 1.85;
+    }
+
+    .highlights-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .highlights-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+    .highlights-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .easter-egg-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      color: #166534;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    /* 美食清單推薦卡 */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .food-item {
+      background: #fafaf9;
+      border: 1px solid #e7e5e4;
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .food-item .food-name {
+      font-weight: 800;
+      color: #b91c1c;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+    .food-item .food-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* 地圖導航操作區 */
+    .spot-footer {
+      background: #fcfcfb;
+      border-top: 1px solid var(--border);
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .spot-coords {
+      font-size: 0.8rem;
+      color: #78716c;
+      font-family: monospace;
+    }
+    .btn-nav {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0369a1;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover {
+      background: #f0f9ff;
+      border-color: #38bdf8;
+    }
+
+    /* 結語與提醒 */
+    .ending-card {
+      background: linear-gradient(to bottom right, #fef2f2, #fff7ed);
+      border: 1.5px solid #fecaca;
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .ending-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .tips-list {
+      list-style: none;
+      padding: 0;
+    }
+    .tips-list li {
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+      font-size: 0.95rem;
+      color: #44403c;
+    }
+    .tips-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #16a34a;
+      font-weight: 900;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 16px;
+      color: #a8a29e;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* 回頂部按鈕 */
+    .btn-back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      width: 46px;
+      height: 46px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      border: none;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+    }
+    .btn-back-to-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      .hero-banner h1 { font-size: 1.6rem; }
+      .route-stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .mini-gallery { grid-template-columns: 1fr; }
+      .spot-header { flex-direction: column; }
+      .spot-names h3 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部固定列 -->
+  <header class="sticky-header">
+    <div class="header-title">
+      <span>🏛️ 萬華老城走讀・導覽手冊</span>
+    </div>
+    <div class="header-tools">
+      <button class="btn-tool" onclick="toggleFontSize()"><span>🔍 字體</span></button>
+      <a href="https://is.gd/TLsoGi" target="_blank" class="btn-tool primary"><span>🗺️ 互動地圖</span></a>
+    </div>
+  </header>
+
+  <!-- 主橫幅 Hero -->
+  <section class="hero-banner">
+    <div class="hero-badge">青松健行隊・文化老城精選走讀</div>
+    <h1>萬華老城散步：西門到龍山寺</h1>
+    <p class="subtitle">全程 5.39 公里・15 大精選景點深度導覽・廟宇歷史・製糖產業・庶民美食巡禮</p>
+    
+    <div class="route-stat-grid">
+      <div class="stat-box">
+        <div class="val">5.39 km</div>
+        <div class="lbl">健走全程距離</div>
+      </div>
+      <div class="stat-box">
+        <div class="val">2.5 小時</div>
+        <div class="lbl">預估走讀時間</div>
+      </div>
+      <div class="stat-box">
+        <div class="val">15 處</div>
+        <div class="lbl">深度文化地標</div>
+      </div>
+      <div class="stat-box">
+        <div class="val">平緩</div>
+        <div class="lbl">全線路況等級</div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <a href="https://is.gd/QqGB1P" class="action-btn fill"><span>📥 下載實際 GPX 軌跡</span></a>
+      <a href="https://is.gd/TLsoGi" target="_blank" class="action-btn"><span>🗺️ 開啟互動地圖導覽</span></a>
+      <button onclick="copyLineNotice()" class="action-btn"><span>📋 複製 LINE 活動通告</span></button>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- 地圖卡片 -->
+    <section class="map-card">
+      <h2><span>🗺️ 走讀路線與軌跡實測全圖</span></h2>
+      <div class="map-wrapper">
+        <img src="萬華老城走讀_手繪地圖.jpg" alt="萬華老城走讀手繪路線圖" loading="lazy">
+      </div>
+      <div class="mini-gallery">
+        <div class="mini-gallery-item">
+          <img src="萬華走讀_糖廍文化園區軌跡.png" alt="糖廍文化園區軌跡">
+          <div class="cap">📍 實測延伸：全台最北「糖廍文化園區」糖業古蹟</div>
+        </div>
+        <div class="mini-gallery-item">
+          <img src="萬華走讀_和平青草園軌跡.png" alt="和平青草園軌跡">
+          <div class="cap">📍 實測穿越：艋舺大道「時報大樓與和平青草園」</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 景點快速索引 -->
+    <section class="toc-card">
+      <div class="toc-title"><span>📑 15 處走讀站點快速跳轉目錄</span></div>
+      <div class="toc-grid">
+        <a href="#spot1" class="toc-link"><span class="num-badge">1</span>捷運西門站 6 號出口</a>
+        <a href="#spot2" class="toc-link"><span class="num-badge">2</span>西門紅樓</a>
+        <a href="#spot3" class="toc-link"><span class="num-badge">3</span>西本願寺（台灣別院遺址）</a>
+        <a href="#spot4" class="toc-link"><span class="num-badge">4</span>艋舺清水巖祖師廟</a>
+        <a href="#spot5" class="toc-link"><span class="num-badge">5</span>艋舺青山宮</a>
+        <a href="#spot6" class="toc-link"><span class="num-badge">6</span>華西街觀光夜市・百年仁濟醫院</a>
+        <a href="#spot7" class="toc-link"><span class="num-badge">7</span>梧州街在地小吃街</a>
+        <a href="#spot8" class="toc-link"><span class="num-badge">8</span>糖廍文化園區（台北製糖所遺址）</a>
+        <a href="#spot9" class="toc-link"><span class="num-badge">9</span>時報大樓・和平青草園</a>
+        <a href="#spot10" class="toc-link"><span class="num-badge">10</span>大理街服飾商圈</a>
+        <a href="#spot11" class="toc-link"><span class="num-badge">11</span>東三水街市場・新富町文化市場</a>
+        <a href="#spot12" class="toc-link"><span class="num-badge">12</span>剝皮寮歷史街區（康定路173巷）</a>
+        <a href="#spot13" class="toc-link"><span class="num-badge">13</span>艋舺地藏庵（地藏王菩薩廟）</a>
+        <a href="#spot14" class="toc-link"><span class="num-badge">14</span>艋舺青草巷（西昌街224巷）</a>
+        <a href="#spot15" class="toc-link"><span class="num-badge">15</span>艋舺龍山寺</a>
+      </div>
+    </section>
+
+    <!-- 各景點詳細內容清單 -->
+    <section class="spots-list">
+
+      <!-- Spot 1: 捷運西門站 6 號出口 -->
+      <article id="spot1" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">1</div>
+            <div class="spot-names">
+              <h3>捷運西門站 6 號出口</h3>
+              <div class="spot-subtitle">老城西門戶・彩虹起點與古城門意象</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 0.0 km</span>
+            <span class="badge-info">建議停留 10 分鐘</span>
+            <span class="badge-info">交通起點・歷史地標</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot1-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            西門町最熱鬧的迎賓玄關，腳下是象徵包容的彩虹地景，百年前則是清代台北城最華麗的『寶成門』所在。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot1-speech" class="speech-box">
+              各位隊員好！我們今天的老城走讀從西門町6號出口出發。大家腳下踩的正是著名的彩虹地景，但若將時空倒轉一百多年，這裡曾矗立著清代台北城最華美的寶成門。從最繁華前衛的西門町出發，我們將一路向西南漫步，穿梭進台北最早發展、最具人情味的艋舺老街巷弄！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">清光緒年間興建的台北城共有五座城門，西門（寶成門）位於現今成都路、衡陽路與中華路交會處，擁有最華麗精緻的雙層歇山頂樓閣。1905年日治市區改正拆除城門與城牆，闢建中華路三線林蔭道，西門町逐步演變為仿東京淺草的現代娛樂電影商圈。2019年於6號出口前劃設『Rainbow Six』彩虹地景，象徵台北自由、多元與人權精神。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>彩虹斑馬線 (Rainbow Six)</strong>：全台知名打卡地標，象徵台北平權多元包容意象。</li>
+            <li><strong>舊寶成門意象</strong>：西門町捷運站周邊設有清代城牆石材基座與西門遺址紀念裝置。</li>
+            <li><strong>徒步區起點</strong>：集結日治時期至當代年輕人流行文化的樞紐。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                西門（寶成門）是台北五大城門中唯一在日治初期被徹底拆除殆盡的城門，當時引發地方士紳強烈抗議，總督府才緊急停手保留了北門、東門、南門與小南門。
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 阿宗麵線</div>
+              <div class="food-desc">峨眉街站著吃的大腸麵線，柴魚香氣濃厚</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 老天祿滷味</div>
+              <div class="food-desc">成都路老字號鴨舌與滷豆干，老台北人的零嘴記憶</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 成都楊桃冰</div>
+              <div class="food-desc">創立於1966年的古法醃漬酸甜楊桃湯與鳳梨冰</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0422, 121.5076</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0422,121.5076" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 2: 西門紅樓 -->
+      <article id="spot2" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">2</div>
+            <div class="spot-names">
+              <h3>西門紅樓</h3>
+              <div class="spot-subtitle">全台首座公營市場・百年八角堂與十字樓</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 0.3 km</span>
+            <span class="badge-info">建議停留 15 分鐘</span>
+            <span class="badge-info">市定古蹟・文創聚落</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot2-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            1908年由日籍建築師近藤十郎設計，獨創『八角堂』為入口與『十字樓』為主賣場，走過劇院與電影院時代，現為文創基地。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot2-speech" class="speech-box">
+              請大家抬頭看這座搶眼的紅磚洋風建築！設計師近藤十郎當年極富巧思：正面入口取『八卦形狀』，象徵八方雲集、八面玲瓏，在風水上有辟邪鎮煞之效；後棟則取『十字架形狀』作為市場主要通道，中西文化在此神妙交融。洗石子的白色飾帶在紅磚牆上環繞，百年間見證了台北從菜市場、戲院到當代文創的璀璨轉身！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">興建於明治41年（1908年），是全台灣第一座官方興建的公營市場（新起街市場）。建築大膽採用『八角堂』與『十字樓』格局。戰後1945年接收改稱『紅樓劇場』，演出京劇與越劇；1960年代改映二輪電影；1997年被指定為市定古蹟。歷經浴火重生後，現成為融合歷史常設展、文創選品店、紅樓茶坊與露天市集的藝文樞紐。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>八角堂立面</strong>：紅磚砌體搭配洗石子仿石橫帶，中央設有老虎窗通風。</li>
+            <li><strong>十字樓拱窗</strong>：紅磚砌拱圈，結構穩固，展現二十世紀初近代鋼骨與磚造技術。</li>
+            <li><strong>內部展覽</strong>：一樓設有紅樓百年文物常設展，展示老戲院長椅、黑白票根與老海報。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                紅樓建造時因地處舊日墳場邊緣，近藤十郎特地以東方太極八卦壓煞、西方十字撫慰亡魂，是一座充滿玄機的神奇建築！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 紅樓茶坊</div>
+              <div class="food-desc">在古蹟天井品茗台灣精品冷泡茶與精緻茶點</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 巧雅麵食館</div>
+              <div class="food-desc">西門町隱藏版平價美味炒飯與番茄牛肉麵</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 內江街無名涼麵</div>
+              <div class="food-desc">萬華老饕清晨深夜必吃的麻醬涼麵與味噌貢丸蛋花湯</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0418, 121.5068</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0418,121.5068" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 3: 西本願寺（台灣別院遺址） -->
+      <article id="spot3" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">3</div>
+            <div class="spot-names">
+              <h3>西本願寺（台灣別院遺址）</h3>
+              <div class="spot-subtitle">日治最大真宗本願寺・唐破風樹心會館與鐘樓</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 0.8 km</span>
+            <span class="badge-info">建議停留 20 分鐘</span>
+            <span class="badge-info">歷史建築・日式禪風</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot3-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            曾是台灣最大規模的日本佛教真宗本願寺派別院，保有鐘樓、樹心會館、日式輪番所與優美的參道綠蔭。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot3-speech" class="speech-box">
+              拐出熱鬧的成都路來到中華路，這裡有著宛如京都的清幽天地！西本願寺曾是日治時期全台最大的日本佛寺。眼前土丘高台上的就是『鐘樓』，銅鐘懸掛在圓柱屋頂下，莊嚴素雅。旁邊這棟紅磚洋館叫『樹心會館』，入口卻是日本傳統的『唐破風』卷棚屋頂；旁邊黑瓦木造房屋則是當年的住持官舍『輪番所』。站在這裡，能深切感受台北多元歷史的層層堆疊。
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">建於 1904 至 1924 年間，由日本淨土真宗本願寺派建立，當時擁有宏偉的木構大本堂。戰後本堂一度收容大陸來台軍眷（中華新村），1975年遭遇大火本堂木構燒毀。2006年台北市政府展開全面考證與修復，將倖存的『鐘樓』、『樹心會館』、『輪番所』及參道步道完整重現，成為繁華鬧區中一處充滿日式侘寂美學的文化綠洲。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>懸山頂鐘樓</strong>：築於人工土丘高台上，採懸山頂形式，氣宇非凡。</li>
+            <li><strong>樹心會館唐破風</strong>：由第五任台灣總督佐久間左馬太賜名，結合日式唐破風與紅磚桁架建築。</li>
+            <li><strong>輪番所（現為茶館）</strong>：入母屋造日式町家官舍，雨淋板、玄關與榻榻米格局完整。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                當年鐘樓上的原始大銅鐘在二次世界大戰期間因日軍物資缺乏，被徵收鎔鑄製成砲彈，現在懸掛的銅鐘為現代考證後重新打造復刻。
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 八拾捌茶輪番所</div>
+              <div class="food-desc">在古蹟日式榻榻米上細品台茶工夫茶與日式和菓子</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 本願豆花店</div>
+              <div class="food-desc">幽默趣味文青豆花店，遵古法熬煮黑糖水與綿密豆花</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 張記韭菜水煎包</div>
+              <div class="food-desc">中華路一段皮酥餡香的排隊老字號眷村水煎包</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0401, 121.5073</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0401,121.5073" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 4: 艋舺清水巖祖師廟 -->
+      <article id="spot4" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">4</div>
+            <div class="spot-names">
+              <h3>艋舺清水巖祖師廟</h3>
+              <div class="spot-subtitle">落鼻祖師預知災厄傳奇・中法戰爭光緒御匾古剎</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 1.6 km</span>
+            <span class="badge-info">建議停留 20 分鐘</span>
+            <span class="badge-info">直轄市定古蹟・台北三大廟門</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot4-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            1787年創建，台北三大廟門之一，主祀安溪移民守護神清水祖師。電影《艋舺》結義主景，落鼻顯靈與抗法歷史聞名遐邇。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot4-speech" class="speech-box">
+              大家快看祖師公的神容！艋舺祖師爺有全台灣最神驗的『落鼻祖師』傳奇：據傳每當地方即將發生瘟疫、地震或水患等重大災難，祖師爺的木雕鼻子便會自行脫落示警，百姓因而及早避難，事後只要以香灰調水即可黏回！抬頭請看後殿正上方懸掛的光緒皇帝御賜金匾『功資拯濟』，這是見證台灣抗法戰爭的國寶。廟中斑駁古樸的龍柱、青石門檻，更是電影《艋舺》中少年結義、義氣相挺的經典場景！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">創建於清乾隆52年（1787年），由福建安溪移民攜帶安溪清水巖祖師香火來台籌建。同治6年（1867年）重建。1884年中法戰爭時，法軍進犯淡水，相傳台北官民迎請艋舺清水祖師前往助陣，祖師顯靈大顯神威擊退法軍，光緒皇帝因而御賜『功資拯濟』匾額。亦為艋舺頂下郊拚歷史事件的關鍵舞台，更因電影《艋舺》在此拍攝取景而名揚海外。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>光緒御匾『功資拯濟』</strong>：光緒十年中法戰爭滬尾大捷，皇帝感念祖師助陣所賜珍貴御匾。</li>
+            <li><strong>清代樸實龍柱與石雕</strong>：同治年間重雕之單龍盤柱，刀法古拙渾厚，毫無浮誇雕琢。</li>
+            <li><strong>電影《艋舺》聚義天井</strong>：主角『蚊子』、『志龍』等人在此結為太子幫，江湖兄弟聚會聖地。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                在中法戰爭滬尾之役後，大稻埕、艋舺、淡水三地爭搶迎奉落鼻祖師，最後協商訂下每逢農曆正月初一在艋舺、五月初六在淡水輪流出巡的民俗約定！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 祖師廟原汁排骨大王</div>
+              <div class="food-desc">一整塊軟嫩豬肋排配上清甜蘿蔔排骨湯，萬華近半世紀經典</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 頂級甜不辣</div>
+              <div class="food-desc">特調沾醬Q彈黑輪、菜頭，吃完一定要加一碗熱高湯</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 沙鵝肉</div>
+              <div class="food-desc">隱藏在貴陽街的煙燻鵝肉老店，肉質鮮美多汁</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0404, 121.502</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0404,121.502" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 5: 艋舺青山宮 -->
+      <article id="spot5" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">5</div>
+            <div class="spot-names">
+              <h3>艋舺青山宮</h3>
+              <div class="spot-subtitle">靈安尊王除疫除煞・艋舺大拜拜暗訪總壇</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 2.2 km</span>
+            <span class="badge-info">建議停留 20 分鐘</span>
+            <span class="badge-info">直轄市定古蹟・國家級無形文資</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot5-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            1856年創建，主祀惠安籍移民守護神青山靈安尊王，司法與除疫威靈赫赫。每年農曆十月『青山王暗訪祭典』為台北三大廟會盛事。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot5-speech" class="speech-box">
+              走到青山宮，大家會感受到一股威嚴肅穆的神威氣息！青山王是艋舺大名鼎鼎的『司法與瘟疫之神』，專司賞善罰惡、除煞鎮煞。請大家走到正殿中央抬起頭——這頂『八角螺旋藻井』全由一根根珍貴檜木榫卯交疊而成，完全不用一根釘子，旋轉如星芒漩渦，是台灣木雕建築的登峰造極之作！每年艋舺大拜拜青山王夜間出巡，八家將踏踩神秘步伐，整座老街萬人空巷！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">清咸豐4年（1854年）艋舺發生嚴重瘟疫，惠安籍漁民自祖廟迎請靈安尊王神像乘船來台，神輿途經貴陽街（昔稱番薯市街）時突然重如泰山無法抬動，擲筊請示後就地建廟奉祀，瘟疫隨之止息。咸豐6年（1856年）正式起造青山宮。青山王被視為具有司法神威力的陰陽執法神，配祀八司官、范謝將軍與八家將。每年農曆十月廿、廿一日夜間『暗訪』，百鬼退避，氣勢萬千。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>木構螺旋八角藻井</strong>：正殿頂部精巧絕倫的斗拱結網，形如八卦螺旋旋轉上騰。</li>
+            <li><strong>清代透雕石雕龍柱</strong>：前殿石雕柱雕功細緻，層層交錯，展現惠安石匠高超技藝。</li>
+            <li><strong>百年神轎與將軍神將</strong>：收藏咸豐與光緒年間神轎，以及范謝將軍（七爺八爺）高聳神將。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                青山王廟會暗訪儀式中，沿途神將會發送特製『鹹光餅』（又稱繼光餅），信徒相傳吃了能保佑闔家平安、孩童健康長大辟邪！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 一甲子餐飲</div>
+              <div class="food-desc">米其林必比登推薦！入口即化肥瘦相間控肉飯、花生粉手工刈包</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 永富冰淇淋</div>
+              <div class="food-desc">創於1945年的老字號叭噗，紅豆、芋頭、桂圓古早味三球</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 三味食堂</div>
+              <div class="food-desc">貴陽街巨無霸生魚片與鮭魚握壽司，日韓遊客爭相排隊名店</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0401, 121.4986</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0401,121.4986" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 6: 華西街觀光夜市・百年仁濟醫院 -->
+      <article id="spot6" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">6</div>
+            <div class="spot-names">
+              <h3>華西街觀光夜市・百年仁濟醫院</h3>
+              <div class="spot-subtitle">全台首座觀光夜市・老醫院慈惠與黑金滷肉飯</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 2.7 km</span>
+            <span class="badge-info">建議停留 20 分鐘</span>
+            <span class="badge-info">庶民美食・百年慈善醫療</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot6-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            台灣第一座規劃型觀光夜市，標誌性中國傳統宮殿式門樓與大紅燈籠；轉角仁濟醫院更見證清代育嬰堂以降逾150年慈惠濟世歷史。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot6-speech" class="speech-box">
+              眼前這座雕樑畫棟的宮殿式大牌樓，就是鼎鼎大名的『華西街觀光夜市』！這裡是台灣夜市遮雨長廊與觀光化設計的鼻祖。除了早年的蛇街傳奇，轉角這座古樸的仁濟醫院更充滿人情味——它從清代同治年間板橋林家創立育嬰堂收容孤兒開始，跨越清朝、日治到民國，是守護萬華逾150年的醫療老招牌。而到了華西街，絕對不能錯過米其林必比登小王煮瓜的『黑金滷肉飯』！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">華西街早期鄰近淡水河碼頭，聚集各方苦力勞工，發展出販售蛇肉、蛇湯、補膏等強身固本的特色市集。1987年台北市政府正式整建為全台第一座觀光夜市，設置遮雨棚架與宮殿式大門樓。街角的『台北仁濟院』前身可追溯至同治5年（1866年）板橋林家林維源等士紳設立之保良局、育嬰堂與養濟院，百年來持續照護萬華弱勢長者與基層醫療。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>華西街仿古宮殿牌樓</strong>：歇山重簷大門樓，懸掛長串紅燈籠，古意盎然。</li>
+            <li><strong>百年仁濟院慈善足跡</strong>：台灣最早民間慈善社會福利機構的實體見證。</li>
+            <li><strong>必比登美食街廊</strong>：同一條街匯聚小王煮瓜、源芳刈包、昶鴻麵點等米其林必比登名店。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                華西街早期以當街宰蛇炒熱買氣聞名，隨著野生動物保育意識抬頭，最後一家蛇肉專賣店已於2018年光榮歇業，全面轉型為精緻老饕小吃天地。
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 小王煮瓜</div>
+              <div class="food-desc">米其林必比登！油亮黑金色香菇滷肉飯＋古法醃瓜熬煮清湯瓜仔肉</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 源芳刈包</div>
+              <div class="food-desc">米其林必比登！特製麵皮鬆軟香甜，五花肉肥瘦黃金比例酸菜爽脆</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 阿猜嬤甜湯</div>
+              <div class="food-desc">五十年炭火慢熬米糕桂圓粥，蘸著現炸香脆油條一起吃超銷魂</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 台南擔仔麵</div>
+              <div class="food-desc">萬華老字號頂級海鮮擔仔麵，以法式精緻餐瓷吃台灣古早味</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0375, 121.4984</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0375,121.4984" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 7: 梧州街在地小吃街 -->
+      <article id="spot7" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">7</div>
+            <div class="spot-names">
+              <h3>梧州街在地小吃街</h3>
+              <div class="spot-subtitle">萬華100碗・在地阿公阿嬤的日常深夜食堂</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 3.0 km</span>
+            <span class="badge-info">建議停留 15 分鐘</span>
+            <span class="badge-info">庶民市井・老城廚房</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot7-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            緊鄰華西街與廣州街，沒有觀光濾鏡，只有在地人每天光顧的銅板美食：原汁排骨湯、高麗菜飯與熱炒熱湯。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot7-speech" class="speech-box">
+              大家走累了嗎？如果說剛才的華西街是迎賓的前廳，那麼『梧州街』就是萬華人每天回家吃飯的熱鬧廚房！這裡沒有華麗擺盤，但每一家都有滾沸數十年的老高湯。白蘿蔔燉得晶瑩剔透、整塊大骨肋排入口即化，再配上一碗油香粒粒分明的高麗菜飯，這就是最道地、最溫暖的艋舺老滋味！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">梧州街是萬華極具代表性的庶民生活聚落，街邊攤檔林立，大多由在地兩代、三代傳承經營。早期提供周邊碼頭工人與市場小販溫飽，因此小吃特色為用料扎實、份量充足、價格親民。近年在市府舉辦的『萬華100碗』美食評比中，梧州街多項小吃高票入選，展現老台北最深邃的家常風味。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>原汁排骨高湯大鍋</strong>：街角飄散大骨與白蘿蔔清甜香氣，老饕必點骨邊肉。</li>
+            <li><strong>庶民生活百態</strong>：萬華耆老泡茶話家常、棋盤對弈與市井日常缩影。</li>
+            <li><strong>萬華100碗精華區</strong>：排骨湯、香菇肉羹、滷肉飯等高密度銅板美食群。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                老萬華人吃排骨湯的秘密武器，是將生辣椒碎粒泡入純釀醬油中，夾起整塊肋骨沾著吃，微辣鮮香，最後再端著空碗請老闆免費續加滾燙清湯！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 梧州街原汁排骨湯</div>
+              <div class="food-desc">大塊豬肋排燉到骨肉分離，搭配古早味高麗菜飯</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 寶字號香菇肉羹</div>
+              <div class="food-desc">扎實赤肉羹包裹薄漿，羹湯帶著筍絲與烏醋清甜</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 台南現炒鱔魚意麵</div>
+              <div class="food-desc">大火鍋氣十足的酸甜炒鱔魚與花枝意麵</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0355, 121.4976</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0355,121.4976" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 8: 糖廍文化園區（台北製糖所遺址） -->
+      <article id="spot8" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">8</div>
+            <div class="spot-names">
+              <h3>糖廍文化園區（台北製糖所遺址）</h3>
+              <div class="spot-subtitle">全台最北端製糖所・日治紅磚倉庫與五分小火車</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 3.6 km</span>
+            <span class="badge-info">建議停留 20 分鐘</span>
+            <span class="badge-info">直轄市定古蹟・工業歷史園區</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot8-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            1909年設立的『台北製糖株式會社』，是台灣製糖史上最北端的現代化糖廠！保留A、B、C三座紅磚大倉庫與甘蔗田園。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot8-speech" class="speech-box">
+              很多台北人都不知道，熱鬧的萬華竟然曾經有過一座大型糖廠！大家眼前的『糖廍文化園區』，是全台灣製糖工業最北端的地標。看這三座厚實的紅磚大倉庫（A倉、B倉、C倉），採用了日治時期的紅磚造圓弧拱門與大跨距木桁架。A倉裡展出百年前的糖業器具與歷史文獻，草地上還有一輛真正的五分車蒸汽小火車頭與都市甘蔗田，是非常珍貴的工業遺產！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">建於明治42年（1909年），由日資『台北製糖株式會社』創設。當時大漢溪與新店溪流域土壤肥沃，種植大量製糖甘蔗，透過鐵路五分車源源不絕運抵此處壓榨精煉，開啟北台灣現代製糖業。二戰期間因戰事停產改作軍需倉庫，戰後由台灣糖業公司接管。2003年台北市政府指定保留下來的紅磚倉庫為古蹟，規劃為文化園區，由明華園戲劇總團進駐，兼具糖業歷史展覽與藝文排練功能。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>A倉糖業展覽館</strong>：常設展覽呈現台灣北部糖業開拓史、古老製糖石車與磅秤。</li>
+            <li><strong>紅磚拱門與木桁架屋頂</strong>：日治早期堅固磚石砌造工法，兼具美感與承重抗震力。</li>
+            <li><strong>糖鐵五分車蒸汽火車頭</strong>：復刻早期運送甘蔗與居民的小火車意象，懷舊拍照亮點。</li>
+            <li><strong>戶外甘蔗生態園</strong>：復刻種植食用甘蔗與製糖甘蔗，綠意盎然。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                台灣早期地名帶有『廍』（音同部）字的，都代表曾是提煉蔗糖的作坊。台北製糖所雖然僅營運約30年，但留下的鐵道路線後來成為萬華大理街一帶的重要交通骨幹！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 大理街甜不辣</div>
+              <div class="food-desc">古早味醬汁現炸甜不辣與油豆腐，湯頭鮮甜</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 糖廍周邊傳統冰品</div>
+              <div class="food-desc">消暑清涼的古法熬煮黑糖刨冰與手工粉圓</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 大理排骨便當</div>
+              <div class="food-desc">在地經營三十年的薄粉酥炸古早味排骨</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0338, 121.4942</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0338,121.4942" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 9: 時報大樓・和平青草園 -->
+      <article id="spot9" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">9</div>
+            <div class="spot-names">
+              <h3>時報大樓・和平青草園</h3>
+              <div class="spot-subtitle">傳統藥用草本綠洲・老傳媒地標與都會森林</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 4.1 km</span>
+            <span class="badge-info">建議停留 15 分鐘</span>
+            <span class="badge-info">都會公園・草藥文化</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot9-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            穿過艋舺大道中國時報總社地標，走進藏身市區的『和平青草園』，園區種植多種本土藥用植物，與萬華青草文化相互呼應。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot9-speech" class="speech-box">
+              沿著艋舺大道走，這棟宏偉的棕色大樓就是昔日引領台灣輿論風騷的『中國時報總社』。而轉進旁邊的『和平青草園』，大家可以放慢腳步深呼吸！這裡特別闢建了草本藥用植物區，種植著薄荷、艾草、魚腥草、白鶴靈芝等老萬華人日常用來熬煮青草茶的天然藥草，是漫步老城時洗滌身心的寧靜綠洲。
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">和平青草園原址為舊台北市立和平醫院（仁愛院區前身）早期的木造隔離病舍，拆除後曾作為苗圃與荒地。台北市政府配合萬華老城改造，以『萬華百年草藥文化』為核心主題，將其改建為兼具防洪透水、親子共融與藥草生態教育的綠地公園。臨近的中國時報大樓則是台灣戰後傳媒史上不可磨滅的代表性地標。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>時報大樓傳媒地標</strong>：見證台灣報業全盛時期印刷、排版與新聞重鎮。</li>
+            <li><strong>藥用植物生態園區</strong>：標註解說牌的本土藥用草本植物示範種植區。</li>
+            <li><strong>共融式綠化空間</strong>：寬敞的大草坪、林蔭步道與木質遊具，適合健走中途休整。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                和平青草園內種植的藥草皆為台北市農會與萬華青草店耆老共同指導選種，是名副其實的『萬華青草活字典』！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 艋舺大道古早味米粉湯</div>
+              <div class="food-desc">粗米粉吸飽黑白切大骨精華，油豆腐與嘴邊肉必點</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 老艋舺現烤燒餅</div>
+              <div class="food-desc">碳火現貼烘烤的厚燒餅與焦香蔥花酥餅</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 青草園甘蔗冰茶</div>
+              <div class="food-desc">現榨白甘蔗原汁混搭清涼薄荷青草茶</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0328, 121.4971</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0328,121.4971" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 10: 大理街服飾商圈 -->
+      <article id="spot10" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">10</div>
+            <div class="spot-names">
+              <h3>大理街服飾商圈</h3>
+              <div class="spot-subtitle">台灣成衣批發搖籃・五分埔前身的時尚發祥地</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 4.4 km</span>
+            <span class="badge-info">建議停留 15 分鐘</span>
+            <span class="badge-info">產業歷史・批發商街</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot10-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            民國40~60年代全台最大的成衣批發重鎮！依托萬華火車站全盛時期聚集上千家成衣店，至今仍是台灣女裝與旗袍批發重地。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot10-speech" class="speech-box">
+              大家知道台北最有名的五分埔成衣批發，祖師爺其實是我們現在身處的『大理街』嗎？民國50年代，全台灣菜市場與委託行賣的衣服，源頭全來自這條大理街！當時成衣店老闆都是一手拿大把鈔票、一手扛大布袋出貨。現在街上仍有許多專賣淑女洋裝、改良旗袍與高品質打版老店，處處能感受到台灣經濟起飛時期的勤奮拚搏精神！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">民國40年代起，大理街緊鄰台鐵萬華火車站，來自全台各地的布料透過鐵道運抵，加工製成成衣後再由此運往全台各地零售，促成大理街成衣商圈的崛起。全盛時期商圈涵蓋大理街、西園路周邊，聚集超過千家成衣批發商。政府近年在此設立『西園29服飾創作基地』，推動打版技術與新銳設計師培育，帶動傳統成衣街轉型現代時尚美學聚落。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>西園29服飾創作基地</strong>：工研院與紡拓會共同打造的時尚孵化基地，定期展示新銳服飾。</li>
+            <li><strong>成衣批發騎樓景致</strong>：整排店家掛滿各式流行服飾，批發零售兼具。</li>
+            <li><strong>萬華車站新風貌</strong>：雙子星大樓與老火車站共構，新舊天際線對比強烈。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                很多台灣知名本土服飾品牌（如台南紡織相關成衣品牌、早期名媛訂製服）創始店第一張訂單都是在大理街簽下的！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 大理街阿伯魷魚羹</div>
+              <div class="food-desc">五十年老攤現燙爽脆生魷魚與手工魚漿羹</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 萬華仙草冰</div>
+              <div class="food-desc">開業逾半世紀，細長條狀黑金仙草絲加上碎冰，吸一口透心涼</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 柳州螺螄粉</div>
+              <div class="food-desc">大理街排隊名店！酸辣濃郁酸筍大骨高湯配上彈牙柳州米粉</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0346, 121.5007</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0346,121.5007" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 11: 東三水街市場・新富町文化市場 -->
+      <article id="spot11" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">11</div>
+            <div class="spot-names">
+              <h3>東三水街市場・新富町文化市場</h3>
+              <div class="spot-subtitle">全台唯一U型馬蹄市場古蹟・日治採光天井與阿婆油飯</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 4.7 km</span>
+            <span class="badge-info">建議停留 20 分鐘</span>
+            <span class="badge-info">直轄市定古蹟・文創共生市場</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot11-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            建於1935年，保留全台唯一的日治馬蹄形公營市場建築與中央天井；外圍則是人聲鼎沸、傳承老味道的東三水街傳統市集。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot11-speech" class="speech-box">
+              請大家跟我穿過熱鬧的東三水街菜市場，拐進這座隱密的洗石子門廊——哇！這就是名揚國際建築界的『新富町文化市場』！看這優美的U字型馬蹄鐵結構，正中央的天井引進大片自然陽光，站在天井下仰望藍天，光影如詩如畫。門外是賣熟食甜不辣、阿婆油飯與老酵母壽桃的喧囂傳統市集，門內卻是安靜優雅的文創展覽與咖啡香，新舊交融得天衣無縫！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">昭和10年（1935年）總督府設立『新富町食料品小賣市場』，建築本體採用當時最先進的鋼筋混凝土，外觀呈獨特『U字馬蹄形』，中央設有半圓形採光天井，解決傳統市場通風與衛生難題。光復後外圍攤販逐漸延伸為東三水街市場。2006年新富市場本體被指定為古蹟，2017年由忠泰基金會活化為『新富町文化市場（U-mkt）』，老菜市與文青咖啡在此和諧共生。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>U型馬蹄形洗石子建築</strong>：全台僅存的特殊日治公營市場格局，通風採光兼備。</li>
+            <li><strong>中央半圓形採光天井</strong>：純白內凹牆面與藍天光影交織，建築美學攝影必拍。</li>
+            <li><strong>木造日式管理員宿舍</strong>：市場旁保留純日式單層木造宿舍，黑瓦木櫺散發懷舊古意。</li>
+            <li><strong>東三水街活態老市集</strong>：連鎖生鮮超市無法取代的手作魚丸、紅燒肉與傳統節慶糕點。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                新富市場在日治時期連地面的排水溝弧度都經過精密水力計算，攤位更是嚴格區分乾貨、生鮮與蔬菜，堪稱80年前亞洲最衛生的現代市場示範作！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 三水餅店</div>
+              <div class="food-desc">傳承三代手工老店！純老酵母揉製的立體壽桃、咖哩肉餅與古早味冬瓜肉餅</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 阿婆油飯</div>
+              <div class="food-desc">東三水街市場排隊搶購的招牌油飯，香菇蝦米香氣四溢、米粒Q彈</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 大豐魚丸店</div>
+              <div class="food-desc">每日現打現捏純旗魚丸、炸牛蒡甜不辣與古早味雞捲</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 合興八十八亭</div>
+              <div class="food-desc">新富町古蹟內的上海鬆糕與精緻中式點心下午茶</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0359, 121.5015</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0359,121.5015" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 12: 剝皮寮歷史街區（康定路173巷） -->
+      <article id="spot12" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">12</div>
+            <div class="spot-names">
+              <h3>剝皮寮歷史街區（康定路173巷）</h3>
+              <div class="spot-subtitle">清代橫街到日治牌樓立面・電影《艋舺》活建築博物館</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 4.9 km</span>
+            <span class="badge-info">建議停留 25 分鐘</span>
+            <span class="badge-info">歷史街區・老台北生活縮影</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot12-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            清代木材煤炭集散的『福祥街』，因都市計畫徵收禁建，完整封存清代紅磚街屋、日治牌樓立面與戰後生活的活化歷史街廓。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot12-speech" class="speech-box">
+              踏上康定路173巷的紅磚步道，大家已經走進了台北唯一完整保留的百年老街廓『剝皮寮』！請注意看這條街不是筆直的，而是微微彎曲的弧線，因為它保留了清代自然形成的古道『橫街』。兩側長條形的街屋前店後住，抬頭看騎樓女兒牆，有清代紅磚、日治巴洛克泥塑勳章飾、也有戰後的水泥欄杆。電影《艋舺》主角蚊子居住的家與堂口就在這裡取景，每一扇斑駁木門背後，都是一部家族奮鬥史！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">剝皮寮歷史街區橫跨康定路、廣州街與昆明街，聚落形成於清嘉慶年間，原名『福祥街』。此處為清代艋舺通往台北城的要道，因進出口杉木剝皮加工或平埔族社名而得名『剝皮寮』。日治時期本區被劃入老松國小學校預定地而實施長期禁建，反而奇蹟般避開戰後拆除改建浪潮，完整保存了橫跨清代、日治洋風與戰後庶民增建的立面，現為台北市鄉土教育中心。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>清代橫街曲徑與騎樓亭仔腳</strong>：高低錯落的紅磚拱圈廊道，行走其間遮陽避雨。</li>
+            <li><strong>跨時代混血建築立面</strong>：清代閩南穿斗式磚木結構、日治昭和時期洗石子幾何幾何飾面。</li>
+            <li><strong>台北市鄉土教育中心</strong>：重現昔日老松國小醫療室、漢藥房、印刷廠與傳統私塾。</li>
+            <li><strong>電影《艋舺》主拍攝場景</strong>：主角結義堂口、紅磚牆黑字招牌拍照熱點。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                剝皮寮之所以能躲過台北都市更新怪手，全因民國34年就被劃為老松國小擴建用地，長達數十年地主不能翻建改建，才讓百年老街意外『冷凍保存』至今！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 萬大碳烤燒餅胡椒餅</div>
+              <div class="food-desc">剝皮寮對街飄香的炭烤胡椒餅，酥脆餅皮包裹多汁黑胡椒豬肉蔥餡</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 周記肉粥店</div>
+              <div class="food-desc">傳承半世紀！生米熬煮海蔥肉粥，必點外酥內嫩金黃紅燒肉</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 永富苦茶</div>
+              <div class="food-desc">剝皮寮路口純中藥退火老苦茶，苦盡甘來清涼消暑</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0366, 121.5027</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0366,121.5027" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 13: 艋舺地藏庵（地藏王菩薩廟） -->
+      <article id="spot13" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">13</div>
+            <div class="spot-names">
+              <h3>艋舺地藏庵（地藏王菩薩廟）</h3>
+              <div class="spot-subtitle">大慈大願幽冥教主・清乾隆古寺的寧靜禪境</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 5.1 km</span>
+            <span class="badge-info">建議停留 15 分鐘</span>
+            <span class="badge-info">直轄市定古蹟・萬華四大古廟</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot13-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            1760年清乾隆年間創建，主祀地藏王菩薩，萬華四大名剎之一。相較於龍山寺的鼎沸熱鬧，地藏庵更顯純樸莊嚴與心靈洗滌。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot13-speech" class="speech-box">
+              離開熱鬧的剝皮寮，轉進西昌街，這座看似低調樸實的古廟就是建於乾隆年間的『艋舺地藏庵』。在萬華四大古廟中，地藏庵有著最難能可貴的寧靜與禪意。地藏王菩薩大慈大悲，相傳來到這裡只要誠心合十，任何心中的煩惱與浮躁都能被神明的浩瀚願力撫平。殿內古色古香的石階木櫺，透著老廟歷經兩百多年風霜沉澱出的溫潤祥和。
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">建於清乾隆25年（1760年），主祀幽冥教主地藏王菩薩，配祀董公真仙、田都元帥與范謝將軍。清道光18年（1838年）由地方信眾重修。地藏王菩薩發下『地獄不空，誓不成佛』的至高弘願，百餘年來成為艋舺百姓超拔先人、祈求陰陽兩安與心靈撫慰的重要心靈歸宿。廟宇格局精巧單純，保留清代原木梁柱與石碑，古風穆穆。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>清代古樸廟宇格局</strong>：不事浮誇雕飾，單殿式純樸木石結構，保留乾隆道光古風。</li>
+            <li><strong>道光十八年重修古碑</strong>：鑲嵌於廟壁，詳載早期艋舺市街聚落發展與信眾芳名。</li>
+            <li><strong>地藏王金身神尊</strong>：神態安詳慈悲，座下為神獸諦聽，威儀天成。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                地藏庵廟門前常有長輩餵食和平鴿，廟內香火使用天然沉香，無一般大廟的嘈雜遊客，是許多老萬華人遇到重大決策時默默前來靜心沉思的私房心靈角落。
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 西昌街古早味切仔麵</div>
+              <div class="food-desc">傳統大骨高湯配上油麵、豆芽韭菜與兩片里肌肉</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 地藏庵旁無名豆花</div>
+              <div class="food-desc">手工鹽滷綿密白豆花配上古法慢熬花生仁湯</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 傳統草本養生茶</div>
+              <div class="food-desc">低糖羅漢果茶與膨大海，潤喉解渴</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0368, 121.5008</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0368,121.5008" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 14: 艋舺青草巷（西昌街224巷） -->
+      <article id="spot14" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">14</div>
+            <div class="spot-names">
+              <h3>艋舺青草巷（西昌街224巷）</h3>
+              <div class="spot-subtitle">百年神農救命巷・天然草藥飄香與現煮退火青草茶</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 5.2 km</span>
+            <span class="badge-info">建議停留 15 分鐘</span>
+            <span class="badge-info">歷史特色街巷・草藥民俗聚落</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot14-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            長約40公尺的百年巷弄，匯聚十餘家傳統草藥鋪，空氣中終年飄散草本清香。早期開墾先民全靠這裡的草藥配方保命消災。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot14-speech" class="speech-box">
+              大家深吸一口氣——有沒有聞到空氣中那股撲鼻而來、沁人心脾的天然青草甘香？這條短短40公尺的西昌街224巷，就是赫赫有名的『青草巷』！走進巷子，兩側店家門口擺滿了剛剛採收的新鮮薄荷、咸豐草、雷公根與車前草。早期先民在艋舺打拚，生了病全靠這條巷子裡的草藥婆婆抓帖草藥救回一條命。走完全程，大家一定要在這裡來上一杯古法柴燒熬製的現冰青草茶，清爽甘甜，立刻解去一身暑氣與疲勞！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">清代先民渡海來台拓墾艋舺，因衛生條件落後、疫病瘴癘橫行，且當時合格合格中醫極少，百姓身體抱恙多至鄰近的龍山寺求取神明『藥籤』，再持籤到寺旁的這條窄巷採購生鮮草藥煎熬飲用，因而有『神農街』、『救命街』之美譽。日治時期與光復後草藥行生意極度興盛，全盛時期整條巷子堆滿來自全台各地的本土青草，現為台北最具特色的傳統藥草專賣街區。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>百年草藥鋪綠意巷弄</strong>：各式生鮮與乾燥中草藥堆疊如小山，宛如露天中草藥博物館。</li>
+            <li><strong>透光玻璃採光罩</strong>：整修後的拱型採光罩讓巷內明亮通風，雨天漫步一樣愜意舒心。</li>
+            <li><strong>現煮古法青草茶</strong>：遵古法使用十餘種野生青草經數小時慢火熬煮，天然甘甜不苦澀。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                早期龍山寺的藥籤分為內科、外科與小兒科，信徒抽完藥籤走到青草巷，經驗老到的草藥鋪掌櫃只要看籤詩內容，就能精準抓出君臣佐使的草藥配方，堪稱民間智慧的奇蹟！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 安立青草店 / 萬安青草店</div>
+              <div class="food-desc">百年老字號！現裝微甜/無糖冰青草茶、透心涼苦茶與養肝茶</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 天泉青草行</div>
+              <div class="food-desc">以薄荷、咸豐草獨家比例慢熬的薄荷涼茶，入口回甘</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 龍都冰菓專業家</div>
+              <div class="food-desc">自和平西路遷至鄰近的百年冰品老店！八寶冰、花生玉米冰甜而不膩</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.037, 121.5003</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.037,121.5003" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Spot 15: 艋舺龍山寺 -->
+      <article id="spot15" class="spot-card">
+        <div class="spot-header">
+          <div class="spot-title-wrap">
+            <div class="spot-number">15</div>
+            <div class="spot-names">
+              <h3>艋舺龍山寺</h3>
+              <div class="spot-subtitle">國定古蹟精神聖殿・世界級銅鑄龍柱與觀音神蹟</div>
+            </div>
+          </div>
+          <div class="spot-meta-badges">
+            <span class="badge-info highlight">里程 5.3 km</span>
+            <span class="badge-info">建議停留 25 分鐘</span>
+            <span class="badge-info">國定古蹟・萬華信仰原點</span>
+          </div>
+        </div>
+
+        <div class="spot-audio-bar">
+          <div class="audio-hint"><span>🔊 隨身語音導覽：可點擊播放解說詞</span></div>
+          <button class="btn-speak" onclick="speakText('spot15-speech', this)">
+            <span>▶ 朗讀解說詞</span>
+          </button>
+        </div>
+
+        <div class="spot-body">
+          <div class="spot-summary-quote">
+            1738年創建，台灣最著名的寺廟之一！匯聚頂級傳統木雕、石雕、剪黏藝術，二戰美軍大轟炸觀音菩薩完好神蹟名揚海內外。
+          </div>
+
+          <!-- 解說詞 -->
+          <div class="section-block">
+            <div id="spot15-speech" class="speech-box">
+              我們老城走讀的最高潮，正是眼前這座氣勢萬千的國定古蹟——『艋舺龍山寺』！進廟記得『龍門進、虎門出（左進右出）』，抬腳跨過高高的門檻。請大家站在三川殿前停下腳步：這對『全台灣唯一的銅鑄龍柱』是1920年由名師陳天乞等人合力鑄造，龍身盤旋栩栩如生！走進正殿，抬頭看王益順大師設計的圓形螺旋藻井，不用一釘一鐵；而端坐正殿的觀音菩薩，曾在二戰盟軍大轟炸中全殿燒毀卻毫髮無損！大家在此虔誠參拜祈願，為今天的豐富走讀畫下最圓滿的句點！
+            </div>
+          </div>
+
+          <!-- 歷史由來 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏛️ 歷史人文淵源</span></div>
+            <p class="history-text">清乾隆3年（1738年）由泉州晉江、南安、惠安三邑移民合資興建，為艋舺開拓發祥的信仰核心。歷經嘉慶、同治與民國初年多次整建，1920年由近代寺廟建築大師王益順主持全面大改建，奠定今日華麗莊嚴的三進四合院宮殿式格局。二次大戰末期（1945年台北大空襲），正殿慘遭美軍炸彈擊中全毀，但端坐中央的觀世音菩薩神像竟絲毫無損、法相莊嚴，神蹟震撼全台。現為國定古蹟，月老神君更是海內外年輕人祈求良緣的超人氣聖地。</p>
+          </div>
+
+          <!-- 必看亮點 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🔍 必看建築與文化亮點</span></div>
+            <ul class="highlights-list">
+            <li><strong>全台唯一銅鑄龍柱</strong>：三川殿前圓形青銅龍柱，鏤空雕琢龍身與仙人，工藝冠絕全台。</li>
+            <li><strong>三川殿燕尾飛簷與剪黏</strong>：屋脊重簷歇山，裝飾精美三國演義與封神榜交趾陶人物。</li>
+            <li><strong>正殿木構圓形藻井</strong>：名匠王益順代表作，三層斗拱迴旋上聚，如天花蜘蛛結網。</li>
+            <li><strong>後殿超人氣月下老人</strong>：全台靈驗度排名前列的牽紅線月老，求取紅線排隊人潮絡繹不絕。</li>
+            </ul>
+          </div>
+
+          <!-- 冷知識/趣味彩蛋 -->
+          <div class="section-block">
+            <div class="easter-egg-box">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>老城冷知識與文史彩蛋：</strong>
+                1945年台北大空襲時，正殿被燃燒彈直接命中化為灰燼，但觀音菩薩佛像僅臉部被煙火燻黑，連身上的衣帶木雕都完好無損，當時逃進廟裡避難的數百名艋舺居民全部奇蹟生還！
+              </div>
+            </div>
+          </div>
+
+          <!-- 美食小吃筆記 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
+            <div class="food-grid">
+
+            <div class="food-item">
+              <div class="food-name">🥢 三六食粑（三六圓仔店）</div>
+              <div class="food-desc">創於1937年！熱騰騰軟Q黃金燒麻糬、紫米芝麻湯圓與傳統紅龜粿</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 福州元祖胡椒餅</div>
+              <div class="food-desc">藏身小巷的五十年古法木炭貼爐烤餅，外酥肉多汁胡椒香氣撲鼻</div>
+            </div>
+            <div class="food-item">
+              <div class="food-name">🥢 兩喜號魷魚羹</div>
+              <div class="food-desc">百年傳承炒米粉與透抽雙羹湯，艋舺老字號招牌</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spot-footer">
+          <div class="spot-coords">GPS: 25.0368, 121.4999</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25.0368,121.4999" target="_blank" class="btn-nav">
+            <span>📍 Google Maps 導航前往</span>
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 健行安全與帶隊注意事項 -->
+    <section class="ending-card">
+      <h3>🚶‍♂️ 帶隊導覽與老城走讀貼心提醒</h3>
+      <ul class="tips-list">
+        <li><strong>巷弄過馬路安全</strong>：萬華老城區巷弄多、機車穿梭頻繁，特別是穿過康定路、和平西路三段等主幹道時，請隊長留意壓後與隊員過馬路號誌。</li>
+        <li><strong>廟宇參拜禮節</strong>：進入清水祖師廟、青山宮與龍山寺時，遵循「右門（龍門）進、左門（虎門）出」，切勿踩踏高起的門檻，殿內拍照請勿開啟閃光燈。</li>
+        <li><strong>傳統市場防走失</strong>：東三水街市場人潮密集熱鬧，可約定於「新富町文化市場天井」或「剝皮寮康定路入口」作為會合清點人數點。</li>
+        <li><strong>洗手間與補給點</strong>：西門捷運站、西本願寺、糖廍文化園區、新富町文化市場、剝皮寮、龍山寺及捷運龍山寺站皆設有乾淨洗手間與飲水機。</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- 回頂部按鈕 -->
+  <button id="btnBackToTop" class="btn-back-to-top" onclick="scrollToTop()">▲</button>
+
+  <footer>
+    <p>青松健行隊 精選人文走讀系列・萬華老城文史手冊</p>
+    <p style="margin-top: 4px;">本網頁專為手機隨身閱讀與領隊現場導覽設計・支援即時語音朗讀</p>
+  </footer>
+
+  <script>
+    // 語音朗讀功能 (Web Speech API)
+    let currentUtterance = null;
+    let activeBtn = null;
+
+    function speakText(elementId, btn) {
+      if (!('speechSynthesis' in window)) {
+        alert('您的瀏覽器不支援語音朗讀功能');
+        return;
+      }
+
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        if (activeBtn) {
+          activeBtn.classList.remove('speaking');
+          activeBtn.innerHTML = '<span>▶ 朗讀解說詞</span>';
+        }
+        if (activeBtn === btn) {
+          activeBtn = null;
+          return;
+        }
+      }
+
+      const textElem = document.getElementById(elementId);
+      if (!textElem) return;
+      const textToSpeak = textElem.innerText.replace(/🎙️.*?：/g, '');
+
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = 'zh-TW';
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => {
+        btn.classList.remove('speaking');
+        btn.innerHTML = '<span>▶ 朗讀解說詞</span>';
+        activeBtn = null;
+      };
+
+      utterance.onerror = () => {
+        btn.classList.remove('speaking');
+        btn.innerHTML = '<span>▶ 朗讀解說詞</span>';
+        activeBtn = null;
+      };
+
+      window.speechSynthesis.speak(utterance);
+      btn.classList.add('speaking');
+      btn.innerHTML = '<span>⏹ 停止朗讀</span>';
+      activeBtn = btn;
+    }
+
+    // 複製 LINE 活動通告文案
+    function copyLineNotice() {
+      const text = `各位我們下次的健走活動路線規劃如下 :
+1. 上午10點捷運西門站6號出口集合。
+2. 捷運西門站6號出口→西門紅樓→西本願寺→清水祖師廟→青山宮→華西街夜市・仁濟醫院→梧州街在地美食→糖廍文化園區→時報大樓・和平青草園→大理街服飾商圈→東三水街市場→剝皮寮歷史街區→地藏庵・青草巷→龍山寺(參拜祈願)→捷運龍山寺站（全程約 5.4 km）
+3. 中餐在華西街觀光夜市（小王煮瓜米其林必比登、小吃）、梧州街萬華在地美食、大理街周邊，或龍山寺/東三水街市場品嚐古早味胡椒餅、排骨酥湯與龍都冰菓
+
+🗺️ 景點詳細導覽手冊：https://fun.jktai123.com/antigravity/萬華老城走讀_深度導覽手冊.html
+🗺️ 青松健行隊 地圖導覽：https://is.gd/TLsoGi
+📥 GPX 軌跡直接下載：https://is.gd/QqGB1P`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ 已複製 LINE 活動通告文案至剪貼簿！');
+      }).catch(() => {
+        alert('複製失敗，請手動複製');
+      });
+    }
+
+    // 字體大小縮放切換
+    let isLargeFont = false;
+    function toggleFontSize() {
+      isLargeFont = !isLargeFont;
+      document.body.style.fontSize = isLargeFont ? '18px' : '16px';
+    }
+
+    // 回頂部按鈕控制
+    const topBtn = document.getElementById('btnBackToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        topBtn.classList.add('show');
+      } else {
+        topBtn.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
