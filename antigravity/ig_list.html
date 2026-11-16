@@ -247,19 +247,21 @@
 
     // Auto-detect base path: relative to current HTML location
     let BASE_PATH = './';
-    if (window.location.hostname.includes('fun.jktai123.com') || window.location.hostname.includes('github.io')) {
-      BASE_PATH = './IG/';
-    } else if (window.location.pathname.includes('/Antigravity/')) {
+    const pathLower = window.location.pathname.toLowerCase();
+    if (pathLower.includes('/antigravity/')) {
       BASE_PATH = '../IG/';
+    } else if (pathLower.includes('/ig/')) {
+      BASE_PATH = './';
+    } else if (window.location.hostname.includes('fun.jktai123.com') || window.location.hostname.includes('github.io')) {
+      BASE_PATH = '/IG/';
     }
 
-    const R2_VIDEO_BASE = 'https://pub-78ea0d4b46964114ac28dd5c6e53460d.r2.dev/ig_videos/';
+    const R2_BASE = 'https://pub-78ea0d4b46964114ac28dd5c6e53460d.r2.dev/ig_videos/';
 
     function getMediaUrl(item) {
-      const isVid = item.ext in { 'mp4': 1, 'mov': 1, 'webm': 1 };
       const isOnline = window.location.hostname.includes('fun.jktai123.com') || window.location.hostname.includes('github.io');
-      if (isVid && isOnline) {
-        return R2_VIDEO_BASE + encodeURIComponent(item.filename);
+      if (isOnline) {
+        return R2_BASE + encodeURIComponent(item.filename);
       }
       return BASE_PATH + encodeURIComponent(item.filename);
     }
@@ -362,7 +364,7 @@
         // Slide dots or mini previews
         const thumbsHtml = post.items.slice(0, 5).map((it, idx) => `
           <button onclick="openLightbox('${post.code}', ${idx})" class="w-6 h-6 rounded border border-slate-700/80 overflow-hidden hover:scale-110 hover:border-pink-500 transition-all">
-            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-[8px] text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${BASE_PATH + encodeURIComponent(it.filename)}" class="w-full h-full object-cover" loading="lazy" />`}
+            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-[8px] text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${getMediaUrl(it)}" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(it.filename)}';" class="w-full h-full object-cover" loading="lazy" />`}
           </button>
         `).join('');
 
@@ -375,7 +377,7 @@
               ${isVid 
                 ? `<video src="${coverSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"></video>
                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center"><div class="w-12 h-12 rounded-full bg-pink-600/80 text-white flex items-center justify-center shadow-lg"><i class="fa-solid fa-play text-lg ml-0.5"></i></div></div>`
-                : `<img src="${coverSrc}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
+                : `<img src="${coverSrc}" alt="${post.title}" loading="lazy" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(cover.filename)}';" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
               }
 
               <!-- Badges Overlay -->
@@ -535,7 +537,7 @@ IG 發布：${post.mtime_str}">
       // Render Strip Thumbnails
       modalThumbnails.innerHTML = activePost.items.map((it, idx) => `
         <button onclick="setSlideIndex(${idx})" class="w-12 h-12 rounded-lg border-2 overflow-hidden flex-shrink-0 transition-all ${idx === activeSlideIndex ? 'border-pink-500 scale-105 shadow-md shadow-pink-500/30' : 'border-slate-800 opacity-60 hover:opacity-100'}">
-          ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-xs text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${BASE_PATH + encodeURIComponent(it.filename)}" class="w-full h-full object-cover" />`}
+          ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-xs text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${getMediaUrl(it)}" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(it.filename)}';" class="w-full h-full object-cover" />`}
         </button>
       `).join('');
     }
