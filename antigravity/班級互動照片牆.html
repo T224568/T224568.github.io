@@ -3737,12 +3737,13 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </div>
         </div>
 
-        <!-- 4大實作單元分頁切換選單 -->
+        <!-- 5大實作單元分頁切換選單 -->
         <div class="planner-unit-tabs" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 20px; -webkit-overflow-scrolling: touch;">
-            <button type="button" class="planner-tab-btn active" id="tab-btn-sticker-mood" onclick="switchStickerTab('unit-sticker-mood', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #06c755; background: #06c755; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📱 單元一：Q版個人心情貼圖</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-animal" onclick="switchStickerTab('unit-sticker-animal', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🐶 單元二：動物分身萌寵貼圖</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-face" onclick="switchStickerTab('unit-sticker-face', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">😂 單元三：真人搞笑大頭貼圖</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-lineapp" onclick="switchStickerTab('unit-sticker-lineapp', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📲 單元四：LINE拍貼App上架教學</button>
+            <button type="button" class="planner-tab-btn active" id="tab-btn-sticker-mood" onclick="switchStickerTab('unit-sticker-mood', this)" style="flex: 1; min-width: 135px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #06c755; background: #06c755; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📱 單元一：Q版心情貼圖</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-animal" onclick="switchStickerTab('unit-sticker-animal', this)" style="flex: 1; min-width: 135px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🐶 單元二：動物分身貼圖</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-face" onclick="switchStickerTab('unit-sticker-face', this)" style="flex: 1; min-width: 135px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">😂 單元三：真人搞笑貼圖</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-lineapp" onclick="switchStickerTab('unit-sticker-lineapp', this)" style="flex: 1; min-width: 135px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📲 單元四：LINE拍貼上架</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-slides" onclick="switchStickerTab('unit-sticker-slides', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 原廠講義 (28頁一鍵翻閱)</button>
         </div>
 
         <!-- ========================================== -->
@@ -4034,30 +4035,103 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                     </div>
                 </div>
 
-                <!-- 投影片圖解全覽（折疊） -->
-                <details style="margin-top: 18px; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px 14px;">
-                    <summary style="font-size: 14px; font-weight: bold; color: #0284c7; cursor: pointer;">
-                        📖 點此查看原廠教學投影片講義（28 頁完整圖解，支援一鍵翻閱）
+                <!-- 投影片圖解全覽（折疊一鍵翻閱放映機） -->
+                <details id="details-sticker-slides-u4" open style="margin-top: 18px; border: 2px solid #0284c7; border-radius: 14px; padding: 14px 16px; background: #f8fafc;">
+                    <summary style="font-size: 15px; font-weight: 900; color: #0369a1; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>📖 原廠教學投影片講義（28 頁高畫質完整全圖解・支援一鍵翻閱）</span>
+                        <span style="font-size: 12px; background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 8px;">點擊收合 ▴</span>
                     </summary>
-                    <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px;">
-                        <img src="./製作貼圖/139988_0.jpg" alt="投影片 1" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139989_0.jpg" alt="投影片 2" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139990_0.jpg" alt="投影片 3" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139992_0.jpg" alt="投影片 5" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139993_0.jpg" alt="投影片 6" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139994_0.jpg" alt="投影片 7" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139997_0.jpg" alt="投影片 10" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/139999_0.jpg" alt="投影片 12" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/140001_0.jpg" alt="投影片 14" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/140004_0.jpg" alt="投影片 17" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/140006_0.jpg" alt="投影片 19" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/140008_0.jpg" alt="投影片 21" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/140011_0.jpg" alt="投影片 24" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
-                        <img src="./製作貼圖/140012_0.jpg" alt="投影片 25" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+
+                    <!-- 內嵌放映廳控制列 -->
+                    <div style="margin-top: 14px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                            <div style="font-size: 14px; font-weight: bold; color: #334155;">
+                                當前頁數：<span id="slide-page-badge" style="background: #0284c7; color: #fff; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 6px; font-family: monospace;">1 / 28</span>
+                                <span id="slide-info-title" style="margin-left: 8px; color: #0284c7; font-weight: bold;">今天要做什麼？AI 專屬貼圖製作流程</span>
+                            </div>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <button type="button" onclick="prevStickerSlide()" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1.5px solid #0284c7; background: #fff; color: #0284c7; cursor: pointer;">◀ 上一頁</button>
+                                <button type="button" onclick="nextStickerSlide()" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: none; background: #0284c7; color: #fff; cursor: pointer;">下一頁 ▶</button>
+                            </div>
+                        </div>
+
+                        <!-- 投影片大圖放映 -->
+                        <div style="text-align: center; background: #0f172a; border-radius: 12px; padding: 12px; position: relative; margin-bottom: 12px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);">
+                            <img id="main-sticker-slide-img" src="./製作貼圖/139988_0.jpg" alt="投影片放映" onclick="openSlideLightbox()" style="max-width: 100%; max-height: 480px; border-radius: 8px; cursor: zoom-in; object-fit: contain; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.15s;">
+                            <div style="position: absolute; right: 18px; bottom: 18px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 1px solid rgba(255,255,255,0.25);" onclick="openSlideLightbox()">
+                                🔍 點擊放大全螢幕檢視
+                            </div>
+                        </div>
+
+                        <!-- 28 頁縮圖清單（所有 28 頁無一遺漏，點選即跳轉） -->
+                        <div style="margin-top: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                <span style="font-size: 13px; font-weight: bold; color: #475569;">28 頁完整縮圖導覽（點選直達任一頁）：</span>
+                                <span style="font-size: 11.5px; color: #64748b;">支援鍵盤 ← / → 翻頁</span>
+                            </div>
+                            <div id="sticker-slide-thumb-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 8px; max-height: 280px; overflow-y: auto; padding: 6px; border: 1.5px solid #cbd5e1; border-radius: 10px; background: #ffffff;">
+                                <!-- 由 JS 動態生成完整 28 張縮圖 -->
+                            </div>
+                        </div>
                     </div>
                 </details>
             </div>
         </div>
+
+        <!-- ========================================== -->
+        <!-- 【原廠講義】：📖 28 頁投影片互動翻頁放映廳 -->
+        <!-- ========================================== -->
+        <div id="unit-sticker-slides" class="sticker-unit-section" style="display: none;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 16px; padding: 22px; box-shadow: 0 4px 18px rgba(2,132,199,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <h3 style="margin: 0; color: #0369a1; font-size: 20px; font-weight: 900;">📖 原廠教學投影片講義放映廳（28 頁完整圖解）</h3>
+                        <p style="margin: 2px 0 0; color: #64748b; font-size: 13.5px;">高畫質圖解大屏放映，支援上一頁/下一頁翻閱、鍵盤快速鍵、點圖放大檢視</p>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <button type="button" onclick="prevStickerSlide()" style="padding: 8px 16px; font-size: 14px; font-weight: bold; border-radius: 8px; border: 1.5px solid #0284c7; background: #fff; color: #0284c7; cursor: pointer;">◀ 上一頁</button>
+                        <button type="button" onclick="nextStickerSlide()" style="padding: 8px 16px; font-size: 14px; font-weight: bold; border-radius: 8px; border: none; background: #0284c7; color: #fff; cursor: pointer;">下一頁 ▶</button>
+                    </div>
+                </div>
+
+                <!-- 大螢幕放映區 -->
+                <div style="text-align: center; background: #0f172a; border-radius: 12px; padding: 14px; position: relative; margin-bottom: 14px;">
+                    <img id="main-sticker-slide-img-tab" src="./製作貼圖/139988_0.jpg" alt="投影片放映" onclick="openSlideLightbox()" style="max-width: 100%; max-height: 520px; border-radius: 8px; cursor: zoom-in; object-fit: contain; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                    <div style="position: absolute; right: 20px; bottom: 20px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 1px solid rgba(255,255,255,0.25);" onclick="openSlideLightbox()">
+                        🔍 點擊放大全螢幕檢視
+                    </div>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <span style="font-size: 13px; color: #166534; font-weight: bold;">當前頁面：</span>
+                        <span id="slide-info-title-tab" style="font-size: 15px; font-weight: 900; color: #14532d;">今天要做什麼？AI 專屬貼圖製作流程</span>
+                    </div>
+                    <div id="slide-action-btn-wrap-tab"></div>
+                </div>
+
+                <!-- 28 頁縮圖導覽 -->
+                <div>
+                    <div style="font-size: 13.5px; font-weight: bold; color: #334155; margin-bottom: 8px;">28 頁投影片全目錄（點選直達）：</div>
+                    <div id="sticker-slide-thumb-grid-tab" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; max-height: 280px; overflow-y: auto; padding: 8px; border: 1.5px solid #cbd5e1; border-radius: 10px; background: #f8fafc;">
+                        <!-- 由 JS 動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全螢幕燈箱 Lightbox Modal -->
+<div id="sticker-slide-lightbox" onclick="closeSlideLightbox(event)" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:999999; justify-content:center; align-items:center; flex-direction:column; padding:15px; box-sizing:border-box;">
+    <div style="position:absolute; top:15px; right:20px; display:flex; gap:10px; z-index:10;" onclick="event.stopPropagation()">
+        <span id="lightbox-page-num" style="color:#fff; font-size:15px; font-weight:bold; background:rgba(255,255,255,0.2); padding:6px 14px; border-radius:8px;">1 / 28</span>
+        <button type="button" onclick="closeSlideLightbox(event)" style="background:#ef4444; color:#fff; border:none; width:36px; height:36px; border-radius:50%; font-size:18px; font-weight:bold; cursor:pointer;">✕</button>
+    </div>
+    <img id="lightbox-slide-img" src="" onclick="event.stopPropagation()" style="max-width:95vw; max-height:85vh; object-fit:contain; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.8);">
+    <div style="display:flex; gap:20px; margin-top:14px; z-index:10;" onclick="event.stopPropagation()">
+        <button type="button" onclick="prevStickerSlide(event)" style="padding:10px 24px; font-size:15px; font-weight:bold; border-radius:8px; background:rgba(255,255,255,0.25); color:#fff; border:1px solid rgba(255,255,255,0.4); cursor:pointer;">◀ 上一頁</button>
+        <button type="button" onclick="nextStickerSlide(event)" style="padding:10px 24px; font-size:15px; font-weight:bold; border-radius:8px; background:#0284c7; color:#fff; border:none; cursor:pointer;">下一頁 ▶</button>
     </div>
 </div>
 
@@ -14912,11 +14986,170 @@ window.addEventListener('pageshow', (event) => {
     // ==========================================
     // 🎨 我的臉就是貼圖！AI 專屬 LINE 貼圖製作大師 JS
     // ==========================================
+    const STICKER_SLIDES_DATA = [
+        { num: 1, file: "139988_0.jpg", title: "今天要做什麼？AI 專屬貼圖製作流程" },
+        { num: 2, file: "139989_0.jpg", title: "今天會完成的三個作品：Q版/動物分身/真人搞笑" },
+        { num: 3, file: "139990_0.jpg", title: "三套 LINE 心情貼圖範例展示（搞笑版/工作版/溫馨版）" },
+        { num: 4, file: "139991_0.jpg", title: "ChatGPT 手機操作步驟示意圖" },
+        { num: 5, file: "139992_0.jpg", title: "單元一：LINE 心情貼圖規劃指令" },
+        { num: 6, file: "139993_0.jpg", title: "選出你最喜歡的貼圖風格：8 大風格對照" },
+        { num: 7, file: "139994_0.jpg", title: "單元一：前四個表情生成指令（2x2 正方形去背）" },
+        { num: 8, file: "139995_0.jpg", title: "單元一：後四個表情生成指令（第五到第八張）" },
+        { num: 9, file: "139996_0.jpg", title: "Q版心情貼圖成品效果展示" },
+        { num: 10, file: "139997_0.jpg", title: "單元二：製作我的動物分身貼圖" },
+        { num: 11, file: "139998_0.jpg", title: "ChatGPT 手機上傳照片操作指引" },
+        { num: 12, file: "139999_0.jpg", title: "單元二：AI 推薦專屬動物分身寵物指令" },
+        { num: 13, file: "140000_0.jpg", title: "動物分身畫風選擇：8 大風格" },
+        { num: 14, file: "140001_0.jpg", title: "單元二：動物分身前四格表情指令" },
+        { num: 15, file: "140002_0.jpg", title: "動物分身貼圖效果展示" },
+        { num: 16, file: "140003_0.jpg", title: "單元二：動物分身後四格表情指令" },
+        { num: 17, file: "140004_0.jpg", title: "單元三：製作真人搞笑大頭 LINE 貼圖" },
+        { num: 18, file: "140005_0.jpg", title: "真人搞笑貼圖手機操作步驟" },
+        { num: 19, file: "140006_0.jpg", title: "單元三：真人大頭搞笑貼圖規劃指令" },
+        { num: 20, file: "140007_0.jpg", title: "真人搞笑大頭範例展示" },
+        { num: 21, file: "140008_0.jpg", title: "單元三：真人寫實四格貼圖指令（前四格）" },
+        { num: 22, file: "140009_0.jpg", title: "單元三：真人寫實四格貼圖指令（後四格）" },
+        { num: 23, file: "140010_0.jpg", title: "真人搞笑大頭貼圖成品展示" },
+        { num: 24, file: "140011_0.jpg", title: "單元四：LINE 拍貼 App 步驟 ① 導入與自動描邊裁切" },
+        { num: 25, file: "140012_0.jpg", title: "單元四：送出申請前確認 3 個重要設定（免費用本人貼圖秘訣）" },
+        { num: 26, file: "140013_0.jpg", title: "單元四：LINE 拍貼步驟 ② 儲存、湊滿 8 張與送出" },
+        { num: 27, file: "140014_0.jpg", title: "單元四：審核通過與免費下載教學" },
+        { num: 28, file: "140015_0.jpg", title: "恭喜完成！在聊天室享受專屬 AI 貼圖" }
+    ];
+
+    let currentStickerSlideIdx = 0;
+
     function initCustomStickersView() {
         updateStickerUnit1Prompt();
         updateStickerUnit2Prompt();
         updateStickerUnit3Prompt();
+        renderStickerSlideThumbs();
+        updateStickerSlideDisplay();
     }
+
+    function renderStickerSlideThumbs() {
+        const grid1 = document.getElementById('sticker-slide-thumb-grid');
+        const grid2 = document.getElementById('sticker-slide-thumb-grid-tab');
+
+        const html = STICKER_SLIDES_DATA.map((slide, idx) => {
+            return `
+                <div class="sticker-slide-thumb-item" data-idx="${idx}" onclick="jumpToStickerSlide(${idx})" style="cursor: pointer; border: 2px solid ${idx === currentStickerSlideIdx ? '#0284c7' : '#e2e8f0'}; border-radius: 6px; overflow: hidden; background: #fff; position: relative; transition: all 0.15s; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
+                    <img src="./製作貼圖/${slide.file}" loading="lazy" alt="第 ${slide.num} 頁" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.65); color: #fff; font-size: 11px; font-weight: bold; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        ${slide.num}. ${slide.title}
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        if (grid1) grid1.innerHTML = html;
+        if (grid2) grid2.innerHTML = html;
+    }
+
+    function updateStickerSlideDisplay() {
+        const slide = STICKER_SLIDES_DATA[currentStickerSlideIdx];
+        if (!slide) return;
+
+        const path = `./製作貼圖/${slide.file}`;
+
+        // 更新內嵌播放機
+        const mainImg = document.getElementById('main-sticker-slide-img');
+        if (mainImg) mainImg.src = path;
+        const pageBadge = document.getElementById('slide-page-badge');
+        if (pageBadge) pageBadge.textContent = `${slide.num} / ${STICKER_SLIDES_DATA.length}`;
+        const infoTitle = document.getElementById('slide-info-title');
+        if (infoTitle) infoTitle.textContent = slide.title;
+
+        // 更新原廠講義 Tab 播放機
+        const mainImgTab = document.getElementById('main-sticker-slide-img-tab');
+        if (mainImgTab) mainImgTab.src = path;
+        const infoTitleTab = document.getElementById('slide-info-title-tab');
+        if (infoTitleTab) infoTitleTab.textContent = `第 ${slide.num} 頁：${slide.title}`;
+
+        // 更新燈箱
+        const lightboxImg = document.getElementById('lightbox-slide-img');
+        if (lightboxImg) lightboxImg.src = path;
+        const lightboxNum = document.getElementById('lightbox-page-num');
+        if (lightboxNum) lightboxNum.textContent = `第 ${slide.num} / ${STICKER_SLIDES_DATA.length} 頁 · ${slide.title}`;
+
+        // 更新縮圖選中樣式
+        document.querySelectorAll('.sticker-slide-thumb-item').forEach(el => {
+            const idx = parseInt(el.getAttribute('data-idx'));
+            if (idx === currentStickerSlideIdx) {
+                el.style.borderColor = '#0284c7';
+                el.style.transform = 'scale(1.04)';
+                el.style.boxShadow = '0 0 0 2px rgba(2,132,199,0.4)';
+            } else {
+                el.style.borderColor = '#e2e8f0';
+                el.style.transform = 'none';
+                el.style.boxShadow = 'none';
+            }
+        });
+    }
+
+    function nextStickerSlide(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        if (currentStickerSlideIdx < STICKER_SLIDES_DATA.length - 1) {
+            currentStickerSlideIdx++;
+        } else {
+            currentStickerSlideIdx = 0; // 循環翻頁
+        }
+        updateStickerSlideDisplay();
+    }
+
+    function prevStickerSlide(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        if (currentStickerSlideIdx > 0) {
+            currentStickerSlideIdx--;
+        } else {
+            currentStickerSlideIdx = STICKER_SLIDES_DATA.length - 1;
+        }
+        updateStickerSlideDisplay();
+    }
+
+    function jumpToStickerSlide(idx) {
+        if (idx >= 0 && idx < STICKER_SLIDES_DATA.length) {
+            currentStickerSlideIdx = idx;
+            updateStickerSlideDisplay();
+        }
+    }
+
+    function openSlideLightbox(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const box = document.getElementById('sticker-slide-lightbox');
+        if (box) {
+            box.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            updateStickerSlideDisplay();
+        }
+    }
+
+    function closeSlideLightbox(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const box = document.getElementById('sticker-slide-lightbox');
+        if (box) {
+            box.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+
+    // 鍵盤左右翻頁支援
+    window.addEventListener('keydown', (e) => {
+        const stickersView = document.getElementById('view-custom-stickers');
+        const lightbox = document.getElementById('sticker-slide-lightbox');
+        const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+        const isStickersVisible = stickersView && stickersView.style.display !== 'none';
+
+        if (isLightboxOpen || isStickersVisible) {
+            if (e.key === 'ArrowRight') {
+                nextStickerSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevStickerSlide();
+            } else if (e.key === 'Escape' && isLightboxOpen) {
+                closeSlideLightbox();
+            }
+        }
+    });
 
     function switchStickerTab(unitId, btn) {
         document.querySelectorAll('.sticker-unit-section').forEach(sec => {
