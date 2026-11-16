@@ -1456,7 +1456,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <!-- 輪盤 4: 新聞來源媒體 -->
             <div class="travel-card" style="display:flex; flex-direction:column; justify-content:space-between; padding:12px 10px; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px;">
                 <div class="travel-card-label" style="font-size:12px; font-weight:800; color:#7c3aed; margin-bottom:4px;">4️⃣ 來源媒體</div>
-                <div class="travel-card-value" id="slot-news-src-result" style="font-size:15px; font-weight:900; color:#0f172a; margin-bottom:6px;">Reuters 路透社</div>
+                <div class="travel-card-value" id="slot-news-src-result" style="font-size:15px; font-weight:900; color:#0f172a; margin-bottom:6px;">所有權威來源</div>
                 <select class="slot-select-dropdown" id="sel-news-src" onchange="onManualSelectNewsSlot('src', this.value)" style="width:100%; border-color:#7c3aed; font-size:13px; font-weight:700; padding:6px 8px; border-radius:8px; background:#fff; color:#0f172a; margin-bottom:6px;"></select>
                 <div style="display:flex; align-items:center; gap:4px;">
                     <span style="font-size:11px; color:#64748b; white-space:nowrap;">✏️自訂：</span>
@@ -1484,7 +1484,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             抽新聞靈感 → 複製指令 → 點旁邊「✨ 開啟 Gemini」或「🤖 ChatGPT」貼上立即總結！
         </div>
 
-        <div id="news-main-prompt-box" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:14px; line-height:1.7; padding:14px 16px; border-radius:10px; margin-bottom:14px; word-break:break-word; white-space:pre-wrap;">請幫我整理過去 24 小時內【AI 技術】領域最重大的 10 則【Nvidia 與 OpenAI 最新突破】頭條新聞，來源限定 Reuters 路透社，並提供每則的一句核心摘要與深度影響解析。</div>
+        <div id="news-main-prompt-box" style="background:#0f172a; color:#f8fafc; font-family:Menlo, Monaco, Consolas, monospace; font-size:14px; line-height:1.7; padding:14px 16px; border-radius:10px; margin-bottom:14px; word-break:break-word; white-space:pre-wrap;">請幫我整理過去 24 小時內【AI 技術】領域最重大的 10 則【OpenAI GPT-5 與 o 系列推理模型最新突破】頭條新聞，並提供每則的一句核心摘要與深度影響解析。</div>
 
         <!-- 一鍵直達按鈕群 -->
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -14109,14 +14109,14 @@ window.addEventListener('pageshow', (event) => {
             { label: "過去一週", span: "一週" }
         ],
         sources: [
+            { label: "所有權威來源", site: "", tag: "所有來源" },
             { label: "Reuters 路透社", site: "site:reuters.com", tag: "路透社" },
             { label: "BBC 國際新聞", site: "site:bbc.com", tag: "BBC" },
             { label: "AP News 美聯社", site: "site:apnews.com", tag: "美聯社" },
             { label: "NY Times 紐約時報", site: "site:nytimes.com", tag: "紐約時報" },
             { label: "The Guardian 衛報", site: "site:theguardian.com", tag: "衛報" },
             { label: "中央社 (CNA)", site: "site:cna.com.tw", tag: "中央社" },
-            { label: "鉅亨網 (cnyes)", site: "site:cnyes.com", tag: "鉅亨網" },
-            { label: "所有權威來源", site: "", tag: "所有來源" }
+            { label: "鉅亨網 (cnyes)", site: "site:cnyes.com", tag: "鉅亨網" }
         ]
     };
 
@@ -14124,10 +14124,31 @@ window.addEventListener('pageshow', (event) => {
         cat: NEWS_SLOT_DATA.cats[0],
         topic: NEWS_SLOT_DATA.cats[0].topics[0],
         time: NEWS_SLOT_DATA.times[1], // 24小時
-        src: NEWS_SLOT_DATA.sources[0]  // 路透社
+        src: NEWS_SLOT_DATA.sources[0]  // 預設 所有權威來源
     };
 
     let newsSlotSpinning = false;
+
+    // 將選中/抽中的 item 同步自動填入自訂輸入欄
+    function syncSlotToCustomInput(type, val) {
+        const el = document.getElementById(`news-custom-${type}`);
+        if (el) el.value = val || '';
+    }
+
+    function syncAllSlotsToCustomInputs() {
+        if (newsSlotState.cat) {
+            syncSlotToCustomInput('cat', newsSlotState.cat.name.replace(/^[^\s]+\s/, ''));
+        }
+        if (newsSlotState.topic) {
+            syncSlotToCustomInput('topic', newsSlotState.topic);
+        }
+        if (newsSlotState.time) {
+            syncSlotToCustomInput('time', newsSlotState.time.label);
+        }
+        if (newsSlotState.src) {
+            syncSlotToCustomInput('src', newsSlotState.src.label);
+        }
+    }
 
     // 依據新聞類別，動態填入專屬且合理的主題焦點
     function populateNewsTopicsForCat(catIdx, selectedTopic) {
@@ -14166,7 +14187,7 @@ window.addEventListener('pageshow', (event) => {
         const selSrc = document.getElementById('sel-news-src');
         if (selSrc) {
             selSrc.innerHTML = NEWS_SLOT_DATA.sources.map((s, i) => `<option value="${i}">${s.label}</option>`).join('');
-            selSrc.value = "0";
+            selSrc.value = "0"; // 預設 所有權威來源
         }
 
         const dateBadge = document.getElementById('news-live-date-badge');
@@ -14174,6 +14195,9 @@ window.addEventListener('pageshow', (event) => {
             const now = new Date();
             dateBadge.textContent = "📅 " + now.toLocaleDateString('zh-TW', { month:'long', day:'numeric', weekday:'short' });
         }
+
+        // 🌟 選到的 item 自動填到自定輸入欄
+        syncAllSlotsToCustomInputs();
 
         initNewsOpsTableStatic();
         updateNewsSlotUI();
@@ -14186,29 +14210,24 @@ window.addEventListener('pageshow', (event) => {
             newsSlotState.cat = NEWS_SLOT_DATA.cats[idx];
             // 🌟 核心連動：切換新聞類別時，主題下拉選單立即重新填充該類別專屬主題！
             populateNewsTopicsForCat(idx);
-            const custom = document.getElementById('news-custom-cat');
-            if (custom) custom.value = '';
-            const customT = document.getElementById('news-custom-topic');
-            if (customT) customT.value = '';
+            syncSlotToCustomInput('cat', newsSlotState.cat.name.replace(/^[^\s]+\s/, ''));
+            syncSlotToCustomInput('topic', newsSlotState.topic);
         }
         if (type === 'topic') {
             const cat = newsSlotState.cat || NEWS_SLOT_DATA.cats[0];
             const topics = cat.topics || [];
             if (topics[idx]) {
                 newsSlotState.topic = topics[idx];
-                const custom = document.getElementById('news-custom-topic');
-                if (custom) custom.value = '';
+                syncSlotToCustomInput('topic', newsSlotState.topic);
             }
         }
         if (type === 'time' && NEWS_SLOT_DATA.times[idx]) {
             newsSlotState.time = NEWS_SLOT_DATA.times[idx];
-            const custom = document.getElementById('news-custom-time');
-            if (custom) custom.value = '';
+            syncSlotToCustomInput('time', newsSlotState.time.label);
         }
         if (type === 'src' && NEWS_SLOT_DATA.sources[idx]) {
             newsSlotState.src = NEWS_SLOT_DATA.sources[idx];
-            const custom = document.getElementById('news-custom-src');
-            if (custom) custom.value = '';
+            syncSlotToCustomInput('src', newsSlotState.src.label);
         }
         updateNewsSlotUI();
     }
@@ -14222,7 +14241,6 @@ window.addEventListener('pageshow', (event) => {
                 const sel = document.getElementById('sel-news-cat');
                 const idx = sel ? parseInt(sel.value, 10) : 0;
                 newsSlotState.cat = NEWS_SLOT_DATA.cats[idx] || NEWS_SLOT_DATA.cats[0];
-                populateNewsTopicsForCat(idx);
             }
         } else if (type === 'topic') {
             if (trimmed) {
@@ -14236,14 +14254,15 @@ window.addEventListener('pageshow', (event) => {
             }
         } else if (type === 'time') {
             if (trimmed) {
-                newsSlotState.time = { label: trimmed, span: trimmed };
+                const cleanSpan = trimmed.replace(/^過去\s*/, '');
+                newsSlotState.time = { label: trimmed, span: cleanSpan };
             } else {
                 const sel = document.getElementById('sel-news-time');
                 const idx = sel ? parseInt(sel.value, 10) : 1;
                 newsSlotState.time = NEWS_SLOT_DATA.times[idx] || NEWS_SLOT_DATA.times[1];
             }
         } else if (type === 'src') {
-            if (trimmed) {
+            if (trimmed && trimmed !== '所有權威來源' && trimmed !== '所有權威' && trimmed !== '所有來源') {
                 newsSlotState.src = { label: trimmed, site: '', tag: trimmed };
             } else {
                 const sel = document.getElementById('sel-news-src');
@@ -14260,12 +14279,6 @@ window.addEventListener('pageshow', (event) => {
         const btn = document.getElementById('btn-spin-news-slots');
         if (btn) btn.disabled = true;
 
-        // 清空自訂輸入框，回歸隨機抽籤
-        ['cat', 'topic', 'time', 'src'].forEach(k => {
-            const el = document.getElementById(`news-custom-${k}`);
-            if (el) el.value = '';
-        });
-
         const started = Date.now();
         const timer = setInterval(() => {
             // 隨機選一個類別，並從該類別綁定的主題中選一個，確保動畫過程邏輯一致
@@ -14273,7 +14286,7 @@ window.addEventListener('pageshow', (event) => {
             const rCat = NEWS_SLOT_DATA.cats[rCatIdx];
             const rTopic = rCat.topics[Math.floor(Math.random() * rCat.topics.length)];
             const rTime = NEWS_SLOT_DATA.times[Math.floor(Math.random() * NEWS_SLOT_DATA.times.length)];
-            const rSrc = NEWS_SLOT_DATA.sources[Math.floor(Math.random() * NEWS_SLOT_DATA.sources.length)];
+            const rSrc = NEWS_SLOT_DATA.sources[0]; // 🌟 Default 都是所有權威來源
 
             const elCat = document.getElementById('slot-news-cat-result');
             const elTopic = document.getElementById('slot-news-topic-result');
@@ -14294,7 +14307,8 @@ window.addEventListener('pageshow', (event) => {
                 newsSlotState.cat = finalCat;
                 newsSlotState.topic = finalTopic;
                 newsSlotState.time = NEWS_SLOT_DATA.times[Math.floor(Math.random() * NEWS_SLOT_DATA.times.length)];
-                newsSlotState.src = NEWS_SLOT_DATA.sources[Math.floor(Math.random() * NEWS_SLOT_DATA.sources.length)];
+                // 🌟 Default 都是所有權威來源
+                newsSlotState.src = NEWS_SLOT_DATA.sources[0];
 
                 // 同步類別下拉選單
                 const sCat = document.getElementById('sel-news-cat');
@@ -14306,7 +14320,10 @@ window.addEventListener('pageshow', (event) => {
                 const sTime = document.getElementById('sel-news-time');
                 if (sTime) sTime.value = String(NEWS_SLOT_DATA.times.indexOf(newsSlotState.time));
                 const sSrc = document.getElementById('sel-news-src');
-                if (sSrc) sSrc.value = String(NEWS_SLOT_DATA.sources.indexOf(newsSlotState.src));
+                if (sSrc) sSrc.value = "0";
+
+                // 🌟 選到的 item 自動填到自定輸入欄
+                syncAllSlotsToCustomInputs();
 
                 updateNewsSlotUI();
                 newsSlotSpinning = false;
@@ -14318,8 +14335,10 @@ window.addEventListener('pageshow', (event) => {
     function buildCurrentNewsMainPrompt() {
         const catName = newsSlotState.cat ? newsSlotState.cat.name.replace(/^[^\s]+\s/, '') : '全球';
         const topic = newsSlotState.topic || '重要頭條';
-        const timeSpan = newsSlotState.time ? newsSlotState.time.span : '24小時';
-        const srcTag = newsSlotState.src && newsSlotState.src.tag !== '所有來源' ? `，來源限定 ${newsSlotState.src.tag}` : '';
+        let timeSpan = newsSlotState.time ? (newsSlotState.time.span || newsSlotState.time.label) : '24小時';
+        timeSpan = timeSpan.replace(/^過去\s*/, '');
+        const isAllSources = !newsSlotState.src || newsSlotState.src.tag === '所有來源' || newsSlotState.src.label === '所有權威來源' || newsSlotState.src.label === '所有權威';
+        const srcTag = isAllSources ? '' : `，來源限定 ${newsSlotState.src.tag || newsSlotState.src.label}`;
 
         return `請幫我整理過去 ${timeSpan} 內【${catName}】領域最重大的 10 則【${topic}】頭條新聞${srcTag}，並提供每則的一句核心摘要與深度影響解析。`;
     }
@@ -14362,9 +14381,11 @@ window.addEventListener('pageshow', (event) => {
 
         const catName = newsSlotState.cat ? newsSlotState.cat.name.replace(/^[^\s]+\s/, '') : '全球';
         const topic = newsSlotState.topic || '重要頭條';
-        const timeSpan = newsSlotState.time ? newsSlotState.time.span : '24小時';
+        let timeSpan = newsSlotState.time ? (newsSlotState.time.span || newsSlotState.time.label) : '24小時';
+        timeSpan = timeSpan.replace(/^過去\s*/, '');
         const googleCmd = buildCurrentGoogleSearchCmd();
-        const srcTag = newsSlotState.src && newsSlotState.src.tag !== '所有來源' ? `，來源限定 ${newsSlotState.src.tag}` : '';
+        const isAllSources = !newsSlotState.src || newsSlotState.src.tag === '所有來源' || newsSlotState.src.label === '所有權威來源' || newsSlotState.src.label === '所有權威';
+        const srcTag = isAllSources ? '' : `，來源限定 ${newsSlotState.src.tag || newsSlotState.src.label}`;
 
         const extraCmds = [
             {
