@@ -1325,7 +1325,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <!-- 🌟 歷屆主題創作精選（折疊收攏，釋放首頁空間） -->
     <details id="details-legacy-courses" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 12px 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
         <summary style="font-size: 15px; font-weight: 900; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;">
-            <span>🎓 AI 主題創作專區（漫畫・公仔・繪本・修圖等 10 大精選）</span>
+            <span>🎓 AI 主題創作專區（漫畫・公仔・貼圖・繪本・修圖等 11 大精選）</span>
             <span style="font-size: 12px; color: #0284c7; background: #e0f2fe; padding: 3px 8px; border-radius: 12px;">點擊展開 ▾</span>
         </summary>
         <div class="home-course-grid" style="margin-top: 6px;">
@@ -1342,6 +1342,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0288d1, #00acc1); color: #fff; font-size:16px;" onclick="openExternalView('view-travel-planner')">✈️ AI 旅行規劃師（5大實作單元）</button>
         <button class="home-course-btn home-wide-btn" style="background:#00bcd4;" onclick="openExternalView('view-9204')">AI 繪本故事創作器</button>
+        <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #06c755, #00b900); color: #fff; font-size:16px; font-weight:bold; box-shadow: 0 4px 12px rgba(6,199,85,0.35);" onclick="openExternalView('view-custom-stickers')">🎨 我的臉就是貼圖！AI 專屬 LINE 貼圖製作大師（3大風格・拍貼上架）</button>
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color:#fff; font-size:16px; font-weight:bold;" onclick="openExternalView('view-gemini-skills')">⚡ Google Gemini 專屬技能庫 (75款實戰指令與Gems)</button>
     </div>
     </details>
@@ -3710,6 +3711,352 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <div id="gemini-skills-empty-title" style="font-size: 17px; font-weight: bold; color: #475569;">查無符合的技能或指令</div>
             <p id="gemini-skills-empty-desc" style="font-size: 14px; color: #94a3b8; margin: 6px 0 16px;">請嘗試更換搜尋關鍵字，或點擊下方按鈕顯示全部技能。</p>
             <button type="button" onclick="resetGeminiSkillsFilter()" style="padding: 8px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; background: #4f46e5; color: #fff; border: none; cursor: pointer;">顯示全部技能</button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 🎨 我的臉就是貼圖！AI 專屬 LINE 貼圖製作大師 -->
+<!-- ========================================== -->
+<div id="view-custom-stickers" class="view-section container travel-shell" style="max-width: 960px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div class="custom-stickers-shell">
+        <!-- 頂部 Hero 橫幅 -->
+        <div class="travel-hero" style="background: linear-gradient(135deg, #06c755 0%, #00b900 40%, #059669 100%); border-radius: 20px; padding: 26px 20px; text-align: center; margin-bottom: 20px; color: #ffffff; box-shadow: 0 8px 25px rgba(6,199,85,0.3);">
+            <div style="font-size: 42px; line-height: 1; margin-bottom: 8px;">🎨📱🐶😂✨</div>
+            <h1 style="color: #ffffff; margin: 4px 0 10px; font-size: 26px; font-weight: 900;">我的臉就是貼圖！AI 專屬 LINE 貼圖設計大師</h1>
+            <p style="color: #d1fae5; font-size: 15px; line-height: 1.6; margin: 0 auto; max-width: 760px;">
+                用 ChatGPT / Gemini 一鍵將自己的照片變身「<b>Q版個人心情貼圖、動物分身、真人搞笑大頭</b>」三大精采系列！產出 2×2 去背四格圖，再用 LINE 拍貼 App 自動描邊一鍵上架免費自用！
+            </p>
+            <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" onclick="randomizeStickersInspiration()" style="padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 999px; background: #ffffff; color: #047857; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.15s;">🎲 隨機換整套貼圖靈感（免打字自動配置）</button>
+                <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 999px; background: #1e1f20; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.25);">✨ 開啟 Gemini</a>
+                <a href="https://chatgpt.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 999px; background: #10a37f; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.25);">🤖 開啟 ChatGPT</a>
+            </div>
+        </div>
+
+        <!-- 4大實作單元分頁切換選單 -->
+        <div class="planner-unit-tabs" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 20px; -webkit-overflow-scrolling: touch;">
+            <button type="button" class="planner-tab-btn active" id="tab-btn-sticker-mood" onclick="switchStickerTab('unit-sticker-mood', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #06c755; background: #06c755; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📱 單元一：Q版個人心情貼圖</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-animal" onclick="switchStickerTab('unit-sticker-animal', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🐶 單元二：動物分身萌寵貼圖</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-face" onclick="switchStickerTab('unit-sticker-face', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">😂 單元三：真人搞笑大頭貼圖</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-sticker-lineapp" onclick="switchStickerTab('unit-sticker-lineapp', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📲 單元四：LINE拍貼App上架教學</button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 【單元一】：📱 Q版個人心情貼圖（8表情一套） -->
+        <!-- ========================================== -->
+        <div id="unit-sticker-mood" class="sticker-unit-section" style="display: block;">
+            <!-- 步驟 1: 規劃 8 個心情表情 -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #a7f3d0; border-left: 5px solid #06c755; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #065f46; font-size: 18px; font-weight: bold;">1 規劃八個實用心情表情（先規劃、不畫圖）</h3>
+                    <span style="background: #d1fae5; color: #047857; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">📝 表情規劃指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">讓 AI 根據您上傳的照片五官特徵，為您量身規劃一套 8 個常用 LINE 聊天表情。</p>
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #374151; display: block; margin-bottom: 4px;">選擇心情主題（已預選，亦可切換或自由輸入）：</label>
+                    <div style="display: flex; gap: 8px;">
+                        <select id="sticker-mood-select" class="slot-select-dropdown" onchange="updateStickerUnit1Prompt()" style="flex: 1; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #06c755; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="溫馨版">溫馨版（早安、謝謝你、加油、辛苦啦、抱抱、沒問題、下午喝咖啡嗎、收到）</option>
+                            <option value="搞笑版">搞笑版（我就爛、認真？、氣死、假的？、蛤聽不懂、睏了、在路上、崩潰）</option>
+                            <option value="工作版">工作版（收到！、馬上處理！、報告已完成、謝謝你幫忙、請稍等、辛苦了、好的、沒問題）</option>
+                        </select>
+                        <input type="text" id="sticker-custom-mood" placeholder="亦可自訂輸入版本" oninput="updateStickerUnit1Prompt()" style="width: 150px; padding: 8px 10px; font-size: 13px; border-radius: 8px; border: 1px solid #cbd5e1; margin: 0;">
+                    </div>
+                </div>
+                <div class="prompt-text" id="prompt-sticker-mood-plan" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請看我的照片，請幫我設計一套完整 LINE 心情貼圖：
+「溫馨版」
+每套各設計八種常用表情，搭配簡短的文字和人物動作。
+請清楚標示每個貼圖的名稱，以及詳細描述每套八個表情。
+先寫出規劃，不要畫圖。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-sticker-mood-plan')" style="background: #06c755; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 表情規劃指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                    <a href="https://chatgpt.com/" target="_blank" rel="noopener" style="background: #10a37f; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">🤖 開啟 ChatGPT</a>
+                </div>
+            </div>
+
+            <!-- 步驟 2: 挑選畫風並生成前 4 個表情 (2x2 去背四格圖) -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #fed7aa; border-left: 5px solid #f97316; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #9a3412; font-size: 18px; font-weight: bold;">2 挑選風格 ＆ 生成前四格表情（2×2 正方形透明去背）</h3>
+                    <span style="background: #ffedd5; color: #c2410c; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🎨 前四格貼圖指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">依據規劃的第 1～4 個表情，保留五官神韻生成獨立四格圖，每格留寬間距、透明背景便於裁切。</p>
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #374151; display: block; margin-bottom: 4px;">選擇貼圖風格（8 大爆款風格，免手打）：</label>
+                    <div style="display: flex; gap: 8px;">
+                        <select id="sticker-style-select" class="slot-select-dropdown" onchange="updateStickerUnit1Prompt()" style="flex: 1; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #f97316; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="日系可愛Q版">1. 日系可愛Q版（大眼萌系、乾淨線條輪廓）</option>
+                            <option value="3D黏土公仔風">2. 3D黏土公仔風（圓潤立體、溫暖手作塑泥感）</option>
+                            <option value="溫柔水彩風">3. 溫柔水彩風（清新淡雅透明感手繪暈染）</option>
+                            <option value="美式普普漫畫風">4. 美式普普漫畫風（粗黑網點線條、強烈復古對比）</option>
+                            <option value="羊毛氈娃娃風">5. 羊毛氈娃娃風（毛茸茸超療癒立體針氈質感）</option>
+                            <option value="立體剪紙風">6. 立體剪紙風（多層次紙雕陰影、精緻折紙藝術）</option>
+                            <option value="復古電玩像素風">7. 復古電玩像素風（8-bit 像素像素點懷舊復古遊戲）</option>
+                            <option value="古典油畫風">8. 古典油畫風（厚重油彩筆觸、文藝復興大師質感）</option>
+                        </select>
+                        <input type="text" id="sticker-custom-style" placeholder="亦可自訂輸入畫風" oninput="updateStickerUnit1Prompt()" style="width: 150px; padding: 8px 10px; font-size: 13px; border-radius: 8px; border: 1px solid #cbd5e1; margin: 0;">
+                    </div>
+                </div>
+                <div class="prompt-text" id="prompt-sticker-first4" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請用我上傳的照片，依照剛才規劃的『溫馨版』八種表情，製作「日系可愛Q版」的 LINE 貼圖。
+保留我的五官和個人特色。
+先做前四個表情，排成一張正方形四格圖片。
+每格獨立、間距要大、背景透明去背，方便裁切。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-sticker-first4')" style="background: #f97316; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 前四格生成指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+
+            <!-- 步驟 3: 生成後 4 個表情 (第 5~8 張) -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #bfdbfe; border-left: 5px solid #2563eb; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #1e40af; font-size: 18px; font-weight: bold;">3 生成後四格表情（完成一套完整 8 張貼圖）</h3>
+                    <span style="background: #dbeafe; color: #1d4ed8; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">✨ 後四格貼圖指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">維持完全相同的畫風與人物神韻，生成剩下的第 5 到第 8 張表情。</p>
+                <div class="prompt-text" id="prompt-sticker-last4" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">依照剛剛寫的規劃，做出剩下第五到第八張的表情圖，排成一張正方形四格圖片，每格獨立，間距要大，背景透明去背方便裁切。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-sticker-last4')" style="background: #2563eb; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 後四格生成指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 【單元二】：🐶 動物分身萌寵貼圖 -->
+        <!-- ========================================== -->
+        <div id="unit-sticker-animal" class="sticker-unit-section" style="display: none;">
+            <!-- 步驟 1: AI 推薦動物分身 -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #ddd6fe; border-left: 5px solid #8b5cf6; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #5b21b6; font-size: 18px; font-weight: bold;">1 讓 AI 依照片推薦適合我的「動物分身」</h3>
+                    <span style="background: #ede9fe; color: #6d28d9; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🐾 動物推薦指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">上傳您的生活照片，請 AI 找出神韻、氣質最契合的動物種類，先不要畫圖。</p>
+                <div class="prompt-text" id="prompt-animal-rec" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請看看我的照片，推薦三種適合用來做貼圖而且也適合當我動物分身的寵物，簡單說明原因，並告訴我最推薦哪一種。先不要畫圖。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-animal-rec')" style="background: #8b5cf6; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 動物推薦指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+
+            <!-- 步驟 2: 生成動物分身貼圖 (前四格) -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #fbcfe8; border-left: 5px solid #ec4899; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #9d174d; font-size: 18px; font-weight: bold;">2 挑選動物與畫風 ＆ 生成前四格（早安、謝謝、哈哈、收到）</h3>
+                    <span style="background: #fce7f3; color: #be185d; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🐶 前四格動物指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">保留本人招牌配件（眼鏡/帽子）、服裝特色，但動物不帶人類頭髮，呈現自然可愛萌感。</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 12px;">
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #374151; display: block; margin-bottom: 4px;">選擇動物分身：</label>
+                        <div style="display: flex; gap: 6px;">
+                            <select id="sticker-animal-select" class="slot-select-dropdown" onchange="updateStickerUnit2Prompt()" style="flex: 1; padding: 8px 10px; font-size: 13.5px; border-radius: 8px; border: 2px solid #ec4899; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                                <option value="柴犬">🐕 柴犬（元氣滿滿、微笑招牌）</option>
+                                <option value="英短貓咪">🐱 英短貓咪（圓臉無辜、慵懶療癒）</option>
+                                <option value="水豚">🦦 療癒水豚（情緒穩定、頭頂橘子）</option>
+                                <option value="黃金獵犬">🦮 黃金獵犬（溫暖熱情、親和力十足）</option>
+                                <option value="可愛小垂耳兔">🐰 小垂耳兔（軟萌溫順、眨眼可愛）</option>
+                                <option value="小熊貓">🐼 小熊貓（活潑俏皮、毛茸茸大尾巴）</option>
+                                <option value="博美犬">🐶 蓬鬆博美（小巧靈動、像團棉花糖）</option>
+                                <option value="小樹懶">🦥 悠哉小樹懶（慢活愜意、不慌不忙）</option>
+                            </select>
+                            <input type="text" id="sticker-custom-animal" placeholder="自訂動物" oninput="updateStickerUnit2Prompt()" style="width: 90px; padding: 8px 8px; font-size: 12px; border-radius: 8px; border: 1px solid #cbd5e1; margin: 0;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #374151; display: block; margin-bottom: 4px;">選擇動物畫風：</label>
+                        <select id="sticker-animal-style-select" class="slot-select-dropdown" onchange="updateStickerUnit2Prompt()" style="width: 100%; padding: 8px 10px; font-size: 13.5px; border-radius: 8px; border: 2px solid #ec4899; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                            <option value="日系可愛Q版">1. 日系可愛Q版（大眼萌系乾淨線條）</option>
+                            <option value="3D黏土公仔風">2. 3D黏土公仔風（圓潤立體手工黏土）</option>
+                            <option value="羊毛氈娃娃風">3. 羊毛氈娃娃風（毛茸茸立體針氈質感）</option>
+                            <option value="溫柔水彩風">4. 溫柔水彩風（清新淡雅透明水彩）</option>
+                            <option value="美式普普漫畫風">5. 美式普普漫畫風（大膽網點美漫風）</option>
+                            <option value="立體剪紙風">6. 立體剪紙風（多層次陰影紙雕風）</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="prompt-text" id="prompt-animal-first4" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請用我的照片，把我變成「柴犬」，畫成「日系可愛Q版」的 LINE 貼圖。
+保留我的招牌配件、服裝特色和神情，讓人認得出是我，但動物不要有人類頭髮。
+先做四格：早安、謝謝、哈哈、收到。
+排成一張正方形四格圖片。每格獨立，間距要大，背景透明去背方便裁切。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-animal-first4')" style="background: #ec4899; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 動物前四格指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+
+            <!-- 步驟 3: 後四格動物表情 -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #e2e8f0; border-left: 5px solid #64748b; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #334155; font-size: 18px; font-weight: bold;">3 生成後四格不重複動物表情</h3>
+                    <span style="background: #f1f5f9; color: #475569; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🐾 後四格動物指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">維持完全相同的動物造型與畫風，產出剩下的 4 格動態表情。</p>
+                <div class="prompt-text" id="prompt-animal-last4" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">再用一樣的畫風及人物，製作四個不重複的表情圖（加油、辛苦了、抱抱、OK），排成一張正方形四格圖片。每格獨立，間距要大，背景透明去背方便裁切。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-animal-last4')" style="background: #475569; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 動物後四格指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 【單元三】：😂 真人搞笑大頭貼圖 -->
+        <!-- ========================================== -->
+        <div id="unit-sticker-face" class="sticker-unit-section" style="display: none;">
+            <!-- 步驟 1: 規劃真人搞笑表情 -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #fde047; border-left: 5px solid #eab308; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #854d0e; font-size: 18px; font-weight: bold;">1 規劃真人大頭搞笑貼圖系列（三選一）</h3>
+                    <span style="background: #fef9c3; color: #a16207; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">🎭 搞笑規劃指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">依據本人神韻設計浮誇、戲劇化或幽默的表情動作與文字。</p>
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #374151; display: block; margin-bottom: 4px;">選擇搞笑大頭系列風格：</label>
+                    <select id="sticker-face-select" class="slot-select-dropdown" onchange="updateStickerUnit3Prompt()" style="width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px; border: 2px solid #eab308; background: #f8fafc; font-weight: bold; color: #1e293b;">
+                        <option value="八點檔誇張版">八點檔誇張版（瞪大雙眼、扶額崩潰、狂喜大叫、戲劇張力拉滿）</option>
+                        <option value="幽默搞笑版">幽默搞笑版（我就爛躺平、白眼無奈、尷尬而不失禮貌的微笑、偷笑）</option>
+                        <option value="俏皮可愛版">俏皮可愛版（嘟嘴裝無辜、比心雙手合十、眨眼吐舌、雙手捧頰）</option>
+                    </select>
+                </div>
+                <div class="prompt-text" id="prompt-face-plan" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請看我的照片，請幫我規劃一套真人大頭 LINE 貼圖：
+「八點檔誇張版」
+請設計八種有趣、常用的表情，搭配簡短文字和臉部動作。先寫出規劃，不要畫圖。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-face-plan')" style="background: #eab308; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 搞笑規劃指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+
+            <!-- 步驟 2: 前四格真人寫實四格貼圖 -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #fed7aa; border-left: 5px solid #f97316; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #9a3412; font-size: 18px; font-weight: bold;">2 生成真人寫實四格大頭貼圖（前四格）</h3>
+                    <span style="background: #ffedd5; color: #c2410c; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">📸 真人前四格指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">臉部必須 100% 像本人照片，頭部放大到胸前，帶誇張生動表情手勢，排成 2x2 透明去背。</p>
+                <div class="prompt-text" id="prompt-face-first4" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請依照你剛剛規劃的前四個表情，製作一張真人寫實四格 LINE 貼圖。
+臉要像我，頭部大，畫到胸前，可以有手勢，表情誇張生動有趣。
+做成 2×2，共四格，間距寬大，背景透明去背方便裁切。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-face-first4')" style="background: #f97316; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 真人前四格指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+
+            <!-- 步驟 3: 後四格真人搞笑貼圖 -->
+            <div class="instruction-block" style="background: #fff; border: 1px solid #cbd5e1; border-left: 5px solid #475569; border-radius: 12px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: bold;">3 生成真人寫實四格大頭貼圖（後四格）</h3>
+                    <span style="background: #f1f5f9; color: #475569; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: bold;">📸 真人後四格指令</span>
+                </div>
+                <p style="color: #616161; font-size: 14px; margin: 0 0 10px;">維持完全相同的人物相貌特徵與頭大比例，生成第 5 到第 8 張貼圖。</p>
+                <div class="prompt-text" id="prompt-face-last4" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 14.5px; line-height: 1.7; color: #1e293b; white-space: pre-wrap; margin-bottom: 12px;">請依照你剛剛規劃的後四個表情，製作一張真人寫實四格 LINE 貼圖。
+維持相同的神韻與頭大身小比例，表情要幽默誇張，做成 2×2 四格，間距寬大，背景透明去背方便裁切。</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="copy-btn" onclick="copyStickerText(this, 'prompt-face-last4')" style="background: #475569; flex: 1; min-width: 160px; padding: 12px; font-size: 15px; border-radius: 8px; border: none; color: #fff; font-weight: bold; cursor: pointer;">📋 複製 真人後四格指令</button>
+                    <a href="https://gemini.google.com/" target="_blank" rel="noopener" style="background: #1e1f20; color: #fff; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">✨ 開啟 Gemini</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 【單元四】：📲 LINE 拍貼 App 製作與上架全攻略 -->
+        <!-- ========================================== -->
+        <div id="unit-sticker-lineapp" class="sticker-unit-section" style="display: none;">
+            <div style="background: #ffffff; border: 2px solid #06c755; border-radius: 16px; padding: 22px; margin-bottom: 22px; box-shadow: 0 4px 15px rgba(6,199,85,0.08);">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="font-size: 32px; line-height: 1;">📱✨</span>
+                    <div>
+                        <h3 style="margin: 0; color: #065f46; font-size: 20px; font-weight: 900;">手機 4 步驟：使用「LINE 拍貼」免費自製下載貼圖</h3>
+                        <p style="margin: 2px 0 0; color: #64748b; font-size: 13.5px;">只要有一支手機，免 Photoshop、免電腦，快速完成裁切去背並送出申請！</p>
+                    </div>
+                </div>
+
+                <!-- 流程 4 步驟卡片 -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 13px; font-weight: 800; color: #047857; margin-bottom: 6px;">步驟 ①：下載 App 與導入</div>
+                        <p style="font-size: 13px; color: #374151; line-height: 1.55; margin: 0;">
+                            在手機商店搜尋並下載「<b>LINE 拍貼 (LINE Sticker Maker)</b>」。打開 App 登入 LINE 帳號，點選「<b>＋製作貼圖</b>」➜「<b>選擇照片</b>」，選入剛剛 AI 產生的四格圖檔。
+                        </p>
+                    </div>
+
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 13px; font-weight: 800; color: #047857; margin-bottom: 6px;">步驟 ②：一鍵自動描邊去背</div>
+                        <p style="font-size: 13px; color: #374151; line-height: 1.55; margin: 0;">
+                            進入編輯頁面點選「<b>描邊</b>」，按下「<b>自動描邊</b>」，App 會智慧辨識人像輪廓去背圈出一張表情！可搭配橡皮擦工具微調邊緣，並調整旋轉大小。
+                        </p>
+                    </div>
+
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 13px; font-weight: 800; color: #047857; margin-bottom: 6px;">步驟 ③：湊滿 8 張與預覽</div>
+                        <p style="font-size: 13px; color: #374151; line-height: 1.55; margin: 0;">
+                            重複將兩張 2×2 四格圖裁切為 8 張單圖（LINE 貼圖一組最低門檻為 8 張）。完成後點「<b>預覽貼圖</b>」，可模擬在真實綠色/深色聊天室中的顯示效果。
+                        </p>
+                    </div>
+
+                    <div style="background: #fefce8; border: 1.5px solid #fde047; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 13px; font-weight: 800; color: #a16207; margin-bottom: 6px;">步驟 ④：免費自用核心設定 ⭐</div>
+                        <p style="font-size: 13px; color: #374151; line-height: 1.55; margin: 0;">
+                            填寫貼圖名稱與說明，請務必按照下方「<b>重要設定 3 大秘訣</b>」進行勾選，才能享受<b>作者本人永久免費下載使用</b>！
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 🌟 送審 3 大重要設定秘訣（防止扣款、他人搜尋不到） -->
+                <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 14px; padding: 16px 18px; margin-bottom: 20px;">
+                    <div style="font-size: 15px; font-weight: 900; color: #b45309; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                        <span>💡</span>
+                        <span>送出申請前，確認 3 個重要設定（本人免費下載秘訣）：</span>
+                    </div>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #78350f; line-height: 1.7;">
+                        <li><b>是否使用 AI</b> ➜ 請勾選「<b>使用 AI</b>」。</li>
+                        <li><b>隱私設定</b> ➜ 請選擇「<b>不顯示於 LINE STORE / 貼圖小舖</b>」（設定為隱私，其他人無法搜尋或瀏覽購買，專屬於您與好友間使用）。</li>
+                        <li><b>銷售分配設定</b> ➜ 請選擇「<b>免費下載 / 無銷售分配金額</b>」（<b>最關鍵一步！</b>選擇此項後，<b>創作者本人即可免費下載使用</b>，不需要自掏腰包花代幣購買）。</li>
+                    </ul>
+                </div>
+
+                <!-- 審核與下載時程 -->
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 16px;">
+                    <div style="font-size: 13.5px; color: #334155;">
+                        <b>⏳ 審核時間：</b>約數小時 ～ 1～2 天通過。通過後會收到「LINE 拍貼」官方帳號訊息，點入即可<b>「免費下載」</b>開始使用！
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <a href="https://apps.apple.com/tw/app/line-sticker-maker/id1246101918" target="_blank" rel="noopener" style="padding: 6px 12px; font-size: 12.5px; font-weight: bold; border-radius: 6px; background: #000; color: #fff; text-decoration: none;"> App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.linecorp.linecreatorsstudio" target="_blank" rel="noopener" style="padding: 6px 12px; font-size: 12.5px; font-weight: bold; border-radius: 6px; background: #00875a; color: #fff; text-decoration: none;">▶ Google Play</a>
+                    </div>
+                </div>
+
+                <!-- 投影片圖解全覽（折疊） -->
+                <details style="margin-top: 18px; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px 14px;">
+                    <summary style="font-size: 14px; font-weight: bold; color: #0284c7; cursor: pointer;">
+                        📖 點此查看原廠教學投影片講義（28 頁完整圖解，支援一鍵翻閱）
+                    </summary>
+                    <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px;">
+                        <img src="./製作貼圖/139988_0.jpg" alt="投影片 1" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139989_0.jpg" alt="投影片 2" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139990_0.jpg" alt="投影片 3" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139992_0.jpg" alt="投影片 5" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139993_0.jpg" alt="投影片 6" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139994_0.jpg" alt="投影片 7" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139997_0.jpg" alt="投影片 10" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/139999_0.jpg" alt="投影片 12" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/140001_0.jpg" alt="投影片 14" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/140004_0.jpg" alt="投影片 17" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/140006_0.jpg" alt="投影片 19" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/140008_0.jpg" alt="投影片 21" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/140011_0.jpg" alt="投影片 24" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                        <img src="./製作貼圖/140012_0.jpg" alt="投影片 25" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;" loading="lazy">
+                    </div>
+                </details>
+            </div>
         </div>
     </div>
 </div>
@@ -9512,6 +9859,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         } else if (viewId === 'view-gemini-skills') {
             switchView('view-gemini-skills');
             initGeminiSkillsView();
+        } else if (viewId === 'view-custom-stickers') {
+            switchView('view-custom-stickers');
+            initCustomStickersView();
         } else
         if (viewId === 'view-wall') {
             switchView('view-wall');
@@ -14556,6 +14906,151 @@ window.addEventListener('pageshow', (event) => {
         for (let i = 1; i <= 12; i++) {
             const num = (i < 10 ? "0" : "") + i;
             randomizeBananaCard(num);
+        }
+    }
+
+    // ==========================================
+    // 🎨 我的臉就是貼圖！AI 專屬 LINE 貼圖製作大師 JS
+    // ==========================================
+    function initCustomStickersView() {
+        updateStickerUnit1Prompt();
+        updateStickerUnit2Prompt();
+        updateStickerUnit3Prompt();
+    }
+
+    function switchStickerTab(unitId, btn) {
+        document.querySelectorAll('.sticker-unit-section').forEach(sec => {
+            sec.style.display = 'none';
+        });
+        const target = document.getElementById(unitId);
+        if (target) target.style.display = 'block';
+
+        document.querySelectorAll('#view-custom-stickers .planner-tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.borderColor = '#cbd5e1';
+            b.style.background = '#f8fafc';
+            b.style.color = '#475569';
+        });
+
+        if (btn) {
+            btn.classList.add('active');
+            btn.style.borderColor = '#06c755';
+            btn.style.background = '#06c755';
+            btn.style.color = '#fff';
+        }
+    }
+
+    function updateStickerUnit1Prompt() {
+        const moodSel = document.getElementById('sticker-mood-select');
+        const customMoodInp = document.getElementById('sticker-custom-mood');
+        const styleSel = document.getElementById('sticker-style-select');
+        const customStyleInp = document.getElementById('sticker-custom-style');
+
+        let mood = (customMoodInp && customMoodInp.value.trim()) || (moodSel ? moodSel.value : '溫馨版');
+        let style = (customStyleInp && customStyleInp.value.trim()) || (styleSel ? styleSel.value : '日系可愛Q版');
+
+        const boxPlan = document.getElementById('prompt-sticker-mood-plan');
+        if (boxPlan) {
+            boxPlan.textContent = `請看我的照片，請幫我設計一套完整 LINE 心情貼圖：\n「${mood}」\n每套各設計八種常用表情，搭配簡短的文字和人物動作。\n請清楚標示每個貼圖的名稱，以及詳細描述每套八個表情。\n先寫出規劃，不要畫圖。`;
+        }
+
+        const boxFirst4 = document.getElementById('prompt-sticker-first4');
+        if (boxFirst4) {
+            boxFirst4.textContent = `請用我上傳的照片，依照剛才規劃的『${mood}』八種表情，製作「${style}」的 LINE 貼圖。\n保留我的五官和個人特色。\n先做前四個表情，排成一張正方形四格圖片。\n每格獨立、間距要大、背景透明去背，方便裁切。`;
+        }
+
+        const boxLast4 = document.getElementById('prompt-sticker-last4');
+        if (boxLast4) {
+            boxLast4.textContent = `依照剛剛寫的規劃，做出剩下第五到第八張的表情圖，排成一張正方形四格圖片，每格獨立，間距要大，背景透明去背方便裁切。`;
+        }
+    }
+
+    function updateStickerUnit2Prompt() {
+        const animalSel = document.getElementById('sticker-animal-select');
+        const customAnimalInp = document.getElementById('sticker-custom-animal');
+        const styleSel = document.getElementById('sticker-animal-style-select');
+
+        let animal = (customAnimalInp && customAnimalInp.value.trim()) || (animalSel ? animalSel.value : '柴犬');
+        let style = styleSel ? styleSel.value : '日系可愛Q版';
+
+        const boxFirst4 = document.getElementById('prompt-animal-first4');
+        if (boxFirst4) {
+            boxFirst4.textContent = `請用我的照片，把我變成「${animal}」，畫成「${style}」的 LINE 貼圖。\n保留我的招牌配件、服裝特色和神情，讓人認得出是我，但動物不要有人類頭髮。\n先做四格：早安、謝謝、哈哈、收到。\n排成一張正方形四格圖片。每格獨立，間距要大，背景透明去背方便裁切。`;
+        }
+    }
+
+    function updateStickerUnit3Prompt() {
+        const faceSel = document.getElementById('sticker-face-select');
+        let version = faceSel ? faceSel.value : '八點檔誇張版';
+
+        const boxPlan = document.getElementById('prompt-face-plan');
+        if (boxPlan) {
+            boxPlan.textContent = `請看我的照片，請幫我規劃一套真人大頭 LINE 貼圖：\n「${version}」\n請設計八種有趣、常用的表情，搭配簡短文字和臉部動作。先寫出規劃，不要畫圖。`;
+        }
+    }
+
+    function randomizeStickersInspiration() {
+        const moodSel = document.getElementById('sticker-mood-select');
+        if (moodSel && moodSel.options.length) {
+            moodSel.selectedIndex = Math.floor(Math.random() * moodSel.options.length);
+        }
+        const customMoodInp = document.getElementById('sticker-custom-mood');
+        if (customMoodInp) customMoodInp.value = '';
+
+        const styleSel = document.getElementById('sticker-style-select');
+        if (styleSel && styleSel.options.length) {
+            styleSel.selectedIndex = Math.floor(Math.random() * styleSel.options.length);
+        }
+        const customStyleInp = document.getElementById('sticker-custom-style');
+        if (customStyleInp) customStyleInp.value = '';
+
+        const animalSel = document.getElementById('sticker-animal-select');
+        if (animalSel && animalSel.options.length) {
+            animalSel.selectedIndex = Math.floor(Math.random() * animalSel.options.length);
+        }
+        const customAnimalInp = document.getElementById('sticker-custom-animal');
+        if (customAnimalInp) customAnimalInp.value = '';
+
+        const animalStyleSel = document.getElementById('sticker-animal-style-select');
+        if (animalStyleSel && animalStyleSel.options.length) {
+            animalStyleSel.selectedIndex = Math.floor(Math.random() * animalStyleSel.options.length);
+        }
+
+        const faceSel = document.getElementById('sticker-face-select');
+        if (faceSel && faceSel.options.length) {
+            faceSel.selectedIndex = Math.floor(Math.random() * faceSel.options.length);
+        }
+
+        updateStickerUnit1Prompt();
+        updateStickerUnit2Prompt();
+        updateStickerUnit3Prompt();
+
+        showToast('🎲 已隨機換好全套貼圖靈感配置！');
+    }
+
+    async function copyStickerText(btn, elementId) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        const text = el.innerText || el.textContent;
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (_) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+        showToast('已複製貼圖指令！可直接貼至 Gemini 或 ChatGPT 執行');
+        if (btn) {
+            const originalText = btn.innerText;
+            btn.innerText = '已複製 ✓';
+            btn.style.filter = 'brightness(1.15)';
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.filter = 'none';
+            }, 2000);
         }
     }
 
