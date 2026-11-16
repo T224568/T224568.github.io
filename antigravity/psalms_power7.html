@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📖 聖經中最有力量的 7 篇詩篇祈禱寶庫｜和合2010・巴克禮台漢本雙語朗讀與導讀詳解</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Noto Serif TC"', 'serif'],
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+          },
+          colors: {
+            sacred: {
+              50: '#faf8f5',
+              100: '#f4ede2',
+              200: '#e8dac3',
+              500: '#c29b61',
+              600: '#a87e45',
+              700: '#8c6434',
+              900: '#1b160e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: #090d16;
+      color: #f1f5f9;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .font-bible {
+      font-family: "Noto Serif TC", serif;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(18, 27, 49, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .verse-highlight {
+      background: rgba(194, 155, 97, 0.25) !important;
+      border-left: 4px solid #c29b61 !important;
+      transform: scale(1.01);
+      transition: all 0.2s ease;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #c29b61;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-24 custom-scroll">
+
+  <!-- 頂部 Header & 導航 -->
+  <header class="sticky top-0 z-40 glass border-b border-slate-800/80 px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-amber-500/20 text-lg">
+          <i class="fa-solid fa-cross"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2 font-bible">
+            聖經中最有力量的 7 篇詩篇祈禱寶庫
+            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-sans border border-amber-500/30">雙語朗讀・導讀詳解</span>
+          </h1>
+          <p class="text-xs text-slate-400">和合本2010修訂版 (RCUV) × 巴克禮台漢本 (TGHG) × Web Speech API 語音朗讀</p>
+        </div>
+      </div>
+
+      <!-- 右側快捷控制 -->
+      <div class="flex items-center gap-2 self-end md:self-auto">
+        <button onclick="openInfographicModal()" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs border border-amber-500/30 flex items-center gap-1.5 transition-all">
+          <i class="fa-solid fa-image"></i>
+          <span>9:16 資訊圖卡</span>
+        </button>
+        <a href="https://fun.jktai123.com/all_html.html" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700 flex items-center gap-1.5 transition-all">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>總目錄</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 7 篇詩篇快速導航 Tab 列 -->
+  <div class="bg-slate-950/70 border-b border-slate-800/80 sticky top-[61px] z-30 px-4 py-2 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto custom-scroll pb-1" id="psalm-tabs">
+      <!-- 由 JS 動態生成 -->
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
+
+    <!-- 主篇章標頭卡片 -->
+    <section class="glass-card rounded-3xl p-6 lg:p-8 mb-8 border border-amber-500/20 shadow-2xl relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none text-[160px] text-amber-400">
+        <i class="fa-solid fa-book-bible"></i>
+      </div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 relative z-10">
+        <div>
+          <div class="flex items-center gap-3 mb-2 flex-wrap">
+            <span id="current-badge" class="text-xs font-semibold px-3 py-1 rounded-full border">標籤</span>
+            <span id="current-theme" class="text-xs font-mono text-amber-400 bg-amber-950/40 px-3 py-1 rounded-full border border-amber-800/50">核心意涵</span>
+          </div>
+          <h2 id="current-title" class="text-2xl lg:text-4xl font-extrabold text-white font-bible tracking-tight mb-3">詩篇第 91 篇</h2>
+          <p id="current-intro" class="text-slate-300 text-sm lg:text-base leading-relaxed max-w-4xl">導讀說明文字載入中...</p>
+        </div>
+
+        <!-- 語音朗讀懸浮播放控制器 -->
+        <div class="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 lg:p-5 flex flex-col gap-3 min-w-[280px] shadow-xl">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i>
+              <span>語音朗讀控制台</span>
+            </span>
+            <span id="tts-status" class="text-[11px] font-mono text-slate-400">就緒</span>
+          </div>
+
+          <!-- 語言切換 -->
+          <div class="grid grid-cols-2 gap-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs">
+            <button id="lang-btn-rcuv" onclick="setTtsLang('rcuv')" class="py-1.5 rounded-md font-medium text-center transition-all bg-amber-600 text-white shadow">和合2010 (國語)</button>
+            <button id="lang-btn-tghg" onclick="setTtsLang('tghg')" class="py-1.5 rounded-md font-medium text-center transition-all text-slate-400 hover:text-white">巴克禮 (台漢本)</button>
+          </div>
+
+          <!-- 播放控制按鈕群 -->
+          <div class="flex items-center justify-between gap-2">
+            <button id="tts-play-btn" onclick="togglePlay()" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
+              <i class="fa-solid fa-play"></i>
+              <span id="tts-play-text">整篇朗讀</span>
+            </button>
+            <button onclick="stopSpeech()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition-all" title="停止">
+              <i class="fa-solid fa-stop"></i>
+            </button>
+            <select id="tts-rate" onchange="setRate(this.value)" class="bg-slate-800 text-slate-300 text-xs rounded-xl px-2.5 py-2 border border-slate-700 focus:outline-none focus:border-amber-500" title="語速">
+              <option value="0.8">0.8x</option>
+              <option value="1.0" selected>1.0x</option>
+              <option value="1.2">1.2x</option>
+            </select>
+          </div>
+          <p class="text-[11px] text-slate-500 text-center">💡 點擊下方經文任一節可單節隨選朗讀</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 檢視切換工具列（雙欄對照 vs 單欄） -->
+    <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-slate-400">經文對照模式：</span>
+        <button id="view-mode-split" onclick="setViewMode('split')" class="px-3 py-1 rounded-lg text-xs font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40">雙欄對照</button>
+        <button id="view-mode-rcuv" onclick="setViewMode('rcuv')" class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-400 hover:text-white border border-slate-700">僅看和合2010</button>
+        <button id="view-mode-tghg" onclick="setViewMode('tghg')" class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-400 hover:text-white border border-slate-700">僅看巴克禮台漢本</button>
+      </div>
+      <div class="text-xs text-slate-400 font-mono">
+        共 <span id="verse-count" class="text-amber-400 font-bold">16</span> 節經文
+      </div>
+    </div>
+
+    <!-- 經文核心對照區域 -->
+    <div id="verses-container" class="space-y-3 mb-12">
+      <!-- 由 JS 動態渲染各節對照 -->
+    </div>
+
+    <!-- 篇章深入導讀與結構解析 -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+      <!-- 結構與逐段詳解 -->
+      <div class="lg:col-span-2 glass-card rounded-2xl p-6 border border-slate-800">
+        <h3 class="text-base font-bold text-white flex items-center gap-2 mb-4 font-bible">
+          <i class="fa-solid fa-layer-group text-amber-400"></i>
+          <span>段落結構與深度釋經詳解</span>
+        </h3>
+        <div id="sections-list" class="space-y-4">
+          <!-- 由 JS 渲染 -->
+        </div>
+      </div>
+
+      <!-- 右側：金句、生活默想與現代表達祈禱文 -->
+      <div class="space-y-6">
+        <!-- 核心金句卡片 -->
+        <div class="glass-card rounded-2xl p-5 border border-amber-500/30 bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/20">
+          <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>核心默想金句</span>
+          </h4>
+          <div class="space-y-3">
+            <div>
+              <span class="text-[11px] text-slate-400 block font-mono">和合2010：</span>
+              <p id="key-verse-rcuv-text" class="text-sm font-bible text-white font-semibold leading-relaxed">金句載入中...</p>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-[11px] text-slate-400 block font-mono">巴克禮台漢本：</span>
+              <p id="key-verse-tghg-text" class="text-sm font-bible text-amber-200/90 leading-relaxed">金句載入中...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 現代靈修祈禱文 -->
+        <div class="glass-card rounded-2xl p-5 border border-slate-800">
+          <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-hands-praying"></i>
+            <span>開口祈禱實踐文</span>
+          </h4>
+          <p id="prayer-text" class="text-xs text-slate-300 leading-relaxed font-sans bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">禱告詞載入中...</p>
+        </div>
+
+        <!-- 現代應用場景 -->
+        <div class="glass-card rounded-2xl p-5 border border-slate-800">
+          <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>生活操練指引</span>
+          </h4>
+          <p id="application-text" class="text-xs text-slate-300 leading-relaxed font-sans">應用指引載入中...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 9:16 資訊圖卡 Modal -->
+  <div id="infographic-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="relative max-w-md w-full glass rounded-3xl overflow-hidden border border-amber-500/30 flex flex-col max-h-[90vh]">
+      <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-800">
+        <h3 class="text-sm font-bold text-white font-bible flex items-center gap-2">
+          <i class="fa-solid fa-image text-amber-400"></i>
+          <span>聖經 7 篇最有力量詩篇 (9:16 資訊圖)</span>
+        </h3>
+        <button onclick="closeInfographicModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-500 text-slate-300 hover:text-white flex items-center justify-center transition-all">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="overflow-y-auto custom-scroll p-4 flex items-center justify-center">
+        <img src="2026-11-16_聖經7篇最有力量的詩篇資訊圖.jpg" alt="聖經7篇最有力量的詩篇資訊圖" class="w-full h-auto rounded-2xl shadow-2xl border border-slate-800 object-contain" />
+      </div>
+      <div class="px-5 py-3 border-t border-slate-800 text-center bg-slate-950/80">
+        <a href="2026-11-16_聖經7篇最有力量的詩篇資訊圖.jpg" target="_blank" class="text-xs text-amber-400 hover:underline">
+          <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>另開高解析度原圖
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 經文與導讀資料
+    const PSALMS_DATA = [{"meta": {"id": 91, "title": "詩篇第 91 篇", "theme": "神聖保護・免受災害", "tag": "家庭平安・消災解厄", "badge": "bg-amber-500/20 text-amber-300 border-amber-500/40", "key_verse_rcuv": "住在至高者隱密處的，必住在全能者的蔭下。（詩 91:1）", "key_verse_tghg": "徛起佇至高者隱密處的，必倒佇全能者的蔭影下。（詩 91:1）", "intro": "詩篇第 91 篇被譽為聖經中最著名的『平安之盾』與『軍人詩篇』。在猶太傳統與早期基督教修道院中，常於夜晚就寢前誦讀以驅散黑暗恐懼。全篇充滿強烈而堅固的庇護意象，宣告在瘟疫、毒害、戰爭與各樣未知危難中，全能神必差遣使者在凡你所行的道路上保護你。", "sections": [{"range": "第 1-4 節", "title": "至高者的隱蔽所與羽翼蔭下", "content": "開篇以四大神聖稱號（至高者、全能者、耶和華、我的神）立下磐石般的信心基礎。以母鳥用翎毛遮蔽雛鳥的溫暖比喻，宣告神是我們的避難所與堅固山寨，祂的信實就是大小的藤牌。"}, {"range": "第 5-8 節", "title": "黑夜的驚駭與行於幽暗的瘟疫", "content": "直面人類最深層的恐懼：黑夜的驚駭、白日的飛箭、幽暗中的瘟疫與晌午的滅命毒病。經文宣告『雖有千人仆倒在你身邊，萬人仆倒在你右邊，這災卻不得臨近你』，見證屬神的超然保守。"}, {"range": "第 9-13 節", "title": "使者的護衛與踐踏猛獅巨蛇", "content": "因為你以耶和華為居所，禍患必不臨到，災害不挨近你的帳棚。神吩咐天使在凡你行的路上用手托著你，免得你的腳碰在石頭上，更賜下踐踏仇敵、跨越猛獅毒蛇的權柄。"}, {"range": "第 14-16 節", "title": "神的親自回應與長壽榮耀的應許", "content": "篇末由神親自發聲應許：『因為他專心愛我，我就要搭救他；因為他知道我的名，我要把他安置在高處。』祂承諾在急難中與信靠者同在，使其享長壽並顯明救恩。"}], "application": "當你或家人面臨健康危機、流行病、遠行安全或夜晚焦慮難眠時，大聲朗讀本篇，宣告自己與所愛之人均在全能者無懈可擊的護庇之下。", "prayer": "天父上帝，讚美祢是至高者與全能者。今天我將我和我的家人、我們出入的腳步與身心健康，完全隱藏在祢恩典的翅膀蔭下。求祢差遣天使四圍安營保護，抵擋一切暗中的疾病、攻擊與恐懼。在急難中祢是我們隨時的山寨，奉主耶穌基督的聖名，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "上帝是我們的保護者", "text": "住在至高者隱密處的，必住在全能者的蔭下。", "speak_text": "住在至高者隱密處的，必住在全能者的蔭下。"}, {"sec": 2, "subtitle": "", "text": "我要向耶和華說：「我的避難所、我的山寨、我的上帝，你是我所倚靠的。」", "speak_text": "我要向耶和華說：「我的避難所、我的山寨、我的上帝，你是我所倚靠的。」"}, {"sec": 3, "subtitle": "", "text": "他必救你脫離捕鳥者的羅網和毀滅人的瘟疫。", "speak_text": "他必救你脫離捕鳥者的羅網和毀滅人的瘟疫。"}, {"sec": 4, "subtitle": "", "text": "他必用自己的翎毛遮蔽你；你要投靠在他翅膀底下，他的信實是大小的盾牌。", "speak_text": "他必用自己的翎毛遮蔽你；你要投靠在他翅膀底下，他的信實是大小的盾牌。"}, {"sec": 5, "subtitle": "", "text": "你必不怕黑夜的驚駭，或是白日飛的箭，", "speak_text": "你必不怕黑夜的驚駭，或是白日飛的箭，"}, {"sec": 6, "subtitle": "", "text": "也不怕黑夜流行的瘟疫，或是午間滅人的災害。", "speak_text": "也不怕黑夜流行的瘟疫，或是午間滅人的災害。"}, {"sec": 7, "subtitle": "", "text": "雖有千人仆倒在你旁邊，萬人仆倒在你右邊，這災卻不得臨近你。", "speak_text": "雖有千人仆倒在你旁邊，萬人仆倒在你右邊，這災卻不得臨近你。"}, {"sec": 8, "subtitle": "", "text": "你惟親眼觀看，見惡人遭報。", "speak_text": "你惟親眼觀看，見惡人遭報。"}, {"sec": 9, "subtitle": "", "text": "因為耶和華是我的避難所，你以至高者為居所，", "speak_text": "因為耶和華是我的避難所，你以至高者為居所，"}, {"sec": 10, "subtitle": "", "text": "禍患必不臨到你，災害也不挨近你的帳棚。", "speak_text": "禍患必不臨到你，災害也不挨近你的帳棚。"}, {"sec": 11, "subtitle": "", "text": "因他要為你命令他的使者，在你所行的一切道路上保護你。", "speak_text": "因他要為你命令他的使者，在你所行的一切道路上保護你。"}, {"sec": 12, "subtitle": "", "text": "他們要用手托住你，免得你的腳碰在石頭上。", "speak_text": "他們要用手托住你，免得你的腳碰在石頭上。"}, {"sec": 13, "subtitle": "", "text": "你要踹踏獅子和毒蛇，踐踏少壯獅子和大蛇。", "speak_text": "你要踹踏獅子和毒蛇，踐踏少壯獅子和大蛇。"}, {"sec": 14, "subtitle": "", "text": "「因為他專心愛我，我要搭救他；因為他認識我的名，我要把他安置在高處。", "speak_text": "「因為他專心愛我，我要搭救他；因為他認識我的名，我要把他安置在高處。"}, {"sec": 15, "subtitle": "", "text": "他若求告我，我就應允他；他在急難中，我與他同在；我要搭救他，使他尊貴。", "speak_text": "他若求告我，我就應允他；他在急難中，我與他同在；我要搭救他，使他尊貴。"}, {"sec": 16, "subtitle": "", "text": "我要使他享足長壽，將我的救恩顯明給他。」", "speak_text": "我要使他享足長壽，將我的救恩顯明給他。」"}], "tghg": [{"sec": 1, "subtitle": "", "text": "踮佇至高者隱密的所在者，彼個人欲徛起佇全能者的蔭影(ìm-ńg)。", "speak_text": "踮佇至高者隱密的所在者，彼個人欲徛起佇全能者的蔭影(ìm-ńg)。"}, {"sec": 2, "subtitle": "", "text": "論到耶和華我欲講：伊是我逃閃的所在，是我的山寨，是我的上帝，我所倚靠者。", "speak_text": "論到耶和華我欲講：伊是我逃閃的所在，是我的山寨，是我的上帝，我所倚靠者。"}, {"sec": 3, "subtitle": "", "text": "因為伊欲救你脫離當鳥仔的羅網及毒害的瘟疫。", "speak_text": "因為伊欲救你脫離當鳥仔的羅網及毒害的瘟疫。"}, {"sec": 4, "subtitle": "", "text": "伊欲用伊的翅股伏你；你欲匿佇伊的翅下；伊的誠實是大細的盾牌。", "speak_text": "伊欲用伊的翅股伏你；你欲匿佇伊的翅下；伊的誠實是大細的盾牌。"}, {"sec": 5, "subtitle": "", "text": "你呣免驚暝間的驚惶，抑是日時啲飛的箭。", "speak_text": "你呣免驚暝間的驚惶，抑是日時啲飛的箭。"}, {"sec": 6, "subtitle": "", "text": "亦免驚黑暗中流行的瘟疫，抑是日中晝滅無人的毒症。", "speak_text": "亦免驚黑暗中流行的瘟疫，抑是日中晝滅無人的毒症。"}, {"sec": 7, "subtitle": "", "text": "有千人慄(lek)落去佇你的身邊，有萬人慄落去佇你的正旁，這亦𣍐倚近你。", "speak_text": "有千人慄落去佇你的身邊，有萬人慄落去佇你的正旁，這亦𣍐倚近你。"}, {"sec": 8, "subtitle": "", "text": "不過你會親目看見，亦看見歹人受報應。", "speak_text": "不過你會親目看見，亦看見歹人受報應。"}, {"sec": 9, "subtitle": "", "text": "因為耶和華你是我逃閃的所在；你曾用至高者做你徛起的所在，", "speak_text": "因為耶和華你是我逃閃的所在；你曾用至高者做你徛起的所在，"}, {"sec": 10, "subtitle": "", "text": "就災害𣍐到佇你，瘟疫亦𣍐倚近你的布棚。", "speak_text": "就災害𣍐到佇你，瘟疫亦𣍐倚近你的布棚。"}, {"sec": 11, "subtitle": "", "text": "因為伊欲為著你吩咐伊的使者，佇你一切的路保護你。", "speak_text": "因為伊欲為著你吩咐伊的使者，佇你一切的路保護你。"}, {"sec": 12, "subtitle": "", "text": "𪜶欲用手扶你，免得你的腳觸著石。", "speak_text": "𪜶欲用手扶你，免得你的腳觸著石。"}, {"sec": 13, "subtitle": "", "text": "你欲踏獅及毒蛇，塌(lap)獅仔豚(thûn)及大尾蛇。", "speak_text": "你欲踏獅及毒蛇，塌獅仔豚(thûn)及大尾蛇。"}, {"sec": 14, "subtitle": "", "text": "因為伊真疼我，我就欲救伊；因為伊識我的名，我就欲安置伊佇高的所在。", "speak_text": "因為伊真疼我，我就欲救伊；因為伊識我的名，我就欲安置伊佇高的所在。"}, {"sec": 15, "subtitle": "", "text": "伊求叫我，我就欲應伊；伊佇危急的時，我欲及伊佇啲；我欲救伊，互伊尊貴。", "speak_text": "伊求叫我，我就欲應伊；伊佇危急的時，我欲及伊佇啲；我欲救伊，互伊尊貴。"}, {"sec": 16, "subtitle": "", "text": "我欲用長歲壽互伊滿足，互伊看見我的救恩。", "speak_text": "我欲用長歲壽互伊滿足，互伊看見我的救恩。"}]}}, {"meta": {"id": 23, "title": "詩篇第 23 篇", "theme": "豐盛供應・一生無缺", "tag": "經濟無慮・心靈安歇", "badge": "bg-emerald-500/20 text-emerald-300 border-emerald-500/40", "key_verse_rcuv": "耶和華是我的牧者，我必不致缺乏。（詩 23:1）", "key_verse_tghg": "耶和華是我的牧者，我無欠缺。（詩 23:1）", "intro": "大衛王畢生靈性結晶，被譽為詩篇之冠。大衛年少牧羊，深知羊群對牧人的全然依賴與牧人細膩的捨命看顧。本篇宣告神不僅供應物質所需，更在死蔭幽谷中賜下無可比擬的同在安慰，並在敵人面前擺設豐盛筵席，讓福杯滿溢。", "sections": [{"range": "第 1-3 節", "title": "青草地與安歇水邊的滋養復興", "content": "『我必不致缺乏』是信仰的最高宣告。神引導羊群到青草地與寧靜溪水旁，使受創疲憊的心靈甦醒復元，並為自己的榮耀之名引導我們行在正直義路上。"}, {"range": "第 4 節", "title": "行過死蔭幽谷的同在之杖", "content": "面對人生的幽暗陰谷與絕境，焦點從第三人稱的『祂』轉為親密對話的『祢』。神的『杖』（驅趕野獸的權能）與『竿』（挽回引導的慈愛）成為我們最堅固的心理後盾。"}, {"range": "第 5-6 節", "title": "敵人面前的凱旋筵席與永遠居所", "content": "意象從原野牧者轉變為尊貴的主人。在敵人的注視下，神用喜樂之油抹頭，使恩典如杯盈溢。一生一世有恩惠慈愛如護衛雙衛緊隨，最終永住神的聖所殿堂。"}], "application": "當你面臨經濟困境、工作轉折、生計壓力或身心極度疲憊時誦讀，提醒自己生命的源頭是那位擁有全地資源的好牧人，而非外在市場起伏。", "prayer": "主耶穌，祢是我生命的好牧人，在祢裡面我毫無缺乏。求祢親自引領我到靈魂安歇的清泉邊，醫治我的乾渴與勞苦。當我走在看不清前路的人生幽谷時，除掉我一切的恐慌。感謝祢在眾人面前為我擺設恩典筵席，使我的福杯日日滿溢，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "耶和華是我牧者", "text": "大衛的詩。耶和華是我的牧者，我必不致缺乏。", "speak_text": "大衛的詩。耶和華是我的牧者，我必不致缺乏。"}, {"sec": 2, "subtitle": "", "text": "他使我躺臥在青草地上，領我在可安歇的水邊。", "speak_text": "他使我躺臥在青草地上，領我在可安歇的水邊。"}, {"sec": 3, "subtitle": "", "text": "他使我的靈魂甦醒(「他使我的靈魂甦醒」或譯「他使我的心靈甦醒」或「他使我回轉」。)，為自己的名引導我走義路。", "speak_text": "他使我的靈魂甦醒(「他使我的靈魂甦醒」或譯「他使我的心靈甦醒」或「他使我回轉」。)，為自己的名引導我走義路。"}, {"sec": 4, "subtitle": "", "text": "我雖然行過死蔭的幽谷，也不怕遭害，因為你與我同在；你的杖、你的竿，都安慰我。", "speak_text": "我雖然行過死蔭的幽谷，也不怕遭害，因為你與我同在；你的杖、你的竿，都安慰我。"}, {"sec": 5, "subtitle": "", "text": "在我敵人面前，你為我擺設筵席；你用油膏了我的頭，使我的福杯滿溢。", "speak_text": "在我敵人面前，你為我擺設筵席；你用油膏了我的頭，使我的福杯滿溢。"}, {"sec": 6, "subtitle": "", "text": "我一生一世必有恩惠慈愛隨着我；我且要住在(「住在」：原文是「回到」。)耶和華的殿中，直到永遠。", "speak_text": "我一生一世必有恩惠慈愛隨着我；我且要住在(「住在」：原文是「回到」。)耶和華的殿中，直到永遠。"}], "tghg": [{"sec": 1, "subtitle": "", "text": "〔大衛的詩。〕耶和華是我的牧者，我無欠缺(kheh)。", "speak_text": "耶和華是我的牧者，我無欠缺。"}, {"sec": 2, "subtitle": "", "text": "伊互我倒佇青翠的草埔，導我佇安靜的水邊。", "speak_text": "伊互我倒佇青翠的草埔，導我佇安靜的水邊。"}, {"sec": 3, "subtitle": "", "text": "伊互我的靈魂精英，為著伊的名導我行義的路。", "speak_text": "伊互我的靈魂精英，為著伊的名導我行義的路。"}, {"sec": 4, "subtitle": "", "text": "我雖然行過死蔭的山谷，亦呣驚災害，因為你及我佇啲；你的槌，你的枴，安慰我。", "speak_text": "我雖然行過死蔭的山谷，亦呣驚災害，因為你及我佇啲；你的槌，你的枴，安慰我。"}, {"sec": 5, "subtitle": "", "text": "佇我對敵的面前，你給我排設筵席；你用油抹我的頭殼，我的杯滿出來。", "speak_text": "佇我對敵的面前，你給我排設筵席；你用油抹我的頭殼，我的杯滿出來。"}, {"sec": 6, "subtitle": "", "text": "恩典及慈悲的確隨我到一世人；我欲永遠徛起佇耶和華的厝。", "speak_text": "恩典及慈悲的確隨我到一世人；我欲永遠徛起佇耶和華的厝。"}]}}, {"meta": {"id": 7, "title": "詩篇第 7 篇", "theme": "公義伸冤・勝過仇敵", "tag": "平息嫉妒・反轉困局", "badge": "bg-rose-500/20 text-rose-300 border-rose-500/40", "key_verse_rcuv": "我的盾牌在於上帝，他拯救心裏正直的人。（詩 7:10）", "key_verse_tghg": "我的干牌佇上帝，伊救心正直的人。（詩 7:10）", "intro": "大衛指著便雅憫人古實的話向耶和華唱的流離歌。面對同事、仇敵或小人的無端造謠、嫉妒攻擊與惡意中傷，大衛不以私刑報復，而是將案件帶到全地最高審判官面前，宣告惡人的坑穴必使自己墜入，神的公義盾牌必保守純全正直之人。", "sections": [{"range": "第 1-5 節", "title": "在無辜遭害中的至誠自省", "content": "大衛求神搭救脫離撕碎如獅子的追趕者。他主動向神陳明心跡：若自己手中有不義、曾恩將仇報，願任由仇敵踐踏；唯有手潔心清，才能無愧地呼求公義審判。"}, {"range": "第 6-11 節", "title": "呼求全地的審判者按公義斷案", "content": "懇求耶和華在憤怒中興起，抵擋仇敵的狂暴。神是鑒察人肺腑心腸的至聖者，必按著各人的公義與純全賞善罰惡。上帝天天向惡人發怒，也是正直人的堅固盾牌。"}, {"range": "第 12-17 節", "title": "惡人自掘陷阱與義人的由衷稱謝", "content": "若惡人不悔改，神早已磨刀拉弓預備火箭。惡人懷毒胎、生虛假，自掘深坑卻反掉進自己所挖的陷阱裡；他的毒害必反倒落在自己頭頂。義人因而歡呼稱謝至高者的聖名。"}], "application": "在職場或人際關係遭遇背叛、排擠、毀謗或不公對待時，以本篇作為靈修禱告，將冤屈全然交還給公義的主，避免讓苦毒吞噬內心。", "prayer": "公義聖潔的主，祢鑒察人心腸肺腑。面對周遭無端的誤解、惡意攻擊與排擠，我不伸私怨，而是將我的案件完全交在祢至公至義的手中。求祢成為我四圍的盾牌，破除一切暗中造謠與詭計，使惡人的計謀自然化解。我必照著祢的公義稱謝讚美祢，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "為公義而祈禱", "text": "大衛因便雅憫人古實的話，向耶和華唱的流離歌。耶和華－我的上帝啊，我投靠你！求你救我脫離所有追趕我的人，搭救我出來！", "speak_text": "大衛因便雅憫人古實的話，向耶和華唱的流離歌。耶和華－我的上帝啊，我投靠你！求你救我脫離所有追趕我的人，搭救我出來！"}, {"sec": 2, "subtitle": "", "text": "免得他們像獅子撕裂我，甚至撕碎，無人搭救。", "speak_text": "免得他們像獅子撕裂我，甚至撕碎，無人搭救。"}, {"sec": 3, "subtitle": "", "text": "耶和華－我的上帝啊，我若行了這事，若有罪孽在我手裏，", "speak_text": "耶和華－我的上帝啊，我若行了這事，若有罪孽在我手裏，"}, {"sec": 4, "subtitle": "", "text": "我若以惡回報我的朋友，連那無故與我為敵的，我也救了他(「連那…救了他」：原文另譯「或無緣無故掠奪與我為敵的人」。)，", "speak_text": "我若以惡回報我的朋友，連那無故與我為敵的，我也救了他(「連那…救了他」：原文另譯「或無緣無故掠奪與我為敵的人」。)，"}, {"sec": 5, "subtitle": "", "text": "就任憑仇敵追趕我，直到追上，把我的性命踏在地上，使我的榮耀歸於灰塵。（細拉）", "speak_text": "就任憑仇敵追趕我，直到追上，把我的性命踏在地上，使我的榮耀歸於灰塵。（細拉）"}, {"sec": 6, "subtitle": "", "text": "耶和華啊，求你在怒中起來，挺身而立，抵擋我敵人的烈怒！求你為我興起！你已經發令施行審判。", "speak_text": "耶和華啊，求你在怒中起來，挺身而立，抵擋我敵人的烈怒！求你為我興起！你已經發令施行審判。"}, {"sec": 7, "subtitle": "", "text": "願萬民聚集環繞你！願你居高位統治他們！", "speak_text": "願萬民聚集環繞你！願你居高位統治他們！"}, {"sec": 8, "subtitle": "", "text": "耶和華向萬民施行審判；耶和華啊，求你按我的公義和我心中的純正判斷我。", "speak_text": "耶和華向萬民施行審判；耶和華啊，求你按我的公義和我心中的純正判斷我。"}, {"sec": 9, "subtitle": "", "text": "願惡人的惡斷絕！願你堅立義人！因為公義的上帝察驗人的心腸肺腑。", "speak_text": "願惡人的惡斷絕！願你堅立義人！因為公義的上帝察驗人的心腸肺腑。"}, {"sec": 10, "subtitle": "", "text": "上帝是我的盾牌，他拯救心裏正直的人。", "speak_text": "上帝是我的盾牌，他拯救心裏正直的人。"}, {"sec": 11, "subtitle": "", "text": "上帝是公義的審判者，又是天天向惡人發怒的上帝。", "speak_text": "上帝是公義的審判者，又是天天向惡人發怒的上帝。"}, {"sec": 12, "subtitle": "", "text": "若有人不回頭，他的刀必磨快，弓必上弦，預備妥當。", "speak_text": "若有人不回頭，他的刀必磨快，弓必上弦，預備妥當。"}, {"sec": 13, "subtitle": "", "text": "他也預備了致死的兵器，他所射的是火箭。", "speak_text": "他也預備了致死的兵器，他所射的是火箭。"}, {"sec": 14, "subtitle": "", "text": "看哪，惡人懷邪惡，養毒害，生虛假。", "speak_text": "看哪，惡人懷邪惡，養毒害，生虛假。"}, {"sec": 15, "subtitle": "", "text": "他掘了坑，挖得太深，竟掉在自己所挖的陷阱裏。", "speak_text": "他掘了坑，挖得太深，竟掉在自己所挖的陷阱裏。"}, {"sec": 16, "subtitle": "", "text": "他的毒害必回到自己頭上，他的殘暴必落到自己的腦袋上。", "speak_text": "他的毒害必回到自己頭上，他的殘暴必落到自己的腦袋上。"}, {"sec": 17, "subtitle": "", "text": "我要照着耶和華的公義稱謝他，要歌頌耶和華至高者的名。", "speak_text": "我要照着耶和華的公義稱謝他，要歌頌耶和華至高者的名。"}], "tghg": [{"sec": 1, "subtitle": "", "text": "﹝大衛指便雅憫人古實的話，向耶和華唱歌；調用詩偕韻（譯音）。〕耶和華──我的上帝啊，我倚靠你！求你救我脫離一切追趕我的人，救我出來！", "speak_text": "﹝大衛指便雅憫人古實的話，向耶和華唱歌；調用詩偕韻（譯音）。〕耶和華──我的上帝啊，我倚靠你！求你救我脫離一切追趕我的人，救我出來！"}, {"sec": 2, "subtitle": "", "text": "驚了伊親像獅拆裂我，拆到碎碎，無拯救我者。", "speak_text": "驚了伊親像獅拆裂我，拆到碎碎，無拯救我者。"}, {"sec": 3, "subtitle": "", "text": "耶和華──我的上帝啊，我若行此個，若有罪惡佇我的手，", "speak_text": "耶和華──我的上帝啊，我若行此個，若有罪惡佇我的手，"}, {"sec": 4, "subtitle": "", "text": "我若用歹報彼個及我和好的人──其實連彼個無緣故及我做對敵的人，我亦有救伊，", "speak_text": "我若用歹報彼個及我和好的人──其實連彼個無緣故及我做對敵的人，我亦有救伊，"}, {"sec": 5, "subtitle": "", "text": "就出在對敵追趇(jip)我，到趇著，將我的生命踏佇土腳，將我的榮光下(hē)佇土粉。（細拉）", "speak_text": "就出在對敵追趇我，到趇著，將我的生命踏佇土腳，將我的榮光下(hē)佇土粉。（細拉）"}, {"sec": 6, "subtitle": "", "text": "耶和華啊，求你佇你的受氣中起來，絔(peh)起來徛，抵當我的對敵的大受氣！求你為著我來醒！照你所定著來審判！", "speak_text": "耶和華啊，求你佇你的受氣中起來，絔起來徛，抵當我的對敵的大受氣！求你為著我來醒！照你所定著來審判！"}, {"sec": 7, "subtitle": "", "text": "願列邦的會圍你！願你倒轉佇高位佇𪜶的頂面！", "speak_text": "願列邦的會圍你！願你倒轉佇高位佇𪜶的頂面！"}, {"sec": 8, "subtitle": "", "text": "耶和華審判眾百姓；耶和華啊，求你判斷我照我的義及我心內的正直。", "speak_text": "耶和華審判眾百姓；耶和華啊，求你判斷我照我的義及我心內的正直。"}, {"sec": 9, "subtitle": "", "text": "願歹人的歹到遮息(soah)！義人你互伊徛在！因為公義的上帝鑑察人的心腸。", "speak_text": "願歹人的歹到遮息！義人你互伊徛在！因為公義的上帝鑑察人的心腸。"}, {"sec": 10, "subtitle": "", "text": "我的盾牌在佇上帝；伊拯救心內正直的人。", "speak_text": "我的盾牌在佇上帝；伊拯救心內正直的人。"}, {"sec": 11, "subtitle": "", "text": "上帝是公義的審判司，亦是日日發出受氣的上帝。", "speak_text": "上帝是公義的審判司，亦是日日發出受氣的上帝。"}, {"sec": 12, "subtitle": "", "text": "人若呣反悔，伊欲磨伊的刀，伊有張伊的弓，備辦便便。", "speak_text": "人若呣反悔，伊欲磨伊的刀，伊有張伊的弓，備辦便便。"}, {"sec": 13, "subtitle": "", "text": "伊備辦會互人死的家私；伊所射的箭是火箭。", "speak_text": "伊備辦會互人死的家私；伊所射的箭是火箭。"}, {"sec": 14, "subtitle": "", "text": "你看，歹人圖謀奸惡，懷孕毒害，生出虛假。", "speak_text": "你看，歹人圖謀奸惡，懷孕毒害，生出虛假。"}, {"sec": 15, "subtitle": "", "text": "伊開窟，掘(ku̍t)互伊深，竟然跋落佇伊所開的陷坑。", "speak_text": "伊開窟，掘(ku̍t)互伊深，竟然跋落佇伊所開的陷坑。"}, {"sec": 16, "subtitle": "", "text": "伊的毒害欲倒轉到伊的頭殼；伊的強暴欲落佇伊的頭殼頂。", "speak_text": "伊的毒害欲倒轉到伊的頭殼；伊的強暴欲落佇伊的頭殼頂。"}, {"sec": 17, "subtitle": "", "text": "我欲照耶和華的公義感謝伊，閣謳咾至高耶和華的名。", "speak_text": "我欲照耶和華的公義感謝伊，閣謳咾至高耶和華的名。"}]}}, {"meta": {"id": 34, "title": "詩篇第 34 篇", "theme": "突破開路・脫離患難", "tag": "困局翻轉・天使安營", "badge": "bg-sky-500/20 text-sky-300 border-sky-500/40", "key_verse_rcuv": "義人多有苦難，但耶和華救他脫離這一切。（詩 34:19）", "key_verse_tghg": "義人的患難真多；總是耶和華救伊脫離許個一切。（詩 34:19）", "intro": "這是一首希伯來字母離合詩（Alphabetical Acrostic）。歷史背景為大衛在非利士迦特王亞比米勒面前裝瘋逃命之後所寫。在尊嚴掃地、四面楚歌的絕境中蒙神拯救，大衛深刻體會到：敬畏神的人一無所缺，神靠近傷心的人，拯救靈性痛悔的人。", "sections": [{"range": "第 1-7 節", "title": "仰望神的不致蒙羞與天使安營", "content": "大衛立志時時稱頌讚美神。他見證：『我曾尋求耶和華，他就應允我，救我脫離了一切的恐懼。』凡仰望祂的便有光彩，耶和華的使者在敬畏祂的人四圍安營搭救。"}, {"range": "第 8-14 節", "title": "嘗嘗主恩的甘美滋味與敬畏之路", "content": "邀請人親身嘗嘗主恩的滋味，少壯獅子還缺食忍餓，但尋求耶和華的甚麼好處都不缺。進而教導行事為人的智慧：禁止舌頭不出惡言、離惡行善、竭力尋求和睦。"}, {"range": "第 15-22 節", "title": "靠近傷心痛悔者的一無定罪", "content": "神的雙目看顧義人，耳朵垂聽他們的呼求。面對人生的破碎，經文給予最大撫慰：『耶和華靠近傷心的人，拯救心靈痛悔的人。』雖有苦難，神保全他一身骨頭連一根也不折斷。"}], "application": "當你面臨卡關困境、人生低谷、心碎哀傷或急需找出路時誦讀，喚醒向神支取開路神蹟的盼望，讓聖靈的光彩驅散羞愧。", "prayer": "愛我們的主，在走投無路、深感孤單無助的時刻，我向祢呼求。感謝祢應許靠近傷心的人，拯救靈魂破碎的人。求祢差遣天使在我四周安營，為我在曠野開道路、在沙漠開江河。使我嘗到祢恩典的甘甜，脫離一切憂慮恐懼，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "頌讚上帝的美善", "text": "大衛在亞比米勒面前裝瘋，被趕出去，就作這詩。（#撒上21:10-14|）我要時時稱頌耶和華，讚美他的話常在我口中。", "speak_text": "大衛在亞比米勒面前裝瘋，被趕出去，就作這詩。（#撒上21:10-14|）我要時時稱頌耶和華，讚美他的話常在我口中。"}, {"sec": 2, "subtitle": "", "text": "我的心必因耶和華誇耀，謙卑的人聽見就喜樂。", "speak_text": "我的心必因耶和華誇耀，謙卑的人聽見就喜樂。"}, {"sec": 3, "subtitle": "", "text": "你們要和我一同尊耶和華為大，讓我們一同高舉他的名。", "speak_text": "你們要和我一同尊耶和華為大，讓我們一同高舉他的名。"}, {"sec": 4, "subtitle": "", "text": "我曾尋求耶和華，他就應允我，救我脫離一切的恐懼。", "speak_text": "我曾尋求耶和華，他就應允我，救我脫離一切的恐懼。"}, {"sec": 5, "subtitle": "", "text": "仰望他的人，就有光榮；他們(「他們」：七十士譯本和其他古譯本是「你們」。)的臉必不蒙羞。", "speak_text": "仰望他的人，就有光榮；他們(「他們」：七十士譯本和其他古譯本是「你們」。)的臉必不蒙羞。"}, {"sec": 6, "subtitle": "", "text": "這困苦人呼求，耶和華就垂聽，救他脫離一切的患難。", "speak_text": "這困苦人呼求，耶和華就垂聽，救他脫離一切的患難。"}, {"sec": 7, "subtitle": "", "text": "耶和華的使者在敬畏他的人四圍安營，要搭救他們。", "speak_text": "耶和華的使者在敬畏他的人四圍安營，要搭救他們。"}, {"sec": 8, "subtitle": "", "text": "你們要嘗嘗主恩的滋味，便知道他是美善；投靠他的人有福了！", "speak_text": "你們要嘗嘗主恩的滋味，便知道他是美善；投靠他的人有福了！"}, {"sec": 9, "subtitle": "", "text": "耶和華的聖民哪，你們當敬畏他，因敬畏他的一無所缺。", "speak_text": "耶和華的聖民哪，你們當敬畏他，因敬畏他的一無所缺。"}, {"sec": 10, "subtitle": "", "text": "少壯獅子尚且缺食忍餓，但尋求耶和華的甚麼好處都不缺。", "speak_text": "少壯獅子尚且缺食忍餓，但尋求耶和華的甚麼好處都不缺。"}, {"sec": 11, "subtitle": "", "text": "孩子們哪，來聽我！我要將敬畏耶和華的道教導你們。", "speak_text": "孩子們哪，來聽我！我要將敬畏耶和華的道教導你們。"}, {"sec": 12, "subtitle": "", "text": "有誰喜愛生命，愛慕長壽，得享美福？", "speak_text": "有誰喜愛生命，愛慕長壽，得享美福？"}, {"sec": 13, "subtitle": "", "text": "你要禁止舌頭不出惡言，嘴唇不說詭詐的話。", "speak_text": "你要禁止舌頭不出惡言，嘴唇不說詭詐的話。"}, {"sec": 14, "subtitle": "", "text": "要棄惡行善，尋求和睦，一心追求。", "speak_text": "要棄惡行善，尋求和睦，一心追求。"}, {"sec": 15, "subtitle": "", "text": "耶和華的眼目看顧義人，他的耳朵聽他們的呼求。", "speak_text": "耶和華的眼目看顧義人，他的耳朵聽他們的呼求。"}, {"sec": 16, "subtitle": "", "text": "耶和華向行惡的人變臉，要從地上除滅他們的名字(「名字」：原文是「紀念」。)。", "speak_text": "耶和華向行惡的人變臉，要從地上除滅他們的名字(「名字」：原文是「紀念」。)。"}, {"sec": 17, "subtitle": "", "text": "義人呼求，耶和華聽見了，就拯救他們脫離一切患難。", "speak_text": "義人呼求，耶和華聽見了，就拯救他們脫離一切患難。"}, {"sec": 18, "subtitle": "", "text": "耶和華靠近傷心的人，拯救心靈痛悔的人。", "speak_text": "耶和華靠近傷心的人，拯救心靈痛悔的人。"}, {"sec": 19, "subtitle": "", "text": "義人多有苦難，但耶和華救他脫離這一切，", "speak_text": "義人多有苦難，但耶和華救他脫離這一切，"}, {"sec": 20, "subtitle": "", "text": "又保護他全身的骨頭，連一根也不折斷。", "speak_text": "又保護他全身的骨頭，連一根也不折斷。"}, {"sec": 21, "subtitle": "", "text": "惡必害死惡人，恨惡義人的，必被定罪。", "speak_text": "惡必害死惡人，恨惡義人的，必被定罪。"}, {"sec": 22, "subtitle": "", "text": "耶和華救贖他僕人的性命，凡投靠他的，必不致定罪。", "speak_text": "耶和華救贖他僕人的性命，凡投靠他的，必不致定罪。"}], "tghg": [{"sec": 1, "subtitle": "", "text": "〔大衛的詩，就是伊佇亞比米勒的面前假瘋癲(hong-tian)，受趕出去的時所做的。〕我欲時時謳咾耶和華；謳咾伊的話欲常常佇我的嘴。", "speak_text": "我欲時時謳咾耶和華；謳咾伊的話欲常常佇我的嘴。"}, {"sec": 2, "subtitle": "", "text": "我的心神欲因為耶和華來誇口；謙卑的人聽見亦欲歡喜。", "speak_text": "我的心神欲因為耶和華來誇口；謙卑的人聽見亦欲歡喜。"}, {"sec": 3, "subtitle": "", "text": "恁及我著謳咾耶和華做大，相及尊伊的名做高。", "speak_text": "恁及我著謳咾耶和華做大，相及尊伊的名做高。"}, {"sec": 4, "subtitle": "", "text": "我曾求耶和華，伊就應我，救我脫離我一切通驚的事。", "speak_text": "我曾求耶和華，伊就應我，救我脫離我一切通驚的事。"}, {"sec": 5, "subtitle": "", "text": "𪜶攑頭看伊，就得著光明；𪜶的面永𣍐見誚。", "speak_text": "𪜶攑頭看伊，就得著光明；𪜶的面永𣍐見誚。"}, {"sec": 6, "subtitle": "", "text": "此個困苦的人求叫，耶和華聽見，救伊脫離伊一切的患難。", "speak_text": "此個困苦的人求叫，耶和華聽見，救伊脫離伊一切的患難。"}, {"sec": 7, "subtitle": "", "text": "耶和華的使者佇敬畏伊的人的四圍紮營，來拯救𪜶。", "speak_text": "耶和華的使者佇敬畏伊的人的四圍紮營，來拯救𪜶。"}, {"sec": 8, "subtitle": "", "text": "恁著試看，就知耶和華是好；倚靠伊的人有福氣！", "speak_text": "恁著試看，就知耶和華是好；倚靠伊的人有福氣！"}, {"sec": 9, "subtitle": "", "text": "耶和華聖的百姓啊，恁著敬畏伊，因為敬畏伊的人無欠缺一項。", "speak_text": "耶和華聖的百姓啊，恁著敬畏伊，因為敬畏伊的人無欠缺一項。"}, {"sec": 10, "subtitle": "", "text": "獅仔豚(thûn)有欠缺有枵(iau)，獨獨尋耶和華的人無欠甚麼項的好。", "speak_text": "獅仔豚(thûn)有欠缺有枵，獨獨尋耶和華的人無欠甚麼項的好。"}, {"sec": 11, "subtitle": "", "text": "細子啊，恁著來聽我！我欲將敬畏耶和華的道理教示恁。", "speak_text": "細子啊，恁著來聽我！我欲將敬畏耶和華的道理教示恁。"}, {"sec": 12, "subtitle": "", "text": "甚麼人愛活命，欣慕歲壽，欲得著福氣，", "speak_text": "甚麼人愛活命，欣慕歲壽，欲得著福氣，"}, {"sec": 13, "subtitle": "", "text": "就著禁你的舌無講歹話，你的嘴唇無講奸詐的話。", "speak_text": "就著禁你的舌無講歹話，你的嘴唇無講奸詐的話。"}, {"sec": 14, "subtitle": "", "text": "著離開歹行好，尋和平，來追趇(jip)伊。", "speak_text": "著離開歹行好，尋和平，來追趇伊。"}, {"sec": 15, "subtitle": "", "text": "耶和華的目睭看義人；伊的耳孔聽𪜶的祈禱。", "speak_text": "耶和華的目睭看義人；伊的耳孔聽𪜶的祈禱。"}, {"sec": 16, "subtitle": "", "text": "耶和華的面向行歹的人，欲對世間除滅𪜶的名字。", "speak_text": "耶和華的面向行歹的人，欲對世間除滅𪜶的名字。"}, {"sec": 17, "subtitle": "", "text": "義人求叫，耶和華聽見，就救𪜶脫離一切的患難。", "speak_text": "義人求叫，耶和華聽見，就救𪜶脫離一切的患難。"}, {"sec": 18, "subtitle": "", "text": "耶和華倚近傷心的人，拯救靈性痛悔的人。", "speak_text": "耶和華倚近傷心的人，拯救靈性痛悔的人。"}, {"sec": 19, "subtitle": "", "text": "義人有多多苦難，總是耶和華救伊攏脫離，", "speak_text": "義人有多多苦難，總是耶和華救伊攏脫離，"}, {"sec": 20, "subtitle": "", "text": "保全伊攏總的骨，一支亦無拍折。", "speak_text": "保全伊攏總的骨，一支亦無拍折。"}, {"sec": 21, "subtitle": "", "text": "罪惡欲害死歹人；怨恨義人者，欲受定罪。", "speak_text": "罪惡欲害死歹人；怨恨義人者，欲受定罪。"}, {"sec": 22, "subtitle": "", "text": "耶和華救贖伊的奴僕的神魂；凡若倚靠伊者，無一個受定罪。", "speak_text": "耶和華救贖伊的奴僕的神魂；凡若倚靠伊者，無一個受定罪。"}]}}, {"meta": {"id": 40, "title": "詩篇第 40 篇", "theme": "讚美感恩・立在磐石", "tag": "出離泥濘・口唱新歌", "badge": "bg-purple-500/20 text-purple-300 border-purple-500/40", "key_verse_rcuv": "他從泥坑裏，從淤泥中，把我拉上來，使我的腳立在磐石上，使我腳步穩健。（詩 40:2）", "key_verse_tghg": "伊對可驚的坑，對爛爛的泥拔我起來，互我的腳企佇石磐，堅固我的腳步。（詩 40:2）", "intro": "結合了個人感謝詩與求助哀歌的偉大詩篇。大衛回顧過去神如何將他從絕望的禍坑泥沼中救拔出來，將雙腳穩立在磐石之上，並將新歌放在他口中。本篇更具備濃厚的彌賽亞色彩，希伯來書第 10 章直接引用第 6-8 節『祭物和禮物你不喜愛，你已開通我的耳朵，看哪，我來了，我的事在經卷上已經記載了』預表基督順服受死。", "sections": [{"range": "第 1-5 節", "title": "從泥沼禍坑中的蒙拯救與新歌", "content": "大衛耐心等候耶和華，神垂聽呼求，從沉淪的泥坑拔他上來，立在磐石並堅固腳步。神將讚美的新歌賜給他，許多人看見就必懼怕，並要倚靠耶和華。"}, {"range": "第 6-10 節", "title": "行神旨意勝於虛浮祭物的大會宣揚", "content": "神所要的不是形式上的牛羊祭物，而是受教順服的耳朵與身心靈的全然奉獻。大衛宣告：『我的上帝啊，我樂意照你的旨意行；你的律法常在我心裏。』在尊榮大會中宣揚公義信實。"}, {"range": "第 11-17 節", "title": "罪孽追趕中的持續倚靠與顧念", "content": "面對無數禍患與自身過犯追趕，心靈發昏之際，大衛再次呼求速速施救。結尾發出感人肺腑的信靠：『我是困苦窮乏的，主仍顧念我；你是幫助我的，搭救我的。神啊，求你不要耽延！』"}], "application": "當你走過一段艱難泥濘期、獲得重大突破後，或再次感到無力困乏時，以本篇向神獻上感恩新歌，並再次將雙腳奠基在永恆磐石基督之上。", "prayer": "主啊，我曾深陷泥淖與混亂的思緒之中，但祢垂聽了我的微聲嘆息，將我從絕望坑中拉拔出來，使我的雙腳重新踏在穩固的磐石上！今天我口唱新歌讚美祢的大能。即便現在仍有軟弱窮乏，但我深知祢依然每分每秒顧念著我，求祢作我永遠的幫助，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "頌讚之歌", "text": "大衛的詩。交給聖詠團長。我曾耐性等候耶和華，他垂聽我的呼求。", "speak_text": "大衛的詩。交給聖詠團長。我曾耐性等候耶和華，他垂聽我的呼求。"}, {"sec": 2, "subtitle": "", "text": "他從泥坑裏，從淤泥中，把我拉上來，使我的腳立在磐石上，使我腳步穩健。", "speak_text": "他從泥坑裏，從淤泥中，把我拉上來，使我的腳立在磐石上，使我腳步穩健。"}, {"sec": 3, "subtitle": "", "text": "他使我口唱新歌，就是讚美我們上帝的話。許多人必看見而懼怕，並要倚靠耶和華。", "speak_text": "他使我口唱新歌，就是讚美我們上帝的話。許多人必看見而懼怕，並要倚靠耶和華。"}, {"sec": 4, "subtitle": "", "text": "那倚靠耶和華、不理會狂傲和偏向虛假的，這人有福了！", "speak_text": "那倚靠耶和華、不理會狂傲和偏向虛假的，這人有福了！"}, {"sec": 5, "subtitle": "", "text": "耶和華－我的上帝啊，你所行的奇事和你為我們設想的計劃，多到無法盡述；若要述說陳明，不可勝數。", "speak_text": "耶和華－我的上帝啊，你所行的奇事和你為我們設想的計劃，多到無法盡述；若要述說陳明，不可勝數。"}, {"sec": 6, "subtitle": "", "text": "祭物和禮物，你不喜愛，你已經開通我的耳朵；燔祭和贖罪祭非你所要。", "speak_text": "祭物和禮物，你不喜愛，你已經開通我的耳朵；燔祭和贖罪祭非你所要。"}, {"sec": 7, "subtitle": "", "text": "那時我說：「看哪，我來了！我的事在經卷上已經記載了。", "speak_text": "那時我說：「看哪，我來了！我的事在經卷上已經記載了。"}, {"sec": 8, "subtitle": "", "text": "我的上帝啊，我樂意照你的旨意行，你的律法在我心裏。」", "speak_text": "我的上帝啊，我樂意照你的旨意行，你的律法在我心裏。」"}, {"sec": 9, "subtitle": "", "text": "我在大會中傳講公義的佳音，看哪，必不制止我的嘴唇；耶和華啊，這一切你都知道。", "speak_text": "我在大會中傳講公義的佳音，看哪，必不制止我的嘴唇；耶和華啊，這一切你都知道。"}, {"sec": 10, "subtitle": "", "text": "我未曾把你的公義藏在心裏，我已陳明你的信實和你的救恩；在大會中我未曾隱瞞你的慈愛和信實。", "speak_text": "我未曾把你的公義藏在心裏，我已陳明你的信實和你的救恩；在大會中我未曾隱瞞你的慈愛和信實。"}, {"sec": 11, "subtitle": "", "text": "耶和華啊，求你不要向我止住你的憐憫！願你的慈愛和信實常常保佑我！", "speak_text": "耶和華啊，求你不要向我止住你的憐憫！願你的慈愛和信實常常保佑我！"}, {"sec": 12, "subtitle": "求助的禱告", "text": "（#詩70|）因有無數的禍患圍困我，我的罪孽追上了我，使我不能看見，這罪孽比我的頭髮還多，我的膽量喪失了。", "speak_text": "（#詩70|）因有無數的禍患圍困我，我的罪孽追上了我，使我不能看見，這罪孽比我的頭髮還多，我的膽量喪失了。"}, {"sec": 13, "subtitle": "", "text": "耶和華啊，求你開恩搭救我！耶和華啊，求你速速幫助我！", "speak_text": "耶和華啊，求你開恩搭救我！耶和華啊，求你速速幫助我！"}, {"sec": 14, "subtitle": "", "text": "願那些尋找我、要滅我命的，一同抱愧蒙羞！願那些喜悅我遭害的，退後受辱！", "speak_text": "願那些尋找我、要滅我命的，一同抱愧蒙羞！願那些喜悅我遭害的，退後受辱！"}, {"sec": 15, "subtitle": "", "text": "願那些對我說「啊哈、啊哈」的，因羞愧而敗亡！", "speak_text": "願那些對我說「啊哈、啊哈」的，因羞愧而敗亡！"}, {"sec": 16, "subtitle": "", "text": "願一切尋求你的，因你歡喜快樂！願那些喜愛你救恩的，常說：「當尊耶和華為大！」", "speak_text": "願一切尋求你的，因你歡喜快樂！願那些喜愛你救恩的，常說：「當尊耶和華為大！」"}, {"sec": 17, "subtitle": "", "text": "我本是困苦貧窮的，主卻顧念我。你是幫助我的，搭救我的；我的上帝啊，求你不要躭延！", "speak_text": "我本是困苦貧窮的，主卻顧念我。你是幫助我的，搭救我的；我的上帝啊，求你不要躭延！"}], "tghg": [{"sec": 1, "subtitle": "", "text": "〔大衛的詩，交互樂官。〕我曾吞愞(thun-lún)聽候耶和華；伊俯落向(ǹg)我，聽我的求叫。", "speak_text": "我曾吞愞(thun-lún)聽候耶和華；伊俯落向(ǹg)我，聽我的求叫。"}, {"sec": 2, "subtitle": "", "text": "伊對通驚的陷坑，對土糜中，牽我起來，互我的腳徛佇石磐頂，互我的腳步在伍。", "speak_text": "伊對通驚的陷坑，對土糜中，牽我起來，互我的腳徛佇石磐頂，互我的腳步在伍。"}, {"sec": 3, "subtitle": "", "text": "伊互我的嘴唱新的歌，就是謳咾阮的上帝的。多多人欲看見來驚畏，亦欲倚靠耶和華。", "speak_text": "伊互我的嘴唱新的歌，就是謳咾阮的上帝的。多多人欲看見來驚畏，亦欲倚靠耶和華。"}, {"sec": 4, "subtitle": "", "text": "獨獨倚靠耶和華、無插(chhap)許個驕傲，以及偏向(phian-ǹg)虛假(hu-ké)的人，此號人有福氣！", "speak_text": "獨獨倚靠耶和華、無插許個驕傲，以及偏向(phian-ǹg)虛假(hu-ké)的人，此號人有福氣！"}, {"sec": 5, "subtitle": "", "text": "耶和華──我的上帝啊，你所行的奇事，以及你對阮所存的念頭真多，𣍐會對你排列；我若欲提起來講，彼個數額算𣍐了。", "speak_text": "耶和華──我的上帝啊，你所行的奇事，以及你對阮所存的念頭真多，𣍐會對你排列；我若欲提起來講，彼個數額算𣍐了。"}, {"sec": 6, "subtitle": "", "text": "祭祀及禮物，你無歡喜；你有開我的耳孔。燒祭及贖罪祭你無愛揲(ài-ti̍h)。", "speak_text": "祭祀及禮物，你無歡喜；你有開我的耳孔。燒祭及贖罪祭你無愛揲(ài-ti̍h)。"}, {"sec": 7, "subtitle": "", "text": "彼時我講：你看，我來啦！我的事已經記佇冊裡。", "speak_text": "彼時我講：你看，我來啦！我的事已經記佇冊裡。"}, {"sec": 8, "subtitle": "", "text": "我的上帝啊，你的旨意我歡喜趁；你的律法佇我的心內。", "speak_text": "我的上帝啊，你的旨意我歡喜趁；你的律法佇我的心內。"}, {"sec": 9, "subtitle": "", "text": "我佇大聚會的中間宣傳公義的好消息；我無欲停止我的嘴唇。耶和華啊，這是你所知的。", "speak_text": "我佇大聚會的中間宣傳公義的好消息；我無欲停止我的嘴唇。耶和華啊，這是你所知的。"}, {"sec": 10, "subtitle": "", "text": "我未曾將你的公義蓋密佇我的心內；我已經排列你的信實及你的救恩；我對大聚會未曾隱囥你的慈愛及誠實。", "speak_text": "我未曾將你的公義蓋密佇我的心內；我已經排列你的信實及你的救恩；我對大聚會未曾隱囥你的慈愛及誠實。"}, {"sec": 11, "subtitle": "", "text": "耶和華啊，求你呣通對我停止你的慈悲！願你的慈愛及誠實常常保護我！", "speak_text": "耶和華啊，求你呣通對我停止你的慈悲！願你的慈愛及誠實常常保護我！"}, {"sec": 12, "subtitle": "", "text": "因為有𣍐算得的災禍(chai-ē)圍困我，我的罪惡趇(jip)著(jip-tio̍h)我，互我𣍐會攑目；諸個罪惡比我的頭毛卡多(khah-chōe)，我的心續(sòa)離開我。", "speak_text": "因為有𣍐算得的災禍(chai-ē)圍困我，我的罪惡趇著(jip-tio̍h)我，互我𣍐會攑目；諸個罪惡比我的頭毛卡多(khah-chōe)，我的心續(sòa)離開我。"}, {"sec": 13, "subtitle": "", "text": "耶和華啊，求你歡喜拯救我！耶和華啊，求你緊緊幫助我！", "speak_text": "耶和華啊，求你歡喜拯救我！耶和華啊，求你緊緊幫助我！"}, {"sec": 14, "subtitle": "", "text": "願許個數想欲害我生命者，做一下見誚漏氣！願許個歡喜我受陷害者，越倒轉受凌辱！", "speak_text": "願許個數想欲害我生命者，做一下見誚漏氣！願許個歡喜我受陷害者，越倒轉受凌辱！"}, {"sec": 15, "subtitle": "", "text": "願許個對我講呼哉、呼哉的，因為見誚來敗無！", "speak_text": "願許個對我講呼哉、呼哉的，因為見誚來敗無！"}, {"sec": 16, "subtitle": "", "text": "願一切尋你的，因為你來歡喜快樂！願許個欣慕你救恩者，常常講：著尊耶和華做大！", "speak_text": "願一切尋你的，因為你來歡喜快樂！願許個欣慕你救恩者，常常講：著尊耶和華做大！"}, {"sec": 17, "subtitle": "", "text": "總是我是困苦喪鄉者，主猶久數念我；你是幫助我者，拯救我者。我的上帝啊，求你呣通延迁(iân-chhiân)！", "speak_text": "總是我是困苦喪鄉者，主猶久數念我；你是幫助我者，拯救我者。我的上帝啊，求你呣通延迁(iân-chhiân)！"}]}}, {"meta": {"id": 121, "title": "詩篇第 121 篇", "theme": "方向答案・隨時幫助", "tag": "向山舉目・晝夜看顧", "badge": "bg-indigo-500/20 text-indigo-300 border-indigo-500/40", "key_verse_rcuv": "我的幫助從造天地的耶和華而來。（詩 121:2）", "key_verse_tghg": "我的幫助對造天地的耶和華來。（詩 121:2）", "intro": "最膾炙人口的『上行之詩』（Song of Ascents）。古代以色列朝聖者跋山涉水前往耶路撒冷聖殿過節時在路途上唱誦。面對崇山峻嶺與潛在盜匪威脅，朝聖者不把指望放在崇拜偶像的山嶺，而是定睛於創造群山的天地主宰。本篇短短 8 節中，『保護 / 看顧』（Shamar）一詞重複出現多達 6 次，宣告神日夜不打盹的終極守護。", "sections": [{"range": "第 1-2 節", "title": "向山舉目與超越宇宙的造物主幫助", "content": "朝聖者的目光越過高聳險阻的山岳，發出核心提問：『我的幫助從何而來？』答案隨即堅定道出：不是來自被造的大山，而是來自創造天地的獨一耶和華。"}, {"range": "第 3-4 節", "title": "不打盹也不睡覺的永恆守望者", "content": "祂必不叫你的腳動搖，保護以色列的神永不打盹、永不睡覺。世間的警衛可能疲憊入眠，但神的慈眼二十四小時無休止地定睛在祂兒女身上。"}, {"range": "第 5-8 節", "title": "右邊蔭庇與從今時直到永遠的保護", "content": "耶和華在你的右邊蔭庇你，白日太陽不傷你，夜間月亮（當時人懼怕的夜間中風或熱疾）也不害你。耶和華要保護你免受一切災害，保護你的性命，你出你入從今時直到永遠！"}], "application": "當你站在人生十字路口、急需重大決策指引、即將踏上未知的出差遠行，或心中缺乏方向感時誦讀，確立幫助與引領必從天而降。", "prayer": "創造天地的主宰，我要向祢舉目！在複雜的環境與人生的迷霧中，求祢成為我唯一的方向與力量。感謝祢不打盹、不睡覺地守望著我，在我的右邊作我的遮蔭。願祢親自保守我出我入、起居作息，從今時直到永永遠遠，奉主名求，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "耶和華是我們的保護者", "text": "上行之詩。我要向山舉目，我的幫助從何而來？", "speak_text": "上行之詩。我要向山舉目，我的幫助從何而來？"}, {"sec": 2, "subtitle": "", "text": "我的幫助從造天地的耶和華而來。", "speak_text": "我的幫助從造天地的耶和華而來。"}, {"sec": 3, "subtitle": "", "text": "他不叫你的腳搖動，保護你的必不打盹！", "speak_text": "他不叫你的腳搖動，保護你的必不打盹！"}, {"sec": 4, "subtitle": "", "text": "保護以色列的必不打盹，也不睡覺。", "speak_text": "保護以色列的必不打盹，也不睡覺。"}, {"sec": 5, "subtitle": "", "text": "保護你的是耶和華，耶和華在你右邊蔭庇你。", "speak_text": "保護你的是耶和華，耶和華在你右邊蔭庇你。"}, {"sec": 6, "subtitle": "", "text": "白日，太陽必不傷你；夜間，月亮也不害你。", "speak_text": "白日，太陽必不傷你；夜間，月亮也不害你。"}, {"sec": 7, "subtitle": "", "text": "耶和華要保護你，免受一切的災害，他要保護你的性命。", "speak_text": "耶和華要保護你，免受一切的災害，他要保護你的性命。"}, {"sec": 8, "subtitle": "", "text": "你出你入，耶和華要保護你，從今時直到永遠。", "speak_text": "你出你入，耶和華要保護你，從今時直到永遠。"}], "tghg": [{"sec": 1, "subtitle": "", "text": "〔上崎仔的詩。〕我欲攑目向山；我的幫助對叨落來？", "speak_text": "我欲攑目向山；我的幫助對叨落來？"}, {"sec": 2, "subtitle": "", "text": "我的幫助對耶和華來，伊是創造天地的。", "speak_text": "我的幫助對耶和華來，伊是創造天地的。"}, {"sec": 3, "subtitle": "", "text": "伊無欲互你的腳搖泏(iô-choah)；保守你者的確無盹眠(tuh-bîn)！", "speak_text": "伊無欲互你的腳搖泏(iô-choah)；保守你者的確無盹眠(tuh-bîn)！"}, {"sec": 4, "subtitle": "", "text": "看啊，保守以色列的，也無盹眠也無睏去。", "speak_text": "看啊，保守以色列的，也無盹眠也無睏去。"}, {"sec": 5, "subtitle": "", "text": "保守你者是耶和華；耶和華佇你的正旁做你的蔭影。", "speak_text": "保守你者是耶和華；耶和華佇你的正旁做你的蔭影。"}, {"sec": 6, "subtitle": "", "text": "日時，太陽無傷你；暝時，月亦𣍐害你。", "speak_text": "日時，太陽無傷你；暝時，月亦𣍐害你。"}, {"sec": 7, "subtitle": "", "text": "耶和華欲保守你，免受一切的災害；伊欲保守你的生命。", "speak_text": "耶和華欲保守你，免受一切的災害；伊欲保守你的生命。"}, {"sec": 8, "subtitle": "", "text": "你出你入，耶和華欲保守你，對此時直到永遠。", "speak_text": "你出你入，耶和華欲保守你，對此時直到永遠。"}]}}, {"meta": {"id": 31, "title": "詩篇第 31 篇", "theme": "情感交託・磐石山寨", "tag": "靈魂安放・得享慈愛", "badge": "bg-pink-500/20 text-pink-300 border-pink-500/40", "key_verse_rcuv": "我將我的靈魂交在你手裏；耶和華－信實的上帝啊，你救贖了我。（詩 31:5）", "key_verse_tghg": "我將我的靈魂交託佇你的手；耶和華誠實的上帝啊，你曾救贖我。（詩 31:5）", "intro": "大衛在遭到眾人圍困、密友遺棄、心力交瘁時所寫的心靈哀禱。本篇第 5 節『我將我的靈魂交在祢手裡』正是耶穌基督在十字架上斷氣前最後引用的偉大禱告（路加福音 23:46）。本篇將深沉的情感創傷、被排擠的孤單與破碎關係全然帶到神面前，見證神在堅固城中向投靠祂的人所顯奇妙的慈愛。", "sections": [{"range": "第 1-8 節", "title": "永遠不至羞愧的靈魂交託", "content": "投靠耶和華使人不至羞愧。大衛懇求神側耳聽他、作堅固的磐石與拯救的山寨。第 5 節將最寶貴的生命靈魂完全交託於信實神的手中，因神看見他的困苦、深知他心靈的艱難。"}, {"range": "第 9-18 節", "title": "情感破碎中的孤單與暗中讒謗", "content": "極其真實的情感傾訴：眼睛因憂傷乾癟、身心耗盡、鄰舍畏懼逃跑、如同瓦器被棄。但大衛宣告：『我仍舊倚靠你；我說：你是我的上帝！我終身的事都在你手裡。』求主的面光照亮僕人。"}, {"range": "第 19-24 節", "title": "隱密處的甘美保守與壯膽等候", "content": "神為敬畏祂的人所積存的恩惠何等大！祂把他們藏在自己面前的隱密處，免受人計謀的害與口舌的爭鬧。篇末向所有在愛中受傷、仰望主的人大聲呼喊：『凡仰望耶和華的人，你們都要壯膽，堅固你們的心！』"}], "application": "當你在親密關係中受挫、遭遇情感背叛、感到被世界遺忘或內心孤單苦悶時，以本篇向神掏心傾訴，在神的懷抱中重獲自尊與壯膽前行的力量。", "prayer": "信實的天父，當我的情感感到疲憊、被拒絕或孤單受傷時，我來到祢溫暖的懷抱中。我將我的心靈與我終身的事，完全交託在祢滿有釘痕的恩典之手。求祢的面光照亮我，以祢無盡的慈愛醫治我每一道心靈裂痕，堅固我的心，使我重新展露平安笑容，阿們！"}, "verses": {"rcuv": [{"sec": 1, "subtitle": "信靠上帝的祈禱", "text": "大衛的詩。交給聖詠團長。耶和華啊，我投靠你，求你使我永不羞愧，憑你的公義搭救我！", "speak_text": "大衛的詩。交給聖詠團長。耶和華啊，我投靠你，求你使我永不羞愧，憑你的公義搭救我！"}, {"sec": 2, "subtitle": "", "text": "求你側耳聽我，快快救我！求你作我堅固的磐石，拯救我的保障！", "speak_text": "求你側耳聽我，快快救我！求你作我堅固的磐石，拯救我的保障！"}, {"sec": 3, "subtitle": "", "text": "你真是我的巖石、我的山寨，求你為你名的緣故引導我，指教我。", "speak_text": "你真是我的巖石、我的山寨，求你為你名的緣故引導我，指教我。"}, {"sec": 4, "subtitle": "", "text": "求你救我脫離人為我暗設的網羅，因為你是我的保障。", "speak_text": "求你救我脫離人為我暗設的網羅，因為你是我的保障。"}, {"sec": 5, "subtitle": "", "text": "我將我的靈交在你手裏；耶和華－信實的上帝啊，你救贖了我。", "speak_text": "我將我的靈交在你手裏；耶和華－信實的上帝啊，你救贖了我。"}, {"sec": 6, "subtitle": "", "text": "我(「我」：有古卷、七十士譯本和其他古譯本是「你」。)恨惡那信奉虛無神明(「虛無神明」：原文是「虛無」。)的人；我卻倚靠耶和華。", "speak_text": "我(「我」：有古卷、七十士譯本和其他古譯本是「你」。)恨惡那信奉虛無神明(「虛無神明」：原文是「虛無」。)的人；我卻倚靠耶和華。"}, {"sec": 7, "subtitle": "", "text": "我要因你的慈愛歡喜快樂，因為你見過我的困苦，知道我心中的艱難。", "speak_text": "我要因你的慈愛歡喜快樂，因為你見過我的困苦，知道我心中的艱難。"}, {"sec": 8, "subtitle": "", "text": "你未曾把我交在仇敵手裏，你使我的腳站在寬闊的地方。", "speak_text": "你未曾把我交在仇敵手裏，你使我的腳站在寬闊的地方。"}, {"sec": 9, "subtitle": "", "text": "耶和華啊，求你憐憫我，因為我在急難之中；我的眼睛因憂愁而昏花，我的身心也已耗盡。", "speak_text": "耶和華啊，求你憐憫我，因為我在急難之中；我的眼睛因憂愁而昏花，我的身心也已耗盡。"}, {"sec": 10, "subtitle": "", "text": "我的生命為愁苦所消耗，我的年歲為嘆息所荒廢；我的力量因我的罪孽(「罪孽」：原文另譯「苦難」。)衰敗，我的骨頭也枯乾。", "speak_text": "我的生命為愁苦所消耗，我的年歲為嘆息所荒廢；我的力量因我的罪孽(「罪孽」：原文另譯「苦難」。)衰敗，我的骨頭也枯乾。"}, {"sec": 11, "subtitle": "", "text": "我因所有的敵人成了羞辱，在我鄰舍跟前更加羞辱；那認識我的都懼怕我，在街上看見我的都躲避我。", "speak_text": "我因所有的敵人成了羞辱，在我鄰舍跟前更加羞辱；那認識我的都懼怕我，在街上看見我的都躲避我。"}, {"sec": 12, "subtitle": "", "text": "我被遺忘，如同死人，無人記念；我好像破碎的器皿。", "speak_text": "我被遺忘，如同死人，無人記念；我好像破碎的器皿。"}, {"sec": 13, "subtitle": "", "text": "我聽見許多人的毀謗，四圍盡是驚嚇；他們一同商議攻擊我，圖謀害我的性命。", "speak_text": "我聽見許多人的毀謗，四圍盡是驚嚇；他們一同商議攻擊我，圖謀害我的性命。"}, {"sec": 14, "subtitle": "", "text": "耶和華啊，我仍要倚靠你；我說：「你是我的上帝。」", "speak_text": "耶和華啊，我仍要倚靠你；我說：「你是我的上帝。」"}, {"sec": 15, "subtitle": "", "text": "我終生的事在你手中，求你救我脫離仇敵的手和那些迫害我的人。", "speak_text": "我終生的事在你手中，求你救我脫離仇敵的手和那些迫害我的人。"}, {"sec": 16, "subtitle": "", "text": "求你使你的臉向僕人發光，憑你的慈愛拯救我。", "speak_text": "求你使你的臉向僕人發光，憑你的慈愛拯救我。"}, {"sec": 17, "subtitle": "", "text": "耶和華啊，求你叫我不致羞愧，因為我曾呼求你；求你使惡人羞愧，使他們在陰間緘默無聲。", "speak_text": "耶和華啊，求你叫我不致羞愧，因為我曾呼求你；求你使惡人羞愧，使他們在陰間緘默無聲。"}, {"sec": 18, "subtitle": "", "text": "那撒謊的人逞驕傲輕慢，出狂妄的話攻擊義人，願他的嘴啞而無言。", "speak_text": "那撒謊的人逞驕傲輕慢，出狂妄的話攻擊義人，願他的嘴啞而無言。"}, {"sec": 19, "subtitle": "", "text": "在世人眼前，你為敬畏你的人所積存的，為投靠你的人所施行的，是何等大的恩惠啊！", "speak_text": "在世人眼前，你為敬畏你的人所積存的，為投靠你的人所施行的，是何等大的恩惠啊！"}, {"sec": 20, "subtitle": "", "text": "你必將他們藏在你面前的隱密處，免得遭人暗算；你要隱藏他們在棚子裏，免受口舌的爭鬧。", "speak_text": "你必將他們藏在你面前的隱密處，免得遭人暗算；你要隱藏他們在棚子裏，免受口舌的爭鬧。"}, {"sec": 21, "subtitle": "", "text": "耶和華是應當稱頌的，因為我在圍城裏，他向我施展奇妙的慈愛。", "speak_text": "耶和華是應當稱頌的，因為我在圍城裏，他向我施展奇妙的慈愛。"}, {"sec": 22, "subtitle": "", "text": "至於我，我曾驚惶地說：「我從你眼前被隔絕。」然而，我呼求你的時候，你仍聽我懇求的聲音。", "speak_text": "至於我，我曾驚惶地說：「我從你眼前被隔絕。」然而，我呼求你的時候，你仍聽我懇求的聲音。"}, {"sec": 23, "subtitle": "", "text": "耶和華的聖民哪，你們都要愛他！耶和華保護誠實可靠的人，卻加倍報應行事驕傲的人。", "speak_text": "耶和華的聖民哪，你們都要愛他！耶和華保護誠實可靠的人，卻加倍報應行事驕傲的人。"}, {"sec": 24, "subtitle": "", "text": "凡仰望耶和華的人，你們都要壯膽，堅固你們的心！", "speak_text": "凡仰望耶和華的人，你們都要壯膽，堅固你們的心！"}], "tghg": [{"sec": 1, "subtitle": "", "text": "〔大衛的詩，交互樂官。〕耶和華啊，我倚靠你；求你互我永永無見誚(kiàn-siàu)；照你的公義拯救我！", "speak_text": "耶和華啊，我倚靠你；求你互我永永無見誚(kiàn-siàu)；照你的公義拯救我！"}, {"sec": 2, "subtitle": "", "text": "求你俯耳孔聽我，緊緊來救我！做我堅固的石磐，做拯救我的衛所！", "speak_text": "求你俯耳孔聽我，緊緊來救我！做我堅固的石磐，做拯救我的衛所！"}, {"sec": 3, "subtitle": "", "text": "因為你是我的山巖，我的山寨；所以，求你因為你的名來引導我，指點我。", "speak_text": "因為你是我的山巖，我的山寨；所以，求你因為你的名來引導我，指點我。"}, {"sec": 4, "subtitle": "", "text": "人暗靜張羅網欲網我，求你救我脫離，因為你是我的衛所。", "speak_text": "人暗靜張羅網欲網我，求你救我脫離，因為你是我的衛所。"}, {"sec": 5, "subtitle": "", "text": "我將我的靈魂交佇你的手；耶和華真實的上帝啊，你有救贖我。", "speak_text": "我將我的靈魂交佇你的手；耶和華真實的上帝啊，你有救贖我。"}, {"sec": 6, "subtitle": "", "text": "我怨恨許個信奉虛假的人；獨獨我倚靠耶和華。", "speak_text": "我怨恨許個信奉虛假的人；獨獨我倚靠耶和華。"}, {"sec": 7, "subtitle": "", "text": "我因為你的慈愛欲歡喜快樂；因為你有看見我的艱苦，知我心神的艱難。", "speak_text": "我因為你的慈愛欲歡喜快樂；因為你有看見我的艱苦，知我心神的艱難。"}, {"sec": 8, "subtitle": "", "text": "你未曾將我交佇對敵的手；你互我的腳徛佇開闊的所在。", "speak_text": "你未曾將我交佇對敵的手；你互我的腳徛佇開闊的所在。"}, {"sec": 9, "subtitle": "", "text": "耶和華啊，我佇患難中，求你憐憫我；我的目睭因為憂悶拍歹，我的心神我的身體亦是按呢。", "speak_text": "耶和華啊，我佇患難中，求你憐憫我；我的目睭因為憂悶拍歹，我的心神我的身體亦是按呢。"}, {"sec": 10, "subtitle": "", "text": "我的生命因為憂苦來消無；我的年歲為著吐氣亦按呢。我的氣力因為我的罪惡來衰膦(soe-lám)；我的骨頭亦枯焦。", "speak_text": "我的生命因為憂苦來消無；我的年歲為著吐氣亦按呢。我的氣力因為我的罪惡來衰膦(soe-lám)；我的骨頭亦枯焦。"}, {"sec": 11, "subtitle": "", "text": "我因為我一切的對敵成做凌辱，佇我的厝邊兜閣卡傷重；許個識我的人攏驚我，佇外面看見我的人走閃離開我。", "speak_text": "我因為我一切的對敵成做凌辱，佇我的厝邊兜閣卡傷重；許個識我的人攏驚我，佇外面看見我的人走閃離開我。"}, {"sec": 12, "subtitle": "", "text": "我親像死人，互人𣍐記得，無人數念；我親像破碎的器具。", "speak_text": "我親像死人，互人𣍐記得，無人數念；我親像破碎的器具。"}, {"sec": 13, "subtitle": "", "text": "因為我聽見多多人的誹謗，四圍攏是驚惶；𪜶相及參詳攻擊我的時，就計謀欲害我的生命。", "speak_text": "因為我聽見多多人的誹謗，四圍攏是驚惶；𪜶相及參詳攻擊我的時，就計謀欲害我的生命。"}, {"sec": 14, "subtitle": "", "text": "耶和華啊，我猶原倚靠你；我講：你是我的上帝。", "speak_text": "耶和華啊，我猶原倚靠你；我講：你是我的上帝。"}, {"sec": 15, "subtitle": "", "text": "我的遭遇佇你的手；求你救我脫離我的對敵的手以及窘迫我的人。", "speak_text": "我的遭遇佇你的手；求你救我脫離我的對敵的手以及窘迫我的人。"}, {"sec": 16, "subtitle": "", "text": "求你互你的面照光你的奴僕，照你的慈愛拯救我。", "speak_text": "求你互你的面照光你的奴僕，照你的慈愛拯救我。"}, {"sec": 17, "subtitle": "", "text": "耶和華啊，求你互我無見誚，因為我有求叫你；求你互歹人見誚；互𪜶佇陰間靜寂寂。", "speak_text": "耶和華啊，求你互我無見誚，因為我有求叫你；求你互歹人見誚；互𪜶佇陰間靜寂寂。"}, {"sec": 18, "subtitle": "", "text": "願你互許個白賊的嘴變啞口；就是驕傲看輕，濫糝侮慢義人的。", "speak_text": "願你互許個白賊的嘴變啞口；就是驕傲看輕，濫糝侮慢義人的。"}, {"sec": 19, "subtitle": "", "text": "敬畏你的人，你為著𪜶所積聚的恩惠，為著倚靠你的人，佇世間人的面前所施行的恩惠怎樣許大！", "speak_text": "敬畏你的人，你為著𪜶所積聚的恩惠，為著倚靠你的人，佇世間人的面前所施行的恩惠怎樣許大！"}, {"sec": 20, "subtitle": "", "text": "你欲將𪜶囥佇你的面前隱密的所在，免致抵著(tú-tio̍h)人的計謀；你欲暗靜保守𪜶佇帳帷內，免受嘴舌的爭辯。", "speak_text": "你欲將𪜶囥佇你的面前隱密的所在，免致抵著(tú-tio̍h)人的計謀；你欲暗靜保守𪜶佇帳帷內，免受嘴舌的爭辯。"}, {"sec": 21, "subtitle": "", "text": "耶和華是應該謳咾者，因為伊佇堅固的城對我施出伊奇妙的慈愛。", "speak_text": "耶和華是應該謳咾者，因為伊佇堅固的城對我施出伊奇妙的慈愛。"}, {"sec": 22, "subtitle": "", "text": "論到我，我曾著急講：對你的目睭前，我受隔斷。總是，我求叫你的時，你猶原聽我懇求的聲。", "speak_text": "論到我，我曾著急講：對你的目睭前，我受隔斷。總是，我求叫你的時，你猶原聽我懇求的聲。"}, {"sec": 23, "subtitle": "", "text": "耶和華聖的百姓啊，恁攏著疼伊！耶和華保守誠實的人，重重報應行驕傲的人。", "speak_text": "耶和華聖的百姓啊，恁攏著疼伊！耶和華保守誠實的人，重重報應行驕傲的人。"}, {"sec": 24, "subtitle": "", "text": "見若向望耶和華的人，恁著壯膽，恁的心著堅固！", "speak_text": "見若向望耶和華的人，恁著壯膽，恁的心著堅固！"}]}}];
+
+    // 狀態
+    let activeIndex = 0;
+    let viewMode = 'split'; // 'split' | 'rcuv' | 'tghg'
+    let ttsLang = 'rcuv';   // 'rcuv' | 'tghg'
+    let isPlaying = false;
+    let currentReadingSec = null;
+    let speechQueue = [];
+    let speechIndex = 0;
+    let currentSpeechRate = 1.0;
+
+    // DOM 元素
+    const tabsContainer = document.getElementById('psalm-tabs');
+    const currentTitle = document.getElementById('current-title');
+    const currentTheme = document.getElementById('current-theme');
+    const currentBadge = document.getElementById('current-badge');
+    const currentIntro = document.getElementById('current-intro');
+    const versesContainer = document.getElementById('verses-container');
+    const verseCountEl = document.getElementById('verse-count');
+    const sectionsList = document.getElementById('sections-list');
+    const keyVerseRcuvText = document.getElementById('key-verse-rcuv-text');
+    const keyVerseTghgText = document.getElementById('key-verse-tghg-text');
+    const prayerText = document.getElementById('prayer-text');
+    const applicationText = document.getElementById('application-text');
+    const ttsStatus = document.getElementById('tts-status');
+    const ttsPlayBtn = document.getElementById('tts-play-btn');
+    const ttsPlayText = document.getElementById('tts-play-text');
+    const langBtnRcuv = document.getElementById('lang-btn-rcuv');
+    const langBtnTghg = document.getElementById('lang-btn-tghg');
+    const modal = document.getElementById('infographic-modal');
+
+    // 初始化 Tab
+    function initTabs() {
+      tabsContainer.innerHTML = PSALMS_DATA.map((item, idx) => `
+        <button onclick="switchPsalm(${idx})" class="psalm-tab-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all ${idx === activeIndex ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30' : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'}" data-idx="${idx}">
+          <span class="font-mono">${item.meta.title}</span>
+          <span class="text-[10px] opacity-80 hidden md:inline font-sans">${item.meta.theme.split('・')[0]}</span>
+        </button>
+      `).join('');
+    }
+
+    // 切換篇章
+    window.switchPsalm = function(idx) {
+      stopSpeech();
+      activeIndex = idx;
+      
+      // 更新 Tab 狀態
+      document.querySelectorAll('.psalm-tab-btn').forEach((btn, i) => {
+        if (i === idx) {
+          btn.className = 'psalm-tab-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all bg-amber-600 text-white shadow-lg shadow-amber-600/30';
+        } else {
+          btn.className = 'psalm-tab-btn flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800';
+        }
+      });
+
+      renderCurrentPsalm();
+    };
+
+    // 渲染當前詩篇內容
+    function renderCurrentPsalm() {
+      const data = PSALMS_DATA[activeIndex];
+      const meta = data.meta;
+      const verses = data.verses;
+
+      currentTitle.textContent = meta.title;
+      currentTheme.textContent = meta.theme;
+      currentBadge.textContent = meta.tag;
+      currentBadge.className = `text-xs font-semibold px-3 py-1 rounded-full border ${meta.badge}`;
+      currentIntro.textContent = meta.intro;
+      verseCountEl.textContent = verses.rcuv.length;
+
+      // 金句與祈禱
+      keyVerseRcuvText.textContent = meta.key_verse_rcuv;
+      keyVerseTghgText.textContent = meta.key_verse_tghg;
+      prayerText.textContent = meta.prayer;
+      applicationText.textContent = meta.application;
+
+      // 渲染段落詳解
+      sectionsList.innerHTML = meta.sections.map(s => `
+        <div class="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">${s.range}</span>
+            <h4 class="text-sm font-bold text-white font-bible">${s.title}</h4>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">${s.content}</p>
+        </div>
+      `).join('');
+
+      renderVerses();
+    }
+
+    // 渲染經文列表
+    function renderVerses() {
+      const data = PSALMS_DATA[activeIndex];
+      const rcuvList = data.verses.rcuv;
+      const tghgList = data.verses.tghg;
+
+      versesContainer.innerHTML = rcuvList.map((rcuv, idx) => {
+        const tghg = tghgList[idx] || { sec: rcuv.sec, text: '', subtitle: '', speak_text: '' };
+        const sec = rcuv.sec;
+
+        const isSplit = viewMode === 'split';
+        const showRcuv = isSplit || viewMode === 'rcuv';
+        const showTghg = isSplit || viewMode === 'tghg';
+
+        return `
+          <div id="verse-row-${sec}" class="verse-row glass-card rounded-2xl p-4 lg:p-5 border border-slate-800/80 hover:border-amber-500/30 transition-all cursor-pointer group" onclick="speakVerse(${sec})">
+            <div class="flex items-start gap-3">
+              <span class="w-7 h-7 rounded-lg bg-slate-800/80 group-hover:bg-amber-600/30 group-hover:text-amber-300 text-slate-400 flex-shrink-0 flex items-center justify-center font-mono text-xs font-bold border border-slate-700/80 transition-colors">
+                ${sec}
+              </span>
+
+              <div class="flex-1 grid ${isSplit ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'} gap-4">
+                ${showRcuv ? `
+                  <div class="flex flex-col">
+                    ${rcuv.subtitle ? `<span class="text-xs text-amber-400 font-bold mb-1.5 font-bible flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px]"></i>${rcuv.subtitle}</span>` : ''}
+                    <div class="flex items-center gap-1.5 mb-1">
+                      <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">和合2010</span>
+                      <button onclick="event.stopPropagation(); speakSingleText('${sec}', 'rcuv')" class="text-slate-500 hover:text-amber-400 text-xs p-1" title="單節國語朗讀"><i class="fa-solid fa-volume-low"></i></button>
+                    </div>
+                    <p class="font-bible text-sm lg:text-base text-slate-100 leading-relaxed">${rcuv.text}</p>
+                  </div>
+                ` : ''}
+
+                ${showTghg ? `
+                  <div class="flex flex-col ${isSplit ? 'border-t md:border-t-0 md:border-l border-slate-800/80 pt-3 md:pt-0 md:pl-4' : ''}">
+                    ${tghg.subtitle ? `<span class="text-xs text-amber-300 font-bold mb-1.5 font-bible flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px]"></i>${tghg.subtitle}</span>` : ''}
+                    <div class="flex items-center gap-1.5 mb-1">
+                      <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-amber-300/80">巴克禮台漢本</span>
+                      <button onclick="event.stopPropagation(); speakSingleText('${sec}', 'tghg')" class="text-slate-500 hover:text-amber-400 text-xs p-1" title="單節台語朗讀"><i class="fa-solid fa-volume-low"></i></button>
+                    </div>
+                    <p class="font-bible text-sm lg:text-base text-amber-100/90 leading-relaxed">${tghg.text}</p>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 切換檢視模式
+    window.setViewMode = function(mode) {
+      viewMode = mode;
+      ['split', 'rcuv', 'tghg'].forEach(m => {
+        const btn = document.getElementById(`view-mode-${m}`);
+        if (m === mode) {
+          btn.className = 'px-3 py-1 rounded-lg text-xs font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40';
+        } else {
+          btn.className = 'px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-400 hover:text-white border border-slate-700';
+        }
+      });
+      renderVerses();
+    };
+
+    // 切換語音語言
+    window.setTtsLang = function(lang) {
+      ttsLang = lang;
+      if (lang === 'rcuv') {
+        langBtnRcuv.className = 'py-1.5 rounded-md font-medium text-center transition-all bg-amber-600 text-white shadow';
+        langBtnTghg.className = 'py-1.5 rounded-md font-medium text-center transition-all text-slate-400 hover:text-white';
+      } else {
+        langBtnTghg.className = 'py-1.5 rounded-md font-medium text-center transition-all bg-amber-600 text-white shadow';
+        langBtnRcuv.className = 'py-1.5 rounded-md font-medium text-center transition-all text-slate-400 hover:text-white';
+      }
+      if (isPlaying) {
+        stopSpeech();
+        togglePlay();
+      }
+    };
+
+    // 語速調整
+    window.setRate = function(val) {
+      currentSpeechRate = parseFloat(val);
+    };
+
+    // 語音朗讀邏輯 (Web Speech API)
+    function clearHighlight() {
+      document.querySelectorAll('.verse-row').forEach(row => row.classList.remove('verse-highlight'));
+      currentReadingSec = null;
+    }
+
+    function highlightVerse(sec) {
+      clearHighlight();
+      currentReadingSec = sec;
+      const target = document.getElementById(`verse-row-${sec}`);
+      if (target) {
+        target.classList.add('verse-highlight');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    window.stopSpeech = function() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      isPlaying = false;
+      ttsPlayText.textContent = '整篇朗讀';
+      ttsPlayBtn.querySelector('i').className = 'fa-solid fa-play';
+      ttsStatus.textContent = '就緒';
+      ttsStatus.className = 'text-[11px] font-mono text-slate-400';
+      clearHighlight();
+    };
+
+    window.togglePlay = function() {
+      if (isPlaying) {
+        stopSpeech();
+        return;
+      }
+      startFullSpeech();
+    };
+
+    function startFullSpeech() {
+      if (!('speechSynthesis' in window)) {
+        alert('您的瀏覽器不支援 Web Speech API 語音朗讀功能，請使用 Chrome、Edge 或 Safari 開啟。');
+        return;
+      }
+
+      stopSpeech();
+      const data = PSALMS_DATA[activeIndex];
+      const verses = ttsLang === 'rcuv' ? data.verses.rcuv : data.verses.tghg;
+
+      speechQueue = verses.map(v => ({
+        sec: v.sec,
+        text: `第${v.sec}節。${v.speak_text}`
+      }));
+      speechIndex = 0;
+      isPlaying = true;
+
+      ttsPlayText.textContent = '暫停朗讀';
+      ttsPlayBtn.querySelector('i').className = 'fa-solid fa-pause';
+      ttsStatus.textContent = `朗讀中 (${ttsLang === 'rcuv' ? '國語' : '台語'})`;
+      ttsStatus.className = 'text-[11px] font-mono text-emerald-400 animate-pulse';
+
+      speakNext();
+    }
+
+    function speakNext() {
+      if (!isPlaying || speechIndex >= speechQueue.length) {
+        stopSpeech();
+        return;
+      }
+
+      const item = speechQueue[speechIndex];
+      highlightVerse(item.sec);
+
+      const utterance = new SpeechSynthesisUtterance(item.text);
+      utterance.rate = currentSpeechRate;
+
+      // 選擇語音
+      const voices = window.speechSynthesis.getVoices();
+      if (ttsLang === 'tghg') {
+        // 台語優先尋找 min-nan / nan 或 zh-TW
+        const twVoice = voices.find(v => v.lang.includes('nan') || v.lang.includes('TW') || v.name.includes('Taiwan'));
+        if (twVoice) utterance.voice = twVoice;
+        utterance.lang = 'zh-TW';
+      } else {
+        // 國語尋找 zh-TW
+        const twVoice = voices.find(v => v.lang.includes('zh-TW'));
+        if (twVoice) utterance.voice = twVoice;
+        utterance.lang = 'zh-TW';
+      }
+
+      utterance.onend = function() {
+        speechIndex++;
+        speakNext();
+      };
+
+      utterance.onerror = function() {
+        speechIndex++;
+        speakNext();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 單節朗讀
+    window.speakVerse = function(sec) {
+      speakSingleText(sec, ttsLang);
+    };
+
+    window.speakSingleText = function(sec, lang) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech();
+
+      const data = PSALMS_DATA[activeIndex];
+      const list = lang === 'rcuv' ? data.verses.rcuv : data.verses.tghg;
+      const target = list.find(v => v.sec === sec);
+      if (!target) return;
+
+      highlightVerse(sec);
+      isPlaying = true;
+      ttsPlayText.textContent = '暫停朗讀';
+      ttsPlayBtn.querySelector('i').className = 'fa-solid fa-pause';
+      ttsStatus.textContent = `朗讀第 ${sec} 節`;
+      ttsStatus.className = 'text-[11px] font-mono text-emerald-400';
+
+      const utterance = new SpeechSynthesisUtterance(`第${sec}節。${target.speak_text}`);
+      utterance.rate = currentSpeechRate;
+      utterance.lang = 'zh-TW';
+
+      const voices = window.speechSynthesis.getVoices();
+      const twVoice = voices.find(v => v.lang.includes('TW'));
+      if (twVoice) utterance.voice = twVoice;
+
+      utterance.onend = () => stopSpeech();
+      utterance.onerror = () => stopSpeech();
+      window.speechSynthesis.speak(utterance);
+    };
+
+    // Modal
+    window.openInfographicModal = function() {
+      modal.classList.remove('hidden');
+    };
+    window.closeInfographicModal = function() {
+      modal.classList.add('hidden');
+    };
+
+    // 啟動
+    initTabs();
+    renderCurrentPsalm();
+  </script>
+</body>
+</html>
