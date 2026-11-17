@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>ForeverSongs® 留聲心曲 | 官方網站 | 把回憶譜成音樂</title>
+  <meta name="description" content="ForeverSongs——排名第一的客製歌曲禮物。專屬歌詞，把回憶譜成音樂。免 API Token，一鍵直串 ChatGPT / Gemini 免費創作神級歌詞與音樂！" />
+  <meta name="keywords" content="客製歌曲, 個人化歌曲, 紀念日禮物, 生日禮物, 婚禮歌曲, 母親節禮物, ChatGPT寫歌, Gemini寫歌, Suno AI, 免費客製音樂" />
+  
+  <!-- Google Fonts: Noto Sans TC & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0f1d;
+      --bg-card: #131b2e;
+      --bg-card-hover: #1a253e;
+      --bg-soft: #182239;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-gold: #e2b157;
+      --accent-gold-light: #fce79f;
+      --accent-gold-glow: rgba(226, 177, 87, 0.25);
+      --accent-chatgpt: #10a37f;
+      --accent-gemini: #4285f4;
+      --accent-suno: #ff3b30;
+      --border-line: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(226, 177, 87, 0.35);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --shadow-gold: 0 12px 36px rgba(226, 177, 87, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, .serif-font {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    /* Top Announcement Bar */
+    .announcement-bar {
+      background: linear-gradient(90deg, #1e1b4b 0%, #2e1065 50%, #1e1b4b 100%);
+      color: var(--accent-gold-light);
+      font-size: 0.85rem;
+      padding: 8px 16px;
+      text-align: center;
+      border-bottom: 1px solid rgba(226, 177, 87, 0.2);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .announcement-badge {
+      background: rgba(226, 177, 87, 0.18);
+      color: #fff;
+      border: 1px solid var(--border-gold);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(10, 15, 29, 0.85);
+      border-bottom: 1px solid var(--border-line);
+      height: 72px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .nav-brand .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b0f19;
+      font-weight: 900;
+      box-shadow: 0 4px 14px var(--accent-gold-glow);
+    }
+    .nav-brand span.gold {
+      color: var(--accent-gold);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .nav-links a:hover {
+      color: var(--accent-gold-light);
+      transition: color 0.2s;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #f7d070 0%, #d89e35 100%);
+      color: #0c121e;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-gold);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(226, 177, 87, 0.35);
+      background: linear-gradient(135deg, #ffdc85 0%, #e5a73b 100%);
+    }
+    .btn-outline {
+      border: 1px solid var(--border-line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      padding: 12px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-gold);
+      background: rgba(226, 177, 87, 0.08);
+      color: var(--accent-gold-light);
+    }
+
+    /* Specific AI Bridge Action Buttons */
+    .btn-chatgpt {
+      background: #10a37f;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .btn-chatgpt:hover {
+      background: #0d8869;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 163, 127, 0.35);
+    }
+    .btn-gemini {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .btn-gemini:hover {
+      background: #1557b0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.35);
+    }
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-line);
+      color: #e2e8f0;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: #fff;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 70px 0 90px;
+      overflow: hidden;
+    }
+    .hero-bg-glow {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(226, 177, 87, 0.14) 0%, rgba(59, 130, 246, 0.08) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(50px);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .hero-rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-gold);
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      margin-bottom: 24px;
+    }
+    .stars {
+      color: #fbbf24;
+      letter-spacing: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      line-height: 1.25;
+      margin-bottom: 22px;
+      letter-spacing: -0.8px;
+      background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero h1 .highlight-gold {
+      background: linear-gradient(135deg, #ffd782 0%, #dfa539 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      max-width: 680px;
+      margin: 0 auto 34px;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .guarantees-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+    .guarantee-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .guarantee-item svg {
+      color: var(--accent-gold);
+    }
+
+    /* Hero Interactive Music Preview Card */
+    .hero-player-card {
+      margin-top: 45px;
+      background: linear-gradient(145deg, rgba(23, 32, 54, 0.85) 0%, rgba(15, 22, 38, 0.95) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), var(--shadow-gold);
+      backdrop-filter: blur(12px);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-player-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #e2b157, #f43f5e, #3b82f6, #e2b157);
+      background-size: 300% 100%;
+      animation: gradientShift 6s infinite linear;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    .player-meta h3 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .player-meta p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .player-tag {
+      background: rgba(226, 177, 87, 0.15);
+      border: 1px solid var(--border-gold);
+      color: var(--accent-gold-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+    }
+    .visualizer-container {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 48px;
+      padding: 0 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .bar {
+      flex: 1;
+      background: #334155;
+      height: 12px;
+      border-radius: 2px;
+      transition: height 0.15s ease, background-color 0.2s;
+    }
+    .visualizer-container.playing .bar {
+      background: linear-gradient(180deg, var(--accent-gold) 0%, #d97706 100%);
+      animation: wave 1.2s infinite ease-in-out;
+    }
+    @keyframes wave {
+      0%, 100% { height: 8px; }
+      50% { height: 38px; }
+    }
+    .bar:nth-child(2) { animation-delay: 0.1s; }
+    .bar:nth-child(3) { animation-delay: 0.25s; }
+    .bar:nth-child(4) { animation-delay: 0.05s; }
+    .bar:nth-child(5) { animation-delay: 0.3s; }
+    .bar:nth-child(6) { animation-delay: 0.15s; }
+    .bar:nth-child(7) { animation-delay: 0.4s; }
+    .bar:nth-child(8) { animation-delay: 0.2s; }
+    .bar:nth-child(9) { animation-delay: 0.35s; }
+    .bar:nth-child(10) { animation-delay: 0.1s; }
+    .bar:nth-child(11) { animation-delay: 0.45s; }
+    .bar:nth-child(12) { animation-delay: 0.25s; }
+    .bar:nth-child(13) { animation-delay: 0.15s; }
+    .bar:nth-child(14) { animation-delay: 0.3s; }
+    .bar:nth-child(15) { animation-delay: 0.05s; }
+    .bar:nth-child(16) { animation-delay: 0.4s; }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .play-btn-large {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd470, #dfa338);
+      color: #0b0f19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 18px rgba(226, 177, 87, 0.4);
+      transition: transform 0.2s;
+    }
+    .play-btn-large:hover {
+      transform: scale(1.08);
+    }
+    .lyrics-preview {
+      flex: 1;
+      font-size: 0.92rem;
+      font-style: italic;
+      color: #e2e8f0;
+      border-left: 2px solid var(--accent-gold);
+      padding-left: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Free AI Bridge Feature Highlight Bar */
+    .ai-badge-banner {
+      background: linear-gradient(90deg, rgba(16, 163, 127, 0.15) 0%, rgba(66, 133, 244, 0.15) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 16px 24px;
+      margin: 40px auto 0;
+      max-width: 820px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .ai-badge-text {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+    .ai-chips {
+      display: flex;
+      gap: 8px;
+    }
+    .chip {
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .chip-green { background: rgba(16, 163, 127, 0.2); color: #34d399; border: 1px solid rgba(16, 163, 127, 0.4); }
+    .chip-blue { background: rgba(66, 133, 244, 0.2); color: #60a5fa; border: 1px solid rgba(66, 133, 244, 0.4); }
+
+    /* Interactive Song Builder Wizard */
+    .wizard-section {
+      padding: 90px 0;
+      position: relative;
+    }
+    .wizard-box {
+      background: linear-gradient(160deg, #131b2e 0%, #0d1424 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .wizard-steps-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .wizard-steps-nav::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--border-line);
+      z-index: 0;
+    }
+    .wiz-step-pill {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-dark);
+      border: 2px solid var(--border-line);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: all 0.3s;
+    }
+    .wiz-step-pill.active {
+      border-color: var(--accent-gold);
+      background: var(--accent-gold);
+      color: #0b0f19;
+      box-shadow: 0 0 16px var(--accent-gold-glow);
+    }
+    .wiz-step-pill.completed {
+      border-color: var(--accent-gold);
+      background: #1e293b;
+      color: var(--accent-gold);
+    }
+    .wizard-form-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .wizard-form-title h3 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    .wizard-form-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .option-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 16px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .option-card:hover {
+      border-color: rgba(226, 177, 87, 0.5);
+      background: rgba(226, 177, 87, 0.05);
+    }
+    .option-card.selected {
+      border-color: var(--accent-gold);
+      background: rgba(226, 177, 87, 0.12);
+      color: var(--accent-gold-light);
+    }
+    .option-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .option-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .wizard-input-group {
+      margin-bottom: 24px;
+    }
+    .wizard-input-group label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+    }
+    .wizard-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .wizard-input:focus {
+      border-color: var(--accent-gold);
+    }
+    textarea.wizard-input {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .quick-tag {
+      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-line);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      color: #cbd5e1;
+    }
+    .quick-tag:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold-light);
+    }
+    .wizard-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-line);
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* AI Hub Box (No Token Required) */
+    .ai-hub-container {
+      background: rgba(10, 15, 29, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .ai-hub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .ai-hub-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .prompt-preview-box {
+      background: #060a12;
+      border: 1px solid #1e293b;
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .ai-action-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Paste back lyrics area */
+    .paste-back-box {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-line);
+    }
+
+    /* Result Preview Card */
+    .song-result-card {
+      display: none;
+      background: linear-gradient(145deg, #162035 0%, #0d1526 100%);
+      border: 2px solid var(--accent-gold);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-top: 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .result-vinyl-layout {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .vinyl-disc {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #222 30%, #0a0a0a 35%, #1f1f1f 60%, #0a0a0a 100%);
+      border: 4px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .vinyl-center {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #0b0f19;
+      font-size: 0.75rem;
+    }
+    .result-info {
+      flex: 1;
+      min-width: 260px;
+    }
+    .result-info h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .result-info p {
+      color: var(--accent-gold-light);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+    .result-lyrics-box {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-style: italic;
+      color: #f1f5f9;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      border-left: 3px solid var(--accent-gold);
+      margin-bottom: 18px;
+      max-height: 320px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    /* Video Reactions Section */
+    .reactions-section {
+      padding: 90px 0;
+      background: rgba(19, 27, 46, 0.4);
+      border-top: 1px solid var(--border-line);
+      border-bottom: 1px solid var(--border-line);
+    }
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px;
+    }
+    .section-eyebrow {
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-head h2 {
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
+      margin-bottom: 16px;
+    }
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    .reactions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .reaction-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .reaction-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(226, 177, 87, 0.4);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+    .reaction-video-thumb {
+      position: relative;
+      height: 180px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 18px;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+    }
+    .reaction-video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+    }
+    .play-video-badge {
+      position: relative;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #0b0f19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .reaction-tag-float {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      z-index: 2;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .reaction-quote {
+      font-size: 0.96rem;
+      color: #e2e8f0;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .reaction-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border-line);
+      padding-top: 14px;
+    }
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-gold-light);
+      border: 1px solid var(--border-gold);
+    }
+    .author-info h4 {
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    .author-info span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* 4 Steps Section */
+    .steps-section {
+      padding: 100px 0;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 32px 26px;
+      transition: all 0.3s;
+    }
+    .step-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+    }
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: rgba(226, 177, 87, 0.3);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+    .step-card:hover .step-number {
+      color: var(--accent-gold);
+    }
+    .step-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .step-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Explorer Section */
+    .explorer-section {
+      padding: 90px 0;
+      background: radial-gradient(circle at 50% 30%, rgba(30, 58, 95, 0.4) 0%, rgba(10, 15, 29, 0.95) 70%);
+      border-top: 1px solid var(--border-line);
+    }
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-line);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: rgba(226, 177, 87, 0.15);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold-light);
+    }
+    .song-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .song-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .song-card:hover {
+      border-color: var(--border-gold);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+    }
+    .song-card-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .song-title-group h4 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .song-occasion-badge {
+      font-size: 0.78rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+    .song-genre-tag {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      color: #cbd5e1;
+      height: fit-content;
+    }
+    .lyrics-snippet {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      font-style: italic;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      border-left: 3px solid var(--border-gold);
+    }
+    .song-play-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .play-track-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--border-gold);
+      color: #0b0f19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .play-track-btn:hover {
+      background: var(--accent-gold);
+      transform: scale(1.05);
+    }
+    .track-waveform-mini {
+      flex: 1;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .track-waveform-mini .bar-mini {
+      flex: 1;
+      height: 4px;
+      background: #334155;
+      border-radius: 1px;
+    }
+    .song-card.is-active .play-track-btn {
+      background: var(--accent-gold);
+      box-shadow: 0 0 12px var(--accent-gold);
+    }
+    .song-card.is-active .bar-mini {
+      background: var(--accent-gold);
+      animation: wave 1s infinite ease-in-out;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 100px 0;
+    }
+    .faq-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .faq-arrow {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-arrow {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 24px 22px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 16px;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1e293b;
+      border: 1px solid var(--accent-gold);
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Footer */
+    footer {
+      background: #070a13;
+      border-top: 1px solid var(--border-line);
+      padding: 60px 0 30px;
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .footer-col h5 {
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border-line);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .wizard-box { padding: 30px 20px; }
+      .ai-action-buttons { flex-direction: column; }
+      .btn-chatgpt, .btn-gemini, .btn-copy { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-badge">免 API Token 整合</span>
+    <span>一鍵直串 ChatGPT / Gemini 網頁版 ‧ 免費打造動人歌詞與 Suno 音樂提示詞</span>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">
+        <div class="brand-icon">♪</div>
+        <div>ForeverSongs<span class="gold">®</span></div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#samples">試聽示範</a>
+        <a href="#how-it-works">製作流程</a>
+        <a href="#builder">AI 歌詞產生器</a>
+        <a href="#reactions">真實見證</a>
+        <a href="#faq">常見問題</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#builder" class="btn-primary">
+          <span>✨ 立即寫歌 (免Token)</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        
+        <div class="hero-rating-badge">
+          <span class="stars">★★★★★</span>
+          <span><strong>4.9 / 5</strong> 卓越評價 (23,099+ 則真摯回饋)</span>
+        </div>
+
+        <h1>
+          把你的故事寫成歌<br />
+          讓<span class="highlight-gold">他／她一生難忘</span>
+        </h1>
+
+        <p class="lead">
+          每段珍貴記憶，都值得擁有一首專屬主題曲。無需付費 API Key，透過我們精心設計的音樂提示詞架構，直接串接你慣用的 <strong>ChatGPT</strong> 或 <strong>Gemini</strong> 官方免費對話，分秒生成殿堂級歌詞與音樂！
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#builder" class="btn-primary" style="font-size: 1.05rem; padding: 14px 34px;">
+            <span>🚀 免費開始創作 (免Token)</span>
+            <span>→</span>
+          </a>
+          <button class="btn-outline" onclick="playHeroAudio()">
+            <span id="hero-play-icon">▶</span>
+            <span id="hero-play-text">聆聽主打範例曲</span>
+          </button>
+        </div>
+
+        <div class="guarantees-row">
+          <div class="guarantee-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>零 API 費用 ‧ 點擊直通官方</span>
+          </div>
+          <div class="guarantee-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>支援 Suno / Udio 旋律標籤</span>
+          </div>
+          <div class="guarantee-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>一鍵貼回生成專屬黑膠試聽卡</span>
+          </div>
+        </div>
+
+        <!-- AI Bridge Highlight -->
+        <div class="ai-badge-banner">
+          <div class="ai-badge-text">
+            <span>💡 <strong>零門檻 AI 寫歌方案：</strong></span>
+            <span>不需要任何開發者 API Token，利用深層 URL 與剪貼簿技術無縫直串！</span>
+          </div>
+          <div class="ai-chips">
+            <span class="chip chip-green">ChatGPT 免費版可用</span>
+            <span class="chip chip-blue">Gemini 繁體中文支援</span>
+          </div>
+        </div>
+
+        <!-- Hero Music Player Widget -->
+        <div class="hero-player-card">
+          <div class="player-header">
+            <div class="player-meta">
+              <h3>《十個春夏秋冬的承諾》</h3>
+              <p>獻給：親愛的郁婷（結婚 10 週年紀念）</p>
+            </div>
+            <span class="player-tag">原聲溫暖流行 (Acoustic Pop)</span>
+          </div>
+
+          <div class="visualizer-container" id="heroVisualizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+
+          <div class="player-controls">
+            <button class="play-btn-large" id="heroPlayBtn" onclick="toggleHeroAudio()" title="播放/暫停">▶</button>
+            <div class="lyrics-preview" id="heroLyrics">
+              「記得那年雨天的公車站，妳笑著把傘靠向我身旁；十年走過廚房的香氣與夜燈，這雙手一牽就是一輩子...」
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Song Builder Wizard (Bridged to ChatGPT & Gemini) -->
+  <section class="wizard-section" id="builder">
+    <div class="container">
+      <div class="wizard-box">
+        
+        <div class="wizard-steps-nav">
+          <div class="wiz-step-pill active" id="stepPill1">1</div>
+          <div class="wiz-step-pill" id="stepPill2">2</div>
+          <div class="wiz-step-pill" id="stepPill3">3</div>
+          <div class="wiz-step-pill" id="stepPill4">4</div>
+        </div>
+
+        <!-- Step 1: Recipient & Occasion -->
+        <div class="wizard-step-pane" id="wizStep1">
+          <div class="wizard-form-title">
+            <h3>這首歌是送給生命中的誰？</h3>
+            <p>選擇你的收禮人與特別時刻，奠定動人的情感基調</p>
+          </div>
+
+          <div class="options-grid" id="recipientOptions">
+            <div class="option-card selected" onclick="selectOption(this, 'recipient', '伴侶 / 另一半')">
+              <div class="option-icon">💑</div>
+              <div class="option-title">伴侶 / 另一半</div>
+            </div>
+            <div class="option-card" onclick="selectOption(this, 'recipient', '父母 / 長輩')">
+              <div class="option-icon">👵</div>
+              <div class="option-title">父母 / 長輩</div>
+            </div>
+            <div class="option-card" onclick="selectOption(this, 'recipient', '孩子 / 新生兒')">
+              <div class="option-icon">👶</div>
+              <div class="option-title">孩子 / 新生兒</div>
+            </div>
+            <div class="option-card" onclick="selectOption(this, 'recipient', '摯友 / 閨蜜')">
+              <div class="option-icon">🥂</div>
+              <div class="option-title">摯友 / 閨蜜</div>
+            </div>
+          </div>
+
+          <div class="wizard-input-group">
+            <label>慶祝什麼特別時刻？</label>
+            <div class="options-grid" id="occasionOptions">
+              <div class="option-card selected" onclick="selectOption(this, 'occasion', '結婚 / 週年紀念')">
+                <div class="option-icon">💍</div>
+                <div class="option-title">結婚 / 週年紀念</div>
+              </div>
+              <div class="option-card" onclick="selectOption(this, 'occasion', '生日驚喜')">
+                <div class="option-icon">🎂</div>
+                <div class="option-title">生日驚喜</div>
+              </div>
+              <div class="option-card" onclick="selectOption(this, 'occasion', '父親節 / 母親節')">
+                <div class="option-icon">💐</div>
+                <div class="option-title">父親節 / 母親節</div>
+              </div>
+              <div class="option-card" onclick="selectOption(this, 'occasion', '純粹表達愛意')">
+                <div class="option-icon">💌</div>
+                <div class="option-title">純粹表達愛與感謝</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-actions">
+            <div></div>
+            <button class="btn-primary" onclick="goToStep(2)">下一步：選擇曲風 →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Music Genre & Mood -->
+        <div class="wizard-step-pane" id="wizStep2" style="display:none;">
+          <div class="wizard-form-title">
+            <h3>挑選他／她最喜歡的音樂曲風</h3>
+            <p>旋律的氛圍是傳遞溫度的關鍵</p>
+          </div>
+
+          <div class="options-grid" id="genreOptions">
+            <div class="option-card selected" onclick="selectOption(this, 'genre', '溫暖原聲吉他民謠 (Acoustic folk ballad)')">
+              <div class="option-icon">🎸</div>
+              <div class="option-title">溫暖原聲吉他民謠</div>
+            </div>
+            <div class="option-card" onclick="selectOption(this, 'genre', '深情動人鋼琴抒情 (Emotional Piano ballad)')">
+              <div class="option-icon">🎹</div>
+              <div class="option-title">深情鋼琴抒情</div>
+            </div>
+            <div class="option-card" onclick="selectOption(this, 'genre', '浪漫輕快 R&B 流行 (Groovy R&B Pop)')">
+              <div class="option-icon">🎧</div>
+              <div class="option-title">浪漫 R&B 流行</div>
+            </div>
+            <div class="option-card" onclick="selectOption(this, 'genre', '寧靜典雅弦樂 (Orchestral Strings / Lullaby)')">
+              <div class="option-icon">🎻</div>
+              <div class="option-title">寧靜典雅弦樂</div>
+            </div>
+          </div>
+
+          <div class="wizard-input-group">
+            <label>人聲演唱風格</label>
+            <div class="options-grid">
+              <div class="option-card selected" onclick="selectOption(this, 'vocal', '溫柔磁性男聲 (Warm male vocals)')">
+                <div class="option-icon">🎙️</div>
+                <div class="option-title">溫柔磁性男聲</div>
+              </div>
+              <div class="option-card" onclick="selectOption(this, 'vocal', '清亮甜美女聲 (Sweet heartfelt female vocals)')">
+                <div class="option-icon">🎤</div>
+                <div class="option-title">清亮甜美女聲</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-actions">
+            <button class="btn-outline" onclick="goToStep(1)">← 上一步</button>
+            <button class="btn-primary" onclick="goToStep(3)">下一步：輸入回憶故事 →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Memories & Details -->
+        <div class="wizard-step-pane" id="wizStep3" style="display:none;">
+          <div class="wizard-form-title">
+            <h3>告訴我們收禮人與你們的回憶</h3>
+            <p>名字、暱稱、旅行的秘密、生活中的可愛小習慣...</p>
+          </div>
+
+          <div class="wizard-input-group">
+            <label>收禮人名字或專屬暱稱：</label>
+            <input type="text" class="wizard-input" id="recipientName" placeholder="例如：婷婷、老爸、親愛的老公、小羽" value="郁婷 (Eva)" oninput="updatePromptPreview()" />
+          </div>
+
+          <div class="wizard-input-group">
+            <label>分享 1~3 件你們最難忘的回憶或想說的真心話：</label>
+            <textarea class="wizard-input" id="storyDetails" placeholder="例如：2016年在花蓮看海的約定、每天早晨為我煮的熱咖啡、每次生病時妳無微不至的照顧、希望牽著妳的手環遊世界..." oninput="updatePromptPreview()">記得我們剛在一起時，在台南老巷子躲雨吃同一碗冰，妳總是把最甜的草莓留給我。十年過去了，謝謝妳給我一個溫暖的家，不管工作多累，一開門看見妳的笑臉就是我的全世界。</textarea>
+            
+            <div class="quick-tags">
+              <span class="quick-tag" onclick="appendTag('第一次約會時的緊張心跳')">+ 第一次約會</span>
+              <span class="quick-tag" onclick="appendTag('深夜廚房煮泡麵的溫馨談心')">+ 廚房夜談</span>
+              <span class="quick-tag" onclick="appendTag('妳生氣時愛嘟嘴的可愛模樣')">+ 可愛小怪癖</span>
+              <span class="quick-tag" onclick="appendTag('謝謝妳為這個家所有的付出')">+ 感謝付出</span>
+            </div>
+          </div>
+
+          <div class="wizard-input-group">
+            <label>你的名字 / 署名：</label>
+            <input type="text" class="wizard-input" id="senderName" placeholder="例如：家緯、永遠愛你的女兒、阿凱" value="愛你的 家緯" oninput="updatePromptPreview()" />
+          </div>
+
+          <!-- Direct AI Bridge Section (No Token Needed!) -->
+          <div class="ai-hub-container">
+            <div class="ai-hub-header">
+              <div class="ai-hub-title">
+                <span>🤖</span>
+                <span>外部 AI 一鍵免 Token 調用中心</span>
+              </div>
+              <span style="font-size: 0.8rem; color: #10b981;">✓ 自動編譯高階金曲 Prompt</span>
+            </div>
+
+            <div class="prompt-preview-box" id="promptPreview">
+              <!-- Prompt preview populated dynamically -->
+            </div>
+
+            <div class="ai-action-buttons">
+              <!-- ChatGPT Direct Launch Button -->
+              <button class="btn-chatgpt" onclick="launchChatGPT()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.28 9.68a5.57 5.57 0 0 0-.48-4.49 5.6 5.6 0 0 0-4.32-2.73 5.68 5.68 0 0 0-4.88 1.48A5.6 5.6 0 0 0 8.08 3a5.64 5.64 0 0 0-4.3 2.73 5.63 5.63 0 0 0 .52 5.57 5.6 5.6 0 0 0-.52 4.49 5.64 5.64 0 0 0 4.3 2.73 5.7 5.7 0 0 0 4.52-.92 5.6 5.6 0 0 0 4.52.92 5.64 5.64 0 0 0 4.3-2.73 5.6 5.6 0 0 0 .86-6.11zm-8.86 10.9a3.8 3.8 0 0 1-2.2-.7l.38-.22 3.65-2.11a.88.88 0 0 0 .44-.76v-5.15l1.55.89v4.25a3.83 3.83 0 0 1-3.82 3.8zm-7.66-3.3a3.78 3.78 0 0 1-.5-2.26v-.44l3.65 2.11a.88.88 0 0 0 .88 0l4.46-2.58v1.78l-3.69 2.13a3.83 3.83 0 0 1-4.8-1.74zm-1.34-8.2a3.8 3.8 0 0 1 1.7-1.56l-.02.44v4.22a.88.88 0 0 0 .44.76l4.46 2.58-1.55.89-3.69-2.13a3.83 3.83 0 0 1-1.34-5.2zm13.14 3.02l-4.46-2.58 1.55-.89 3.69 2.13a3.83 3.83 0 0 1-1.34 5.2 3.8 3.8 0 0 1-1.7 1.56l.02-.44v-4.22a.88.88 0 0 0-.44-.76zm2.34-2.85l-.38.22-3.65 2.11a.88.88 0 0 0-.44.76v5.15l-1.55-.89v-4.25a3.83 3.83 0 0 1 3.82-3.8 3.8 3.8 0 0 1 2.2.7zm-7.92-3.12v-.44a3.83 3.83 0 0 1 4.8 1.74 3.78 3.78 0 0 1 .5 2.26v.44l-3.65-2.11a.88.88 0 0 0-.88 0l-4.46 2.58v-1.78l3.69-2.13a3.8 3.8 0 0 1 2.2-.56z"/></svg>
+                <span>直通 ChatGPT 網頁版寫歌</span>
+              </button>
+
+              <!-- Gemini Direct Launch Button -->
+              <button class="btn-gemini" onclick="launchGemini()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <span>直通 Gemini 網頁版寫歌</span>
+              </button>
+
+              <!-- Copy Prompt -->
+              <button class="btn-copy" onclick="copyFullPrompt()">
+                <span>📋 複製完整 Prompt</span>
+              </button>
+            </div>
+
+            <!-- Paste Back Form -->
+            <div class="paste-back-box">
+              <label style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px; color:var(--accent-gold-light);">
+                📥 將 ChatGPT 或 Gemini 寫好的歌詞貼在下方（立即生成黑膠卡）：
+              </label>
+              <textarea class="wizard-input" id="aiLyricsInput" placeholder="直接在此貼上 AI 生成的整首歌詞（包含 Verse、Chorus、Bridge...）" style="min-height:90px;"></textarea>
+              <div style="margin-top:12px; display:flex; gap:12px; align-items:center;">
+                <button class="btn-primary" onclick="renderCustomResult()">
+                  ✨ 一鍵生成黑膠試聽卡片
+                </button>
+                <span style="font-size:0.82rem; color:#64748b;">或點擊「快速示範」體驗效果</span>
+                <button class="btn-outline" style="padding:6px 14px; font-size:0.82rem;" onclick="loadDemoResult()">
+                  快速套用示範
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-actions">
+            <button class="btn-outline" onclick="goToStep(2)">← 上一步</button>
+            <div></div>
+          </div>
+        </div>
+
+        <!-- Step 4: Preview & Order Generation -->
+        <div class="song-result-card" id="songResultCard">
+          <div class="result-vinyl-layout">
+            <div class="vinyl-disc">
+              <div class="vinyl-center">♪ 專屬</div>
+            </div>
+            <div class="result-info">
+              <span class="song-occasion-badge" id="resOccasion">💍 結婚紀念日 ‧ 專屬定制</span>
+              <h3 id="resTitle">《十年微光中的草莓冰》</h3>
+              <p id="resSub">獻給：郁婷 ‧ 創作人：家緯 ‧ 曲風：溫暖吉他民謠</p>
+              
+              <div class="result-lyrics-box" id="resLyrics">
+                <!-- Lyrics rendered here -->
+              </div>
+
+              <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+                <button class="btn-primary" onclick="playSynthesizedMelody()">
+                  ▶ 試聽專屬吉他/鋼琴旋律
+                </button>
+                <button class="btn-outline" onclick="exportToSuno()">
+                  🔥 一鍵複製並前往 Suno 免費出歌
+                </button>
+                <button class="btn-outline" onclick="goToStep(3)">
+                  ✏️ 重新調整故事
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Reaction Showcase -->
+  <section class="reactions-section" id="reactions">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Real Emotional Moments</div>
+        <h2>看看大家的真實反應</h2>
+        <p>當他們按下播放鍵的那一刻，驚訝、感動、相擁而泣——這是一份永遠無法被取代的生命禮物。</p>
+      </div>
+
+      <div class="reactions-grid">
+        <div class="reaction-card">
+          <div class="reaction-video-thumb" style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80');">
+            <div class="play-video-badge">▶</div>
+            <span class="reaction-tag-float">母親節驚喜</span>
+          </div>
+          <div class="reaction-quote">
+            “天啊，我哭得像個小嬰兒！我請他們為我媽做了一首母親節的歌，她聽完抱著我哭了十分鐘。這是她這輩子收過最珍貴的禮物。”
+          </div>
+          <div class="reaction-author">
+            <div class="author-avatar">陳</div>
+            <div class="author-info">
+              <h4>陳美玲 (Sandy)</h4>
+              <span>送給媽媽 ‧ 台北</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reaction-card">
+          <div class="reaction-video-thumb" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80');">
+            <div class="play-video-badge">▶</div>
+            <span class="reaction-tag-float">結婚七週年</span>
+          </div>
+          <div class="reaction-quote">
+            “一開始我真的超懷疑的，但這絕對是我送過老婆最棒的禮物！我們把附有 QR Code 的裱框歌詞掛在客廳，孩子們每天都跑去掃描播歌！”
+          </div>
+          <div class="reaction-author">
+            <div class="author-avatar">林</div>
+            <div class="author-info">
+              <h4>林家緯 (David)</h4>
+              <span>送給太太 ‧ 新竹</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reaction-card">
+          <div class="reaction-video-thumb" style="background-image: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80');">
+            <div class="play-video-badge">▶</div>
+            <span class="reaction-tag-float">30 歲生日</span>
+          </div>
+          <div class="reaction-quote">
+            “你們只靠短短幾句話，就做出一首完完全全說出我身為父親心聲的歌。我兒子三十歲生日那天，整桌親戚全部感動掉眼淚。”
+          </div>
+          <div class="reaction-author">
+            <div class="author-avatar">黃</div>
+            <div class="author-info">
+              <h4>黃振榮 (Robert)</h4>
+              <span>送給兒子 ‧ 台中</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Steps Section -->
+  <section class="steps-section" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Zero API Token Workflow</div>
+        <h2>免 API Token 的雙軌創作流程</h2>
+        <p>結合網頁互動引導與頂尖 AI 智慧，完全免除付費 API Key 綁定與繁瑣申請</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>填入心意回憶</h3>
+          <p>在網頁上點選對象、場合與曲風，寫下只有你們懂的生活小故事與綽號。</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>一鍵啟動 ChatGPT/Gemini</h3>
+          <p>系統自動將故事封裝成資深金曲製作人 Prompt，點擊直接在 ChatGPT / Gemini 網頁中開啟生成。</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>貼回生成黑膠唱片</h3>
+          <p>將 AI 產出的動人歌詞貼回本頁，自動排版成精美黑膠卡、即時合成試聽旋律與歌詞展示。</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <h3>前往 Suno AI 免費出歌</h3>
+          <p>可直接攜帶提示詞與歌詞前往 Suno / Udio，免花一毛錢就能生成完整人聲演唱音檔！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Song Genre & Occasion Explorer -->
+  <section class="explorer-section" id="samples">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Curated Samples</div>
+        <h2>聽聽你的重要時刻，會是什麼旋律</h2>
+        <p>點擊試聽不同場合與曲風的客製歌曲範例（內建音訊試聽）</p>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterSamples('all')">全部典藏</button>
+        <button class="tab-btn" onclick="filterSamples('anniversary')">結婚 / 紀念日</button>
+        <button class="tab-btn" onclick="filterSamples('birthday')">生日驚喜</button>
+        <button class="tab-btn" onclick="filterSamples('parents')">感謝父母</button>
+        <button class="tab-btn" onclick="filterSamples('memorial')">思念與祝福</button>
+      </div>
+
+      <div class="song-showcase-grid" id="sampleGrid">
+        <div class="song-card" data-category="anniversary">
+          <div class="song-card-top">
+            <div class="song-title-group">
+              <h4>《走過十年的微光》</h4>
+              <span class="song-occasion-badge">💍 結婚十週年紀念</span>
+            </div>
+            <span class="song-genre-tag">深情鋼琴抒情</span>
+          </div>
+          <div class="lyrics-snippet">
+            「陽台上的仙人掌開花了，正如妳當年說過的傻話；謝謝妳成為我的家，風雨再大也溫暖如初...」
+          </div>
+          <div class="song-play-row">
+            <button class="play-track-btn" onclick="playAudioTrack('track1', this)">▶</button>
+            <div class="track-waveform-mini">
+              <div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div>
+            </div>
+            <span style="font-size:0.8rem; color:#64748b;">03:24</span>
+          </div>
+        </div>
+
+        <div class="song-card" data-category="birthday">
+          <div class="song-card-top">
+            <div class="song-title-group">
+              <h4>《奔跑吧，二十歲的風》</h4>
+              <span class="song-occasion-badge">🎂 兒子 20 歲成年禮</span>
+            </div>
+            <span class="song-genre-tag">輕快陽光民謠</span>
+          </div>
+          <div class="lyrics-snippet">
+            「還記得你第一次學騎腳踏車摔跤的下午，現在你已展開雙翼；去飛吧孩子，這裡永遠是你的港灣...」
+          </div>
+          <div class="song-play-row">
+            <button class="play-track-btn" onclick="playAudioTrack('track2', this)">▶</button>
+            <div class="track-waveform-mini">
+              <div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div>
+            </div>
+            <span style="font-size:0.8rem; color:#64748b;">02:58</span>
+          </div>
+        </div>
+
+        <div class="song-card" data-category="parents">
+          <div class="song-card-top">
+            <div class="song-title-group">
+              <h4>《媽媽的便當盒》</h4>
+              <span class="song-occasion-badge">💐 母親節暖心獻禮</span>
+            </div>
+            <span class="song-genre-tag">原聲吉他民謠</span>
+          </div>
+          <div class="lyrics-snippet">
+            「煎蛋的滋味藏著妳沒說的辛苦，那些鬢角的白髮都成了歲月的光芒；媽，換我牽著妳的手慢慢走...」
+          </div>
+          <div class="song-play-row">
+            <button class="play-track-btn" onclick="playAudioTrack('track3', this)">▶</button>
+            <div class="track-waveform-mini">
+              <div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div><div class="bar-mini"></div>
+            </div>
+            <span style="font-size:0.8rem; color:#64748b;">03:45</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Got Questions?</div>
+        <h2>常見問題解答 (FAQ)</h2>
+        <p>為您解答關於免 API Token 寫歌的所有疑慮</p>
+      </div>
+
+      <div class="faq-container">
+        
+        <div class="faq-item active">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q: 為什麼完全不需要輸入 OpenAI 或 Google 的 API Token？</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            因為我們採用了<strong>前端直通技術 (URL Direct & Prompt Bridge)</strong>！當您在網頁上填好回憶與風格時，系統會將金曲級 Prompt 封裝好，點擊按鈕直接開啟官方 ChatGPT 或 Gemini 網頁對話框，並自動填入指令。您只需要使用平時免費登入的帳號，完全不需要申請任何付費信用卡或複雜的 API Key。
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q: 產出歌詞後，如何變成真正有人聲演唱的歌曲？</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            我們生成的 Prompt 自動為您附帶了 <strong>Suno / Udio 專屬音樂標籤</strong>（例如 `[Verse 1]`、`[Chorus]`、曲風 BPM 標籤）。您可以直接點擊「一鍵前往 Suno」，將歌詞貼入 Suno 免費版，幾秒鐘內就能生成由專業 AI 歌手演唱的完整 MP3 歌曲！
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q: ChatGPT 與 Gemini 哪一個寫歌詞比較動人？</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            兩者皆非常強大！<strong>ChatGPT</strong>（特別是 GPT-4o 系列）在押韻工整度、流行樂副歌 Hook 記憶點上非常出色；<strong>Gemini 2.5 Flash</strong> 則在繁體中文的抒情意境、台灣在地用語與詩意隱喻上十分細膩。您可以兩者都點擊試試看，挑選最觸動您的一版！
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast -->
+  <div class="toast-popup" id="toast">
+    <span>✓</span>
+    <span id="toastMsg">已成功複製到剪貼簿！</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col" style="flex: 1.5;">
+          <div class="nav-brand" style="margin-bottom: 14px;">
+            <div class="brand-icon">♪</div>
+            <div>ForeverSongs<span class="gold">®</span></div>
+          </div>
+          <p style="line-height: 1.7; color: #64748b; max-width: 320px;">
+            免 API Token 客製歌曲禮物平台。把深藏在心底的愛與回憶，化作傳遞一生的動人旋律。
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>探索場合</h5>
+          <ul>
+            <li><a href="#builder">結婚紀念日歌曲</a></li>
+            <li><a href="#builder">生日驚喜客製</a></li>
+            <li><a href="#builder">母親節 / 父親節禮物</a></li>
+            <li><a href="#builder">婚禮誓詞客製曲</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>AI 串接技術</h5>
+          <ul>
+            <li><a href="#builder">直通 ChatGPT 網頁版</a></li>
+            <li><a href="#builder">直通 Google Gemini</a></li>
+            <li><a href="#builder">Suno AI 提示詞相容</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 ForeverSongs® Inc. 版權所有 ‧ 免 API Token 自由創作版</div>
+        <div style="display:flex; gap: 16px; color: #475569;">
+          <span>純前端免伺服器儲存</span>
+          <span>•</span>
+          <span>隱私無痕保障</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // State
+    let wizardData = {
+      recipient: '伴侶 / 另一半',
+      occasion: '結婚 / 週年紀念',
+      genre: '溫暖原聲吉他民謠 (Acoustic folk ballad)',
+      vocal: '溫柔磁性男聲 (Warm male vocals)'
+    };
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.style.display = 'flex';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3500);
+    }
+
+    function selectOption(el, category, value) {
+      const parent = el.parentElement;
+      parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      wizardData[category] = value;
+      updatePromptPreview();
+    }
+
+    function goToStep(step) {
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById('wizStep' + i).style.display = 'none';
+      }
+      document.getElementById('wizStep' + step).style.display = 'block';
+
+      for (let i = 1; i <= 4; i++) {
+        const pill = document.getElementById('stepPill' + i);
+        pill.classList.remove('active');
+        if (i < step) {
+          pill.classList.add('completed');
+        } else if (i === step) {
+          pill.classList.add('active');
+        }
+      }
+      if (step === 3) {
+        updatePromptPreview();
+      }
+    }
+
+    function appendTag(text) {
+      const textarea = document.getElementById('storyDetails');
+      textarea.value += ' ' + text + '；';
+      updatePromptPreview();
+    }
+
+    // Build the master prompt for ChatGPT / Gemini
+    function generateMasterPrompt() {
+      const name = document.getElementById('recipientName').value.trim() || '親愛的妳';
+      const sender = document.getElementById('senderName').value.trim() || '愛你的人';
+      const story = document.getElementById('storyDetails').value.trim();
+
+      return `你是一位榮獲金曲獎的頂級華語流行音樂製作人與作詞家。現在請為我創作一首極具感染力、催人淚下、充滿真摯細節的個人化歌曲。
+
+【基本設定】
+- 送禮對象：${wizardData.recipient}（名字/稱呼：${name}）
+- 慶祝場合：${wizardData.occasion}
+- 音樂曲風與氛圍：${wizardData.genre}
+- 演唱人聲偏好：${wizardData.vocal}
+- 創作者/署名：${sender}
+
+【真實回憶與專屬細節】（請務必將這些生活細節巧妙寫進歌詞）：
+"${story}"
+
+【作詞與排版要求】
+1. 請為這首歌取一個非常動人、充滿詩意的美麗歌名。
+2. 歌曲結構必須包含完整的標籤（方便直接貼入 Suno / Udio 音樂生成器）：
+   [Style: ${wizardData.genre}, ${wizardData.vocal}, emotional, 74 bpm]
+   [Intro]
+   [Verse 1] (描繪初見或難忘的回憶細節)
+   [Pre-Chorus] (情感層層堆疊)
+   [Chorus] (整首歌最深情、洗腦且催淚的副歌 Hook)
+   [Verse 2] (生活中的點滴、相伴的感動)
+   [Chorus]
+   [Bridge] (深情告白或對未來的約定，達到情緒最高潮)
+   [Chorus]
+   [Outro] (輕聲收尾，點題獻詞)
+3. 歌詞語言為繁體中文 (zh-TW)，押韻自然流暢，畫面感極強，絕不落入俗套。
+4. 在最後附上一段 50 字內、適合印在黑膠唱片封面上的【專屬贈言】。`;
+    }
+
+    function updatePromptPreview() {
+      const previewEl = document.getElementById('promptPreview');
+      if (previewEl) {
+        previewEl.textContent = generateMasterPrompt();
+      }
+    }
+
+    // Launch ChatGPT with Prompt encoded into URL
+    function launchChatGPT() {
+      const prompt = generateMasterPrompt();
+      navigator.clipboard.writeText(prompt).then(() => {
+        showToast('已複製 Prompt！即刻為您開啟 ChatGPT 網頁對話...');
+      }).catch(() => {
+        showToast('即刻為您開啟 ChatGPT 網頁對話...');
+      });
+
+      // OpenAI web chat supports parameter or direct prompt URL
+      const encoded = encodeURIComponent(prompt);
+      const url = `https://chatgpt.com/?q=${encoded}`;
+      window.open(url, '_blank');
+    }
+
+    // Launch Gemini with Prompt
+    function launchGemini() {
+      const prompt = generateMasterPrompt();
+      navigator.clipboard.writeText(prompt).then(() => {
+        showToast('已複製 Prompt 到剪貼簿！正前往 Gemini 網頁，按 Ctrl+V / ⌘+V 貼上即可！');
+      }).catch(() => {
+        showToast('正前往 Gemini 網頁...');
+      });
+
+      window.open('https://gemini.google.com/app', '_blank');
+    }
+
+    function copyFullPrompt() {
+      const prompt = generateMasterPrompt();
+      navigator.clipboard.writeText(prompt).then(() => {
+        showToast('完整 Prompt 已複製到剪貼簿！可直接貼給任一 AI。');
+      });
+    }
+
+    // Render lyrics pasted back from ChatGPT or Gemini
+    function renderCustomResult() {
+      const rawLyrics = document.getElementById('aiLyricsInput').value.trim();
+      const name = document.getElementById('recipientName').value.trim() || '親愛的妳';
+      const sender = document.getElementById('senderName').value.trim() || '愛你的人';
+
+      if (!rawLyrics) {
+        alert('請先在上方框中貼入 ChatGPT 或 Gemini 寫好的歌詞，或點擊「快速套用示範」！');
+        return;
+      }
+
+      document.getElementById('resOccasion').textContent = `✨ ${wizardData.occasion} ‧ 專屬定制`;
+      document.getElementById('resTitle').textContent = `《寫給 ${name} 的歌》`;
+      document.getElementById('resSub').textContent = `獻給：${name} ‧ 創作人：${sender} ‧ 風格：${wizardData.genre}`;
+      document.getElementById('resLyrics').textContent = rawLyrics;
+
+      document.getElementById('stepPill4').classList.add('active');
+      document.getElementById('songResultCard').style.display = 'block';
+      document.getElementById('songResultCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast('專屬黑膠試聽卡片已生成！');
+    }
+
+    function loadDemoResult() {
+      const name = document.getElementById('recipientName').value.trim() || '郁婷';
+      const sender = document.getElementById('senderName').value.trim() || '家緯';
+      const demo = `[Style: Acoustic folk ballad, emotional cello, warm acoustic guitar, warm male vocals, 72 bpm]
+
+[Intro - 溫暖吉他撥弦與大提琴]
+
+[Verse 1]
+台南老巷的石磚路上 還留著那年驟雨的清涼
+妳把最後一口草莓冰 輕輕舀到我的唇旁
+那時我們口袋空空 只有對未來的想像
+妳笑著說 只要有我在 哪裡都有陽光
+
+[Pre-Chorus]
+時針不知不覺 走過了十個春夏秋冬
+廚房熱湯的白煙 融化了所有疲憊與匆忙
+
+[Chorus]
+親愛的${name} 這是我寫給妳一生的歌
+世界再喧鬧 一推開門看見妳 才是我的港灣
+十年的晨光與星河 每一幕都在我心裡珍藏
+牽緊這雙手 直到頭髮斑白 我依然在妳身旁
+
+[Bridge]
+感謝妳為這個家 撐起每一次的溫暖守候
+未來的每一個十年 都有我陪妳慢慢走
+
+[Outro]
+雨過天晴 老巷依舊
+親愛的 這是${sender}給妳 永不褪色的承諾`;
+
+      document.getElementById('aiLyricsInput').value = demo;
+      renderCustomResult();
+    }
+
+    function exportToSuno() {
+      const lyrics = document.getElementById('resLyrics').textContent;
+      navigator.clipboard.writeText(lyrics).then(() => {
+        showToast('歌詞已複製！正為您開啟 Suno AI，點擊 Create 貼入歌詞即可生成音樂！');
+        setTimeout(() => {
+          window.open('https://suno.com/create', '_blank');
+        }, 800);
+      });
+    }
+
+    // Web Audio Synthesizer Engine
+    let audioCtx = null;
+    let isPlaying = false;
+    let activeTrackId = null;
+    let currentOscillators = [];
+    let heroInterval = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function stopAllAudio() {
+      currentOscillators.forEach(osc => {
+        try { osc.stop(); } catch(e){}
+      });
+      currentOscillators = [];
+      if (heroInterval) {
+        clearInterval(heroInterval);
+        heroInterval = null;
+      }
+      isPlaying = false;
+      document.getElementById('heroVisualizer').classList.remove('playing');
+      document.getElementById('heroPlayBtn').textContent = '▶';
+      document.getElementById('hero-play-icon').textContent = '▶';
+      document.getElementById('hero-play-text').textContent = '聆聽主打範例曲';
+      document.querySelectorAll('.song-card').forEach(c => c.classList.remove('is-active'));
+      document.querySelectorAll('.play-track-btn').forEach(b => b.textContent = '▶');
+    }
+
+    function playMelodySequence(chords, bpm = 75) {
+      initAudio();
+      stopAllAudio();
+      isPlaying = true;
+
+      const beatDuration = 60 / bpm;
+      let time = audioCtx.currentTime + 0.05;
+
+      chords.forEach((chord) => {
+        chord.forEach((freq, noteIdx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = noteIdx === 0 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(freq, time + (noteIdx * 0.15));
+
+          gain.gain.setValueAtTime(0.001, time + (noteIdx * 0.15));
+          gain.gain.exponentialRampToValueAtTime(0.12, time + (noteIdx * 0.15) + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.001, time + (noteIdx * 0.15) + beatDuration * 1.5);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(time + (noteIdx * 0.15));
+          osc.stop(time + (noteIdx * 0.15) + beatDuration * 1.6);
+          currentOscillators.push(osc);
+        });
+        time += beatDuration;
+      });
+
+      const totalDuration = chords.length * beatDuration * 1000;
+      heroInterval = setTimeout(() => {
+        if (isPlaying) {
+          playMelodySequence(chords, bpm);
+        }
+      }, totalDuration);
+    }
+
+    const romanticChords = [
+      [261.63, 329.63, 392.00, 523.25],
+      [196.00, 246.94, 293.66, 392.00],
+      [220.00, 261.63, 329.63, 440.00],
+      [174.61, 220.00, 261.63, 349.23],
+      [261.63, 329.63, 392.00, 523.25],
+      [220.00, 261.63, 329.63, 440.00],
+      [174.61, 220.00, 261.63, 349.23],
+      [196.00, 246.94, 293.66, 392.00]
+    ];
+
+    function toggleHeroAudio() {
+      if (isPlaying && activeTrackId === 'hero') {
+        stopAllAudio();
+      } else {
+        activeTrackId = 'hero';
+        playMelodySequence(romanticChords, 72);
+        document.getElementById('heroVisualizer').classList.add('playing');
+        document.getElementById('heroPlayBtn').textContent = '❚❚';
+        document.getElementById('hero-play-icon').textContent = '❚❚';
+        document.getElementById('hero-play-text').textContent = '暫停試聽';
+      }
+    }
+
+    function playHeroAudio() {
+      toggleHeroAudio();
+      const heroSec = document.querySelector('.hero-player-card');
+      heroSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function playAudioTrack(id, btn) {
+      if (isPlaying && activeTrackId === id) {
+        stopAllAudio();
+        activeTrackId = null;
+      } else {
+        activeTrackId = id;
+        playMelodySequence(romanticChords, 80);
+        const card = btn.closest('.song-card');
+        card.classList.add('is-active');
+        btn.textContent = '❚❚';
+      }
+    }
+
+    function playSynthesizedMelody() {
+      playMelodySequence(romanticChords, 76);
+      showToast('正在為您播放 AI 原創伴奏琶音旋律...');
+    }
+
+    function filterSamples(category) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.song-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleFaq(el) {
+      const parent = el.parentElement;
+      const isActive = parent.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+      if (!isActive) {
+        parent.classList.add('active');
+      }
+    }
+
+    // Init Prompt on load
+    window.addEventListener('DOMContentLoaded', () => {
+      updatePromptPreview();
+    });
+  </script>
+</body>
+</html>
