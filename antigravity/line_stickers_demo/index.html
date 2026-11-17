@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>LINE 貼圖預覽 (商業級厚白邊泡泡字版)</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    h1 { margin-bottom: 8px; color: #fff; }
+    p.sub { color: #888; margin-top: 0; font-size: 15px; }
+    .badge-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0 30px;
+    }
+    .badge {
+      background: #2b2b2b;
+      border: 1px solid #444;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+    .sheet-card {
+      background: #242424;
+      border-radius: 16px;
+      padding: 20px;
+      display: inline-block;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      margin-bottom: 40px;
+      border: 1px solid #333;
+    }
+    .sheet-card img {
+      max-width: 600px;
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+    .grid-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .sticker-item {
+      background: #242424;
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid #333;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .sticker-item:hover {
+      transform: translateY(-4px);
+      border-color: #4ade80;
+    }
+    .sticker-preview-box {
+      /* 模擬 LINE 深色對話背景 */
+      background: #111;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+    }
+    .sticker-preview-box img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .sticker-label {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #4ade80;
+      font-weight: bold;
+    }
+    .btn-download {
+      display: inline-block;
+      background: #22c55e;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 LINE 貼圖完成 (商業級清晰泡泡字版)</h1>
+  <p class="sub">忠實還原個人神韻 ＋ 雙層厚白邊立體字 (深色模式/黑底 100% 清晰)</p>
+
+  <div class="badge-bar">
+    <div class="badge">✅ 16 張全套完成</div>
+    <div class="badge">✅ 官方規範 370×320 透明 PNG</div>
+    <div class="badge">✅ main.png / tab.png 齊備</div>
+    <div class="badge">✅ 雙方案申請資料 (含免費自用SOP)</div>
+  </div>
+
+  <div class="sheet-card">
+    <img src="elder_sheet_4x4.jpg" alt="16張貼圖拼圖">
+  </div>
+
+  <h2>📱 深色模式 (Dark Mode) 對話預覽</h2>
+  <div class="grid-container">
+    <div class="sticker-item">
+      <div class="sticker-preview-box"><img src="sample_01.png" alt="讚啦！"></div>
+      <div class="sticker-label">01. 讚啦！</div>
+    </div>
+    <div class="sticker-item">
+      <div class="sticker-preview-box"><img src="sample_02.png" alt="早安！"></div>
+      <div class="sticker-label">02. 早安！</div>
+    </div>
+    <div class="sticker-item">
+      <div class="sticker-preview-box"><img src="sample_03.png" alt="感謝主"></div>
+      <div class="sticker-label">03. 感謝主</div>
+    </div>
+    <div class="sticker-item">
+      <div class="sticker-preview-box"><img src="sample_04.png" alt="收到！"></div>
+      <div class="sticker-label">04. 收到！</div>
+    </div>
+  </div>
+</body>
+</html>
