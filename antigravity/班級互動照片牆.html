@@ -1379,6 +1379,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     <div id="classroom-banner" style="font-size:14px; font-weight:bold; color:#1565c0; margin:0 0 3px 0; line-height:1.2;">● 目前班級：AI 創作班</div>
     <input type="text" id="studentName" placeholder="輸入姓名 (系統會自動記憶)" style="margin-top:2px;">
+    <input type="text" id="studentNote" placeholder="作品心得 / 一句話說明 (選填)" maxlength="120" style="margin-top:6px;">
     <input type="file" id="photoInput" accept="image/*">
     <div id="line-external-browser-banner" style="display:none; margin:2px 0 5px; font-size:13px; line-height:1.35; color:#6d4c41; white-space:nowrap;">
         如果上傳不了照片請點「<a id="line-external-browser-link" href="#" style="font-weight:900; color:#d97706; text-decoration:underline;">這裡用手機瀏覽器開啟</a>」
@@ -13439,6 +13440,9 @@ ${stickerVideoState.mood.full}
         if (!name || name === '匿名') name = getDefaultSystemUserName();
         syncStudentNameFields(name);
 
+        const noteEl = nameId === 'studentName' ? document.getElementById('studentNote') : null;
+        const customNote = noteEl ? noteEl.value.trim() : '';
+
         const btn = document.getElementById(btnId);
         const originalBtnText = btn.innerText;
         btn.innerText = '處理中...請稍候';
@@ -13473,7 +13477,7 @@ ${stickerVideoState.mood.full}
                         studentName: name,
                         photoBase64: base64,
                         isPet: isPet,
-                        promptText: isPet ? currentPetPrompt : null
+                        promptText: customNote || (isPet ? currentPetPrompt : null)
                     })
                 });
             } catch (networkError) {
@@ -13498,6 +13502,7 @@ ${stickerVideoState.mood.full}
             if (data && data.success) {
                 alert('上傳成功！');
                 document.getElementById(inputId).value = '';
+                if (noteEl) noteEl.value = '';
                 if (typeof clearClipboardPreview === 'function') clearClipboardPreview(inputId);
 
                 if (isPet) currentPetPrompt = '';
