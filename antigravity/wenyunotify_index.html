@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿玉教學網｜AI、影像剪輯與研習講義影片總表</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --yt: #ef4444;
+    --ho: #10b981;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px 60px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+  }
+  h1 { margin: 0; font-size: 1.75rem; }
+  .subtitle { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.25rem; font-weight: 700; color: var(--accent); }
+  .stat-lbl { font-size: 0.78rem; color: var(--muted); }
+
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .card h2 { margin: 0 0 10px; font-size: 1.15rem; color: var(--accent); }
+  .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 0.9rem; color: #cbd5e1; }
+  .card li { margin-bottom: 6px; }
+  .card a { color: var(--accent); text-decoration: none; }
+  .card a:hover { text-decoration: underline; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  input[type="search"] {
+    flex: 1;
+    min-width: 240px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .filter-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  .filter-btn.active {
+    background: var(--accent);
+    color: #0f172a;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: #0f172a88; color: var(--muted); font-weight: 600; position: sticky; top: 0; }
+  tr:hover { background: #ffffff08; }
+  .title-link { color: var(--text); font-weight: 500; text-decoration: none; }
+  .title-link:hover { color: var(--accent); text-decoration: underline; }
+  .topic-col { color: #cbd5e1; max-width: 260px; }
+  .muted { color: #475569; }
+
+  .cat-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    background: #334155;
+    color: #e2e8f0;
+  }
+  .cat-15-ai相關 { background: #1e3a8a; color: #bfdbfe; }
+  .cat-16-影像剪輯 { background: #581c87; color: #e9d5ff; }
+  .cat-2025研習活動 { background: #064e3b; color: #a7f3d0; }
+  .cat-2026研習活動 { background: #7c2d12; color: #fed7aa; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    text-decoration: none;
+    margin: 2px 4px 2px 0;
+    white-space: nowrap;
+  }
+  .badge-yt { background: #7f1d1d; color: #fecaca; }
+  .badge-yt:hover { background: #991b1b; }
+  .badge-ho { background: #064e3b; color: #a7f3d0; }
+  .badge-ho:hover { background: #065f46; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>阿玉教學網｜講義與教學影片檢索總表</h1>
+      <div class="subtitle">來源：<a href="https://sites.google.com/site/wenyunotify/%E9%A6%96%E9%A0%81?authuser=0" target="_blank" style="color:var(--accent)">黃文玉老師 阿玉教學網</a>（涵蓋 15 AI相關、16 影像剪輯、2025–2026 研習活動）</div>
+    </div>
+    <div class="stats">
+      <div class="stat-box"><div class="stat-num">135</div><div class="stat-lbl">收錄頁面</div></div>
+      <div class="stat-box"><div class="stat-num">81</div><div class="stat-lbl">含 YouTube 影片</div></div>
+      <div class="stat-box"><div class="stat-num">69</div><div class="stat-lbl">含講義 / Padlet</div></div>
+    </div>
+  </header>
+
+  <section class="spotlight-grid">
+    <div class="card">
+      <h2>🎬 Concat 免費剪輯（2026/11/06）</h2>
+      <ul>
+        <li><strong>定位</strong>：號稱免費版 CapCut（測試版 v0.2.8 / v0.2.9），<a href="https://concat.standalones.org/" target="_blank">官網</a>｜<a href="https://github.com/jub0t/Concat" target="_blank">GitHub</a>｜<a href="https://youtu.be/mDZK_YwGZUU" target="_blank">教學影片</a></li>
+        <li><strong>設定要點</strong>：File / Settings 切【繁體中文】，下載「轉錄器（語音轉字幕）」與「語音（TTS）」模型。</li>
+        <li><strong>實測優缺</strong>：支援點到即分割、定格/倒轉、子母畫面、關鍵影格（縮放/位置/旋轉/不透明/音量/遮罩）及匯出入 SRT；目前片段移動較受限、自動字幕偏簡體、只能匯出 MP4，但對國小剪輯教學已相當足夠。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>🌊 Google Flow AI 短影片工作流</h2>
+      <ul>
+        <li><strong>代表場次</strong>：<a href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20261114%E5%8F%B0%E7%81%A3%E6%95%99%E8%82%B2%E7%A7%91%E6%8A%80%E5%B1%95s4a%E7%9F%AD%E8%AC%9B" target="_blank">2026/11/14 教育科技展 S4A 短講</a>（<a href="https://youtu.be/jtyfflboFOA" target="_blank">錄影</a>｜<a href="https://twgo.io/1114a" target="_blank">講義</a>）與 <a href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/47-google-flow" target="_blank">47 Google Flow</a>。</li>
+        <li><strong>80 秒短片四步驟</strong>：① 用 Gemini 生成故事腳本與角色一致性（11 張關鍵幀中英文 Prompt）→ ② Flow 生出 11 張圖（01~11）→ ③ Gemini 生成 10 段「首尾幀」動態與旁白 Prompt → ④ 用 Veo 首尾幀生成每段 8 秒（720P/1080P）再串接。</li>
+        <li><strong>注意事項</strong>：可生成中文語音，但畫面中文字易亂碼。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>💻 Vibe Coding 教學小工具實戰</h2>
+      <ul>
+        <li><strong>系列教材</strong>：共 4 篇＋作品集（<a href="https://youtu.be/ImmDpwwONgU" target="_blank">上集</a>｜<a href="https://youtu.be/fEAk79Upxkw" target="_blank">下集</a>｜<a href="https://youtu.be/lo0JD5xUglU" target="_blank">二上</a>｜<a href="https://youtu.be/dOOY73-bMf8" target="_blank">二下</a>），搭配 <a href="https://gg90052.github.io/ezpage/" target="_blank">EZPage</a> 一鍵部署至 GitHub Pages。</li>
+        <li><strong>教師實戰作品</strong>：<a href="https://wenyu8787-rgb.github.io/classmanager2/" target="_blank">班級小管家</a>、<a href="https://wenyu8787-rgb.github.io/classseat/" target="_blank">互動式座位表</a>、<a href="https://wenyu8787-rgb.github.io/readbook2/" target="_blank">閱讀打卡牆</a>（Firebase / GAS+Sheet）、<a href="https://wenyu8787-rgb.github.io/write/" target="_blank">多人作文平台</a>、教師情緒彩虹卡、感恩夢想牆。</li>
+        <li><strong>風險提醒</strong>：留意可維護性、除錯難度及 API 金鑰/資料庫安全性（「小孩拿大槍」）。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="controls">
+    <input type="search" id="q" placeholder="搜尋關鍵字（如：Concat、Flow、Vibe、短影片、Copilot、新上…）">
+    <button class="filter-btn active" data-cat="all">全部 (135)</button>
+    <button class="filter-btn" data-cat="15-ai相關">15 AI相關</button>
+    <button class="filter-btn" data-cat="16-影像剪輯">16 影像剪輯</button>
+    <button class="filter-btn" data-cat="2025研習活動">2025 研習</button>
+    <button class="filter-btn" data-cat="2026研習活動">2026 研習</button>
+    <button class="filter-btn" id="btn-yt">僅限有影片</button>
+    <button class="filter-btn" id="btn-ho">僅限有講義</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:120px">分類</th>
+          <th style="width:240px">單元 / 研習名稱</th>
+          <th>主題說明</th>
+          <th>講義 / 資源連結</th>
+          <th style="width:180px">YouTube 影片</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 01 用scratch玩ai scratch之ai課程設計與教學">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/01-%E7%94%A8scratch%E7%8E%A9ai" target="_blank" rel="noopener">01 用Scratch玩AI</a></td>
+        <td class="topic-col">Scratch之AI課程設計與教學</td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/arYZqksnDqE" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/pLAfujAH81k" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 02 openai及chatgpt ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/02-openai%E5%8F%8Achatgpt" target="_blank" rel="noopener">02 OpenAI及ChatGPT</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 03 ai在圖文影音的應用 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/03-ai%E5%9C%A8%E5%9C%96%E6%96%87%E5%BD%B1%E9%9F%B3%E7%9A%84%E6%87%89%E7%94%A8" target="_blank" rel="noopener">03 AI在圖文影音的應用</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://drive.google.com/drive/u/0/my-drive" target="_blank" rel="noopener">📄 https://drive.google.c…</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=0On1BvmXuGU" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/0On1BvmXuGU" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/13j_SOWkhfQ" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/1rmPnO1eqL4" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/7uljoeHgN4g" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/9T8Dn2cY_04" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/9ob6v25ylSA" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/Cw2LGRRch-c" target="_blank" rel="noopener">▶ 影片 8</a> <a class="badge badge-yt" href="https://youtu.be/IWs_R1w-M6I" target="_blank" rel="noopener">▶ 影片 9</a> <a class="badge badge-yt" href="https://youtu.be/JTFNF22TG9s" target="_blank" rel="noopener">▶ 影片 10</a> <a class="badge badge-yt" href="https://youtu.be/RIbmuxSLjv8" target="_blank" rel="noopener">▶ 影片 11</a> <a class="badge badge-yt" href="https://youtu.be/SjDIhn_Gmc0" target="_blank" rel="noopener">▶ 影片 12</a> <a class="badge badge-yt" href="https://youtu.be/Vb217iAG448" target="_blank" rel="noopener">▶ 影片 13</a> <a class="badge badge-yt" href="https://youtu.be/XfTQ2uIWWbA" target="_blank" rel="noopener">▶ 影片 14</a> <a class="badge badge-yt" href="https://youtu.be/Z8HiCCGrpGw" target="_blank" rel="noopener">▶ 影片 15</a> <a class="badge badge-yt" href="https://youtu.be/en4O8rT5uRU" target="_blank" rel="noopener">▶ 影片 16</a> <a class="badge badge-yt" href="https://youtu.be/gdsORTpQ60M" target="_blank" rel="noopener">▶ 影片 17</a> <a class="badge badge-yt" href="https://youtu.be/iSBqyVWTqhU" target="_blank" rel="noopener">▶ 影片 18</a> <a class="badge badge-yt" href="https://youtu.be/lnbpV_W4Pzc" target="_blank" rel="noopener">▶ 影片 19</a> <a class="badge badge-yt" href="https://youtu.be/nv1GOEaa9Qk" target="_blank" rel="noopener">▶ 影片 20</a> <a class="badge badge-yt" href="https://youtu.be/vaa3cZdtwLw" target="_blank" rel="noopener">▶ 影片 21</a> <a class="badge badge-yt" href="https://youtu.be/yF_dlU-ja7w" target="_blank" rel="noopener">▶ 影片 22</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 04 ai教學入門(一) ai在教學上的應用">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/04-ai%E6%95%99%E5%AD%B8%E5%85%A5%E9%96%80%E4%B8%80" target="_blank" rel="noopener">04 AI教學入門(一)</a></td>
+        <td class="topic-col">AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://drive.google.com/file/d/1xidCJJT4kRcdTSfpdN85uOCVFOeehE40/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1kB_Dj-Mt6hdU3_AM7E0V0__pRLnHxvIj/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/12Kw-R_DfKfv2dohago-czS8tq1SIkFHn/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1RAGxN9Q9K--eBkVJoqIBMq3xcvy6HFD8/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1wrEwgT7MQLJuFpTqfXc8Ks8ES3NtRT67/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1hovosz8CIymrqhCaMH7uh87TUVpYinQ8/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1V85au4xZ3x6WMHI6L5a8Y9AxjxaBJC3_/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1kvPhZ47ayhgsKTnqH91eFNOnIX9sPXg2/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1mhtZWC_MeahTkZV_ECDq5DTcdZMmesrt/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1eVU9PmHXUgPseF_PZ0j-HtywPQD0EDLM/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1NSdTwXnWMEs6CTbgwp_HFTZ3Q4M2XxHt/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1wMUwLFapGdD14hqSX1rKC4-eiacGQC5B/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1519JKUfvS6Czl--PdzkF1hysfgRhi8Fy/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1imkaZsfktbdUfjJOgoKzuwCj7mWPi2cc/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1cAsM6RBi1N59sdq4_Cr1_2zXUI3QwLYx/view?usp=share_link" target="_blank" rel="noopener">📄 聊天記錄</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFcfkjF8PM/fMULMxFsI_DL4pHFOYULVQ/view?utm_content=DAFcfkjF8PM&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 401</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFazhxJhvg/xuIFO23f69yf3j99Es0DBw/view?utm_content=DAFazhxJhvg&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 402</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFce_zPc8w/f8XQ6X5pdjGaEy33gyxj6w/view?utm_content=DAFce_zPc8w&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 403</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbc37ZGNo/-5WKg7KXOTRVwbK9wp6kHQ/view?utm_content=DAFbc37ZGNo&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 404</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbcQ79qx4/sjAzDXCZH82AO1bD6ZdJeg/view?utm_content=DAFbcQ79qx4&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 405</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFceu_jubg/lgmR_7Onq1JJqD4yM2UN-Q/view?utm_content=DAFceu_jubg&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 406</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFceRuK6NA/k-hRpPjicwPPRDoW3X5wDQ/view?utm_content=DAFceRuK6NA&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 407</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFcf28I6Bc/vlAQ56YY0AWXqKdoJ1tCFQ/view?utm_content=DAFcf28I6Bc&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 408</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbcaGexHg/qjE9ODG58dbN11fRICOvBw/view?utm_content=DAFbcaGexHg&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 409</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbWPHuD8g/ragmGPd1nP2TzjdiHW6bqQ/view?utm_content=DAFbWPHuD8g&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 410</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFceHout1s/PFC_ixpGnOfyExgVmzNxTw/view?utm_content=DAFceHout1s&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 411</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbEAbcZ5w/5DjHjhw8PtrMq_KLdxOOxA/view?utm_content=DAFbEAbcZ5w&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 412</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=CZ3cGxEPuCo" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/1rmPnO1eqL4" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/7uljoeHgN4g" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/87ZNihQDrVo" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/9Pv_9yZ4VaI" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/9T8Dn2cY_04" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/Cw2LGRRch-c" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/DMc6GUKw0l0" target="_blank" rel="noopener">▶ 影片 8</a> <a class="badge badge-yt" href="https://youtu.be/IWs_R1w-M6I" target="_blank" rel="noopener">▶ 影片 9</a> <a class="badge badge-yt" href="https://youtu.be/RIbmuxSLjv8" target="_blank" rel="noopener">▶ 影片 10</a> <a class="badge badge-yt" href="https://youtu.be/Vb217iAG448" target="_blank" rel="noopener">▶ 影片 11</a> <a class="badge badge-yt" href="https://youtu.be/XfTQ2uIWWbA" target="_blank" rel="noopener">▶ 影片 12</a> <a class="badge badge-yt" href="https://youtu.be/gdsORTpQ60M" target="_blank" rel="noopener">▶ 影片 13</a> <a class="badge badge-yt" href="https://youtu.be/nv1GOEaa9Qk" target="_blank" rel="noopener">▶ 影片 14</a> <a class="badge badge-yt" href="https://youtu.be/vaa3cZdtwLw" target="_blank" rel="noopener">▶ 影片 15</a> <a class="badge badge-yt" href="https://youtu.be/yF_dlU-ja7w" target="_blank" rel="noopener">▶ 影片 16</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 05 ai入門教學(二) ai入門教學(二)">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/05-ai%E5%85%A5%E9%96%80%E6%95%99%E5%AD%B8%E4%BA%8C" target="_blank" rel="noopener">05 AI入門教學(二)</a></td>
+        <td class="topic-col">AI入門教學(二)</td>
+        <td><a class="badge badge-ho" href="https://docs.google.com/forms/d/e/1FAIpQLSdROAyDiRLJ5oPbZIOL3ImpHpk1KQnxcUyq0wVFA2GVhEjcDQ/viewform?fbclid=IwAR1UqlmnRjYZt3l8RAHhRgcF5BIPr4Q6SgFMlr66GEvVBPCEl_40ImWdwXM" target="_blank" rel="noopener">📄 https://docs.google.co…</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFcfkjF8PM/fMULMxFsI_DL4pHFOYULVQ/view?utm_content=DAFcfkjF8PM&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 401</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFazhxJhvg/xuIFO23f69yf3j99Es0DBw/view?utm_content=DAFazhxJhvg&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 402</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFce_zPc8w/f8XQ6X5pdjGaEy33gyxj6w/view?utm_content=DAFce_zPc8w&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 403</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbc37ZGNo/-5WKg7KXOTRVwbK9wp6kHQ/view?utm_content=DAFbc37ZGNo&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 404</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbcQ79qx4/sjAzDXCZH82AO1bD6ZdJeg/view?utm_content=DAFbcQ79qx4&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 405</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFceu_jubg/lgmR_7Onq1JJqD4yM2UN-Q/view?utm_content=DAFceu_jubg&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 406</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFceRuK6NA/k-hRpPjicwPPRDoW3X5wDQ/view?utm_content=DAFceRuK6NA&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 407</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFcf28I6Bc/vlAQ56YY0AWXqKdoJ1tCFQ/view?utm_content=DAFcf28I6Bc&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 408</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbcaGexHg/qjE9ODG58dbN11fRICOvBw/view?utm_content=DAFbcaGexHg&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 409</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbWPHuD8g/ragmGPd1nP2TzjdiHW6bqQ/view?utm_content=DAFbWPHuD8g&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 410</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFceHout1s/PFC_ixpGnOfyExgVmzNxTw/view?utm_content=DAFceHout1s&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 411</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAFbEAbcZ5w/5DjHjhw8PtrMq_KLdxOOxA/view?utm_content=DAFbEAbcZ5w&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 412</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/9I1Hj-sj3sc" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/CSG98ZHldCM" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/dkUjHPQ4nHA" target="_blank" rel="noopener">▶ 影片 3</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 06 小學生的ai教學 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/06-%E5%B0%8F%E5%AD%B8%E7%94%9F%E7%9A%84ai%E6%95%99%E5%AD%B8" target="_blank" rel="noopener">06 小學生的AI教學</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 07 ai製作影片 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/07-ai%E8%A3%BD%E4%BD%9C%E5%BD%B1%E7%89%87" target="_blank" rel="noopener">07 AI製作影片</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://drive.google.com/file/d/1cgUJqwkY57MUfZRPoZxOiLosxxLVa5zN/view?usp=sharing" target="_blank" rel="noopener">📄 https://drive.google.c…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/kYCgeKID3YY" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 08 ai製作繪本 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/08-ai%E8%A3%BD%E4%BD%9C%E7%B9%AA%E6%9C%AC" target="_blank" rel="noopener">08 AI製作繪本</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://www.canva.com/design/DAFnZmO3wB8/OhIiPmye0zsRHnRRMmx03g/edit?utm_content=DAFnZmO3wB8&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton" target="_blank" rel="noopener">📄 https://www.canva.com/…</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=22Uu1W1d6DI" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/7c1aA48jIYE" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/9T8Dn2cY_04" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/DclCgOLw5tg" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/M8wJtF5zEug" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/WhQSyPFkMrk" target="_blank" rel="noopener">▶ 影片 6</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 09 aigc初體驗 aigc初體驗">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/09-aigc%E5%88%9D%E9%AB%94%E9%A9%97" target="_blank" rel="noopener">09 AIGC初體驗</a></td>
+        <td class="topic-col">AIGC初體驗</td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 10 利用ai製作班歌 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/10-%E5%88%A9%E7%94%A8ai%E8%A3%BD%E4%BD%9C%E7%8F%AD%E6%AD%8C" target="_blank" rel="noopener">10 利用AI製作班歌</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=TlRUg9lCKYY" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/9F-FastBuQk" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/LMI0CDLnbJI" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/fA1C8jDINK0" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/piLLvuibgQc" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/uXU9mTQcmqw" target="_blank" rel="noopener">▶ 影片 6</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 11 認識sd ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/11-%E8%AA%8D%E8%AD%98sd" target="_blank" rel="noopener">11 認識SD</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqazhfNHhYT3MxeDRPWVlORzZlOC1NaS1fRkp5Z3xBQ3Jtc0trRldCYXVtZW5wNHhrNUxkczJmQ0lSX3ZKX2VkSFlwanZYZ1N2VTFELVdLbnVfTUJBUFFFblpCUlVBcHNDcVVtV2xncENsaTgxay10TkR1eXR0QXJkb29JQ0FaT1VfdldLRnlOZFgxbWdhNnltMlU5VQ&amp;q=https%3A%2F%2Fopenposes.com%2F&amp;v=fmjeDsO_TbE" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/9I1Hj-sj3sc" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/dkUjHPQ4nHA" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/fmjeDsO_TbE" target="_blank" rel="noopener">▶ 影片 4</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 12 ai繪圖 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/12-ai%E7%B9%AA%E5%9C%96" target="_blank" rel="noopener">12 AI繪圖</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 13 取自網路的prompt ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/13-%E5%8F%96%E8%87%AA%E7%B6%B2%E8%B7%AF%E7%9A%84prompt" target="_blank" rel="noopener">13 取自網路的Prompt</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 14 ai漫畫生成器 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/14-ai%E6%BC%AB%E7%95%AB%E7%94%9F%E6%88%90%E5%99%A8" target="_blank" rel="noopener">14 AI漫畫生成器</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 15 ai換臉 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/15-ai%E6%8F%9B%E8%87%89" target="_blank" rel="noopener">15 AI換臉</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://drive.google.com/file/d/1pUm--fJYwmyMTTRgbM4P1CQt3sb_cY-L/view?usp=drive_link" target="_blank" rel="noopener">📄 https://drive.google.c…</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=Inp0xfHKACk" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/-knR4e467OI" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/0TdTILwWoRM" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/3NhsR9j3afo" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/5sg9koOhaoY" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/6fHt2LdgQ9U" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/K2MQpk_BD_4" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/M07uLd2i6V4" target="_blank" rel="noopener">▶ 影片 8</a> <a class="badge badge-yt" href="https://youtu.be/T1rjd_0Ls4U" target="_blank" rel="noopener">▶ 影片 9</a> <a class="badge badge-yt" href="https://youtu.be/XFJePDz32U4" target="_blank" rel="noopener">▶ 影片 10</a> <a class="badge badge-yt" href="https://youtu.be/ZqU836NiTSM" target="_blank" rel="noopener">▶ 影片 11</a> <a class="badge badge-yt" href="https://youtu.be/aipXNGI3v58" target="_blank" rel="noopener">▶ 影片 12</a> <a class="badge badge-yt" href="https://youtu.be/nqhjRvhIyTQ" target="_blank" rel="noopener">▶ 影片 13</a> <a class="badge badge-yt" href="https://youtu.be/x9szWY5_CF8" target="_blank" rel="noopener">▶ 影片 14</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 16會說道理的小和尚 製作【會說道理的小和尚】">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/16%E6%9C%83%E8%AA%AA%E9%81%93%E7%90%86%E7%9A%84%E5%B0%8F%E5%92%8C%E5%B0%9A" target="_blank" rel="noopener">16會說道理的小和尚</a></td>
+        <td class="topic-col">製作【會說道理的小和尚】</td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=3nf3h52bBvI" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/CMr9Y-0rn-0" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/MGysCxO4HhI" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/s3_CIclnrvY" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/uXU9mTQcmqw" target="_blank" rel="noopener">▶ 影片 5</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 17 ai生成3d模型 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/17-ai%E7%94%9F%E6%88%903d%E6%A8%A1%E5%9E%8B" target="_blank" rel="noopener">17 AI生成3D模型</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 18 ai製作網頁工具或遊戲 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/18-ai%E8%A3%BD%E4%BD%9C%E7%B6%B2%E9%A0%81%E5%B7%A5%E5%85%B7%E6%88%96%E9%81%8A%E6%88%B2" target="_blank" rel="noopener">18 AI製作網頁工具或遊戲</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 19 flexclip ai ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/19-flexclip-ai" target="_blank" rel="noopener">19 FlexClip AI</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/dlI-lvCrGXo" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 20 websim ai ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/20-websim-ai" target="_blank" rel="noopener">20 websim AI</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 21 製作電子白板 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/21-%E8%A3%BD%E4%BD%9C%E9%9B%BB%E5%AD%90%E7%99%BD%E6%9D%BF" target="_blank" rel="noopener">21 製作電子白板</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 22 ai小東西 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/22-ai%E5%B0%8F%E6%9D%B1%E8%A5%BF" target="_blank" rel="noopener">22 AI小東西</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 23用手機玩ai 我會用手機玩ai (ai融入生活)">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/23%E7%94%A8%E6%89%8B%E6%A9%9F%E7%8E%A9ai" target="_blank" rel="noopener">23用手機玩AI</a></td>
+        <td class="topic-col">我會用手機玩AI (AI融入生活)</td>
+        <td><a class="badge badge-ho" href="http://twgo.io/1122a" target="_blank" rel="noopener">📄 http://twgo.io/1122a</a> <a class="badge badge-ho" href="https://www.canva.com/zh_tw/" target="_blank" rel="noopener">📄 https://www.canva.com/…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/_u-2J1lSASo" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 24 gemini的實時語音 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/24-gemini%E7%9A%84%E5%AF%A6%E6%99%82%E8%AA%9E%E9%9F%B3" target="_blank" rel="noopener">24 Gemini的實時語音</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="1" data-search="15 ai相關 25 gamma製作簡報 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/25-gamma%E8%A3%BD%E4%BD%9C%E7%B0%A1%E5%A0%B1" target="_blank" rel="noopener">25 Gamma製作簡報</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://gamma.app/" target="_blank" rel="noopener">📄 https://gamma.app/</a> <a class="badge badge-ho" href="https://gamma.app/signup?r=chvdgn5ipkbxgq6" target="_blank" rel="noopener">📄 https://gamma.app/sign…</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 26 mootion製作故事繪本 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/26-mootion%E8%A3%BD%E4%BD%9C%E6%95%85%E4%BA%8B%E7%B9%AA%E6%9C%AC" target="_blank" rel="noopener">26 Mootion製作故事繪本</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/APh0ssIYBRg" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/oCfbGJ42A54" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 27 與ai玩五子棋 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/27-%E8%88%87ai%E7%8E%A9%E4%BA%94%E5%AD%90%E6%A3%8B" target="_blank" rel="noopener">27 與AI玩五子棋</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 28 notebooklm ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/28-notebooklm" target="_blank" rel="noopener">28 NotebookLM</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=-Qe8YPwEldE" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/lW1nLfibF6Y" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/sjZbT2nOaF0" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtube.com/playlist?list=PLSyAyzqfKi-MtfGrJ5Ib0Azhv5jqhYSFk&amp;si=_UiDAggXDwumMwyZ" target="_blank" rel="noopener">▶ 影片 4</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 29 magic school 請小朋友寫上你們想製作影片的主題，怕小朋友沒有想法，請隨機提供3個與校園生活有關的主題，並標示1、2、3，供小朋友選擇">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/29-magic-school" target="_blank" rel="noopener">29 Magic School</a></td>
+        <td class="topic-col">請小朋友寫上你們想製作影片的主題，怕小朋友沒有想法，請隨機提供3個與校園生活有關的主題，並標示1、2、3，供小朋友選擇</td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 30 吉卜力及公仔效果 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/30-%E5%90%89%E5%8D%9C%E5%8A%9B%E5%8F%8A%E5%85%AC%E4%BB%94%E6%95%88%E6%9E%9C" target="_blank" rel="noopener">30 吉卜力及公仔效果</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 31 canva ai ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/31-canva-ai" target="_blank" rel="noopener">31 Canva AI</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/aCu7Ac0C9cA" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 32 felo ai ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/32-felo-ai" target="_blank" rel="noopener">32 Felo AI</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 33 ai與旅遊 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/33-ai%E8%88%87%E6%97%85%E9%81%8A" target="_blank" rel="noopener">33 AI與旅遊</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 34 youtube逐字稿 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/34-youtube%E9%80%90%E5%AD%97%E7%A8%BF" target="_blank" rel="noopener">34 Youtube逐字稿</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://studio.youtube.com/" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://www.youtube.com/watch?v=6i-G0eBOg1U" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 35 本地端llm ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/35-%E6%9C%AC%E5%9C%B0%E7%AB%AFllm" target="_blank" rel="noopener">35 本地端LLM</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 36 websim製作班級小管家 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/36-websim%E8%A3%BD%E4%BD%9C%E7%8F%AD%E7%B4%9A%E5%B0%8F%E7%AE%A1%E5%AE%B6" target="_blank" rel="noopener">36 websim製作班級小管家</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/6SwaMAMOluo" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 37 gemini王者歸來 [分數]/5">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/37-gemini%E7%8E%8B%E8%80%85%E6%AD%B8%E4%BE%86" target="_blank" rel="noopener">37 Gemini王者歸來</a></td>
+        <td class="topic-col">[分數]/5</td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/X6Uye_6BneI" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 38 gemini的canvas寫網頁程式 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/38-gemini%E7%9A%84canvas%E5%AF%AB%E7%B6%B2%E9%A0%81%E7%A8%8B%E5%BC%8F" target="_blank" rel="noopener">38 Gemini的Canvas寫網頁程式</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 39 ai+arduinoide ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/39-ai-arduinoide" target="_blank" rel="noopener">39 AI+ArduinoIDE</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 40 vibe coding ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/40-vibe-coding" target="_blank" rel="noopener">40 Vibe coding</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/channel/UC0a9tu9sy79wV-t2DuyPORA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/ImmDpwwONgU" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/fEAk79Upxkw" target="_blank" rel="noopener">▶ 影片 3</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 40 vibe coding(二) ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/40-vibe-coding%E4%BA%8C" target="_blank" rel="noopener">40 Vibe coding(二)</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/channel/UC0a9tu9sy79wV-t2DuyPORA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/ImmDpwwONgU" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/dOOY73-bMf8" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/fEAk79Upxkw" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/lo0JD5xUglU" target="_blank" rel="noopener">▶ 影片 5</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 40 vibe coding作品 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/40-vibe-coding%E4%BD%9C%E5%93%81" target="_blank" rel="noopener">40 Vibe coding作品</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 40 vibe coding (三) ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/40-vibe-coding-%E4%B8%89" target="_blank" rel="noopener">40 Vibe Coding (三)</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 40 vibe coding(四) ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/40-vibe-coding%E5%9B%9B" target="_blank" rel="noopener">40 Vibe Coding(四)</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 41 ai生成影片 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/41-ai%E7%94%9F%E6%88%90%E5%BD%B1%E7%89%87" target="_blank" rel="noopener">41 AI生成影片</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=fAs7fYEow5E" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/7RbMk749C8M" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/Lx9CkK0Uy1g" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/pAEk91VtPBE" target="_blank" rel="noopener">▶ 影片 4</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 42 line貼圖製作及上架 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/42-line%E8%B2%BC%E5%9C%96%E8%A3%BD%E4%BD%9C%E5%8F%8A%E4%B8%8A%E6%9E%B6" target="_blank" rel="noopener">42 LINE貼圖製作及上架</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqbHdYMUs0SHRleFZJbG1hMnFCdmJSdXNqelRaZ3xBQ3Jtc0ttOVBBb2pjMEc3VEZycHVHUG15anV5cE1IbkNHdUw1YzVrdGtTS2k0RDRyc2NCNkFjUGdXLWZfNnZNWkpmdFg4NHQ0ZXVnamlCUGtyVGlPX0RsWFlPb0pfMHVPWG8tN054d2JmNXpPNzhhcFVSWVd0SQ&amp;q=https%3A%2F%2Fcreator.line.me%2Fzh-hant%2F&amp;v=mvKAAeLhilI" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/mvKAAeLhilI" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 43 ai製作漫畫 引用卷首詞，定下歷史滄桑的基調。">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/43-ai%E8%A3%BD%E4%BD%9C%E6%BC%AB%E7%95%AB" target="_blank" rel="noopener">43 AI製作漫畫</a></td>
+        <td class="topic-col">引用卷首詞，定下歷史滄桑的基調。</td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 44 ai旅遊規劃 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/44-ai%E6%97%85%E9%81%8A%E8%A6%8F%E5%8A%83" target="_blank" rel="noopener">44 AI旅遊規劃</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 45 antigravity雲端部署 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/45-antigravity%E9%9B%B2%E7%AB%AF%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener">45 Antigravity雲端部署</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/2hbYCe_E5aU" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 46 利用ai出題 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/46-%E5%88%A9%E7%94%A8ai%E5%87%BA%E9%A1%8C" target="_blank" rel="noopener">46 利用AI出題</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/YPwZFcUcivI" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 47 google flow ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/47-google-flow" target="_blank" rel="noopener">47 Google Flow</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/CUy4WPfPLks" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/pxZAWRphI5A" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/rS7OjCy6tmY" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/wwFHzw3adj8" target="_blank" rel="noopener">▶ 影片 4</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="1" data-search="15 ai相關 48 ai短影片製作 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/48-ai%E7%9F%AD%E5%BD%B1%E7%89%87%E8%A3%BD%E4%BD%9C" target="_blank" rel="noopener">48 AI短影片製作</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/channel/UC0a9tu9sy79wV-t2DuyPORA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/30DjthJOKi0" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/4V0weiIdzTU" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/6OBGTKzR2vM" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/7RbMk749C8M" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/7wt0m61vNwk" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/8Duw5MGI4kQ" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/9UL6jKAarIk" target="_blank" rel="noopener">▶ 影片 8</a> <a class="badge badge-yt" href="https://youtu.be/B_JXmXMKSMo" target="_blank" rel="noopener">▶ 影片 9</a> <a class="badge badge-yt" href="https://youtu.be/CUy4WPfPLks" target="_blank" rel="noopener">▶ 影片 10</a> <a class="badge badge-yt" href="https://youtu.be/Fp_qIp2Hf7U" target="_blank" rel="noopener">▶ 影片 11</a> <a class="badge badge-yt" href="https://youtu.be/HFfmZ7SXFcc" target="_blank" rel="noopener">▶ 影片 12</a> <a class="badge badge-yt" href="https://youtu.be/Hvoap6-jy5E" target="_blank" rel="noopener">▶ 影片 13</a> <a class="badge badge-yt" href="https://youtu.be/KPIZKder0mA" target="_blank" rel="noopener">▶ 影片 14</a> <a class="badge badge-yt" href="https://youtu.be/LEEZ97ks3y4" target="_blank" rel="noopener">▶ 影片 15</a> <a class="badge badge-yt" href="https://youtu.be/Lx9CkK0Uy1g" target="_blank" rel="noopener">▶ 影片 16</a> <a class="badge badge-yt" href="https://youtu.be/MP38EoqVr_E" target="_blank" rel="noopener">▶ 影片 17</a> <a class="badge badge-yt" href="https://youtu.be/MUtOAYVHxhM" target="_blank" rel="noopener">▶ 影片 18</a> <a class="badge badge-yt" href="https://youtu.be/Og-CwOw2Pw0" target="_blank" rel="noopener">▶ 影片 19</a> <a class="badge badge-yt" href="https://youtu.be/ZFKdcy6Svxk" target="_blank" rel="noopener">▶ 影片 20</a> <a class="badge badge-yt" href="https://youtu.be/_FToilN-lpU" target="_blank" rel="noopener">▶ 影片 21</a> <a class="badge badge-yt" href="https://youtu.be/a-X5HdFSScE" target="_blank" rel="noopener">▶ 影片 22</a> <a class="badge badge-yt" href="https://youtu.be/b_X_ESPcczU" target="_blank" rel="noopener">▶ 影片 23</a> <a class="badge badge-yt" href="https://youtu.be/c4eAYEEfMHY" target="_blank" rel="noopener">▶ 影片 24</a> <a class="badge badge-yt" href="https://youtu.be/egAzeLuEVtM" target="_blank" rel="noopener">▶ 影片 25</a> <a class="badge badge-yt" href="https://youtu.be/hNFqq_j6Ahc" target="_blank" rel="noopener">▶ 影片 26</a> <a class="badge badge-yt" href="https://youtu.be/hevAdFQtJJc" target="_blank" rel="noopener">▶ 影片 27</a> <a class="badge badge-yt" href="https://youtu.be/kDCjs1ttqbc" target="_blank" rel="noopener">▶ 影片 28</a> <a class="badge badge-yt" href="https://youtu.be/n8y3E7IbLF8" target="_blank" rel="noopener">▶ 影片 29</a> <a class="badge badge-yt" href="https://youtu.be/nO4GsVJChtA" target="_blank" rel="noopener">▶ 影片 30</a> <a class="badge badge-yt" href="https://youtu.be/p4qb-PHb8qM" target="_blank" rel="noopener">▶ 影片 31</a> <a class="badge badge-yt" href="https://youtu.be/pAEk91VtPBE" target="_blank" rel="noopener">▶ 影片 32</a> <a class="badge badge-yt" href="https://youtu.be/pxZAWRphI5A" target="_blank" rel="noopener">▶ 影片 33</a> <a class="badge badge-yt" href="https://youtu.be/rS7OjCy6tmY" target="_blank" rel="noopener">▶ 影片 34</a> <a class="badge badge-yt" href="https://youtu.be/v69le-ChWkg" target="_blank" rel="noopener">▶ 影片 35</a> <a class="badge badge-yt" href="https://youtu.be/w8qHfZPShO8" target="_blank" rel="noopener">▶ 影片 36</a> <a class="badge badge-yt" href="https://youtu.be/wwFHzw3adj8" target="_blank" rel="noopener">▶ 影片 37</a></td>
+    </tr><tr data-cat="15-ai相關" data-yt="0" data-ho="0" data-search="15 ai相關 49 養小龍蝦 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/49-%E9%A4%8A%E5%B0%8F%E9%BE%8D%E8%9D%A6" target="_blank" rel="noopener">49 養小龍蝦</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關" data-yt="1" data-ho="0" data-search="15 ai相關 50 ai班級秘書 ">
+        <td><span class="cat-tag cat-15-ai相關">15 AI相關</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C/50-ai%E7%8F%AD%E7%B4%9A%E7%A7%98%E6%9B%B8" target="_blank" rel="noopener">50 AI班級秘書</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=WPtm7mJKUR4" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/nO4GsVJChtA" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="0" data-search="15-ai相關51 51 ai 互動遊戲開發教學設計 ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/51-ai-%E4%BA%92%E5%8B%95%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC%E6%95%99%E5%AD%B8%E8%A8%AD%E8%A8%88" target="_blank" rel="noopener">51 AI 互動遊戲開發教學設計</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="1" data-ho="0" data-search="15-ai相關51 52 利用opal做短影片 ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/52-%E5%88%A9%E7%94%A8opal%E5%81%9A%E7%9F%AD%E5%BD%B1%E7%89%87" target="_blank" rel="noopener">52 利用Opal做短影片</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/b_X_ESPcczU" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="1" data-search="15-ai相關51 53 codex當班級秘書 ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/53-codex%E7%95%B6%E7%8F%AD%E7%B4%9A%E7%A7%98%E6%9B%B8" target="_blank" rel="noopener">53 Codex當班級秘書</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://drive.google.com/file/d/1kpEnAo3KX6Q5SWhOK0_JwYJUrFLfEPB3/view?usp=sharing" target="_blank" rel="noopener">📄 科任給的成績單.zip</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="0" data-search="15-ai相關51 54 pc+hermes ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/54-pc-hermes" target="_blank" rel="noopener">54 PC+Hermes</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="0" data-search="15-ai相關51 55 api key ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/55-api-key" target="_blank" rel="noopener">55 API KEY</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="1" data-ho="0" data-search="15-ai相關51 56 esp32龍蝦 ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/56-esp32%E9%BE%8D%E8%9D%A6" target="_blank" rel="noopener">56 ESP32龍蝦</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=co8AjEXiu8A" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="0" data-search="15-ai相關51 57 小智ai聊天機器人 ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/57-%E5%B0%8F%E6%99%BAai%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA" target="_blank" rel="noopener">57 小智AI聊天機器人</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="0" data-search="15-ai相關51 58 gemini spark當班級秘書 ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/58-gemini-spark%E7%95%B6%E7%8F%AD%E7%B4%9A%E7%A7%98%E6%9B%B8" target="_blank" rel="noopener">58 Gemini Spark當班級秘書</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="15-ai相關51" data-yt="0" data-ho="0" data-search="15-ai相關51 59 教育局及教育部的copilot ">
+        <td><span class="cat-tag cat-15-ai相關51">15-ai相關51</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/15-ai%E7%9B%B8%E9%97%9C51/59-%E6%95%99%E8%82%B2%E5%B1%80%E5%8F%8A%E6%95%99%E8%82%B2%E9%83%A8%E7%9A%84copilot" target="_blank" rel="noopener">59 教育局及教育部的Copilot</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="0" data-ho="0" data-search="16 影像剪輯 01 之前的研習教材 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/01-%E4%B9%8B%E5%89%8D%E7%9A%84%E7%A0%94%E7%BF%92%E6%95%99%E6%9D%90" target="_blank" rel="noopener">01 之前的研習教材</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="1" data-ho="1" data-search="16 影像剪輯 02 特效剪輯 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/02-%E7%89%B9%E6%95%88%E5%89%AA%E8%BC%AF" target="_blank" rel="noopener">02 特效剪輯</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://drive.google.com/file/d/1E81yNIcTX0d4savopZO6wEUpAXX8a5su/view?usp=drive_link" target="_blank" rel="noopener">📄 範例影片下載</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/11f3qYLfypVP6gezAuu5MJm3crV7E-H2z/view?usp=drive_link" target="_blank" rel="noopener">📄 範例影片下載</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/16igGv2cTtmPlPv9yiwL66saDGzWJmIM-/view?usp=drive_link" target="_blank" rel="noopener">📄 範例影片下載</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/2vmfATcH3W0" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/6HujMxGjUcc" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/T6KQJNX-tao" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/iNjbG07TM2I" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/jgjWdI9f-Dw" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/tBghEztOPss" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/vvQ-k5cKfgQ" target="_blank" rel="noopener">▶ 影片 7</a></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="0" data-ho="0" data-search="16 影像剪輯 03 clipchamp介紹 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/03-clipchamp%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener">03 Clipchamp介紹</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="1" data-ho="0" data-search="16 影像剪輯 04 簡易拍攝介紹 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/04-%E7%B0%A1%E6%98%93%E6%8B%8D%E6%94%9D%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener">04 簡易拍攝介紹</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/audiolibrary" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://www.youtube.com/watch?v=39yAyaiTSJQ" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/86Zeu_byAyM" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/Pfn2mljnU28" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/f7gL3oBPyck" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/y5kJBRq5txA" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtube.com/playlist?list=PLcI71rC0R9_BxDvurGV3Z2UeCi2EzhmoA" target="_blank" rel="noopener">▶ 影片 7</a></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="1" data-ho="0" data-search="16 影像剪輯 05 capcut介紹 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/05-capcut%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener">05 CapCut介紹</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://www.youtube.com/audiolibrary" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/4ktwCFS5iTY" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtube.com/playlist?list=PLSyAyzqfKi-P3OIX1bg56PFgVhVpeYhpQ&amp;si=-U3CuzBrxawkkESJ" target="_blank" rel="noopener">▶ 影片 4</a></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="0" data-ho="0" data-search="16 影像剪輯 06 flexclip介紹 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/06-flexclip%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener">06 flexclip介紹</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="0" data-ho="0" data-search="16 影像剪輯 07 videoexpress.ai ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/07-videoexpress-ai" target="_blank" rel="noopener">07 VideoExpress.ai</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="0" data-ho="0" data-search="16 影像剪輯 08 繪製交通路徑 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/08-%E7%B9%AA%E8%A3%BD%E4%BA%A4%E9%80%9A%E8%B7%AF%E5%BE%91" target="_blank" rel="noopener">08 繪製交通路徑</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="1" data-ho="0" data-search="16 影像剪輯 09 concat介紹 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/09-concat%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener">09 Concat介紹</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/mDZK_YwGZUU" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="16-影像剪輯" data-yt="0" data-ho="0" data-search="16 影像剪輯 10 editkin介紹 ">
+        <td><span class="cat-tag cat-16-影像剪輯">16 影像剪輯</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/16-%E5%BD%B1%E5%83%8F%E5%89%AA%E8%BC%AF/10-editkin%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener">10 Editkin介紹</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250108仁愛國小 數位學習真有趣">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250108%E4%BB%81%E6%84%9B%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250108仁愛國小</a></td>
+        <td class="topic-col">數位學習真有趣</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0108a" target="_blank" rel="noopener">📄 https://twgo.io/0108a</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/310lNEmZTcc" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250115仁愛國小 ai">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250115%E4%BB%81%E6%84%9B%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250115仁愛國小</a></td>
+        <td class="topic-col">AI</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0115a" target="_blank" rel="noopener">📄 https://twgo.io/0115a</a> <a class="badge badge-ho" href="https://www.google.com/a/go.edu.tw/ServiceLogin?continue=https://drive.google.com/" target="_blank" rel="noopener">📄 https://www.google.com…</a> <a class="badge badge-ho" href="https://gamma.app/signup?r=chvdgn5ipkbxgq6" target="_blank" rel="noopener">📄 https://gamma.app/sign…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/310lNEmZTcc" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="0" data-search="2025 研習活動 20250219新上社群 ">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250219%E6%96%B0%E4%B8%8A%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20250219新上社群</a></td>
+        <td class="topic-col"></td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250226瑞祥國小 ai">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250226%E7%91%9E%E7%A5%A5%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250226瑞祥國小</a></td>
+        <td class="topic-col">AI</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0226a" target="_blank" rel="noopener">📄 https://twgo.io/0226a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/310lNEmZTcc" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250312新上國小 ai在教學上的應用(一)">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250312%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250312新上國小</a></td>
+        <td class="topic-col">AI在教學上的應用(一)</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0312a" target="_blank" rel="noopener">📄 https://twgo.io/0312a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a> <a class="badge badge-ho" href="https://gamma.app/" target="_blank" rel="noopener">📄 https://gamma.app/</a> <a class="badge badge-ho" href="https://gamma.app/signup?r=chvdgn5ipkbxgq6" target="_blank" rel="noopener">📄 https://gamma.app/sign…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/310lNEmZTcc" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250326龍目國小 canva">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250326%E9%BE%8D%E7%9B%AE%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250326龍目國小</a></td>
+        <td class="topic-col">Canva</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0326a" target="_blank" rel="noopener">📄 https://twgo.io/0326a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a> <a class="badge badge-ho" href="https://www.canva.com/zh_tw/education/" target="_blank" rel="noopener">📄 https://www.canva.com/…</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250328正興國小 數位教學q&amp;a">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250328%E6%AD%A3%E8%88%88%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250328正興國小</a></td>
+        <td class="topic-col">數位教學Q&amp;A</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a> <a class="badge badge-ho" href="https://twgo.io/60000" target="_blank" rel="noopener">📄 https://twgo.io/60000</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/b2TZhW8P_R4" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250409新上社群 ">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250409%E6%96%B0%E4%B8%8A%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20250409新上社群</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0409a" target="_blank" rel="noopener">📄 https://twgo.io/0409a</a> <a class="badge badge-ho" href="https://padlet.com/hope56173_1/ai-bmdl4k0aha2sz0ib" target="_blank" rel="noopener">📄 https://padlet.com/hop…</a> <a class="badge badge-ho" href="https://twgo.io/60000" target="_blank" rel="noopener">📄 https://twgo.io/60000</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250410鳳西國中 玩轉iq燈">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250410%E9%B3%B3%E8%A5%BF%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20250410鳳西國中</a></td>
+        <td class="topic-col">玩轉IQ燈</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0410a" target="_blank" rel="noopener">📄 https://twgo.io/0410a</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250418影片剪輯 影片剪輯">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250418%E5%BD%B1%E7%89%87%E5%89%AA%E8%BC%AF" target="_blank" rel="noopener">20250418影片剪輯</a></td>
+        <td class="topic-col">影片剪輯</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0418a" target="_blank" rel="noopener">📄 https://twgo.io/0418a</a> <a class="badge badge-ho" href="https://www.canva.com/zh_tw/" target="_blank" rel="noopener">📄 https://www.canva.com/…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/xUIHlqJMGuw" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250418正興國小 ai在">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250418%E6%AD%A3%E8%88%88%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250418正興國小</a></td>
+        <td class="topic-col">AI在</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250419新上國小(家長) vr頭盔初體驗">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250419%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F%E5%AE%B6%E9%95%B7" target="_blank" rel="noopener">20250419新上國小(家長)</a></td>
+        <td class="topic-col">VR頭盔初體驗</td>
+        <td><a class="badge badge-ho" href="https://www.canva.com/design/DAGEKwUzUB4/MV-SJl8gZTNft6z3b6nlnw/edit" target="_blank" rel="noopener">📄 https://www.canva.com/…</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAGGqqL97lM/yvKnZ5cDbff9LiqdA5IoBQ/edit" target="_blank" rel="noopener">📄 https://www.canva.com/…</a> <a class="badge badge-ho" href="https://www.canva.com/design/DAGIMwSBcXA/oh-hrl8sIWSeaHRGIukpXg/edit" target="_blank" rel="noopener">📄 https://www.canva.com/…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/L0MisLtkT8Y" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/NEasf4Q0xDA" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/dlqx6n88948" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/jrTI5npU0aE" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/lOm0uRXHXdg" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/mdO45nkI4To" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/vkJvWpIL22o" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/yErU3uZAkTQ" target="_blank" rel="noopener">▶ 影片 8</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250423新上國小 ai在教學上的應用(">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250423%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250423新上國小</a></td>
+        <td class="topic-col">AI在教學上的應用(</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/9RdFllFOd8E" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250507獅湖國小 ai在教學上的應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250507%E7%8D%85%E6%B9%96%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250507獅湖國小</a></td>
+        <td class="topic-col">AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/310lNEmZTcc" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/9RdFllFOd8E" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250509數位教學 數位">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250509%E6%95%B8%E4%BD%8D%E6%95%99%E5%AD%B8" target="_blank" rel="noopener">20250509數位教學</a></td>
+        <td class="topic-col">數位</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a> <a class="badge badge-ho" href="https://padlet.com/" target="_blank" rel="noopener">📄 https://padlet.com/</a> <a class="badge badge-ho" href="https://padlet.com/referrals/shspswenyu" target="_blank" rel="noopener">📄 https://padlet.com/ref…</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250521太平國小 canva">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250521%E5%A4%AA%E5%B9%B3%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250521太平國小</a></td>
+        <td class="topic-col">Canva</td>
+        <td><a class="badge badge-ho" href="http://twgo.io/0521a" target="_blank" rel="noopener">📄 http://twgo.io/0521a</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250604新上社群 ">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250604%E6%96%B0%E4%B8%8A%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20250604新上社群</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0604a" target="_blank" rel="noopener">📄 https://twgo.io/0604a</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=7C7BIWMbB6U" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250618鳥松國小 ai在教學上的應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250618%E9%B3%A5%E6%9D%BE%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250618鳥松國小</a></td>
+        <td class="topic-col">AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0618a" target="_blank" rel="noopener">📄 https://twgo.io/0618a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a> <a class="badge badge-ho" href="https://ta.padlet.com" target="_blank" rel="noopener">📄 https://ta.padlet.com</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/9RdFllFOd8E" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20250728光復國中 ai在教學上的應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250728%E5%85%89%E5%BE%A9%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20250728光復國中</a></td>
+        <td class="topic-col">AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0728a" target="_blank" rel="noopener">📄 https://twgo.io/0728a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="0" data-search="2025 研習活動 20250906輔導團(qblock) 機電整合與生成式ai 之有效教學-以 sdgs 為例- 1.qblock平台整合ai api 之 arduino 專案設">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250906%E8%BC%94%E5%B0%8E%E5%9C%98qblock" target="_blank" rel="noopener">20250906輔導團(Qblock)</a></td>
+        <td class="topic-col">機電整合與生成式AI 之有效教學-以 SDGs 為例- 1.Qblock平台整合AI API 之 Arduino 專案設</td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/rZq5DLRMZLI" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/xDICOCaonV8" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250917新上國小 駕馭ai對話：用gemini活化你的課堂">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250917%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20250917新上國小</a></td>
+        <td class="topic-col">駕馭AI對話：用Gemini活化你的課堂</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/channel/UC0a9tu9sy79wV-t2DuyPORA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://www.youtube.com/watch?v=VBgjEUf9flQ" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/VBgjEUf9flQ" target="_blank" rel="noopener">▶ 影片 3</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20250920創客組培訓 短網址">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20250920%E5%89%B5%E5%AE%A2%E7%B5%84%E5%9F%B9%E8%A8%93" target="_blank" rel="noopener">20250920創客組培訓</a></td>
+        <td class="topic-col">短網址</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/OYg1IdZJdUE" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/Z8JrjYSk-g4" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251008鳳山國中 用gemini、canva與websim打造教學神器或遊戲">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251008%E9%B3%B3%E5%B1%B1%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20251008鳳山國中</a></td>
+        <td class="topic-col">用Gemini、Canva與Websim打造教學神器或遊戲</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/ImmDpwwONgU" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/fEAk79Upxkw" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251015烏林國小 用數位工具打造會說話的角色">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251015%E7%83%8F%E6%9E%97%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251015烏林國小</a></td>
+        <td class="topic-col">用數位工具打造會說話的角色</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/1015a" target="_blank" rel="noopener">📄 https://twgo.io/1015a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/99TXL1PQzsc" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251022成功國小 數據驅動教學─因材網如何讓學習更有效">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251022%E6%88%90%E5%8A%9F%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251022成功國小</a></td>
+        <td class="topic-col">數據驅動教學─因材網如何讓學習更有效</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/o2llHFVgGYU" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251029新上國小 駕馭ai對話：用grok製作ai影片">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251029%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251029新上國小</a></td>
+        <td class="topic-col">駕馭AI對話：用Grok製作AI影片</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/channel/UC0a9tu9sy79wV-t2DuyPORA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/Lx9CkK0Uy1g" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251105大寮國小 padlet教學應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251105%E5%A4%A7%E5%AF%AE%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251105大寮國小</a></td>
+        <td class="topic-col">Padlet教學應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/wD-l4ui2hTM" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20251112瑞祥國小 ai在教學上的應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251112%E7%91%9E%E7%A5%A5%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251112瑞祥國小</a></td>
+        <td class="topic-col">AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="0" data-search="2025 研習活動 20251119新上社群 認識ewova">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251119%E6%96%B0%E4%B8%8A%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20251119新上社群</a></td>
+        <td class="topic-col">認識EWOVA</td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/0vh65vwmkcg" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/yetKWinjqB4" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20251121莒光國小(學生) 凱比初登場">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251121%E8%8E%92%E5%85%89%E5%9C%8B%E5%B0%8F%E5%AD%B8%E7%94%9F" target="_blank" rel="noopener">20251121莒光國小(學生)</a></td>
+        <td class="topic-col">凱比初登場</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251203陽明國中 以ai寫網頁程式：用gemini">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251203%E9%99%BD%E6%98%8E%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20251203陽明國中</a></td>
+        <td class="topic-col">以AI寫網頁程式：用Gemini</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享 (padlet.org</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/dOOY73-bMf8" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/lo0JD5xUglU" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251210仁愛國小 數位學習真有趣">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251210%E4%BB%81%E6%84%9B%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251210仁愛國小</a></td>
+        <td class="topic-col">數位學習真有趣</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/breakout-room/xPdL4gEEEkWzqpwK-MDj9zyq9LLwlz7Qn" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=c0_gz7uTRQ8" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/2pccyfrUYBA" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/BL8cD3YcRco" target="_blank" rel="noopener">▶ 影片 3</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="1" data-ho="1" data-search="2025 研習活動 20251212油廠國小 padlet 全方位攻略：從基礎操作到沙盒創意應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251212%E6%B2%B9%E5%BB%A0%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251212油廠國小</a></td>
+        <td class="topic-col">Padlet 全方位攻略：從基礎操作到沙盒創意應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/padlet-23ov7eiadxqjbtg5" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://shsps.padlet.org/shspspadlet10/301-un8l1nv3x3zpn64i" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://shsps.padlet.org/shspspadlet04/3-etg61dv9gwy1llm3" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://shsps.padlet.org/shspspadlet04/3-2k1nq29sz0ojkaho" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://padlet.com/joyjason8181/pagamo-t48nooy82aqofgdi" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://padlet.com/shsps/padlet-ezdw306suj6uthf9" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://padlet.com/" target="_blank" rel="noopener">📄 https://padlet.com/</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/padlet-s0t4kgapy3x0krru" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/padlet-j43yijw4l66izjjx" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://ta.padlet.com/" target="_blank" rel="noopener">📄 https://ta.padlet.com/</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/7RbMk749C8M" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/nHdh5mq857I" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2025研習活動" data-yt="0" data-ho="1" data-search="2025 研習活動 20251224仁愛國小 google ai在教學的應用">
+        <td><span class="cat-tag cat-2025研習活動">2025 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2025%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20251224%E4%BB%81%E6%84%9B%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20251224仁愛國小</a></td>
+        <td class="topic-col">Google AI在教學的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260107烏林國小 google ai在教學的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260107%E7%83%8F%E6%9E%97%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260107烏林國小</a></td>
+        <td class="topic-col">Google AI在教學的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/irGkgairFh0" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260225勝利國小 google ai(gemini)在教學的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260225%E5%8B%9D%E5%88%A9%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260225勝利國小</a></td>
+        <td class="topic-col">Google AI(Gemini)在教學的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/9Eu76ZrMb94" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/Gx-EGmtqCo8" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/Im6_YwaK1gc" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/M98tKwThYL4" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/MhOXLhcV_Rg" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/VDeKl06t5jQ" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/dfSt0iX0IUU" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/hVQbXrXKjG4" target="_blank" rel="noopener">▶ 影片 8</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260304文山國小 ai在教學上的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260304%E6%96%87%E5%B1%B1%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260304文山國小</a></td>
+        <td class="topic-col">AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/9Eu76ZrMb94" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/Gx-EGmtqCo8" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/Im6_YwaK1gc" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/M98tKwThYL4" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/MhOXLhcV_Rg" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/YPwZFcUcivI" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/dfSt0iX0IUU" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/hVQbXrXKjG4" target="_blank" rel="noopener">▶ 影片 8</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260306新上國小(社群) ai">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260306%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20260306新上國小(社群)</a></td>
+        <td class="topic-col">AI</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=9Eu76ZrMb94" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/5BrQj7BZ_FE" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/9Eu76ZrMb94" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/BZywscfQY8A" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/Gx-EGmtqCo8" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/Im6_YwaK1gc" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/M98tKwThYL4" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/MhOXLhcV_Rg" target="_blank" rel="noopener">▶ 影片 8</a> <a class="badge badge-yt" href="https://youtu.be/dfSt0iX0IUU" target="_blank" rel="noopener">▶ 影片 9</a> <a class="badge badge-yt" href="https://youtu.be/hVQbXrXKjG4" target="_blank" rel="noopener">▶ 影片 10</a> <a class="badge badge-yt" href="https://youtube.com/playlist?list=PLSyAyzqfKi-P3OIX1bg56PFgVhVpeYhpQ&amp;si=WzLAc07yZKPIIbTh" target="_blank" rel="noopener">▶ 影片 11</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260311新上國小 ai">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260311%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260311新上國小</a></td>
+        <td class="topic-col">AI</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/BtSLh8RVRIM" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/rS7OjCy6tmY" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260318烏林國小 google ai在教學上的應用(">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260318%E7%83%8F%E6%9E%97%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260318烏林國小</a></td>
+        <td class="topic-col">Google AI在教學上的應用(</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/9Eu76ZrMb94" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/BtSLh8RVRIM" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/CUy4WPfPLks" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/Gx-EGmtqCo8" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/Im6_YwaK1gc" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/M98tKwThYL4" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/MhOXLhcV_Rg" target="_blank" rel="noopener">▶ 影片 7</a> <a class="badge badge-yt" href="https://youtu.be/c4eAYEEfMHY" target="_blank" rel="noopener">▶ 影片 8</a> <a class="badge badge-yt" href="https://youtu.be/dfSt0iX0IUU" target="_blank" rel="noopener">▶ 影片 9</a> <a class="badge badge-yt" href="https://youtu.be/hVQbXrXKjG4" target="_blank" rel="noopener">▶ 影片 10</a> <a class="badge badge-yt" href="https://youtu.be/pxZAWRphI5A" target="_blank" rel="noopener">▶ 影片 11</a> <a class="badge badge-yt" href="https://youtu.be/rS7OjCy6tmY" target="_blank" rel="noopener">▶ 影片 12</a> <a class="badge badge-yt" href="https://youtu.be/txoYj2SmI6k" target="_blank" rel="noopener">▶ 影片 13</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260401高雄高工 wordwall × padlet 翻轉你的課堂">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260401%E9%AB%98%E9%9B%84%E9%AB%98%E5%B7%A5" target="_blank" rel="noopener">20260401高雄高工</a></td>
+        <td class="topic-col">Wordwall × Padlet 翻轉你的課堂</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://shsps.padlet.org/shspspadlet10/301-un8l1nv3x3zpn64i" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://shsps.padlet.org/shspspadlet04/3-etg61dv9gwy1llm3" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://shsps.padlet.org/shspspadlet04/3-2k1nq29sz0ojkaho" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://padlet.com/joyjason8181/pagamo-t48nooy82aqofgdi" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://padlet.com/shsps/padlet-ezdw306suj6uthf9" target="_blank" rel="noopener">📄 .</a> <a class="badge badge-ho" href="https://padlet.com/" target="_blank" rel="noopener">📄 https://padlet.com/</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/padlet-s0t4kgapy3x0krru" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/padlet-j43yijw4l66izjjx" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://arcade.padlet.com/" target="_blank" rel="noopener">📄 https://arcade.padlet.…</a> <a class="badge badge-ho" href="https://ta.padlet.com/" target="_blank" rel="noopener">📄 https://ta.padlet.com/</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/7RbMk749C8M" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260408新上國小(社群) 大屏的使用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260408%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20260408新上國小(社群)</a></td>
+        <td class="topic-col">大屏的使用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/5BrQj7BZ_FE" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260415勝利國小 notebooklm">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260415%E5%8B%9D%E5%88%A9%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260415勝利國小</a></td>
+        <td class="topic-col">NotebookLM</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/BtSLh8RVRIM" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/rBkKxDxG0zc" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260417車城國中 以ai寫程式網頁：用gemini canvas 打造教學神器與遊戲">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260417%E8%BB%8A%E5%9F%8E%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20260417車城國中</a></td>
+        <td class="topic-col">以AI寫程式網頁：用Gemini Canvas 打造教學神器與遊戲</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/52sB4ejeFmk" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/5g1DnmoEc9Q" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/6kwWKpnMApY" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/RgCQqNWpqfI" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/Yw5kaxNGD8Y" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/vqtb1xe858A" target="_blank" rel="noopener">▶ 影片 6</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="0" data-ho="1" data-search="2026 研習活動 20260419 s4a短講 ">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260419-s4a%E7%9F%AD%E8%AC%9B" target="_blank" rel="noopener">20260419 S4A短講</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260422鳥松國小 google ai(gemini)在教學的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260422%E9%B3%A5%E6%9D%BE%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260422鳥松國小</a></td>
+        <td class="topic-col">Google AI(Gemini)在教學的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/BtSLh8RVRIM" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="0" data-ho="1" data-search="2026 研習活動 20260429新上國小(社群) ai教師助理">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260429%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F%E7%A4%BE%E7%BE%A4" target="_blank" rel="noopener">20260429新上國小(社群)</a></td>
+        <td class="topic-col">AI教師助理</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2026研習活動" data-yt="0" data-ho="0" data-search="2026 研習活動 20260506莒光國小(學生) stem 創客實驗室  吃幣機器人全攻略">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260506%E8%8E%92%E5%85%89%E5%9C%8B%E5%B0%8F%E5%AD%B8%E7%94%9F" target="_blank" rel="noopener">20260506莒光國小(學生)</a></td>
+        <td class="topic-col">STEM 創客實驗室  吃幣機器人全攻略</td>
+        <td><span class="muted">—</span></td>
+        <td><span class="muted">—</span></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260512屏東大學 ai 體感應用與輔助科技">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260512%E5%B1%8F%E6%9D%B1%E5%A4%A7%E5%AD%B8" target="_blank" rel="noopener">20260512屏東大學</a></td>
+        <td class="topic-col">AI 體感應用與輔助科技</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/nVsWneKLHZk" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="0" data-search="2026 研習活動 20260513新上國小 教學大型觸控顯示器">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260513%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260513新上國小</a></td>
+        <td class="topic-col">教學大型觸控顯示器</td>
+        <td><span class="muted">—</span></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=VILmQ0ssg5Y" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/S7U62Au4-SQ" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/eb2b9bZrzhk" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/gFa6Fj9cZ7A" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtube.com/playlist?list=PLYJzE9PqG-iQN08Ei49mIiGr6G3BViAOT&amp;si=g3Lw9XgEWf8PDfiR" target="_blank" rel="noopener">▶ 影片 5</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260520成功國小 canva ai教學實作：從教師操作到學生產出">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260520%E6%88%90%E5%8A%9F%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260520成功國小</a></td>
+        <td class="topic-col">Canva AI教學實作：從教師操作到學生產出</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://www.canva.com/zh_tw/pricing/?tab=main" target="_blank" rel="noopener">📄 https://www.canva.com/…</a> <a class="badge badge-ho" href="https://www.canva.com/zh_tw/education/" target="_blank" rel="noopener">📄 https://www.canva.com/…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/ZKiG2AmXJLY" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260527營養師 ai製 作影片研習工作坊">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260527%E7%87%9F%E9%A4%8A%E5%B8%AB" target="_blank" rel="noopener">20260527營養師</a></td>
+        <td class="topic-col">AI製 作影片研習工作坊</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1jCGmZq5FDLE7lbG1eYD8GDwZNa6PZlIx/view?usp=sharing" target="_blank" rel="noopener">📄 114年11月午餐月刊</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1RxtA9nQ5TmYg8QemOtve-fKy60a_iUL3/view?usp=sharing" target="_blank" rel="noopener">📄 115年1月午餐月刊</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1UWL71i-Q9K7gwjSxDsoBOxjRzXno1UgP/view?usp=sharing" target="_blank" rel="noopener">📄 115年3月午餐月刊</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1FXLvfAXkvV0I5M57XfEHiMp_kJivjxK3/view?usp=sharing" target="_blank" rel="noopener">📄 115年5月午餐月刊</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/watch?v=OKNw3mdJoig" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/9jlgk0V5gmw" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260604鳳山國中 ai 創意啟航：從零開始的 ai 漫畫製作實戰研習">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260604%E9%B3%B3%E5%B1%B1%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20260604鳳山國中</a></td>
+        <td class="topic-col">AI 創意啟航：從零開始的 AI 漫畫製作實戰研習</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/QE9kRQiyQ4o" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260612瑞祥國小 ai  agent 在教學及行政上的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260612%E7%91%9E%E7%A5%A5%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260612瑞祥國小</a></td>
+        <td class="topic-col">AI  Agent 在教學及行政上的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/nO4GsVJChtA" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260627 s4a ai影片製作全攻略及打造班級專屬ai秘書">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260627-s4a" target="_blank" rel="noopener">20260627 S4A</a></td>
+        <td class="topic-col">AI影片製作全攻略及打造班級專屬AI秘書</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0627a" target="_blank" rel="noopener">📄 https://twgo.io/0627a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/0vkAwLolumA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/AQcWHiVo4P0" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/X8jARU8XeAI" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/nO4GsVJChtA" target="_blank" rel="noopener">▶ 影片 4</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260706員林國中 彰化縣國民中小學資訊素養提升">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260706%E5%93%A1%E6%9E%97%E5%9C%8B%E4%B8%AD" target="_blank" rel="noopener">20260706員林國中</a></td>
+        <td class="topic-col">彰化縣國民中小學資訊素養提升</td>
+        <td><a class="badge badge-ho" href="https://twgo.io/0706a" target="_blank" rel="noopener">📄 https://twgo.io/0706a</a> <a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/0vkAwLolumA" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/52sB4ejeFmk" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/5g1DnmoEc9Q" target="_blank" rel="noopener">▶ 影片 3</a> <a class="badge badge-yt" href="https://youtu.be/6kwWKpnMApY" target="_blank" rel="noopener">▶ 影片 4</a> <a class="badge badge-yt" href="https://youtu.be/RgCQqNWpqfI" target="_blank" rel="noopener">▶ 影片 5</a> <a class="badge badge-yt" href="https://youtu.be/Yw5kaxNGD8Y" target="_blank" rel="noopener">▶ 影片 6</a> <a class="badge badge-yt" href="https://youtu.be/vqtb1xe858A" target="_blank" rel="noopener">▶ 影片 7</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260827康軒 ">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260827%E5%BA%B7%E8%BB%92" target="_blank" rel="noopener">20260827康軒</a></td>
+        <td class="topic-col"></td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/Ak_NV0KPcrQ" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/dKsbzmN9Qrk" target="_blank" rel="noopener">▶ 影片 2</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20260923興糖國小 善用ai老師笑嗨嗨-google ai在教學上的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20260923%E8%88%88%E7%B3%96%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20260923興糖國小</a></td>
+        <td class="topic-col">善用AI老師笑嗨嗨-Google AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/CFdj4VizYhM" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20261007鳳陽國小 google ai在教學上的應用">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20261007%E9%B3%B3%E9%99%BD%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20261007鳳陽國小</a></td>
+        <td class="topic-col">Google AI在教學上的應用</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/YAPRM8TbENc" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20261028新上國小 教育局全市授權軟體及copilot介紹">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20261028%E6%96%B0%E4%B8%8A%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20261028新上國小</a></td>
+        <td class="topic-col">教育局全市授權軟體及Copilot介紹</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/AL83WzGx9gEKa0Pg" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a> <a class="badge badge-ho" href="https://padlet.com/shspswenyu/ai-x3pc6t2oasa41r7t/wish/zV61Q6X1gdoyWO98" target="_blank" rel="noopener">📄 https://padlet.com/shs…</a></td>
+        <td><a class="badge badge-yt" href="https://www.youtube.com/live/aXhq-nS2U4U" target="_blank" rel="noopener">▶ 影片 1</a> <a class="badge badge-yt" href="https://youtu.be/MPn-YSFwXNA" target="_blank" rel="noopener">▶ 影片 2</a> <a class="badge badge-yt" href="https://youtu.be/c3AsMCkL5F8" target="_blank" rel="noopener">▶ 影片 3</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20261104三埤國小 ai">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20261104%E4%B8%89%E5%9F%A4%E5%9C%8B%E5%B0%8F" target="_blank" rel="noopener">20261104三埤國小</a></td>
+        <td class="topic-col">AI</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1s-W33jVMuWpMo8P2PjDCRi4oV18gvSHe/view?usp=sharing" target="_blank" rel="noopener">📄 SKILL.md</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/u4grCqRlHlk" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr><tr data-cat="2026研習活動" data-yt="1" data-ho="1" data-search="2026 研習活動 20261114台灣教育科技展s4a短講 利用 google flow 製作">
+        <td><span class="cat-tag cat-2026研習活動">2026 研習活動</span></td>
+        <td><a class="title-link" href="https://sites.google.com/site/wenyunotify/2026%E7%A0%94%E7%BF%92%E6%B4%BB%E5%8B%95/20261114%E5%8F%B0%E7%81%A3%E6%95%99%E8%82%B2%E7%A7%91%E6%8A%80%E5%B1%95s4a%E7%9F%AD%E8%AC%9B" target="_blank" rel="noopener">20261114台灣教育科技展S4A短講</a></td>
+        <td class="topic-col">利用 Google Flow 製作</td>
+        <td><a class="badge badge-ho" href="https://shsps.padlet.org/wenyu9/padlet-1vcm75r3cicwe6u5" target="_blank" rel="noopener">📄 阿玉研習作業分享</a> <a class="badge badge-ho" href="https://drive.google.com/file/d/1s9bztKNpF08hc4a-2JYh9AqLnjjKldL0/view?usp=sharing" target="_blank" rel="noopener">📄 我的SKILL</a></td>
+        <td><a class="badge badge-yt" href="https://youtu.be/jtyfflboFOA" target="_blank" rel="noopener">▶ 影片 1</a></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const q = document.getElementById('q');
+  const rows = Array.from(document.querySelectorAll('#tbody tr'));
+  const catBtns = document.querySelectorAll('.filter-btn[data-cat]');
+  const btnYt = document.getElementById('btn-yt');
+  const btnHo = document.getElementById('btn-ho');
+  let activeCat = 'all', onlyYt = false, onlyHo = false;
+
+  function applyFilter() {
+    const kw = q.value.trim().toLowerCase();
+    rows.forEach(tr => {
+      const matchCat = activeCat === 'all' || tr.dataset.cat === activeCat;
+      const matchYt = !onlyYt || tr.dataset.yt === '1';
+      const matchHo = !onlyHo || tr.dataset.ho === '1';
+      const matchKw = !kw || tr.dataset.search.includes(kw);
+      tr.style.display = (matchCat && matchYt && matchHo && matchKw) ? '' : 'none';
+    });
+  }
+
+  q.addEventListener('input', applyFilter);
+  catBtns.forEach(b => b.addEventListener('click', () => {
+    catBtns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    activeCat = b.dataset.cat;
+    applyFilter();
+  }));
+  btnYt.addEventListener('click', () => { onlyYt = !onlyYt; btnYt.classList.toggle('active'); applyFilter(); });
+  btnHo.addEventListener('click', () => { onlyHo = !onlyHo; btnHo.classList.toggle('active'); applyFilter(); });
+</script>
+</body>
+</html>
