@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notion 日記照片同步 (notion-diary-photos) 使用手冊</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #111827;
+      --card-border: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #06b6d4;
+      --accent-soft: rgba(6, 182, 212, 0.14);
+      --green: #10b981;
+      --amber: #f59e0b;
+      --code-bg: #030712;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: radial-gradient(circle at top right, #172554 0%, var(--bg) 45%);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 32px 16px 64px;
+    }
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: #f9fafb;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 28px;
+      font-size: 0.98rem;
+    }
+    .card {
+      background: rgba(17, 24, 39, 0.88);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+      color: #f3f4f6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .prompt-list {
+      display: grid;
+      gap: 10px;
+    }
+    .prompt-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .prompt-label {
+      color: var(--muted);
+      font-size: 0.88rem;
+      min-width: 120px;
+    }
+    .prompt-text {
+      flex: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #67e8f9;
+      font-size: 0.94rem;
+      word-break: break-all;
+    }
+    .copy-btn {
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .copy-btn:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .copy-btn.copied {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--green);
+      color: #6ee7b7;
+    }
+    pre {
+      margin: 0;
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    .cmd-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .info-box {
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .info-box strong {
+      display: block;
+      color: #f9fafb;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .info-box p, .info-box li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+    .note {
+      border-left: 3px solid var(--amber);
+      background: rgba(245, 158, 11, 0.08);
+      padding: 12px 14px;
+      border-radius: 0 10px 10px 0;
+      color: #fde68a;
+      font-size: 0.9rem;
+      margin-top: 14px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: rgba(148, 163, 184, 0.14);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 0.88em;
+      color: #bae6fd;
+    }
+    @media (max-width: 640px) {
+      .prompt-item { flex-direction: column; align-items: flex-start; }
+      .copy-btn { align-self: flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">📸 Notion 日記同步工具</div>
+    <h1>notion-diary-photos 使用手冊</h1>
+    <p class="subtitle">自動比對 POCO 手機照片與螢幕截圖，依拍攝日期增量上傳並嵌入 Notion「日記」對應日期頁面（更新日期：2026-11-18）。</p>
+
+    <section class="card">
+      <h2>💬 方式一：在 Antigravity 對話框直接講（最簡單）</h2>
+      <p style="color: var(--muted); margin-top: 0;">直接輸入以下觸發詞，Agent 會自動帶入對應參數執行：</p>
+      <div class="prompt-list">
+        <div class="prompt-item">
+          <span class="prompt-label">補最近 3 天</span>
+          <span class="prompt-text">同步照片至Notion日記</span>
+          <button class="copy-btn" onclick="copyText(this, '同步照片至Notion日記')">複製</button>
+        </div>
+        <div class="prompt-item">
+          <span class="prompt-label">Slash 指令</span>
+          <span class="prompt-text">/notion-diary-photos</span>
+          <button class="copy-btn" onclick="copyText(this, '/notion-diary-photos')">複製</button>
+        </div>
+        <div class="prompt-item">
+          <span class="prompt-label">補最近 7 天</span>
+          <span class="prompt-text">同步最近 7 天照片至 Notion 日記</span>
+          <button class="copy-btn" onclick="copyText(this, '同步最近 7 天照片至 Notion 日記')">複製</button>
+        </div>
+        <div class="prompt-item">
+          <span class="prompt-label">補指定區間</span>
+          <span class="prompt-text">補齊 2026-11-11 到 2026-11-16 的 Notion 日記照片</span>
+          <button class="copy-btn" onclick="copyText(this, '補齊 2026-11-11 到 2026-11-16 的 Notion 日記照片')">複製</button>
+        </div>
+        <div class="prompt-item">
+          <span class="prompt-label">補整個月</span>
+          <span class="prompt-text">補齊 10 月份的 Notion 日記照片</span>
+          <button class="copy-btn" onclick="copyText(this, '補齊 10 月份的 Notion 日記照片')">複製</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cmd-header">
+        <h2 style="margin: 0;">⌨️ 方式二：在終端機 (Terminal) 直接執行</h2>
+        <button class="copy-btn" onclick="copyText(this, 'python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py')">複製預設指令</button>
+      </div>
+      <pre># 1. 預設（自動檢查 前天、昨天、今天 共 3 天，增量補齊）
+python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py
+
+# 2. 指定最近 N 天（例如一週沒跑，一次補最近 7 天）
+python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py --days 7
+
+# 3. 只補單一特定日期
+python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py --date 2026-11-16
+
+# 4. 指定起訖日期區間
+python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py --range 2026-11-11 2026-11-16
+
+# 5. 補整個月
+python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py --month 10月
+
+# 6. 強制重寫（先刪掉該日舊相片區塊再重新嵌入，不會重複）
+python3 /Volumes/512G/Antigravity/notion-diary-photos/sync_diary_photos.py --days 3 --force</pre>
+    </section>
+
+    <section class="card">
+      <h2>🔄 增量比對與防重複機制</h2>
+      <div class="grid-2">
+        <div class="info-box">
+          <strong>✅ 早 / 中 / 晚多次執行不重複</strong>
+          <p>腳本會讀取 Notion 頁面既有相片 URL 與檔名，只上傳並補齊尚未嵌入的新照片，並自動更新標題張數。</p>
+        </div>
+        <div class="info-box">
+          <strong>📅 跨天執行自動接續</strong>
+          <p>例如前天中午跑一次、今天中午再跑一次，會將前天下午後新增的照片補進前天頁面，昨天與今天也各自寫入對應頁面。</p>
+        </div>
+        <div class="info-box">
+          <strong>📂 來源路徑</strong>
+          <ul>
+            <li>相機：<code>/Volumes/Haggis2T/POCO手機/Camera</code></li>
+            <li>截圖：<code>/Volumes/Haggis2T/POCO手機/Screenshots</code></li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <strong>🗂️ 相關檔案</strong>
+          <ul>
+            <li>腳本：<code>sync_diary_photos.py</code></li>
+            <li>快取：<code>notion_diary_photos_cache.json</code></li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">
+        💡 <strong>小提醒</strong>：若超過 2 天沒執行（例如間隔 4～5 天），預設 <code>--days 3</code> 只會掃到最近 3 天，改下 <code>--days 7</code> 即可一次補齊。執行前請確認 <code>/Volumes/Haggis2T</code> 外接硬碟已掛載。
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function copyText(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '已複製';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.classList.remove('copied');
+        }, 1400);
+      });
+    }
+  </script>
+</body>
+</html>
