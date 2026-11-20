@@ -202,6 +202,10 @@
         <h2 id="modal-title" class="text-sm font-bold text-white truncate max-w-xl">標題預覽</h2>
       </div>
       <div class="flex items-center gap-2">
+        <button id="modal-share-btn" type="button" class="px-3 py-1.5 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 text-xs border border-emerald-500/40 flex items-center gap-1.5 transition-all cursor-pointer" title="轉成短網址加標題到剪貼簿">
+          <i class="fa-solid fa-link"></i>
+          <span>轉成短網址加標題到剪貼簿</span>
+        </button>
         <a id="modal-ig-link" href="#" target="_blank" class="px-3 py-1.5 rounded-lg bg-pink-600/30 hover:bg-pink-600/50 text-pink-300 text-xs border border-pink-500/40 flex items-center gap-1.5 transition-all">
           <i class="fa-brands fa-instagram"></i>
           <span>IG 原文</span>
@@ -294,7 +298,9 @@
     const modalTitle = document.getElementById('modal-title');
     const modalCounter = document.getElementById('modal-counter');
     const modalIgLink = document.getElementById('modal-ig-link');
+    const modalShareBtn = document.getElementById('modal-share-btn');
     const modalRawFile = document.getElementById('modal-raw-file');
+    const shortUrlCache = {};
     const modalClose = document.getElementById('modal-close');
     const modalPrev = document.getElementById('modal-prev');
     const modalNext = document.getElementById('modal-next');
@@ -546,6 +552,48 @@ IG 發布：${post.mtime_str}">
       activeSlideIndex = idx;
       updateLightboxSlide();
     };
+
+    async function fetchShortUrl(longUrl) {
+      if (shortUrlCache[longUrl]) return shortUrlCache[longUrl];
+      for (const endpoint of ['https://is.gd/create.php', 'https://v.gd/create.php']) {
+        try {
+          const resp = await fetch(`${endpoint}?format=json&url=${encodeURIComponent(longUrl)}`);
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data && data.shorturl) {
+              shortUrlCache[longUrl] = data.shorturl;
+              return data.shorturl;
+            }
+          }
+        } catch (e) {
+          console.warn('shortener failed:', endpoint, e);
+        }
+      }
+      return longUrl;
+    }
+
+    modalShareBtn.addEventListener('click', async () => {
+      if (!activePost || !activePost.items[activeSlideIndex]) return;
+      const currentItem = activePost.items[activeSlideIndex];
+      const title = currentItem.title || activePost.title;
+      const longUrl = R2_BASE + encodeURIComponent(currentItem.filename);
+      const originalHtml = modalShareBtn.innerHTML;
+      modalShareBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>縮網址中...</span>';
+      modalShareBtn.disabled = true;
+      try {
+        const shortUrl = await fetchShortUrl(longUrl);
+        await navigator.clipboard.writeText(`${title}\n${shortUrl}`);
+        modalShareBtn.innerHTML = '<i class="fa-solid fa-check"></i><span>已複製短網址+標題</span>';
+      } catch (err) {
+        console.error(err);
+        modalShareBtn.innerHTML = '<i class="fa-solid fa-xmark"></i><span>複製失敗</span>';
+      } finally {
+        setTimeout(() => {
+          modalShareBtn.innerHTML = originalHtml;
+          modalShareBtn.disabled = false;
+        }, 2000);
+      }
+    });
 
     modalPrev.addEventListener('click', () => {
       if (!activePost) return;
