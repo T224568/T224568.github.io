@@ -569,6 +569,19 @@ IG 發布：${post.mtime_str}">
           console.warn('shortener failed:', endpoint, e);
         }
       }
+      // Fallback: clck.ru (supports CORS * and allows r2.dev)
+      try {
+        const resp3 = await fetch(`https://clck.ru/--?url=${encodeURIComponent(longUrl)}`);
+        if (resp3.ok) {
+          const shortUrl = (await resp3.text()).trim();
+          if (shortUrl.startsWith('http')) {
+            shortUrlCache[longUrl] = shortUrl;
+            return shortUrl;
+          }
+        }
+      } catch (e3) {
+        console.warn('clck.ru failed:', e3);
+      }
       return longUrl;
     }
 
