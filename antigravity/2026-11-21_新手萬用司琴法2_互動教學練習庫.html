@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新手萬用司琴法 2：三首熱門詩歌 C 大調互動教學練習庫｜韋燁老師 CWY 敬拜學院</title>
+  <meta name="description" content="基於 CWY 敬拜學院韋燁老師《新手萬用司琴法 2》打造的互動鋼琴伴奏教學系統：內建 48 鍵即時發聲鋼琴、單根音与八度根音張力實驗室、齊右/齊右左右/齊58伴奏型態動態示範、《這一生最美的祝福》《平安夜》《耶穌恩友》C大調實戰跟彈與20頁完整教學講義。">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --white-key-bg: #ffffff;
+      --black-key-bg: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    header a.yt-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    header a.yt-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      background: var(--card-bg);
+      padding: 6px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 1px solid var(--card-border);
+      max-width: 1080px;
+    }
+
+    .tab-btn {
+      padding: 9px 18px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+    }
+
+    .tab-btn:hover:not(.active) {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Layout Containers */
+    .main-container {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Controls Group */
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip-btn {
+      flex: 1;
+      min-width: 44px;
+      padding: 8px 12px;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .chip-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .chip-btn.accent-active.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 800;
+    }
+
+    .chip-btn.purple-active.active {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #ffffff;
+    }
+
+    .chip-btn:hover:not(.active) {
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    select.custom-select {
+      width: 100%;
+      padding: 10px 14px;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select.custom-select:focus {
+      border-color: var(--primary);
+    }
+
+    /* Concept Banner */
+    .concept-banner {
+      background: rgba(59, 130, 246, 0.09);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .concept-tag {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    /* Rhythm Beat Visualizer Box */
+    .chord-display {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.65);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .chord-title-box h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .chord-title-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Beat Chant Pills */
+    .chant-sequence {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .chant-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 56px;
+      height: 60px;
+      padding: 6px 10px;
+      background: #0f172a;
+      border: 2px solid var(--card-border);
+      border-radius: 10px;
+      transition: all 0.12s;
+    }
+
+    .chant-step.active-beat {
+      border-color: var(--accent);
+      background: rgba(245, 158, 11, 0.22);
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+    }
+
+    .chant-step .c-word {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .chant-step .c-count {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* Pedal & Cue Indicator Bar */
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .status-pill {
+      flex: 1;
+      min-width: 220px;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.86rem;
+    }
+
+    .pedal-badge {
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      transition: all 0.15s;
+    }
+
+    .pedal-badge.releasing {
+      background: rgba(245, 158, 11, 0.25);
+      color: #fbbf24;
+      border-color: #f59e0b;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-play {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-play:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-play.sec {
+      background: #334155;
+    }
+    .btn-play.sec:hover {
+      background: #475569;
+    }
+
+    .btn-play.accent {
+      background: var(--accent);
+      color: #0f172a;
+    }
+    .btn-play.accent:hover {
+      background: #d97706;
+    }
+
+    /* Piano Container (48 Keys: C2 to B5) */
+    .piano-wrapper {
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      padding: 10px 0 18px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .piano-keyboard {
+      position: relative;
+      display: flex;
+      height: 195px;
+      background: #000;
+      padding: 4px;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      border-top: 8px solid #991b1b;
+    }
+
+    .key {
+      position: relative;
+      cursor: pointer;
+      border-radius: 0 0 5px 5px;
+      transition: background-color 0.08s, transform 0.05s, box-shadow 0.08s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .key.white {
+      width: 34px;
+      height: 100%;
+      background: var(--white-key-bg);
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      border-top: none;
+      z-index: 1;
+      margin: 0 1px;
+    }
+
+    .key.white:active, .key.white.pressed {
+      background: #e2e8f0;
+      transform: translateY(2px);
+    }
+
+    .key.black {
+      width: 22px;
+      height: 60%;
+      background: var(--black-key-bg);
+      color: #94a3b8;
+      border: 1px solid #0f172a;
+      z-index: 2;
+      margin-left: -12px;
+      margin-right: -12px;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 2px 3px 5px rgba(0,0,0,0.4);
+    }
+
+    .key.black:active, .key.black.pressed {
+      background: #090d16;
+      transform: translateY(2px);
+    }
+
+    /* Highlight States */
+    .key.highlight-lh-root {
+      background: #ef4444 !important; /* 紅色：左手根音 / 八度根音 */
+      color: #ffffff !important;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 0 14px rgba(239, 68, 68, 0.75);
+    }
+
+    .key.highlight-lh-sub {
+      background: #8b5cf6 !important; /* 紫色：左手五度音 (齊58) */
+      color: #ffffff !important;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 0 14px rgba(139, 92, 246, 0.75);
+    }
+
+    .key.highlight-rh-chord {
+      background: #3b82f6 !important; /* 藍色：右手和弦音 */
+      color: #ffffff !important;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 0 14px rgba(59, 130, 246, 0.75);
+    }
+
+    .key.highlight-melody {
+      background: #f59e0b !important; /* 金黃色：導唱主旋律 */
+      color: #0f172a !important;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3), 0 0 16px rgba(245, 158, 11, 0.9);
+    }
+
+    .key.highlight-user {
+      background: #10b981 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+    }
+
+    .key .role-badge {
+      position: absolute;
+      top: 6px;
+      padding: 1px 5px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      pointer-events: none;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    .key .key-label {
+      pointer-events: none;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 6px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    /* Measure Cards Grid in Tab 2 */
+    .measure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .measure-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    .measure-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .measure-card.active-measure {
+      border: 2px solid var(--accent);
+      background: rgba(245, 158, 11, 0.12);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+    }
+
+    .measure-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .m-sec-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .m-sec-intro { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
+    .m-sec-verse { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .m-sec-chorus { background: rgba(239, 68, 68, 0.25); color: #fca5a5; }
+    .m-sec-fill { background: rgba(245, 158, 11, 0.25); color: #fcd34d; }
+
+    .m-chord-name {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--accent);
+      font-family: monospace;
+    }
+
+    .m-lyric {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .m-pattern-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Leader Cue Alert Box */
+    .leader-cue-box {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.18), rgba(239, 68, 68, 0.18));
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin-top: 10px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: #fde68a;
+      font-size: 0.92rem;
+    }
+
+    .leader-cue-box.visible {
+      display: flex;
+    }
+
+    /* Quiz Styling */
+    .quiz-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+      padding: 8px 0 16px 0;
+    }
+
+    .quiz-target {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px dashed var(--accent);
+      max-width: 760px;
+    }
+
+    .scenario-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      width: 100%;
+      max-width: 780px;
+      margin-top: 6px;
+    }
+
+    .scenario-btn {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+    }
+    .scenario-btn:hover {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    /* Notes & 20-Page Carousel */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .note-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .note-card h3 {
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .note-card ul {
+      padding-left: 18px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slide-viewer {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .slide-visual-hint {
+      background: rgba(139, 92, 246, 0.12);
+      border-left: 4px solid var(--purple);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #ddd6fe;
+      margin-bottom: 12px;
+    }
+
+    .slide-script-text {
+      font-size: 1rem;
+      color: #f1f5f9;
+      line-height: 1.75;
+      user-select: text;
+    }
+
+    @media (max-width: 768px) {
+      .key.white { width: 25px; font-size: 0.58rem; }
+      .key.black { width: 16px; margin-left: -8px; margin-right: -8px; }
+      header h1 { font-size: 1.35rem; }
+      .tab-btn { padding: 7px 11px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-badge">🎹 CWY 敬拜學院｜韋燁老師直播精華互動化</div>
+    <h1>新手萬用司琴法 2：解鎖 3 首熱門詩歌互動練習庫</h1>
+    <p>
+      全 C 大調無痛上手：左手順控力量（單根音 vs. 八度）、右手掌握律動（齊右／齊右左右／齊 5 8）
+      <a class="yt-link" href="https://www.youtube.com/live/7IcnRwpXxGI?si=rpHlkTY9sngXNvqJ" target="_blank" rel="noopener">▶ 觀看原片直播</a>
+    </p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('lab', event)">⚡ 萬用伴奏型態實驗室</button>
+    <button class="tab-btn" onclick="switchTab('songs', event)">🎼 三首詩歌 C 大調實戰跟彈</button>
+    <button class="tab-btn" onclick="switchTab('quiz', event)">🎯 司琴跟彈與實戰隨堂考</button>
+    <button class="tab-btn" onclick="switchTab('notes', event)">📚 講義精華與 20 頁講稿</button>
+  </div>
+
+  <div class="main-container">
+
+    <!-- ==================== TAB 1: 萬用伴奏型態實驗室 ==================== -->
+    <div id="tab-lab" class="panel">
+      <div class="selector-grid">
+        <!-- C 大調常用和弦選擇 -->
+        <div class="control-group">
+          <label>1. 選擇 C 大調詩歌核心和弦</label>
+          <div class="btn-group" id="lab-chord-selector"></div>
+        </div>
+
+        <!-- 左手根音力量控制（解決平淡第一招） -->
+        <div class="control-group">
+          <label>2. 左手力量層次 (左手控力量)</label>
+          <div class="btn-group" id="lab-lh-mode">
+            <button class="chip-btn active" onclick="setLabLhMode('single')">🤚 主歌：單一根音</button>
+            <button class="chip-btn accent-active" onclick="setLabLhMode('octave')">👐 副歌：八度根音 (1+8)</button>
+            <button class="chip-btn purple-active" onclick="setLabLhMode('lowSingle')">👇 61鍵/小手：低八度單音</button>
+          </div>
+        </div>
+
+        <!-- 6 種韋燁老師核心伴奏口訣 -->
+        <div class="control-group" style="grid-column: 1 / -1;">
+          <label>3. 選擇伴奏口訣型態（先拍手唸口訣，再聽雙手律動）</label>
+          <div class="btn-group" id="lab-pattern-selector">
+            <button class="chip-btn active" onclick="setLabPattern('44_basic')">4/4 主歌【齊、右】</button>
+            <button class="chip-btn" onclick="setLabPattern('44_push')">4/4 副歌【齊、右、左、右、左、右】</button>
+            <button class="chip-btn" onclick="setLabPattern('44_fill')">4/4 第4小節過門【齊、齊、齊、齊】</button>
+            <button class="chip-btn" onclick="setLabPattern('34_block')">3/4 華爾茲【齊、右、右】</button>
+            <button class="chip-btn" onclick="setLabPattern('34_758')">3/4 抒情分散【齊、5、8】</button>
+            <button class="chip-btn" onclick="setLabPattern('34_758585')">3/4 進階流動【齊、5、8、5、8、5】</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 動態教學觀念提示 -->
+      <div class="concept-banner">
+        <span class="concept-tag">韋燁老師心法</span>
+        <span id="lab-concept-text">💡 【左手控力量、右手控氛圍】主歌用「單一根音＋齊右」營造純淨感；進副歌把左手打開成「八度根音＋齊右左右」，力量瞬間轟起來！</span>
+      </div>
+
+      <!-- 和弦與口訣拍點動態顯示器 -->
+      <div class="chord-display">
+        <div class="chord-title-box">
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <h2 id="lab-title-text">C 大三和弦｜主歌【齊、右】</h2>
+            <span id="lab-chord-badge" style="background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; font-size: 1.4rem; font-weight: 900; padding: 3px 14px; border-radius: 8px; font-family: monospace;">C</span>
+          </div>
+          <p id="lab-sub-text">左手：C3 單根音 ｜ 右手：C4 - E4 - G4 (1 - 3 - 5)</p>
+        </div>
+
+        <!-- 口訣拍點燈號 -->
+        <div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">🗣 邊拍手邊唸口訣（點擊播放看拍點亮燈）：</div>
+          <div class="chant-sequence" id="lab-chant-boxes"></div>
+        </div>
+
+        <div class="action-btns">
+          <button class="btn-play" id="lab-btn-play" onclick="toggleLabLoop()">▶ 循環示範律動 (Space)</button>
+          <button class="btn-play sec" onclick="playLabOnce()">🔊 單次試聽</button>
+        </div>
+      </div>
+
+      <!-- 踏板與節拍狀態列 -->
+      <div class="status-bar">
+        <div class="status-pill">
+          <span>🦶 <strong>延音踏板 (Sustain Pedal)</strong>：每換一個和弦就「放開再踩」</span>
+          <span class="pedal-badge" id="lab-pedal-status">↓ 踏板踩下延音中</span>
+        </div>
+        <div class="status-pill">
+          <span>💓 <strong>節拍穩定度 (如心跳穩定)</strong>：寧可不加技巧，拍子也絕不能亂</span>
+          <span style="color: var(--accent); font-weight: 800;" id="lab-bpm-label">76 BPM</span>
+        </div>
+      </div>
+
+      <!-- 48 鍵互動鋼琴鍵盤 (C2 ~ B5) -->
+      <div class="piano-wrapper">
+        <div class="piano-keyboard" id="lab-piano-keys"></div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#ef4444"></div>
+          <span>左手根音 / 八度根音 (控制力量)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#8b5cf6"></div>
+          <span>左手第 5 音 (齊 5 8 分散伴奏)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3b82f6"></div>
+          <span>右手和弦音 (控制氛圍)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: 三首熱門詩歌 C 大調實戰跟彈 ==================== -->
+    <div id="tab-songs" class="panel" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h2 style="margin-bottom: 4px;">🎼 三首熱門詩歌 C 大調實戰跟彈</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">全部統一改編為 C 大調！點擊下方任一小節卡片可直接跳段練習，按空白鍵 (Space) 播放／暫停。</p>
+        </div>
+        <div class="action-btns">
+          <button class="btn-play" id="song-btn-play" onclick="toggleSongPlayback()">▶ 播放全曲示範 (Space)</button>
+          <button class="btn-play sec" id="song-btn-loop" onclick="toggleSongLoop()">🔁 循環：開啟</button>
+          <button class="btn-play sec" onclick="stopSongPlayback()">⏹ 停止</button>
+        </div>
+      </div>
+
+      <div class="selector-grid">
+        <!-- 選擇三首詩歌 -->
+        <div class="control-group">
+          <label>選擇示範詩歌 (C 大調改編版)</label>
+          <select id="song-select" class="custom-select" onchange="onSongChange()">
+            <option value="0">1. 《這一生最美的祝福》(4/4 流行詩歌：主副歌層次＋前奏過門)</option>
+            <option value="1">2. 《平安夜 Silent Night》(3/4 聖誕華爾茲：三種伴奏自由切換)</option>
+            <option value="2">3. 《耶穌恩友》(4/4 傳統聖詩流行化：看小節與和弦直接彈)</option>
+          </select>
+        </div>
+
+        <!-- 伴奏型態覆寫 (特別針對平安夜三種 3/4 拍伴奏切換) -->
+        <div class="control-group">
+          <label>伴奏型態切換 (即時套用至全曲)</label>
+          <select id="song-style-override" class="custom-select" onchange="onSongStyleOverride()">
+            <option value="auto">✨ 依韋燁老師示範自動配搭（主歌輕柔 ➔ 副歌爆發）</option>
+            <option value="34_block">💃 3/4 華爾茲柱式：【齊、右、右】（律動感最強）</option>
+            <option value="34_758">🌊 3/4 華爾茲抒情：【齊、5、8】（左手 1-5-8 分散）</option>
+            <option value="34_758585">✨ 3/4 華爾茲進階：【齊、5、8、5、8、5】（密集流動）</option>
+            <option value="44_basic">🎵 4/4 全曲穩定：【齊、右】（新手邊彈邊唱首選）</option>
+            <option value="44_push">🔥 4/4 全曲推進：【齊、右、左、右、左、右】</option>
+          </select>
+        </div>
+
+        <!-- 聲道分工 -->
+        <div class="control-group">
+          <label>聲道 / 練習分工模式</label>
+          <div class="btn-group" id="song-channel-group">
+            <button class="chip-btn active" onclick="setSongChannel('all')">👐 伴奏＋導唱旋律</button>
+            <button class="chip-btn" onclick="setSongChannel('accompany')">🎹 純雙手司琴伴奏</button>
+            <button class="chip-btn" onclick="setSongChannel('lh')">🤚 僅練左手根音/58</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 當前播放小節與司琴引導看板 -->
+      <div style="background: rgba(15, 23, 42, 0.78); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3 id="song-info-title" style="font-size: 1.35rem; color: var(--accent);">《這一生最美的祝福》</h3>
+            <span id="song-info-meter" style="background: rgba(59,130,246,0.2); color: #60a5fa; font-size: 0.8rem; font-weight: 800; padding: 3px 10px; border-radius: 6px;">C 大調｜4/4 拍</span>
+          </div>
+          <span class="pedal-badge" id="song-pedal-indicator">🦶 換小節和弦：放開再踩踏板</span>
+        </div>
+        <p id="song-info-desc" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;"></p>
+
+        <!-- 動態歌詞與雙手提示 -->
+        <div style="background: #0f172a; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #ffffff;" id="song-live-lyric">點選下方小節或按「播放全曲示範」開始跟彈</div>
+            <div style="display: flex; gap: 18px; font-size: 0.88rem; margin-top: 6px; flex-wrap: wrap;">
+              <span style="color: #f87171;">🤚 左手：<strong id="song-live-lh">C3 (單根音)</strong></span>
+              <span style="color: #60a5fa;">🖐 右手和弦：<strong id="song-live-rh">C4 - E4 - G4</strong></span>
+              <span style="color: #fbbf24;">🗣 口訣：<strong id="song-live-chant">齊 - 右 - 右 - 右</strong></span>
+            </div>
+          </div>
+          <div class="chant-sequence" id="song-live-beats"></div>
+        </div>
+
+        <!-- 主領進歌眼神與帶唱提示框 (前奏第 4 小節過門時自動亮起) -->
+        <div class="leader-cue-box" id="song-leader-cue">
+          👀 【司琴過門引導主領進歌！】第 4 小節彈「齊齊齊齊」過門 ＋ 眼睛盯著主領、眉毛上挑點頭，或直接開口幫唱第一句：「在無數的黑夜裡...」！
+        </div>
+      </div>
+
+      <!-- 小節和弦譜卡片列表 -->
+      <div class="measure-grid" id="song-measures-container"></div>
+
+      <!-- 48 鍵雙手實戰鍵盤 -->
+      <div class="piano-wrapper">
+        <div class="piano-keyboard" id="song-piano-keys"></div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#ef4444"></div>
+          <span>左手根音 / 八度 (Red)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#8b5cf6"></div>
+          <span>左手第 5 音 (Purple)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3b82f6"></div>
+          <span>右手伴奏和弦 (Blue)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f59e0b"></div>
+          <span>導唱主旋律參考音 (Gold)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: 司琴實戰跟彈與情境大考驗 ==================== -->
+    <div id="tab-quiz" class="panel" style="display: none;">
+      <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 16px;">
+        <button class="chip-btn active" id="qmode-btn-piano" onclick="setQuizMode('piano')" style="max-width: 260px;">🎹 模式 A：鍵盤雙手配置實作考驗</button>
+        <button class="chip-btn" id="qmode-btn-scenario" onclick="setQuizMode('scenario')" style="max-width: 260px;">💡 模式 B：韋燁老師司琴實戰情境題</button>
+      </div>
+
+      <!-- 模式 A：鋼琴鍵盤按鍵測驗 -->
+      <div id="quiz-piano-section">
+        <div class="quiz-card">
+          <h2>🎯 司琴雙手配置跟彈考驗</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">請根據題目要求，在下方 48 鍵鋼琴上點選出正確的「左手根音／八度」與「右手和弦音」！</p>
+          <div class="quiz-target" id="quiz-target-prompt">題目載入中...</div>
+
+          <div style="display: flex; gap: 24px; font-size: 0.95rem; color: var(--text-muted);">
+            <span>得分：<strong id="quiz-score" style="color:#fff; font-size:1.2rem;">0</strong></span>
+            <span>連續答對：<strong id="quiz-streak" style="color:var(--accent); font-size:1.2rem;">0</strong></span>
+          </div>
+
+          <div id="quiz-feedback" style="font-weight: 700; min-height: 26px; color: var(--text-muted);">點擊下方琴鍵選取音符（再次點擊可取消）</div>
+
+          <div class="action-btns">
+            <button class="btn-play" onclick="playQuizTargetAudio()">🔊 聽正確音響</button>
+            <button class="btn-play accent" onclick="checkPianoQuizAnswer()">✅ 送出判定</button>
+            <button class="btn-play sec" onclick="showPianoQuizHint()">💡 看解答亮燈</button>
+            <button class="btn-play sec" onclick="nextPianoQuiz()">⏭ 下一題</button>
+          </div>
+        </div>
+
+        <div class="piano-wrapper">
+          <div class="piano-keyboard" id="quiz-piano-keys"></div>
+        </div>
+      </div>
+
+      <!-- 模式 B：實戰情境選擇題 -->
+      <div id="quiz-scenario-section" style="display: none;">
+        <div class="quiz-card">
+          <h2>💡 敬拜司琴實戰情境問答</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">檢驗你對《新手萬用司琴法 2》核心觀念、過門引導與踏板技巧的掌握度！</p>
+          <div class="quiz-target" id="scenario-question-text" style="font-size: 1.2rem;">情境題載入中...</div>
+          <div class="scenario-options" id="scenario-options-box"></div>
+          <div id="scenario-feedback" style="font-weight: 700; min-height: 28px; max-width: 760px; margin-top: 6px;"></div>
+          <button class="btn-play sec" onclick="nextScenarioQuestion()">⏭ 換下一題情境</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: 講義精華與 20 頁深度教學講稿 ==================== -->
+    <div id="tab-notes" class="panel" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h2 style="margin-bottom: 4px;">📚 韋燁老師《新手萬用司琴法 2》結構化教學講義</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">包含核心法則、重點名詞、教學避坑指南與 20 頁互動式講師備課講稿</p>
+        </div>
+        <button class="btn-play accent" onclick="copyAllMarkdownNotes()">📋 一鍵複製完整 Markdown 講義</button>
+      </div>
+
+      <div class="notes-grid">
+        <div class="note-card">
+          <h3>⚡ 一、解決平淡無奇：主副歌層次公式</h3>
+          <ul>
+            <li><strong>黃金分工</strong>：左手控制「力量與厚度」（越往左越強），右手控制「氛圍」（按和弦）。</li>
+            <li><strong>主歌（A 段）</strong>：左手彈<strong>單一根音</strong> ＋ 伴奏口訣<strong>【齊、右】</strong>，呈現純淨安靜感。</li>
+            <li><strong>副歌（B 段）</strong>：左手張開彈<strong>八度根音 (1+8)</strong> ＋ 伴奏口訣<strong>【齊、右、左、右、左、右】</strong>。</li>
+            <li><strong>61 鍵／小手替代方案</strong>：按不到八度時，改彈「往左移一個八度的單根音」（離右手遠一點），同樣具備低頻厚度。</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <h3>👀 二、無前奏＆主領進不了歌的救場技</h3>
+          <ul>
+            <li><strong>萬用前奏公式</strong>：直接把歌曲的<strong>前 4 個和弦</strong>彈一遍當作前奏（約 65%–70% 詩歌通用）。</li>
+            <li><strong>第 4 小節標準過門</strong>：在第 4 個和弦彈連續拍點<strong>【齊、齊、齊、齊】</strong>，像音樂的逗點提醒準備開口。</li>
+            <li><strong>肢體與帶唱引導</strong>：過門最後一拍<strong>眼睛盯著主領、眉毛上挑、嘴巴微張並往前點頭</strong>；若主領仍卡住，司琴直接開口幫唱第一個字或第一句！</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <h3>💃 三、3/4 拍華爾茲與傳統聖詩流行化</h3>
+          <ul>
+            <li><strong>3/4 拍《平安夜》三階伴奏</strong>：
+              <br>① <strong>【齊、右、右】</strong>：柱式和弦，蹦噠噠圓舞曲律動感最強（新手首選）。
+              <br>② <strong>【齊、5、8】</strong>：分散和弦，左手彈根音、第 5 音、第 8 音，氛圍抒情。
+              <br>③ <strong>【齊、5、8、5、8、5】</strong>：進階八分音符密集分散，如水波流動。</li>
+            <li><strong>踏板與節拍器</strong>：初學第一天就要認識的兩位新朋友！踩踏板關鍵在<strong>「每看到一個新和弦就放開重踩一次」</strong>；拍子要像<strong>心跳</strong>一樣穩定。</li>
+            <li><strong>傳統聖詩《耶穌恩友》</strong>：找標有「小節線＋和弦」的簡譜，直接套用【齊右】與【齊右左右】即可彈出流行感。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 20 頁互動翻頁講稿檢視器 -->
+      <div class="slide-viewer">
+        <div class="slide-header">
+          <div>
+            <span style="font-size: 0.78rem; color: var(--accent); font-weight: 800; text-transform: uppercase;">🎤 20 頁深度教學講稿 (Expert Lecturer Script)</span>
+            <h3 id="slide-title" style="font-size: 1.25rem; color: #ffffff; margin-top: 2px;">[Page 1: 開場動機與學習定位]</h3>
+          </div>
+          <div class="action-btns">
+            <button class="chip-btn" onclick="changeSlide(-1)">⬅ 上一頁</button>
+            <span id="slide-counter" style="padding: 8px 14px; background: #1e293b; border-radius: 8px; font-weight: 800; font-size: 0.9rem;">1 / 20</span>
+            <button class="chip-btn" onclick="changeSlide(1)">下一頁 ➡</button>
+          </div>
+        </div>
+        <div class="slide-visual-hint" id="slide-visual">🎨 視覺建議：標題頁顯示「新手萬用司琴法 2」，並列三首經典詩歌封面圖示。</div>
+        <div class="slide-script-text" id="slide-content">載入中...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. Web Audio 鋼琴發聲引擎 (支援溫暖雙振盪器與延音踏板長度模擬)
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function midiToFreq(midi) {
+      return 440 * Math.pow(2, (midi - 69) / 12);
+    }
+
+    function playTone(midi, startTime = 0, duration = 1.6, volume = 0.35) {
+      const ctx = getAudioContext();
+      const now = startTime || ctx.currentTime;
+      const freq = midiToFreq(midi);
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now);
+
+      const osc2 = ctx.createOscillator();
+      const gain2 = ctx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(freq * 2, now);
+
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(volume, now + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+      gain2.gain.setValueAtTime(0, now);
+      gain2.gain.linearRampToValueAtTime(volume * 0.35, now + 0.012);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.75);
+
+      osc.connect(gain);
+      osc2.connect(gain2);
+      gain.connect(ctx.destination);
+      gain2.connect(ctx.destination);
+
+      osc.start(now);
+      osc2.start(now);
+      osc.stop(now + duration);
+      osc2.stop(now + duration);
+    }
+
+    // =========================================================================
+    // 2. 樂理與 C 大調核心和弦資料庫 (涵蓋 48 鍵: C2=36 至 B5=83)
+    // =========================================================================
+    const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+    function midiToNoteLabel(midi) {
+      const name = NOTE_NAMES[midi % 12];
+      const oct = Math.floor(midi / 12) - 1;
+      return `${name}${oct}`;
+    }
+
+    // C 大調詩歌最核心的 7 個和弦定義
+    // rootC3: 主歌單根音基準區 (C3=48 ~ B3=59)
+    // lowRootC2: 低八度根音 (C2=36 ~ B2=47)
+    // fifthMidi: 從 lowRoot 或 root 往上純五度 (+7 半音，用於齊 5 8)
+    // rhMidis: 右手和弦音 (靠近中央 C4=60 區域)
+    const C_KEY_CHORDS = {
+      'C': {
+        symbol: 'C', name: 'C 大三和弦', notesStr: 'C - E - G (1 - 3 - 5)',
+        rootMidi: 48, lowRootMidi: 36, fifthMidi: 55, octaveMidi: 60,
+        rhMidis: [60, 64, 67] // C4, E4, G4
+      },
+      'Dm': {
+        symbol: 'Dm', name: 'Dm 小三和弦', notesStr: 'D - F - A (2 - 4 - 6)',
+        rootMidi: 50, lowRootMidi: 38, fifthMidi: 57, octaveMidi: 62,
+        rhMidis: [62, 65, 69] // D4, F4, A4
+      },
+      'Em': {
+        symbol: 'Em', name: 'Em 小三和弦', notesStr: 'E - G - B (3 - 5 - 7)',
+        rootMidi: 52, lowRootMidi: 40, fifthMidi: 59, octaveMidi: 64,
+        rhMidis: [64, 67, 71] // E4, G4, B4
+      },
+      'F': {
+        symbol: 'F', name: 'F 大三和弦', notesStr: 'F - A - C (4 - 6 - 1)',
+        rootMidi: 53, lowRootMidi: 41, fifthMidi: 60, octaveMidi: 65,
+        rhMidis: [60, 65, 69] // C4, F4, A4 (方便連接或原位 F4-A4-C5: [65,69,72])
+      },
+      'G': {
+        symbol: 'G', name: 'G 大三和弦', notesStr: 'G - B - D (5 - 7 - 2)',
+        rootMidi: 55, lowRootMidi: 43, fifthMidi: 50, octaveMidi: 55,
+        rhMidis: [59, 62, 67] // B3, D4, G4 或原位 [67, 71, 74]
+      },
+      'G7': {
+        symbol: 'G7', name: 'G7 屬七和弦', notesStr: 'G - B - D - F (5 - 7 - 2 - 4)',
+        rootMidi: 55, lowRootMidi: 43, fifthMidi: 50, octaveMidi: 55,
+        rhMidis: [59, 62, 65, 67]
+      },
+      'Am': {
+        symbol: 'Am', name: 'Am 小三和弦', notesStr: 'A - C - E (6 - 1 - 3)',
+        rootMidi: 57, lowRootMidi: 45, fifthMidi: 52, octaveMidi: 57,
+        rhMidis: [60, 64, 69] // C4, E4, A4
+      }
+    };
+
+    // 修正原位右手顯示，讓初學者看原位 1-3-5 最直觀
+    C_KEY_CHORDS['F'].rhMidis = [65, 69, 72];  // F4, A4, C5
+    C_KEY_CHORDS['G'].rhMidis = [67, 71, 74];  // G4, B4, D5
+    C_KEY_CHORDS['G'].rootMidi = 55;           // G3
+    C_KEY_CHORDS['G'].lowRootMidi = 43;        // G2
+    C_KEY_CHORDS['G'].fifthMidi = 50;          // D3 (G2往上五度)
+    C_KEY_CHORDS['G'].octaveMidi = 55;         // G3 (G2往上八度)
+    C_KEY_CHORDS['Am'].rhMidis = [69, 72, 76]; // A4, C5, E5
+    C_KEY_CHORDS['Am'].rootMidi = 57;          // A3
+    C_KEY_CHORDS['Am'].lowRootMidi = 45;       // A2
+    C_KEY_CHORDS['Am'].fifthMidi = 52;         // E3 (A2往上五度)
+    C_KEY_CHORDS['Am'].octaveMidi = 57;        // A3 (A2往上八度)
+
+    // 根據和弦取得齊 5 8 的三個左手音 (1, 5, 8)
+    function getLh158Midis(chordKey) {
+      const c = C_KEY_CHORDS[chordKey];
+      // 若 rootMidi 較高 (如 F3=53, G3=55, A3=57)，用 lowRootMidi 當 1，避免撞到右手 C4(60)
+      const base1 = (c.rootMidi >= 53) ? c.lowRootMidi : c.rootMidi;
+      return {
+        n1: base1,
+        n5: base1 + 7,
+        n8: base1 + 12
+      };
+    }
+
+    // 根據左手力量模式取得左手根音陣列
+    function getLhRootMidis(chordKey, lhMode) {
+      const c = C_KEY_CHORDS[chordKey];
+      if (lhMode === 'octave') {
+        return [c.lowRootMidi, c.rootMidi]; // 八度雙根音
+      } else if (lhMode === 'lowSingle') {
+        return [c.lowRootMidi]; // 低八度單音 (小手/61鍵救星)
+      } else {
+        return [c.rootMidi]; // 主歌單根音
+      }
+    }
+
+    // =========================================================================
+    // 3. 韋燁老師 6 種萬用伴奏型態定義 (Patterns)
+    // =========================================================================
+    const ACCOMPANIMENT_PATTERNS = {
+      '44_basic': {
+        name: '4/4 主歌基礎【齊、右】',
+        meter: '4/4 拍',
+        bpm: 74,
+        concept: '💡 【主歌首選｜純淨穩定】第 1 拍左右手一起彈（齊），第 2、3、4 拍右手穩定打拍子（右），搭配左手單一根音，營造溫柔純淨的主歌氛圍。',
+        steps: [
+          { word: '齊', count: '第 1 拍', action: 'both', durBeats: 1 },
+          { word: '右', count: '第 2 拍', action: 'rh', durBeats: 1 },
+          { word: '右', count: '第 3 拍', action: 'rh', durBeats: 1 },
+          { word: '右', count: '第 4 拍', action: 'rh', durBeats: 1 }
+        ]
+      },
+      '44_push': {
+        name: '4/4 副歌推進【齊、右、左、右、左、右】',
+        meter: '4/4 拍',
+        bpm: 74,
+        concept: '💡 【副歌爆發｜波濤洶湧】先拍手唸熟口訣「齊、右、左、右、左、右」！在反拍補上左手根音（搭配八度根音），副歌張力瞬間轟起來！',
+        steps: [
+          { word: '齊', count: '1', action: 'both', durBeats: 1 },
+          { word: '右', count: '2', action: 'rh', durBeats: 0.5 },
+          { word: '左', count: '2&', action: 'lh', durBeats: 0.5 },
+          { word: '右', count: '3', action: 'rh', durBeats: 0.5 },
+          { word: '左', count: '3&', action: 'lh', durBeats: 0.5 },
+          { word: '右', count: '4', action: 'rh', durBeats: 1 }
+        ]
+      },
+      '44_fill': {
+        name: '4/4 前奏第4小節過門【齊、齊、齊、齊】',
+        meter: '4/4 拍',
+        bpm: 74,
+        concept: '💡 【主領進歌救星｜標準過門】前奏彈前 4 個和弦，在第 4 小節連續彈「齊齊齊齊」，並用眼神盯著主領、挑眉點頭或幫唱第一句，主領絕對進得來！',
+        steps: [
+          { word: '齊!', count: '第 1 拍', action: 'both', durBeats: 1 },
+          { word: '齊!', count: '第 2 拍', action: 'both', durBeats: 1 },
+          { word: '齊!', count: '第 3 拍', action: 'both', durBeats: 1 },
+          { word: '齊(看主領)', count: '第 4 拍', action: 'both', durBeats: 1 }
+        ]
+      },
+      '34_block': {
+        name: '3/4 華爾茲柱式【齊、右、右】',
+        meter: '3/4 拍',
+        bpm: 84,
+        concept: '💡 【圓舞曲最強律動｜蹦、噠、噠】比「齊、右、齊」更有華爾茲跳舞旋轉的律動感！同樣可透過左手單根音／八度根音做出強弱層次。',
+        steps: [
+          { word: '齊(蹦)', count: '第 1 拍(強)', action: 'both', durBeats: 1 },
+          { word: '右(噠)', count: '第 2 拍(弱)', action: 'rh', durBeats: 1 },
+          { word: '右(噠)', count: '第 3 拍(弱)', action: 'rh', durBeats: 1 }
+        ]
+      },
+      '34_758': {
+        name: '3/4 華爾茲抒情分散【齊、5、8】',
+        meter: '3/4 拍',
+        bpm: 80,
+        concept: '💡 【抒情溫柔｜左手 1-5-8 張開】第 1 拍右手和弦＋左手根音(1)，第 2 拍左手食指彈第 5 個音(5)，第 3 拍左手拇指彈高八度根音(8)，《平安夜》超好聽！',
+        steps: [
+          { word: '齊(1+右)', count: '第 1 拍', action: '1_and_rh', durBeats: 1 },
+          { word: '5(食指)', count: '第 2 拍', action: 'lh_5', durBeats: 1 },
+          { word: '8(拇指)', count: '第 3 拍', action: 'lh_8', durBeats: 1 }
+        ]
+      },
+      '34_758585': {
+        name: '3/4 華爾茲進階流動【齊、5、8、5、8、5】',
+        meter: '3/4 拍',
+        bpm: 76,
+        concept: '💡 【水波流動感｜進階分散】把「齊 5 8」加密成八分音符「齊 - 5 - 8 - 5 - 8 - 5」，左手維持 1-5-8 手型不變，適合在第二段主歌增加豐富度！',
+        steps: [
+          { word: '齊', count: '1', action: '1_and_rh', durBeats: 0.5 },
+          { word: '5', count: '1&', action: 'lh_5', durBeats: 0.5 },
+          { word: '8', count: '2', action: 'lh_8', durBeats: 0.5 },
+          { word: '5', count: '2&', action: 'lh_5', durBeats: 0.5 },
+          { word: '8', count: '3', action: 'lh_8', durBeats: 0.5 },
+          { word: '5', count: '3&', action: 'lh_5', durBeats: 0.5 }
+        ]
+      }
+    };
+
+    // =========================================================================
+    // 4. 渲染 48 鍵鋼琴鍵盤 (C2=36 到 B5=83)
+    // =========================================================================
+    function render48KeyPiano(containerId, isQuizMode = false) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      const startMidi = 36; // C2
+      const totalKeys = 48; // C2 ~ B5
+
+      for (let i = 0; i < totalKeys; i++) {
+        const midi = startMidi + i;
+        const noteName = NOTE_NAMES[midi % 12];
+        const octave = Math.floor(midi / 12) - 1;
+        const isBlack = noteName.includes('#');
+
+        const keyDiv = document.createElement('div');
+        keyDiv.className = `key ${isBlack ? 'black' : 'white'}`;
+        keyDiv.dataset.midi = midi;
+        keyDiv.dataset.note = `${noteName}${octave}`;
+
+        const label = document.createElement('span');
+        label.className = 'key-label';
+        label.innerText = (midi % 12 === 0) ? `C${octave}` : (isBlack ? '' : noteName);
+        keyDiv.appendChild(label);
+
+        keyDiv.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          playTone(midi, 0, 1.4, 0.4);
+          keyDiv.classList.add('pressed');
+
+          if (isQuizMode) {
+            toggleQuizKeySelection(midi, keyDiv);
+          }
+        });
+
+        keyDiv.addEventListener('mouseup', () => keyDiv.classList.remove('pressed'));
+        keyDiv.addEventListener('mouseleave', () => keyDiv.classList.remove('pressed'));
+
+        container.appendChild(keyDiv);
+      }
+    }
+
+    function clearPianoHighlights(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.querySelectorAll('.key').forEach(k => {
+        k.classList.remove('highlight-lh-root', 'highlight-lh-sub', 'highlight-rh-chord', 'highlight-melody', 'highlight-user');
+        const oldBadge = k.querySelector('.role-badge');
+        if (oldBadge) oldBadge.remove();
+      });
+    }
+
+    function setPianoHighlights(containerId, { lhRoots = [], lhSubs = [], rhChords = [], melody = [], badges = {} }) {
+      clearPianoHighlights(containerId);
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      container.querySelectorAll('.key').forEach(k => {
+        const midi = parseInt(k.dataset.midi);
+        if (lhRoots.includes(midi)) k.classList.add('highlight-lh-root');
+        if (lhSubs.includes(midi)) k.classList.add('highlight-lh-sub');
+        if (rhChords.includes(midi)) k.classList.add('highlight-rh-chord');
+        if (melody.includes(midi)) k.classList.add('highlight-melody');
+
+        if (badges[midi]) {
+          const b = document.createElement('div');
+          b.className = 'role-badge';
+          b.innerText = badges[midi];
+          k.appendChild(b);
+        }
+      });
+    }
+
+    // =========================================================================
+    // 5. Tab 1: 萬用伴奏型態實驗室邏輯
+    // =========================================================================
+    let labChord = 'C';
+    let labLhMode = 'single'; // 'single' | 'octave' | 'lowSingle'
+    let labPatternKey = '44_basic';
+    let labTimeouts = [];
+    let isLabLooping = false;
+
+    function initLab() {
+      const selector = document.getElementById('lab-chord-selector');
+      selector.innerHTML = '';
+      Object.keys(C_KEY_CHORDS).forEach(chKey => {
+        const btn = document.createElement('button');
+        btn.className = `chip-btn ${chKey === labChord ? 'active' : ''}`;
+        btn.innerText = chKey;
+        btn.onclick = () => {
+          labChord = chKey;
+          document.querySelectorAll('#lab-chord-selector .chip-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          triggerPedalAnimation('lab-pedal-status');
+          updateLabUI(true);
+        };
+        selector.appendChild(btn);
+      });
+      updateLabUI(false);
+    }
+
+    function setLabLhMode(mode) {
+      labLhMode = mode;
+      const btns = document.querySelectorAll('#lab-lh-mode .chip-btn');
+      btns[0].classList.toggle('active', mode === 'single');
+      btns[1].classList.toggle('active', mode === 'octave');
+      btns[2].classList.toggle('active', mode === 'lowSingle');
+      updateLabUI(true);
+    }
+
+    function setLabPattern(patKey) {
+      labPatternKey = patKey;
+      const keys = ['44_basic', '44_push', '44_fill', '34_block', '34_758', '34_758585'];
+      const btns = document.querySelectorAll('#lab-pattern-selector .chip-btn');
+      btns.forEach((b, idx) => b.classList.toggle('active', keys[idx] === patKey));
+      updateLabUI(true);
+    }
+
+    function triggerPedalAnimation(elemId) {
+      const el = document.getElementById(elemId);
+      if (!el) return;
+      el.classList.add('releasing');
+      el.innerText = '↑ 換和弦：放開踏板...';
+      setTimeout(() => {
+        el.classList.remove('releasing');
+        el.innerText = '↓ 重新踩下延音踏板';
+      }, 240);
+    }
+
+    function updateLabUI(autoPlayOnce = false) {
+      const chordObj = C_KEY_CHORDS[labChord];
+      const patObj = ACCOMPANIMENT_PATTERNS[labPatternKey];
+
+      document.getElementById('lab-title-text').innerText = `${chordObj.name}｜${patObj.name}`;
+      document.getElementById('lab-chord-badge').innerText = chordObj.symbol;
+      document.getElementById('lab-concept-text').innerText = patObj.concept;
+      document.getElementById('lab-bpm-label').innerText = `${patObj.bpm} BPM (${patObj.meter})`;
+
+      // 準備靜態鍵盤預覽與說明
+      const is158 = (labPatternKey === '34_758' || labPatternKey === '34_758585');
+      let lhRoots = [];
+      let lhSubs = [];
+      let badges = {};
+
+      if (is158) {
+        const { n1, n5, n8 } = getLh158Midis(labChord);
+        lhRoots = [n1, n8];
+        lhSubs = [n5];
+        badges[n1] = '左1(小指)';
+        badges[n5] = '左5(食指)';
+        badges[n8] = '左8(拇指)';
+        document.getElementById('lab-sub-text').innerText =
+          `左手 1-5-8 分散：${midiToNoteLabel(n1)}(1) - ${midiToNoteLabel(n5)}(5) - ${midiToNoteLabel(n8)}(8) ｜ 右手：${chordObj.notesStr}`;
+      } else {
+        lhRoots = getLhRootMidis(labChord, labLhMode);
+        if (lhRoots.length === 2) {
+          badges[lhRoots[0]] = '左八度(5)';
+          badges[lhRoots[1]] = '左八度(1)';
+        } else {
+          badges[lhRoots[0]] = '左根音';
+        }
+        const modeDesc = labLhMode === 'octave' ? '八度雙根音(副歌強)' : (labLhMode === 'lowSingle' ? '低八度單音(61鍵/小手厚實)' : '單一根音(主歌輕柔)');
+        document.getElementById('lab-sub-text').innerText =
+          `左手(${modeDesc})：${lhRoots.map(midiToNoteLabel).join(' + ')} ｜ 右手和弦：${chordObj.rhMidis.map(midiToNoteLabel).join(' - ')}`;
+      }
+
+      setPianoHighlights('lab-piano-keys', {
+        lhRoots, lhSubs, rhChords: chordObj.rhMidis, badges
+      });
+
+      // 渲染口訣方塊
+      const chantBox = document.getElementById('lab-chant-boxes');
+      chantBox.innerHTML = '';
+      patObj.steps.forEach((st, idx) => {
+        const div = document.createElement('div');
+        div.className = 'chant-step';
+        div.id = `lab-step-${idx}`;
+        div.innerHTML = `<span class="c-word">${st.word}</span><span class="c-count">${st.count}</span>`;
+        chantBox.appendChild(div);
+      });
+
+      if (isLabLooping) {
+        startLabLoop();
+      } else if (autoPlayOnce) {
+        playLabOnce();
+      }
+    }
+
+    function stopLabPlayback() {
+      labTimeouts.forEach(t => clearTimeout(t));
+      labTimeouts = [];
+      document.querySelectorAll('#lab-chant-boxes .chant-step').forEach(el => el.classList.remove('active-beat'));
+    }
+
+    function toggleLabLoop() {
+      isLabLooping = !isLabLooping;
+      const btn = document.getElementById('lab-btn-play');
+      if (isLabLooping) {
+        btn.innerText = '⏸ 停止循環示範 (Space)';
+        startLabLoop();
+      } else {
+        btn.innerText = '▶ 循環示範律動 (Space)';
+        stopLabPlayback();
+        updateLabUI(false);
+      }
+    }
+
+    function playLabOnce() {
+      isLabLooping = false;
+      document.getElementById('lab-btn-play').innerText = '▶ 循環示範律動 (Space)';
+      runLabMeasure(false);
+    }
+
+    function startLabLoop() {
+      runLabMeasure(true);
+    }
+
+    function runLabMeasure(loopAfter) {
+      stopLabPlayback();
+      const chordObj = C_KEY_CHORDS[labChord];
+      const patObj = ACCOMPANIMENT_PATTERNS[labPatternKey];
+      const beatMs = (60 / patObj.bpm) * 1000;
+
+      triggerPedalAnimation('lab-pedal-status');
+
+      let elapsedMs = 0;
+      patObj.steps.forEach((st, idx) => {
+        const stepDurMs = st.durBeats * beatMs;
+        const t = setTimeout(() => {
+          document.querySelectorAll('#lab-chant-boxes .chant-step').forEach((el, i) => {
+            el.classList.toggle('active-beat', i === idx);
+          });
+          executePatternStepAudioAndVisual('lab-piano-keys', labChord, labLhMode, st.action, stepDurMs / 1000);
+        }, elapsedMs);
+        labTimeouts.push(t);
+        elapsedMs += stepDurMs;
+      });
+
+      const endT = setTimeout(() => {
+        document.querySelectorAll('#lab-chant-boxes .chant-step').forEach(el => el.classList.remove('active-beat'));
+        if (loopAfter && isLabLooping) {
+          runLabMeasure(true);
+        } else {
+          updateLabUI(false);
+        }
+      }, elapsedMs);
+      labTimeouts.push(endT);
+    }
+
+    function executePatternStepAudioAndVisual(pianoId, chordKey, lhMode, action, durSec, extraMelodyMidi = null, channelMode = 'all') {
+      const chordObj = C_KEY_CHORDS[chordKey];
+      const { n1, n5, n8 } = getLh158Midis(chordKey);
+      const lhRoots = getLhRootMidis(chordKey, lhMode);
+      const rhMidis = chordObj.rhMidis;
+      const sustainSec = Math.max(durSec * 1.4, 0.9);
+      const volMultiplier = (lhMode === 'octave') ? 1.15 : 0.9;
+
+      let activeLhRoots = [];
+      let activeLhSubs = [];
+      let activeRh = [];
+      let badges = {};
+
+      if (action === 'both') {
+        activeLhRoots = lhRoots;
+        activeRh = rhMidis;
+      } else if (action === 'rh') {
+        activeRh = rhMidis;
+      } else if (action === 'lh') {
+        activeLhRoots = lhRoots;
+      } else if (action === '1_and_rh') {
+        activeLhRoots = [n1];
+        activeRh = rhMidis;
+        badges[n1] = '1(根音)';
+      } else if (action === 'lh_5') {
+        activeLhSubs = [n5];
+        badges[n5] = '5(食指)';
+      } else if (action === 'lh_8') {
+        activeLhRoots = [n8];
+        badges[n8] = '8(拇指)';
+      }
+
+      // 發聲控制
+      if (channelMode !== 'lh') {
+        activeRh.forEach(m => playTone(m, 0, sustainSec, 0.26 * volMultiplier));
+      } else {
+        activeRh = [];
+      }
+
+      activeLhRoots.forEach(m => playTone(m, 0, sustainSec * 1.2, 0.36 * volMultiplier));
+      activeLhSubs.forEach(m => playTone(m, 0, sustainSec, 0.32 * volMultiplier));
+
+      let activeMelody = [];
+      if (extraMelodyMidi && channelMode === 'all') {
+        playTone(extraMelodyMidi, 0, sustainSec, 0.45);
+        activeMelody = [extraMelodyMidi];
+      }
+
+      setPianoHighlights(pianoId, {
+        lhRoots: activeLhRoots,
+        lhSubs: activeLhSubs,
+        rhChords: activeRh,
+        melody: activeMelody,
+        badges
+      });
+    }
+
+    // =========================================================================
+    // 6. Tab 2: 三首熱門詩歌 C 大調實戰跟彈資料庫與播放器
+    // =========================================================================
+    const WORSHIP_SONGS = [
+      {
+        title: '《這一生最美的祝福》',
+        meter: 'C 大調｜4/4 拍流行詩歌',
+        desc: '韋燁老師第一首示範曲：前奏彈前 4 個和弦＋第 4 小節「齊齊齊齊」過門眼神引導主領；主歌用「單根音＋齊右」，副歌切換「八度根音＋齊右左右」瞬間炸出層次！',
+        measures: [
+          { sec: '前奏 1', secType: 'intro', chord: 'C', lhMode: 'single', pattern: '44_basic', lyric: '（前奏：取主歌前 4 和弦 - 1）', melody: 64 },
+          { sec: '前奏 2', secType: 'intro', chord: 'G', lhMode: 'single', pattern: '44_basic', lyric: '（前奏：穩定如心跳 - 2）', melody: 62 },
+          { sec: '前奏 3', secType: 'intro', chord: 'Am', lhMode: 'single', pattern: '44_basic', lyric: '（前奏：準備接過門 - 3）', melody: 60 },
+          { sec: '前奏過門!', secType: 'fill', chord: 'G', lhMode: 'octave', pattern: '44_fill', lyric: '👀 過門「齊齊齊齊」＋看主領挑眉點頭帶唱！', melody: 67, isCue: true },
+          { sec: '主歌 A1', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '44_basic', lyric: '在無數的黑夜裡，我用星星畫出你', melody: 64 },
+          { sec: '主歌 A2', secType: 'verse', chord: 'G', lhMode: 'single', pattern: '44_basic', lyric: '你的恩典如晨星，讓我真實地見到你', melody: 67 },
+          { sec: '主歌 A3', secType: 'verse', chord: 'Am', lhMode: 'single', pattern: '44_basic', lyric: '在我的歌聲裡，我永遠稱頌讚美你', melody: 69 },
+          { sec: '主歌 A4', secType: 'verse', chord: 'F', lhMode: 'single', pattern: '44_basic', lyric: '你的美好是我今生頌揚的（預備進副歌！）', melody: 65 },
+          { sec: '副歌 B1 🔥', secType: 'chorus', chord: 'C', lhMode: 'octave', pattern: '44_push', lyric: '這一生最美的祝福（左手打開八度！）', melody: 72 },
+          { sec: '副歌 B2 🔥', secType: 'chorus', chord: 'G', lhMode: 'octave', pattern: '44_push', lyric: '就是能認識主耶穌', melody: 71 },
+          { sec: '副歌 B3 🔥', secType: 'chorus', chord: 'Am', lhMode: 'octave', pattern: '44_push', lyric: '這一生最美的祝福', melody: 69 },
+          { sec: '副歌 B4 🔥', secType: 'chorus', chord: 'Em', lhMode: 'octave', pattern: '44_push', lyric: '就是能信靠主耶穌', melody: 67 },
+          { sec: '副歌 B5 🔥', secType: 'chorus', chord: 'F', lhMode: 'octave', pattern: '44_push', lyric: '走在高山深谷，祂會伴我同行', melody: 69 },
+          { sec: '副歌 B6 🔥', secType: 'chorus', chord: 'G', lhMode: 'octave', pattern: '44_push', lyric: '我知道這是...', melody: 67 },
+          { sec: '結尾', secType: 'chorus', chord: 'C', lhMode: 'octave', pattern: '44_basic', lyric: '最美的祝福 ✨', melody: 60 }
+        ]
+      },
+      {
+        title: '《平安夜 Silent Night》',
+        meter: 'C 大調｜3/4 拍聖誕華爾茲',
+        desc: '韋燁老師第二首示範曲（原多為 G 調，特別改為 C 大調方便新手）：示範「齊右右」、「齊 5 8」與「齊 5 8 5 8 5」三種 3/4 拍圓舞曲伴奏，記得每小節換和弦放踏板！',
+        measures: [
+          { sec: '主歌 1', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '34_block', lyric: '平安夜，聖善夜（齊右右：蹦-噠-噠）', melody: 67 },
+          { sec: '主歌 2', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '34_block', lyric: '萬暗中，光華射（同和弦仍建議重踩踏板）', melody: 67 },
+          { sec: '主歌 3', secType: 'verse', chord: 'G', lhMode: 'single', pattern: '34_block', lyric: '照著聖母也...', melody: 74 },
+          { sec: '主歌 4', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '34_block', lyric: '照著聖嬰', melody: 72 },
+          { sec: '抒情段 5', secType: 'verse', chord: 'F', lhMode: 'single', pattern: '34_758', lyric: '多少慈祥也（切換抒情：齊 5 8）', melody: 69 },
+          { sec: '抒情段 6', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '34_758', lyric: '多少天真', melody: 67 },
+          { sec: '抒情段 7', secType: 'verse', chord: 'F', lhMode: 'single', pattern: '34_758585', lyric: '靜享天賜安眠（進階流動：齊58585）', melody: 69 },
+          { sec: '抒情段 8', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '34_758585', lyric: '（水波流動分散和弦）', melody: 67 },
+          { sec: '高潮段 9', secType: 'chorus', chord: 'G', lhMode: 'octave', pattern: '34_block', lyric: '靜享天賜...（八度根音＋齊右右＋貓頭鷹共鳴高音！）', melody: 74 },
+          { sec: '結尾 10', secType: 'chorus', chord: 'C', lhMode: 'octave', pattern: '34_758', lyric: '安眠 🎄', melody: 60 }
+        ]
+      },
+      {
+        title: '《耶穌恩友 What a Friend We Have in Jesus》',
+        meter: 'C 大調｜4/4 拍傳統聖詩流行化',
+        desc: '韋燁老師第三首示範曲：打破傳統四部合聲五線譜的恐懼！只要看著小節線與和弦代號，把古早聖詩直接套上「齊右」與「齊右左右」，立刻變成現代流行詩歌伴奏！',
+        measures: [
+          { sec: '主歌 A1', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '44_basic', lyric: '耶穌是我親愛朋友（傳統聖詩套用齊右）', melody: 67 },
+          { sec: '主歌 A2', secType: 'verse', chord: 'F', lhMode: 'single', pattern: '44_basic', lyric: '背負我罪擔我憂', melody: 69 },
+          { sec: '主歌 A3', secType: 'verse', chord: 'C', lhMode: 'single', pattern: '44_basic', lyric: '何等權利能將萬事', melody: 67 },
+          { sec: '主歌 A4', secType: 'verse', chord: 'G', lhMode: 'single', pattern: '44_basic', lyric: '帶到主恩寶座前', melody: 62 },
+          { sec: '副歌 B1 🔥', secType: 'chorus', chord: 'F', lhMode: 'octave', pattern: '44_push', lyric: '多少平安屢屢失去（進B段換八度＋齊右左右！）', melody: 65 },
+          { sec: '副歌 B2 🔥', secType: 'chorus', chord: 'C', lhMode: 'octave', pattern: '44_push', lyric: '多少痛苦白白受', melody: 67 },
+          { sec: '副歌 B3 🔥', secType: 'chorus', chord: 'Dm', lhMode: 'octave', pattern: '44_push', lyric: '皆因我們未將萬事', melody: 65 },
+          { sec: '副歌 B4 🔥', secType: 'chorus', chord: 'G', lhMode: 'octave', pattern: '44_push', lyric: '帶到主恩...', melody: 62 },
+          { sec: '結尾', secType: 'chorus', chord: 'C', lhMode: 'octave', pattern: '44_basic', lyric: '寶座前 🙏', melody: 60 }
+        ]
+      }
+    ];
+
+    let currentSongIdx = 0;
+    let currentMeasureIdx = 0;
+    let songStyleOverride = 'auto';
+    let songChannelMode = 'all'; // 'all' | 'accompany' | 'lh'
+    let isSongPlaying = false;
+    let isSongLooping = true;
+    let songTimeouts = [];
+
+    function initSongsTab() {
+      onSongChange();
+    }
+
+    function onSongChange() {
+      stopSongPlayback();
+      currentSongIdx = parseInt(document.getElementById('song-select').value);
+      currentMeasureIdx = 0;
+      const song = WORSHIP_SONGS[currentSongIdx];
+
+      document.getElementById('song-info-title').innerText = song.title;
+      document.getElementById('song-info-meter').innerText = song.meter;
+      document.getElementById('song-info-desc').innerText = song.desc;
+
+      // 重設伴奏覆寫為 auto
+      document.getElementById('song-style-override').value = 'auto';
+      songStyleOverride = 'auto';
+
+      renderSongMeasureCards();
+      previewSingleMeasure(0, false);
+    }
+
+    function onSongStyleOverride() {
+      songStyleOverride = document.getElementById('song-style-override').value;
+      renderSongMeasureCards();
+      if (isSongPlaying) {
+        playSongFromMeasure(currentMeasureIdx);
+      } else {
+        previewSingleMeasure(currentMeasureIdx, true);
+      }
+    }
+
+    function setSongChannel(ch) {
+      songChannelMode = ch;
+      const btns = document.querySelectorAll('#song-channel-group .chip-btn');
+      btns[0].classList.toggle('active', ch === 'all');
+      btns[1].classList.toggle('active', ch === 'accompany');
+      btns[2].classList.toggle('active', ch === 'lh');
+    }
+
+    function getEffectiveMeasurePattern(m) {
+      if (songStyleOverride !== 'auto') return songStyleOverride;
+      return m.pattern;
+    }
+
+    function renderSongMeasureCards() {
+      const song = WORSHIP_SONGS[currentSongIdx];
+      const container = document.getElementById('song-measures-container');
+      container.innerHTML = '';
+
+      song.measures.forEach((m, idx) => {
+        const effPatKey = getEffectiveMeasurePattern(m);
+        const patObj = ACCOMPANIMENT_PATTERNS[effPatKey];
+        const card = document.createElement('div');
+        card.className = `measure-card ${idx === currentMeasureIdx ? 'active-measure' : ''}`;
+        card.id = `song-mcard-${idx}`;
+
+        const tagClass = m.secType === 'intro' ? 'm-sec-intro' : (m.secType === 'chorus' ? 'm-sec-chorus' : (m.secType === 'fill' ? 'm-sec-fill' : 'm-sec-verse'));
+        const lhLabel = (effPatKey === '34_758' || effPatKey === '34_758585') ? '左手 1-5-8' : (m.lhMode === 'octave' ? '左手八度(強)' : '左手單根音(柔)');
+
+        card.innerHTML = `
+          <div class="measure-header">
+            <span class="m-sec-tag ${tagClass}">${idx + 1}. ${m.sec}</span>
+            <span class="m-chord-name">${m.chord}</span>
+          </div>
+          <div class="m-lyric">${m.lyric}</div>
+          <div class="m-pattern-hint">${lhLabel} ｜ ${patObj.name.split('【')[1] ? '【' + patObj.name.split('【')[1] : patObj.name}</div>
+        `;
+
+        card.onclick = () => {
+          currentMeasureIdx = idx;
+          if (isSongPlaying) {
+            playSongFromMeasure(idx);
+          } else {
+            previewSingleMeasure(idx, true);
+          }
+        };
+        container.appendChild(card);
+      });
+    }
+
+    function previewSingleMeasure(mIdx, playSound = false) {
+      const song = WORSHIP_SONGS[currentSongIdx];
+      const m = song.measures[mIdx];
+      if (!m) return;
+
+      currentMeasureIdx = mIdx;
+      document.querySelectorAll('#song-measures-container .measure-card').forEach((c, i) => {
+        c.classList.toggle('active-measure', i === mIdx);
+      });
+
+      const effPatKey = getEffectiveMeasurePattern(m);
+      const patObj = ACCOMPANIMENT_PATTERNS[effPatKey];
+      const chordObj = C_KEY_CHORDS[m.chord];
+
+      document.getElementById('song-live-lyric').innerText = `[小節 ${mIdx + 1}/${song.measures.length}] ${m.lyric}`;
+
+      const is158 = (effPatKey === '34_758' || effPatKey === '34_758585');
+      let lhRoots = [];
+      let lhSubs = [];
+      if (is158) {
+        const { n1, n5, n8 } = getLh158Midis(m.chord);
+        lhRoots = [n1, n8];
+        lhSubs = [n5];
+        document.getElementById('song-live-lh').innerText = `${midiToNoteLabel(n1)}-${midiToNoteLabel(n5)}-${midiToNoteLabel(n8)} (1-5-8)`;
+      } else {
+        lhRoots = getLhRootMidis(m.chord, m.lhMode);
+        document.getElementById('song-live-lh').innerText = `${lhRoots.map(midiToNoteLabel).join(' + ')} (${m.lhMode === 'octave' ? '八度根音' : '單根音'})`;
+      }
+
+      document.getElementById('song-live-rh').innerText = `${m.chord} (${chordObj.rhMidis.map(midiToNoteLabel).join('-')})`;
+      document.getElementById('song-live-chant').innerText = patObj.steps.map(s => s.word).join(' - ');
+
+      // 過門提示橫幅
+      const cueBox = document.getElementById('song-leader-cue');
+      cueBox.classList.toggle('visible', !!m.isCue);
+
+      // 口訣燈號
+      const beatsBox = document.getElementById('song-live-beats');
+      beatsBox.innerHTML = '';
+      patObj.steps.forEach((st, idx) => {
+        const d = document.createElement('div');
+        d.className = 'chant-step';
+        d.id = `song-step-${idx}`;
+        d.innerHTML = `<span class="c-word">${st.word}</span><span class="c-count">${st.count}</span>`;
+        beatsBox.appendChild(d);
+      });
+
+      setPianoHighlights('song-piano-keys', {
+        lhRoots, lhSubs, rhChords: chordObj.rhMidis, melody: m.melody ? [m.melody] : []
+      });
+
+      if (playSound) {
+        executePatternStepAudioAndVisual('song-piano-keys', m.chord, m.lhMode, patObj.steps[0].action, 1.0, m.melody, songChannelMode);
+      }
+    }
+
+    function stopSongPlayback() {
+      songTimeouts.forEach(t => clearTimeout(t));
+      songTimeouts = [];
+      isSongPlaying = false;
+      const btn = document.getElementById('song-btn-play');
+      if (btn) btn.innerText = '▶ 播放全曲示範 (Space)';
+      document.querySelectorAll('#song-live-beats .chant-step').forEach(el => el.classList.remove('active-beat'));
+    }
+
+    function toggleSongPlayback() {
+      if (isSongPlaying) {
+        stopSongPlayback();
+      } else {
+        playSongFromMeasure(currentMeasureIdx);
+      }
+    }
+
+    function toggleSongLoop() {
+      isSongLooping = !isSongLooping;
+      document.getElementById('song-btn-loop').innerText = `🔁 循環：${isSongLooping ? '開啟' : '關閉'}`;
+    }
+
+    function playSongFromMeasure(startIdx = 0) {
+      stopSongPlayback();
+      const song = WORSHIP_SONGS[currentSongIdx];
+      isSongPlaying = true;
+      document.getElementById('song-btn-play').innerText = '⏸ 暫停播放 (Space)';
+
+      let totalElapsedMs = 0;
+
+      for (let mIdx = startIdx; mIdx < song.measures.length; mIdx++) {
+        const m = song.measures[mIdx];
+        const effPatKey = getEffectiveMeasurePattern(m);
+        const patObj = ACCOMPANIMENT_PATTERNS[effPatKey];
+        const beatMs = (60 / patObj.bpm) * 1000;
+
+        // 切換小節 UI 與踏板動畫
+        const tMeasure = setTimeout(() => {
+          previewSingleMeasure(mIdx, false);
+          triggerPedalAnimation('song-pedal-indicator');
+        }, totalElapsedMs);
+        songTimeouts.push(tMeasure);
+
+        // 依序播放該小節內的每個伴奏口訣拍點
+        patObj.steps.forEach((st, sIdx) => {
+          const stepDurMs = st.durBeats * beatMs;
+          const tStep = setTimeout(() => {
+            document.querySelectorAll('#song-live-beats .chant-step').forEach((el, i) => {
+              el.classList.toggle('active-beat', i === sIdx);
+            });
+            const melodyNote = (sIdx === 0) ? m.melody : null;
+            executePatternStepAudioAndVisual('song-piano-keys', m.chord, m.lhMode, st.action, stepDurMs / 1000, melodyNote, songChannelMode);
+          }, totalElapsedMs);
+          songTimeouts.push(tStep);
+          totalElapsedMs += stepDurMs;
+        });
+      }
+
+      const tEnd = setTimeout(() => {
+        isSongPlaying = false;
+        document.getElementById('song-btn-play').innerText = '▶ 播放全曲示範 (Space)';
+        if (isSongLooping) {
+          currentMeasureIdx = 0;
+          playSongFromMeasure(0);
+        }
+      }, totalElapsedMs + 300);
+      songTimeouts.push(tEnd);
+    }
+
+    // =========================================================================
+    // 7. Tab 3: 司琴雙模式隨堂考 (鍵盤跟彈 + 實戰情境問答)
+    // =========================================================================
+    const PIANO_QUIZ_BANK = [
+      {
+        prompt: '【主歌純淨配置】請按出 C 和弦的「左手單一根音 (C3) ＋ 右手原位和弦 (C4-E4-G4)」(共 4 顆音)',
+        targetMidis: [48, 60, 64, 67],
+        desc: '左手 C3 單根音控制輕柔力量，右手 C4-E4-G4 按出和弦氛圍！'
+      },
+      {
+        prompt: '【副歌爆發配置】請按出 C 和弦的「左手八度根音 (C2+C3) ＋ 右手原位和弦 (C4-E4-G4)」(共 5 顆音)',
+        targetMidis: [36, 48, 60, 64, 67],
+        desc: '副歌左手張開同時彈 C2 與 C3 兩個根音（八度根音），力量瞬間轟起來！'
+      },
+      {
+        prompt: '【61鍵/小手救星】當手按不到八度時，請按出 F 和弦的「左手低八度單根音 (F2) ＋ 右手 F 和弦 (F4-A4-C5)」(共 4 顆音)',
+        targetMidis: [41, 65, 69, 72],
+        desc: '把左手單音往左移遠一點到 F2，就算只彈一顆音也一樣有低頻厚度！'
+      },
+      {
+        prompt: '【平安夜 3/4 拍齊 5 8】請按出 C 和弦「齊 5 8」左手需要負責的三顆分散音：1(C3) - 5(G3) - 8(C4) (共 3 顆音)',
+        targetMidis: [48, 55, 60],
+        desc: '「齊 5 8」左手把 C 當 1，食指彈第 5 個音 G3，大拇指彈第 8 個音 C4！'
+      },
+      {
+        prompt: '【平安夜 3/4 拍齊 5 8】換到 G 和弦時，請按出左手「1 - 5 - 8」的三顆音：1(G2) - 5(D3) - 8(G3) (共 3 顆音)',
+        targetMidis: [43, 50, 55],
+        desc: '把 G 當作 1 往上數五個音，食指就會落在 D3，大拇指落在 G3！'
+      },
+      {
+        prompt: '【副歌爆發配置】請按出 Am 和弦的「左手八度根音 (A2+A3) ＋ 右手 Am 和弦 (A4-C5-E5)」(共 5 顆音)',
+        targetMidis: [45, 57, 69, 72, 76],
+        desc: '《這一生最美的祝福》副歌第三句「這一生最美的祝福」的核心爆發配置！'
+      }
+    ];
+
+    const SCENARIO_QUIZ_BANK = [
+      {
+        q: 'Q1. 當譜上沒有寫前奏，或主領常常找不到點進歌時，韋燁老師建議初階司琴怎麼解決？',
+        options: [
+          'A. 彈歌曲的前 4 個和弦當前奏，並在第 4 小節彈「齊齊齊齊」過門＋眼神挑眉點頭或直接幫唱第一句',
+          'B. 直接停下來用麥克風倒數「一、二、三、唱」',
+          'C. 左手快速彈一段複雜的半音階炫技琶音',
+          'D. 不彈前奏，等主領自己清唱第一句之後司琴再跟進去'
+        ],
+        ans: 0,
+        explain: '✅ 答對了！前 4 個和弦當前奏在 65%~70% 的詩歌都行得通，第 4 小節用「齊齊齊齊」過門搭配眼神或幫唱第一句百試百靈！'
+      },
+      {
+        q: 'Q2. 關於「延音踏板」與「節拍器」，韋燁老師在教學上的核心主張是什麼？',
+        options: [
+          'A. 學琴滿兩年以後再碰踏板跟節拍器，以免打擊信心',
+          'B. 從初學第一天就把它們當作「新朋友」認識；且踩踏板的關鍵在於「每看到一個新和弦就放開重踩一次」',
+          'C. 整首歌從頭到尾把踏板踩到底都不要放開，聲音才夠豐富',
+          'D. 只有彈古典鋼琴才需要踩踏板，彈教會流行詩歌不能踩踏板'
+        ],
+        ans: 1,
+        explain: '✅ 完全正確！越早認識踏板與節拍器越自然；且每個和弦都放開重踩一次，琴聲才不會糊成一團！'
+      },
+      {
+        q: 'Q3. 遇到《平安夜》這種 3/4 拍華爾茲（圓舞曲）詩歌時，哪一種伴奏型態的「跳舞律動感（蹦、噠、噠）」最強、最適合新手先練？',
+        options: [
+          'A. 齊、右、齊',
+          'B. 齊、右、左、右、左、右',
+          'C. 齊、右、右（柱式和弦 1-2-3）',
+          'D. 只彈右手單音主旋律'
+        ],
+        ans: 2,
+        explain: '✅ 答對了！「齊、右、右」屬於柱式和弦，最能表現華爾茲「蹦、噠、噠」的律動感；而「齊 5 8」與「齊 5 8 5 8 5」則偏向抒情流動。'
+      },
+      {
+        q: 'Q4. 看到像《耶穌恩友》這類傳統聖詩密密麻麻的四部和聲五線譜不知如何下手時，該如何用萬用司琴法突破？',
+        options: [
+          'A. 硬背五線譜上的每一個豆芽菜音符',
+          'B. 找到標有「小節線與和弦代號」的簡譜，直接套用 4/4 拍的「齊右」與「齊右左右」彈出流行伴奏感',
+          'C. 放棄彈奏，改放 YouTube 卡拉伴奏帶',
+          'D. 全部改用 3/4 拍華爾茲來彈'
+        ],
+        ans: 1,
+        explain: '✅ 答對了！只要有小節線與和弦，傳統聖詩也能直接用現代和弦伴奏公式彈唱（若教會長輩習慣聽主旋律，再視服事需要彈性配合）。'
+      }
+    ];
+
+    let currentPianoQuizIdx = 0;
+    let userQuizSelectedMidis = new Set();
+    let quizScore = 0;
+    let quizStreak = 0;
+    let currentScenarioIdx = 0;
+
+    function setQuizMode(mode) {
+      document.getElementById('qmode-btn-piano').classList.toggle('active', mode === 'piano');
+      document.getElementById('qmode-btn-scenario').classList.toggle('active', mode === 'scenario');
+      document.getElementById('quiz-piano-section').style.display = (mode === 'piano') ? 'block' : 'none';
+      document.getElementById('quiz-scenario-section').style.display = (mode === 'scenario') ? 'block' : 'none';
+    }
+
+    function initQuizTab() {
+      loadPianoQuizQuestion(0);
+      loadScenarioQuestion(0);
+    }
+
+    function loadPianoQuizQuestion(idx) {
+      currentPianoQuizIdx = idx % PIANO_QUIZ_BANK.length;
+      userQuizSelectedMidis.clear();
+      clearPianoHighlights('quiz-piano-keys');
+      const q = PIANO_QUIZ_BANK[currentPianoQuizIdx];
+      document.getElementById('quiz-target-prompt').innerText = q.prompt;
+      const fb = document.getElementById('quiz-feedback');
+      fb.style.color = 'var(--text-muted)';
+      fb.innerText = '請在下方鋼琴點選所有指定的琴鍵，完成後會自動判定或按「送出判定」！';
+    }
+
+    function toggleQuizKeySelection(midi, keyDiv) {
+      if (userQuizSelectedMidis.has(midi)) {
+        userQuizSelectedMidis.delete(midi);
+        keyDiv.classList.remove('highlight-user');
+      } else {
+        userQuizSelectedMidis.add(midi);
+        keyDiv.classList.add('highlight-user');
+      }
+      const q = PIANO_QUIZ_BANK[currentPianoQuizIdx];
+      if (userQuizSelectedMidis.size === q.targetMidis.length) {
+        checkPianoQuizAnswer();
+      }
+    }
+
+    function playQuizTargetAudio() {
+      const q = PIANO_QUIZ_BANK[currentPianoQuizIdx];
+      q.targetMidis.forEach((m, i) => {
+        playTone(m, 0, 1.8, 0.35);
+      });
+    }
+
+    function showPianoQuizHint() {
+      const q = PIANO_QUIZ_BANK[currentPianoQuizIdx];
+      clearPianoHighlights('quiz-piano-keys');
+      userQuizSelectedMidis.clear();
+      const container = document.getElementById('quiz-piano-keys');
+      container.querySelectorAll('.key').forEach(k => {
+        const m = parseInt(k.dataset.midi);
+        if (q.targetMidis.includes(m)) {
+          k.classList.add('highlight-lh-root');
+        }
+      });
+      playQuizTargetAudio();
+      const fb = document.getElementById('quiz-feedback');
+      fb.style.color = 'var(--accent)';
+      fb.innerText = `💡 解答提示：${q.targetMidis.map(midiToNoteLabel).join(' + ')} —— ${q.desc}`;
+    }
+
+    function checkPianoQuizAnswer() {
+      const q = PIANO_QUIZ_BANK[currentPianoQuizIdx];
+      const selected = Array.from(userQuizSelectedMidis).sort((a, b) => a - b);
+      const target = [...q.targetMidis].sort((a, b) => a - b);
+      const isCorrect = (selected.length === target.length) && selected.every((val, i) => val === target[i]);
+
+      const fb = document.getElementById('quiz-feedback');
+      if (isCorrect) {
+        quizScore += 10;
+        quizStreak += 1;
+        document.getElementById('quiz-score').innerText = quizScore;
+        document.getElementById('quiz-streak').innerText = quizStreak;
+        fb.style.color = 'var(--success)';
+        fb.innerText = `🎉 完全正確！(${target.map(midiToNoteLabel).join(' + ')}) ${q.desc}`;
+        playQuizTargetAudio();
+      } else {
+        quizStreak = 0;
+        document.getElementById('quiz-streak').innerText = quizStreak;
+        fb.style.color = 'var(--danger)';
+        fb.innerText = `❌ 還差一點！你選了 [${selected.map(midiToNoteLabel).join(', ') || '無'}]，可按「看解答亮燈」確認位置。`;
+      }
+    }
+
+    function nextPianoQuiz() {
+      loadPianoQuizQuestion(currentPianoQuizIdx + 1);
+    }
+
+    function loadScenarioQuestion(idx) {
+      currentScenarioIdx = idx % SCENARIO_QUIZ_BANK.length;
+      const item = SCENARIO_QUIZ_BANK[currentScenarioIdx];
+      document.getElementById('scenario-question-text').innerText = item.q;
+      document.getElementById('scenario-feedback').innerText = '';
+
+      const box = document.getElementById('scenario-options-box');
+      box.innerHTML = '';
+      item.options.forEach((optText, oIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'scenario-btn';
+        btn.innerText = optText;
+        btn.onclick = () => {
+          const fb = document.getElementById('scenario-feedback');
+          if (oIdx === item.ans) {
+            fb.style.color = 'var(--success)';
+            fb.innerText = item.explain;
+            playTone(60, 0, 0.5, 0.3);
+            playTone(64, 0, 0.5, 0.3);
+            playTone(67, 0, 0.8, 0.35);
+          } else {
+            fb.style.color = 'var(--danger)';
+            fb.innerText = '❌ 再想一下喔！提示：回想韋燁老師在直播中強調的實戰原則。';
+            playTone(48, 0, 0.4, 0.3);
+          }
+        };
+        box.appendChild(btn);
+      });
+    }
+
+    function nextScenarioQuestion() {
+      loadScenarioQuestion(currentScenarioIdx + 1);
+    }
+
+    // =========================================================================
+    // 8. Tab 4: 20 頁深度教學講稿 Carousel 與一鍵複製
+    // =========================================================================
+    const LECTURE_SLIDES = [
+      { title: '[Page 1: 開場動機與學習定位]', visual: '標題頁顯示「新手萬用司琴法 2」，並列三首經典詩歌封面圖示，右下角標註「初階實戰｜C 大調統一攻略」。', script: '各位同學平安！很多新手司琴都有一個共同的困擾：和弦我都背起來了，可是每次上台幫小組伴奏、或是自己在家自彈自唱，總覺得整首歌聽起來平平淡淡的，好像從頭到尾都在念經一樣。今天這堂課，我們直接針對「如何把歌唱出層次感」來給解方。而且為了讓大家馬上就能上手，我把今天的三首示範曲全部轉成最親切的 C 大調，讓你先把伴奏的邏輯打通！' },
+      { title: '[Page 2: 痛點分析——為什麼你彈琴像機器人？]', visual: '對比圖：左邊是一條毫無起伏的水平線（平淡彈奏）；右邊是有高低起伏的波浪線（主歌弱、副歌強）。', script: '為什麼聽專業老師彈琴會覺得「波濤洶湧」，自己彈卻乾乾扁扁的？關鍵不在於華麗過門，而在於你知不知道「主歌」跟「副歌」的區別。這點非常重要！當一首歌沒有強弱對比、沒有伴奏型態的切換，聽眾就感受不到情緒推進。只要掌握幾個簡單的切換開關，只按基礎三和弦也能立刻彈出專業層次感。' },
+      { title: '[Page 3: 底層原理——左右手的黃金分工]', visual: '鋼琴鍵盤示意圖，左手區域標註紅色「控制力量與厚度」，右手區域標註藍色「控制氛圍與和聲」。', script: '彈伴奏時，左手負責控制「力量」，右手負責控制「氛圍」。鋼琴鍵盤越往左邊低音區彈，聲音的重量感與震撼力就越強。所以當我們想要讓歌曲安靜純淨時，右手乖乖按和弦，左手輕點單音；當情緒要爆發時，就把力量的開關交給左手來放大！' },
+      { title: '[Page 4: 核心機制一——根音單音 vs. 八度根音]', visual: '左手手勢特寫對照：一根手指按單音（A 段主歌） vs. 大拇指與小指張開按八度（B 段副歌）。', script: '主歌時左手用一根手指彈「單一根音」；到了副歌，左手把手指張開同時彈兩個一樣的音，叫做「八度根音」。單音很溫柔；八度音一壓下去，厚實度「轟」一下就出來了！若想做更細微的強弱，直接控制手指下鍵的力道輕重就能微調。' },
+      { title: '[Page 5: 核心機制二——小鍵盤與手小族的替代方案]', visual: '61 鍵電子琴低音區示意圖，標出「單音往下移一個八度」的箭頭。', script: '如果家裡電子琴只有 61 鍵，或者手掌比較小按不到八度怎麼辦？你一樣彈單音就好，但是請把那個單音「往左邊移動一個八度」，選離右手遠一點的低音來彈。因為音域夠低，它的共鳴厚度一樣能把副歌的張力撐起來！' },
+      { title: '[Page 6: 實戰曲目一（4/4 拍）——《這一生最美的祝福》主歌拆解]', visual: '展示《這一生最美的祝福》C 大調簡譜（A 段標記），拍點標註「齊右」。', script: '把原理套進第一首歌《這一生最美的祝福》。在「在無數的黑夜裡...」這段主歌（A 段），我們用最穩定的「齊右」伴奏法：第一拍左右手一起彈（齊），第二、三、四拍交給右手輕輕打拍子（右），左手維持單一根音，聲音非常乾淨安靜。' },
+      { title: '[Page 7: 實戰曲目一（4/4 拍）——副歌爆發「齊右左右」口訣練習]', visual: '螢幕放大口訣「齊、右、左、右、左、右」，搭配拍手節奏圖示。', script: '進到副歌（B 段），把左手打開成八度，換成推動力超強的「齊右左右」伴奏型。這點非常重要！學新伴奏前先不要碰琴，先邊拍手邊用嘴巴唸口訣：「齊、右、左、右、左、右」。把節奏唸進身體裡，手自然就會跟著對的拍子動起來。' },
+      { title: '[Page 8: 實戰避坑——節拍穩定度就是音樂的心跳]', visual: '心電圖意象：左側是規律的心跳波形（✅），右側是忽快忽慢的亂波（❌）。', script: '節拍的穩定度就像人的「心跳」一樣。如果心跳一下快、一下停、一下慢，那事情就嚴重了！彈琴也是一樣，寧可把複雜技巧通通拿掉，只用最簡單的伴奏，但從頭到尾拍子像心跳一樣穩穩地走，整首歌聽起來就會非常有安全感。' },
+      { title: '[Page 9: 團練實戰痛點——沒有前奏與主領進不了歌]', visual: '敬拜現場示意圖：主領茫然看著司琴，字幕標註「前奏套前 4 和弦＋第 4 小節過門」。', script: '譜上沒寫前奏、主領不知道何時開口怎麼辦？萬用公式：直接把主歌前四個和弦彈一遍當作前奏（65%~70% 歌曲通用）！然後在第四小節彈標準過門——連續把拍子點滿（齊齊齊齊），像在句尾加上大大的逗點，提醒大家準備進歌。' },
+      { title: '[Page 10: 司琴的肢體語言——眼神與帶唱引導]', visual: '司琴微笑抬頭看向主領、眉毛上挑並點頭的生動示意圖。', script: '主領上台緊張時，光彈過門可能還是沒反應。請把你的「表情」打開！過門最後一拍，眼睛盯著主領看，眉毛往上挑、嘴巴微張、頭往前點一下；如果還是沒進來，最穩的一招就是「直接幫他唱出第一個字，甚至唱完第一句」！這招百試百靈。' },
+      { title: '[Page 11: 實戰曲目二（3/4 拍）——《平安夜》與華爾茲律動]', visual: '古典舞會圓舞曲插畫，搭配「1（強）- 2（弱）- 3（弱）」三角拍點圖。', script: '第二首解鎖 3/4 拍的《平安夜》，也就是「華爾茲」或「圓舞曲」。華爾茲是跳舞音樂，非常講究「蹦、噠、噠」的搖擺律動感。3/4 拍歌曲通常主副歌界線較柔和，我們可以靠三種不同的伴奏型態來自由切換變化。' },
+      { title: '[Page 12: 3/4 拍三種萬用伴奏型態拆解]', visual: '三欄對比表：基礎「齊右右」（柱式）／進階「齊 5 8」（分散）／高階「齊 5 8 5 8 5」（密集分散）。', script: '第一種「齊右右」，屬於柱式和弦，律動感最明確、最有力量。第二種「齊 5 8」，左手張開，食指彈根音往上數第五個音，聲音立刻變得非常抒情。第三種「齊 5 8 5 8 5」，手指跑動加密，聽起來像水波流動。新手建議先從「齊右右」穩穩練起！' },
+      { title: '[Page 13: 進階質感關鍵——如何正確認識「踏板」與「節拍器」]', visual: '延音踏板與節拍器擬人化插畫，標語「從第一天就認識的新朋友」。', script: '我教過上千位初階同學，從第一天就會介紹踏板與節拍器這兩位「新朋友」給大家。記住踩踏板的黃金原則：關鍵不在「踩」，而在「放」！每當看到譜上出現一個新和弦，就放開踏板再重踩一次，聲音乾淨不混濁，琴聲瞬間變好聽好幾倍！' },
+      { title: '[Page 14: 實戰曲目三（傳統聖詩）——打破《耶穌恩友》的五線譜恐懼]', visual: '左邊是密密麻麻的傳統四部合聲五線譜（❌）；右邊是乾淨的簡譜＋和弦代號（✅）。', script: '第三首《耶穌恩友》，很多同學看到傳統四部合聲五線譜就頭痛。只要你找一份「標示了小節線與和弦」的簡譜，傳統聖詩立刻就能變成現代流行詩歌！直接套用第一首歌學的「齊右」跟「齊右左右」，就能彈得非常動聽。' },
+      { title: '[Page 15: 跨界應用——從詩歌橫向延伸至華語流行歌]', visual: '中心圓「C 大調伴奏公式」向外延伸出詩歌與流行歌（如《我願意》、《隱形的翅膀》）。', script: '今天教的這套方法完全不限於教會詩歌！無論是《我願意》、《隱形的翅膀》或任何華語流行金曲，只要是 4/4 拍或 3/4 拍、找得到和弦譜，全部都能直接套用今天學的伴奏型來彈唱。這就是學「萬用架構」的威力。' },
+      { title: '[Page 16: 團隊配搭實戰——有 Bass 和鼓的時候怎麼彈？]', visual: '敬拜團樂器配置圖（鋼琴、Bass、爵士鼓），標示低音區避讓提示。', script: '如果教會有 Bass 手跟鼓手，鋼琴左手還要彈八度嗎？在初階階段，我鼓勵你還是照樣彈，先把配搭的開心與信心建立起來，這比音樂完不完美更重要。未來程度提升後，若左手太重吃掉 Bass 聲音，再微調力道或往右移即可。' },
+      { title: '[Page 17: 教會體質適應與靈活應變]', visual: '教會服事溝通天平：左端「傳統主旋律需求」，右端「現代和弦伴奏」。', script: '每間教會的文化體質不同。有些傳統教會長輩或牧師非常習慣聽鋼琴彈「主旋律」，純彈和弦他們可能會找不到音。記住，司琴是「服事」不是表演，若教會需要主旋律，在能力範圍內就先配合教會需要，這才是成熟司琴的智慧。' },
+      { title: '[Page 18: 突破撞牆期——「小目標、小贏」的心態建設]', visual: '一個人面對厚鐵門，不是一次衝撞骨折，而是用小工具一次次敲開的插畫。', script: '面對陌生的技巧就像面對一扇厚鐵門，如果全力硬撞可能會撞到骨折、痛兩個禮拜不敢碰琴。請把目標切小，每天達成「小目標、小贏」，今天練熟四小節、明天練好過門，一次次敲，鐵門不知不覺就被你推開了！' },
+      { title: '[Page 19: 進階學習路徑——圓夢、突破到領袖]', visual: '三階梯路徑圖：圓夢班（初階個人）→ 突破班（中階教會服事）→ 領袖班（高階生命影響）。', script: '我們的三階段成長藍圖：第一階段「圓夢班」幫你圓自彈自唱的夢；第二階段「突破班」幫教會服事司琴解除高壓、甚至訓練免看譜即興伴奏；第三階段「領袖班」不是要變職業樂手，而是教你如何分享所學、用愛與認真態度建立敬拜團隊。' },
+      { title: '[Page 20: 總結金句與行動建議]', visual: '溫暖的琴房畫面，螢幕中央顯示金句：「在小事上忠心，用音樂與態度服事主」。', script: '練琴的時光都是完全屬於你和上帝的快樂時間。忠心是一種態度，跟能力大小無關。從今天開始，打開琴蓋，挑一首 C 大調詩歌，先用「齊右」穩穩彈完主歌，再用左手八度打開副歌張力。踏出這一步，你就已經在圓夢的路上了！' }
+    ];
+
+    let currentSlideIdx = 0;
+
+    function renderSlide() {
+      const s = LECTURE_SLIDES[currentSlideIdx];
+      document.getElementById('slide-title').innerText = s.title;
+      document.getElementById('slide-counter').innerText = `${currentSlideIdx + 1} / ${LECTURE_SLIDES.length}`;
+      document.getElementById('slide-visual').innerText = `🎨 視覺建議：${s.visual}`;
+      document.getElementById('slide-content').innerText = s.script;
+    }
+
+    function changeSlide(delta) {
+      currentSlideIdx = (currentSlideIdx + delta + LECTURE_SLIDES.length) % LECTURE_SLIDES.length;
+      renderSlide();
+    }
+
+    function copyAllMarkdownNotes() {
+      const lines = [
+        '# 新手萬用司琴法 2：解鎖全新 3 首熱門詩歌｜韋燁老師 (CWY 敬拜學院)',
+        '- 影片連結：https://www.youtube.com/live/7IcnRwpXxGI?si=rpHlkTY9sngXNvqJ',
+        '',
+        '## 一、核心伴奏公式與重點',
+        '1. **黃金分工**：左手控力量（單根音 vs. 八度根音／低八度單音），右手控氛圍（按和弦）。',
+        '2. **4/4 拍流行詩歌（《這一生最美的祝福》）**：主歌【齊、右】＋單根音；副歌【齊、右、左、右、左、右】＋八度根音。',
+        '3. **前奏與過門引導**：前奏彈前 4 個和弦；第 4 小節彈【齊、齊、齊、齊】過門＋眼神挑眉點頭或幫主領唱第一句。',
+        '4. **3/4 拍華爾茲（《平安夜》）**：柱式強律動【齊、右、右】、抒情分散【齊、5、8】、進階流動【齊、5、8、5、8、5】。',
+        '5. **延音踏板與節拍**：每看到一個新和弦就「放開再踩下」一次；節拍穩定如心跳。',
+        '6. **傳統聖詩流行化（《耶穌恩友》）**：找標有小節線與和弦的譜，直接套用【齊右】與【齊右左右】。',
+        '',
+        '## 二、20 頁深度教學講稿',
+        ...LECTURE_SLIDES.map(s => `### ${s.title}\n- 視覺建議：${s.visual}\n- 講師對白：${s.script}\n`)
+      ];
+      navigator.clipboard.writeText(lines.join('\n')).then(() => {
+        alert('✅ 已將完整教學講義與 20 頁講稿複製到剪貼簿！');
+      });
+    }
+
+    // =========================================================================
+    // 9. 分頁切換與全域快捷鍵 (Space 播放/暫停)
+    // =========================================================================
+    function switchTab(tabName, event) {
+      stopLabPlayback();
+      isLabLooping = false;
+      document.getElementById('lab-btn-play').innerText = '▶ 循環示範律動 (Space)';
+      stopSongPlayback();
+
+      ['lab', 'songs', 'quiz', 'notes'].forEach(t => {
+        document.getElementById(`tab-${t}`).style.display = (t === tabName) ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('.tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (document.getElementById('tab-lab').style.display !== 'none') {
+          toggleLabLoop();
+        } else if (document.getElementById('tab-songs').style.display !== 'none') {
+          toggleSongPlayback();
+        }
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      render48KeyPiano('lab-piano-keys', false);
+      render48KeyPiano('song-piano-keys', false);
+      render48KeyPiano('quiz-piano-keys', true);
+      initLab();
+      initSongsTab();
+      initQuizTab();
+      renderSlide();
+    });
+  </script>
+</body>
+</html>
