@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今日財經新聞速報</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f8fa;
+      --card: #ffffff;
+      --text: #1f2328;
+      --muted: #656d76;
+      --border: #d0d7de;
+      --accent: #0969da;
+      --accent-hover: #0550ae;
+      --success: #1a7f37;
+      --tag-bg: #eff6ff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --card: #161b22;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --border: #30363d;
+        --accent: #58a6ff;
+        --accent-hover: #79c0ff;
+        --success: #3fb950;
+        --tag-bg: #1f2937;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    .toolbar {
+      position: sticky;
+      top: 12px;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+    .toolbar-title { font-weight: 700; font-size: 15px; }
+    .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    button {
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    button:active { transform: scale(0.98); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--success);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+    @media (max-width: 600px) { article { padding: 20px 18px; } }
+    h1 { margin-top: 0; font-size: 1.65rem; line-height: 1.3; }
+    h2 { margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid var(--border); font-size: 1.25rem; }
+    h3 { margin-top: 18px; font-size: 1.05rem; color: var(--accent); }
+    blockquote {
+      margin: 12px 0 20px;
+      padding: 10px 14px;
+      border-left: 4px solid var(--accent);
+      background: var(--tag-bg);
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: var(--text);
+    }
+    ul, ol { padding-left: 22px; }
+    li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="toolbar">
+      <div class="toolbar-title">📰 今日財經新聞速報</div>
+      <div class="btn-group">
+        <button type="button" class="btn-primary" id="copyPlainBtn">📋 一鍵複製純文字</button>
+        <button type="button" class="btn-secondary" id="copyMdBtn">📝 複製 Markdown</button>
+      </div>
+    </div>
+
+    <article id="reportContent">
+      <h1>📰 今日財經新聞速報</h1>
+      <blockquote>
+        <strong>最新更新：</strong>2026-11-21 07:12（台北時間 GMT+8，週六）<br />
+        <strong>市場狀態說明：</strong>美股已於美東時間 11/20 正式收盤；台股與亞洲主要股市（日、韓、港、陸）今日週末休市，採 11/20 最終盤後完整統計（含上市櫃融資融券、三大法人及期權未平倉）。
+      </blockquote>
+
+      <h2>📊 一、全球與台灣股市數據</h2>
+      <h3>1. 台灣股市（2026-11-20 盤後完整統計，今日週末休市）</h3>
+      <ul>
+        <li><strong>加權指數（上市）：</strong>收報 <strong>36,033.29 點</strong>，下跌 <strong>2,393.60 點（-6.23%）</strong>，創台股史上第 3 大收盤跌點；成交金額新台幣 <strong>8,773.50 億元</strong>（本週累計下跌逾 7,600 點；上市櫃合計逾 360 檔跌停）。</li>
+        <li><strong>櫃買指數（上櫃）：</strong>收報 <strong>263.31 點</strong>，下跌 <strong>22.02 點（-7.72%）</strong>，成交金額約新台幣 <strong>954.52 億元</strong>。</li>
+        <li><strong>三大法人買賣超（11/20 集中市場）：</strong>合計賣超 <strong>522.46 億元</strong>
+          <ul>
+            <li><strong>外資及陸資（不含外資自營商）：</strong>賣超 <strong>94.13 億元</strong>（連 5 賣，單日賣超金額收斂至百億元以下）</li>
+            <li><strong>投信：</strong>賣超 <strong>87.49 億元</strong>（由買轉賣）</li>
+            <li><strong>自營商（合計）：</strong>賣超 <strong>340.84 億元</strong>（自行買賣賣超 50.68 億元、避險賣超 290.16 億元）</li>
+          </ul>
+        </li>
+        <li><strong>融資融券餘額變化（11/20 盤後最新）：</strong>
+          <ul>
+            <li><strong>集中市場（上市）：</strong>融資餘額降至 <strong>4,352.27 億元</strong>（單日減少 <strong>491.41 億元</strong>）；融券餘額降至 <strong>199,791 張</strong>（單日減少 10,028 張）；大盤估算融資維持率降至 <strong>140.40%</strong>，逼近 130% 追繳斷頭防線。</li>
+            <li><strong>店頭市場（上櫃）：</strong>融資餘額降至 <strong>1,328.5 億元</strong>（單日減少約 <strong>145.6 億元</strong>）；融券餘額降至 <strong>25,824 張</strong>（單日減少 2,695 張）。</li>
+            <li><strong>合計：</strong>上市櫃單日融資合計減少逾 <strong>637 億元</strong>。</li>
+          </ul>
+        </li>
+        <li><strong>期貨與選擇權未平倉淨額（11/20 盤後）：</strong>
+          <ul>
+            <li><strong>臺股期貨：</strong>三大法人合計淨空單 <strong>-9,276 口</strong>（外資淨空單 -97,863 口、投信淨多單 +87,599 口、自營商淨多單 +282 口）。</li>
+            <li><strong>臺指選擇權：</strong>三大法人合計淨空單 <strong>-13,898 口</strong>（外資淨多單 +6,885 口、投信淨空單 -32,575 口、自營商淨多單 +11,792 口）。</li>
+          </ul>
+        </li>
+        <li><strong>重點權值股收盤表現（11/20 收盤）：</strong>
+          <ul>
+            <li><strong>台積電 (2330)：</strong>收報 <strong>2,000.00 元</strong>（下跌 100 元，-4.76%），盤中最低觸及 1,990 元後守住 2,000 元大關。</li>
+            <li><strong>聯發科 (2454)：</strong>終場亮燈<strong>跌停</strong>，收報 <strong>3,350.00 元</strong>（台達電亦收跌停）。</li>
+            <li><strong>鴻海 (2317)：</strong>收報 <strong>210.00 元</strong>（下跌 10.5 元，-4.76%）。</li>
+            <li><strong>廣達 (2382)：</strong>走跌逾 <strong>4%</strong>（盤中低點約 250.5 元）。</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>2. 美國股市（2026-11-20 正式收盤）</h3>
+      <ul>
+        <li><strong>道瓊工業指數：</strong>收報 <strong>48,147.33 點</strong>，下跌 <strong>949.73 點（-1.93%）</strong>。</li>
+        <li><strong>標普 500 指數：</strong>收報 <strong>6,910.39 點</strong>，下跌 <strong>265.44 點（-3.70%）</strong>，較近期波段高點回檔逾 10%，正式落入技術性修正區間。</li>
+        <li><strong>那斯達克綜合指數：</strong>收報 <strong>22,617.73 點</strong>，下跌 <strong>1,261.47 點（-5.28%）</strong>，今年以來累計漲幅轉為負值。</li>
+        <li><strong>費城半導體指數：</strong>收報 <strong>8,408.59 點</strong>，下跌 <strong>1,011.13 點（-10.73%）</strong>，成為美股賣壓重災區。</li>
+      </ul>
+
+      <h3>3. 亞洲股市（2026-11-20 收盤，今日週末休市）</h3>
+      <ul>
+        <li><strong>日經 225 指數：</strong>收報 <strong>56,436.65 點</strong>，下跌 <strong>3,007.56 點（-5.06%）</strong>。</li>
+        <li><strong>韓國綜合指數 (KOSPI)：</strong>收報 <strong>4,869.96 點</strong>，下跌 <strong>267.93 點（-5.21%）</strong>。</li>
+        <li><strong>香港恒生指數：</strong>收報 <strong>22,344.37 點</strong>，下跌 <strong>497.25 點（-2.18%）</strong>。</li>
+        <li><strong>上海證券交易所綜合指數（上證）：</strong>收報 <strong>3,521.40 點</strong>，下跌 <strong>56.22 點（-1.57%）</strong>。</li>
+      </ul>
+
+      <h2>🌍 二、戰爭與地緣政治（5 則）</h2>
+      <ol>
+        <li><strong>《中俄美元首和平宣言》落地，市場評估象徵意義大於實質突破</strong><br />習近平、川普與普丁 19 日在深圳 APEC 舉行冷戰後首次三邊閉門會談並發表宣言，涵蓋聯合國改革、增加精煉石油供應、國家官員豁免權及防止核擴散四項共識，但未對台海、俄烏等敏感議題達成實質約束協議，市場避險溢價仍高。</li>
+        <li><strong>川普向歐洲轉達普丁停戰意願，惟戰場無人機襲擊未歇</strong><br />外媒披露川普向歐洲首腦轉達其評估普丁有意願尋求結束俄烏戰爭，引發市場關注談判進展；但實質戰況仍緊繃，俄軍無人機近期襲擊烏克蘭首都並波及外交機構，歐洲冬季能源供應仍承受壓力。</li>
+        <li><strong>中東戰火擴及波斯灣周邊，美中俄納「穩定能源供應」入宣言</strong><br />受中東衝突外溢、美軍基地與區域能源及金融設施安全受威脅影響，全球原油與精煉油流向波動加劇；美中俄於宣言中強調穩定精煉石油產品供應，藉以緩解全球通膨壓力。</li>
+        <li><strong>新加坡等亞太經濟體於 APEC 呼籲維持開放貿易、避免陣營對立</strong><br />在美中科技與貿易摩擦背景下，亞太領袖於 APEC 期間重申開放貿易與供應鏈韌性的重要性，防範區域經濟陷入保護主義與陣營分裂。</li>
+        <li><strong>半導體監管與出口規範不確定性引爆跨國科技股拋售</strong><br />美國晶片出口審查與科技巨頭監管雜音疊加，引發資金全面撤離高估值 AI 硬體供應鏈，衝擊美股費半指數單日重挫 10.73%，並牽動亞太科技股下週開盤情緒。</li>
+      </ol>
+
+      <h2>🏛️ 三、國內重要新聞（5 則）</h2>
+      <ol>
+        <li><strong>立法院三讀通過「全民普發二萬元」特別條例</strong><br />立法院院會 20 日以 50 票贊成、46 票反對三讀通過國民黨團所提《全民共享經濟成果及穩定民生特別條例》，明定全民普發新台幣 2 萬元現金（民眾黨團投下反對票、民進黨團 13 人缺席），並規定行政院須於條例生效後 3 個月內發放完畢。</li>
+        <li><strong>10 月外銷訂單達 1,238.2 億美元創歷史單月新高，年增 78.3%</strong><br />經濟部公布最新統計，受惠全球 AI 與科技剛性需求，10 月外銷訂單金額衝上 1,238.2 億美元，創歷年單月新高，年增率達 78.3% 且呈現「連 21 紅」，展現台灣實質出口基本面支撐。</li>
+        <li><strong>上市櫃單日融資大減逾 637 億元，金管會限空令 2.0 續防線</strong><br />20 日上市融資大減 491.41 億元、上櫃融資大減 145.6 億元，集中市場維持率降至 140.40%；金管會自 20 日起實施跌幅達 3.5% 個股次日禁平盤下放空、借券上限降至 1%，搭配國安基金進場護盤穩市。</li>
+        <li><strong>選前倒數一週！安全單位向 Meta 通報近 2,700 個疑似中國假帳號</strong><br />距離 11 月 28 日九合一選舉僅剩一週，國內安全單位透露已向 Meta 通報近 2,700 個多活躍於 Threads 平台的疑似境外假帳號；同時賴清德總統 20 日晚間赴台中啟動七縣市聯合造勢。</li>
+        <li><strong>「2026 Cyberspace 聯合研討會」今日登場，聚焦主權 AI 與資安防護</strong><br />國內多所大學與資安團體於 11 月 21 日聯合主辦研討會，針對近期境外駭客利用 AI 代理（AI Agent）發動自動化網攻的威脅，深入探討「主權 AI vs. AI 主權」與「資安 AI 化」防禦架構。</li>
+      </ol>
+
+      <h2>🚀 四、焦點個股與台股動態（4 則）</h2>
+      <ol>
+        <li><strong>台積電 (2330) 2,000 元整數關卡下週面臨嚴峻測試</strong><br />台積電 20 日現貨收報 2,000.00 元（-4.76%），守住整數防線，惟 20 日晚間美股費城半導體指數重挫 10.73%、輝達大跌 14.01%，下週一（11/23）開盤權值股將面臨進一步壓力測試。</li>
+        <li><strong>聯發科 (2454) 與台達電雙雙跌停，高價權值股承受去槓桿賣壓</strong><br />高價電子權值股 20 日遭遇融資斷頭與避險賣壓夾擊，聯發科亮燈跌停收 3,350.00 元，台達電亦收在跌停價位。</li>
+        <li><strong>鴻海 (210 元) 與廣達 (跌逾 4%) 隨 AI 伺服器族群同步修正</strong><br />鴻海 20 日下跌 10.5 元收 210.00 元（-4.76%），廣達亦下跌逾 4%，短線靜待融資大幅減肥後的籌碼落底訊號。</li>
+        <li><strong>上市櫃庫藏股護盤啟動，累計 39 件、預計買回金額約 274 億元</strong><br />響應金管會穩市措施，截至目前已有 39 家上市櫃公司宣布實施庫藏股，預計買回金額約 274 億元，為盤面提供實質買盤支撐。</li>
+      </ol>
+
+      <h2>🏢 五、國際個股與科技動態（4 則）</h2>
+      <ol>
+        <li><strong>輝達 (NVDA) 單日重挫 14.01% 至 125.53 美元，市值蒸發近 5,000 億美元</strong><br />市場傳出美國 SEC 對輝達展開會計與營收調查，疊加黃仁勳辭任執行長後的接班疑慮與高盛將其列入基金低配名單，輝達 20 日重挫 14.01% 收 125.53 美元，市值遭 Alphabet 超越退居美股第四位。</li>
+        <li><strong>Anthropic (<code>ANT</code>) 上市次日回落約 8.5%，引發 AI 族群估值重估</strong><br />Anthropic 前一日（11/19）以每股 83 美元風光掛牌收漲 17% 後，20 日遭逢沉重獲利了結賣壓，大跌約 8.5% 至 88.91 美元附近，蜜月行情降溫直接觸發全市場對高估值 AI 概念股的集體拋售。</li>
+        <li><strong>特斯拉 (TSLA) 重挫 7.60% 收 345.82 美元，高估值成長股遭逢拋售</strong><br />在市場資金大規模撤出高估值科技與 AI 概念股的浪潮下，特斯拉 20 日大跌 28.59 美元（-7.60%），收在 345.82 美元。</li>
+        <li><strong>蘋果 (AAPL) 收跌 1.90%、微軟 (MSFT) 跌 2.77%，顯現防禦韌性</strong><br />蘋果受純 AI 資料中心資本支出風險曝險較低，20 日收報 342.56 美元（-1.90%），為大型科技股中跌幅最輕標的；微軟受雲端軟體營收支撐，收報 484.52 美元（-2.77%）。</li>
+      </ol>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const markdownSource = `# 📰 今日財經新聞速報
+
+> **最新更新**：2026-11-21 07:12（台北時間 GMT+8，週六）
+> **市場狀態說明**：美股已於美東時間 11/20 正式收盤；台股與亞洲主要股市（日、韓、港、陸）今日週末休市，採 11/20 最終盤後完整統計（含上市櫃融資融券、三大法人及期權未平倉）。
+
+---
+
+## 📊 一、全球與台灣股市數據
+
+### 1. 台灣股市（2026-11-20 盤後完整統計，今日週末休市）
+* **加權指數（上市）**：收報 **36,033.29 點**，下跌 **2,393.60 點（-6.23%）**，創台股史上第 3 大收盤跌點；成交金額新台幣 **8,773.50 億元**（本週累計下跌逾 7,600 點；上市櫃合計逾 360 檔跌停）。
+* **櫃買指數（上櫃）**：收報 **263.31 點**，下跌 **22.02 點（-7.72%）**，成交金額約新台幣 **954.52 億元**。
+* **三大法人買賣超（11/20 集中市場）**：合計賣超 **522.46 億元**
+  * **外資及陸資（不含外資自營商）**：賣超 **94.13 億元**（連 5 賣，單日賣超金額收斂至百億元以下）
+  * **投信**：賣超 **87.49 億元**（由買轉賣）
+  * **自營商（合計）**：賣超 **340.84 億元**（自行買賣賣超 50.68 億元、避險賣超 290.16 億元）
+* **融資融券餘額變化（11/20 盤後最新）**：
+  * **集中市場（上市）**：融資餘額降至 **4,352.27 億元**（單日減少 **491.41 億元**）；融券餘額降至 **199,791 張**（單日減少 10,028 張）；大盤估算融資維持率降至 **140.40%**，逼近 130% 追繳斷頭防線。
+  * **店頭市場（上櫃）**：融資餘額降至 **1,328.5 億元**（單日減少約 **145.6 億元**）；融券餘額降至 **25,824 張**（單日減少 2,695 張）。
+  * **合計**：上市櫃單日融資合計減少逾 **637 億元**。
+* **期貨與選擇權未平倉淨額（11/20 盤後）**：
+  * **臺股期貨**：三大法人合計淨空單 **-9,276 口**（外資淨空單 -97,863 口、投信淨多單 +87,599 口、自營商淨多單 +282 口）。
+  * **臺指選擇權**：三大法人合計淨空單 **-13,898 口**（外資淨多單 +6,885 口、投信淨空單 -32,575 口、自營商淨多單 +11,792 口）。
+* **重點權值股收盤表現（11/20 收盤）**：
+  * **台積電 (2330)**：收報 **2,000.00 元**（下跌 100 元，-4.76%），盤中最低觸及 1,990 元後守住 2,000 元大關。
+  * **聯發科 (2454)**：終場亮燈**跌停**，收報 **3,350.00 元**（台達電亦收跌停）。
+  * **鴻海 (2317)**：收報 **210.00 元**（下跌 10.5 元，-4.76%）。
+  * **廣達 (2382)**：走跌逾 **4%**（盤中低點約 250.5 元）。
+
+### 2. 美國股市（2026-11-20 正式收盤）
+* **道瓊工業指數**：收報 **48,147.33 點**，下跌 **949.73 點（-1.93%）**。
+* **標普 500 指數**：收報 **6,910.39 點**，下跌 **265.44 點（-3.70%）**，較近期波段高點回檔逾 10%，正式落入技術性修正區間。
+* **那斯達克綜合指數**：收報 **22,617.73 點**，下跌 **1,261.47 點（-5.28%）**，今年以來累計漲幅轉為負值。
+* **費城半導體指數**：收報 **8,408.59 點**，下跌 **1,011.13 點（-10.73%）**，成為美股賣壓重災區。
+
+### 3. 亞洲股市（2026-11-20 收盤，今日週末休市）
+* **日經 225 指數**：收報 **56,436.65 點**，下跌 **3,007.56 點（-5.06%）**。
+* **韓國綜合指數 (KOSPI)**：收報 **4,869.96 點**，下跌 **267.93 點（-5.21%）**。
+* **香港恒生指數**：收報 **22,344.37 點**，下跌 **497.25 點（-2.18%）**。
+* **上海證券交易所綜合指數（上證）**：收報 **3,521.40 點**，下跌 **56.22 點（-1.57%）**。
+
+---
+
+## 🌍 二、戰爭與地緣政治（5 則）
+1. **《中俄美元首和平宣言》落地，市場評估象徵意義大於實質突破**：習近平、川普與普丁 19 日在深圳 APEC 舉行冷戰後首次三邊閉門會談並發表宣言，但未對台海、俄烏等敏感議題達成實質約束協議。
+2. **川普向歐洲轉達普丁停戰意願，惟戰場無人機襲擊未歇**：外媒披露川普轉達普丁有意願結束俄烏戰爭，惟戰場無人機襲擊仍持續，歐洲冬季能源供應承壓。
+3. **中東戰火擴及波斯灣周邊，美中俄納「穩定能源供應」入宣言**：受中東衝突外溢影響，美中俄於宣言中強調穩定精煉石油產品供應以緩解通膨壓力。
+4. **新加坡等亞太經濟體於 APEC 呼籲維持開放貿易、避免陣營對立**：亞太領袖重申開放貿易與供應鏈韌性的重要性。
+5. **半導體監管與出口規範不確定性引爆跨國科技股拋售**：美國晶片出口審查與科技巨頭監管雜音疊加，衝擊費半單日重挫 10.73%。
+
+---
+
+## 🏛️ 三、國內重要新聞（5 則）
+1. **立法院三讀通過「全民普發二萬元」特別條例**：20 日以 50 票贊成、46 票反對通過，明定生效後 3 個月內發放完畢。
+2. **10 月外銷訂單達 1,238.2 億美元創歷史單月新高，年增 78.3%**：呈現「連 21 紅」，展現台灣實質出口基本面支撐。
+3. **上市櫃單日融資大減逾 637 億元，金管會限空令 2.0 續防線**：集中市場維持率降至 140.40%，搭配國安基金進場護盤穩市。
+4. **選前倒數一週！安全單位向 Meta 通報近 2,700 個疑似中國假帳號**：多活躍於 Threads 平台；同時賴清德總統 20 日晚間赴台中啟動七縣市聯合造勢。
+5. **「2026 Cyberspace 聯合研討會」今日登場**：聚焦「主權 AI vs. AI 主權」與「資安 AI 化」防禦架構。
+
+---
+
+## 🚀 四、焦點個股與台股動態（4 則）
+1. **台積電 (2330) 2,000 元整數關卡下週面臨嚴峻測試**：20 日收報 2,000.00 元（-4.76%），惟美股費半重挫 10.73%，下週一開盤面臨考驗。
+2. **聯發科 (2454) 與台達電雙雙跌停**：聯發科收 3,350.00 元跌停，高價權值股承受去槓桿賣壓。
+3. **鴻海 (210 元) 與廣達 (跌逾 4%) 同步修正**：鴻海收 210.00 元（-4.76%），靜待融資減肥後籌碼落底。
+4. **上市櫃庫藏股護盤啟動**：累計 39 件、預計買回金額約 274 億元。
+
+---
+
+## 🏢 五、國際個股與科技動態（4 則）
+1. **輝達 (NVDA) 單日重挫 14.01% 至 125.53 美元**：市值蒸發近 5,000 億美元，傳 SEC 展開會計與營收調查，市值遭 Alphabet 超越退居美股第四位。
+2. **Anthropic (\`ANT\`) 上市次日回落約 8.5%**：收 88.91 美元附近，蜜月行情降溫觸發 AI 族群集體拋售。
+3. **特斯拉 (TSLA) 重挫 7.60% 收 345.82 美元**。
+4. **蘋果 (AAPL) 收跌 1.90% 至 342.56 美元、微軟 (MSFT) 跌 2.77% 至 484.52 美元**，顯現防禦韌性。`;
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    async function copyText(text, label) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        showToast(`✅ 已複製${label}到剪貼簿`);
+      } catch (err) {
+        showToast('❌ 複製失敗，請手動選取複製');
+      }
+    }
+
+    document.getElementById('copyPlainBtn').addEventListener('click', () => {
+      const plain = document.getElementById('reportContent').innerText.trim();
+      copyText(plain, '純文字');
+    });
+
+    document.getElementById('copyMdBtn').addEventListener('click', () => {
+      copyText(markdownSource, ' Markdown ');
+    });
+  </script>
+</body>
+</html>
