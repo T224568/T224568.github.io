@@ -787,6 +787,15 @@
       <div id="transpose-degree-map" style="font-size: 0.8rem; color: #cbd5e1; background: #0f172a; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--card-border); font-family: monospace;">
         級數對照：I=C ｜ IIm=Dm ｜ IIIm=Em ｜ IV=F ｜ V=G ｜ VIm=Am
       </div>
+      <button class="chip-btn accent-active active" onclick="toggleHandoutModal()" style="flex: 0 0 auto; padding: 6px 14px; font-size: 0.82rem;">🖼 展開／收合韋燁老師完整講義原圖</button>
+    </div>
+
+    <!-- 可展開之完整合併講義原圖區塊 -->
+    <div id="top-handout-drawer" style="display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--card-border); text-align: center;">
+      <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-bottom: 10px;">📄 韋燁老師《一招搞定自彈自唱與詩歌伴奏》三合一無縫完整講義（點擊圖片可開新視窗放大）</div>
+      <a href="2026-11-21_新手萬用司琴法2_完整講義圖.jpg" target="_blank" rel="noopener">
+        <img src="2026-11-21_新手萬用司琴法2_完整講義圖.jpg" alt="一招搞定自彈自唱與詩歌伴奏完整講義" style="max-width: 100%; width: 640px; border-radius: 12px; border: 2px solid var(--card-border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+      </a>
     </div>
   </div>
 
@@ -1045,9 +1054,20 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
         <div>
           <h2 style="margin-bottom: 4px;">📚 韋燁老師《新手萬用司琴法 2》結構化教學講義</h2>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">包含核心法則、重點名詞、教學避坑指南與 20 頁互動式講師備課講稿</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">包含三合一無縫完整講義原圖、核心法則、重點名詞與 20 頁互動式講師備課講稿</p>
         </div>
         <button class="btn-play accent" onclick="copyAllMarkdownNotes()">📋 一鍵複製完整 Markdown 講義</button>
+      </div>
+
+      <!-- 完整合併講義大圖展示區 -->
+      <div style="background: #0f172a; border: 1px solid var(--card-border); border-radius: 14px; padding: 18px; margin-bottom: 20px; text-align: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <h3 style="color: var(--accent); font-size: 1.1rem;">🖼 韋燁老師直播原版講義（三張無縫合併完整版）</h3>
+          <a href="2026-11-21_新手萬用司琴法2_完整講義圖.jpg" download="2026-11-21_新手萬用司琴法2_完整講義圖.jpg" class="chip-btn" style="flex: 0 0 auto; text-decoration: none; padding: 6px 14px; font-size: 0.82rem;">⬇ 下載完整講義圖 (.jpg)</a>
+        </div>
+        <a href="2026-11-21_新手萬用司琴法2_完整講義圖.jpg" target="_blank" rel="noopener">
+          <img src="2026-11-21_新手萬用司琴法2_完整講義圖.jpg" alt="一招搞定自彈自唱與詩歌伴奏完整講義" style="max-width: 100%; width: 700px; border-radius: 10px; border: 1px solid #475569; box-shadow: 0 8px 25px rgba(0,0,0,0.45);">
+        </a>
       </div>
 
       <div class="notes-grid">
@@ -1349,6 +1369,12 @@
 
     function shiftTranspose(delta) {
       setTranspose(currentTranspose + delta);
+    }
+
+    function toggleHandoutModal() {
+      const drawer = document.getElementById('top-handout-drawer');
+      if (!drawer) return;
+      drawer.style.display = (drawer.style.display === 'none') ? 'block' : 'none';
     }
 
     // 根據和弦取得齊 5 8 的三個左手音 (1, 5, 8)
