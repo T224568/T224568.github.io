@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>67歲退休持股健診與下週崩盤應對戰略報告 (2026-11-21)</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --primary: #1e3a8a;
+    --accent: #0284c7;
+    --success: #15803d;
+    --danger: #b91c1c;
+    --warning: #b45309;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0;
+    padding: 24px 16px;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  header {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: #fff;
+    padding: 28px 32px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+  }
+  header h1 {
+    margin: 0 0 8px 0;
+    font-size: 1.75rem;
+  }
+  header p {
+    margin: 4px 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .kpi-title {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .kpi-val {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 6px 0;
+  }
+  .kpi-sub {
+    font-size: 0.82rem;
+    color: var(--success);
+    font-weight: 600;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  }
+  h2 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-top: 0;
+    border-left: 5px solid var(--accent);
+    padding-left: 12px;
+  }
+  h3 {
+    color: #0f172a;
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+  }
+  th:nth-child(1), th:nth-child(2), th:nth-child(3),
+  td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 700;
+  }
+  tr:hover {
+    background: #f8fafc;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .b-bond { background: #dcfce7; color: #166534; }
+  .b-div { background: #fef3c7; color: #92400e; }
+  .b-def { background: #e0f2fe; color: #075985; }
+  .b-tech { background: #fee2e2; color: #991b1b; }
+  .alert-box {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+  .warn-box {
+    background: #fffbeb;
+    border-left: 4px solid #d97706;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+  .action-list li {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🛡️ 67歲退休持股健診與下週崩盤應對戰略報告</h1>
+    <p>評估日期：2026-11-21 ｜ 結合《決勝關鍵》週末特別版（輝達暴跌14%・台指期夜盤跌1881點）與 Yahoo Finance 最新報價</p>
+  </header>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-title">股票 + 債券總市值</div>
+      <div class="kpi-val">1,363.3 萬元</div>
+      <div class="kpi-sub">100% 現股・零斷頭風險</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-title">預估每年股息/債息</div>
+      <div class="kpi-val">58.91 萬元/年</div>
+      <div class="kpi-sub">平均每月被動收入 49,095 元</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-title">防禦與收息護城河</div>
+      <div class="kpi-val">62.9% (858萬)</div>
+      <div class="kpi-sub">債券 29% + 高股息 19.3% + 金融民生 14.7%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-title">優化後目標月退現金流</div>
+      <div class="kpi-val">57,900 元/月</div>
+      <div class="kpi-sub">年領息提升至約 69.5 萬元 (+18%)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>一、 影片《決勝關鍵》核心重點 vs. 您的 67 歲退休護城河</h2>
+    <div class="alert-box">
+      <strong>💡 給您的第一顆定心丸：您跟影片裡的「融資斷頭受災戶」完全不同！</strong><br>
+      影片指出週五美股費半暴跌 10.73%、輝達跌 14%、台指期夜盤狂瀉 1,881 點 (-5.25%)，下週一（11/23）將爆發融資維持率斷頭潮，預計下探 <strong>C 波滿足點 32,394 點</strong>（距夜盤約 1,300~1,500 點），並在<strong>週二（11/24）低檔爆量打開跌停後迎來報復性反彈（目標回月線）</strong>。<br><br>
+      <strong>為什麼您不用恐慌？</strong> 您的 1,363 萬資產中，有 <strong>394.7 萬（29%）是投資級公司債與美債 ETF</strong>、<strong>200 萬（14.7%）是中保科/新保/台灣大/富邦金/國泰金</strong>、<strong>263.5 萬（19.3%）是高股息 ETF</strong>。股市暴跌時避險資金會湧入債券與保全電信股，您的組合具有極強的防震緩衝力！
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>二、 15 檔持股最新市值與配息診斷表（Yahoo Finance 2026/11/20 收盤）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>分類</th>
+          <th>代號</th>
+          <th>名稱</th>
+          <th>股數</th>
+          <th>最新價</th>
+          <th>市值 (元)</th>
+          <th>佔比</th>
+          <th>預估殖利率</th>
+          <th>預估年息</th>
+          <th>近1月表現</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge b-bond">債券防禦</span></td>
+          <td>00772B</td>
+          <td>中信公司債</td>
+          <td>77,000</td>
+          <td>32.60</td>
+          <td>2,510,200</td>
+          <td>18.4%</td>
+          <td>4.8%</td>
+          <td>120,490</td>
+          <td>-2.6%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-bond">債券防禦</span></td>
+          <td>00773B</td>
+          <td>中信金融債</td>
+          <td>27,000</td>
+          <td>34.91</td>
+          <td>942,570</td>
+          <td>6.9%</td>
+          <td>4.9%</td>
+          <td>46,186</td>
+          <td>-2.5%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-bond">債券防禦</span></td>
+          <td>00687B</td>
+          <td>國泰20年美債</td>
+          <td>18,000</td>
+          <td>27.47</td>
+          <td>494,460</td>
+          <td>3.6%</td>
+          <td>4.4%</td>
+          <td>21,756</td>
+          <td>-2.1%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-div">高息現金流</span></td>
+          <td>0056</td>
+          <td>元大高股息</td>
+          <td>20,000</td>
+          <td>44.31</td>
+          <td>886,200</td>
+          <td>6.5%</td>
+          <td>8.2%</td>
+          <td>72,668</td>
+          <td>-24.6%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-div">高息現金流</span></td>
+          <td>00919</td>
+          <td>群益高股息</td>
+          <td>32,000</td>
+          <td>27.49</td>
+          <td>879,680</td>
+          <td>6.5%</td>
+          <td>9.5%</td>
+          <td>83,570</td>
+          <td>-16.4%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-div">高息現金流</span></td>
+          <td>00878</td>
+          <td>國泰永續高股息</td>
+          <td>31,000</td>
+          <td>28.03</td>
+          <td>868,930</td>
+          <td>6.4%</td>
+          <td>7.5%</td>
+          <td>65,170</td>
+          <td>-21.4%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-def">金融民生</span></td>
+          <td>2881</td>
+          <td>富邦金</td>
+          <td>4,000</td>
+          <td>136.50</td>
+          <td>546,000</td>
+          <td>4.0%</td>
+          <td>4.5%</td>
+          <td>24,570</td>
+          <td>-15.7%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-def">金融民生</span></td>
+          <td>2882</td>
+          <td>國泰金</td>
+          <td>5,244</td>
+          <td>96.90</td>
+          <td>508,144</td>
+          <td>3.7%</td>
+          <td>4.5%</td>
+          <td>22,866</td>
+          <td>-16.8%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-def">金融民生</span></td>
+          <td>9925</td>
+          <td>新保</td>
+          <td>9,100</td>
+          <td>39.00</td>
+          <td>354,900</td>
+          <td>2.6%</td>
+          <td>5.2%</td>
+          <td>18,455</td>
+          <td>-1.8%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-def">金融民生</span></td>
+          <td>9917</td>
+          <td>中保科</td>
+          <td>3,351</td>
+          <td>102.00</td>
+          <td>341,802</td>
+          <td>2.5%</td>
+          <td>5.0%</td>
+          <td>17,090</td>
+          <td>-6.8%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-def">金融民生</span></td>
+          <td>3045</td>
+          <td>台灣大</td>
+          <td>2,000</td>
+          <td>123.00</td>
+          <td>246,000</td>
+          <td>1.8%</td>
+          <td>4.2%</td>
+          <td>10,332</td>
+          <td>-8.9%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-tech">市值/科技</span></td>
+          <td>0050</td>
+          <td>台灣50</td>
+          <td>24,000</td>
+          <td>84.45</td>
+          <td>2,026,800</td>
+          <td>14.9%</td>
+          <td>3.2%</td>
+          <td>64,858</td>
+          <td>-22.3%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-tech">市值/科技</span></td>
+          <td>00646</td>
+          <td>元大S&amp;P500</td>
+          <td>19,000</td>
+          <td>74.05</td>
+          <td>1,406,950</td>
+          <td>10.3%</td>
+          <td>0.0%</td>
+          <td>0</td>
+          <td>-6.9%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-tech">市值/科技</span></td>
+          <td>00662</td>
+          <td>富邦NASDAQ</td>
+          <td>45,900</td>
+          <td>22.15</td>
+          <td>1,016,685</td>
+          <td>7.5%</td>
+          <td>0.0%</td>
+          <td>0</td>
+          <td>-9.5%</td>
+        </tr>
+        <tr>
+          <td><span class="badge b-tech">市值/科技</span></td>
+          <td>00403A</td>
+          <td>主動統一升級50</td>
+          <td>86,000</td>
+          <td>7.02</td>
+          <td>603,720</td>
+          <td>4.4%</td>
+          <td>3.5%</td>
+          <td>21,130</td>
+          <td>-32.0%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>三、 分階段實戰操作建議（67歲退休專屬）</h2>
+    <h3>1️⃣ 下週一、週二（11/23～11/24 斷頭宣洩期）：嚴守「不殺低」鐵律</h3>
+    <ul class="action-list">
+      <li><strong>絕對不要在週一開盤砍股票</strong>：週一 <code>0050</code>、<code>00662</code>、<code>00403A</code> 會隨夜盤跳空開低 4%~6%，但指數已逼近 C 波滿足點 32,394 點，現股無斷頭壓力，千萬別砍在最低點。</li>
+      <li><strong>若想逢低撿便宜（債轉股微調）</strong>：可待<strong>週二（11/24）低檔爆出大量打開跌停時</strong>，將極為抗跌的 <code>00772B 中信公司債</code>（77張）小幅獲利/平轉賣出 10~15 張（約 32~48 萬），逢低分批買進超跌的 <code>00878</code>（26.5~27元）或 <code>00919</code>（25.8~26.3元），鎖定 9% 以上殖利率。</li>
+    </ul>
+
+    <h3>2️⃣ 12 月報復性反彈至月線時：執行「一減一增」退休結構優化</h3>
+    <div class="warn-box">
+      <strong>⚠️ 目前組合唯一痛點：</strong> <code>00646</code> + <code>00662</code>（合計 242 萬）完全不配息；<code>00403A</code>（86 張，60.4 萬）為主動型電子成長 ETF，波動過大（近一月跌 32%）。對 67 歲退休族而言，這三檔在空頭時既無現金流又傷神。
+    </div>
+    <ul class="action-list">
+      <li><strong>【減碼高波動與無息股，收回約 160~180 萬】</strong>：待 12 月大盤反彈回月線時：
+        <ul>
+          <li><code>00403A 主動統一升級50</code>：趁反彈至 8.0~8.5 元區間時<strong>全數出清或減碼一半（86張 → 0~40張）</strong>。</li>
+          <li><code>00662 富邦NASDAQ</code>：趁美股反彈時<strong>減碼 23 張（45.9張 → 22.9張）</strong>，收回約 55~60 萬元。</li>
+          <li><code>00646 元大S&amp;P500</code>：趁反彈<strong>減碼 9 張（19張 → 10張）</strong>，收回約 70 萬元。保留 0050 (24張) + 00646 (10張) + 00662 (22.9張) 即可維持約 23% 的長期抗通膨成長動能。</li>
+        </ul>
+      </li>
+      <li><strong>【轉進低波動高息股，月領息從 4.9 萬升級至 5.8 萬】</strong>：將收回的 160~180 萬元：
+        <ul>
+          <li><strong>50% 加碼內需獨佔防禦股</strong>：加碼 <code>3045 台灣大</code>（湊滿 5 張）、<code>9917 中保科</code>（湊滿 6 張）、<code>9925 新保</code>（湊滿 15 張）。這三檔不受 AI 與美股崩盤影響，每年穩定配息 4.5%~5.2%。</li>
+          <li><strong>50% 加碼季配高股息與長債</strong>：加碼 <code>00878</code> 與 <code>00687B</code>，讓被動年領息從 <strong>58.9 萬提升至 69.5 萬元（月均 5.79 萬元）</strong>。</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
