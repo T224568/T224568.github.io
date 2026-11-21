@@ -759,9 +759,35 @@
 
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('lab', event)">⚡ 萬用伴奏型態實驗室</button>
-    <button class="tab-btn" onclick="switchTab('songs', event)">🎼 三首詩歌 C 大調實戰跟彈</button>
+    <button class="tab-btn" onclick="switchTab('songs', event)">🎼 三首詩歌實戰跟彈</button>
     <button class="tab-btn" onclick="switchTab('quiz', event)">🎯 司琴跟彈與實戰隨堂考</button>
     <button class="tab-btn" onclick="switchTab('notes', event)">📚 講義精華與 20 頁講稿</button>
+  </div>
+
+  <!-- ==================== 全域一鍵移調器 (12-Key Transpose Bar) ==================== -->
+  <div id="global-transpose-bar" class="panel" style="width: 100%; max-width: 1080px; margin-bottom: 20px; padding: 14px 20px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(245, 158, 11, 0.4);">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span style="background: var(--accent); color: #0f172a; font-size: 0.78rem; font-weight: 900; padding: 3px 10px; border-radius: 6px;">🎛 一鍵移調器 (Transpose)</span>
+        <span id="transpose-status-label" style="font-weight: 800; color: #ffffff; font-size: 0.98rem;">目前調性：C 大調 (0 半音｜韋燁老師新手教學調)</span>
+      </div>
+      <div class="btn-group" style="gap: 6px;">
+        <button class="chip-btn" onclick="shiftTranspose(-1)" style="padding: 5px 10px; font-size: 0.8rem;">🔉 -1 半音</button>
+        <button class="chip-btn" onclick="setTranspose(0)" style="padding: 5px 10px; font-size: 0.8rem;">🎯 C 調 (新手教學)</button>
+        <button class="chip-btn" onclick="setTranspose(2)" style="padding: 5px 10px; font-size: 0.8rem;">🌟 D 調 (最美的祝福)</button>
+        <button class="chip-btn" onclick="setTranspose(5)" style="padding: 5px 10px; font-size: 0.8rem;">🙏 F 調 (耶穌恩友原調)</button>
+        <button class="chip-btn" onclick="setTranspose(7)" style="padding: 5px 10px; font-size: 0.8rem;">🎄 G 調 (平安夜原調)</button>
+        <button class="chip-btn" onclick="shiftTranspose(1)" style="padding: 5px 10px; font-size: 0.8rem;">🔊 +1 半音</button>
+      </div>
+    </div>
+
+    <!-- 12 大調按鈕列與級數對照 -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div class="btn-group" id="transpose-key-btns" style="flex: 1; min-width: 300px;"></div>
+      <div id="transpose-degree-map" style="font-size: 0.8rem; color: #cbd5e1; background: #0f172a; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--card-border); font-family: monospace;">
+        級數對照：I=C ｜ IIm=Dm ｜ IIIm=Em ｜ IV=F ｜ V=G ｜ VIm=Am
+      </div>
+    </div>
   </div>
 
   <div class="main-container">
@@ -1198,10 +1224,137 @@
     C_KEY_CHORDS['Am'].fifthMidi = 52;         // E3 (A2往上五度)
     C_KEY_CHORDS['Am'].octaveMidi = 57;        // A3 (A2往上八度)
 
+    // =========================================================================
+    // 2.5 全域一鍵移調器引擎 (12-Key Transpose Engine)
+    // =========================================================================
+    let currentTranspose = 0; // 0 ~ 11 半音 (對應 C ~ B 大調)
+
+    const KEY_SIGNATURES = [
+      { semi: 0,  keyName: 'C',  label: 'C 大調 (0｜韋燁老師新手教學調)', chords: { 'C':'C', 'Dm':'Dm', 'Em':'Em', 'F':'F', 'G':'G', 'G7':'G7', 'Am':'Am' } },
+      { semi: 1,  keyName: 'D♭', label: 'D♭ 大調 (+1 半音)', chords: { 'C':'D♭', 'Dm':'E♭m', 'Em':'Fm', 'F':'G♭', 'G':'A♭', 'G7':'A♭7', 'Am':'B♭m' } },
+      { semi: 2,  keyName: 'D',  label: 'D 大調 (+2 半音｜《這一生最美的祝福》常用調)', chords: { 'C':'D', 'Dm':'Em', 'Em':'F♯m', 'F':'G', 'G':'A', 'G7':'A7', 'Am':'Bm' } },
+      { semi: 3,  keyName: 'E♭', label: 'E♭ 大調 (+3 半音)', chords: { 'C':'E♭', 'Dm':'Fm', 'Em':'Gm', 'F':'A♭', 'G':'B♭', 'G7':'B♭7', 'Am':'Cm' } },
+      { semi: 4,  keyName: 'E',  label: 'E 大調 (+4 半音)', chords: { 'C':'E', 'Dm':'F♯m', 'Em':'G♯m', 'F':'A', 'G':'B', 'G7':'B7', 'Am':'C♯m' } },
+      { semi: 5,  keyName: 'F',  label: 'F 大調 (+5 半音｜《耶穌恩友》傳統聖詩原調)', chords: { 'C':'F', 'Dm':'Gm', 'Em':'Am', 'F':'B♭', 'G':'C', 'G7':'C7', 'Am':'Dm' } },
+      { semi: 6,  keyName: 'F♯', label: 'F♯ / G♭ 大調 (+6 半音)', chords: { 'C':'F♯', 'Dm':'G♯m', 'Em':'A♯m', 'F':'B', 'G':'C♯', 'G7':'C♯7', 'Am':'D♯m' } },
+      { semi: 7,  keyName: 'G',  label: 'G 大調 (+7 半音｜《平安夜》經典原調)', chords: { 'C':'G', 'Dm':'Am', 'Em':'Bm', 'F':'C', 'G':'D', 'G7':'D7', 'Am':'Em' } },
+      { semi: 8,  keyName: 'A♭', label: 'A♭ 大調 (+8 / -4 半音)', chords: { 'C':'A♭', 'Dm':'B♭m', 'Em':'Cm', 'F':'D♭', 'G':'E♭', 'G7':'E♭7', 'Am':'Fm' } },
+      { semi: 9,  keyName: 'A',  label: 'A 大調 (+9 / -3 半音)', chords: { 'C':'A', 'Dm':'Bm', 'Em':'C♯m', 'F':'D', 'G':'E', 'G7':'E7', 'Am':'F♯m' } },
+      { semi: 10, keyName: 'B♭', label: 'B♭ 大調 (+10 / -2 半音)', chords: { 'C':'B♭', 'Dm':'Cm', 'Em':'Dm', 'F':'E♭', 'G':'F', 'G7':'F7', 'Am':'Gm' } },
+      { semi: 11, keyName: 'B',  label: 'B 大調 (+11 / -1 半音)', chords: { 'C':'B', 'Dm':'C♯m', 'Em':'D♯m', 'F':'E', 'G':'F♯', 'G7':'F♯7', 'Am':'G♯m' } }
+    ];
+
+    const CHORD_DEGREES = { 'C': 'I', 'Dm': 'IIm', 'Em': 'IIIm', 'F': 'IV', 'G': 'V', 'G7': 'V7', 'Am': 'VIm' };
+
+    // 智慧八度折返偏移量 (-5 ~ +6)，避免移調後右手衝出 B5(83) 或過高破音
+    function getSignedTransposeOffset() {
+      return (currentTranspose > 6) ? (currentTranspose - 12) : currentTranspose;
+    }
+
+    function getTransposedChord(cChordKey) {
+      const base = C_KEY_CHORDS[cChordKey];
+      const keySig = KEY_SIGNATURES[currentTranspose];
+      const symbol = keySig.chords[cChordKey] || base.symbol;
+      const degree = CHORD_DEGREES[cChordKey] || '';
+
+      // 左手低音區維持在 C2(36) ~ B2(47)，主歌單根音維持在 C3(48) ~ B3(59)
+      const pitchClass = (base.lowRootMidi + currentTranspose) % 12;
+      const lowRootMidi = 36 + pitchClass;
+      const rootMidi = 48 + pitchClass;
+
+      // 右手和弦音平移並維持在黃金中央音區 (55 ~ 79)
+      const signedOffset = getSignedTransposeOffset();
+      let rhMidis = base.rhMidis.map(m => m + signedOffset);
+      while (Math.max(...rhMidis) > 79) {
+        rhMidis = rhMidis.map(m => m - 12);
+      }
+      while (Math.min(...rhMidis) < 57) {
+        rhMidis = rhMidis.map(m => m + 12);
+      }
+
+      const qualityDesc = cChordKey.includes('m') ? '小三和弦' : (cChordKey.includes('7') ? '屬七和弦' : '大三和弦');
+      const notesStr = rhMidis.map(midiToNoteLabel).join(' - ');
+
+      return {
+        symbol,
+        degree,
+        name: `${symbol} ${qualityDesc} (${keySig.keyName}調 ${degree} 級)`,
+        notesStr,
+        rootMidi,
+        lowRootMidi,
+        rhMidis
+      };
+    }
+
+    function getTransposedMelodyMidi(baseMelodyMidi) {
+      if (!baseMelodyMidi) return null;
+      let m = baseMelodyMidi + getSignedTransposeOffset();
+      if (m > 83) m -= 12;
+      if (m < 55) m += 12;
+      return m;
+    }
+
+    function initTransposeBar() {
+      const container = document.getElementById('transpose-key-btns');
+      if (!container) return;
+      container.innerHTML = '';
+      KEY_SIGNATURES.forEach(ks => {
+        const btn = document.createElement('button');
+        btn.className = `chip-btn ${ks.semi === currentTranspose ? 'accent-active active' : ''}`;
+        btn.style.minWidth = '38px';
+        btn.style.padding = '6px 8px';
+        btn.innerText = ks.keyName;
+        btn.onclick = () => setTranspose(ks.semi);
+        container.appendChild(btn);
+      });
+      updateTransposeBarUI();
+    }
+
+    function updateTransposeBarUI() {
+      const ks = KEY_SIGNATURES[currentTranspose];
+      const labelEl = document.getElementById('transpose-status-label');
+      if (labelEl) labelEl.innerText = `目前調性：${ks.label}`;
+
+      const mapEl = document.getElementById('transpose-degree-map');
+      if (mapEl) {
+        const c = ks.chords;
+        mapEl.innerText = `級數：I=${c['C']} ｜ IIm=${c['Dm']} ｜ IIIm=${c['Em']} ｜ IV=${c['F']} ｜ V=${c['G']} ｜ VIm=${c['Am']}`;
+      }
+
+      const btns = document.querySelectorAll('#transpose-key-btns .chip-btn');
+      btns.forEach((b, idx) => {
+        const isAct = (idx === currentTranspose);
+        b.className = `chip-btn ${isAct ? 'accent-active active' : ''}`;
+      });
+    }
+
+    function setTranspose(semi) {
+      currentTranspose = ((semi % 12) + 12) % 12;
+      updateTransposeBarUI();
+      refreshLabChordButtons();
+      updateLabUI(false);
+
+      // 更新 Tab 2 詩歌調號與小節卡片
+      const song = WORSHIP_SONGS[currentSongIdx];
+      const ks = KEY_SIGNATURES[currentTranspose];
+      const meterTail = song.meter.split('｜')[1] || '4/4 拍';
+      document.getElementById('song-info-meter').innerText = `${ks.keyName} 大調｜${meterTail}`;
+      renderSongMeasureCards();
+      if (isSongPlaying) {
+        playSongFromMeasure(currentMeasureIdx);
+      } else {
+        previewSingleMeasure(currentMeasureIdx, true);
+      }
+    }
+
+    function shiftTranspose(delta) {
+      setTranspose(currentTranspose + delta);
+    }
+
     // 根據和弦取得齊 5 8 的三個左手音 (1, 5, 8)
     function getLh158Midis(chordKey) {
-      const c = C_KEY_CHORDS[chordKey];
-      // 若 rootMidi 較高 (如 F3=53, G3=55, A3=57)，用 lowRootMidi 當 1，避免撞到右手 C4(60)
+      const c = getTransposedChord(chordKey);
+      // 若 rootMidi 較高 (>=53, F3以上)，用 lowRootMidi 當 1，避免 8 度音撞到右手和弦區
       const base1 = (c.rootMidi >= 53) ? c.lowRootMidi : c.rootMidi;
       return {
         n1: base1,
@@ -1212,7 +1365,7 @@
 
     // 根據左手力量模式取得左手根音陣列
     function getLhRootMidis(chordKey, lhMode) {
-      const c = C_KEY_CHORDS[chordKey];
+      const c = getTransposedChord(chordKey);
       if (lhMode === 'octave') {
         return [c.lowRootMidi, c.rootMidi]; // 八度雙根音
       } else if (lhMode === 'lowSingle') {
@@ -1387,12 +1540,19 @@
     let isLabLooping = false;
 
     function initLab() {
+      refreshLabChordButtons();
+      updateLabUI(false);
+    }
+
+    function refreshLabChordButtons() {
       const selector = document.getElementById('lab-chord-selector');
+      if (!selector) return;
       selector.innerHTML = '';
       Object.keys(C_KEY_CHORDS).forEach(chKey => {
+        const tChord = getTransposedChord(chKey);
         const btn = document.createElement('button');
         btn.className = `chip-btn ${chKey === labChord ? 'active' : ''}`;
-        btn.innerText = chKey;
+        btn.innerText = (currentTranspose === 0) ? chKey : `${tChord.symbol} (${tChord.degree})`;
         btn.onclick = () => {
           labChord = chKey;
           document.querySelectorAll('#lab-chord-selector .chip-btn').forEach(b => b.classList.remove('active'));
@@ -1402,7 +1562,6 @@
         };
         selector.appendChild(btn);
       });
-      updateLabUI(false);
     }
 
     function setLabLhMode(mode) {
@@ -1434,7 +1593,7 @@
     }
 
     function updateLabUI(autoPlayOnce = false) {
-      const chordObj = C_KEY_CHORDS[labChord];
+      const chordObj = getTransposedChord(labChord);
       const patObj = ACCOMPANIMENT_PATTERNS[labPatternKey];
 
       document.getElementById('lab-title-text').innerText = `${chordObj.name}｜${patObj.name}`;
@@ -1554,10 +1713,11 @@
     }
 
     function executePatternStepAudioAndVisual(pianoId, chordKey, lhMode, action, durSec, extraMelodyMidi = null, channelMode = 'all') {
-      const chordObj = C_KEY_CHORDS[chordKey];
+      const chordObj = getTransposedChord(chordKey);
       const { n1, n5, n8 } = getLh158Midis(chordKey);
       const lhRoots = getLhRootMidis(chordKey, lhMode);
       const rhMidis = chordObj.rhMidis;
+      const transposedMelody = getTransposedMelodyMidi(extraMelodyMidi);
       const sustainSec = Math.max(durSec * 1.4, 0.9);
       const volMultiplier = (lhMode === 'octave') ? 1.15 : 0.9;
 
@@ -1596,9 +1756,9 @@
       activeLhSubs.forEach(m => playTone(m, 0, sustainSec, 0.32 * volMultiplier));
 
       let activeMelody = [];
-      if (extraMelodyMidi && channelMode === 'all') {
-        playTone(extraMelodyMidi, 0, sustainSec, 0.45);
-        activeMelody = [extraMelodyMidi];
+      if (transposedMelody && channelMode === 'all') {
+        playTone(transposedMelody, 0, sustainSec, 0.45);
+        activeMelody = [transposedMelody];
       }
 
       setPianoHighlights(pianoId, {
@@ -1689,8 +1849,10 @@
       currentMeasureIdx = 0;
       const song = WORSHIP_SONGS[currentSongIdx];
 
+      const ks = KEY_SIGNATURES[currentTranspose];
+      const meterTail = song.meter.split('｜')[1] || '4/4 拍';
       document.getElementById('song-info-title').innerText = song.title;
-      document.getElementById('song-info-meter').innerText = song.meter;
+      document.getElementById('song-info-meter').innerText = `${ks.keyName} 大調｜${meterTail}`;
       document.getElementById('song-info-desc').innerText = song.desc;
 
       // 重設伴奏覆寫為 auto
@@ -1739,10 +1901,13 @@
         const tagClass = m.secType === 'intro' ? 'm-sec-intro' : (m.secType === 'chorus' ? 'm-sec-chorus' : (m.secType === 'fill' ? 'm-sec-fill' : 'm-sec-verse'));
         const lhLabel = (effPatKey === '34_758' || effPatKey === '34_758585') ? '左手 1-5-8' : (m.lhMode === 'octave' ? '左手八度(強)' : '左手單根音(柔)');
 
+        const tChord = getTransposedChord(m.chord);
+        const chordBadgeText = (currentTranspose === 0) ? m.chord : `${tChord.symbol} (${tChord.degree})`;
+
         card.innerHTML = `
           <div class="measure-header">
             <span class="m-sec-tag ${tagClass}">${idx + 1}. ${m.sec}</span>
-            <span class="m-chord-name">${m.chord}</span>
+            <span class="m-chord-name">${chordBadgeText}</span>
           </div>
           <div class="m-lyric">${m.lyric}</div>
           <div class="m-pattern-hint">${lhLabel} ｜ ${patObj.name.split('【')[1] ? '【' + patObj.name.split('【')[1] : patObj.name}</div>
@@ -1772,7 +1937,8 @@
 
       const effPatKey = getEffectiveMeasurePattern(m);
       const patObj = ACCOMPANIMENT_PATTERNS[effPatKey];
-      const chordObj = C_KEY_CHORDS[m.chord];
+      const chordObj = getTransposedChord(m.chord);
+      const transposedMel = getTransposedMelodyMidi(m.melody);
 
       document.getElementById('song-live-lyric').innerText = `[小節 ${mIdx + 1}/${song.measures.length}] ${m.lyric}`;
 
@@ -1789,7 +1955,7 @@
         document.getElementById('song-live-lh').innerText = `${lhRoots.map(midiToNoteLabel).join(' + ')} (${m.lhMode === 'octave' ? '八度根音' : '單根音'})`;
       }
 
-      document.getElementById('song-live-rh').innerText = `${m.chord} (${chordObj.rhMidis.map(midiToNoteLabel).join('-')})`;
+      document.getElementById('song-live-rh').innerText = `${chordObj.symbol} (${chordObj.rhMidis.map(midiToNoteLabel).join('-')})`;
       document.getElementById('song-live-chant').innerText = patObj.steps.map(s => s.word).join(' - ');
 
       // 過門提示橫幅
@@ -1808,7 +1974,7 @@
       });
 
       setPianoHighlights('song-piano-keys', {
-        lhRoots, lhSubs, rhChords: chordObj.rhMidis, melody: m.melody ? [m.melody] : []
+        lhRoots, lhSubs, rhChords: chordObj.rhMidis, melody: transposedMel ? [transposedMel] : []
       });
 
       if (playSound) {
@@ -2193,6 +2359,7 @@
       render48KeyPiano('lab-piano-keys', false);
       render48KeyPiano('song-piano-keys', false);
       render48KeyPiano('quiz-piano-keys', true);
+      initTransposeBar();
       initLab();
       initSongsTab();
       initQuizTab();
