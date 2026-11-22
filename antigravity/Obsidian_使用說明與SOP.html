@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obsidian 第二大腦與 Antigravity 全自動化整合使用說明與 SOP</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #a855f7;
+      --accent-light: #c084fc;
+      --blue: #38bdf8;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --code-bg: #090d16;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 36px 20px 60px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(56,189,248,0.12));
+      border: 1px solid rgba(168,85,247,0.35);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 1.85rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: rgba(168,85,247,0.2);
+      color: var(--accent-light);
+      border: 1px solid rgba(168,85,247,0.4);
+      margin-right: 8px;
+    }
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      color: var(--blue);
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      color: var(--accent-light);
+      margin: 20px 0 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.93rem;
+    }
+    th, td {
+      border: 1px solid var(--card-border);
+      padding: 11px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: rgba(15,23,42,0.7);
+      color: var(--amber);
+      font-weight: 600;
+    }
+    tr:nth-child(even) td {
+      background: rgba(255,255,255,0.02);
+    }
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: rgba(0,0,0,0.35);
+      color: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 0.88em;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .step-box {
+      background: rgba(15,23,42,0.6);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .step-box h4 {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: 1.02rem;
+    }
+    .cmd-pill {
+      display: inline-block;
+      background: rgba(52,211,153,0.15);
+      color: var(--green);
+      border: 1px solid rgba(52,211,153,0.35);
+      padding: 2px 9px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    ul, ol {
+      padding-left: 22px;
+      margin: 8px 0;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div style="margin-bottom: 10px;">
+        <span class="badge">Obsidian SecondBrain</span>
+        <span class="badge">L1 / L2 / L3 三層級管理</span>
+        <span class="badge">Daily Note 自動化</span>
+        <span class="badge">開關機全自動兜底</span>
+      </div>
+      <h1>🧠 Obsidian 第二大腦與 Antigravity 使用說明與 SOP</h1>
+      <p class="subtitle">最後更新：2026-11-22 ｜ 涵蓋專案記憶管理、每日筆記自動生成、開關機雙向同步與 MCP 口令速查表</p>
+    </header>
+
+    <div class="section-card">
+      <h2>📂 一、Obsidian 筆記庫 (Vault) 架構與三端同步位置</h2>
+      <p>你的 Obsidian 第二大腦 (<code>secondbrain</code>) 由背景服務 <code>com.jktai.obsidian.sync</code> 每 5 分鐘自動執行 <code>~/.config/obsidian_sync/sync_vaults.py</code> 進行三端鏡像同步：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>端點名稱</th>
+            <th>本地路徑</th>
+            <th>角色與用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Google Drive (主力)</strong></td>
+            <td><code>~/Library/CloudStorage/GoogleDrive-jktai123@gmail.com/我的雲端硬碟/secondbrain</code></td>
+            <td>Mac 主力活躍 Vault，無 TCC 權限阻擋，所有背景腳本第一優先寫入處</td>
+          </tr>
+          <tr>
+            <td><strong>2. iCloud Drive (行動端)</strong></td>
+            <td><code>~/Library/Mobile Documents/iCloud~md~obsidian/Documents/secondbrain</code></td>
+            <td>iPhone / iPad 行動端 Obsidian 即時同步閱覽</td>
+          </tr>
+          <tr>
+            <td><strong>3. 1T_HDD_2 (本地備份)</strong></td>
+            <td><code>/Volumes/1T_HDD_2/Backup_Obsidian</code></td>
+            <td>外接硬碟實體冷備份</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>🗂️ Vault 核心資料夾分工</h3>
+      <pre><code>secondbrain/
+├── Antigravity/                  # 【L3 專案記憶庫】所有專案的歷史對話與踩坑百科 (共 36 個專案)
+│   ├── 20260714Church/專案工作流程.md
+│   ├── 20260625_html簡報/專案工作流程.md
+│   └── ... (其他專案)
+├── 每日筆記/                      # 【自動化日記】YYYY-MM-DD.md 與每週知識重整週報
+├── Templates/每日筆記.md          # Templater 每日筆記標準模板
+├── 知識庫/                        # 永久知識卡片 (Evergreen Notes) + index.md + log.md
+├── 創作庫/                        # 原創講義、簡報與實戰手冊
+├── Clippings/                    # 外部網頁剪藏素材
+└── Track/                        # 每日 AI 達人動態追蹤報告</code></pre>
+    </div>
+
+    <div class="section-card">
+      <h2>🔄 二、三層級專案管理 SOP（L1 本地 + L2 GitHub + L3 Obsidian）</h2>
+      <p>為了避免每次開啟新對話時 AI 失憶，同時又不讓幾千行歷史塞爆 Token，系統採用<strong>「冷熱資料分離」</strong>設計：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>層級</th>
+            <th>存放位置</th>
+            <th>核心檔案</th>
+            <th>資料定位</th>
+            <th>AI 讀取與寫入時機</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>L1 本地</strong></td>
+            <td>專案根目錄</td>
+            <td><code>AGENTS.md</code><br><code>handoff.md</code></td>
+            <td><strong>熱資料（極簡 1 頁）</strong><br>目前做到哪、下一步 1~3 項</td>
+            <td>每次開新對話<strong>必讀</strong>；收工或關機時自動更新</td>
+          </tr>
+          <tr>
+            <td><strong>L2 GitHub</strong></td>
+            <td>GitHub 私有庫</td>
+            <td><code>.git</code></td>
+            <td><strong>程式碼時光機</strong></td>
+            <td>開工檢查狀態；收工 <code>commit + push</code></td>
+          </tr>
+          <tr>
+            <td><strong>L3 Obsidian</strong></td>
+            <td><code>secondbrain/Antigravity/&lt;專案&gt;/</code></td>
+            <td><code>專案工作流程.md</code></td>
+            <td><strong>冷資料（完整百科）</strong><br>全歷史對話表格、決策原因、🕳️踩坑筆記</td>
+            <td>開工<strong>只列路徑不讀全文</strong>（需查舊坑才讀）；收工/開關機自動寫入</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>📋 日常 4 大階段標準口令與動作</h3>
+      <div class="grid-2">
+        <div class="step-box">
+          <h4>階段 1：新專案建立 (project-init)</h4>
+          <p>🗣️ 對 AI 說：<span class="cmd-pill">初始化專案</span></p>
+          <ul>
+            <li>建立本地 <code>AGENTS.md</code> ＋ <code>handoff.md</code></li>
+            <li>初始化 Git 並建立 GitHub 私有庫</li>
+            <li>在 Obsidian 建立 <code>&lt;專案&gt;/專案工作流程.md</code> 並回填歷史對話</li>
+          </ul>
+        </div>
+        <div class="step-box">
+          <h4>階段 2：打開專案開工 (startup)</h4>
+          <p>🗣️ 對 AI 說：<span class="cmd-pill">開工</span> 或 <span class="cmd-pill">上次做到哪</span></p>
+          <ul>
+            <li>讀取 <code>AGENTS.md</code> 與 <code>handoff.md</code> 摘要</li>
+            <li>檢查本地與遠端 Git 狀態</li>
+            <li>列出 Obsidian 筆記路徑（若要查舊 Bug 可說：<strong>「讀 Obsidian 踩坑筆記」</strong>）</li>
+          </ul>
+        </div>
+        <div class="step-box">
+          <h4>階段 3：隨時更新對話表 (sync-project-workflow)</h4>
+          <p>🗣️ 對 AI 說：<span class="cmd-pill">同步對話摘要到 Obsidian</span></p>
+          <ul>
+            <li>地毯式掃描 <code>~/.gemini/antigravity/brain/</code> 對話日誌</li>
+            <li>自動將日期、主題、步驟數與對話 ID 更新至 Obsidian <code>專案工作流程.md</code> 表格</li>
+          </ul>
+        </div>
+        <div class="step-box">
+          <h4>階段 4：工作結束收工 (shutdown)</h4>
+          <p>🗣️ 對 AI 說：<span class="cmd-pill">收工</span> 或 <span class="cmd-pill">shutdown</span></p>
+          <ul>
+            <li>L0：執行 512G 雙重備份</li>
+            <li>L1：改寫本地 <code>handoff.md</code> 最新進度</li>
+            <li>L2：擬定中文訊息並 <code>git commit + push</code></li>
+            <li>L3：把當日 <strong>🕳️ 踩坑筆記（Bug 根因與解法）</strong> 寫入 Obsidian</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>💻 終端機手動同步 CLI 指令</h3>
+      <pre><code># 1. 僅同步當前所在專案
+/usr/bin/python3 /Users/jktai/.gemini/config/skills/sync-project-workflow/scripts/sync_workflow.py
+
+# 2. 指定單一專案路徑同步
+/usr/bin/python3 /Users/jktai/.gemini/config/skills/sync-project-workflow/scripts/sync_workflow.py --path /Volumes/1T_HDD_2/Antigravity/20260714Church
+
+# 3. 一鍵地毯式同步全系統所有 19 個專案 (--all)
+/usr/bin/python3 /Users/jktai/.gemini/config/skills/sync-project-workflow/scripts/sync_workflow.py --all</code></pre>
+    </div>
+
+    <div class="section-card">
+      <h2>📅 三、Obsidian 每日筆記 (Daily Note) 自動化 SOP</h2>
+      <p>每日筆記 (<code>secondbrain/每日筆記/YYYY-MM-DD.md</code>) 由 <code>generate_daily_note.py</code> 呼叫 <code>agy-today</code> 自動生成。重複執行時<strong>不會覆蓋你手寫的「🏫 教學 / 💡 今日反思 / 明日優先事項」</strong>，只會無損更新下半部的活動摘要：</p>
+      <ol>
+        <li><strong>YAML 屬性與模板</strong>：自動替換日期、ISO 週數 (<code>2026-W47</code>) 與星期 (<code>11/22（日）</code>)。</li>
+        <li><strong>📋 今日工作日誌與網頁發布 (<code>/dz</code>)</strong>：當日新增發佈至 <code>all_html.html</code> 的網頁連結與任務對話直達連結。</li>
+        <li><strong>📸 今日手機相片與截圖</strong>：統計當日 <code>/Volumes/Haggis2T/POCO手機/</code> 拍攝的照片與截圖。</li>
+        <li><strong>📅 Google Calendar 行事曆行程</strong>：同步 macOS 行事曆（<code>jktai123@gmail.com</code> 與 <code>我們的日曆</code>）當日行程。</li>
+        <li><strong>🤖 Antigravity / Gemini 動作摘要</strong>：當日所有對話的 <code>[時間] 👤 使用者 / 🤖 助理</code> 完整問答時間軸。</li>
+        <li><strong>🌐 Chrome 瀏覽器活動</strong>：自動分類 Google Search、YouTube、Gemini Web、Google Sheet/Docs 瀏覽紀錄。</li>
+        <li><strong>📊 應用程式使用時數 (Screen Time)</strong>：統計 Idle/Locked、Chrome、Antigravity、Obsidian、LINE 使用時數與百分比。</li>
+      </ol>
+      <pre><code># 生成或更新「今天」的 Obsidian 每日筆記
+/usr/bin/python3 /Volumes/1T_HDD_2/Antigravity/20260730SecondBrain/.agents/skills/daily-ai-tracker/scripts/generate_daily_note.py
+
+# 指定任意歷史日期回溯補生 (例如 2026-11-21)
+/usr/bin/python3 /Volumes/1T_HDD_2/Antigravity/20260730SecondBrain/.agents/skills/daily-ai-tracker/scripts/generate_daily_note.py 2026-11-21</code></pre>
+    </div>
+
+    <div class="section-card">
+      <h2>⚡ 四、開關機全自動兜底機制（忘記手動收工也不怕！）</h2>
+      <div class="grid-2">
+        <div class="step-box" style="border-left-color: var(--blue);">
+          <h4>🌅 開機自動補跑 (task_catchup.py)</h4>
+          <p>每次電腦開機登入時，自動檢查 <code>~/.task_state.json</code> 並補跑當日未執行的任務：</p>
+          <ul>
+            <li>✅ <strong>生成 Obsidian 每日筆記</strong> (<code>generate_daily_note.py</code>)</li>
+            <li>✅ <strong>同步全專案工作流程至 Obsidian</strong> (<code>sync_workflow.py --all</code>)</li>
+            <li>✅ 512G 鏡像備份、早安圖檢查補生、品陽缺失備份、南門教會台語禮拜影片更新、平日台股更新</li>
+          </ul>
+        </div>
+        <div class="step-box" style="border-left-color: var(--amber);">
+          <h4>🌙 關機自動全專案收工 (safe-shutdown)</h4>
+          <p>無論你對 AI 說 <span class="cmd-pill">關機</span>、執行 <code>safe-shutdown</code> 或午夜 00:00 自動關機，皆會在關機前自動完成：</p>
+          <ul>
+            <li>✅ <strong>L0</strong>：512G 雙重安全備份 (1T_HDD_2 + GDrive)</li>
+            <li>✅ <strong>Notion</strong>：當日會話梳理同步至 Notion 日記</li>
+            <li>✅ <strong>L3 自動收工</strong>：執行 <code>sync_workflow.py --all</code> 同步全部 19 個專案至 Obsidian</li>
+            <li>✅ <strong>L1 自動收工</strong>：自動更新當日活躍專案的 <code>handoff.md</code> 最後更新時間與動作摘要</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2>🔌 五、日常對話直接操控 Obsidian（MCP 口令速查表）</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>使用情境</th>
+            <th>你可以直接對 AI 說的口令範例</th>
+            <th>底層 MCP 工具</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>全文搜尋筆記</strong></td>
+            <td>「幫我在 Obsidian 搜尋跟『台語禮拜』或『背離』有關的筆記」</td>
+            <td><code>search_notes</code></td>
+          </tr>
+          <tr>
+            <td><strong>讀取特定筆記</strong></td>
+            <td>「讀取 Obsidian 裡 <code>20260714Church/專案工作流程.md</code> 的內容」</td>
+            <td><code>read_note</code></td>
+          </tr>
+          <tr>
+            <td><strong>把對話存成新筆記</strong></td>
+            <td>「把剛剛整理的規則存成 Obsidian 新筆記 <code>知識庫/YouTube爬蟲防呆.md</code>」</td>
+            <td><code>write_note</code></td>
+          </tr>
+          <tr>
+            <td><strong>局部插入/修改段落</strong></td>
+            <td>「把這個解法補到 Obsidian <code>20260714Church/專案工作流程.md</code> 的『🕳️ 踩坑筆記』下面」</td>
+            <td><code>patch_note</code></td>
+          </tr>
+          <tr>
+            <td><strong>標籤與屬性管理</strong></td>
+            <td>「幫這篇 Obsidian 筆記加上 <code>#church</code> <code>#youtube</code> 標籤」</td>
+            <td><code>manage_tags</code> / <code>update_frontmatter</code></td>
+          </tr>
+          <tr>
+            <td><strong>每週知識重整</strong></td>
+            <td>「執行 Obsidian 筆記庫的每週知識重整」</td>
+            <td>盤點近 7 天 Clippings/創作庫 → 提煉知識庫 → Lint 雙向連結 → 產出週報</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
