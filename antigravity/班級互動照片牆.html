@@ -4179,9 +4179,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         <!-- 導航分頁 Tabs -->
         <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px;">
-            <button type="button" class="planner-tab-btn active" id="tab-btn-flow-steps" onclick="switchFlowTab('unit-flow-steps', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #1976d2; background: #1976d2; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 6 大標準步驟圖解</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-flow-prompt" onclick="switchFlowTab('unit-flow-prompt', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🪄 Veo 3.1 提示詞產生器</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-flow-tips" onclick="switchFlowTab('unit-flow-tips', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">💡 實戰避坑秘笈 (5大技巧)</button>
+            <button type="button" class="planner-tab-btn active" id="tab-btn-flow-steps" onclick="switchFlowTab('unit-flow-steps', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #1976d2; background: #1976d2; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 6 大標準步驟圖解</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-models" onclick="switchFlowTab('unit-flow-models', this)" style="flex: 1; min-width: 160px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">⚖️ 影片模型怎麼選？</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-prompt" onclick="switchFlowTab('unit-flow-prompt', this)" style="flex: 1; min-width: 150px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🪄 提示詞產生器</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-tips" onclick="switchFlowTab('unit-flow-tips', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">💡 避坑與圖生影秘笈</button>
         </div>
 
         <!-- ========================================== -->
@@ -4195,12 +4196,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
                         <span style="font-size: 12px; background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 6px; font-weight: bold;">講師手冊完整長圖</span>
                         <h3 style="margin: 4px 0 0; color: #1e3a8a; font-size: 18px; font-weight: 900;">中華民國AI教育協會・第一次做 AI 影片全流程圖解</h3>
                     </div>
-                    <button type="button" onclick="openFlowImageLightbox()" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1.5px solid #2563eb; background: #eff6ff; color: #2563eb; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                    <button type="button" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_first_video_guide.jpg', 'Google Flow 6 步驟完整講義')" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1.5px solid #2563eb; background: #eff6ff; color: #2563eb; cursor: pointer; display: flex; align-items: center; gap: 4px;">
                         🔍 點擊全螢幕放大檢視
                     </button>
                 </div>
 
-                <div style="text-align: center; background: #0f172a; border-radius: 12px; padding: 12px; cursor: zoom-in; position: relative;" onclick="openFlowImageLightbox()">
+                <div style="text-align: center; background: #0f172a; border-radius: 12px; padding: 12px; cursor: zoom-in; position: relative;" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_first_video_guide.jpg', 'Google Flow 6 步驟完整講義')">
                     <img id="flow-guide-main-img" src="./GoogleFlow/google_flow_first_video_guide.jpg" alt="Google Flow 第一次做 AI 影片" style="max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
                     <div style="position: absolute; right: 18px; bottom: 18px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; border: 1px solid rgba(255,255,255,0.25);">
                         🔍 點擊放大查看完整細節
@@ -4291,15 +4292,224 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         </div>
 
         <!-- ========================================== -->
-        <!-- 單元二：Veo 3.1 提示詞產生器 (中英文雙語) -->
+        <!-- 單元二：⚖️ 影片模型怎麼選？（Veo 3.1 Lite VS Omni 1.2 Flash） -->
+        <!-- ========================================== -->
+        <div id="unit-flow-models" class="flow-unit-section" style="display: none;">
+            <!-- 原廠長圖展示區 -->
+            <div style="background: #ffffff; border: 2px solid #c084fc; border-radius: 16px; padding: 18px; margin-bottom: 22px; box-shadow: 0 4px 18px rgba(168,85,247,0.08);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <span style="font-size: 12px; background: #f3e8ff; color: #7e22ce; padding: 2px 8px; border-radius: 6px; font-weight: bold;">官方模型選型指南</span>
+                        <h3 style="margin: 4px 0 0; color: #581c87; font-size: 19px; font-weight: 900;">影片模型怎麼選？Veo 3.1 Lite VS Omni 1.2 Flash</h3>
+                    </div>
+                    <button type="button" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_model_selection_guide.jpg', 'Google Flow 影片模型怎麼選？Veo vs Omni 實戰指南')" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1.5px solid #a855f7; background: #faf5ff; color: #9333ea; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                        🔍 點擊全螢幕放大檢視
+                    </button>
+                </div>
+
+                <div style="text-align: center; background: #0f172a; border-radius: 12px; padding: 12px; cursor: zoom-in; position: relative;" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_model_selection_guide.jpg', 'Google Flow 影片模型怎麼選？Veo vs Omni 實戰指南')">
+                    <img src="./GoogleFlow/google_flow_model_selection_guide.jpg" alt="Google Flow 影片模型怎麼選" style="max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                    <div style="position: absolute; right: 18px; bottom: 18px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; border: 1px solid rgba(255,255,255,0.25);">
+                        🔍 點擊放大查看完整對決圖解
+                    </div>
+                </div>
+            </div>
+
+            <!-- 兩大模型核心規格對決卡片 -->
+            <h3 style="color: #1e3a8a; font-size: 19px; font-weight: 900; margin: 0 0 14px; display: flex; align-items: center; gap: 8px;">
+                <span>⚡</span> 兩大主力模型全方位對照
+            </h3>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                <!-- Veo 3.1 Lite 卡片 -->
+                <div style="background: #ffffff; border: 2px solid #86efac; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(34,197,94,0.08); position: relative;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <span style="font-size: 26px;">🎬</span>
+                        <div>
+                            <div style="font-size: 18px; font-weight: 900; color: #15803d;">Veo 3.1 Lite</div>
+                            <span style="background: #dcfce7; color: #166534; font-size: 12px; font-weight: bold; padding: 2px 8px; border-radius: 6px;">快速生成・省點數</span>
+                        </div>
+                    </div>
+                    <ul style="margin: 0 0 12px; padding-left: 20px; font-size: 14px; color: #334155; line-height: 1.7;">
+                        <li><span style="color: #16a34a; font-weight: bold;">✔ 畫質：</span><b>720p HD</b> 高畫質直出</li>
+                        <li><span style="color: #16a34a; font-weight: bold;">✔ 影片長度：</span>固定 <b>7 秒</b></li>
+                        <li><span style="color: #16a34a; font-weight: bold;">✔ 操作簡單：</span>快速完成，新手友善</li>
+                    </ul>
+                    <div style="background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold;">
+                        ❗ 限制：秒數固定為 7 秒，無法自訂長度
+                    </div>
+                </div>
+
+                <!-- Omni 1.2 Flash 卡片 -->
+                <div style="background: #ffffff; border: 2px solid #d8b4fe; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(168,85,247,0.08); position: relative;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <span style="font-size: 26px;">🔮</span>
+                        <div>
+                            <div style="font-size: 18px; font-weight: 900; color: #7e22ce;">Omni 1.2 Flash</div>
+                            <span style="background: #f3e8ff; color: #6b21a8; font-size: 12px; font-weight: bold; padding: 2px 8px; border-radius: 6px;">彈性創作・可調整設定</span>
+                        </div>
+                    </div>
+                    <ul style="margin: 0 0 12px; padding-left: 20px; font-size: 14px; color: #334155; line-height: 1.7;">
+                        <li><span style="color: #9333ea; font-weight: bold;">✔ 畫質：</span><b>360p</b> 或 <b>720p</b>（自由切換）</li>
+                        <li><span style="color: #9333ea; font-weight: bold;">✔ 影片長度：</span>可<b>自行設定秒數</b></li>
+                        <li><span style="color: #9333ea; font-weight: bold;">✔ 進階編輯：</span>可進一步編輯與修改分鏡</li>
+                    </ul>
+                    <div style="background: #fff7ed; border: 1px solid #fed7aa; color: #c2410c; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold;">
+                        ❗ 限制：較耗點數（720p 8秒需 24 點）
+                    </div>
+                </div>
+            </div>
+
+            <!-- 實例建議：我想做什麼影片？該選哪一個？ -->
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <span style="background: #eff6ff; color: #1d4ed8; font-weight: 900; font-size: 13px; padding: 3px 10px; border-radius: 6px;">實例建議</span>
+                    <h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 900;">我想做什麼影片？該選哪一個？（點擊情境直達）</h3>
+                </div>
+                <p style="margin: 0 0 14px; font-size: 13.5px; color: #64748b;">根據不同影片創作目的，AI 協會專家推薦最適合的模型配置：</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+                    <!-- 1. 動物風景生活短片 -->
+                    <div onclick="selectModelScenario('cute-dog', 'veo')" style="cursor: pointer; border: 1.5px solid #86efac; background: #f0fdf4; border-radius: 12px; padding: 12px; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 14.5px; font-weight: 900; color: #166534;">🐕 動物・風景生活短片</span>
+                            <span style="background: #22c55e; color: #fff; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">選 Veo</span>
+                        </div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569;">7秒動態剛剛好，省點數且毛髮光影細節驚豔。</p>
+                    </div>
+
+                    <!-- 2. 真人紀念影片 -->
+                    <div onclick="selectModelScenario('sakura-girl', 'omni')" style="cursor: pointer; border: 1.5px solid #d8b4fe; background: #faf5ff; border-radius: 12px; padding: 12px; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 14.5px; font-weight: 900; color: #6b21a8;">👩 真人紀念影片</span>
+                            <span style="background: #9333ea; color: #fff; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">選 Omni</span>
+                        </div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569;">自訂長度，神情表情穩定度高，可後續微調編輯。</p>
+                    </div>
+
+                    <!-- 3. 品牌商品廣告 -->
+                    <div onclick="selectModelScenario('coffee-steam', 'omni')" style="cursor: pointer; border: 1.5px solid #d8b4fe; background: #faf5ff; border-radius: 12px; padding: 12px; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 14.5px; font-weight: 900; color: #6b21a8;">🧴 品牌商品廣告</span>
+                            <span style="background: #9333ea; color: #fff; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">選 Omni</span>
+                        </div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569;">需要精確控制產品展示鏡頭與特定秒數節奏。</p>
+                    </div>
+
+                    <!-- 4. 電影感劇情短片 -->
+                    <div onclick="selectModelScenario('cyber-city', 'omni')" style="cursor: pointer; border: 1.5px solid #d8b4fe; background: #faf5ff; border-radius: 12px; padding: 12px; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 14.5px; font-weight: 900; color: #6b21a8;">🎬 電影感劇情短片</span>
+                            <span style="background: #9333ea; color: #fff; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">選 Omni</span>
+                        </div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569;">支持多段分鏡連貫與長秒數敘事演繹。</p>
+                    </div>
+
+                    <!-- 5. 角色繪本動畫 -->
+                    <div onclick="selectModelScenario('cozy-cat', 'omni')" style="cursor: pointer; border: 1.5px solid #d8b4fe; background: #faf5ff; border-radius: 12px; padding: 12px; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 14.5px; font-weight: 900; color: #6b21a8;">🐰 角色繪本動畫</span>
+                            <span style="background: #9333ea; color: #fff; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">選 Omni</span>
+                        </div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569;">角色風格一致性強，動作連續性更易掌控。</p>
+                    </div>
+
+                    <!-- 6. 動態賀卡祝福影片 -->
+                    <div onclick="selectModelScenario('night-market', 'veo')" style="cursor: pointer; border: 1.5px solid #86efac; background: #f0fdf4; border-radius: 12px; padding: 12px; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 14.5px; font-weight: 900; color: #166534;">🎂 動態賀卡祝福影片</span>
+                            <span style="background: #22c55e; color: #fff; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">選 Veo</span>
+                        </div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569;">7秒精緻祝福小卡，快速發送至 LINE 群組超有誠意！</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Omni 畫質與點數怎麼選？ -->
+            <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 20px; margin-bottom: 22px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <span style="background: #3b82f6; color: #fff; font-weight: 900; font-size: 13px; padding: 3px 10px; border-radius: 6px;">Omni 畫質怎麼選？</span>
+                    <h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 900;">360p 測試構圖 VS 720p 正式成片</h3>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 14px;">
+                    <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 16px; font-weight: 900; color: #0284c7; margin-bottom: 4px;">🎬 360p</div>
+                        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.6;">
+                            <li><b>較省點數</b>（適合預算有限時）</li>
+                            <li><b>適合試做</b>、確認構圖與動態走位</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 16px; font-weight: 900; color: #16a34a; margin-bottom: 4px;">📺 720p (HD)</div>
+                        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.6;">
+                            <li><b>畫質清晰細膩</b>，光影動態分明</li>
+                            <li><b>適合正式作品</b>、社群與班級照片牆分享</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 12px; padding: 14px;">
+                        <div style="font-size: 14px; font-weight: 900; color: #1d4ed8; margin-bottom: 4px;">🔢 點數參考（以 Omni 8秒為例）：</div>
+                        <div style="font-size: 13px; color: #1e3a8a; line-height: 1.6;">
+                            • <b>360p：</b>消耗 <b>8 點</b><br>
+                            • <b>720p：</b>消耗 <b>24 點</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 💡 創作小技巧（圖生影 Image-to-Video 工作流） -->
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); border: 2px solid #fde68a; border-radius: 16px; padding: 20px; box-shadow: 0 4px 14px rgba(245,158,11,0.1);">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <span style="font-size: 28px;">💡</span>
+                    <div>
+                        <span style="background: #f59e0b; color: #fff; font-size: 12px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">創作小技巧</span>
+                        <h4 style="margin: 2px 0 0; color: #92400e; font-size: 17px; font-weight: 900;">先圖後影：高品質 AI 影片的成功方程式！</h4>
+                    </div>
+                </div>
+                <p style="margin: 0 0 12px; font-size: 14px; color: #78350f; line-height: 1.65;">
+                    建議在製作影片之前，<b>先用 ChatGPT (或 Midjourney / 本平台 Google Nano Banana)</b> 做出影片中的<b>重點圖片或主要圖片</b>，再拿這個圖片丟進 Google Flow 進行<b>影片製作（圖生影）</b>，效果會大幅躍升，主角五官與背景絕不崩壞！
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" onclick="openExternalView('view-gemini-prompts')" style="background: #d97706; color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-size: 13.5px; font-weight: bold; cursor: pointer;">
+                        ✨ 前往 Gemini 影像旗艦館（生主要圖片）
+                    </button>
+                    <button type="button" onclick="switchFlowTab('unit-flow-prompt', document.getElementById('tab-btn-flow-prompt'))" style="background: #fff; color: #b45309; border: 1.5px solid #d97706; padding: 9px 16px; border-radius: 8px; font-size: 13.5px; font-weight: bold; cursor: pointer;">
+                        🪄 前往產生影片提示詞 ➔
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元三：AI 影片提示詞產生器 (中英文雙語・雙模型支援) -->
         <!-- ========================================== -->
         <div id="unit-flow-prompt" class="flow-unit-section" style="display: none;">
             <div style="background: #ffffff; border: 2px solid #818cf8; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(99,102,241,0.08); margin-bottom: 20px;">
-                <h3 style="margin: 0 0 6px; color: #3730a3; font-size: 20px; font-weight: 900;">🪄 Veo 3.1 提示詞組裝器（點選手機直接說・一鍵複製）</h3>
-                <p style="margin: 0 0 16px; color: #64748b; font-size: 13.5px;">挑選你想要的主題、運鏡視角與光影風格，系統自動為你組裝高畫質中英文雙語 Prompt！</p>
+                <h3 style="margin: 0 0 6px; color: #3730a3; font-size: 20px; font-weight: 900;">🪄 AI 影片提示詞組裝器（Veo & Omni 雙模型支援）</h3>
+                <p style="margin: 0 0 16px; color: #64748b; font-size: 13.5px;">挑選你想要的主題、模型引擎、運鏡視角與光影風格，系統自動為你組裝高畫質中英文雙語 Prompt！</p>
 
                 <!-- 設定選單 -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🤖 生成模型引擎：</label>
+                        <select id="flow-model-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #818cf8; border-radius: 8px; font-size: 13.5px; background: #fff; font-weight: bold; color: #3730a3;">
+                            <option value="veo" selected>🎬 Veo 3.1 Lite（固定 7 秒・省點數）</option>
+                            <option value="omni">🔮 Omni 1.2 Flash（自訂長度・可後製）</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">📺 輸出畫質與比例：</label>
+                        <select id="flow-quality-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="720p-916" selected>720p HD · 9:16（手機短影音）</option>
+                            <option value="720p-169">720p HD · 16:9（電腦寬螢幕）</option>
+                            <option value="360p-916">360p 測試 · 9:16（極致省點數）</option>
+                            <option value="360p-169">360p 測試 · 16:9（快速排版）</option>
+                        </select>
+                    </div>
+
                     <div>
                         <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎬 主題情境：</label>
                         <select id="flow-topic-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
@@ -4443,14 +4653,16 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <!-- Google Flow 全螢幕長圖燈箱 Modal -->
 <div id="google-flow-lightbox" onclick="closeFlowImageLightbox(event)" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:999999; justify-content:center; align-items:center; flex-direction:column; padding:15px; box-sizing:border-box;">
     <div style="position:absolute; top:15px; right:20px; display:flex; gap:10px; z-index:10;" onclick="event.stopPropagation()">
-        <span style="color:#fff; font-size:14px; font-weight:bold; background:rgba(255,255,255,0.2); padding:6px 14px; border-radius:8px;">Google Flow 6 步驟完整講義</span>
+        <span id="google-flow-lightbox-title" style="color:#fff; font-size:14px; font-weight:bold; background:rgba(255,255,255,0.2); padding:6px 14px; border-radius:8px;">Google Flow 完整教學圖解</span>
         <button type="button" onclick="closeFlowImageLightbox(event)" style="background:#ef4444; color:#fff; border:none; width:36px; height:36px; border-radius:50%; font-size:18px; font-weight:bold; cursor:pointer;">✕</button>
     </div>
     <div style="max-width:95vw; max-height:85vh; overflow-y:auto; text-align:center; padding:10px;" onclick="event.stopPropagation()">
-        <img src="./GoogleFlow/google_flow_first_video_guide.jpg" alt="Google Flow 完整教學" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.8);">
+        <img id="google-flow-lightbox-img" src="./GoogleFlow/google_flow_first_video_guide.jpg" alt="Google Flow 完整教學" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.8);">
     </div>
-    <div style="margin-top:10px; color:#cbd5e1; font-size:13px;" onclick="event.stopPropagation()">
-        💡 支援手機手勢滑動縮放，點擊右上角 ✕ 關閉
+    <div style="margin-top:10px; display:flex; gap:12px; align-items:center; z-index:10;" onclick="event.stopPropagation()">
+        <button type="button" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_first_video_guide.jpg', '📖 6 步驟新手圖解')" style="background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:6px 14px; border-radius:8px; font-size:12.5px; cursor:pointer;">📖 6 步驟講義</button>
+        <button type="button" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_model_selection_guide.jpg', '⚖️ 影片模型怎麼選？')" style="background:#a855f7; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:bold; cursor:pointer;">⚖️ 模型對決圖解</button>
+        <span style="color:#cbd5e1; font-size:12px;">（點擊 ✕ 或按 Esc 關閉）</span>
     </div>
 </div>
 
@@ -15713,6 +15925,8 @@ window.addEventListener('pageshow', (event) => {
     }
 
     function updateFlowPrompt() {
+        const modelKey = document.getElementById('flow-model-select')?.value || 'veo';
+        const qualityKey = document.getElementById('flow-quality-select')?.value || '720p-916';
         const topicKey = document.getElementById('flow-topic-select')?.value || 'cute-dog';
         const cameraKey = document.getElementById('flow-camera-select')?.value || 'slow-zoom-in';
         const motionKey = document.getElementById('flow-motion-select')?.value || 'slow-mo';
@@ -15724,23 +15938,60 @@ window.addEventListener('pageshow', (event) => {
         const motion = FLOW_MOTION_DATA[motionKey] || FLOW_MOTION_DATA['slow-mo'];
         const lighting = FLOW_LIGHTING_DATA[lightingKey] || FLOW_LIGHTING_DATA['cinematic'];
 
+        const modelNameZh = modelKey === 'omni' ? 'Omni 1.2 Flash（自訂長度）' : 'Veo 3.1 Lite（固定 7 秒）';
+        const modelNameEn = modelKey === 'omni' ? 'Omni 1.2 Flash' : 'Veo 3.1 Lite';
+
+        let ratioZh = '9:16 直式';
+        let ratioEn = '9:16 vertical aspect ratio';
+        let qualityZh = '720p HD';
+        let qualityEn = '720p HD';
+
+        if (qualityKey === '720p-169') {
+            ratioZh = '16:9 橫式';
+            ratioEn = '16:9 widescreen';
+        } else if (qualityKey === '360p-916') {
+            ratioZh = '9:16 直式';
+            ratioEn = '9:16 vertical';
+            qualityZh = '360p 測試預覽';
+            qualityEn = '360p preview';
+        } else if (qualityKey === '360p-169') {
+            ratioZh = '16:9 橫式';
+            ratioEn = '16:9 widescreen';
+            qualityZh = '360p 測試預覽';
+            qualityEn = '360p preview';
+        }
+
         let zhPrompt = `${topic.zh} ${camera.zh}，${motion.zh}，${lighting.zh}。`;
         if (customDetail) {
             zhPrompt += ` 特別細節：${customDetail}。`;
         }
-        zhPrompt += `（比例 9:16，模型 Veo 3.1 Lite）`;
+        zhPrompt += `（推薦模型：${modelNameZh}，畫質比例：${qualityZh} · ${ratioZh}）`;
 
         let enPrompt = `${topic.en}, ${camera.en}, ${motion.en}, ${lighting.en}`;
         if (customDetail) {
             enPrompt += `, with subtle details: ${customDetail}`;
         }
-        enPrompt += `, 9:16 vertical aspect ratio, generated with Veo 3.1`;
+        enPrompt += `, ${ratioEn}, ${qualityEn}, generated with ${modelNameEn}`;
 
         const zhBox = document.getElementById('flow-prompt-zh');
         if (zhBox) zhBox.textContent = zhPrompt;
 
         const enBox = document.getElementById('flow-prompt-en');
         if (enBox) enBox.textContent = enPrompt;
+    }
+
+    function selectModelScenario(topicKey, modelType) {
+        const selTopic = document.getElementById('flow-topic-select');
+        if (selTopic && topicKey) selTopic.value = topicKey;
+
+        const selModel = document.getElementById('flow-model-select');
+        if (selModel && modelType) selModel.value = modelType;
+
+        switchFlowTab('unit-flow-prompt', document.getElementById('tab-btn-flow-prompt'));
+        updateFlowPrompt();
+
+        const modelText = modelType === 'omni' ? 'Omni 1.2 Flash' : 'Veo 3.1 Lite';
+        showToast(`🎯 已套用推薦【${modelText}】模型與專屬提示詞！`);
     }
 
     function randomizeFlowPrompt() {
@@ -15760,6 +16011,9 @@ window.addEventListener('pageshow', (event) => {
 
         const selLight = document.getElementById('flow-lighting-select');
         if (selLight) selLight.value = lightings[Math.floor(Math.random() * lightings.length)];
+
+        const selModel = document.getElementById('flow-model-select');
+        if (selModel) selModel.value = Math.random() > 0.5 ? 'veo' : 'omni';
 
         const inpDetail = document.getElementById('flow-custom-detail');
         if (inpDetail) inpDetail.value = '';
@@ -15794,9 +16048,14 @@ window.addEventListener('pageshow', (event) => {
         }
     }
 
-    function openFlowImageLightbox(e) {
-        if (e && e.stopPropagation) e.stopPropagation();
+    function openFlowImageLightbox(imgSrc, title) {
         const box = document.getElementById('google-flow-lightbox');
+        const img = document.getElementById('google-flow-lightbox-img');
+        const titleEl = document.getElementById('google-flow-lightbox-title');
+
+        if (img && imgSrc) img.src = imgSrc;
+        if (titleEl && title) titleEl.textContent = title;
+
         if (box) {
             box.style.display = 'flex';
             document.body.style.overflow = 'hidden';
