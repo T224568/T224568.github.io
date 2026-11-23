@@ -114,6 +114,59 @@
       right: 28px;
       z-index: 9999;
     }
+
+    /* 電腦與大螢幕基礎字級 */
+    .card-body-text {
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    .card-title-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .card-subtext {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .checklist-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+    .checklist-icon {
+      font-size: 1.25rem;
+    }
+
+    /* 手機螢幕字體專屬倍率放大：抵消 Reveal.js 縮放，保證手機上最小字體 ≥ 14px~15px (如同 all_html.html) */
+    @media (max-width: 768px) {
+      .reveal .checklist-text {
+        font-size: 2.5rem !important; /* ~40px -> 螢幕實際呈現約 15px~16px */
+        line-height: 1.85 !important;
+      }
+      .reveal .checklist-icon {
+        font-size: 2.2rem !important;
+      }
+      .reveal .card-body-text {
+        font-size: 2.3rem !important; /* ~37px -> 螢幕實際呈現約 14.5px~15.5px */
+        line-height: 1.65 !important;
+      }
+      .reveal .card-title-text {
+        font-size: 2.6rem !important; /* ~42px */
+      }
+      .reveal .card-subtext {
+        font-size: 2.2rem !important; /* ~35px -> 螢幕實際呈現約 14px */
+        line-height: 1.6 !important;
+      }
+      .reveal .rule-title {
+        font-size: 1.85rem !important;
+      }
+      .reveal .rule-quote {
+        font-size: 1.65rem !important;
+      }
+      .reveal .rule-desc {
+        font-size: 1.55rem !important;
+        line-height: 1.55 !important;
+      }
+    }
   </style>
 </head>
 <body class="text-slate-200 antialiased selection:bg-amber-500 selection:text-black">
@@ -585,120 +638,118 @@
         </div>
       </section>
 
-      <!-- ================= Slide 10: 真實性審計（綠燈與黃燈） ================= -->
-      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-6xl mx-auto">
+      <!-- ================= Slide 10: 真實性審計（🟢 綠燈實證） ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
         <div class="space-y-4">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
             <div class="flex items-center gap-2.5">
-              <span class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base font-bold">
-                <i class="fa-solid fa-scale-unbalanced-flip"></i>
+              <span class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-circle-check"></i>
               </span>
               <div>
                 <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider block">Fact-Check Part 1</span>
-                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">內容真實性查核：實證與適用邊界</h2>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">官方已驗證・百年經典實證鐵律</h2>
               </div>
             </div>
-            <span class="text-xs font-mono px-3 py-1 rounded bg-slate-900 border border-slate-800 text-slate-400">客觀獨立檢驗</span>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">🟢 事實相符</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
-            <!-- 綠燈區塊 -->
-            <div class="glass-card rounded-2xl p-5 border-t-4 border-emerald-500 space-y-3 bg-gradient-to-b from-emerald-950/25 to-slate-900/70">
-              <div class="flex items-center gap-2 text-emerald-400 font-bold text-base sm:text-lg">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>🟢 官方已驗證 / 事實相符</span>
-              </div>
-              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
-                <li>
-                  <strong class="text-emerald-300 block font-mono text-sm sm:text-base">・鐵律 5（200MA均線法則）：</strong>
-                  站上200MA屬於經典技術大師（Paul Tudor Jones、Stan Weinstein）長期實證之牛熊分野，具顯著正向動能延續性。
-                </li>
-                <li>
-                  <strong class="text-emerald-300 block font-mono text-sm sm:text-base">・鐵律 13（7~8%嚴格停損）：</strong>
-                  傳奇投資大師威廉·歐尼爾（CANSLIM創辦人）經典風控鐵律，數學上虧8%只需賺8.7%即可回本，邏輯嚴密。
-                </li>
-                <li>
-                  <strong class="text-emerald-300 block font-mono text-sm sm:text-base">・鐵律 15（財報前減倉）：</strong>
-                  重大財報公佈時隱含波動率（IV）崩跌且常伴隨 10%~30% 斷崖式跳空，重倉賭財報等同賭博，降倉符合機構風控標準。
-                </li>
-                <li>
-                  <strong class="text-emerald-300 block font-mono text-sm sm:text-base">・鐵律 10、11、20（不接飛刀、保命第一）：</strong>
-                  順勢交易與資本存活原則在百年投機史中反覆驗證為長青真理。
-                </li>
-              </ul>
-            </div>
-
-            <!-- 黃燈區塊 -->
-            <div class="glass-card rounded-2xl p-5 border-t-4 border-amber-500 space-y-3 bg-gradient-to-b from-amber-950/25 to-slate-900/70">
-              <div class="flex items-center gap-2 text-amber-400 font-bold text-base sm:text-lg">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <span>🟡 產業待觀察 / 個人推測</span>
-              </div>
-              <ul class="text-xs sm:text-sm text-slate-300 space-y-4 leading-relaxed">
-                <li>
-                  <strong class="text-amber-300 block font-mono text-sm sm:text-base">・鐵律 2（持股不超過5檔）：</strong>
-                  高度適用於「主動集中波段動量交易者」，能極大化爆發力；但對被動指數投資或退休基金而言，5檔持股缺乏分散性（非系統性風險過高），不宜全盤照搬。
-                </li>
-                <li>
-                  <strong class="text-amber-300 block font-mono text-sm sm:text-base">・鐵律 9（開盤前30分只看不動）：</strong>
-                  開盤前半小時確實是散戶情緒與造市商摩擦最高期，適合趨勢波段者觀望；但對專業日內當沖（Day Trader）而言，前30分也是波動度與利潤最豐厚時段，需視週期而定。
-                </li>
-              </ul>
-            </div>
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-emerald-500 space-y-4 bg-gradient-to-b from-emerald-950/25 to-slate-900/70 text-left">
+            <ul class="space-y-4 card-body-text text-slate-300">
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-0.5">・鐵律 5（200MA均線法則）：</strong>
+                站上200MA屬於經典技術大師（Paul Tudor Jones、Stan Weinstein）長期實證之牛熊分野，統計上處於200MA上方股票具顯著正向動能延續性。
+              </li>
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-0.5">・鐵律 13（7~8%嚴格停損）：</strong>
+                傳奇投資大師威廉·歐尼爾（CANSLIM創辦人）經典風控鐵律，數學上虧8%只需賺8.7%即可回本，若虧損50%則需翻倍（100%）才能回本，風控邏輯嚴密。
+              </li>
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-0.5">・鐵律 15（重大財報前減倉）：</strong>
+                重大財報公佈時隱含波動率（IV）崩跌且常伴隨 10%~30% 斷崖式跳空，重倉賭財報等同賭博，降倉符合機構風控標準。
+              </li>
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-0.5">・鐵律 10、11、20（不接飛刀、保命第一）：</strong>
+                順勢交易與資本存活原則在百年華爾街投機史中反覆驗證為長青真理。
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- ================= Slide 11: 真實性審計（紅燈與避坑防詐） ================= -->
+      <!-- ================= Slide 11: 真實性審計（🟡 黃燈邊界） ================= -->
       <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
-        <div class="space-y-5">
+        <div class="space-y-4">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
             <div class="flex items-center gap-2.5">
-              <span class="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-base font-bold">
-                <i class="fa-solid fa-shield-cat"></i>
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-triangle-exclamation"></i>
               </span>
               <div>
-                <span class="text-xs font-mono text-rose-400 uppercase tracking-wider block">Fact-Check Part 2</span>
-                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">社群引流與行銷模式辨析</h2>
+                <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block">Fact-Check Part 2</span>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">產業待觀察・不同交易流派適用邊界</h2>
               </div>
             </div>
-            <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-400">避坑提醒</span>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-300">🟡 情境限制</span>
           </div>
 
-          <!-- 紅燈區塊 -->
-          <div class="glass-card rounded-2xl p-6 sm:p-8 border-t-4 border-rose-500 space-y-5 bg-gradient-to-b from-rose-950/25 to-slate-900/70">
-            <div class="flex items-center gap-2.5 text-rose-400 font-bold text-lg sm:text-xl">
-              <i class="fa-solid fa-ban text-xl"></i>
-              <span>🔴 誇大行銷 / 潛在爭議</span>
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-amber-500 space-y-5 bg-gradient-to-b from-amber-950/25 to-slate-900/70 text-left">
+            <ul class="space-y-5 card-body-text text-slate-300">
+              <li>
+                <strong class="text-amber-300 block font-mono card-title-text mb-1">・鐵律 2（持股不超過5檔）：</strong>
+                高度適用於「主動集中波段動量交易者」，能極大化資金爆發力；然而對於指數化被動投資、定期定額或大型退休基金而言，5檔持股缺乏分散性（非系統性風險過高），不宜全盤照搬。
+              </li>
+              <li>
+                <strong class="text-amber-300 block font-mono card-title-text mb-1">・鐵律 9（開盤前30分只看不動）：</strong>
+                開盤前半小時確實是散戶情緒與造市商摩擦成本最高階段，對一般趨勢交易者適合成熟觀望；但對專業日內動量沖銷者（Day Trader）而言，前30分也是波動度最大、利潤最豐厚時段，需視交易時間架構而定。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 12: 真實性審計（🔴 紅燈避坑） ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-ban"></i>
+              </span>
+              <div>
+                <span class="text-xs font-mono text-rose-400 uppercase tracking-wider block">Fact-Check Part 3</span>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">社群引流與行銷套路辨析</h2>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-400">🔴 避坑指南</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-rose-500 space-y-4 bg-gradient-to-b from-rose-950/25 to-slate-900/70 text-left">
+            <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-2">
+              <strong class="text-rose-300 block font-mono card-title-text">
+                ・第 8 頁之「留言送AI系統」行銷模式：
+              </strong>
+              <p class="text-slate-300 card-body-text leading-relaxed">
+                屬於標準社群媒體引流轉化漏斗（Lead Generation）。此類文案往往借用普遍正確的交易箴言吸引高黏性流量，再將學員導入後續收費課程或跟單服務。
+              </p>
             </div>
 
-            <div class="text-sm sm:text-base text-slate-300 space-y-4 leading-relaxed">
-              <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
-                <strong class="text-rose-300 block font-mono text-base sm:text-lg mb-2">
-                  ・第 8 頁之「留言送AI系統」行銷模式：
-                </strong>
-                <p class="text-slate-300 leading-relaxed">
-                  屬於標準社群媒體引流轉化漏斗（Lead Generation）。此類文案往往借用普遍正確的交易箴言吸引高黏性流量，再將學員導入後續收費課程或跟單服務。
-                </p>
+            <div class="p-5 rounded-xl bg-rose-500/10 border-2 border-rose-500/30 text-rose-200 space-y-2">
+              <div class="flex items-center gap-2 text-rose-400 font-bold card-title-text">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>專家客觀風控提醒</span>
               </div>
-
-              <div class="p-5 rounded-xl bg-rose-500/10 border-2 border-rose-500/30 text-rose-200 space-y-2">
-                <div class="flex items-center gap-2 text-rose-400 font-bold text-base sm:text-lg">
-                  <i class="fa-solid fa-triangle-exclamation text-xl"></i>
-                  <span>專家客觀風控提醒</span>
-                </div>
-                <p class="text-xs sm:text-sm leading-relaxed text-slate-200">
-                  真正穩健的獲利來自「個人心理紀律」與「正期望值風控數學」，市場上絕不存在躺贏致富的「AI 神奇黑盒黑科技」。保持獨立思考與嚴格風控，才是唯一的長青之道。
-                </p>
-              </div>
+              <p class="card-subtext leading-relaxed text-slate-200">
+                真正穩健的獲利來自「個人心理紀律」與「正期望值風控數學」，市場上絕不存在躺贏致富的「AI 神奇黑盒黑科技」。保持獨立思考與嚴格風控，才是唯一的長青之道。
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= Slide 12: 封底與檢查清單 ================= -->
+      <!-- ================= Slide 13: 封底與檢查清單 ================= -->
       <section data-transition="fade" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-4xl mx-auto text-center space-y-6">
-        <div class="space-y-4">
+        <div class="space-y-5">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
             <i class="fa-solid fa-clipboard-check"></i>
             <span>Daily Execution Checklist</span>
@@ -708,21 +759,21 @@
             將鐵律刻進本能，建立你的長青系統
           </h2>
 
-          <div class="glass-panel p-6 rounded-2xl text-left text-xs sm:text-sm space-y-2.5 max-w-xl mx-auto font-mono text-slate-300">
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-square-check text-emerald-400"></i>
+          <div class="glass-panel p-6 sm:p-8 rounded-2xl text-left space-y-4 max-w-2xl mx-auto font-mono text-slate-200">
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
               <span>進場前：是否站上 200MA？是否為板塊龍頭？</span>
             </div>
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-square-check text-emerald-400"></i>
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
               <span>下單時：是否已設定 7~8% 硬性止損價？</span>
             </div>
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-square-check text-emerald-400"></i>
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
               <span>部位面：持股是否 ≤ 5 檔？現金是否充裕？</span>
             </div>
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-square-check text-emerald-400"></i>
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
               <span>事件面：本週是否有重大財報？有無融資槓桿？</span>
             </div>
           </div>
@@ -737,6 +788,8 @@
               <span>回到 HTML 總目錄</span>
             </a>
           </div>
+        </div>
+      </section>
         </div>
       </section>
 
