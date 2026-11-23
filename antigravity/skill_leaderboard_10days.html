@@ -392,6 +392,72 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
+    .cat-select-wrap {
+      display: none;
+      position: relative;
+      width: 100%;
+    }
+
+    .cat-select {
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 10px 38px 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .cat-select:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+    }
+
+    .cat-select-arrow {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-cyan);
+      pointer-events: none;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .cat-pills {
+        display: none;
+      }
+      .cat-select-wrap {
+        display: block;
+      }
+      .toolbar {
+        padding: 12px 14px;
+        gap: 10px;
+        top: 6px;
+      }
+      .controls-right {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-group {
+        width: 100%;
+        display: flex;
+      }
+      .btn-toggle {
+        flex: 1;
+        text-align: center;
+        padding: 7px 6px;
+        font-size: 0.78rem;
+      }
+    }
+
     /* Skill Cards Grid */
     .skills-grid {
       display: grid;
@@ -790,6 +856,10 @@
         </div>
       </div>
       <div class="cat-pills" id="cat-pills"></div>
+      <div class="cat-select-wrap">
+        <select id="cat-select" class="cat-select" aria-label="選擇技能類別"></select>
+        <span class="cat-select-arrow">▼</span>
+      </div>
     </section>
 
     <!-- Skill Cards Grid -->
@@ -917,9 +987,11 @@
       });
 
       const cats = ['ALL', '影音與逐字稿', '日常與系統管理', 'Notion 知識庫', 'YouTube 與雲端表單', '筆記與視覺設計', '簡報與網頁開發', '財經與台股', '系統內建與外掛'];
+      const availableCats = cats.filter(c => c === 'ALL' || counts[c]);
+      if (!availableCats.includes(currentCat)) currentCat = 'ALL';
+
       const container = document.getElementById('cat-pills');
-      container.innerHTML = cats
-        .filter(c => c === 'ALL' || counts[c])
+      container.innerHTML = availableCats
         .map(c => {
           const label = c === 'ALL' ? '全部類別' : c;
           const activeCls = currentCat === c ? 'active' : '';
@@ -938,6 +1010,21 @@
           renderSkills();
         });
       });
+
+      const selectEl = document.getElementById('cat-select');
+      if (selectEl) {
+        selectEl.innerHTML = availableCats
+          .map(c => {
+            const label = c === 'ALL' ? '📂 全部技能類別' : `🏷️ ${c}`;
+            const sel = currentCat === c ? 'selected' : '';
+            return `<option value="${c}" ${sel}>${label} (${counts[c] || 0})</option>`;
+          }).join('');
+        selectEl.onchange = (e) => {
+          currentCat = e.target.value;
+          renderCategoryPills();
+          renderSkills();
+        };
+      }
     }
 
     function renderSkills() {
