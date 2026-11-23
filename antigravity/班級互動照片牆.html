@@ -15463,16 +15463,19 @@ window.addEventListener('pageshow', (event) => {
     window.addEventListener('keydown', (e) => {
         const stickersView = document.getElementById('view-custom-stickers');
         const lightbox = document.getElementById('sticker-slide-lightbox');
+        const flowLightbox = document.getElementById('google-flow-lightbox');
         const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+        const isFlowLightboxOpen = flowLightbox && flowLightbox.style.display === 'flex';
         const isStickersVisible = stickersView && stickersView.style.display !== 'none';
 
-        if (isLightboxOpen || isStickersVisible) {
+        if (e.key === 'Escape') {
+            if (isLightboxOpen) closeSlideLightbox();
+            if (isFlowLightboxOpen) closeFlowImageLightbox();
+        } else if (isLightboxOpen || isStickersVisible) {
             if (e.key === 'ArrowRight') {
                 nextStickerSlide();
             } else if (e.key === 'ArrowLeft') {
                 prevStickerSlide();
-            } else if (e.key === 'Escape' && isLightboxOpen) {
-                closeSlideLightbox();
             }
         }
     });
@@ -15610,6 +15613,202 @@ window.addEventListener('pageshow', (event) => {
                 btn.innerText = originalText;
                 btn.style.filter = 'none';
             }, 2000);
+        }
+    }
+
+    // ==========================================
+    // 🎬 Google Flow 第一次做 AI 影片 JS
+    // ==========================================
+    const FLOW_TOPIC_DATA = {
+        'cute-dog': {
+            zh: '一隻可愛的柴犬戴著黑色太陽眼鏡在金色沙灘上緩慢漫步，清澈的海浪輕輕拍打岸邊，陽光耀眼燦爛，神情悠閒自在。',
+            en: 'A cute Shiba Inu wearing black sunglasses walks slowly along a golden sunny beach, crystal clear waves gently lapping at the shore, bright cinematic sunlight, highly detailed fur and cheerful expression.'
+        },
+        'mountain-clouds': {
+            zh: '晨曦破曉時分，壯麗高山之巔金色的雲海如瀑布般緩緩流動翻湧，第一道朝陽灑在山脈稜線上，畫面震撼而寧靜。',
+            en: 'At dawn, majestic mountain peaks surrounded by a golden sea of clouds flowing slowly like a waterfall, first morning sun rays hitting the mountain ridge, breathtaking, serene and cinematic.'
+        },
+        'cyber-city': {
+            zh: '未來賽博龐克城市的雨夜街道，五彩斑斕的霓虹燈倒映在濕潤的柏油路面上，飛天車輛在摩天大樓間穿梭，蒸氣從地面孔蓋冉冉升起。',
+            en: 'A futuristic cyberpunk city street on a rainy night, vibrant neon signs reflecting on wet asphalt, flying vehicles cruising between towering skyscrapers, steam rising from manholes, Blade Runner aesthetic.'
+        },
+        'sakura-girl': {
+            zh: '唯美春日櫻花樹下，身穿淡雅古典服飾的東方少女，微風吹落漫天粉紅櫻花雨，少女緩緩回眸對鏡頭露出溫柔微笑。',
+            en: 'Under blooming cherry blossom trees in spring, an elegant young woman in delicate traditional pastel dress, gentle breeze blowing pink sakura petals falling, she turns around slowly and smiles softly at the camera, dreamy anime aesthetic.'
+        },
+        'coffee-steam': {
+            zh: '復古溫馨的街角木質咖啡廳內，一杯精緻拉花的熱拿鐵放在窗邊，白色的熱蒸汽在晨光中緩緩旋轉飄散，氛圍寧靜治癒。',
+            en: 'Inside a cozy vintage wooden coffee shop, a steaming cup of artisan latte with leaf latte art sitting on a windowsill, white steam gracefully swirling up into morning sunbeams, cozy warm relaxing atmosphere.'
+        },
+        'cozy-cat': {
+            zh: '溫暖午後陽光斜照在客廳木地板上，一隻胖嘟嘟的橘貓舒服地蜷縮著伸懶腰打瞌睡，細微的呼吸起伏，空氣中微塵光斑舞動。',
+            en: 'Warm afternoon sunlight streaming across a cozy living room wooden floor, an adorable chubby ginger cat curled up taking a nap, slowly stretching and breathing gently, dancing dust motes in sunbeams.'
+        },
+        'night-market': {
+            zh: '熱鬧繁華的台灣傳統夜市，炭火燒烤攤上香氣熱氣裊裊升起，紅黃燈籠搖曳，小吃金黃酥脆的微距特寫，充滿濃厚人情煙火氣。',
+            en: 'A vibrant Taiwanese traditional night market, charcoal barbecue stall with fragrant steam and sizzle, swaying warm red lanterns, delicious street food close-up, authentic bustling night atmosphere.'
+        },
+        'underwater-reef': {
+            zh: '蔚藍清澈的熱帶海洋深處，金色陽光如光柱般穿透水面，繽紛瑰麗的珊瑚礁群間，成群的小丑魚與海龜緩緩優雅游過。',
+            en: 'Deep in clear turquoise tropical ocean, radiant god rays piercing through water surface, colorful coral reef teeming with exotic clownfish and a sea turtle gliding peacefully past.'
+        },
+        'space-walk': {
+            zh: '浩瀚無垠的深邃太空中，一位身穿白色宇航服的太空人站在月球靜止地表，緩慢轉身遙望遠方蔚藍美麗的地球在黑暗中升起。',
+            en: 'In deep starry space, an astronaut in a high-tech white space suit standing on the rugged moon surface, slowly turning to look at the radiant blue planet Earth rising in the dark void.'
+        },
+        'super-car': {
+            zh: '一台炫酷流線型的超跑在沿海懸崖公路疾馳，背景是燃燒般壯麗的落日晚霞，車身漆面反射出夕陽耀眼流光，動感十足。',
+            en: 'A sleek futuristic supercar cruising along a coastal cliff highway during a dramatic fiery sunset, brilliant orange sun flares reflecting on metallic paint, aerodynamic speed and cinematic elegance.'
+        }
+    };
+
+    const FLOW_CAMERA_DATA = {
+        'slow-zoom-in': { zh: '鏡頭緩慢向前推進', en: 'slow cinematic zoom in' },
+        'drone-shot': { zh: '無人機高空俯瞰大景空拍', en: 'epic drone aerial shot, wide angle' },
+        'orbit-shot': { zh: '360度電影感平穩環繞鏡頭', en: 'smooth 360-degree orbit camera rotation' },
+        'close-up': { zh: '極具戲劇張力的特寫鏡頭', en: 'dramatic close-up shot focusing on fine details' },
+        'pan-right': { zh: '流暢緩慢的鏡頭向右橫移', en: 'smooth and steady pan right' },
+        'low-angle': { zh: '極具視覺震撼的低角度仰拍', en: 'dynamic low angle perspective with depth' }
+    };
+
+    const FLOW_MOTION_DATA = {
+        'slow-mo': { zh: '細膩 120fps 慢動作呈現', en: 'captured in smooth 120fps slow motion' },
+        'smooth-natural': { zh: '動態自然生動流暢', en: 'organic, realistic fluid motion' },
+        'gentle-breeze': { zh: '微風輕柔吹動細部起伏', en: 'gentle breeze moving subtle elements' },
+        'timelapse': { zh: '帶有微縮時光流逝感', en: 'subtle cinematic timelapse movement' }
+    };
+
+    const FLOW_LIGHTING_DATA = {
+        'cinematic': { zh: '好萊塢電影級光影與高動態範圍調色', en: 'cinematic lighting, 8k resolution, professional color grading, masterpiece' },
+        'golden-hour': { zh: '黃金時刻柔和暖陽光暈漫射', en: 'warm golden hour sun flare, soft ambient lighting, high aesthetic' },
+        'cyber-neon': { zh: '賽博龐克高飽和霓虹光影對比', en: 'vibrant cyberpunk neon glow, moody high contrast volumetric lights' },
+        'clean-japanese': { zh: '日系小清新純淨空氣透明感', en: 'airy, clean pastel tone, ethereal natural daylight, subtle bokeh' },
+        'epic-dramatic': { zh: '史詩級強烈光影交錯與細膩質感', en: 'epic dramatic rim lighting, atmospheric volumetric fog, hyper-detailed' }
+    };
+
+    function initGoogleFlowView() {
+        updateFlowPrompt();
+    }
+
+    function switchFlowTab(tabId, btn) {
+        document.querySelectorAll('.flow-unit-section').forEach(sec => {
+            sec.style.display = 'none';
+        });
+        const target = document.getElementById(tabId);
+        if (target) target.style.display = 'block';
+
+        document.querySelectorAll('#view-google-flow .planner-tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.borderColor = '#cbd5e1';
+            b.style.background = '#f8fafc';
+            b.style.color = '#475569';
+        });
+
+        if (btn) {
+            btn.classList.add('active');
+            btn.style.borderColor = '#1976d2';
+            btn.style.background = '#1976d2';
+            btn.style.color = '#fff';
+        }
+    }
+
+    function updateFlowPrompt() {
+        const topicKey = document.getElementById('flow-topic-select')?.value || 'cute-dog';
+        const cameraKey = document.getElementById('flow-camera-select')?.value || 'slow-zoom-in';
+        const motionKey = document.getElementById('flow-motion-select')?.value || 'slow-mo';
+        const lightingKey = document.getElementById('flow-lighting-select')?.value || 'cinematic';
+        const customDetail = document.getElementById('flow-custom-detail')?.value.trim() || '';
+
+        const topic = FLOW_TOPIC_DATA[topicKey] || FLOW_TOPIC_DATA['cute-dog'];
+        const camera = FLOW_CAMERA_DATA[cameraKey] || FLOW_CAMERA_DATA['slow-zoom-in'];
+        const motion = FLOW_MOTION_DATA[motionKey] || FLOW_MOTION_DATA['slow-mo'];
+        const lighting = FLOW_LIGHTING_DATA[lightingKey] || FLOW_LIGHTING_DATA['cinematic'];
+
+        let zhPrompt = `${topic.zh} ${camera.zh}，${motion.zh}，${lighting.zh}。`;
+        if (customDetail) {
+            zhPrompt += ` 特別細節：${customDetail}。`;
+        }
+        zhPrompt += `（比例 9:16，模型 Veo 3.1 Lite）`;
+
+        let enPrompt = `${topic.en}, ${camera.en}, ${motion.en}, ${lighting.en}`;
+        if (customDetail) {
+            enPrompt += `, with subtle details: ${customDetail}`;
+        }
+        enPrompt += `, 9:16 vertical aspect ratio, generated with Veo 3.1`;
+
+        const zhBox = document.getElementById('flow-prompt-zh');
+        if (zhBox) zhBox.textContent = zhPrompt;
+
+        const enBox = document.getElementById('flow-prompt-en');
+        if (enBox) enBox.textContent = enPrompt;
+    }
+
+    function randomizeFlowPrompt() {
+        const topics = Object.keys(FLOW_TOPIC_DATA);
+        const cameras = Object.keys(FLOW_CAMERA_DATA);
+        const motions = Object.keys(FLOW_MOTION_DATA);
+        const lightings = Object.keys(FLOW_LIGHTING_DATA);
+
+        const selTopic = document.getElementById('flow-topic-select');
+        if (selTopic) selTopic.value = topics[Math.floor(Math.random() * topics.length)];
+
+        const selCam = document.getElementById('flow-camera-select');
+        if (selCam) selCam.value = cameras[Math.floor(Math.random() * cameras.length)];
+
+        const selMot = document.getElementById('flow-motion-select');
+        if (selMot) selMot.value = motions[Math.floor(Math.random() * motions.length)];
+
+        const selLight = document.getElementById('flow-lighting-select');
+        if (selLight) selLight.value = lightings[Math.floor(Math.random() * lightings.length)];
+
+        const inpDetail = document.getElementById('flow-custom-detail');
+        if (inpDetail) inpDetail.value = '';
+
+        updateFlowPrompt();
+        showToast('🎲 已隨機換好一組電影級影片靈感！');
+    }
+
+    async function copyFlowPrompt(elementId, btn) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        const text = el.innerText || el.textContent;
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (_) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+        showToast('已複製影片提示詞！可直接至 Google Flow 貼上生成');
+        if (btn) {
+            const originalText = btn.innerText;
+            btn.innerText = '已複製 ✓';
+            btn.style.filter = 'brightness(1.15)';
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.filter = 'none';
+            }, 2000);
+        }
+    }
+
+    function openFlowImageLightbox(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const box = document.getElementById('google-flow-lightbox');
+        if (box) {
+            box.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeFlowImageLightbox(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const box = document.getElementById('google-flow-lightbox');
+        if (box) {
+            box.style.display = 'none';
+            document.body.style.overflow = '';
         }
     }
 
