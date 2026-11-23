@@ -1325,7 +1325,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <!-- 🌟 歷屆主題創作精選（折疊收攏，釋放首頁空間） -->
     <details id="details-legacy-courses" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 12px 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
         <summary style="font-size: 15px; font-weight: 900; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;">
-            <span>🎓 AI 主題創作專區（漫畫・公仔・貼圖・繪本・修圖等 11 大精選）</span>
+            <span>🎓 AI 主題創作專區（漫畫・公仔・影片・貼圖・繪本等 12 大精選）</span>
             <span style="font-size: 12px; color: #0284c7; background: #e0f2fe; padding: 3px 8px; border-radius: 12px;">點擊展開 ▾</span>
         </summary>
         <div class="home-course-grid" style="margin-top: 6px;">
@@ -1343,6 +1343,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0288d1, #00acc1); color: #fff; font-size:16px;" onclick="openExternalView('view-travel-planner')">✈️ AI 旅行規劃師（5大實作單元）</button>
         <button class="home-course-btn home-wide-btn" style="background:#00bcd4;" onclick="openExternalView('view-9204')">AI 繪本故事創作器</button>
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #06c755, #00b900); color: #fff; font-size:16px; font-weight:bold; box-shadow: 0 4px 12px rgba(6,199,85,0.35);" onclick="openExternalView('view-custom-stickers')">🎨 我的臉就是貼圖！AI 專屬 LINE 貼圖製作大師（3大風格・拍貼上架）</button>
+        <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0d47a1, #1976d2); color: #fff; font-size:16px; font-weight:bold; box-shadow: 0 4px 12px rgba(25,118,210,0.35);" onclick="openExternalView('view-google-flow')">🎬 Google Flow 第一次做 AI 影片（Veo 3.1 基礎教學・提示詞實戰）</button>
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color:#fff; font-size:16px; font-weight:bold;" onclick="openExternalView('view-gemini-skills')">⚡ Google Gemini 專屬技能庫 (75款實戰指令與Gems)</button>
         <a href="https://class-photo-wall.aiedunpo.workers.dev/" target="_blank" rel="noopener" class="home-course-btn home-wide-btn" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); color: #334155; border: 1.5px solid #cbd5e1; font-size:15px; font-weight:bold; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.2s;" onmouseover="this.style.borderColor='#0284c7'; this.style.color='#0284c7'; this.style.background='#f0f9ff';" onmouseout="this.style.borderColor='#cbd5e1'; this.style.color='#334155'; this.style.background='linear-gradient(135deg, #f8fafc, #f1f5f9)';">
             🔗 原始參考連結 (class-photo-wall.aiedunpo.workers.dev) ↗
@@ -1364,6 +1365,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #ec4899 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(236,72,153,0.35); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer;">
         ✨ Gemini 影像創意旗艦館（20款爆款手冊・Nano Banana 12大實測・風格庫）
+    </button>
+
+    <button onclick="openExternalView('view-google-flow')"
+            class="home-full-width-btn"
+            style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(37,99,235,0.4); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        🎬 Google Flow 第一次做 AI 影片（Veo 3.1 基礎教學與提示詞實戰）
     </button>
 
     <button onclick="openExternalView('view-gemini-skills')"
@@ -4136,6 +4143,314 @@ button:disabled { background: #ccc; cursor: not-allowed; }
     <div style="display:flex; gap:20px; margin-top:14px; z-index:10;" onclick="event.stopPropagation()">
         <button type="button" onclick="prevStickerSlide(event)" style="padding:10px 24px; font-size:15px; font-weight:bold; border-radius:8px; background:rgba(255,255,255,0.25); color:#fff; border:1px solid rgba(255,255,255,0.4); cursor:pointer;">◀ 上一頁</button>
         <button type="button" onclick="nextStickerSlide(event)" style="padding:10px 24px; font-size:15px; font-weight:bold; border-radius:8px; background:#0284c7; color:#fff; border:none; cursor:pointer;">下一頁 ▶</button>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 🎬 Google Flow 第一次做 AI 影片（Veo 3.1 基礎教學） -->
+<!-- ========================================== -->
+<div id="view-google-flow" class="view-section container travel-shell" style="max-width: 960px; padding: 18px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div class="google-flow-shell" style="text-align: left;">
+        <!-- 頂部 Hero 橫幅 -->
+        <div style="background: linear-gradient(135deg, #0d47a1 0%, #1976d2 60%, #42a5f5 100%); color: #ffffff; border-radius: 18px; padding: 24px; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(25,118,210,0.3); position: relative; overflow: hidden;">
+            <div style="position: absolute; right: -15px; top: -15px; font-size: 110px; opacity: 0.12; pointer-events: none;">🎬</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+                <span style="background: rgba(255,255,255,0.22); color: #fff; font-size: 12.5px; font-weight: 900; padding: 4px 10px; border-radius: 12px; backdrop-filter: blur(4px);">Google Veo 3.1 影像模型</span>
+                <span style="background: #fbbf24; color: #78350f; font-size: 12.5px; font-weight: 900; padding: 4px 10px; border-radius: 12px;">社團法人中華民國AI教育協會</span>
+                <span style="background: rgba(255,255,255,0.22); color: #fff; font-size: 12.5px; font-weight: 900; padding: 4px 10px; border-radius: 12px;">新手入門・語音輸入</span>
+            </div>
+            <h1 style="margin: 0 0 8px; font-size: 26px; font-weight: 900; letter-spacing: -0.5px;">Google Flow 基礎教學：第一次做 AI 影片</h1>
+            <p style="margin: 0 0 16px; font-size: 14.5px; opacity: 0.95; line-height: 1.5;">簡單 6 步驟上手 Google 最新 Veo 3.1 影片生成！支援 9:16 手機直式短影音與 16:9 寬螢幕，新手點麥克風「用說的」就能做出電影級動態畫面！</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="https://labs.google/flow" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #0d47a1; padding: 10px 18px; border-radius: 12px; font-weight: 900; font-size: 14px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    🚀 前往 Google Flow 官網 ↗
+                </a>
+                <button type="button" onclick="randomizeFlowPrompt()" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: #fff; border: 1.5px solid rgba(255,255,255,0.4); padding: 10px 16px; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer;">
+                    🎲 隨機換影片靈感
+                </button>
+                <button type="button" onclick="switchView('view-upload')" style="display: inline-flex; align-items: center; gap: 6px; background: #fbbf24; color: #78350f; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 900; font-size: 14px; cursor: pointer;">
+                    📷 做完上傳照片牆分享
+                </button>
+            </div>
+        </div>
+
+        <!-- 導航分頁 Tabs -->
+        <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px;">
+            <button type="button" class="planner-tab-btn active" id="tab-btn-flow-steps" onclick="switchFlowTab('unit-flow-steps', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #1976d2; background: #1976d2; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 6 大標準步驟圖解</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-prompt" onclick="switchFlowTab('unit-flow-prompt', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🪄 Veo 3.1 提示詞產生器</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-tips" onclick="switchFlowTab('unit-flow-tips', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">💡 實戰避坑秘笈 (5大技巧)</button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元一：6 大標準步驟圖解（含講師手冊高清長圖） -->
+        <!-- ========================================== -->
+        <div id="unit-flow-steps" class="flow-unit-section" style="display: block;">
+            <!-- 原廠長圖展示區 -->
+            <div style="background: #ffffff; border: 2px solid #93c5fd; border-radius: 16px; padding: 18px; margin-bottom: 22px; box-shadow: 0 4px 18px rgba(37,99,235,0.08);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <span style="font-size: 12px; background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 6px; font-weight: bold;">講師手冊完整長圖</span>
+                        <h3 style="margin: 4px 0 0; color: #1e3a8a; font-size: 18px; font-weight: 900;">中華民國AI教育協會・第一次做 AI 影片全流程圖解</h3>
+                    </div>
+                    <button type="button" onclick="openFlowImageLightbox()" style="padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 8px; border: 1.5px solid #2563eb; background: #eff6ff; color: #2563eb; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                        🔍 點擊全螢幕放大檢視
+                    </button>
+                </div>
+
+                <div style="text-align: center; background: #0f172a; border-radius: 12px; padding: 12px; cursor: zoom-in; position: relative;" onclick="openFlowImageLightbox()">
+                    <img id="flow-guide-main-img" src="./GoogleFlow/google_flow_first_video_guide.jpg" alt="Google Flow 第一次做 AI 影片" style="max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                    <div style="position: absolute; right: 18px; bottom: 18px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; border: 1px solid rgba(255,255,255,0.25);">
+                        🔍 點擊放大查看完整細節
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 大詳細步驟拆解卡片 -->
+            <h3 style="color: #1e3a8a; font-size: 19px; font-weight: 900; margin: 0 0 14px; display: flex; align-items: center; gap: 8px;">
+                <span>🎯</span> 步驟逐一深度解析（附操作指引）
+            </h3>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px;">
+                <!-- 步驟 01 -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: 4px solid #3b82f6; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #eff6ff; color: #1d4ed8; font-weight: 900; font-size: 15px; padding: 3px 10px; border-radius: 8px; font-family: monospace;">01 新建</span>
+                        <span style="font-size: 20px;">📂</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">點擊「＋新建」專案</div>
+                    <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                        進入 Google Flow 首頁後，點選右上角醒目的黑色圓角按鈕<b>「＋新建」</b>，系統會立即開啟一個全新的空白生成畫布。
+                    </p>
+                </div>
+
+                <!-- 步驟 02 -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: 4px solid #06b6d4; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #ecfeff; color: #0e7490; font-weight: 900; font-size: 15px; padding: 3px 10px; border-radius: 8px; font-family: monospace;">02 點「圖片」</span>
+                        <span style="font-size: 20px;">🖼️</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">辨識預設生成模式</div>
+                    <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                        在下方的「你想製作什麼內容？」輸入框內，Google Flow 預設是開啟<b>「圖片」</b>生成。
+                    </p>
+                </div>
+
+                <!-- 步驟 03 -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: 4px solid #8b5cf6; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #f5f3ff; color: #6d28d9; font-weight: 900; font-size: 15px; padding: 3px 10px; border-radius: 8px; font-family: monospace;">03 改選「影片」</span>
+                        <span style="font-size: 20px;">🎥</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">切換至動態影片引擎</div>
+                    <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                        將選項從「圖片」切換點擊為<b>「🎥 影片」</b>，開啟專屬的 Veo 影片生成參數設定面板。
+                    </p>
+                </div>
+
+                <!-- 步驟 04 -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: 4px solid #f59e0b; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #fef3c7; color: #b45309; font-weight: 900; font-size: 15px; padding: 3px 10px; border-radius: 8px; font-family: monospace;">04 設定影片</span>
+                        <span style="font-size: 20px;">⚙️</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">三大關鍵參數設定</div>
+                    <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.6;">
+                        <li><b>模型：</b>選擇 <code>Veo 3.1 - Lite</code>（快速、省點數）</li>
+                        <li><b>比例：</b>選 <code>9:16</code>（手機短影音專用）或 <code>16:9</code>（電腦寬螢幕）</li>
+                        <li><b>數量：</b>選擇 <code>x1</code>（新手首選，消耗 10 點 AI 點數）</li>
+                    </ul>
+                </div>
+
+                <!-- 步驟 05 -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: 4px solid #10b981; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #ecfdf5; color: #047857; font-weight: 900; font-size: 15px; padding: 3px 10px; border-radius: 8px; font-family: monospace;">05 輸入內容</span>
+                        <span style="font-size: 20px;">🎙️</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">手機麥克風語音輸入</div>
+                    <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                        點下輸入框，<b>直接按鍵盤的麥克風用說的</b>！免辛苦打字，清晰描述想看見的畫面（人物、動物、景點、動作與鏡頭氣氛）。
+                    </p>
+                </div>
+
+                <!-- 步驟 06 -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: 4px solid #ef4444; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #fef2f2; color: #b91c1c; font-weight: 900; font-size: 15px; padding: 3px 10px; border-radius: 8px; font-family: monospace;">06 生成影片</span>
+                        <span style="font-size: 20px;">🚀</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">點擊「➔」箭頭開始算圖</div>
+                    <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                        按下黑色圓形發送箭頭按鈕「➔」，等待約 1~2 分鐘，你的第一支專屬 AI 電影級短片就生成完成了！
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元二：Veo 3.1 提示詞產生器 (中英文雙語) -->
+        <!-- ========================================== -->
+        <div id="unit-flow-prompt" class="flow-unit-section" style="display: none;">
+            <div style="background: #ffffff; border: 2px solid #818cf8; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(99,102,241,0.08); margin-bottom: 20px;">
+                <h3 style="margin: 0 0 6px; color: #3730a3; font-size: 20px; font-weight: 900;">🪄 Veo 3.1 提示詞組裝器（點選手機直接說・一鍵複製）</h3>
+                <p style="margin: 0 0 16px; color: #64748b; font-size: 13.5px;">挑選你想要的主題、運鏡視角與光影風格，系統自動為你組裝高畫質中英文雙語 Prompt！</p>
+
+                <!-- 設定選單 -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎬 主題情境：</label>
+                        <select id="flow-topic-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="cute-dog" selected>🐶 可愛柴犬戴墨鏡海灘漫步</option>
+                            <option value="mountain-clouds">⛰️ 晨曦高山金色雲海流動</option>
+                            <option value="cyber-city">🌆 未來賽博龐克雨夜霓虹街景</option>
+                            <option value="sakura-girl">🌸 櫻花雨下古典少女回眸微笑</option>
+                            <option value="coffee-steam">☕ 復古咖啡廳熱咖啡蒸汽緩緩升起</option>
+                            <option value="cozy-cat">🐱 溫暖午後陽光下打瞌睡的橘貓</option>
+                            <option value="night-market">🍢 台灣熱鬧夜市炭烤小吃裊裊白煙</option>
+                            <option value="underwater-reef">🐠 陽光穿透湛藍海水與熱帶珊瑚礁</option>
+                            <option value="space-walk">🚀 宇航員在月球表面緩步漫遊地球升起</option>
+                            <option value="super-car">🏎️ 超級跑車在沿海公路夕陽下疾馳</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎥 運鏡與鏡頭視角：</label>
+                        <select id="flow-camera-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="slow-zoom-in" selected>緩慢推鏡 (Slow zoom in)</option>
+                            <option value="drone-shot">無人機航拍空拍 (Drone aerial shot)</option>
+                            <option value="orbit-shot">360度環繞運鏡 (Orbit 360 camera shot)</option>
+                            <option value="close-up">特寫面部神情 (Cinematic close-up)</option>
+                            <option value="pan-right">電影感右平移 (Smooth pan right)</option>
+                            <option value="low-angle">低角度仰拍 (Dramatic low angle shot)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">✨ 動作節奏與速度：</label>
+                        <select id="flow-motion-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="slow-mo" selected>細膩慢動作 120fps (Slow motion)</option>
+                            <option value="smooth-natural">流暢自然動態 (Smooth natural movement)</option>
+                            <option value="gentle-breeze">微風拂動細節 (Gentle breeze flutter)</option>
+                            <option value="timelapse">微縮時光流逝 (Cinematic subtle timelapse)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎨 光影與畫面風格：</label>
+                        <select id="flow-lighting-select" onchange="updateFlowPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="cinematic" selected>電影級質感調色 (Cinematic lighting)</option>
+                            <option value="golden-hour">溫暖黃金日出晨光 (Golden hour soft sunlight)</option>
+                            <option value="cyber-neon">賽博霓虹眩光 (Cyberpunk vibrant neon glow)</option>
+                            <option value="clean-japanese">日系空氣清新純淨感 (Airy soft pastel aesthetic)</option>
+                            <option value="epic-dramatic">史詩級戲劇感光影 (Epic dramatic shadows)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 自訂輸入補充 -->
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">✍️ 自訂補充細節（選填）：</label>
+                    <input type="text" id="flow-custom-detail" oninput="updateFlowPrompt()" placeholder="例如：背景有微弱星光、海浪泛起金色波紋、帶著微笑..." style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; box-sizing: border-box;">
+                </div>
+
+                <!-- 輸出框：中文提示詞（可直接對麥克風說） -->
+                <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 13px; font-weight: 900; color: #0284c7;">🗣️ 中文提示詞（可直接在手機鍵盤點「麥克風」念出來）：</span>
+                        <button type="button" onclick="copyFlowPrompt('flow-prompt-zh', this)" style="padding: 4px 10px; font-size: 12px; font-weight: bold; background: #0284c7; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製中文</button>
+                    </div>
+                    <div id="flow-prompt-zh" style="font-size: 14px; color: #1e293b; line-height: 1.6; white-space: pre-wrap; font-family: sans-serif;"></div>
+                </div>
+
+                <!-- 輸出框：英文最佳化 Prompt（Veo 3.1 理解更強） -->
+                <div style="background: #0f172a; border: 1.5px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 13px; font-weight: 900; color: #38bdf8;">⚡ 英文專業 Prompt（Veo 3.1 引擎最佳化）：</span>
+                        <button type="button" onclick="copyFlowPrompt('flow-prompt-en', this)" style="padding: 4px 10px; font-size: 12px; font-weight: bold; background: #38bdf8; color: #0f172a; border: none; border-radius: 6px; cursor: pointer;">📋 複製英文</button>
+                    </div>
+                    <div id="flow-prompt-en" style="font-size: 13.5px; color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-family: monospace;"></div>
+                </div>
+
+                <!-- 直達與操作按鈕 -->
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="https://labs.google/flow" target="_blank" rel="noopener" style="flex: 1; min-width: 200px; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #1d4ed8, #2563eb); color: #fff; padding: 12px 18px; border-radius: 10px; font-weight: 900; font-size: 15px; text-decoration: none; text-align: center; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">
+                        🚀 複製後前往 Google Flow 貼上生成 ↗
+                    </a>
+                    <button type="button" onclick="randomizeFlowPrompt()" style="padding: 12px 20px; font-size: 14px; font-weight: bold; background: #f1f5f9; color: #334155; border: 1.5px solid #cbd5e1; border-radius: 10px; cursor: pointer;">
+                        🎲 隨機配置
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元三：實戰避坑秘笈 (5大技巧) -->
+        <!-- ========================================== -->
+        <div id="unit-flow-tips" class="flow-unit-section" style="display: none;">
+            <div style="background: #ffffff; border: 2px solid #cbd5e1; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(0,0,0,0.05);">
+                <h3 style="margin: 0 0 14px; color: #0f172a; font-size: 19px; font-weight: 900;">💡 初學者第一次做 AI 影片的 5 大實戰心法</h3>
+
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 10px 10px 0;">
+                        <h4 style="margin: 0 0 4px; color: #1e3a8a; font-size: 15px;">1. 為什麼強烈推薦「用鍵盤麥克風說話」？</h4>
+                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                            在手機上打長篇提示詞容易出錯或令人卻步。按下手機鍵盤的<b>麥克風語音輸入</b>，像是在跟朋友描述一個夢境或電影場景一樣說出來，自然又生動，Veo 3.1 具備出色的語意理解能力！
+                        </p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 0 10px 10px 0;">
+                        <h4 style="margin: 0 0 4px; color: #065f46; font-size: 15px;">2. AI 點數如何聰明節省？</h4>
+                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                            每次生成影片預設會扣除 <b>10 點 AI 點數</b>。初學者測試時請務必保持<b>數量選擇 x1</b>。確認提示詞的動態滿意、主角神情正確後，再使用更多點數產出多個變形版本。
+                        </p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 10px 10px 0;">
+                        <h4 style="margin: 0 0 4px; color: #92400e; font-size: 15px;">3. 比例選擇秘訣：9:16 vs 16:9</h4>
+                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                            若要發布到 <b>LINE 貼文串、Instagram Reels、YouTube Shorts 或 TikTok</b>，務必勾選 <b>9:16</b> 直式滿版！若是為了做簡報、電視放映或 YouTube 長片，請選擇 <b>16:9</b>。
+                        </p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 12px 16px; border-radius: 0 10px 10px 0;">
+                        <h4 style="margin: 0 0 4px; color: #5b21b6; font-size: 15px;">4. 如何避免畫面劇烈變形或扭曲？</h4>
+                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                            在提示詞中加入明確的<b>運鏡指令</b>（如「慢鏡頭緩慢推進」、「微風吹拂」），動態指令盡量具體，例如「緩步前行」比「急速奔跑」的畫面穩定度高上 3 倍。
+                        </p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 0 10px 10px 0;">
+                        <h4 style="margin: 0 0 4px; color: #991b1b; font-size: 15px;">5. 做完影片如何與大家分享？</h4>
+                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
+                            影片生成完畢後，點擊下載儲存到手機相簿。你可以截取最美的一幀或直接錄成 GIF/短片，點擊下方按鈕上傳到<b>「班級互動照片牆」</b>，讓全班同學為你的處女作點讚投票！
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 18px; text-align: center;">
+                    <button type="button" onclick="switchView('view-upload')" style="background: #0284c7; color: #fff; border: none; padding: 12px 24px; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(2,132,199,0.3);">
+                        📷 前往上傳作品至班級照片牆
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Google Flow 全螢幕長圖燈箱 Modal -->
+<div id="google-flow-lightbox" onclick="closeFlowImageLightbox(event)" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:999999; justify-content:center; align-items:center; flex-direction:column; padding:15px; box-sizing:border-box;">
+    <div style="position:absolute; top:15px; right:20px; display:flex; gap:10px; z-index:10;" onclick="event.stopPropagation()">
+        <span style="color:#fff; font-size:14px; font-weight:bold; background:rgba(255,255,255,0.2); padding:6px 14px; border-radius:8px;">Google Flow 6 步驟完整講義</span>
+        <button type="button" onclick="closeFlowImageLightbox(event)" style="background:#ef4444; color:#fff; border:none; width:36px; height:36px; border-radius:50%; font-size:18px; font-weight:bold; cursor:pointer;">✕</button>
+    </div>
+    <div style="max-width:95vw; max-height:85vh; overflow-y:auto; text-align:center; padding:10px;" onclick="event.stopPropagation()">
+        <img src="./GoogleFlow/google_flow_first_video_guide.jpg" alt="Google Flow 完整教學" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.8);">
+    </div>
+    <div style="margin-top:10px; color:#cbd5e1; font-size:13px;" onclick="event.stopPropagation()">
+        💡 支援手機手勢滑動縮放，點擊右上角 ✕ 關閉
     </div>
 </div>
 
@@ -9940,6 +10255,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         } else if (viewId === 'view-custom-stickers') {
             switchView('view-custom-stickers');
             initCustomStickersView();
+        } else if (viewId === 'view-google-flow') {
+            switchView('view-google-flow');
+            initGoogleFlowView();
         } else
         if (viewId === 'view-wall') {
             switchView('view-wall');
