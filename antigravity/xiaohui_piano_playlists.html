@@ -875,11 +875,29 @@
       ytIframe.src = '';
     });
 
+    const DEFAULT_VOLUME = 15;
+    function setYtVolume15() {
+      if (!ytIframe || !ytIframe.contentWindow) return;
+      const msg = JSON.stringify({ event: 'command', func: 'setVolume', args: [DEFAULT_VOLUME] });
+      ytIframe.contentWindow.postMessage(msg, '*');
+    }
+    ytIframe.addEventListener('load', () => {
+      ytIframe.contentWindow?.postMessage(JSON.stringify({ event: 'listening', id: 'ytIframe' }), '*');
+      for (const delay of [100, 300, 700, 1200, 2000]) {
+        setTimeout(setYtVolume15, delay);
+      }
+    });
+    window.addEventListener('message', (e) => {
+      if (typeof e.data === 'string' && (e.data.includes('onReady') || e.data.includes('infoDelivery'))) {
+        setYtVolume15();
+      }
+    });
+
     function openPlayer(v) {
       document.getElementById('dialogVideoTitle').textContent = `#${v.Item} ${v.Title}`;
-      document.getElementById('dialogMetaInfo').textContent = `⏱ 長度：${v.Duration || '--:--'} ｜ 👁️ 觀看次數：${v.ViewCount} ｜ 📂 清單：${v.ListName} ｜ 📅 發布：${v.UploadDate}`;
+      document.getElementById('dialogMetaInfo').textContent = `⏱ 長度：${v.Duration || '--:--'} ｜ 👁️ 觀看次數：${v.ViewCount} ｜ 🔉 預設音量：15% ｜ 📂 清單：${v.ListName} ｜ 📅 發布：${v.UploadDate}`;
       document.getElementById('dialogYtLink').href = v.href;
-      ytIframe.src = `https://www.youtube.com/embed/${v.vid}?autoplay=1&rel=0`;
+      ytIframe.src = `https://www.youtube.com/embed/${v.vid}?autoplay=1&rel=0&enablejsapi=1`;
       dialog.showModal();
     }
 
