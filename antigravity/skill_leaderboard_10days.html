@@ -978,10 +978,11 @@
         else if (!s.active_10d) { rankClass = 'r-inactive'; }
 
         const primaryCmd = s.slash.split(' ')[0];
+        const escAttr = (str) => String(str).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         const triggersHtml = s.triggers.map(t => {
-          const cleanT = t.replace(/^[「『]|[」』]$/g, '');
-          return `<span class="trigger-chip" title="點擊複製觸發詞" onclick="copyText('${cleanT.replace(/'/g, "\'")}')">${t}</span>`;
-        }).join('');
+          const cleanT = t.replace(/^[「『]|[」』]$/g, "");
+          return `<span class="trigger-chip" title="點擊複製觸發詞" data-copy="${escAttr(cleanT)}" onclick="copyText(this.dataset.copy)">${t}</span>`;
+        }).join("");
 
         const convsHtml = s.convs.length ? `
           <details class="conv-details">
@@ -1028,12 +1029,12 @@
                 </div>
                 <div class="slash-cmd-wrap">
                   <code class="slash-cmd">${s.slash}</code>
-                  <button class="copy-btn" onclick="copyText('${primaryCmd}')">複製指令</button>
+                  <button class="copy-btn" data-copy="${escAttr(primaryCmd)}" onclick="copyText(this.dataset.copy)">複製指令</button>
                 </div>
                 <div class="trigger-chips">${triggersHtml}</div>
                 <div class="cli-row">
-                  <span class="cli-code" title="${s.cli.replace(/"/g, '&quot;')}">$ ${s.cli}</span>
-                  <button class="copy-btn" onclick="copyText('${s.cli.replace(/\/g, '\\').replace(/'/g, "\'")}')">複製 CLI</button>
+                  <span class="cli-code" title="${escAttr(s.cli)}">$ ${s.cli}</span>
+                  <button class="copy-btn" data-copy="${escAttr(s.cli)}" onclick="copyText(this.dataset.copy)">複製 CLI</button>
                 </div>
               </div>
               ${convsHtml}
