@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎵 齊豫 - 隱形的翅膀 × You Raise Me Up | 動態同步歌詞播放器</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    body {
+      background: radial-gradient(circle at 20% 20%, #1e1b4b 0%, #090d16 55%, #020617 100%);
+      color: #f8fafc;
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+    .serif-title {
+      font-family: 'Noto Serif TC', serif;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .lyric-line {
+      transition: all 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0.35;
+      transform: scale(0.96);
+      filter: blur(0.4px);
+    }
+    .lyric-line:hover {
+      opacity: 0.75;
+      filter: blur(0px);
+    }
+    .lyric-line.active {
+      opacity: 1;
+      transform: scale(1.04);
+      filter: blur(0px);
+      color: #fde047;
+      text-shadow: 0 0 24px rgba(250, 204, 21, 0.45);
+      font-weight: 700;
+    }
+    .lyric-line.active .sub-trans {
+      color: #fef08a;
+      opacity: 0.95;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(250, 204, 21, 0.45);
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .vinyl-spin {
+      animation: spin-slow 22s linear infinite;
+      animation-play-state: paused;
+    }
+    .vinyl-spin.playing {
+      animation-play-state: running;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
+
+  <!-- Top Bar -->
+  <header class="max-w-5xl w-full mx-auto flex items-center justify-between glass rounded-2xl px-5 py-3.5 shadow-xl">
+    <div class="flex items-center gap-3">
+      <div id="vinyl-icon" class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-indigo-500 p-0.5 shadow-lg shadow-amber-500/20 vinyl-spin">
+        <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
+          <i class="fa-solid fa-compact-disc text-amber-300 text-lg"></i>
+        </div>
+      </div>
+      <div>
+        <h1 class="serif-title text-base md:text-lg font-bold text-white tracking-wide">
+          齊豫 — 隱形的翅膀 × You Raise Me Up
+        </h1>
+        <p class="text-xs text-slate-400">《歌手2019》現場高音質 320kbps MP3 同步歌詞播放器（點擊任意歌詞即可跳轉）</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a href="https://media.jktai123.com/ig_videos/%E9%BD%8A%E8%B1%AB_%E9%9A%B1%E5%BD%A2%E7%9A%84%E7%BF%85%E8%86%80_1137335819043073.mp3" download class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400/30 text-xs font-medium flex items-center gap-1.5 transition-all">
+        <i class="fa-solid fa-download"></i>
+        <span class="hidden sm:inline">下載 MP3</span>
+      </a>
+      <button id="download-lrc-btn" class="px-3 py-1.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-400/30 text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer">
+        <i class="fa-solid fa-closed-captioning"></i>
+        <span class="hidden sm:inline">下載 LRC</span>
+      </button>
+      <a href="https://fun.jktai123.com/antigravity/ig_list.html" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs flex items-center gap-1.5 transition-all">
+        <i class="fa-solid fa-grip"></i>
+        <span class="hidden sm:inline">素材庫</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Synchronized Lyrics Area -->
+  <main class="max-w-5xl w-full mx-auto my-4 flex-1 flex flex-col overflow-hidden">
+    <div id="lyrics-container" class="glass rounded-3xl flex-1 h-[62vh] md:h-[66vh] overflow-y-auto custom-scroll px-6 md:px-14 py-24 text-center space-y-6 relative scroll-smooth">
+      <!-- Lyrics rendered by JS -->
+    </div>
+  </main>
+
+  <!-- Bottom Audio Player Bar -->
+  <footer class="max-w-5xl w-full mx-auto glass rounded-2xl px-6 py-4 shadow-2xl">
+    <!-- Progress Bar -->
+    <div class="flex items-center gap-3 mb-3">
+      <span id="time-current" class="text-xs font-mono text-amber-300 w-11 text-right">00:00</span>
+      <input id="seek-bar" type="range" min="0" max="271" step="0.1" value="0" class="flex-1 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-400" />
+      <span id="time-total" class="text-xs font-mono text-slate-400 w-11">04:31</span>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2 text-xs text-slate-400">
+        <span id="current-lyric-badge" class="truncate max-w-[200px] sm:max-w-md text-slate-200 font-medium">
+          點擊播放開始同步歌詞...
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="btn-prev" class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all" title="上一句 (↑ / ←)">
+          <i class="fa-solid fa-backward-step text-sm"></i>
+        </button>
+        <button id="btn-play" class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-pink-500 hover:from-amber-400 hover:to-pink-400 text-slate-950 font-bold flex items-center justify-center shadow-lg shadow-amber-500/25 hover:scale-105 transition-all" title="播放 / 暫停 (空白鍵)">
+          <i id="play-icon" class="fa-solid fa-play text-lg ml-0.5"></i>
+        </button>
+        <button id="btn-next" class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all" title="下一句 (↓ / →)">
+          <i class="fa-solid fa-forward-step text-sm"></i>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="btn-loop" class="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 text-xs border border-slate-700/80 transition-all" title="單曲循環">
+          <i class="fa-solid fa-repeat mr-1"></i>循環
+        </button>
+      </div>
+    </div>
+
+    <audio id="audio-player" preload="auto">
+      <source src="https://media.jktai123.com/ig_videos/%E9%BD%8A%E8%B1%AB_%E9%9A%B1%E5%BD%A2%E7%9A%84%E7%BF%85%E8%86%80_1137335819043073.mp3" type="audio/mpeg" />
+      <source src="齊豫_隱形的翅膀_1137335819043073.mp3" type="audio/mpeg" />
+    </audio>
+  </footer>
+
+  <script>
+    const LYRICS = [
+      { start: 0.0,   end: 7.0,   text: "每一次 都在徘徊孤單中堅強" },
+      { start: 7.0,   end: 15.0,  text: "每一次 就算很受傷也不閃淚光" },
+      { start: 15.0,  end: 23.5,  text: "我知道 我一直有雙隱形的翅膀" },
+      { start: 23.5,  end: 30.5,  text: "帶我飛 飛過絕望" },
+      { start: 31.0,  end: 38.0,  text: "不去想 他們擁有美麗的太陽" },
+      { start: 38.0,  end: 45.0,  text: "我看見 每天的夕陽也會有變化" },
+      { start: 45.0,  end: 53.5,  text: "我知道 我一直有雙隱形的翅膀" },
+      { start: 53.5,  end: 60.5,  text: "帶我飛 給我希望" },
+      { start: 61.0,  end: 68.0,  text: "我終於看到 所有夢想都開花" },
+      { start: 68.0,  end: 75.0,  text: "追逐的年輕 歌聲多嘹亮" },
+      { start: 75.0,  end: 82.0,  text: "我終於翱翔 用心凝望不害怕" },
+      { start: 82.0,  end: 91.0,  text: "哪裡會有風 就飛多遠吧" },
+      { start: 91.0,  end: 101.5, text: "♪ 間奏（愛之音合音組） ♪" },
+      { start: 101.5, end: 108.5, text: "不去想 他們擁有美麗的太陽" },
+      { start: 108.5, end: 115.5, text: "我看見 每天的夕陽也會有變化" },
+      { start: 115.5, end: 123.0, text: "我知道 我一直有雙隱形的翅膀" },
+      { start: 123.0, end: 130.0, text: "帶我飛 給我希望" },
+      { start: 130.0, end: 137.0, text: "我終於看到 所有夢想都開花" },
+      { start: 137.0, end: 144.0, text: "追逐的年輕 歌聲多嘹亮" },
+      { start: 144.0, end: 151.0, text: "我終於翱翔 用心凝望不害怕" },
+      { start: 151.0, end: 158.0, text: "哪裡會有風 就飛多遠吧" },
+      { start: 158.0, end: 165.5, text: "我終於看到 所有夢想都開花" },
+      { start: 165.5, end: 173.0, text: "追逐的年輕 歌聲多嘹亮" },
+      { start: 173.0, end: 180.0, text: "我終於翱翔 用心凝望不害怕" },
+      { start: 180.0, end: 188.0, text: "哪裡會有風 就飛多遠吧" },
+      { start: 188.0, end: 202.0, text: "🎻 間奏（靳海音®弦樂團） 🎻" },
+      { start: 202.0, end: 205.0, text: "You raise me up", sub: "你激勵了我" },
+      { start: 205.0, end: 210.0, text: "So I can stand on mountains", sub: "故我能立足於群山之巔" },
+      { start: 210.0, end: 213.0, text: "You raise me up", sub: "你鼓舞了我" },
+      { start: 213.0, end: 217.0, text: "To walk on stormy seas", sub: "故我能行進於暴風雨中的海面" },
+      { start: 217.0, end: 220.0, text: "I am strong", sub: "我變得堅韌強壯" },
+      { start: 220.0, end: 227.5, text: "When I am on your shoulders", sub: "在你堅實的臂膀上" },
+      { start: 227.5, end: 231.0, text: "You raise me up", sub: "你激勵了我" },
+      { start: 231.0, end: 236.0, text: "To more than I can be", sub: "使我超越了自我" },
+      { start: 236.0, end: 241.5, text: "隱形的翅膀" },
+      { start: 241.5, end: 246.0, text: "讓夢恆久比天長" },
+      { start: 246.0, end: 250.0, text: "留一個願望" },
+      { start: 250.0, end: 271.0, text: "讓自己想像" }
+    ];
+
+    const audio = document.getElementById('audio-player');
+    const lyricsContainer = document.getElementById('lyrics-container');
+    const btnPlay = document.getElementById('btn-play');
+    const playIcon = document.getElementById('play-icon');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const btnLoop = document.getElementById('btn-loop');
+    const seekBar = document.getElementById('seek-bar');
+    const timeCurrent = document.getElementById('time-current');
+    const timeTotal = document.getElementById('time-total');
+    const currentBadge = document.getElementById('current-lyric-badge');
+    const vinylIcon = document.getElementById('vinyl-icon');
+
+    let activeIndex = -1;
+
+    function formatTime(sec) {
+      if (isNaN(sec)) return "00:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    // Render lyrics
+    lyricsContainer.innerHTML = LYRICS.map((item, idx) => `
+      <div id="lyric-${idx}" data-idx="${idx}" class="lyric-line cursor-pointer py-2.5 px-4 rounded-2xl hover:bg-white/5">
+        <div class="text-lg sm:text-2xl md:text-3xl tracking-wide leading-relaxed">${item.text}</div>
+        ${item.sub ? `<div class="sub-trans text-xs sm:text-sm text-slate-400 mt-1">${item.sub}</div>` : ''}
+        <div class="text-[11px] font-mono text-slate-500 mt-0.5">${formatTime(item.start)}</div>
+      </div>
+    `).join('');
+
+    // Click lyric to seek
+    document.querySelectorAll('.lyric-line').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = parseInt(el.dataset.idx, 10);
+        audio.currentTime = LYRICS[idx].start;
+        audio.play();
+      });
+    });
+
+    function syncLyrics() {
+      const t = audio.currentTime;
+      seekBar.value = t;
+      timeCurrent.textContent = formatTime(t);
+
+      let found = -1;
+      for (let i = 0; i < LYRICS.length; i++) {
+        if (t >= LYRICS[i].start && t < LYRICS[i].end) {
+          found = i;
+          break;
+        }
+      }
+
+      if (found !== -1 && found !== activeIndex) {
+        if (activeIndex !== -1) {
+          const prevEl = document.getElementById(`lyric-${activeIndex}`);
+          if (prevEl) prevEl.classList.remove('active');
+        }
+        activeIndex = found;
+        const currEl = document.getElementById(`lyric-${activeIndex}`);
+        if (currEl) {
+          currEl.classList.add('active');
+          currEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        const item = LYRICS[activeIndex];
+        currentBadge.textContent = item.sub ? `${item.text}（${item.sub}）` : item.text;
+      }
+    }
+
+    audio.addEventListener('timeupdate', syncLyrics);
+    audio.addEventListener('loadedmetadata', () => {
+      seekBar.max = audio.duration || 271;
+      timeTotal.textContent = formatTime(audio.duration || 271);
+    });
+
+    audio.addEventListener('play', () => {
+      playIcon.classList.replace('fa-play', 'fa-pause');
+      playIcon.classList.remove('ml-0.5');
+      vinylIcon.classList.add('playing');
+    });
+
+    audio.addEventListener('pause', () => {
+      playIcon.classList.replace('fa-pause', 'fa-play');
+      playIcon.classList.add('ml-0.5');
+      vinylIcon.classList.remove('playing');
+    });
+
+    btnPlay.addEventListener('click', () => {
+      if (audio.paused) audio.play();
+      else audio.pause();
+    });
+
+    btnPrev.addEventListener('click', () => {
+      const target = Math.max(0, activeIndex - 1);
+      audio.currentTime = LYRICS[target].start;
+      audio.play();
+    });
+
+    btnNext.addEventListener('click', () => {
+      const target = Math.min(LYRICS.length - 1, activeIndex + 1);
+      audio.currentTime = LYRICS[target].start;
+      audio.play();
+    });
+
+    btnLoop.addEventListener('click', () => {
+      audio.loop = !audio.loop;
+      btnLoop.classList.toggle('bg-amber-500/20', audio.loop);
+      btnLoop.classList.toggle('text-amber-300', audio.loop);
+      btnLoop.classList.toggle('border-amber-400/40', audio.loop);
+    });
+
+    seekBar.addEventListener('input', (e) => {
+      audio.currentTime = parseFloat(e.target.value);
+    });
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        btnPlay.click();
+      } else if (e.code === 'ArrowUp' || e.code === 'ArrowLeft') {
+        e.preventDefault();
+        btnPrev.click();
+      } else if (e.code === 'ArrowDown' || e.code === 'ArrowRight') {
+        e.preventDefault();
+        btnNext.click();
+      }
+    });
+
+    // Download LRC
+    document.getElementById('download-lrc-btn').addEventListener('click', () => {
+      const lines = [
+        "[ti:隱形的翅膀 × You Raise Me Up (現場版)]",
+        "[ar:齊豫]",
+        "[al:歌手2019]"
+      ];
+      LYRICS.forEach(it => {
+        const m = String(Math.floor(it.start / 60)).padStart(2, '0');
+        const s = (it.start % 60).toFixed(2).padStart(5, '0');
+        const txt = it.sub ? `${it.text}（${it.sub}）` : it.text;
+        lines.push(`[${m}:${s}]${txt}`);
+      });
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '齊豫_隱形的翅膀_1137335819043073.lrc';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
