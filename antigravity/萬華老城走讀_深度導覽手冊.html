@@ -546,6 +546,58 @@
       line-height: 1.5;
     }
 
+    /* 招牌阿公店特色卡片 */
+    .teahouse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .teahouse-item {
+      background: #fff1f2;
+      border: 1.5px solid #fecdd3;
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 5px rgba(225, 29, 72, 0.05);
+    }
+    .teahouse-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .teahouse-name {
+      font-weight: 900;
+      color: #be123c;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .teahouse-tag {
+      background: #ffe4e6;
+      color: #9f1239;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid #fbcfe8;
+    }
+    .teahouse-loc {
+      font-size: 0.8rem;
+      color: #881337;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .teahouse-desc {
+      font-size: 0.86rem;
+      color: #4c0519;
+      line-height: 1.6;
+    }
+
     /* 地圖導航操作區 */
     .spot-footer {
       background: #fcfcfb;
@@ -1339,7 +1391,7 @@
           <!-- 解說詞 -->
           <div class="section-block">
             <div id="spot7-speech" class="speech-box">
-              大家走累了嗎？如果說剛才的華西街是迎賓的前廳，那麼『梧州街』就是萬華人每天回家吃飯的熱鬧廚房！這裡沒有華麗擺盤，但每一家都有滾沸數十年的老高湯。白蘿蔔燉得晶瑩剔透、整塊大骨肋排入口即化，再配上一碗油香粒粒分明的高麗菜飯，這就是最道地、最溫暖的艋舺老滋味！另外走在梧州街與三水街巷弄，大家常會看到掛著『茶藝館』或『清茶館』招牌的阿公店，這可是萬華長輩歷史悠久的平價社交文化，此次我們來古蹟巡禮，班長要是想去阿公店找美女服務泡茶聊天，這裡可是正宗發源地呢！
+              大家走累了嗎？如果說剛才的華西街是迎賓的前廳，那麼『梧州街』就是萬華人每天回家吃飯的熱鬧廚房！這裡沒有華麗擺盤，但每一家都有滾沸數十年的老高湯。白蘿蔔燉得晶瑩剔透、整塊大骨肋排入口即化，再配上一碗油香粒粒分明的高麗菜飯，這就是最道地、最溫暖的艋舺老滋味！另外走在梧州街與三水街巷弄，大家常會看到掛著『茶藝館』或『清茶館』招牌的阿公店，這裡有三大赫赫有名的老字號招牌：三水街名氣最響的『鴻達茶藝館』、梧州街招牌帶麥克風音符的『得意春茶藝館』，還有數十年老字號『珠海清茶館』！此次我們來古蹟巡禮，班長要是想去阿公店找美女服務泡茶聊天，這三家可都是正宗老地標呢！
             </div>
           </div>
 
@@ -1371,6 +1423,37 @@
             </div>
           </div>
 
+          <!-- 招牌阿公店文化區塊 -->
+          <div class="section-block">
+            <div class="section-block-title"><span>🏮 梧州街・三水街 三大招牌阿公店（班長考察專區）</span></div>
+            <div class="teahouse-grid">
+
+            <div class="teahouse-item">
+              <div class="teahouse-header">
+                <div class="teahouse-name">🏮 鴻達茶藝館</div>
+                <div class="teahouse-tag">三水街指標店</div>
+              </div>
+              <div class="teahouse-loc">📍 台北市萬華區三水街（近艋舺公園、龍山寺商圈側）</div>
+              <div class="teahouse-desc">萬華歷史悠久且名氣最響亮的老字號指標店。招牌懸掛經典壓克力燈箱，店內以提供平價茶水、瓜子點心、卡拉OK伴唱與女侍倒茶聊天服務為主，是許多長輩日常固定聚會的『老派社交客廳』。</div>
+            </div>
+            <div class="teahouse-item">
+              <div class="teahouse-header">
+                <div class="teahouse-name">🏮 得意春茶藝館</div>
+                <div class="teahouse-tag">梧州街代表店</div>
+              </div>
+              <div class="teahouse-loc">📍 台北市萬華區梧州街（緊鄰梧州街觀光夜市小吃街口）</div>
+              <div class="teahouse-desc">典型的傳統阿公店格局，招牌帶有卡拉OK麥克風與音符圖案。一樓為開放式泡茶矮桌與點唱機，後方與二樓為小隔間雅座，主打親民消費、聊天解悶與歌友會互動，充滿濃厚的艋舺市井江湖味。</div>
+            </div>
+            <div class="teahouse-item">
+              <div class="teahouse-header">
+                <div class="teahouse-name">🏮 珠海清茶館 / 飲酒店</div>
+                <div class="teahouse-tag">三水街老字號</div>
+              </div>
+              <div class="teahouse-loc">📍 台北市萬華區三水街（三水街與周邊連通巷弄）</div>
+              <div class="teahouse-desc">數十年歷史的傳統清茶館與飲酒店，老派紅字招牌與樸實格局，見證艋舺百年茶室文化與基層長輩的市井社交生活縮影。</div>
+            </div>
+            </div>
+          </div>
           <!-- 美食小吃筆記 -->
           <div class="section-block">
             <div class="section-block-title"><span>🍜 周邊老字號小吃推薦</span></div>
