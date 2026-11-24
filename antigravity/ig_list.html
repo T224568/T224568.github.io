@@ -383,7 +383,7 @@
     }
 
     function getMediaUrl(item) {
-      return R2_BASE + encodeURIComponent(item.filename);
+      return R2_BASE + encodeURIComponent(item.filename) + '?v=' + (item.mtime || Date.now());
     }
 
     function renderGrid(posts) {
