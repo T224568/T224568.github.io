@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>今日財經新聞速報</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     :root {
       color-scheme: light dark;
@@ -14,6 +15,7 @@
       --border: #d0d7de;
       --accent: #0969da;
       --tag-bg: #eff6ff;
+      --table-stripe: #f6f8fa;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -24,6 +26,7 @@
         --border: #30363d;
         --accent: #58a6ff;
         --tag-bg: #1f2937;
+        --table-stripe: #1c2128;
       }
     }
     * { box-sizing: border-box; }
@@ -35,163 +38,53 @@
       color: var(--text);
       line-height: 1.7;
     }
-    .container { max-width: 860px; margin: 0 auto; }
+    .container { max-width: 900px; margin: 0 auto; }
     article {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 32px;
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-    @media (max-width: 600px) { article { padding: 20px 18px; } }
-    h1 { margin-top: 0; font-size: 1.65rem; line-height: 1.3; }
-    h2 { margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid var(--border); font-size: 1.25rem; }
-    h3 { margin-top: 18px; font-size: 1.05rem; color: var(--accent); }
-    blockquote {
-      margin: 12px 0 20px;
+    h1 { font-size: 1.85rem; border-bottom: 2px solid var(--border); padding-bottom: 12px; margin-top: 0; }
+    h2 { font-size: 1.35rem; margin-top: 32px; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--accent); }
+    h3 { font-size: 1.15rem; margin-top: 20px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
       padding: 10px 14px;
-      border-left: 4px solid var(--accent);
-      background: var(--tag-bg);
-      border-radius: 0 8px 8px 0;
-      font-size: 14px;
-      color: var(--text);
+      text-align: left;
     }
-    ul, ol { padding-left: 22px; }
-    li { margin-bottom: 6px; }
+    th { background: var(--tag-bg); font-weight: 600; }
+    tr:nth-child(even) { background: var(--table-stripe); }
+    blockquote {
+      margin: 16px 0;
+      padding: 8px 16px;
+      background: var(--tag-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+      border-radius: 0 8px 8px 0;
+    }
+    ol, ul { padding-left: 24px; }
+    li { margin-bottom: 10px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <div class="container">
-    <article id="reportContent">
-      <h1>📰 今日財經新聞速報</h1>
-      <blockquote>
-        <strong>最新更新：</strong>2026-11-24 11:02（台北時間 GMT+8，週二）<br />
-        <strong>市場狀態說明：</strong>台股與亞洲主要股市（日、韓、港、陸）目前為 11/24 盤中交易時段；美股採美東時間 11/23 正式收盤；台股三大法人、融資融券與期權未平倉採最新已公布交易日（2026-11-23）盤後統計。
-      </blockquote>
-
-      <h2>📊 一、全球與台灣股市數據</h2>
-      <h3>1. 台灣股市（11/24 盤中即時 ＆ 11/23 盤後統計）</h3>
-      <ul>
-        <li><strong>加權指數（上市）：</strong>
-          <ul>
-            <li><strong>11/24 盤中：</strong>跳空大漲 <strong>2,337.02 點</strong> 以 <strong>39,148.91 點（+6.35%）</strong> 開出，盤中最高大漲逾 <strong>3,368 點</strong> 衝上 <strong>40,180.38 點</strong>，創台股史上最大盤中漲點紀錄，重返 4 萬點大關與年線之上；上市櫃合計逾 550 至 600 檔亮燈漲停。</li>
-            <li><strong>11/23 收盤：</strong>收報 <strong>36,811.89 點</strong>（+778.60 點，+2.16%），成交金額新台幣 <strong>10,791.65 億元</strong>。</li>
-          </ul>
-        </li>
-        <li><strong>櫃買指數（上櫃）：</strong>
-          <ul>
-            <li><strong>11/24 盤中：</strong>漲幅擴大至 <strong>7% 至 8% 以上</strong>，暫報約 <strong>293 點</strong>。</li>
-            <li><strong>11/23 收盤：</strong>收報 <strong>270.90 點</strong>（+7.59 點，+2.88%），成交金額約新台幣 <strong>1,704.49 億元</strong>。</li>
-          </ul>
-        </li>
-        <li><strong>三大法人買賣超（11/23 集中市場）：</strong>合計賣超 <strong>511.77 億元</strong>
-          <ul>
-            <li><strong>外資及陸資（不含外資自營商）：</strong>賣超 <strong>289.48 億元</strong>（連續 6 個交易日賣超）</li>
-            <li><strong>投信：</strong>賣超 <strong>32.28 億元</strong></li>
-            <li><strong>自營商（合計）：</strong>賣超 <strong>190.01 億元</strong>（自行買賣賣超 28.99 億元、避險賣超 161.02 億元）</li>
-          </ul>
-        </li>
-        <li><strong>融資融券餘額變化（11/23 盤後最新；11/24 起維持率調降至 120%）：</strong>
-          <ul>
-            <li><strong>集中市場（上市）：</strong>融資餘額降至 <strong>4,338.08 億元</strong>（單日減少 14.20 億元）；融券餘額降至 <strong>172,957 張</strong>（單日減少 26,834 張）；平均整戶融資維持率回升至 <strong>148.46%</strong>。</li>
-            <li><strong>店頭市場（上櫃）：</strong>融資餘額單日減少約 <strong>50.40 億元</strong>（上市櫃合計再減約 64.60 億元）。</li>
-            <li><strong>新制上路：</strong>今日（11/24）起整戶信用交易擔保維持率最低標準由 130% 調降至 <strong>120%</strong>，此前追繳紀錄全面取消且不處分擔保品。</li>
-          </ul>
-        </li>
-        <li><strong>期貨與選擇權未平倉淨額（11/23 盤後）：</strong>
-          <ul>
-            <li><strong>臺股期貨：</strong>三大法人合計淨空單 <strong>-8,549 口</strong>（較前一日減少 1,433 口）；外資淨空單增至 <strong>-103,432 口</strong>（單日增加 5,569 口）。</li>
-            <li><strong>臺指選擇權：</strong>外資買權未平倉淨金額約 <strong>12.4 億元</strong>、賣權淨金額約 <strong>2.57 億元</strong>，呈現雙向避險布局。</li>
-          </ul>
-        </li>
-        <li><strong>熱門股動態（11/24 盤中即時）：</strong>
-          <ul>
-            <li><strong>股王／股后：</strong>股王<strong>信驊 (5274)</strong> 亮燈漲停重返 <strong>9 字頭大關</strong>；股后<strong>川湖 (2059)</strong> 同步亮燈漲停。</li>
-            <li><strong>權值股：</strong><strong>台積電 (2330)</strong> 開盤跳空漲停鎖 <strong>2,230 元</strong>（+200 元，市值重回 57 兆元以上）；<strong>聯發科 (2454)</strong> 漲停鎖 <strong>4,050 元</strong>（+365 元）；<strong>鴻海 (2317)</strong> 漲停鎖 <strong>226.5 元</strong>（+20.5 元）；<strong>台達電 (2308)</strong> 同步亮燈漲停。</li>
-            <li><strong>盤面強勢族群：</strong>AI 伺服器與 ASIC 族群（廣達、緯創、技嘉、緯穎、創意 3443、世芯-KY 3661、智邦 2345）、晶圓代工與記憶體（聯電 2303、世界先進 5347、南亞科 2408、華邦電 2344、群聯 8299）全面攻頂；金融類股指數盤中大漲逾 8.5%。</li>
-          </ul>
-        </li>
-        <li><strong>台積電 ADR、台指期夜盤與開盤推估：</strong>
-          <ul>
-            <li><strong>台積電 ADR (<code>TSM</code>)：</strong>11/23 美股收報 <strong>368.98 美元</strong>，大漲 <strong>+50.27 美元（+15.77%）</strong>。</li>
-            <li><strong>台指期夜盤（11/24 05:00 收盤）：</strong>收報 <strong>39,829 點</strong>，大漲 <strong>+3,170 點</strong>（盤中一度觸及 <strong>40,324 點</strong> 漲停價，重返 4 萬點關卡）；<strong>台積電期貨夜盤</strong>收報 <strong>2,210 點</strong>（+175 點，亮燈漲停）。</li>
-            <li><strong>開盤推估：</strong>台指期夜盤大漲 3,170 點且台積電期貨夜盤漲停，預估今日（11/24）台股早盤將跳空大漲逾 <strong>3,000 點</strong>，直接挑戰收復 <strong>39,800 至 40,000 點</strong> 整數大關。</li>
-          </ul>
-        </li>
-        <li><strong>近期重要財經行事曆（11/24–11/28）：</strong>
-          <ul>
-            <li><strong>11/24（二）：</strong>證交所整戶維持率調降至 120% 生效；兆豐金 (2886) 法說會。</li>
-            <li><strong>11/25（三）：</strong>美國 10 月 PCE 物價指數公布。</li>
-            <li><strong>11/26（四）：</strong>華南金 (2880) 法說會；美國感恩節（美股休市）。</li>
-            <li><strong>11/27（五）：</strong>國泰金 (2882)、台新新光金 (2887)、第一金 (2892) 聯合法說；美國黑色星期五（美股提前休市）。</li>
-            <li><strong>11/28（六）：</strong>台灣九合一選舉暨第 22 案廢除非核家園公投投票日。</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>2. 美國股市（2026-11-23 正式收盤）</h3>
-      <ul>
-        <li><strong>道瓊工業指數：</strong>收報 <strong>49,595.31 點</strong>，上漲 <strong>1,447.98 點（+3.01%）</strong>。</li>
-        <li><strong>標普 500 指數：</strong>收報 <strong>7,237.17 點</strong>，上漲 <strong>326.78 點（+4.73%）</strong>。</li>
-        <li><strong>那斯達克綜合指數：</strong>收報 <strong>24,089.56 點</strong>，上漲 <strong>1,471.83 點（+6.51%）</strong>。</li>
-        <li><strong>費城半導體指數：</strong>收報 <strong>9,588.05 點</strong>，上漲 <strong>1,179.46 點（+14.03%）</strong>。</li>
-      </ul>
-
-      <h3>3. 亞洲股市（2026-11-24 開盤與盤中表現）</h3>
-      <ul>
-        <li><strong>日經 225 指數：</strong>長假後跳空高開逾 800 點（+3.5% 至 +4%），盤中漲幅擴大至 <strong>5% 至 5.4%</strong>（愛德萬測試等半導體領漲）。</li>
-        <li><strong>韓國綜合指數 (KOSPI)：</strong>盤中大漲 <strong>6% 至 7% 以上</strong>（三星電子漲逾 8%、SK 海力士漲逾 10%），韓國交易所盤中觸發「邊車機制」（Sidecar，程式化交易暫停買盤 5 分鐘）。</li>
-        <li><strong>香港恒生指數：</strong>開盤上漲 243.55 點（+1.09%）報 <strong>22,627.29 點</strong>（恒生科技指數高開 2.05%），盤中震盪走高。</li>
-        <li><strong>上海證券交易所綜合指數（上證）：</strong>開盤上漲約 <strong>0.82%</strong>，盤中維持紅盤震盪修復。</li>
-      </ul>
-
-      <h2>🌍 二、戰爭與地緣政治（8 則）</h2>
-      <ol>
-        <li><strong>烏軍無人艇遠征逾 1,600 公里至利比亞，擊沉俄軍護衛艦「水星號」</strong><br />烏克蘭總統澤倫斯基 23 日證實，烏軍派遣 7 艘無人艇遠赴北非利比亞班加西海軍基地，擊沉俄軍輕型護衛艦「水星號」、擊中運武貨船「安加拉號」並摧毀一架直升機，俄烏戰火正式外溢至地中海。</li>
-        <li><strong>聯合國對利比亞遇襲表嚴重關切，波羅的海貨輪亦遭無人機襲擊</strong><br />聯合國利比亞支助特派團（UNSMIL）呼籲獨立調查，強調利比亞不應成為外國衝突戰場；芬蘭方面亦指認波羅的海俄籍貨船遭烏方無人機襲擊，海運安全風險持續擴大。</li>
-        <li><strong>俄軍報復空襲基輔周邊，平民傷亡與基礎設施損毀加劇</strong><br />作為對烏軍跨境打擊的回應，俄軍持續對基輔及周邊地區（狄莫爾、維什涅夫等地）發動大規模導彈與無人機空襲，導致住宅與商業設施大面積毀損。</li>
-        <li><strong>美俄烏阿布扎比三方接觸未獲突破，歐盟研擬第 22 輪對俄制裁</strong><br />美方特使穿梭推動停火與新歐洲安全框架，惟俄方在北約與領土問題立場強硬，雙方於阿布扎比接觸暫無實質進展；歐盟正加速研擬第 22 輪對俄制裁方案。</li>
-        <li><strong>荷莫茲海峽油輪與無人機交鋒頻傳，伊朗反對美國海上封鎖</strong><br />中東美伊對峙升溫，荷莫茲海峽一帶傳出油輪爆炸與無人機交鋒，伊朗指控美方透過經濟施壓與封鎖削弱其國力，並揚言動用一切手段應對。</li>
-        <li><strong>葉門胡塞武裝與荷臺達交火持續，紅海航運受阻威脅加劇</strong><br />胡塞武裝持續在紅海及曼德海峽周邊活動，荷臺達等地頻遭空襲，國際海運大動脈安全維持緊繃。</li>
-        <li><strong>國際油價盤初下跌約 3%，市場聚焦 11/29 OPEC+ 產量會議</strong><br />受利比亞沙拉拉油管重啟消息與中東、俄烏供需博弈影響，國際油價於 24 日盤初下跌約 3%，市場靜待月底（11/29）OPEC+ 產量政策決議。</li>
-        <li><strong>聯合國世界糧食計劃署示警：三大航道受阻危及 730 萬人糧援</strong><br />世界糧食計劃署（WFP）於安理會警告，黑海、荷莫茲海峽及曼德海峽航運受阻推升海運成本，恐進一步危及全球高達 730 萬人的糧食援助供應。</li>
-      </ol>
-
-      <h2>🏛️ 三、國內重要新聞（8 則）</h2>
-      <ol>
-        <li><strong>證交所融資維持率調降至 120% 今日（11/24）正式上路，舊追繳紀錄全取消</strong><br />證交所宣布自 11 月 24 日起將整戶信用交易擔保維持率最低標準由 130% 調降至 120%，此前遭發追繳通知的紀錄一律取消且不處分擔保品，大幅緩解投資人斷頭壓力。</li>
-        <li><strong>黃仁勳回任輝達執行長激勵台指期夜盤大漲 3,170 點，重返 39,829 點</strong><br />台灣時間 24 日清晨輝達董事會宣布黃仁勳即刻回任 CEO，帶動台指期夜盤收漲 3,170 點至 39,829 點（盤中觸及 40,324 點漲停），台積電期貨夜盤亦以 2,210 點亮燈漲停。</li>
-        <li><strong>行政院召集 27 位產金巨頭座談，喊話「看不到 AI 泡沫」</strong><br />行政院長卓榮泰 23 日邀集台積電、鴻海、聯發科、緯創及金融工商巨頭座談，業者表示部分訂單能見度看至 2029 年；經濟部同步編列 460 億元特別預算支援產業供應鏈韌性。</li>
-        <li><strong>國安基金規模研議擴大至 1 兆元，卓揆與財長表態正面樂觀</strong><br />考量台股市值與外資持股比例大幅成長，卓榮泰與財政部長莊翠雲對立法院研議將國安基金規模擴大朝 1 兆元修法方向表示正面、樂觀與積極看待。</li>
-        <li><strong>10 月景氣燈號創 1984 年以來最長「連 10 紅」（41 分）</strong><br />經濟部指出台灣 10 月景氣對策信號達 41 分，創 42 年來最長連紅紀錄，搭配 10 月外銷訂單與出口雙創歷史新高，確認總經基本面穩健。</li>
-        <li><strong>11/23 上市櫃融資再減 64.60 億元，上市維持率回升至 148.46%</strong><br />23 日上市融資餘額續減 14.20 億元至 4,338.08 億元、融券大減 26,834 張至 172,957 張，維持率回升至 148.46%；上櫃融資再減 50.40 億元，籌碼持續沉澱。</li>
-        <li><strong>三大法人 23 日賣超 511.77 億元，外資期貨淨空單升至 103,432 口</strong><br />23 日台股現貨大漲 778.60 點之際，外資現貨連 6 賣達 289.48 億元且期貨淨空單增至 103,432 口；惟在夜盤大漲 3,170 點後，空單回補力道成今日盤面焦點。</li>
-        <li><strong>永豐金 (2890) 法說創高，兆豐金 (2886) 今日接棒登場</strong><br />永豐金 23 日公布前三季獲利創同期新高、年化 ROE 達 18.32%，預期明年現金股利配發率 65%–70%；今日（11/24）將由兆豐金召開法說會接棒。</li>
-      </ol>
-
-      <h2>🚀 四、焦點個股與台股動態（8 則）</h2>
-      <ol>
-        <li><strong>台積電 (2330) ADR 大漲 15.77%、期貨夜盤漲停 2,210 元</strong><br />台積電 23 日現貨收漲 1.50% 至 2,030 元；隨黃仁勳回任輝達 CEO 激勵，台積電 ADR 23 日收漲 50.27 美元至 368.98 美元，台積電期貨夜盤漲停鎖 2,210 元，今日早盤有望強勢跳空。</li>
-        <li><strong>聯發科 (2454) 亮燈漲停收 3,685 元，AI ASIC 業務放量領漲</strong><br />聯發科受惠 AI ASIC 實質放量與轉單題材，23 日強勢攻上漲停板 3,685 元（+335 元），率高價 IC 設計族群回神。</li>
-        <li><strong>台達電 (2308) 漲停收 990 元，今日有望重返千金俱樂部</strong><br />上週五跌停的台達電 23 日強攻漲停收 990 元，隨大盤反攻氣勢，今日開盤可望重返千元以上價位。</li>
-        <li><strong>聯電 (2303) 強勢漲停收 88.3 元，受惠外資低接回補</strong><br />聯電延續外資逢低買盤力道，23 日亮燈漲停收在 88.3 元，成為成熟製程反彈指標。</li>
-        <li><strong>記憶體族群齊攻漲停！群聯、力積電、宜鼎率先領漲</strong><br />23 日盤中大盤尚未翻紅前，群聯 (8299)、力積電 (6770) 與宜鼎 (5289) 即率先亮燈漲停，搭配美光昨晚在美股大漲逾 19%，記憶體族群今日表現備受矚目。</li>
-        <li><strong>股王信驊 (5274) 重返 7,860–8,000 元區間，川湖／台光電同步走強</strong><br />股王信驊 23 日隨千金股反彈重返 8,000 元關卡邊緣，川湖 (2059) 及台光電 (2383) 亦同步拉出反彈走勢。</li>
-        <li><strong>南亞 (1303) 亮燈漲停收 226.5 元，傳產電子材料龍頭強彈</strong><br />南亞受惠營收表現與資金輪動，23 日強勢漲停收在 226.5 元，為非電權值股領漲代表。</li>
-        <li><strong>廣達 (2382) 收漲 1.98% 至 257 元，鴻海 (2317) 小跌 1.9% 收 206 元</strong><br />AI 伺服器代工族群 23 日走勢微幅分歧，廣達收 257 元（+5 元），鴻海則小跌 4 元收 206 元，隨輝達大漲逾 31% 可望帶動今日買盤回流。</li>
-      </ol>
-
-      <h2>🏢 五、國際個股與科技動態（8 則）</h2>
-      <ol>
-        <li><strong>黃仁勳即刻回任輝達 (NVDA) CEO，股價大漲逾 31%、市值暴增 9,500 億美元</strong><br />輝達董事會 23 日無異議宣佈共同創辦人黃仁勳回任總裁、執行長兼董事且即刻生效，徹底化解接班與監管恐慌；輝達股價單日大漲約 31%–32.5% 收在 165.05–166.92 美元區間，創美股史上最大單日市值增幅。</li>
-        <li><strong>美光 (MU) 單日大漲逾 19% 收 705.60–707.70 美元，領漲半導體板塊</strong><br />受 AI 資本支出恐慌消退與 HBM 需求支撐，美光 23 日強漲 19.04%–19.63%，成為費城半導體指數大漲 14.03% 的領頭羊。</li>
-        <li><strong>特斯拉 (TSLA) 大漲 11.5%–13.5% 收 385.46–392.50 美元</strong><br />除受科技股全面回暖帶動外，市場傳出特斯拉與 SpaceX 正進行合併先進洽談，加上分析師調高目標價，推升股價強彈。</li>
-        <li><strong>超微 (AMD) 大漲近 6.8% 至 453 美元附近，擺脫空頭報告陰霾</strong><br />隨輝達高層風波落幕與機構逢低承接，超微 23 日反彈約 6.73%–6.8% 收在 452.96–453.46 美元區間。</li>
-        <li><strong>Meta 上漲 6.55% 收 597.60 美元，重獲 AI 基礎建設買盤青睞</strong><br />Meta 23 日成功收復上週五跌幅，終場上漲 6.55% 收報 597.60 美元，盤中一度站上 602.46 美元。</li>
-        <li><strong>Alphabet (GOOGL) 上漲約 6% 收 279.53 美元，雲端與 TPU 部署受矚</strong><br />受惠科技股全面回補與企業端 Gemini 及第 6 代 TPU 部署進展，Alphabet 23 日上漲約 5.88%–6% 收在 279.53 美元附近。</li>
-        <li><strong>亞馬遜 (AMZN) 上漲約 3.7%–4.45% 收 255.39–257.80 美元，傳洽購 Decart</strong><br />亞馬遜受 AWS 雲端 AI 需求與傳出正洽談收購 AI 新創 Decart 激勵，股價同步收高。</li>
-        <li><strong>博通 (AVGO) 反彈逾 2%、微軟 (MSFT) 漲 1.6%–3.9%、蘋果 (AAPL) 漲 1.9%</strong><br />博通收在約 311.51–311.62 美元、微軟收在約 492.50 美元、蘋果收在約 349.08 美元，展現大型科技股全面止穩修復格局。</li>
-      </ol>
+    <article id="content">
+      <div style="text-align: center; padding: 40px; color: var(--muted);">載入最新財經速報中...</div>
     </article>
   </div>
+  <script>
+    const rawMarkdown = "";
+    document.getElementById('content').innerHTML = marked.parse(rawMarkdown);
+  </script>
 </body>
 </html>
