@@ -4179,10 +4179,11 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         <!-- 導航分頁 Tabs -->
         <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px;">
-            <button type="button" class="planner-tab-btn active" id="tab-btn-flow-steps" onclick="switchFlowTab('unit-flow-steps', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #1976d2; background: #1976d2; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 6 大標準步驟圖解</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-flow-models" onclick="switchFlowTab('unit-flow-models', this)" style="flex: 1; min-width: 160px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">⚖️ 影片模型怎麼選？</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-flow-prompt" onclick="switchFlowTab('unit-flow-prompt', this)" style="flex: 1; min-width: 150px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🪄 提示詞產生器</button>
-            <button type="button" class="planner-tab-btn" id="tab-btn-flow-tips" onclick="switchFlowTab('unit-flow-tips', this)" style="flex: 1; min-width: 140px; padding: 12px 14px; font-size: 14px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">💡 避坑與圖生影秘笈</button>
+            <button type="button" class="planner-tab-btn active" id="tab-btn-flow-steps" onclick="switchFlowTab('unit-flow-steps', this)" style="flex: 1; min-width: 130px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #1976d2; background: #1976d2; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 6 大標準步驟</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-models" onclick="switchFlowTab('unit-flow-models', this)" style="flex: 1; min-width: 140px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">⚖️ 模型怎麼選？</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-storyboard" onclick="switchFlowTab('unit-flow-storyboard', this)" style="flex: 1; min-width: 165px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🎞️ 兩句分鏡生短片 (實戰)</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-prompt" onclick="switchFlowTab('unit-flow-prompt', this)" style="flex: 1; min-width: 130px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🪄 提示詞產生器</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-flow-tips" onclick="switchFlowTab('unit-flow-tips', this)" style="flex: 1; min-width: 155px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">💡 10 大短片鐵律</button>
         </div>
 
         <!-- ========================================== -->
@@ -4483,7 +4484,113 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         </div>
 
         <!-- ========================================== -->
-        <!-- 單元三：AI 影片提示詞產生器 (中英文雙語・雙模型支援) -->
+        <!-- 單元三：🎞️ 兩句話 8 格分鏡做直式短片（ChatGPT/Gemini ➔ Google Flow） -->
+        <!-- ========================================== -->
+        <div id="unit-flow-storyboard" class="flow-unit-section" style="display: none;">
+            <div style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%); color: #ffffff; border-radius: 18px; padding: 22px; margin-bottom: 22px; box-shadow: 0 8px 24px rgba(49,46,129,0.25); position: relative; overflow: hidden;">
+                <div style="position: absolute; right: -10px; top: -10px; font-size: 100px; opacity: 0.12; pointer-events: none;">🎞️</div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+                    <span style="background: #fbbf24; color: #78350f; font-size: 12px; font-weight: 900; padding: 3px 10px; border-radius: 12px;">爆款實戰工作流</span>
+                    <span style="background: rgba(255,255,255,0.2); color: #fff; font-size: 12px; font-weight: bold; padding: 3px 10px; border-radius: 12px;">一張插畫・兩句話・8秒短片</span>
+                    <span style="background: rgba(255,255,255,0.2); color: #fff; font-size: 12px; font-weight: bold; padding: 3px 10px; border-radius: 12px;">不加班社畜 實測精選</span>
+                </div>
+                <h2 style="margin: 0 0 8px; font-size: 23px; font-weight: 900; letter-spacing: -0.5px;">用一張插畫、兩句話，做出 8 秒連貫短片！</h2>
+                <p style="margin: 0 0 16px; font-size: 14px; opacity: 0.95; line-height: 1.6;">
+                    第一句給 <b>ChatGPT / Gemini</b> 生成 8 格連貫電影分鏡圖；第二句給 <b>Google Flow (Veo 3.1 Lite)</b> 照分鏡做成 9:16 直式短片！省去複雜手動剪輯，效果超級驚豔！
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="https://www.facebook.com/share/r/1C5N6kw3as/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #312e81; padding: 9px 16px; border-radius: 10px; font-weight: 900; font-size: 13.5px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                        ▶ 查看 Facebook 原片實測成果 ↗
+                    </a>
+                    <a href="https://labs.google/flow" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: #fff; border: 1.5px solid rgba(255,255,255,0.4); padding: 9px 16px; border-radius: 10px; font-weight: bold; font-size: 13.5px; text-decoration: none;">
+                        🚀 開啟 Google Flow
+                    </a>
+                </div>
+            </div>
+
+            <!-- 兩大核心步驟與一鍵複製指令 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 22px;">
+                <!-- 步驟 ①：ChatGPT / Gemini 生成 8 格分鏡圖 -->
+                <div style="background: #ffffff; border: 2px solid #60a5fa; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(37,99,235,0.06);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="background: #eff6ff; color: #1d4ed8; font-weight: 900; font-size: 14px; padding: 4px 12px; border-radius: 8px;">步驟 ①：生 8 格分鏡圖</span>
+                        <span style="font-size: 12.5px; color: #64748b;">ChatGPT / Gemini</span>
+                    </div>
+                    <h3 style="margin: 0 0 6px; color: #1e3a8a; font-size: 16.5px; font-weight: 900;">第一句：附上插畫，請 AI 畫 8 格分鏡</h3>
+                    <p style="margin: 0 0 10px; font-size: 13px; color: #475569; line-height: 1.55;">
+                        在 ChatGPT (需登入/Pro) 或 Google Gemini 中附上一張主角插畫，不到一分鐘即可一次產出同一個角色、8 個不同景別的連貫分鏡！
+                    </p>
+                    <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px; margin-bottom: 12px; font-size: 13px; color: #1e293b; line-height: 1.6; white-space: pre-wrap; font-family: monospace;" id="storyboard-prompt-step1">請參考我上傳的這張插畫，保持完全相同的人物五官、服裝特色與藝術風格，繪製一張「8 格連貫電影分鏡圖」（排成正方形 2x4 或 4x2 網格）。
+請包含不同景別動態：
+1. 面部特寫微表情
+2. 中景手部動作
+3. 遠景全身環境
+4. 低角度仰拍
+5. 緩慢轉身回眸
+6. 往前推進走動
+7. 關鍵物品特寫
+8. 結尾定格神情
+【關鍵避坑要求】：8 個分鏡格子內絕對不要出現任何文字、標籤或數字，背景乾淨，方便轉成流暢影片。</div>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" onclick="copyFlowPrompt('storyboard-prompt-step1', this)" style="flex: 1; padding: 9px 14px; font-size: 13px; font-weight: 900; background: #2563eb; color: #fff; border: none; border-radius: 8px; cursor: pointer;">
+                            📋 複製第一句指令
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 步驟 ②：Google Flow 照分鏡生成直式短片 -->
+                <div style="background: #ffffff; border: 2px solid #a855f7; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(168,85,247,0.06);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="background: #faf5ff; color: #7e22ce; font-weight: 900; font-size: 14px; padding: 4px 12px; border-radius: 8px;">步驟 ②：照分鏡生成短片</span>
+                        <span style="font-size: 12.5px; color: #64748b;">Google Flow (Veo)</span>
+                    </div>
+                    <h3 style="margin: 0 0 6px; color: #581c87; font-size: 16.5px; font-weight: 900;">第二句：上傳分鏡，做成 9:16 直式短片</h3>
+                    <p style="margin: 0 0 10px; font-size: 13px; color: #475569; line-height: 1.55;">
+                        將剛才生成的 8 格分鏡圖上傳至 Google Flow，模型選 <b>Veo 3.1 Lite</b>（一支 10 點，每天免費 50 點，一天可做 5 支！），<b>比例務必先切換為 9:16</b>！
+                    </p>
+                    <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px; margin-bottom: 12px; font-size: 13px; color: #1e293b; line-height: 1.6; white-space: pre-wrap; font-family: monospace;" id="storyboard-prompt-step2">請參考我上傳的這張 8 格分鏡圖，使用 Veo 3.1 Lite 模型，生成 9:16 直式短影音。
+請依照分鏡圖中的鏡頭順序與角色動作，生成一段節奏流暢自然、電影級運鏡轉場的 8 秒直式動態短片。
+畫面保持乾淨純淨，不要生成任何字幕與文字標籤。</div>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" onclick="copyFlowPrompt('storyboard-prompt-step2', this)" style="flex: 1; padding: 9px 14px; font-size: 13px; font-weight: 900; background: #9333ea; color: #fff; border: none; border-radius: 8px; cursor: pointer;">
+                            📋 複製第二句指令
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 實測踩坑 4 大限制預警 -->
+            <div style="background: #fffbeb; border: 2px solid #fde68a; border-radius: 16px; padding: 18px; margin-bottom: 22px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                    <span style="font-size: 20px;">⚠️</span>
+                    <h3 style="margin: 0; color: #92400e; font-size: 17px; font-weight: 900;">4 次實測後的關鍵限制與避坑（大師親測經驗）</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+                    <div style="background: #ffffff; border: 1px solid #fef3c7; border-radius: 10px; padding: 12px;">
+                        <div style="font-weight: 900; color: #b45309; font-size: 13.5px; margin-bottom: 4px;">1. 鏡頭段落自然融合</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #78350f; line-height: 1.5;">指令雖然要 8 個鏡頭，但 AI 實際通常會平滑融合成 <b>1、3、3、1 段</b>，轉場非常自然，不會每秒生硬切換。</p>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1px solid #fef3c7; border-radius: 10px; padding: 12px;">
+                        <div style="font-weight: 900; color: #b45309; font-size: 13.5px; margin-bottom: 4px;">2. 插畫會自動轉寫實風</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #78350f; line-height: 1.5;">即使輸入純插畫，Veo 轉成影片時會自然帶有一種寫實逼真的立體質感與光影效果。</p>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1px solid #fecaca; border-radius: 10px; padding: 12px;">
+                        <div style="font-weight: 900; color: #dc2626; font-size: 13.5px; margin-bottom: 4px;">3. 致命雷區：分鏡圖內不可有字</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #991b1b; line-height: 1.5;"><b>極重要！</b>分鏡格子裡若帶有文字，影片開頭容易冒出 AI 亂碼字幕！所以第一句指令務必強調「不要文字」。</p>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1px solid #fef3c7; border-radius: 10px; padding: 12px;">
+                        <div style="font-weight: 900; color: #b45309; font-size: 13.5px; margin-bottom: 4px;">4. 免費帳號下載限制</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #78350f; line-height: 1.5;">Google Flow 免費帳號下載解析度為 <b>720p HD</b>，發布在手機 Instagram Reels / LINE / TikTok 畫質完全足夠清晰！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元四：AI 影片提示詞產生器 (中英文雙語・雙模型支援) -->
         <!-- ========================================== -->
         <div id="unit-flow-prompt" class="flow-unit-section" style="display: none;">
             <div style="background: #ffffff; border: 2px solid #818cf8; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(99,102,241,0.08); margin-bottom: 20px;">
@@ -4597,50 +4704,88 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         </div>
 
         <!-- ========================================== -->
-        <!-- 單元三：實戰避坑秘笈 (5大技巧) -->
+        <!-- 單元五：💡 爆款短影音 10 大製作鐵律 & 實戰避坑 -->
         <!-- ========================================== -->
         <div id="unit-flow-tips" class="flow-unit-section" style="display: none;">
-            <div style="background: #ffffff; border: 2px solid #cbd5e1; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(0,0,0,0.05);">
-                <h3 style="margin: 0 0 14px; color: #0f172a; font-size: 19px; font-weight: 900;">💡 初學者第一次做 AI 影片的 5 大實戰心法</h3>
+            <div style="background: #ffffff; border: 2px solid #cbd5e1; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <span style="background: #ef4444; color: #fff; font-weight: 900; font-size: 13px; padding: 3px 10px; border-radius: 6px;">大師實戰精華</span>
+                    <h3 style="margin: 0; color: #0f172a; font-size: 19px; font-weight: 900;">爆款短影音 10 大製作鐵律（血淚實測避坑）</h3>
+                </div>
+                <p style="margin: 0 0 16px; font-size: 13.5px; color: #64748b; line-height: 1.55;">
+                    作者實測：「每次被退回的修改，我都寫成一條規則，下一支就不會再犯同樣的錯！」
+                </p>
 
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 10px 10px 0;">
-                        <h4 style="margin: 0 0 4px; color: #1e3a8a; font-size: 15px;">1. 為什麼強烈推薦「用鍵盤麥克風說話」？</h4>
-                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
-                            在手機上打長篇提示詞容易出錯或令人卻步。按下手機鍵盤的<b>麥克風語音輸入</b>，像是在跟朋友描述一個夢境或電影場景一樣說出來，自然又生動，Veo 3.1 具備出色的語意理解能力！
-                        </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                    <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #1e3a8a; font-size: 14px; margin-bottom: 3px;">1️⃣ 分鏡先寫成表格</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">每一鏡先寫四欄：<b>秒數／畫面／旁白／觀眾這秒要懂什麼</b>。只寫大概，做出來連自己都看不懂要演什麼。</p>
                     </div>
 
-                    <div style="background: #f8fafc; border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 0 10px 10px 0;">
-                        <h4 style="margin: 0 0 4px; color: #065f46; font-size: 15px;">2. AI 點數如何聰明節省？</h4>
-                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
-                            每次生成影片預設會扣除 <b>10 點 AI 點數</b>。初學者測試時請務必保持<b>數量選擇 x1</b>。確認提示詞的動態滿意、主角神情正確後，再使用更多點數產出多個變形版本。
-                        </p>
+                    <div style="background: #f8fafc; border-left: 4px solid #ef4444; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #991b1b; font-size: 14px; margin-bottom: 3px;">2️⃣ 開頭 3 秒最容易死</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">早期只有 6~13% 的人看滿 3 秒，因為開頭畫面完全不動。<b>現在第 0 秒就直接放「成果在動」，絕不放拖泥帶水的標題字卡！</b></p>
                     </div>
 
-                    <div style="background: #f8fafc; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 10px 10px 0;">
-                        <h4 style="margin: 0 0 4px; color: #92400e; font-size: 15px;">3. 比例選擇秘訣：9:16 vs 16:9</h4>
-                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
-                            若要發布到 <b>LINE 貼文串、Instagram Reels、YouTube Shorts 或 TikTok</b>，務必勾選 <b>9:16</b> 直式滿版！若是為了做簡報、電視放映或 YouTube 長片，請選擇 <b>16:9</b>。
-                        </p>
+                    <div style="background: #f8fafc; border-left: 4px solid #f59e0b; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #92400e; font-size: 14px; margin-bottom: 3px;">3️⃣ 節奏比想像中要快</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">全片盡量壓在 <b>45 秒內</b>！每鏡 3.5~5 秒，<b>畫面在 1.5 秒內一定要有變化</b>，句子中間絕不留 2~3 秒空白卡頓。</p>
                     </div>
 
-                    <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 12px 16px; border-radius: 0 10px 10px 0;">
-                        <h4 style="margin: 0 0 4px; color: #5b21b6; font-size: 15px;">4. 如何避免畫面劇烈變形或扭曲？</h4>
-                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
-                            在提示詞中加入明確的<b>運鏡指令</b>（如「慢鏡頭緩慢推進」、「微風吹拂」），動態指令盡量具體，例如「緩步前行」比「急速奔跑」的畫面穩定度高上 3 倍。
-                        </p>
+                    <div style="background: #f8fafc; border-left: 4px solid #10b981; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #065f46; font-size: 14px; margin-bottom: 3px;">4️⃣ 截圖翻太快沒人看得清</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">一張停 0.4 秒眼睛根本抓不到。<b>現在每張至少停 0.9 秒且圖片放大</b>，寧可精選少放幾張，也不要走馬看花。</p>
                     </div>
 
-                    <div style="background: #f8fafc; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 0 10px 10px 0;">
-                        <h4 style="margin: 0 0 4px; color: #991b1b; font-size: 15px;">5. 做完影片如何與大家分享？</h4>
-                        <p style="margin: 0; font-size: 13.5px; color: #475569; line-height: 1.55;">
-                            影片生成完畢後，點擊下載儲存到手機相簿。你可以截取最美的一幀或直接錄成 GIF/短片，點擊下方按鈕上傳到<b>「班級互動照片牆」</b>，讓全班同學為你的處女作點讚投票！
-                        </p>
+                    <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #5b21b6; font-size: 14px; margin-bottom: 3px;">5️⃣ 字幕少而精準</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">手機上一行<b>最多 12 個字</b>，一句話<b>只標一個重點強調色</b>。標兩個以上重點，觀眾眼睛會不知道看哪。</p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #06b6d4; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #0e7490; font-size: 14px; margin-bottom: 3px;">6️⃣ 主角不能神隱</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">避免做著做著只剩字卡和截圖！<b>規定開頭、中間、結尾都要出現主角</b>，且主角臉部絕對不能被字幕或按鈕遮蓋。</p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #3730a3; font-size: 14px; margin-bottom: 3px;">7️⃣ 數字動畫順數呈現</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">避免使用跳動滾輪數字（暫停時常停在錯數字）。<b>改成從 0 緩慢順數到目標數字</b>，視覺更專業可信。</p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #ec4899; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #9d174d; font-size: 14px; margin-bottom: 3px;">8️⃣ AI 配音校正檢查</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">注意多音字與破音字，英文工具名稱念不準時改寫為諧音拼法（例如 Claude 寫成 Cloud），每句都要反覆確認語音完整。</p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #14b8a6; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #0f766e; font-size: 14px; margin-bottom: 3px;">9️⃣ 配樂音量 15% 防雜音</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">配樂鼓點容易在人聲停頓時冒出被誤認為雜音。<b>背景音樂音量預設壓低至 15%</b>，人聲清晰才是王道！</p>
+                    </div>
+
+                    <div style="background: #f8fafc; border-left: 4px solid #64748b; padding: 12px 14px; border-radius: 0 10px 10px 0;">
+                        <div style="font-weight: 900; color: #334155; font-size: 14px; margin-bottom: 3px;">🔟 畫面數字取自同次結果</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">AI 跑兩次生成數據必有差異，同支短片畫面上的數據只能取自同一次結果，絕不能跨批次拼湊。</p>
                     </div>
                 </div>
 
-                <div style="margin-top: 18px; text-align: center;">
+                <!-- 基礎操作 5 大心法回顧 -->
+                <h4 style="margin: 16px 0 10px; color: #1e293b; font-size: 16px; font-weight: 900;">🔰 Google Flow 操作基本功提示：</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px;">
+                    <div style="background: #f1f5f9; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; color: #334155;">
+                        <b>🎙️ 語音輸入：</b>手機鍵盤按麥克風「用說的」最自然。
+                    </div>
+                    <div style="background: #f1f5f9; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; color: #334155;">
+                        <b>🪙 點數計算：</b>每天免費 50 點，Veo x1 每次 10 點。
+                    </div>
+                    <div style="background: #f1f5f9; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; color: #334155;">
+                        <b>📱 比例選擇：</b>新專案預設 16:9，直式短片務必選 <b>9:16</b>。
+                    </div>
+                    <div style="background: #f1f5f9; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; color: #334155;">
+                        <b>🎥 運鏡防崩：</b>具體描述微動作（緩步走比奔跑穩定）。
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
                     <button type="button" onclick="switchView('view-upload')" style="background: #0284c7; color: #fff; border: none; padding: 12px 24px; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(2,132,199,0.3);">
                         📷 前往上傳作品至班級照片牆
                     </button>
