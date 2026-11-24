@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎹 鋼琴常用十組和弦：五線譜與指法對照表｜Eunyu 美麗和弦進行影音教學・原聲示範</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: #090d16;
+      color: #e2e8f0;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(18, 27, 49, 0.82);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -8px rgba(56, 189, 248, 0.15);
+    }
+    .active-chord-card {
+      border-color: #38bdf8 !important;
+      background: rgba(14, 165, 233, 0.15) !important;
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.25) !important;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+    /* 鋼琴鍵盤樣式 */
+    .piano-key {
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      user-select: none;
+      cursor: pointer;
+    }
+    .piano-key.white {
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-bottom: 4px solid #94a3b8;
+    }
+    .piano-key.white:hover {
+      background: #e2e8f0;
+    }
+    .piano-key.white.active {
+      background: #38bdf8 !important;
+      color: #000 !important;
+      border-bottom-color: #0284c7 !important;
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.2), 0 0 16px rgba(56, 189, 248, 0.6);
+    }
+    .piano-key.black {
+      background: #1e293b;
+      border: 1px solid #0f172a;
+      border-bottom: 4px solid #020617;
+      color: #fff;
+    }
+    .piano-key.black:hover {
+      background: #334155;
+    }
+    .piano-key.black.active {
+      background: #f59e0b !important;
+      color: #000 !important;
+      border-bottom-color: #b45309 !important;
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 0 16px rgba(245, 158, 11, 0.7);
+    }
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      header, #player-section, #floating-controls, .no-print { display: none !important; }
+      .print-exact { border: 1px solid #000 !important; }
+      table { border-collapse: collapse !important; width: 100% !important; color: #000 !important; }
+      th, td { border: 1px solid #666 !important; padding: 6px 8px !important; color: #000 !important; }
+      svg text { fill: #000 !important; }
+      svg line, svg ellipse, svg path { stroke: #000 !important; fill: #000 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-24 custom-scroll">
+
+  <!-- 頂部導航列 -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-800 px-4 lg:px-8 py-3 shadow-xl">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="https://fun.jktai123.com/all_html.html" class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 hover:scale-105 transition-all" title="返回總目錄">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-bold text-white tracking-wide flex items-center gap-2">
+              <span>鋼琴常用十組和弦：五線譜與指法對照表</span>
+            </h1>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-mono border border-sky-500/30">C大調流行抒情進行</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-mono border border-amber-500/30">原聲串流 15%</span>
+          </div>
+          <p class="text-[11px] text-slate-400 flex items-center gap-2 mt-0.5">
+            <span>原著示範：Eunyu（으뉴의 음악시간）</span>
+            <span class="text-slate-600">•</span>
+            <span class="text-sky-400 font-mono">C - E7 - Am7 - Gm7 C7 - Fmaj7 - Em7 A7 - Dm7 - G7</span>
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs flex-wrap">
+        <button onclick="toggleModal('modal-chart')" class="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all">
+          <i class="fa-solid fa-image text-amber-400"></i>
+          <span>查看原始講義圖</span>
+        </button>
+        <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all">
+          <i class="fa-solid fa-print text-sky-400"></i>
+          <span>列印對照表</span>
+        </button>
+        <a href="https://is.gd/b2JneX" target="_blank" class="px-3 py-1.5 rounded-lg bg-pink-600/20 text-pink-300 hover:bg-pink-600/30 border border-pink-500/30 flex items-center gap-1.5 transition-all">
+          <i class="fa-brands fa-instagram"></i>
+          <span>原片 Reel 直達</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容容器 -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 pt-6 space-y-8">
+
+    <!-- 1. 影音播放器 + 實時和弦動態鍵盤 (Split Hero) -->
+    <section id="player-section" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- 左側：影片播放器 -->
+      <div class="lg:col-span-5 glass-card rounded-2xl p-4 sm:p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <h2 class="text-sm font-bold text-white tracking-wide">Eunyu 鋼琴原片教學示範</h2>
+          </div>
+          <span class="text-[11px] font-mono text-slate-400">預設音量 15%</span>
+        </div>
+
+        <!-- 影片視窗容器 (9:16 直式適配) -->
+        <div class="relative w-full rounded-xl overflow-hidden bg-black aspect-[9/16] max-h-[460px] mx-auto flex items-center justify-center border border-slate-800 shadow-2xl">
+          <video id="reelVideo" 
+                 src="https://media.jktai123.com/ig_videos/DfzcF2UINPT_Eunyu%E9%8B%BC%E7%90%B4%E7%BE%8E%E9%BA%97%E5%92%8C%E5%BC%A6%E9%80%B2%E8%A1%8C%E6%95%99%E5%AD%B8.mp4" 
+                 class="w-full h-full object-contain" 
+                 playsinline 
+                 loop 
+                 controls>
+          </video>
+        </div>
+
+        <!-- 快捷跳轉播放和弦時間軸 -->
+        <div class="space-y-1.5 pt-1">
+          <div class="text-[11px] text-slate-400 font-medium flex items-center justify-between">
+            <span>⏱️ 點擊和弦即刻跳轉對應秒數</span>
+            <span id="currentTimeDisplay" class="font-mono text-sky-400">00:00</span>
+          </div>
+          <div class="grid grid-cols-5 gap-1.5 font-mono text-xs">
+            <button onclick="seekTo(0.0, 'C')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">C</span>
+              <span class="block text-[9px] text-slate-400">0.0s</span>
+            </button>
+            <button onclick="seekTo(2.1, 'E7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">E7</span>
+              <span class="block text-[9px] text-slate-400">2.1s</span>
+            </button>
+            <button onclick="seekTo(4.2, 'Am7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">Am7</span>
+              <span class="block text-[9px] text-slate-400">4.2s</span>
+            </button>
+            <button onclick="seekTo(6.3, 'Gm7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">Gm7</span>
+              <span class="block text-[9px] text-slate-400">6.3s</span>
+            </button>
+            <button onclick="seekTo(7.4, 'C7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">C7</span>
+              <span class="block text-[9px] text-slate-400">7.4s</span>
+            </button>
+            <button onclick="seekTo(8.5, 'Fmaj7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">Fmaj7</span>
+              <span class="block text-[9px] text-slate-400">8.5s</span>
+            </button>
+            <button onclick="seekTo(10.6, 'Em7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">Em7</span>
+              <span class="block text-[9px] text-slate-400">10.6s</span>
+            </button>
+            <button onclick="seekTo(11.7, 'A7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">A7</span>
+              <span class="block text-[9px] text-slate-400">11.7s</span>
+            </button>
+            <button onclick="seekTo(12.8, 'Dm7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">Dm7</span>
+              <span class="block text-[9px] text-slate-400">12.8s</span>
+            </button>
+            <button onclick="seekTo(14.0, 'G7')" class="time-btn py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-sky-600/30 hover:border-sky-500 border border-slate-700 text-center transition-all">
+              <span class="font-bold text-white">G7</span>
+              <span class="block text-[9px] text-slate-400">14.0s</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側：互動鋼琴琴鍵視覺化 + 和弦資訊看板 -->
+      <div class="lg:col-span-7 glass-card rounded-2xl p-5 sm:p-6 space-y-6">
+        
+        <!-- 當前聚焦和弦展示卡 -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div>
+            <div class="flex items-center gap-3">
+              <span id="activeChordName" class="text-3xl sm:text-4xl font-extrabold text-sky-400 font-mono tracking-tight">C</span>
+              <div>
+                <span id="activeChordType" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-medium">C 大三和弦</span>
+                <p id="activeChordSolfege" class="text-xs text-slate-400 mt-1 font-mono">唱名：Do - Mi - Sol</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="playActiveChordSound()" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-sky-500/20 transition-all">
+              <i class="fa-solid fa-volume-high"></i>
+              <span>試聽和弦原聲 (15%)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 虛擬鋼琴鍵盤 (C4 ~ G5) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span class="font-medium flex items-center gap-1.5">
+              <i class="fa-solid fa-music text-sky-400"></i>
+              <span>右手鍵盤即時按鍵位置（含標準指法 1-2-3-4-5）</span>
+            </span>
+            <span class="text-[11px] font-mono text-slate-500">點擊任一琴鍵亦可直接發聲</span>
+          </div>
+
+          <!-- 琴鍵外框 -->
+          <div class="relative w-full overflow-x-auto pb-2">
+            <div id="pianoKeyboard" class="relative inline-flex h-44 bg-slate-900 p-2 rounded-xl border border-slate-700 shadow-inner min-w-[580px]">
+              <!-- 由 JavaScript 動態生成琴鍵，確保精確覆蓋 C4 到 G5 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 右手手指速查小指南 -->
+        <div class="grid grid-cols-5 gap-2 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-center text-xs">
+          <div class="space-y-0.5">
+            <span class="inline-block w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold leading-6 border border-sky-500/30">1</span>
+            <span class="block text-[11px] text-slate-300">大拇指</span>
+          </div>
+          <div class="space-y-0.5">
+            <span class="inline-block w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold leading-6 border border-sky-500/30">2</span>
+            <span class="block text-[11px] text-slate-300">食指</span>
+          </div>
+          <div class="space-y-0.5">
+            <span class="inline-block w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold leading-6 border border-sky-500/30">3</span>
+            <span class="block text-[11px] text-slate-300">中指</span>
+          </div>
+          <div class="space-y-0.5">
+            <span class="inline-block w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold leading-6 border border-sky-500/30">4</span>
+            <span class="block text-[11px] text-slate-300">無名指</span>
+          </div>
+          <div class="space-y-0.5">
+            <span class="inline-block w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold leading-6 border border-sky-500/30">5</span>
+            <span class="block text-[11px] text-slate-300">小指</span>
+          </div>
+        </div>
+
+        <!-- 和弦進行骨幹解析 -->
+        <div class="p-4 rounded-xl bg-sky-950/20 border border-sky-900/40 text-xs space-y-1.5">
+          <div class="font-bold text-sky-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>為什麼這套進行被稱為「美麗和弦進行 (Beautiful Progression)」？</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed text-[11.5px]">
+            這套和弦以 <strong>C 大調</strong> 為基底，運用了經典爵士與流行抒情曲常用的 <strong>副屬和弦 (Secondary Dominant)</strong> 與 <strong>二五進行 (ii-V)</strong>：
+            從 <span class="text-amber-300 font-mono">E7 (III7)</span> 強烈引導至 <span class="text-sky-300 font-mono">Am7 (vi)</span>，再透過 <span class="text-emerald-300 font-mono">Gm7 - C7</span> 二五副屬強烈傾向解決至溫暖的 <span class="text-purple-300 font-mono">Fmaj7 (IVmaj7)</span>，接著以 <span class="text-amber-300 font-mono">Em7 - A7 - Dm7 - G7</span> 完成浪漫綿密的循環，極具華麗與治癒色彩！
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. 完整十組和弦：五線譜與指法對照表 (核心大表) -->
+    <section class="glass-card rounded-2xl p-5 sm:p-7 space-y-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-2 h-5 bg-sky-500 rounded-full"></span>
+            <span>鋼琴常用十組和弦：五線譜與指法對照表</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">包含和弦組成音、高音譜號五線譜位置、簡譜唱名與右手原位標準指法（皆以高音 G 譜號原位排列標示）</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-slate-400">譜表排列：</span>
+          <span class="px-2.5 py-1 rounded-md bg-slate-800 text-sky-300 font-mono border border-slate-700">高音譜號 原位</span>
+        </div>
+      </div>
+
+      <!-- 對照表格本體 (可橫向捲動自適應) -->
+      <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-xl">
+        <table class="w-full text-left border-collapse min-w-[760px]">
+          <thead>
+            <tr class="bg-gradient-to-r from-sky-950/70 to-slate-900 border-b border-slate-700/80 text-xs font-bold text-slate-200">
+              <th class="py-3.5 px-4 w-[14%]">和弦名稱</th>
+              <th class="py-3.5 px-4 w-[18%]">組成音 / 唱名</th>
+              <th class="py-3.5 px-4 w-[28%] text-center">高音五線譜位置</th>
+              <th class="py-3.5 px-4 w-[16%] text-center">右手標準指法</th>
+              <th class="py-3.5 px-4 w-[24%]">五線譜線間位置說明</th>
+            </tr>
+          </thead>
+          <tbody id="chordTableBody" class="divide-y divide-slate-800/80 text-xs">
+            <!-- 10 組和弦將由 JS 或靜態高保真模板渲染 -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. 和弦進行流程心智圖 (Progression Flow) -->
+    <section class="glass-card rounded-2xl p-5 sm:p-7 space-y-5">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-5 bg-amber-500 rounded-full"></span>
+            <span>十組和弦演進邏輯與級數關聯圖 (Progression Mindmap)</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">點擊任一步驟即可聆聽該和弦音響並同步點亮鍵盤</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-3 text-center">
+        <!-- 步驟卡片 1 到 10 -->
+        <div onclick="selectChord('C')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-slate-500 font-mono">01 · I 級</span>
+          <div class="text-xl font-bold text-sky-400 font-mono my-1">C</div>
+          <span class="text-[10px] text-slate-400 block">主和弦啟程</span>
+        </div>
+        <div onclick="selectChord('E7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-amber-500/80 font-mono">02 · III7 級</span>
+          <div class="text-xl font-bold text-amber-400 font-mono my-1">E7</div>
+          <span class="text-[10px] text-slate-400 block">副屬傾瀉</span>
+        </div>
+        <div onclick="selectChord('Am7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-slate-500 font-mono">03 · vi 級</span>
+          <div class="text-xl font-bold text-sky-400 font-mono my-1">Am7</div>
+          <span class="text-[10px] text-slate-400 block">關係小調</span>
+        </div>
+        <div onclick="selectChord('Gm7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-emerald-500/80 font-mono">04 · ii/IV</span>
+          <div class="text-xl font-bold text-emerald-400 font-mono my-1">Gm7</div>
+          <span class="text-[10px] text-slate-400 block">暫借色彩</span>
+        </div>
+        <div onclick="selectChord('C7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-emerald-500/80 font-mono">05 · V7/IV</span>
+          <div class="text-xl font-bold text-emerald-400 font-mono my-1">C7</div>
+          <span class="text-[10px] text-slate-400 block">轉向下屬</span>
+        </div>
+        <div onclick="selectChord('Fmaj7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-purple-400 font-mono">06 · IVmaj7</span>
+          <div class="text-xl font-bold text-purple-400 font-mono my-1">Fmaj7</div>
+          <span class="text-[10px] text-slate-400 block">浪漫極點</span>
+        </div>
+        <div onclick="selectChord('Em7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-slate-500 font-mono">07 · iii 級</span>
+          <div class="text-xl font-bold text-sky-400 font-mono my-1">Em7</div>
+          <span class="text-[10px] text-slate-400 block">中音和弦</span>
+        </div>
+        <div onclick="selectChord('A7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-amber-500/80 font-mono">08 · VI7 級</span>
+          <div class="text-xl font-bold text-amber-400 font-mono my-1">A7</div>
+          <span class="text-[10px] text-slate-400 block">引導至 ii</span>
+        </div>
+        <div onclick="selectChord('Dm7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-slate-500 font-mono">09 · ii 級</span>
+          <div class="text-xl font-bold text-sky-400 font-mono my-1">Dm7</div>
+          <span class="text-[10px] text-slate-400 block">二五就緒</span>
+        </div>
+        <div onclick="selectChord('G7')" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500 hover:scale-105 transition-all">
+          <span class="text-[10px] text-rose-500/80 font-mono">10 · V7 級</span>
+          <div class="text-xl font-bold text-rose-400 font-mono my-1">G7</div>
+          <span class="text-[10px] text-slate-400 block">終止循環</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 原始圖檔彈出檢視視窗 Modal -->
+  <div id="modal-chart" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full max-h-[90vh] bg-slate-900 rounded-2xl border border-slate-700 overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between px-5 py-3 border-b border-slate-800">
+        <h3 class="font-bold text-sm text-white flex items-center gap-2">
+          <i class="fa-solid fa-file-invoice text-amber-400"></i>
+          <span>原始教材圖：鋼琴常用十組和弦五線譜與指法對照表</span>
+        </h3>
+        <button onclick="toggleModal('modal-chart')" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-4 overflow-y-auto flex-1 flex items-center justify-center bg-slate-950">
+        <img src="https://media.jktai123.com/ig_videos/piano_chords_chart.jpg" alt="鋼琴常用十組和弦對照表" class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl">
+      </div>
+      <div class="p-3 border-t border-slate-800 text-center text-xs text-slate-400 flex items-center justify-between px-6">
+        <span>來源：社群精選琴譜教學教材</span>
+        <a href="https://media.jktai123.com/ig_videos/piano_chords_chart.jpg" target="_blank" class="text-sky-400 hover:underline">開新視窗下載原圖</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript 核心互動腳本 -->
+  <script>
+    // 10 組和弦完整數據字典
+    const CHORDS_DATA = [
+      {
+        id: 'C',
+        name: 'C',
+        type: 'C 大三和弦',
+        notes: ['C4', 'E4', 'G4'],
+        solfege: 'Do - Mi - Sol',
+        fingering: '1 - 3 - 5',
+        fingersMap: { 'C4': 1, 'E4': 3, 'G4': 5 },
+        positionDesc: '下加一線、第一線、第二線',
+        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+        svgNotes: [
+          { note: 'C4', y: 70, ledger: true, name: 'C4' },
+          { note: 'E4', y: 60, ledger: false, name: 'E4' },
+          { note: 'G4', y: 50, ledger: false, name: 'G4' }
+        ]
+      },
+      {
+        id: 'E7',
+        name: 'E7',
+        type: 'E 屬七和弦',
+        notes: ['E4', 'G#4', 'B4', 'D5'],
+        solfege: 'Mi - #Sol - Si - Re',
+        fingering: '1 - 2 - 3 - 5 (或 1-2-4-5)',
+        fingersMap: { 'E4': 1, 'G#4': 2, 'B4': 3, 'D5': 5 },
+        positionDesc: '第一線、第二線#、第三線、第四線',
+        badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+        svgNotes: [
+          { note: 'E4', y: 60, ledger: false, name: 'E4' },
+          { note: 'G#4', y: 50, ledger: false, sharp: true, name: 'G♯4' },
+          { note: 'B4', y: 40, ledger: false, name: 'B4' },
+          { note: 'D5', y: 30, ledger: false, name: 'D5' }
+        ]
+      },
+      {
+        id: 'Am7',
+        name: 'Am7',
+        type: 'A 小七和弦',
+        notes: ['A4', 'C5', 'E5', 'G5'],
+        solfege: 'La - Do - Mi - Sol',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'A4': 1, 'C5': 2, 'E5': 3, 'G5': 5 },
+        positionDesc: '第二間、第三間、第四間、上加一間',
+        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+        svgNotes: [
+          { note: 'A4', y: 45, ledger: false, name: 'A4' },
+          { note: 'C5', y: 35, ledger: false, name: 'C5' },
+          { note: 'E5', y: 25, ledger: false, name: 'E5' },
+          { note: 'G5', y: 15, ledger: false, name: 'G5' }
+        ]
+      },
+      {
+        id: 'Gm7',
+        name: 'Gm7',
+        type: 'G 小七和弦',
+        notes: ['G4', 'Bb4', 'D5', 'F5'],
+        solfege: 'Sol - ♭Si - Re - Fa',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'G4': 1, 'Bb4': 2, 'D5': 3, 'F5': 5 },
+        positionDesc: '第二線、第三線♭、第四線、第五線',
+        badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+        svgNotes: [
+          { note: 'G4', y: 50, ledger: false, name: 'G4' },
+          { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' },
+          { note: 'D5', y: 30, ledger: false, name: 'D5' },
+          { note: 'F5', y: 20, ledger: false, name: 'F5' }
+        ]
+      },
+      {
+        id: 'C7',
+        name: 'C7',
+        type: 'C 屬七和弦',
+        notes: ['C4', 'E4', 'G4', 'Bb4'],
+        solfege: 'Do - Mi - Sol - ♭Si',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'C4': 1, 'E4': 2, 'G4': 3, 'Bb4': 5 },
+        positionDesc: '下加一線、第一線、第二線、第三線♭',
+        badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+        svgNotes: [
+          { note: 'C4', y: 70, ledger: true, name: 'C4' },
+          { note: 'E4', y: 60, ledger: false, name: 'E4' },
+          { note: 'G4', y: 50, ledger: false, name: 'G4' },
+          { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' }
+        ]
+      },
+      {
+        id: 'Fmaj7',
+        name: 'Fmaj7',
+        type: 'F 大七和弦',
+        notes: ['F4', 'A4', 'C5', 'E5'],
+        solfege: 'Fa - La - Do - Mi',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'F4': 1, 'A4': 2, 'C5': 3, 'E5': 5 },
+        positionDesc: '第一間、第二間、第三間、第四間',
+        badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+        svgNotes: [
+          { note: 'F4', y: 55, ledger: false, name: 'F4' },
+          { note: 'A4', y: 45, ledger: false, name: 'A4' },
+          { note: 'C5', y: 35, ledger: false, name: 'C5' },
+          { note: 'E5', y: 25, ledger: false, name: 'E5' }
+        ]
+      },
+      {
+        id: 'Em7',
+        name: 'Em7',
+        type: 'E 小七和弦',
+        notes: ['E4', 'G4', 'B4', 'D5'],
+        solfege: 'Mi - Sol - Si - Re',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'E4': 1, 'G4': 2, 'B4': 3, 'D5': 5 },
+        positionDesc: '第一線、第二線、第三線、第四線',
+        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+        svgNotes: [
+          { note: 'E4', y: 60, ledger: false, name: 'E4' },
+          { note: 'G4', y: 50, ledger: false, name: 'G4' },
+          { note: 'B4', y: 40, ledger: false, name: 'B4' },
+          { note: 'D5', y: 30, ledger: false, name: 'D5' }
+        ]
+      },
+      {
+        id: 'A7',
+        name: 'A7',
+        type: 'A 屬七和弦',
+        notes: ['A4', 'C#5', 'E5', 'G5'],
+        solfege: 'La - ♯Do - Mi - Sol',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'A4': 1, 'C#5': 2, 'E5': 3, 'G5': 5 },
+        positionDesc: '第二間、第三間♯、第四間、上加一間',
+        badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+        svgNotes: [
+          { note: 'A4', y: 45, ledger: false, name: 'A4' },
+          { note: 'C#5', y: 35, ledger: false, sharp: true, name: 'C♯5' },
+          { note: 'E5', y: 25, ledger: false, name: 'E5' },
+          { note: 'G5', y: 15, ledger: false, name: 'G5' }
+        ]
+      },
+      {
+        id: 'Dm7',
+        name: 'Dm7',
+        type: 'D 小七和弦',
+        notes: ['D4', 'F4', 'A4', 'C5'],
+        solfege: 'Re - Fa - La - Do',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'D4': 1, 'F4': 2, 'A4': 3, 'C5': 5 },
+        positionDesc: '下加一間、第一間、第二間、第三間',
+        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+        svgNotes: [
+          { note: 'D4', y: 65, ledger: false, name: 'D4' },
+          { note: 'F4', y: 55, ledger: false, name: 'F4' },
+          { note: 'A4', y: 45, ledger: false, name: 'A4' },
+          { note: 'C5', y: 35, ledger: false, name: 'C5' }
+        ]
+      },
+      {
+        id: 'G7',
+        name: 'G7',
+        type: 'G 屬七和弦',
+        notes: ['G4', 'B4', 'D5', 'F5'],
+        solfege: 'Sol - Si - Re - Fa',
+        fingering: '1 - 2 - 3 - 5',
+        fingersMap: { 'G4': 1, 'B4': 2, 'D5': 3, 'F5': 5 },
+        positionDesc: '第二線、第三線、第四線、第五線',
+        badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+        svgNotes: [
+          { note: 'G4', y: 50, ledger: false, name: 'G4' },
+          { note: 'B4', y: 40, ledger: false, name: 'B4' },
+          { note: 'D5', y: 30, ledger: false, name: 'D5' },
+          { note: 'F5', y: 20, ledger: false, name: 'F5' }
+        ]
+      }
+    ];
+
+    // 音符頻率表 (Web Audio API)
+    const NOTE_FREQS = {
+      'C4': 261.63,
+      'C#4': 277.18, 'Db4': 277.18,
+      'D4': 293.66,
+      'D#4': 311.13, 'Eb4': 311.13,
+      'E4': 329.63,
+      'F4': 349.23,
+      'F#4': 369.99,
+      'G4': 392.00,
+      'G#4': 415.30, 'Ab4': 415.30,
+      'A4': 440.00,
+      'A#4': 466.16, 'Bb4': 466.16,
+      'B4': 493.88,
+      'C5': 523.25,
+      'C#5': 554.37, 'Db5': 554.37,
+      'D5': 587.33,
+      'D#5': 622.25, 'Eb5': 622.25,
+      'E5': 659.25,
+      'F5': 698.46,
+      'F#5': 739.99,
+      'G5': 783.99,
+      'A5': 880.00
+    };
+
+    let currentChordId = 'C';
+    let audioCtx = null;
+
+    // 初始化與聲音設置 (嚴格 15% 音量)
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // 播放和弦 (多振盪器鋼琴泛音模擬，音量 15%)
+    function playChord(noteNames) {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const masterGain = ctx.createGain();
+      // 依規範預設音量 15%
+      masterGain.gain.setValueAtTime(0.15, now);
+      masterGain.connect(ctx.destination);
+
+      noteNames.forEach((n, idx) => {
+        const freq = NOTE_FREQS[n];
+        if (!freq) return;
+
+        // 基頻
+        const osc = ctx.createOscillator();
+        const noteGain = ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.02);
+
+        // 柔和的琴弦敲擊與衰減封套 (ADSR)
+        noteGain.gain.setValueAtTime(0, now + idx * 0.02);
+        noteGain.gain.linearRampToValueAtTime(0.7, now + idx * 0.02 + 0.03);
+        noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.02 + 1.6);
+
+        osc.connect(noteGain);
+        noteGain.connect(masterGain);
+
+        osc.start(now + idx * 0.02);
+        osc.stop(now + idx * 0.02 + 1.65);
+      });
+    }
+
+    // 產生五線譜 SVG
+    function renderStaffSVG(svgNotes) {
+      // 5條線 y: 20(F5), 30(D5), 40(B4), 50(G4), 60(E4)
+      let svg = `
+        <svg viewBox="0 0 170 95" class="w-40 sm:w-44 h-24 mx-auto overflow-visible select-none">
+          <!-- 5條五線譜本體 (間距 10px) -->
+          <line x1="10" y1="20" x2="160" y2="20" stroke="#475569" stroke-width="1.2"/>
+          <line x1="10" y1="30" x2="160" y2="30" stroke="#475569" stroke-width="1.2"/>
+          <line x1="10" y1="40" x2="160" y2="40" stroke="#475569" stroke-width="1.2"/>
+          <line x1="10" y1="50" x2="160" y2="50" stroke="#475569" stroke-width="1.2"/>
+          <line x1="10" y1="60" x2="160" y2="60" stroke="#475569" stroke-width="1.2"/>
+
+          <!-- 側邊終止線 -->
+          <line x1="160" y1="20" x2="160" y2="60" stroke="#64748b" stroke-width="1.5"/>
+
+          <!-- 高音譜號 Treble Clef 向量簡化精美呈現 -->
+          <text x="14" y="58" font-family="'Noto Serif TC', serif" font-size="44" fill="#38bdf8" opacity="0.9">𝄞</text>
+      `;
+
+      // 橫向步進繪製各音符
+      const startX = 64;
+      const stepX = 23;
+
+      svgNotes.forEach((n, i) => {
+        const x = startX + i * stepX;
+        const y = n.y;
+
+        // 若有下加一線 (如 C4 at y=70)
+        if (n.ledger) {
+          svg += `<line x1="${x - 9}" y1="70" x2="${x + 9}" y2="70" stroke="#38bdf8" stroke-width="1.4"/>`;
+        }
+
+        // 升號 #
+        if (n.sharp) {
+          svg += `<text x="${x - 11}" y="${y + 5}" font-family="monospace" font-size="14" font-weight="bold" fill="#f59e0b">♯</text>`;
+        }
+
+        // 降號 b
+        if (n.flat) {
+          svg += `<text x="${x - 10}" y="${y + 5}" font-family="monospace" font-size="14" font-weight="bold" fill="#10b981">♭</text>`;
+        }
+
+        // 音符實心橢圓
+        svg += `
+          <g class="cursor-pointer hover:opacity-80">
+            <ellipse cx="${x}" cy="${y}" rx="4.8" ry="3.8" fill="#38bdf8" transform="rotate(-25 ${x} ${y})"/>
+            <!-- 符幹 -->
+            <line x1="${x + 4.2}" y1="${y}" x2="${x + 4.2}" y2="${y - 25}" stroke="#38bdf8" stroke-width="1.3"/>
+            <!-- 音名標註 (下方小字) -->
+            <text x="${x}" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold" fill="#94a3b8">${n.name}</text>
+          </g>
+        `;
+      });
+
+      svg += `</svg>`;
+      return svg;
+    }
+
+    // 動態建構虛擬鋼琴鍵盤 (C4 ~ G5)
+    function buildPianoKeyboard() {
+      const container = document.getElementById('pianoKeyboard');
+      container.innerHTML = '';
+
+      // 白鍵定義 (C4 到 G5，共 12 個白鍵)
+      const whiteKeys = [
+        { note: 'C4', name: 'C4' },
+        { note: 'D4', name: 'D4' },
+        { note: 'E4', name: 'E4' },
+        { note: 'F4', name: 'F4' },
+        { note: 'G4', name: 'G4' },
+        { note: 'A4', name: 'A4' },
+        { note: 'B4', name: 'B4' },
+        { note: 'C5', name: 'C5' },
+        { note: 'D5', name: 'D5' },
+        { note: 'E5', name: 'E5' },
+        { note: 'F5', name: 'F5' },
+        { note: 'G5', name: 'G5' }
+      ];
+
+      // 黑鍵定義 (相對於白鍵索引的半音)
+      const blackKeys = [
+        { note: 'C#4', name: 'C#4', leftIndex: 0 },
+        { note: 'D#4', name: 'Eb4', leftIndex: 1 },
+        { note: 'F#4', name: 'F#4', leftIndex: 3 },
+        { note: 'G#4', name: 'Ab4', leftIndex: 4 },
+        { note: 'A#4', name: 'Bb4', leftIndex: 5 },
+        { note: 'C#5', name: 'C#5', leftIndex: 7 },
+        { note: 'D#5', name: 'Eb5', leftIndex: 8 },
+        { note: 'F#5', name: 'F#5', leftIndex: 10 }
+      ];
+
+      const whiteWidth = 46; // 每個白鍵寬度 px
+
+      // 先排白鍵
+      whiteKeys.forEach((wk, idx) => {
+        const keyEl = document.createElement('div');
+        keyEl.className = 'piano-key white relative w-[46px] h-full rounded-b-md flex flex-col justify-end pb-2 items-center text-[10px] font-mono font-bold';
+        keyEl.id = `key-${wk.note}`;
+        keyEl.setAttribute('data-note', wk.note);
+        keyEl.innerHTML = `
+          <span class="finger-badge hidden w-5 h-5 rounded-full bg-slate-950 text-white font-mono font-bold text-[11px] items-center justify-center mb-1 shadow"></span>
+          <span class="note-label text-slate-500">${wk.name}</span>
+        `;
+        keyEl.onclick = () => playChord([wk.note]);
+        container.appendChild(keyEl);
+      });
+
+      // 再覆蓋黑鍵
+      blackKeys.forEach(bk => {
+        const keyEl = document.createElement('div');
+        keyEl.className = 'piano-key black absolute z-10 w-[28px] h-28 rounded-b-sm flex flex-col justify-end pb-2 items-center text-[9px] font-mono font-bold';
+        keyEl.id = `key-${bk.note}`;
+        keyEl.setAttribute('data-note', bk.note);
+        // 位置定位：每個白鍵寬度 46px + 內距 8px
+        const leftPos = 8 + (bk.leftIndex + 1) * whiteWidth - 14;
+        keyEl.style.left = `${leftPos}px`;
+        keyEl.innerHTML = `
+          <span class="finger-badge hidden w-4 h-4 rounded-full bg-slate-950 text-white font-mono font-bold text-[9px] items-center justify-center mb-1 shadow"></span>
+          <span class="note-label text-slate-400 text-[8px]">${bk.name}</span>
+        `;
+        keyEl.onclick = (e) => {
+          e.stopPropagation();
+          playChord([bk.note]);
+        };
+        container.appendChild(keyEl);
+      });
+    }
+
+    // 渲染對照大表
+    function renderChordsTable() {
+      const tbody = document.getElementById('chordTableBody');
+      tbody.innerHTML = '';
+
+      CHORDS_DATA.forEach((chord, idx) => {
+        const tr = document.createElement('tr');
+        tr.id = `row-${chord.id}`;
+        tr.className = `cursor-pointer transition-all hover:bg-sky-950/30 ${idx % 2 === 0 ? 'bg-slate-900/40' : 'bg-slate-900/10'}`;
+        tr.onclick = () => selectChord(chord.id);
+
+        tr.innerHTML = `
+          <!-- 和弦名稱 -->
+          <td class="py-3.5 px-4 font-mono">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg font-black text-sky-400">${chord.name}</span>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5">${chord.type}</div>
+          </td>
+
+          <!-- 組成音 / 唱名 -->
+          <td class="py-3.5 px-4">
+            <div class="font-mono font-bold text-slate-200 text-sm tracking-wide">${chord.notes.join(' - ')}</div>
+            <div class="text-[11px] text-slate-400 font-mono mt-0.5">${chord.solfege}</div>
+          </td>
+
+          <!-- 高音五線譜位置 -->
+          <td class="py-2 px-2 text-center bg-slate-950/30">
+            ${renderStaffSVG(chord.svgNotes)}
+          </td>
+
+          <!-- 右手標準指法 -->
+          <td class="py-3.5 px-4 text-center">
+            <span class="inline-block px-3 py-1.5 rounded-lg bg-slate-800 text-amber-300 font-mono font-bold text-sm tracking-wider border border-amber-500/20 shadow-sm">
+              ${chord.fingering}
+            </span>
+          </td>
+
+          <!-- 五線譜線間位置說明 -->
+          <td class="py-3.5 px-4 text-slate-300 text-[11.5px] leading-relaxed">
+            ${chord.positionDesc}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 選擇並聚焦特定和弦
+    function selectChord(chordId, shouldPlaySound = true) {
+      currentChordId = chordId;
+      const data = CHORDS_DATA.find(c => c.id === chordId);
+      if (!data) return;
+
+      // 更新頂部展示卡
+      document.getElementById('activeChordName').textContent = data.name;
+      document.getElementById('activeChordType').textContent = data.type;
+      document.getElementById('activeChordSolfege').textContent = `唱名：${data.solfege} ｜ 標準指法：${data.fingering}`;
+
+      // 醒目提示表格行
+      document.querySelectorAll('#chordTableBody tr').forEach(row => {
+        row.classList.remove('active-chord-card', 'bg-sky-950/40');
+      });
+      const targetRow = document.getElementById(`row-${chordId}`);
+      if (targetRow) {
+        targetRow.classList.add('active-chord-card');
+      }
+
+      // 琴鍵高亮亮起與指法標籤顯示
+      document.querySelectorAll('.piano-key').forEach(k => {
+        k.classList.remove('active');
+        const badge = k.querySelector('.finger-badge');
+        if (badge) {
+          badge.classList.add('hidden');
+          badge.classList.remove('flex');
+          badge.textContent = '';
+        }
+      });
+
+      // 依指法對應字典標記
+      data.notes.forEach(noteName => {
+        // 標準化黑鍵別名 (例如 G#4 = Ab4, Bb4 = A#4, C#5 = Db5)
+        let keyEl = document.getElementById(`key-${noteName}`);
+        if (!keyEl && noteName.includes('#')) {
+          keyEl = document.querySelector(`[data-note="${noteName}"]`);
+        }
+        if (!keyEl && noteName.includes('b')) {
+          // 查找同音異名
+          const altMap = { 'Bb4': 'A#4', 'Eb4': 'D#4', 'Ab4': 'G#4', 'Db5': 'C#5', 'Eb5': 'D#5' };
+          const alt = altMap[noteName];
+          if (alt) keyEl = document.getElementById(`key-${alt}`);
+        }
+
+        if (keyEl) {
+          keyEl.classList.add('active');
+          const fingerNum = data.fingersMap[noteName];
+          const badge = keyEl.querySelector('.finger-badge');
+          if (badge && fingerNum) {
+            badge.textContent = fingerNum;
+            badge.classList.remove('hidden');
+            badge.classList.add('flex');
+          }
+        }
+      });
+
+      if (shouldPlaySound) {
+        playChord(data.notes);
+      }
+    }
+
+    function playActiveChordSound() {
+      selectChord(currentChordId, true);
+    }
+
+    // 影片跳轉控制
+    function seekTo(seconds, chordId) {
+      const vid = document.getElementById('reelVideo');
+      vid.currentTime = seconds;
+      vid.play();
+      selectChord(chordId, true);
+    }
+
+    // 彈出視窗切換
+    function toggleModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.toggle('hidden');
+    }
+
+    // 頁面初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      // 依規範影片預設音量 15%
+      const vid = document.getElementById('reelVideo');
+      if (vid) {
+        vid.volume = 0.15;
+        vid.addEventListener('timeupdate', () => {
+          const cur = vid.currentTime;
+          const min = Math.floor(cur / 60).toString().padStart(2, '0');
+          const sec = (cur % 60).toFixed(1).toString().padStart(4, '0');
+          document.getElementById('currentTimeDisplay').textContent = `${min}:${sec}`;
+        });
+      }
+
+      // 構建鍵盤與表格
+      buildPianoKeyboard();
+      renderChordsTable();
+
+      // 預設選中 C 和弦
+      selectChord('C', false);
+    });
+  </script>
+</body>
+</html>
