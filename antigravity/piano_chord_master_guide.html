@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎹 鋼琴和弦全攻略：和弦命名規則・12大調順階總表・流行黃金進行與伴奏實戰手冊</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            serif: ['"Noto Serif TC"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: #090d16;
+      color: #e2e8f0;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(18, 27, 49, 0.82);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateY(-2px);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+    .piano-key {
+      user-select: none;
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+    .piano-key.white {
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-bottom: 4px solid #94a3b8;
+    }
+    .piano-key.white:active, .piano-key.white.active {
+      background: #38bdf8 !important;
+      color: #000 !important;
+      border-bottom-color: #0284c7 !important;
+      transform: translateY(2px);
+    }
+    .piano-key.black {
+      background: #1e293b;
+      border: 1px solid #0f172a;
+      border-bottom: 4px solid #020617;
+      color: #fff;
+    }
+    .piano-key.black:active, .piano-key.black.active {
+      background: #f59e0b !important;
+      color: #000 !important;
+      border-bottom-color: #b45309 !important;
+      transform: translateY(2px);
+    }
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      header, .no-print { display: none !important; }
+      .glass-card { background: #fff !important; border: 1px solid #ccc !important; box-shadow: none !important; color: #000 !important; }
+      table { border-collapse: collapse !important; width: 100% !important; color: #000 !important; }
+      th, td { border: 1px solid #999 !important; padding: 6px 8px !important; color: #000 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-28 custom-scroll selection:bg-sky-500 selection:text-black">
+
+  <!-- 頂部常駐導航列 -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-800 px-4 lg:px-8 py-3.5 shadow-xl">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="https://fun.jktai123.com/all_html.html" class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 hover:scale-105 transition-all" title="返回總目錄">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-bold text-white tracking-wide flex items-center gap-2">
+              <span>鋼琴和弦全攻略實戰手冊</span>
+            </h1>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-mono border border-sky-500/30">系統化樂理・伴奏寶典</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono border border-emerald-500/30">Web Audio 15%</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-0.5">和弦命名規則 ｜ 12大調順階總表 ｜ 1645 / 4536251 進行 ｜ 左手伴奏型 ｜ 《後來》副歌實戰</p>
+        </div>
+      </div>
+      
+      <!-- 快速跳轉錨點與列印 -->
+      <div class="flex items-center gap-2 text-xs flex-wrap">
+        <a href="#sec-naming" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">和弦結構</a>
+        <a href="#sec-12keys" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">12大調總表</a>
+        <a href="#sec-progressions" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">黃金進行</a>
+        <a href="#sec-left-hand" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">左手伴奏型</a>
+        <a href="#sec-houlai" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">《後來》實戰</a>
+        <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-sky-600/30 hover:bg-sky-600/50 text-sky-300 border border-sky-500/40 flex items-center gap-1.5 transition-all">
+          <i class="fa-solid fa-print"></i>
+          <span>列印</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容容器 -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 pt-6 space-y-10">
+
+    <!-- 頂部精華速查看板 (Hero Highlight) -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-sky-500/20 bg-gradient-to-br from-slate-900 via-sky-950/20 to-slate-900 relative overflow-hidden">
+      <div class="relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>鋼琴簡譜與五線譜伴奏・三分鐘核心通則</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          掌握「根音 + 音程結構」，推導全鍵盤所有和弦
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+            <div class="font-bold text-sky-400 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+              <span>大調順階口訣</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed font-mono">
+              三和弦：<strong class="text-amber-400">大大、小小、大大、減</strong><br>
+              七和弦：<strong>大七、小七、小七、大七、屬七、小七、半減七</strong>
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+            <div class="font-bold text-emerald-400 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>左手清澈伴奏原則</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              低音區避免彈密集 1-3-5（聲音混濁），改彈 <strong class="text-emerald-400 font-mono">1 - 5 - 1̇（根音 - 五音 - 高八度根音）</strong> 開放八度五度結構。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+            <div class="font-bold text-purple-400 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+              <span>延音踏板鐵律</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              <strong>音後踏板</strong>：「右腳踩、左手彈、換和弦瞬間放開再踩」。兩拍換一和弦時，踏板每兩拍必換，嚴防低音糊成一團。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 一、和弦組成與命名核心規則 -->
+    <section id="sec-naming" class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-2 h-5 bg-sky-500 rounded-full"></span>
+            <span>【一】和弦組成與命名核心規則</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">三和弦、七和弦、掛留音、加音與轉位分數和弦速讀原理</p>
+        </div>
+        <span class="text-xs font-mono text-sky-400 px-2.5 py-1 rounded bg-sky-950/40 border border-sky-800/40">點擊和弦可試聽</span>
+      </div>
+
+      <!-- 基礎三和弦卡片組 -->
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+          <i class="fa-solid fa-shapes text-amber-400"></i>
+          <span>1. 基礎三和弦（Triads，1 - 3 - 5 疊加）</span>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <!-- 大三和弦 -->
+          <div onclick="playSampleChord(['C4','E4','G4'])" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 transition-all space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-black text-sky-400 font-mono">C (Major)</span>
+              <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 text-[10px]">大三和弦</span>
+            </div>
+            <p class="text-slate-300 font-mono">根音 + 大三度(4半音) + 小三度(3半音)</p>
+            <div class="text-[11px] text-slate-400 font-mono">音符：Do - Mi - Sol (1 - 3 - 5)</div>
+            <div class="text-[11px] text-amber-300/90">聽感：明亮、穩定、開朗</div>
+          </div>
+          <!-- 小三和弦 -->
+          <div onclick="playSampleChord(['A3','C4','E4'])" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 transition-all space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-black text-purple-400 font-mono">Am (Minor)</span>
+              <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px]">小三和弦</span>
+            </div>
+            <p class="text-slate-300 font-mono">根音 + 小三度(3半音) + 大三度(4半音)</p>
+            <div class="text-[11px] text-slate-400 font-mono">音符：La - Do - Mi (6 - 1 - 3)</div>
+            <div class="text-[11px] text-amber-300/90">聽感：柔和、憂鬱、深沉</div>
+          </div>
+          <!-- 增三和弦 -->
+          <div onclick="playSampleChord(['C4','E4','G#4'])" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500 transition-all space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-black text-amber-400 font-mono">Caug (+)</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px]">增三和弦</span>
+            </div>
+            <p class="text-slate-300 font-mono">根音 + 大三度(4半音) + 大三度(4半音)</p>
+            <div class="text-[11px] text-slate-400 font-mono">音符：Do - Mi - ♯Sol (1 - 3 - ♯5)</div>
+            <div class="text-[11px] text-amber-300/90">聽感：懸疑、向外擴張感</div>
+          </div>
+          <!-- 減三和弦 -->
+          <div onclick="playSampleChord(['B3','D4','F4'])" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500 transition-all space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-black text-rose-400 font-mono">Bdim (°)</span>
+              <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[10px]">減三和弦</span>
+            </div>
+            <p class="text-slate-300 font-mono">根音 + 小三度(3半音) + 小三度(3半音)</p>
+            <div class="text-[11px] text-slate-400 font-mono">音符：Si - Re - Fa (7 - 2 - 4)</div>
+            <div class="text-[11px] text-rose-300/90">聽感：緊張、強烈需要解決</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 常見七和弦卡片組 -->
+      <div class="space-y-3 pt-2">
+        <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-sky-400"></i>
+          <span>2. 常見七和弦（7th Chords，疊加七音 7，流行/爵士靈魂）</span>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+          <div onclick="playSampleChord(['F4','A4','C5','E5'])" class="cursor-pointer p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500 transition-all space-y-1.5">
+            <div class="font-bold text-purple-400 font-mono text-base">Fmaj7 (M7)</div>
+            <div class="text-[10px] text-purple-300">大三和弦 + 大七度(11半音)</div>
+            <div class="font-mono text-[11px] text-slate-300">Fa - La - Do - Mi (4-6-1-3)</div>
+            <div class="text-[10.5px] text-slate-400">特色：夢幻、極致現代抒情感</div>
+          </div>
+          <div onclick="playSampleChord(['G4','B4','D5','F5'])" class="cursor-pointer p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500 transition-all space-y-1.5">
+            <div class="font-bold text-rose-400 font-mono text-base">G7 (屬七)</div>
+            <div class="text-[10px] text-rose-300">大三和弦 + 小七度(10半音)</div>
+            <div class="font-mono text-[11px] text-slate-300">Sol - Si - Re - Fa (5-7-2-4)</div>
+            <div class="text-[10.5px] text-slate-400">特色：三全音張力，強烈接回 C</div>
+          </div>
+          <div onclick="playSampleChord(['A4','C5','E5','G5'])" class="cursor-pointer p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500 transition-all space-y-1.5">
+            <div class="font-bold text-sky-400 font-mono text-base">Am7 (小七)</div>
+            <div class="text-[10px] text-sky-300">小三和弦 + 小七度(10半音)</div>
+            <div class="font-mono text-[11px] text-slate-300">La - Do - Mi - Sol (6-1-3-5)</div>
+            <div class="text-[10.5px] text-slate-400">特色：圓潤不刺耳，流行樂銜接王</div>
+          </div>
+          <div onclick="playSampleChord(['B3','D4','F4','A4'])" class="cursor-pointer p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500 transition-all space-y-1.5">
+            <div class="font-bold text-amber-400 font-mono text-base">Bm7b5 (ø7)</div>
+            <div class="text-[10px] text-amber-300">減三和弦 + 小七度 (半減七)</div>
+            <div class="font-mono text-[11px] text-slate-300">Si - Re - Fa - La (7-2-4-6)</div>
+            <div class="text-[10.5px] text-slate-400">特色：小調二五一必備二級</div>
+          </div>
+          <div onclick="playSampleChord(['B3','D4','F4','Ab4'])" class="cursor-pointer p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-400 transition-all space-y-1.5">
+            <div class="font-bold text-rose-400 font-mono text-base">Bdim7 (°7)</div>
+            <div class="text-[10px] text-rose-300">減三和弦 + 減七度(9半音)</div>
+            <div class="font-mono text-[11px] text-slate-300">Si - Re - Fa - ♭La</div>
+            <div class="text-[10.5px] text-slate-400">特色：完全對稱，半音過渡神器</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 掛留、加音與轉位分數和弦 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <span class="font-bold text-sky-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-hourglass-half"></i>
+            <span>掛留和弦 (sus4 / sus2)</span>
+          </span>
+          <p class="text-slate-300 leading-relaxed text-[11.5px]">
+            將原本的三音暫換為四音或二音。例如 <span class="font-mono text-amber-300">Csus4 (1-4-5)</span>、<span class="font-mono text-sky-300">Csus2 (1-2-5)</span>，懸空製造期待感後通常接回原三和弦。
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <span class="font-bold text-emerald-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-plus"></i>
+            <span>加音和弦 (add9)</span>
+          </span>
+          <p class="text-slate-300 leading-relaxed text-[11.5px]">
+            在三和弦上直接疊加第九音（高八度的 2），不含七音。例如 <span class="font-mono text-emerald-300">Cadd9 (1-3-5-2)</span>，極富現代都會民謠清新感。
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <span class="font-bold text-purple-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-slash"></i>
+            <span>轉位 / 分數和弦 (Slash Chords)</span>
+          </span>
+          <p class="text-slate-300 leading-relaxed text-[11.5px]">
+            如 <span class="font-mono text-purple-300">C/E</span>、<span class="font-mono text-purple-300">G/B</span>：斜線左邊為<strong>「右手彈奏和弦」</strong>，斜線右邊為<strong>「左手最低 Bass 音」</strong>，讓低音達成 1 → 7 → 6 順暢下行。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 二、12 個大調順階和弦速查總表 -->
+    <section id="sec-12keys" class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-2 h-5 bg-emerald-500 rounded-full"></span>
+            <span>【二】12 個大調順階三和弦與七和弦速查總表</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">點擊下方調性標籤，即可動態切換並直接查看該調 1~7 級所有順階和弦</p>
+        </div>
+        
+        <!-- 快速切換升號調 / 降號調 -->
+        <div class="flex items-center gap-1.5 flex-wrap text-xs">
+          <button onclick="filterKeyGroup('all')" id="btn-group-all" class="px-2.5 py-1 rounded bg-sky-500 text-slate-950 font-bold transition-all">全部調性 (12)</button>
+          <button onclick="filterKeyGroup('sharp')" id="btn-group-sharp" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all">無升降與升號調 (6)</button>
+          <button onclick="filterKeyGroup('flat')" id="btn-group-flat" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all">降號調 (6)</button>
+        </div>
+      </div>
+
+      <!-- 調性標籤選擇器 (12 Keys Buttons) -->
+      <div id="keySelectorContainer" class="flex items-center gap-2 overflow-x-auto pb-2 custom-scroll text-xs font-mono">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+
+      <!-- 當前選中大調的順階詳解卡 (動態大卡) -->
+      <div id="activeKeyDetailCard" class="p-5 rounded-xl bg-slate-900/90 border border-sky-500/30 space-y-4">
+        <!-- 由 JavaScript 即時渲染 -->
+      </div>
+
+      <!-- 12 大調全量對照滾動表格 -->
+      <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-xl">
+        <table class="w-full text-left border-collapse min-w-[850px] text-xs">
+          <thead>
+            <tr class="bg-gradient-to-r from-emerald-950/70 to-slate-900 border-b border-slate-700 font-bold text-slate-200">
+              <th class="py-3 px-3.5 w-[14%]">大調 (Key)</th>
+              <th class="py-3 px-3 text-center">1 級 (I)</th>
+              <th class="py-3 px-3 text-center">2 級 (ii)</th>
+              <th class="py-3 px-3 text-center">3 級 (iii)</th>
+              <th class="py-3 px-3 text-center">4 級 (IV)</th>
+              <th class="py-3 px-3 text-center">5 級 (V)</th>
+              <th class="py-3 px-3 text-center">6 級 (vi)</th>
+              <th class="py-3 px-3 text-center">7 級 (vii°)</th>
+            </tr>
+          </thead>
+          <tbody id="allKeysTableBody" class="divide-y divide-slate-800/80 font-mono">
+            <!-- 12 調靜態/動態全表 -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 三、五大常用大調 1645 與 4536251 實戰進行對照 -->
+    <section id="sec-progressions" class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-2 h-5 bg-amber-500 rounded-full"></span>
+            <span>【三】五大常用大調「1645」與「4536251」實戰和弦對照表</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">涵蓋流行歌 70% 以上曲目！提供基礎三和弦版與進階七和弦潤色版</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- 左欄：經典循環進行 1 - 6 - 4 - 5 -->
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono text-xs font-bold">1 - 6 - 4 - 5</span>
+              <h3 class="text-sm font-bold text-white">經典循環進行（I - vi - IV - V）</h3>
+            </div>
+            <span class="text-[11px] text-slate-400">主歌鋪陳、輕快民謠</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs font-mono">
+            <!-- C 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="flex items-center justify-between text-sky-400 font-bold">
+                <span>C 大調 (1=C)</span>
+                <span class="text-[10px] text-slate-500">無升降</span>
+              </div>
+              <div class="text-slate-200">基礎三和弦：<strong class="text-sky-300">C → Am → F → G</strong></div>
+              <div class="text-amber-300/90 text-[11px]">進階七和弦：Cmaj7 → Am7 → Fmaj7 → G7</div>
+            </div>
+            <!-- G 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="flex items-center justify-between text-sky-400 font-bold">
+                <span>G 大調 (1=G)</span>
+                <span class="text-[10px] text-slate-500">1 個升號 (♯F)</span>
+              </div>
+              <div class="text-slate-200">基礎三和弦：<strong class="text-sky-300">G → Em → C → D</strong></div>
+              <div class="text-amber-300/90 text-[11px]">進階七和弦：Gmaj7 → Em7 → Cmaj7 → D7</div>
+            </div>
+            <!-- F 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="flex items-center justify-between text-sky-400 font-bold">
+                <span>F 大調 (1=F)</span>
+                <span class="text-[10px] text-slate-500">1 個降號 (♭B)</span>
+              </div>
+              <div class="text-slate-200">基礎三和弦：<strong class="text-sky-300">F → Dm → ♭B → C</strong></div>
+              <div class="text-amber-300/90 text-[11px]">進階七和弦：Fmaj7 → Dm7 → ♭Bmaj7 → C7</div>
+            </div>
+            <!-- D 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="flex items-center justify-between text-sky-400 font-bold">
+                <span>D 大調 (1=D)</span>
+                <span class="text-[10px] text-slate-500">2 個升號 (♯F, ♯C)</span>
+              </div>
+              <div class="text-slate-200">基礎三和弦：<strong class="text-sky-300">D → Bm → G → A</strong></div>
+              <div class="text-amber-300/90 text-[11px]">進階七和弦：Dmaj7 → Bm7 → Gmaj7 → A7</div>
+            </div>
+            <!-- bB 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="flex items-center justify-between text-sky-400 font-bold">
+                <span>♭B 大調 (1=♭B)</span>
+                <span class="text-[10px] text-slate-500">2 個降號 (♭B, ♭E)</span>
+              </div>
+              <div class="text-slate-200">基礎三和弦：<strong class="text-sky-300">♭B → Gm → ♭E → F</strong></div>
+              <div class="text-amber-300/90 text-[11px]">進階七和弦：♭Bmaj7 → Gm7 → ♭Emaj7 → F7</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右欄：黃金副歌進行 4 - 5 - 3 - 6 - 2 - 5 - 1 -->
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-xs font-bold">4536251</span>
+              <h3 class="text-sm font-bold text-white">黃金副歌進行（IV - V - iii - vi - ii - V - I）</h3>
+            </div>
+            <span class="text-[11px] text-slate-400">華語流行催淚公式</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs font-mono">
+            <!-- C 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold">C 大調 (1=C)</div>
+              <div class="text-slate-200">三和弦：<strong class="text-sky-300">F → G → Em → Am → Dm → G → C</strong></div>
+              <div class="text-amber-300/90 text-[11px]">七和弦：Fmaj7 → G7 → Em7 → Am7 → Dm7 → G7 → Cmaj7</div>
+            </div>
+            <!-- G 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold">G 大調 (1=G)</div>
+              <div class="text-slate-200">三和弦：<strong class="text-sky-300">C → D → Bm → Em → Am → D → G</strong></div>
+              <div class="text-amber-300/90 text-[11px]">七和弦：Cmaj7 → D7 → Bm7 → Em7 → Am7 → D7 → Gmaj7</div>
+            </div>
+            <!-- F 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold">F 大調 (1=F)</div>
+              <div class="text-slate-200">三和弦：<strong class="text-sky-300">♭B → C → Am → Dm → Gm → C → F</strong></div>
+              <div class="text-amber-300/90 text-[11px]">七和弦：♭Bmaj7 → C7 → Am7 → Dm7 → Gm7 → C7 → Fmaj7</div>
+            </div>
+            <!-- D 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold">D 大調 (1=D)</div>
+              <div class="text-slate-200">三和弦：<strong class="text-sky-300">G → A → ♯Fm → Bm → Em → A → D</strong></div>
+              <div class="text-amber-300/90 text-[11px]">七和弦：Gmaj7 → A7 → ♯Fm7 → Bm7 → Em7 → A7 → Dmaj7</div>
+            </div>
+            <!-- bB 調 -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold">♭B 大調 (1=♭B)</div>
+              <div class="text-slate-200">三和弦：<strong class="text-sky-300">♭E → F → Dm → Gm → Cm → F → ♭B</strong></div>
+              <div class="text-amber-300/90 text-[11px]">七和弦：♭Emaj7 → F7 → Dm7 → Gm7 → Cm7 → F7 → ♭Bmaj7</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 四、鋼琴左手基礎伴奏節奏型 (4/4 拍) -->
+    <section id="sec-left-hand" class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-2 h-5 bg-purple-500 rounded-full"></span>
+            <span>【四】鋼琴左手基礎伴奏節奏型（4/4 拍抒情分解與柱式寫法）</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">左手編碼：1（根音/小指5指）、5（五音/食指2指）、1̇（高八度根音/大拇指1指）、3̇（高八度三音）</p>
+        </div>
+      </div>
+
+      <!-- 分解和弦三大節奏型 -->
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold text-sky-400 flex items-center gap-2">
+          <i class="fa-solid fa-water"></i>
+          <span>1. 抒情分解和弦型（適合 1645 主歌鋪陳，溫柔流動）</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <!-- 萬用八分音符型 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            <div class="font-bold text-white flex items-center justify-between">
+              <span>萬用八分音符抒情型</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono">1 - 5 - 1̇ - 5</span>
+            </div>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              <strong>音符順序</strong>：1 - 5 - 1̇ - 5 ｜ 1 - 5 - 1̇ - 5（大大 大大 大大 大大）<br>
+              <strong>指法配置</strong>：5指 - 2指 - 1指 - 2指<br>
+              <strong>適用段落</strong>：主歌開頭、安靜敘事段落，最易上手且不易出錯。
+            </p>
+          </div>
+          <!-- 經典十度展開型 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            <div class="font-bold text-white flex items-center justify-between">
+              <span>經典十度展開抒情型</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">1-5-1̇-2̇-3̇-2̇-1̇-5</span>
+            </div>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              <strong>音符順序</strong>：Do - Sol - 高Do - 高Re - 高Mi - 高Re - 高Do - Sol<br>
+              <strong>指法技巧</strong>：彈到高Do（1指）後，2指順勢跨過大拇指往上彈高Re/Mi再原路折返。<br>
+              <strong>適用段落</strong>：慢板情歌主歌，瞬間提升伴奏專業度。
+            </p>
+          </div>
+          <!-- 現代流行切分型 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            <div class="font-bold text-white flex items-center justify-between">
+              <span>現代流行切分分解型</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">1 - 5 - 1̇ - 3̇ - 5 - 1̇</span>
+            </div>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              <strong>拍子結構</strong>：前兩拍八分音符，第三拍微停頓製造呼吸感（大大 大～ 大大大）。<br>
+              <strong>適用段落</strong>：節奏稍微帶點律動的抒情歌副歌前段。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 柱式和弦兩大節奏型 -->
+      <div class="space-y-3 pt-2">
+        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+          <i class="fa-solid fa-drum"></i>
+          <span>2. 柱式和弦節奏型（適合 4536251 副歌推動，充滿力量）</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <!-- 穩定四拍柱式 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            <div class="font-bold text-white flex items-center justify-between">
+              <span>穩定四拍柱式（碰 - 恰 - 碰 - 恰）</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono">四分音符進行</span>
+            </div>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              <strong>左手按法</strong>：第 1 拍彈「根音八度 (1+1̇)」，第 2、3、4 拍彈「五音與八度雙音 (5+1̇)」。<br>
+              <strong>口訣</strong>：碰（低音重音）- 恰（雙音）- 碰 - 恰。<br>
+              <strong>適用段落</strong>：需要穩定節拍感、帶點民謠搖滾律動的段落。
+            </p>
+          </div>
+          <!-- 流行抒情切分柱式 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            <div class="font-bold text-white flex items-center justify-between">
+              <span>流行抒情切分柱式（最常用副歌推動型）</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-mono">八分切分搶拍</span>
+            </div>
+            <p class="text-slate-300 text-[11.5px] leading-relaxed">
+              <strong>節奏口訣</strong>：碰(1拍) - 恰(半拍) - 碰(半拍搶拍延音) - 恰(半拍) - 恰(1拍)。<br>
+              <strong>以 F 和弦為例</strong>：第 1 拍左手低音 Fa 八度；第 2 拍前半雙音 (Do+Fa)；第 2 拍後半搶音 Fa 延音；第 3 拍後半與第 4 拍彈雙音。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五、《後來》副歌簡譜與左手伴奏逐拍實戰對照 -->
+    <section id="sec-houlai" class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+            <span class="w-2 h-5 bg-rose-500 rounded-full"></span>
+            <span>【五】《後來》副歌簡譜與左手伴奏逐拍實戰譜（C 大調版）</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">標準 4536251 黃金進行 ｜ 攻克「兩拍換一個和弦」核心 8 小節對照</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300 font-mono border border-slate-700">1 = C ｜ 4/4 拍</span>
+        </div>
+      </div>
+
+      <!-- 8 小節逐小節卡片列表 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- 第 1 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-sky-400 font-mono">第 1 小節 ｜ F (2拍) ➔ G (2拍)</span>
+            <span class="text-xs text-slate-400">歌詞：後～來～ 我總算學會了</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">3̇ - 2̇ 1̇ ｜ 7 1̇ 2̇ 3̇</strong></div>
+            <div class="text-sky-300">左手伴奏：4̣ 1 4 1 ｜ 5̣ 2 5 2</div>
+            <div class="text-[11px] text-slate-400">解析：第 1、2 拍彈 F（Fa-Do-Fa-Do）；第 3、4 拍換 G（Sol-Re-Sol-Re）</div>
+          </div>
+        </div>
+
+        <!-- 第 2 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-sky-400 font-mono">第 2 小節 ｜ Em (2拍) ➔ Am (2拍)</span>
+            <span class="text-xs text-slate-400">歌詞：如何去～愛～</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">2̇ 1̇ 7 6 - ｜ - - 0 5</strong></div>
+            <div class="text-sky-300">左手伴奏：3̣ 7̣ 3 7̣ ｜ 6̣ 3 6 3</div>
+            <div class="text-[11px] text-slate-400">解析：第 1、2 拍彈 Em（Mi-Si-Mi-Si）；第 3、4 拍換 Am（La-Mi-La-Mi）</div>
+          </div>
+        </div>
+
+        <!-- 第 3 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-sky-400 font-mono">第 3 小節 ｜ Dm (4拍完整)</span>
+            <span class="text-xs text-slate-400">歌詞：可惜你～ 早已遠去</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">6 1̇ 2̇ - ｜ 1̇ 7 6 5</strong></div>
+            <div class="text-sky-300">左手伴奏：2̣ 6̣ 2 6̣ ｜ 2 6̣ 2 6̣</div>
+            <div class="text-[11px] text-slate-400">解析：整小節 4 拍均勻彈 Dm 分解和弦</div>
+          </div>
+        </div>
+
+        <!-- 第 4 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-sky-400 font-mono">第 4 小節 ｜ G (4拍完整)</span>
+            <span class="text-xs text-slate-400">歌詞：消失在人海～</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">6 5 3 5 - ｜ - - 0 0</strong></div>
+            <div class="text-sky-300">左手伴奏：5̣ 2 5 2 ｜ 5 2 5 2</div>
+            <div class="text-[11px] text-slate-400">解析：整小節皆為 G，第 4 拍準備深呼吸接下一句</div>
+          </div>
+        </div>
+
+        <!-- 第 5 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-sky-400 font-mono">第 5 小節 ｜ F (2拍) ➔ G (2拍)</span>
+            <span class="text-xs text-slate-400">歌詞：後～來～ 終於在眼淚中</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">3̇ - 2̇ 1̇ ｜ 7 1̇ 2̇ 3̇</strong></div>
+            <div class="text-sky-300">左手伴奏：4̣ 1 4 1 ｜ 5̣ 2 5 2</div>
+            <div class="text-[11px] text-slate-400">解析：重複第 1 小節結構，手型快速定位</div>
+          </div>
+        </div>
+
+        <!-- 第 6 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-sky-400 font-mono">第 6 小節 ｜ Em (2拍) ➔ Am (2拍)</span>
+            <span class="text-xs text-slate-400">歌詞：明白～</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">2̇ 1̇ 7 6 - ｜ - - 0 5</strong></div>
+            <div class="text-sky-300">左手伴奏：3̣ 7̣ 3 7̣ ｜ 6̣ 3 6 3</div>
+            <div class="text-[11px] text-slate-400">解析：重複第 2 小節結構，Em 接 Am</div>
+          </div>
+        </div>
+
+        <!-- 第 7 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-amber-400 font-mono">第 7 小節 ｜ Dm (2拍) ➔ G (2拍) ★注意</span>
+            <span class="text-xs text-slate-400">歌詞：有些人～ 一旦錯過就</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">6 1̇ 2̇ - ｜ 1̇ 7 6 7</strong></div>
+            <div class="text-sky-300">左手伴奏：2̣ 6̣ 2 6̣ ｜ 5̣ 2 5 2</div>
+            <div class="text-[11px] text-amber-300/90">解析：注意此處轉為兩拍換和弦（Dm 轉 G），踏板在第 3 拍務必換踩！</div>
+          </div>
+        </div>
+
+        <!-- 第 8 小節 -->
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+            <span class="font-bold text-emerald-400 font-mono">第 8 小節 ｜ C (4拍穩定收尾)</span>
+            <span class="text-xs text-slate-400">歌詞：不在～</span>
+          </div>
+          <div class="space-y-1 font-mono text-xs">
+            <div class="text-slate-200">右手旋律：<strong class="text-amber-300">1̇ - - - ｜ - - 0 0</strong></div>
+            <div class="text-emerald-300">左手伴奏：1 5 1̇ 5 ｜ 1 5 1̇ 5</div>
+            <div class="text-[11px] text-slate-400">解析：回到主和弦 C 穩定解決收尾</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 實戰練習三步驟建議 -->
+      <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2 text-xs">
+        <div class="font-bold text-sky-400 flex items-center gap-2">
+          <i class="fa-solid fa-list-check"></i>
+          <span>雙手合奏攻克三步驟 SOP</span>
+        </div>
+        <ol class="list-decimal list-inside space-y-1.5 text-slate-300 text-[11.5px] leading-relaxed">
+          <li><strong>左手單獨循環定位</strong>：先單獨練習第 1、2 小節（F → G → Em → Am）的小指根音（Fa → Sol → Mi → La），不看琴鍵也能盲彈準確。</li>
+          <li><strong>右手和聲加厚雙音</strong>：在每小節第 1 拍與第 3 拍重拍旋律音下方，同時按下該和弦的三音或五音（如「後 (3̇)」下方同按 1̇ 或 6），聲音立刻厚實。</li>
+          <li><strong>音後踏板換踩時機</strong>：遇到兩拍換一和弦的小節，右腳延音踏板每兩拍必換一次（按下新和弦音的同時放開再踩下），保持音色清透。</li>
+        </ol>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- JavaScript 核心功能：12 大調動態生成與 Web Audio 試聽 (15%) -->
+  <script>
+    // 12 大調完整順階數據字典
+    const KEYS_DATA = [
+      {
+        id: 'C', name: 'C 大調', root: 'C', accidentals: '無升降記號', type: 'sharp',
+        scale: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+        triads: ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'],
+        sevenths: ['Cmaj7', 'Dm7', 'Em7', 'Fmaj7', 'G7', 'Am7', 'Bm7b5']
+      },
+      {
+        id: 'G', name: 'G 大調', root: 'G', accidentals: '1 個升記號 (♯F)', type: 'sharp',
+        scale: ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
+        triads: ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#dim'],
+        sevenths: ['Gmaj7', 'Am7', 'Bm7', 'Cmaj7', 'D7', 'Em7', 'F#m7b5']
+      },
+      {
+        id: 'D', name: 'D 大調', root: 'D', accidentals: '2 個升記號 (♯F, ♯C)', type: 'sharp',
+        scale: ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
+        triads: ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#dim'],
+        sevenths: ['Dmaj7', 'Em7', 'F#m7', 'Gmaj7', 'A7', 'Bm7', 'C#m7b5']
+      },
+      {
+        id: 'A', name: 'A 大調', root: 'A', accidentals: '3 個升記號 (♯F, ♯C, ♯G)', type: 'sharp',
+        scale: ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
+        triads: ['A', 'Bm', 'C#m', 'D', 'E', 'F#m', 'G#dim'],
+        sevenths: ['Amaj7', 'Bm7', 'C#m7', 'Dmaj7', 'E7', 'F#m7', 'G#m7b5']
+      },
+      {
+        id: 'E', name: 'E 大調', root: 'E', accidentals: '4 個升記號 (♯F, ♯C, ♯G, ♯D)', type: 'sharp',
+        scale: ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+        triads: ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#dim'],
+        sevenths: ['Emaj7', 'F#m7', 'G#m7', 'Amaj7', 'B7', 'C#m7', 'D#m7b5']
+      },
+      {
+        id: 'B', name: 'B 大調', root: 'B', accidentals: '5 個升記號 (♯F, ♯C, ♯G, ♯D, ♯A)', type: 'sharp',
+        scale: ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'],
+        triads: ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#dim'],
+        sevenths: ['Bmaj7', 'C#m7', 'D#m7', 'Emaj7', 'F#7', 'G#m7', 'A#m7b5']
+      },
+      {
+        id: 'F', name: 'F 大調', root: 'F', accidentals: '1 個降記號 (♭B)', type: 'flat',
+        scale: ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+        triads: ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'Edim'],
+        sevenths: ['Fmaj7', 'Gm7', 'Am7', 'Bbmaj7', 'C7', 'Dm7', 'Em7b5']
+      },
+      {
+        id: 'Bb', name: '♭B 大調', root: 'Bb', accidentals: '2 個降記號 (♭B, ♭E)', type: 'flat',
+        scale: ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
+        triads: ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'Adim'],
+        sevenths: ['Bbmaj7', 'Cm7', 'Dm7', 'Ebmaj7', 'F7', 'Gm7', 'Am7b5']
+      },
+      {
+        id: 'Eb', name: '♭E 大調', root: 'Eb', accidentals: '3 個降記號 (♭B, ♭E, ♭A)', type: 'flat',
+        scale: ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D'],
+        triads: ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'Ddim'],
+        sevenths: ['Ebmaj7', 'Fm7', 'Gm7', 'Abmaj7', 'Bb7', 'Cm7', 'Dm7b5']
+      },
+      {
+        id: 'Ab', name: '♭A 大調', root: 'Ab', accidentals: '4 個降記號 (♭B, ♭E, ♭A, ♭D)', type: 'flat',
+        scale: ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G'],
+        triads: ['Ab', 'Bbm', 'Cm', 'Db', 'Eb', 'Fm', 'Gdim'],
+        sevenths: ['Abmaj7', 'Bbm7', 'Cm7', 'Dbmaj7', 'Eb7', 'Fm7', 'Gm7b5']
+      },
+      {
+        id: 'Db', name: '♭D 大調', root: 'Db', accidentals: '5 個降記號 (同音異名 ♯C)', type: 'flat',
+        scale: ['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C'],
+        triads: ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'Cdim'],
+        sevenths: ['Dbmaj7', 'Ebm7', 'Fm7', 'Gbmaj7', 'Ab7', 'Bbm7', 'Cm7b5']
+      },
+      {
+        id: 'Gb', name: '♭G 大調', root: 'Gb', accidentals: '6 個降記號 (同音異名 ♯F)', type: 'flat',
+        scale: ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F'],
+        triads: ['Gb', 'Abm', 'Bbm', 'Cb(B)', 'Db', 'Ebm', 'Fdim'],
+        sevenths: ['Gbmaj7', 'Abm7', 'Bbm7', 'Cbmaj7', 'Db7', 'Ebm7', 'Fm7b5']
+      }
+    ];
+
+    // 音符頻率映射 (Hz)
+    const FREQS = {
+      'C3': 130.81, 'D3': 146.83, 'E3': 164.81, 'F3': 174.61, 'G3': 196.00, 'A3': 220.00, 'B3': 246.94,
+      'C4': 261.63, 'C#4': 277.18, 'Db4': 277.18, 'D4': 293.66, 'D#4': 311.13, 'Eb4': 311.13,
+      'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'Gb4': 369.99, 'G4': 392.00, 'G#4': 415.30,
+      'Ab4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'Bb4': 466.16, 'B4': 493.88,
+      'C5': 523.25, 'C#5': 554.37, 'Db5': 554.37, 'D5': 587.33, 'D#5': 622.25, 'Eb5': 622.25,
+      'E5': 659.25, 'F5': 698.46, 'F#5': 739.99, 'Gb5': 739.99, 'G5': 783.99, 'G#5': 830.61,
+      'Ab5': 830.61, 'A5': 880.00, 'Bb5': 932.33, 'B5': 987.77
+    };
+
+    let audioCtx = null;
+    let selectedKeyId = 'C';
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // 播放和弦 (嚴格規範預設音量 15%)
+    function playSampleChord(noteNames) {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const masterGain = ctx.createGain();
+      masterGain.gain.setValueAtTime(0.15, now);
+      masterGain.connect(ctx.destination);
+
+      noteNames.forEach((n, idx) => {
+        const freq = FREQS[n];
+        if (!freq) return;
+
+        const osc = ctx.createOscillator();
+        const noteGain = ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.015);
+
+        noteGain.gain.setValueAtTime(0, now + idx * 0.015);
+        noteGain.gain.linearRampToValueAtTime(0.7, now + idx * 0.015 + 0.03);
+        noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.015 + 1.5);
+
+        osc.connect(noteGain);
+        noteGain.connect(masterGain);
+
+        osc.start(now + idx * 0.015);
+        osc.stop(now + idx * 0.015 + 1.55);
+      });
+    }
+
+    // 渲染 12 調按鈕標籤
+    function renderKeyButtons() {
+      const container = document.getElementById('keySelectorContainer');
+      container.innerHTML = '';
+
+      KEYS_DATA.forEach(k => {
+        const btn = document.createElement('button');
+        btn.id = `btn-key-${k.id}`;
+        btn.onclick = () => selectKey(k.id);
+        const isActive = k.id === selectedKeyId;
+        btn.className = `px-3.5 py-1.5 rounded-lg border font-mono font-bold transition-all whitespace-nowrap ${
+          isActive 
+            ? 'bg-sky-500 text-slate-950 border-sky-400 shadow-md shadow-sky-500/20' 
+            : 'bg-slate-800 text-slate-300 border-slate-700 hover:border-slate-500'
+        }`;
+        btn.textContent = k.name;
+        container.appendChild(btn);
+      });
+    }
+
+    // 渲染當前選中調的詳解卡
+    function selectKey(keyId) {
+      selectedKeyId = keyId;
+      const k = KEYS_DATA.find(x => x.id === keyId);
+      if (!k) return;
+
+      // 更新按鈕外觀
+      document.querySelectorAll('#keySelectorContainer button').forEach(b => {
+        b.className = 'px-3.5 py-1.5 rounded-lg border font-mono font-bold transition-all whitespace-nowrap bg-slate-800 text-slate-300 border-slate-700 hover:border-slate-500';
+      });
+      const curBtn = document.getElementById(`btn-key-${keyId}`);
+      if (curBtn) {
+        curBtn.className = 'px-3.5 py-1.5 rounded-lg border font-mono font-bold transition-all whitespace-nowrap bg-sky-500 text-slate-950 border-sky-400 shadow-md shadow-sky-500/20';
+      }
+
+      // 渲染卡片
+      const card = document.getElementById('activeKeyDetailCard');
+      const degrees = ['1 (I)', '2 (ii)', '3 (iii)', '4 (IV)', '5 (V)', '6 (vi)', '7 (vii°)'];
+      const naturesTriad = ['大三', '小三', '小三', '大三', '大三', '小三', '減三'];
+      const natures7th = ['大七', '小七', '小七', '大七', '屬七', '小七', '半減七'];
+
+      card.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-xl sm:text-2xl font-black text-sky-400 font-mono">${k.name}</span>
+            <span class="ml-2 text-xs text-slate-400 font-mono">調號：${k.accidentals}</span>
+          </div>
+          <div class="text-xs text-amber-300 font-mono">音階：${k.scale.join(' - ')}</div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 pt-1 text-xs">
+          ${k.triads.map((t, idx) => `
+            <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 space-y-1">
+              <div class="text-[10px] text-slate-400 font-mono">${degrees[idx]}</div>
+              <div class="text-base font-bold text-slate-100 font-mono">${t}</div>
+              <div class="text-[10px] text-amber-300 font-mono">${k.sevenths[idx]}</div>
+              <div class="text-[9px] text-slate-400">${naturesTriad[idx]} / ${natures7th[idx]}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // 渲染全量表格
+    function renderAllKeysTable(filter = 'all') {
+      const tbody = document.getElementById('allKeysTableBody');
+      tbody.innerHTML = '';
+
+      const filtered = KEYS_DATA.filter(k => {
+        if (filter === 'sharp') return k.type === 'sharp';
+        if (filter === 'flat') return k.type === 'flat';
+        return true;
+      });
+
+      filtered.forEach((k, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = `hover:bg-sky-950/20 transition-all ${idx % 2 === 0 ? 'bg-slate-900/40' : 'bg-slate-900/10'}`;
+        tr.innerHTML = `
+          <td class="py-3 px-3.5 font-bold text-sky-400">
+            <div>${k.name}</div>
+            <div class="text-[10px] text-slate-400 font-normal">${k.accidentals}</div>
+          </td>
+          ${k.triads.map((t, i) => `
+            <td class="py-2.5 px-3 text-center">
+              <div class="font-bold text-slate-200">${t}</div>
+              <div class="text-[10px] text-amber-300/90">${k.sevenths[i]}</div>
+            </td>
+          `).join('')}
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 過濾群組切換
+    function filterKeyGroup(group) {
+      ['all', 'sharp', 'flat'].forEach(g => {
+        const btn = document.getElementById(`btn-group-${g}`);
+        if (g === group) {
+          btn.className = 'px-2.5 py-1 rounded bg-sky-500 text-slate-950 font-bold transition-all';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all';
+        }
+      });
+      renderAllKeysTable(group);
+    }
+
+    // 頁面加載
+    window.addEventListener('DOMContentLoaded', () => {
+      renderKeyButtons();
+      selectKey('C');
+      renderAllKeysTable('all');
+    });
+  </script>
+</body>
+</html>
