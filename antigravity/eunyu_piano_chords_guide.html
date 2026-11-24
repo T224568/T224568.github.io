@@ -245,21 +245,37 @@
       <!-- 右側：互動鋼琴琴鍵視覺化 + 和弦資訊看板 -->
       <div class="lg:col-span-7 glass-card rounded-2xl p-5 sm:p-6 space-y-6">
         
-        <!-- 當前聚焦和弦展示卡 -->
+        <!-- 當前聚焦和弦展示卡與模式切換開關 -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
           <div>
             <div class="flex items-center gap-3">
               <span id="activeChordName" class="text-3xl sm:text-4xl font-extrabold text-sky-400 font-mono tracking-tight">C</span>
               <div>
-                <span id="activeChordType" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-medium">C 大三和弦</span>
-                <p id="activeChordSolfege" class="text-xs text-slate-400 mt-1 font-mono">唱名：Do - Mi - Sol</p>
+                <div class="flex items-center gap-2">
+                  <span id="activeChordType" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-medium">C 大三和弦</span>
+                  <span id="activeInversionBadge" class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-mono font-bold border border-amber-500/30">第二轉位 (影片對應)</span>
+                </div>
+                <p id="activeChordSolfege" class="text-xs text-slate-400 mt-1 font-mono">唱名：Sol - Do - Mi ｜ 指法：1 - 3 - 5</p>
               </div>
             </div>
           </div>
-          <div class="flex items-center gap-3">
-            <button onclick="playActiveChordSound()" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-sky-500/20 transition-all">
+          
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <!-- 模式切換按鈕：影片實戰轉位 VS 教材原位 -->
+            <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-700 text-xs">
+              <button id="btnModeInversion" onclick="setChordMode('inversion')" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition-all flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-video"></i>
+                <span>影片實戰轉位</span>
+              </button>
+              <button id="btnModeRoot" onclick="setChordMode('root')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-book-open"></i>
+                <span>教材標準原位</span>
+              </button>
+            </div>
+
+            <button onclick="playActiveChordSound()" class="px-3.5 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-sky-500/20 transition-all">
               <i class="fa-solid fa-volume-high"></i>
-              <span>試聽和弦原聲 (15%)</span>
+              <span>試聽和弦 (15%)</span>
             </button>
           </div>
         </div>
@@ -269,7 +285,7 @@
           <div class="flex items-center justify-between text-xs text-slate-400">
             <span class="font-medium flex items-center gap-1.5">
               <i class="fa-solid fa-music text-sky-400"></i>
-              <span>右手鍵盤即時按鍵位置（含標準指法 1-2-3-4-5）</span>
+              <span id="keyboardModeLabel">右手鍵盤即時按鍵位置（完全對應 Eunyu 影片實戰手型與指法）</span>
             </span>
             <span class="text-[11px] font-mono text-slate-500">點擊任一琴鍵亦可直接發聲</span>
           </div>
@@ -306,40 +322,53 @@
           </div>
         </div>
 
-        <!-- 和弦進行骨幹解析 -->
-        <div class="p-4 rounded-xl bg-sky-950/20 border border-sky-900/40 text-xs space-y-1.5">
-          <div class="font-bold text-sky-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>為什麼這套進行被稱為「美麗和弦進行 (Beautiful Progression)」？</span>
+        <!-- 影片轉位實戰聲部導進解析 (Voice Leading Analysis) -->
+        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-900/40 text-xs space-y-2">
+          <div class="font-bold text-amber-300 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>為什麼 Eunyu 在影片中全部使用「轉位和弦 (Voice Leading)」？</span>
+            </span>
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-[10px] text-amber-300 font-mono">流行鋼琴必學秘訣</span>
           </div>
           <p class="text-slate-300 leading-relaxed text-[11.5px]">
-            這套和弦以 <strong>C 大調</strong> 為基底，運用了經典爵士與流行抒情曲常用的 <strong>副屬和弦 (Secondary Dominant)</strong> 與 <strong>二五進行 (ii-V)</strong>：
-            從 <span class="text-amber-300 font-mono">E7 (III7)</span> 強烈引導至 <span class="text-sky-300 font-mono">Am7 (vi)</span>，再透過 <span class="text-emerald-300 font-mono">Gm7 - C7</span> 二五副屬強烈傾向解決至溫暖的 <span class="text-purple-300 font-mono">Fmaj7 (IVmaj7)</span>，接著以 <span class="text-amber-300 font-mono">Em7 - A7 - Dm7 - G7</span> 完成浪漫綿密的循環，極具華麗與治癒色彩！
+            若照教材<strong>「原位 (Root Position)」</strong>彈奏，右手必須從 C4 大跳到 A4、F4、D4，手掌劇烈上下跳躍且音色生硬；<br>
+            而在 Eunyu 的<strong>「影片實戰轉位」</strong>中，巧妙利用 <strong>共同音保留 (Anchor Notes)</strong> 與 <strong>半音階平滑聲部導進 (Chromatic Voice Leading)</strong>：<br>
+            • 高音聲部（Soprano）牢牢錨定在 <strong class="text-sky-300 font-mono">E5</strong>（C ➔ E7 ➔ Am7 旋律音完全不動！）<br>
+            • 低音聲部精準半音攀升：<strong class="text-amber-300 font-mono">G4 ➔ G♯4 (E7) ➔ G4 (Am7) ➔ F4 ➔ E4</strong>，右手幾乎完全不用移位，只需微調手指就能彈出極具高級感的美麗和弦進行！
           </p>
         </div>
 
       </div>
     </section>
 
-    <!-- 2. 完整十組和弦：五線譜與指法對照表 (核心大表) -->
+    <!-- 2. 完整十組和弦：五線譜與指法對照表 (核心大表，支援模式即時聯動) -->
     <section class="glass-card rounded-2xl p-5 sm:p-7 space-y-5">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-800">
         <div>
           <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
             <span class="w-2 h-5 bg-sky-500 rounded-full"></span>
-            <span>鋼琴常用十組和弦：五線譜與指法對照表</span>
+            <span>鋼琴常用十組和弦：五線譜與指法對照大表</span>
           </h2>
-          <p class="text-xs text-slate-400 mt-1">包含和弦組成音、高音譜號五線譜位置、簡譜唱名與右手原位標準指法（皆以高音 G 譜號原位排列標示）</p>
+          <p id="tableSubheader" class="text-xs text-slate-400 mt-1">目前顯示：【影片實戰轉位模式】完全 1:1 還原 Eunyu 影片中的實際右手音符、高音譜表與流暢指法</p>
         </div>
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-400">譜表排列：</span>
-          <span class="px-2.5 py-1 rounded-md bg-slate-800 text-sky-300 font-mono border border-slate-700">高音譜號 原位</span>
+        
+        <!-- 表格頂端切換 -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-700 text-xs">
+            <button id="btnTableInversion" onclick="setChordMode('inversion')" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition-all">
+              轉位模式 (影片 1:1)
+            </button>
+            <button id="btnTableRoot" onclick="setChordMode('root')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">
+              原位模式 (講義圖)
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- 對照表格本體 (可橫向捲動自適應) -->
       <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-xl">
-        <table class="w-full text-left border-collapse min-w-[760px]">
+        <table class="w-full text-left border-collapse min-w-[780px]">
           <thead>
             <tr class="bg-gradient-to-r from-sky-950/70 to-slate-900 border-b border-slate-700/80 text-xs font-bold text-slate-200">
               <th class="py-3.5 px-4 w-[14%]">和弦名稱</th>
@@ -350,7 +379,7 @@
             </tr>
           </thead>
           <tbody id="chordTableBody" class="divide-y divide-slate-800/80 text-xs">
-            <!-- 10 組和弦將由 JS 或靜態高保真模板渲染 -->
+            <!-- 由 JS 動態依模式切換渲染 10 組和弦 -->
           </tbody>
         </table>
       </div>
@@ -431,7 +460,7 @@
       <div class="flex items-center justify-between px-5 py-3 border-b border-slate-800">
         <h3 class="font-bold text-sm text-white flex items-center gap-2">
           <i class="fa-solid fa-file-invoice text-amber-400"></i>
-          <span>原始教材圖：鋼琴常用十組和弦五線譜與指法對照表</span>
+          <span>原始教材圖：鋼琴常用十組和弦五線譜與指法對照表（原位）</span>
         </h3>
         <button onclick="toggleModal('modal-chart')" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">
           <i class="fa-solid fa-xmark"></i>
@@ -447,178 +476,342 @@
     </div>
   </div>
 
-  <!-- JavaScript 核心互動腳本 -->
+  <!-- JavaScript 核心互動腳本 (含雙模式：影片實戰轉位 VS 教材原位) -->
   <script>
-    // 10 組和弦完整數據字典
+    // 當前模式：'inversion' (影片實戰轉位) 或 'root' (教材原位)
+    let currentMode = 'inversion';
+    let currentChordId = 'C';
+    let audioCtx = null;
+
+    // 10 組和弦完整數據字典（雙模式高保真定義）
     const CHORDS_DATA = [
       {
         id: 'C',
         name: 'C',
         type: 'C 大三和弦',
-        notes: ['C4', 'E4', 'G4'],
-        solfege: 'Do - Mi - Sol',
-        fingering: '1 - 3 - 5',
-        fingersMap: { 'C4': 1, 'E4': 3, 'G4': 5 },
-        positionDesc: '下加一線、第一線、第二線',
-        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-        svgNotes: [
-          { note: 'C4', y: 70, ledger: true, name: 'C4' },
-          { note: 'E4', y: 60, ledger: false, name: 'E4' },
-          { note: 'G4', y: 50, ledger: false, name: 'G4' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['C4', 'E4', 'G4'],
+          solfege: 'Do - Mi - Sol',
+          fingering: '1 - 3 - 5',
+          fingersMap: { 'C4': 1, 'E4': 3, 'G4': 5 },
+          positionDesc: '下加一線、第一線、第二線',
+          svgNotes: [
+            { note: 'C4', y: 70, ledger: true, name: 'C4' },
+            { note: 'E4', y: 60, ledger: false, name: 'E4' },
+            { note: 'G4', y: 50, ledger: false, name: 'G4' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第二轉位 (2nd Inv) · 影片手型',
+          notes: ['G4', 'C5', 'E5'],
+          solfege: 'Sol - Do - Mi',
+          fingering: '1 - 3 - 5',
+          fingersMap: { 'G4': 1, 'C5': 3, 'E5': 5 },
+          positionDesc: '第二線(G4)、第三間(C5)、第四間(E5) —— 頂部錨定 E5',
+          svgNotes: [
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        }
       },
       {
         id: 'E7',
         name: 'E7',
         type: 'E 屬七和弦',
-        notes: ['E4', 'G#4', 'B4', 'D5'],
-        solfege: 'Mi - #Sol - Si - Re',
-        fingering: '1 - 2 - 3 - 5 (或 1-2-4-5)',
-        fingersMap: { 'E4': 1, 'G#4': 2, 'B4': 3, 'D5': 5 },
-        positionDesc: '第一線、第二線#、第三線、第四線',
-        badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-        svgNotes: [
-          { note: 'E4', y: 60, ledger: false, name: 'E4' },
-          { note: 'G#4', y: 50, ledger: false, sharp: true, name: 'G♯4' },
-          { note: 'B4', y: 40, ledger: false, name: 'B4' },
-          { note: 'D5', y: 30, ledger: false, name: 'D5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['E4', 'G#4', 'B4', 'D5'],
+          solfege: 'Mi - ♯Sol - Si - Re',
+          fingering: '1 - 2 - 3 - 5 (或 1-2-4-5)',
+          fingersMap: { 'E4': 1, 'G#4': 2, 'B4': 3, 'D5': 5 },
+          positionDesc: '第一線、第二線♯、第三線、第四線',
+          svgNotes: [
+            { note: 'E4', y: 60, ledger: false, name: 'E4' },
+            { note: 'G#4', y: 50, ledger: false, sharp: true, name: 'G♯4' },
+            { note: 'B4', y: 40, ledger: false, name: 'B4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第一轉位 (1st Inv) · 影片手型',
+          notes: ['G#4', 'B4', 'D5', 'E5'],
+          solfege: '♯Sol - Si - Re - Mi',
+          fingering: '1 - 2 - 4 - 5',
+          fingersMap: { 'G#4': 1, 'B4': 2, 'D5': 4, 'E5': 5 },
+          positionDesc: '第二線♯(G♯4)、第三線(B4)、第四線(D5)、第四間(E5) —— 保留高音 E5，低音半音上移',
+          svgNotes: [
+            { note: 'G#4', y: 50, ledger: false, sharp: true, name: 'G♯4' },
+            { note: 'B4', y: 40, ledger: false, name: 'B4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        }
       },
       {
         id: 'Am7',
         name: 'Am7',
         type: 'A 小七和弦',
-        notes: ['A4', 'C5', 'E5', 'G5'],
-        solfege: 'La - Do - Mi - Sol',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'A4': 1, 'C5': 2, 'E5': 3, 'G5': 5 },
-        positionDesc: '第二間、第三間、第四間、上加一間',
-        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-        svgNotes: [
-          { note: 'A4', y: 45, ledger: false, name: 'A4' },
-          { note: 'C5', y: 35, ledger: false, name: 'C5' },
-          { note: 'E5', y: 25, ledger: false, name: 'E5' },
-          { note: 'G5', y: 15, ledger: false, name: 'G5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['A4', 'C5', 'E5', 'G5'],
+          solfege: 'La - Do - Mi - Sol',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'A4': 1, 'C5': 2, 'E5': 3, 'G5': 5 },
+          positionDesc: '第二間、第三間、第四間、上加一間',
+          svgNotes: [
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' },
+            { note: 'G5', y: 15, ledger: false, name: 'G5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第三轉位 (3rd Inv) · 影片手型',
+          notes: ['G4', 'A4', 'C5', 'E5'],
+          solfege: 'Sol - La - Do - Mi',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'G4': 1, 'A4': 2, 'C5': 3, 'E5': 5 },
+          positionDesc: '第二線(G4)、第二間(A4)、第三間(C5)、第四間(E5) —— 七音在低音，聲部銜接極度平滑',
+          svgNotes: [
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        }
       },
       {
         id: 'Gm7',
         name: 'Gm7',
         type: 'G 小七和弦',
-        notes: ['G4', 'Bb4', 'D5', 'F5'],
-        solfege: 'Sol - ♭Si - Re - Fa',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'G4': 1, 'Bb4': 2, 'D5': 3, 'F5': 5 },
-        positionDesc: '第二線、第三線♭、第四線、第五線',
-        badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-        svgNotes: [
-          { note: 'G4', y: 50, ledger: false, name: 'G4' },
-          { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' },
-          { note: 'D5', y: 30, ledger: false, name: 'D5' },
-          { note: 'F5', y: 20, ledger: false, name: 'F5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['G4', 'Bb4', 'D5', 'F5'],
+          solfege: 'Sol - ♭Si - Re - Fa',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'G4': 1, 'Bb4': 2, 'D5': 3, 'F5': 5 },
+          positionDesc: '第二線、第三線♭、第四線、第五線',
+          svgNotes: [
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' },
+            { note: 'F5', y: 20, ledger: false, name: 'F5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第三轉位 (3rd Inv) · 影片手型',
+          notes: ['F4', 'G4', 'Bb4', 'D5'],
+          solfege: 'Fa - Sol - ♭Si - Re',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'F4': 1, 'G4': 2, 'Bb4': 3, 'D5': 5 },
+          positionDesc: '第一間(F4)、第二線(G4)、第三線♭(B♭4)、第四線(D5) —— 影片中向下過渡至 C7',
+          svgNotes: [
+            { note: 'F4', y: 55, ledger: false, name: 'F4' },
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' }
+          ]
+        }
       },
       {
         id: 'C7',
         name: 'C7',
         type: 'C 屬七和弦',
-        notes: ['C4', 'E4', 'G4', 'Bb4'],
-        solfege: 'Do - Mi - Sol - ♭Si',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'C4': 1, 'E4': 2, 'G4': 3, 'Bb4': 5 },
-        positionDesc: '下加一線、第一線、第二線、第三線♭',
-        badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-        svgNotes: [
-          { note: 'C4', y: 70, ledger: true, name: 'C4' },
-          { note: 'E4', y: 60, ledger: false, name: 'E4' },
-          { note: 'G4', y: 50, ledger: false, name: 'G4' },
-          { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['C4', 'E4', 'G4', 'Bb4'],
+          solfege: 'Do - Mi - Sol - ♭Si',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'C4': 1, 'E4': 2, 'G4': 3, 'Bb4': 5 },
+          positionDesc: '下加一線、第一線、第二線、第三線♭',
+          svgNotes: [
+            { note: 'C4', y: 70, ledger: true, name: 'C4' },
+            { note: 'E4', y: 60, ledger: false, name: 'E4' },
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第二轉位 (2nd Inv) · 影片手型',
+          notes: ['E4', 'G4', 'Bb4', 'C5'],
+          solfege: 'Mi - Sol - ♭Si - Do',
+          fingering: '1 - 2 - 4 - 5',
+          fingersMap: { 'E4': 1, 'G4': 2, 'Bb4': 4, 'C5': 5 },
+          positionDesc: '第一線(E4)、第二線(G4)、第三線♭(B♭4)、第三間(C5) —— 順暢解決進入 Fmaj7',
+          svgNotes: [
+            { note: 'E4', y: 60, ledger: false, name: 'E4' },
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'Bb4', y: 40, ledger: false, flat: true, name: 'B♭4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' }
+          ]
+        }
       },
       {
         id: 'Fmaj7',
         name: 'Fmaj7',
         type: 'F 大七和弦',
-        notes: ['F4', 'A4', 'C5', 'E5'],
-        solfege: 'Fa - La - Do - Mi',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'F4': 1, 'A4': 2, 'C5': 3, 'E5': 5 },
-        positionDesc: '第一間、第二間、第三間、第四間',
-        badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-        svgNotes: [
-          { note: 'F4', y: 55, ledger: false, name: 'F4' },
-          { note: 'A4', y: 45, ledger: false, name: 'A4' },
-          { note: 'C5', y: 35, ledger: false, name: 'C5' },
-          { note: 'E5', y: 25, ledger: false, name: 'E5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['F4', 'A4', 'C5', 'E5'],
+          solfege: 'Fa - La - Do - Mi',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'F4': 1, 'A4': 2, 'C5': 3, 'E5': 5 },
+          positionDesc: '第一間、第二間、第三間、第四間',
+          svgNotes: [
+            { note: 'F4', y: 55, ledger: false, name: 'F4' },
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '原位 (Root) · 影片完全吻合',
+          notes: ['F4', 'A4', 'C5', 'E5'],
+          solfege: 'Fa - La - Do - Mi',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'F4': 1, 'A4': 2, 'C5': 3, 'E5': 5 },
+          positionDesc: '第一間(F4)、第二間(A4)、第三間(C5)、第四間(E5) —— 影片此處採用標準原位手型',
+          svgNotes: [
+            { note: 'F4', y: 55, ledger: false, name: 'F4' },
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        }
       },
       {
         id: 'Em7',
         name: 'Em7',
         type: 'E 小七和弦',
-        notes: ['E4', 'G4', 'B4', 'D5'],
-        solfege: 'Mi - Sol - Si - Re',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'E4': 1, 'G4': 2, 'B4': 3, 'D5': 5 },
-        positionDesc: '第一線、第二線、第三線、第四線',
-        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-        svgNotes: [
-          { note: 'E4', y: 60, ledger: false, name: 'E4' },
-          { note: 'G4', y: 50, ledger: false, name: 'G4' },
-          { note: 'B4', y: 40, ledger: false, name: 'B4' },
-          { note: 'D5', y: 30, ledger: false, name: 'D5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['E4', 'G4', 'B4', 'D5'],
+          solfege: 'Mi - Sol - Si - Re',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'E4': 1, 'G4': 2, 'B4': 3, 'D5': 5 },
+          positionDesc: '第一線、第二線、第三線、第四線',
+          svgNotes: [
+            { note: 'E4', y: 60, ledger: false, name: 'E4' },
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'B4', y: 40, ledger: false, name: 'B4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第一轉位 (1st Inv) · 影片手型',
+          notes: ['G4', 'B4', 'D5', 'E5'],
+          solfege: 'Sol - Si - Re - Mi',
+          fingering: '1 - 2 - 4 - 5',
+          fingersMap: { 'G4': 1, 'B4': 2, 'D5': 4, 'E5': 5 },
+          positionDesc: '第二線(G4)、第三線(B4)、第四線(D5)、第四間(E5) —— 再次鎖定高音 E5 旋律音',
+          svgNotes: [
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'B4', y: 40, ledger: false, name: 'B4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        }
       },
       {
         id: 'A7',
         name: 'A7',
         type: 'A 屬七和弦',
-        notes: ['A4', 'C#5', 'E5', 'G5'],
-        solfege: 'La - ♯Do - Mi - Sol',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'A4': 1, 'C#5': 2, 'E5': 3, 'G5': 5 },
-        positionDesc: '第二間、第三間♯、第四間、上加一間',
-        badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-        svgNotes: [
-          { note: 'A4', y: 45, ledger: false, name: 'A4' },
-          { note: 'C#5', y: 35, ledger: false, sharp: true, name: 'C♯5' },
-          { note: 'E5', y: 25, ledger: false, name: 'E5' },
-          { note: 'G5', y: 15, ledger: false, name: 'G5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['A4', 'C#5', 'E5', 'G5'],
+          solfege: 'La - ♯Do - Mi - Sol',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'A4': 1, 'C#5': 2, 'E5': 3, 'G5': 5 },
+          positionDesc: '第二間、第三間♯、第四間、上加一間',
+          svgNotes: [
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C#5', y: 35, ledger: false, sharp: true, name: 'C♯5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' },
+            { note: 'G5', y: 15, ledger: false, name: 'G5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第三轉位 (3rd Inv) · 影片手型',
+          notes: ['G4', 'A4', 'C#5', 'E5'],
+          solfege: 'Sol - La - ♯Do - Mi',
+          fingering: '1 - 2 - 4 - 5',
+          fingersMap: { 'G4': 1, 'A4': 2, 'C#5': 4, 'E5': 5 },
+          positionDesc: '第二線(G4)、第二間(A4)、第三間♯(C♯5)、第四間(E5) —— 中指/無名指精準壓住 C♯5',
+          svgNotes: [
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C#5', y: 35, ledger: false, sharp: true, name: 'C♯5' },
+            { note: 'E5', y: 25, ledger: false, name: 'E5' }
+          ]
+        }
       },
       {
         id: 'Dm7',
         name: 'Dm7',
         type: 'D 小七和弦',
-        notes: ['D4', 'F4', 'A4', 'C5'],
-        solfege: 'Re - Fa - La - Do',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'D4': 1, 'F4': 2, 'A4': 3, 'C5': 5 },
-        positionDesc: '下加一間、第一間、第二間、第三間',
-        badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-        svgNotes: [
-          { note: 'D4', y: 65, ledger: false, name: 'D4' },
-          { note: 'F4', y: 55, ledger: false, name: 'F4' },
-          { note: 'A4', y: 45, ledger: false, name: 'A4' },
-          { note: 'C5', y: 35, ledger: false, name: 'C5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['D4', 'F4', 'A4', 'C5'],
+          solfege: 'Re - Fa - La - Do',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'D4': 1, 'F4': 2, 'A4': 3, 'C5': 5 },
+          positionDesc: '下加一間、第一間、第二間、第三間',
+          svgNotes: [
+            { note: 'D4', y: 65, ledger: false, name: 'D4' },
+            { note: 'F4', y: 55, ledger: false, name: 'F4' },
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第一轉位 (1st Inv) · 影片手型',
+          notes: ['F4', 'A4', 'C5', 'D5'],
+          solfege: 'Fa - La - Do - Re',
+          fingering: '1 - 2 - 4 - 5',
+          fingersMap: { 'F4': 1, 'A4': 2, 'C5': 4, 'D5': 5 },
+          positionDesc: '第一間(F4)、第二間(A4)、第三間(C5)、第四線(D5) —— 平穩落於 ii 級',
+          svgNotes: [
+            { note: 'F4', y: 55, ledger: false, name: 'F4' },
+            { note: 'A4', y: 45, ledger: false, name: 'A4' },
+            { note: 'C5', y: 35, ledger: false, name: 'C5' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' }
+          ]
+        }
       },
       {
         id: 'G7',
         name: 'G7',
         type: 'G 屬七和弦',
-        notes: ['G4', 'B4', 'D5', 'F5'],
-        solfege: 'Sol - Si - Re - Fa',
-        fingering: '1 - 2 - 3 - 5',
-        fingersMap: { 'G4': 1, 'B4': 2, 'D5': 3, 'F5': 5 },
-        positionDesc: '第二線、第三線、第四線、第五線',
-        badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
-        svgNotes: [
-          { note: 'G4', y: 50, ledger: false, name: 'G4' },
-          { note: 'B4', y: 40, ledger: false, name: 'B4' },
-          { note: 'D5', y: 30, ledger: false, name: 'D5' },
-          { note: 'F5', y: 20, ledger: false, name: 'F5' }
-        ]
+        root: {
+          inversionLabel: '原位 (Root)',
+          notes: ['G4', 'B4', 'D5', 'F5'],
+          solfege: 'Sol - Si - Re - Fa',
+          fingering: '1 - 2 - 3 - 5',
+          fingersMap: { 'G4': 1, 'B4': 2, 'D5': 3, 'F5': 5 },
+          positionDesc: '第二線、第三線、第四線、第五線',
+          svgNotes: [
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'B4', y: 40, ledger: false, name: 'B4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' },
+            { note: 'F5', y: 20, ledger: false, name: 'F5' }
+          ]
+        },
+        inversion: {
+          inversionLabel: '第三轉位 (3rd Inv) · 影片手型',
+          notes: ['F4', 'G4', 'B4', 'D5'],
+          solfege: 'Fa - Sol - Si - Re',
+          fingering: '1 - 2 - 4 - 5',
+          fingersMap: { 'F4': 1, 'G4': 2, 'B4': 4, 'D5': 5 },
+          positionDesc: '第一間(F4)、第二線(G4)、第三線(B4)、第四線(D5) —— 完美聲部導進直接循環回 C 和弦！',
+          svgNotes: [
+            { note: 'F4', y: 55, ledger: false, name: 'F4' },
+            { note: 'G4', y: 50, ledger: false, name: 'G4' },
+            { note: 'B4', y: 40, ledger: false, name: 'B4' },
+            { note: 'D5', y: 30, ledger: false, name: 'D5' }
+          ]
+        }
       }
     ];
 
@@ -647,10 +840,7 @@
       'A5': 880.00
     };
 
-    let currentChordId = 'C';
-    let audioCtx = null;
-
-    // 初始化與聲音設置 (嚴格 15% 音量)
+    // 初始化聲音設置 (嚴格 15% 音量)
     function getAudioContext() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -674,29 +864,27 @@
         const freq = NOTE_FREQS[n];
         if (!freq) return;
 
-        // 基頻
         const osc = ctx.createOscillator();
         const noteGain = ctx.createGain();
 
         osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, now + idx * 0.02);
+        osc.frequency.setValueAtTime(freq, now + idx * 0.015);
 
         // 柔和的琴弦敲擊與衰減封套 (ADSR)
-        noteGain.gain.setValueAtTime(0, now + idx * 0.02);
-        noteGain.gain.linearRampToValueAtTime(0.7, now + idx * 0.02 + 0.03);
-        noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.02 + 1.6);
+        noteGain.gain.setValueAtTime(0, now + idx * 0.015);
+        noteGain.gain.linearRampToValueAtTime(0.7, now + idx * 0.015 + 0.03);
+        noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.015 + 1.6);
 
         osc.connect(noteGain);
         noteGain.connect(masterGain);
 
-        osc.start(now + idx * 0.02);
-        osc.stop(now + idx * 0.02 + 1.65);
+        osc.start(now + idx * 0.015);
+        osc.stop(now + idx * 0.015 + 1.65);
       });
     }
 
-    // 產生五線譜 SVG
+    // 產生五線譜 SVG (高音譜表原位或轉位精美渲染)
     function renderStaffSVG(svgNotes) {
-      // 5條線 y: 20(F5), 30(D5), 40(B4), 50(G4), 60(E4)
       let svg = `
         <svg viewBox="0 0 170 95" class="w-40 sm:w-44 h-24 mx-auto overflow-visible select-none">
           <!-- 5條五線譜本體 (間距 10px) -->
@@ -709,11 +897,10 @@
           <!-- 側邊終止線 -->
           <line x1="160" y1="20" x2="160" y2="60" stroke="#64748b" stroke-width="1.5"/>
 
-          <!-- 高音譜號 Treble Clef 向量簡化精美呈現 -->
+          <!-- 高音譜號 Treble Clef -->
           <text x="14" y="58" font-family="'Noto Serif TC', serif" font-size="44" fill="#38bdf8" opacity="0.9">𝄞</text>
       `;
 
-      // 橫向步進繪製各音符
       const startX = 64;
       const stepX = 23;
 
@@ -739,9 +926,9 @@
         // 音符實心橢圓
         svg += `
           <g class="cursor-pointer hover:opacity-80">
-            <ellipse cx="${x}" cy="${y}" rx="4.8" ry="3.8" fill="#38bdf8" transform="rotate(-25 ${x} ${y})"/>
+            <ellipse cx="${x}" cy="${y}" rx="4.8" ry="3.8" fill="${currentMode === 'inversion' ? '#f59e0b' : '#38bdf8'}" transform="rotate(-25 ${x} ${y})"/>
             <!-- 符幹 -->
-            <line x1="${x + 4.2}" y1="${y}" x2="${x + 4.2}" y2="${y - 25}" stroke="#38bdf8" stroke-width="1.3"/>
+            <line x1="${x + 4.2}" y1="${y}" x2="${x + 4.2}" y2="${y - 25}" stroke="${currentMode === 'inversion' ? '#f59e0b' : '#38bdf8'}" stroke-width="1.3"/>
             <!-- 音名標註 (下方小字) -->
             <text x="${x}" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold" fill="#94a3b8">${n.name}</text>
           </g>
@@ -757,7 +944,6 @@
       const container = document.getElementById('pianoKeyboard');
       container.innerHTML = '';
 
-      // 白鍵定義 (C4 到 G5，共 12 個白鍵)
       const whiteKeys = [
         { note: 'C4', name: 'C4' },
         { note: 'D4', name: 'D4' },
@@ -773,7 +959,6 @@
         { note: 'G5', name: 'G5' }
       ];
 
-      // 黑鍵定義 (相對於白鍵索引的半音)
       const blackKeys = [
         { note: 'C#4', name: 'C#4', leftIndex: 0 },
         { note: 'D#4', name: 'Eb4', leftIndex: 1 },
@@ -785,10 +970,9 @@
         { note: 'F#5', name: 'F#5', leftIndex: 10 }
       ];
 
-      const whiteWidth = 46; // 每個白鍵寬度 px
+      const whiteWidth = 46;
 
-      // 先排白鍵
-      whiteKeys.forEach((wk, idx) => {
+      whiteKeys.forEach(wk => {
         const keyEl = document.createElement('div');
         keyEl.className = 'piano-key white relative w-[46px] h-full rounded-b-md flex flex-col justify-end pb-2 items-center text-[10px] font-mono font-bold';
         keyEl.id = `key-${wk.note}`;
@@ -801,13 +985,11 @@
         container.appendChild(keyEl);
       });
 
-      // 再覆蓋黑鍵
       blackKeys.forEach(bk => {
         const keyEl = document.createElement('div');
         keyEl.className = 'piano-key black absolute z-10 w-[28px] h-28 rounded-b-sm flex flex-col justify-end pb-2 items-center text-[9px] font-mono font-bold';
         keyEl.id = `key-${bk.note}`;
         keyEl.setAttribute('data-note', bk.note);
-        // 位置定位：每個白鍵寬度 46px + 內距 8px
         const leftPos = 8 + (bk.leftIndex + 1) * whiteWidth - 14;
         keyEl.style.left = `${leftPos}px`;
         keyEl.innerHTML = `
@@ -822,12 +1004,50 @@
       });
     }
 
+    // 切換模式：'inversion' (影片實戰轉位) 或 'root' (教材原位)
+    function setChordMode(mode) {
+      currentMode = mode;
+
+      // 更新按鈕樣式
+      const isInv = mode === 'inversion';
+      
+      const btnModeInversion = document.getElementById('btnModeInversion');
+      const btnModeRoot = document.getElementById('btnModeRoot');
+      const btnTableInversion = document.getElementById('btnTableInversion');
+      const btnTableRoot = document.getElementById('btnTableRoot');
+
+      if (isInv) {
+        btnModeInversion.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition-all flex items-center gap-1.5 shadow';
+        btnModeRoot.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
+        
+        btnTableInversion.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition-all';
+        btnTableRoot.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all';
+
+        document.getElementById('tableSubheader').textContent = '目前顯示：【影片實戰轉位模式】完全 1:1 還原 Eunyu 影片中的實際右手音符、高音譜表與流暢指法';
+        document.getElementById('keyboardModeLabel').textContent = '右手鍵盤即時按鍵位置（完全對應 Eunyu 影片實戰手型與指法）';
+      } else {
+        btnModeInversion.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
+        btnModeRoot.className = 'px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-bold transition-all flex items-center gap-1.5 shadow';
+        
+        btnTableInversion.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all';
+        btnTableRoot.className = 'px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-bold transition-all';
+
+        document.getElementById('tableSubheader').textContent = '目前顯示：【教材標準原位模式】對照講義圖基礎和弦根音與原位五線譜排列';
+        document.getElementById('keyboardModeLabel').textContent = '右手鍵盤即時按鍵位置（教材標準原位排列）';
+      }
+
+      // 重新渲染表格並刷新當前和弦展示
+      renderChordsTable();
+      selectChord(currentChordId, false);
+    }
+
     // 渲染對照大表
     function renderChordsTable() {
       const tbody = document.getElementById('chordTableBody');
       tbody.innerHTML = '';
 
       CHORDS_DATA.forEach((chord, idx) => {
+        const item = chord[currentMode];
         const tr = document.createElement('tr');
         tr.id = `row-${chord.id}`;
         tr.className = `cursor-pointer transition-all hover:bg-sky-950/30 ${idx % 2 === 0 ? 'bg-slate-900/40' : 'bg-slate-900/10'}`;
@@ -837,32 +1057,35 @@
           <!-- 和弦名稱 -->
           <td class="py-3.5 px-4 font-mono">
             <div class="flex items-center gap-2">
-              <span class="text-base sm:text-lg font-black text-sky-400">${chord.name}</span>
+              <span class="text-base sm:text-lg font-black ${currentMode === 'inversion' ? 'text-amber-400' : 'text-sky-400'}">${chord.name}</span>
             </div>
             <div class="text-[11px] text-slate-400 mt-0.5">${chord.type}</div>
+            <div class="text-[10px] font-mono mt-1 ${currentMode === 'inversion' ? 'text-amber-300' : 'text-slate-400'}">
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">${item.inversionLabel}</span>
+            </div>
           </td>
 
           <!-- 組成音 / 唱名 -->
           <td class="py-3.5 px-4">
-            <div class="font-mono font-bold text-slate-200 text-sm tracking-wide">${chord.notes.join(' - ')}</div>
-            <div class="text-[11px] text-slate-400 font-mono mt-0.5">${chord.solfege}</div>
+            <div class="font-mono font-bold text-slate-100 text-sm tracking-wide">${item.notes.join(' - ')}</div>
+            <div class="text-[11px] text-slate-400 font-mono mt-1">${item.solfege}</div>
           </td>
 
           <!-- 高音五線譜位置 -->
           <td class="py-2 px-2 text-center bg-slate-950/30">
-            ${renderStaffSVG(chord.svgNotes)}
+            ${renderStaffSVG(item.svgNotes)}
           </td>
 
           <!-- 右手標準指法 -->
           <td class="py-3.5 px-4 text-center">
-            <span class="inline-block px-3 py-1.5 rounded-lg bg-slate-800 text-amber-300 font-mono font-bold text-sm tracking-wider border border-amber-500/20 shadow-sm">
-              ${chord.fingering}
+            <span class="inline-block px-3 py-1.5 rounded-lg ${currentMode === 'inversion' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-slate-800 text-sky-300 border-sky-500/20'} font-mono font-bold text-sm tracking-wider border shadow-sm">
+              ${item.fingering}
             </span>
           </td>
 
           <!-- 五線譜線間位置說明 -->
           <td class="py-3.5 px-4 text-slate-300 text-[11.5px] leading-relaxed">
-            ${chord.positionDesc}
+            ${item.positionDesc}
           </td>
         `;
         tbody.appendChild(tr);
@@ -875,10 +1098,13 @@
       const data = CHORDS_DATA.find(c => c.id === chordId);
       if (!data) return;
 
+      const item = data[currentMode];
+
       // 更新頂部展示卡
       document.getElementById('activeChordName').textContent = data.name;
       document.getElementById('activeChordType').textContent = data.type;
-      document.getElementById('activeChordSolfege').textContent = `唱名：${data.solfege} ｜ 標準指法：${data.fingering}`;
+      document.getElementById('activeInversionBadge').textContent = item.inversionLabel;
+      document.getElementById('activeChordSolfege').textContent = `音符：${item.notes.join(' - ')} ｜ 唱名：${item.solfege} ｜ 指法：${item.fingering}`;
 
       // 醒目提示表格行
       document.querySelectorAll('#chordTableBody tr').forEach(row => {
@@ -901,14 +1127,12 @@
       });
 
       // 依指法對應字典標記
-      data.notes.forEach(noteName => {
-        // 標準化黑鍵別名 (例如 G#4 = Ab4, Bb4 = A#4, C#5 = Db5)
+      item.notes.forEach(noteName => {
         let keyEl = document.getElementById(`key-${noteName}`);
         if (!keyEl && noteName.includes('#')) {
           keyEl = document.querySelector(`[data-note="${noteName}"]`);
         }
         if (!keyEl && noteName.includes('b')) {
-          // 查找同音異名
           const altMap = { 'Bb4': 'A#4', 'Eb4': 'D#4', 'Ab4': 'G#4', 'Db5': 'C#5', 'Eb5': 'D#5' };
           const alt = altMap[noteName];
           if (alt) keyEl = document.getElementById(`key-${alt}`);
@@ -916,7 +1140,7 @@
 
         if (keyEl) {
           keyEl.classList.add('active');
-          const fingerNum = data.fingersMap[noteName];
+          const fingerNum = item.fingersMap[noteName];
           const badge = keyEl.querySelector('.finger-badge');
           if (badge && fingerNum) {
             badge.textContent = fingerNum;
@@ -927,7 +1151,7 @@
       });
 
       if (shouldPlaySound) {
-        playChord(data.notes);
+        playChord(item.notes);
       }
     }
 
@@ -967,7 +1191,7 @@
       buildPianoKeyboard();
       renderChordsTable();
 
-      // 預設選中 C 和弦
+      // 預設以影片實戰轉位模式選中 C 和弦
       selectChord('C', false);
     });
   </script>
