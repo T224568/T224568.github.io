@@ -2347,7 +2347,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <!-- 🛠️ 照片編輯修復推薦捷徑 -->
             <div onclick="switchView('view-photo-retouch')" style="cursor: pointer; background: linear-gradient(135deg, rgba(168,85,247,0.3) 0%, rgba(236,72,153,0.3) 100%); border: 1.5px dashed rgba(244,114,182,0.6); border-radius: 12px; padding: 10px 16px; margin: 0 auto 14px; max-width: 620px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='none'">
                 <span style="font-size: 16px;">🛠️</span>
-                <span style="font-size: 13.5px; font-weight: 900; color: #fdf2f8;">需要修照片？去浮水印・修復舊照片・變彩色・變黑白・變自然 ➔ 點此一鍵前往！</span>
+                <span style="font-size: 13.5px; font-weight: 900; color: #fdf2f8;">需要修照片？2K/4K超解析・臉部曝光自然膚色・直橫轉換・換背景(第二張)・去雜物閒人・去水印 ➔ 點此一鍵前往！</span>
             </div>
 
             <!-- 全域一鍵隨機靈感控制列 -->
@@ -6568,7 +6568,7 @@ python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_in
     
     <div class="retouch-hero-card" style="background: linear-gradient(135deg, #1f1035 0%, #4a148c 50%, #9c27b0 100%); border-radius: 18px; padding: 22px 18px; color: #fff; text-align: center; margin-top: 5px; box-shadow: 0 10px 25px rgba(74, 20, 140, 0.35);">
         <h2 style="margin: 0 0 6px 0; font-size: 26px; font-weight: 900; letter-spacing: 1px;">🛠️ AI 照片編輯修復大師</h2>
-        <p style="margin: 0; font-size: 14.5px; opacity: 0.95; line-height: 1.5;">去浮水印・修復舊照片・黑白變彩色・彩色變黑白・去除AI塑膠感變自然・嚴格鎖定臉部特徵絕不變臉</p>
+        <p style="margin: 0; font-size: 14.5px; opacity: 0.95; line-height: 1.5;">老照片畫質修復(2K/4K超解析度)・臉部曝光與自然膚色・直轉橫/橫換直・換背景(第二張)・去雜物閒人・去水印・黑白彩色互轉</p>
     </div>
 
     <!-- 💡 AI 修圖心法叮嚀 -->
@@ -6592,10 +6592,11 @@ python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_in
 
         <!-- 4 大分類 Tab -->
         <div id="retouch-tabs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-bottom: 14px;">
-            <button class="retouch-tab active" onclick="switchRetouchCategory('fix', this)">🛠️ 照片修復（去水印・舊照・黑白彩色・變自然）</button>
-            <button class="retouch-tab" onclick="switchRetouchCategory('portrait', this)">🌟 攝影人像</button>
-            <button class="retouch-tab" onclick="switchRetouchCategory('scene', this)">🌍 場景穿搭</button>
-            <button class="retouch-tab" onclick="switchRetouchCategory('lock', this)">🛡️ 防翻車鎖定</button>
+            <button class="retouch-tab active" onclick="switchRetouchCategory('fix', this)">🛠️ 畫質與修復</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('crop_ratio', this)">📐 構圖比例轉換</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('scene', this)">🌍 換背景/穿搭</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('portrait', this)">🌟 攝影人像風格</button>
+            <button class="retouch-tab" onclick="switchRetouchCategory('lock', this)">🛡️ 防翻車鎖臉</button>
         </div>
 
         <!-- 模式下拉選擇 -->
@@ -9368,8 +9369,38 @@ python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_in
     const RETOUCH_CATEGORIES = [
         {
             id: 'fix',
-            name: '🛠️ 照片修復（去水印・舊照・黑白彩色・變自然）',
+            name: '🛠️ 畫質與修復（2K/4K舊照・膚色光影・去雜物閒人・去水印・黑白彩色）',
             items: [
+                {
+                    id: 'upscale_vintage_4k',
+                    title: '老照片畫質修復 / 2K/4K 超解析度放大 (/upscale_vintage)',
+                    desc: '模糊/破損老舊照片秒變 2K/4K 超高解析度，重建面部五官紋理、眼神光與毛孔，嚴格保持原始樣貌不改臉。',
+                    source: '老照片 2K/4K 超解析度',
+                    custom_label: '✏️ 指定放大規格與細節強化程度（可調整）：',
+                    custom_placeholder: '例如：2K/4K 超解析度放大，強化面部五官與眼部神韻',
+                    custom_default: '2K/4K 超解析度放大，真實重建面部五官與眼神光細節',
+                    template: '請修復這張老舊、模糊或低解析度的照片，將畫面提升至【CUSTOM】。在嚴格 100% 保留人物真實面容、五官輪廓比例、表情神態與身分辨識度的前提下，精準修復歷史老照片的膠卷顆粒、噪點斑駁與解析度不足問題，重新建構高清晰度的微細肌膚紋理、自然毛孔、靈動眼神光與清晰髮絲。畫面細膩銳利但絕不產生數位偽影、過度銳化光暈或虛假的 AI 塑膠感，達到頂級底片數位翻修掃描的極致畫質。'
+                },
+                {
+                    id: 'face_light_skin',
+                    title: '調整臉部曝光與自然膚色 (HDR立體補光) (/face_light)',
+                    desc: '挽救面部陰影過重、逆光黑臉、慘白過曝或蠟黃，平衡五官曝光並呈現自然紅潤血色通透膚質。',
+                    source: '臉部曝光與原生膚色校正',
+                    custom_label: '✏️ 指定臉部光影或膚色重點（可調整）：',
+                    custom_placeholder: '例如：消除臉部陰影、提亮暗部、校準為健康自然通透膚色',
+                    custom_default: '提亮臉部陰影死黑處，校準為自然紅潤且有光澤的健康膚色',
+                    template: '請針對照片中人物的臉部光影與膚質進行專業人像校準：【CUSTOM】。自然平衡臉部曝光，柔和消除由於頂光、側光或逆光造成的面部黑眼圈、鼻翼及脖子生硬陰影，均勻補光提亮；壓制額頭或鼻樑處的反光過曝。重新校正色溫與白平衡，去除不自然的蠟黃、死白或暗沉，還原皮膚微血管的健康紅潤氣色與自然光澤。嚴格保留天然皮膚質地與真實毛孔，拒絕假面磨皮，讓面部立體生動且充滿呼吸感。'
+                },
+                {
+                    id: 'cleanup_crowd',
+                    title: '去除背景路人、閒人與雜物垃圾 (/cleanup)',
+                    desc: '精準抹除背後路人遊客、雜物垃圾桶或雜亂電線，無縫還原真實背景光影與透視。',
+                    source: 'ChatGPT 10大指令 & /cleanup',
+                    custom_label: '✏️ 想消除的閒人路人或背景雜物：',
+                    custom_placeholder: '例如：背景裡的所有路人閒人、垃圾桶與地上的雜物',
+                    custom_default: '背景中的所有路人閒人、障礙物與凌亂雜物',
+                    template: '【/cleanup】請精準且無痕地消除這張照片中【CUSTOM】。請依據照片原本的光線照射方向、陰影投射、景深虛化、色彩漸層與環境透視結構，真實自然地重構被遮擋的背景空間（如地面、牆面、建築景觀或自然景物）。消除區域與周遭邊緣必須達到完全平滑無接縫、無偽影痕跡，整體視覺效果如同拍攝當下空無一人般的乾淨純粹。'
+                },
                 {
                     id: 'watermark',
                     title: '去浮水印 / 移除文字標籤與印記 (/remove_watermark)',
@@ -9413,42 +9444,12 @@ python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_in
                 {
                     id: 'real_natural',
                     title: '去除 AI 塑膠感・還原真實自然肌膚 (變自然) (/natural_skin)',
-                    desc: '告別假假塑膠人與假面磨皮！還原天然毛孔紋理、自然微瑕疵與相機光學景深。',
-                    source: '去塑膠感・真實自然肌膚',
+                    desc: '告別假假塑膠人與假面磨皮！還原天然毛孔紋理、細緻髮絲與物理光學景深。',
+                    source: 'AI 質物質化與去塑膠感',
                     custom_label: '',
                     custom_placeholder: '',
                     custom_default: '',
                     template: '請修正這張照片中過度的 AI 塑膠假人感、假面平滑磨皮與不自然的人工光澤，還原為頂級單眼相機拍攝的「極致真實自然人像」。嚴格保留原本五官特徵、臉型與身分辨識度，去除數位塗繪感，重建天然健康的肌膚紋理、真實毛孔、細微皮膚光斑、真實髮絲與衣物纖維細節。光影需具備實體鏡頭的光學柔和散景與自然景深，拒絕任何假面感。'
-                },
-                {
-                    id: 'upscale',
-                    title: '提升畫質 / 舊照超解析度 (/upscale)',
-                    desc: '模糊照片秒變清晰，改善細節與銳利度，拒絕假假 AI 塑膠感。',
-                    source: 'ChatGPT 10大指令 & /upscale',
-                    custom_label: '',
-                    custom_placeholder: '',
-                    custom_default: '',
-                    template: '請提升這張圖片的畫質，使畫面更清晰、乾淨且專業，同時完整保持原始構圖與所有內容不變。請改善細節、光線、曝光、色彩準確度、對比與銳利度；避免產生假細節、過度銳化或不自然的 AI 塑膠人工感。'
-                },
-                {
-                    id: 'light_fix',
-                    title: '逆光昏暗照片補光提亮 (HDR平衡) (/light_fix)',
-                    desc: '挽救曝光不足、逆光黑臉與死黑陰影，自然提亮暗部並平衡高光白平衡。',
-                    source: 'HDR 逆光光影校準',
-                    custom_label: '',
-                    custom_placeholder: '',
-                    custom_default: '',
-                    template: '請拯救這張曝光不足、逆光黑臉或光線昏暗的照片。使用專業的 HDR 光影平衡技術：自然提亮人物面部與暗部陰影細節，同時壓制過曝的高光背景（如天空或窗戶），校準白平衡與真實色溫，呈現明亮、乾淨、層次豐富且噪點極低的專業攝影質感。'
-                },
-                {
-                    id: 'cleanup',
-                    title: '移除背景路人與雜物 (/cleanup)',
-                    desc: '清除畫面背景中的路人、障礙物或垃圾桶，乾淨無痕自然修補。',
-                    source: 'ChatGPT 10大指令 & /cleanup',
-                    custom_label: '✏️ 想移除的人物或物件：',
-                    custom_placeholder: '例如：右後方的路人與地上的垃圾桶',
-                    custom_default: '右側走過的路人與背景雜物',
-                    template: '請從這張圖片中移除【CUSTOM】，並以真實自然的方式重建其後方區域。延續原始背景、光線、陰影、材質、反射、景深與透視，讓修改處完全無接縫、看不出任何修圖痕跡。'
                 },
                 {
                     id: 'eyefix',
@@ -9469,6 +9470,108 @@ python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_in
                     custom_placeholder: '',
                     custom_default: '',
                     template: '請修整人物衣服上明顯的皺褶、摺痕、布料堆積及不平整處，同時真實保留服裝的材質、縫線、合身程度、光影與原本輪廓。讓服裝看起來整潔得體，但仍保有自然的布料垂墜感，避免過度平滑或出現數位塗繪合成感。'
+                }
+            ]
+        },
+        {
+            id: 'crop_ratio',
+            name: '📐 構圖比例轉換（直轉橫・橫換直・正方形）',
+            items: [
+                {
+                    id: 'portrait_to_landscape',
+                    title: '直轉橫 (9:16 ➔ 16:9 / 4:3 寬螢幕延伸外擴)',
+                    desc: '將手機拍的直式照片向左右自然延伸外擴為 16:9 橫向風景/寬螢幕，主體居中或依黃金比例安置，周遭景觀無縫補全。',
+                    source: '構圖比例轉換大師',
+                    custom_label: '✏️ 指定目標橫式比例與兩側延伸景物：',
+                    custom_placeholder: '例如：橫向 16:9 比例，向左右自然延展背景環境景深',
+                    custom_default: '橫向 16:9 寬螢幕比例，向左右兩側自然延伸補全背景環境',
+                    template: '請將這張直式照片無痕轉換並延伸為【CUSTOM】橫式畫面。原始照片中的人物、主體五官、身形比例與核心物件 100% 完整保留，不變形、不拉伸。請智慧分析原圖的天空、地面、牆面、周遭植被或室內景觀，精準沿著兩側邊界向外進行生成擴展（Outpainting），確保光線方向、陰影衰減、景深散景、紋理材質與環境透視結構完美銜接，呈現如同當初就是使用橫幅廣角鏡頭實地拍攝的大器寬景效果。'
+                },
+                {
+                    id: 'landscape_to_portrait',
+                    title: '橫換直 (16:9 ➔ 9:16 手機直式短影音/限動構圖)',
+                    desc: '將橫式照片重新構圖並向上或向下自然延伸補全為 9:16 直式短影音/限時動態畫面，保持人物主體完整且背景比例平衡。',
+                    source: '構圖比例轉換大師',
+                    custom_label: '✏️ 指定目標直式比例與上下延伸細節：',
+                    custom_placeholder: '例如：直式 9:16 手機全螢幕比例，向上自然補齊天空/天花板，向下補全地面',
+                    custom_default: '直式 9:16 手機全螢幕比例，向上自然延伸頭頂空間/天空，向下延伸地面',
+                    template: '請將這張橫式照片轉換重構為【CUSTOM】的手機直式構圖畫面。請以畫面核心人物/主體為中心進行垂直焦點平衡，嚴格保留人物的五官身分、比例、姿勢與服裝細節不變形。向上自然延伸補足頭頂上方空間（如天空、樹冠、室內天花板與環境光源），向下自然延伸地面、道路或前景景深，使整體直幅畫面具備極佳的視覺縱深與空間感，完美適配手機滿版直式螢幕。'
+                },
+                {
+                    id: 'to_square_ratio',
+                    title: '正方形轉換 (1:1 IG貼文/頭像完美構圖)',
+                    desc: '將任意直式或橫式照片向短邊自然外擴或補景為標準 1:1 正方形，主體完美聚焦，四周景觀自然流暢。',
+                    source: '構圖比例轉換大師',
+                    custom_label: '✏️ 指定 1:1 正方形構圖風格重點：',
+                    custom_placeholder: '例如：1:1 正方形比例，主體自然置中，兩側補齊環境背景',
+                    custom_default: '標準 1:1 正方形貼文/頭貼比例，人物主體維持居中焦點',
+                    template: '請將這張照片重新構圖並轉換為【CUSTOM】的 1:1 正方形畫面。主體人物的臉部結構、五官辨識度、服飾與原始清晰度完整保留，絕不對主體進行不當裁切或橫縱變形壓縮。向原本較窄的兩側或上下邊界以外自然延伸補全景物，匹配原本場景的光影色調、透視與景深層次，呈現一張視覺平衡、構圖大方的高質感 Instagram 1:1 正方形精選相片。'
+                },
+                {
+                    id: 'free_outpaint_expand',
+                    title: '自由指定外擴延伸方向 (向左/右/上/下任意延伸)',
+                    desc: '需要把人物移到三分線或為海報留白？自由指定畫面延伸方位與補充內容。',
+                    source: 'ChatGPT 10大指令 & Outpaint',
+                    custom_label: '✏️ 指定向哪個方向延伸與補充的景物：',
+                    custom_placeholder: '例如：向右側大幅延伸 50%，補全右邊的海灘與落日地平線',
+                    custom_default: '向畫面兩側大幅自然延伸，保留寬闊的景觀視野與視覺呼吸感',
+                    template: '請將這張照片進行局部外擴生成（Outpainting）：【CUSTOM】。原始畫面中的所有主體人物、五官、光影及物件嚴格保持不變。自然補齊延伸區域的天空、地面、景物紋理與環境光斑，使擴展後的區域與原始畫面完全融合、天衣無縫。'
+                }
+            ]
+        },
+        {
+            id: 'scene',
+            name: '🌍 換背景(第二張)・場景時空・穿搭變身',
+            items: [
+                {
+                    id: 'change_bg_second_photo',
+                    title: '更換照片背景 (使用第二張參考圖) (/change_bg_ref)',
+                    desc: '同時上傳兩張照片：第一張為人物主體，第二張為目標背景。AI 自然無縫合成，完美配合第二張圖的光線、角度與透視！',
+                    source: '雙圖合成換背景神技',
+                    custom_label: '✏️ 融合微調提示（選填）：',
+                    custom_placeholder: '例如：人物自然置身於第二張圖中央偏左，依第二張圖光源調整柔和陰影',
+                    custom_default: '完美融合第二張圖的光源方向、環境色溫、景深虛化與真實陰影',
+                    template: '我一共上傳了兩張照片：【第一張照片】是人物主體照片，【第二張照片】是我想要替換的目標背景環境。\n請精準將第一張照片中的人物無痕去背並移入第二張照片的背景中：\n1.【主體保留】：100% 完整保留第一張照片人物的臉部五官結構、身形體態、膚色紋理、髮型與當前服裝，絕不改變臉型或替換身分。\n2.【環境融合】：【CUSTOM】。依據第二張背景圖的光源入射角度、明暗對比、環境反光（如背景主色調對人物輪廓的微微環境光漫射）與透視水平線，重新計算人物身上的光影折射與腳底/身後陰影，讓人物如同原先就在第二張照片場景中實體拍攝一般自然逼真，絕無生硬貼圖或白邊瑕疵。'
+                },
+                {
+                    id: 'change_bg',
+                    title: '文字描述更換新背景 (/change_bg)',
+                    desc: '透過文字指定全新背景（雪景、咖啡廳、海邊），光線、陰影、透視自然配合新背景，人物完全不失真。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 想更換的新背景：',
+                    custom_placeholder: '輸入新背景，例如：日本京都清水寺楓葉林 / 巴黎鐵塔前露台',
+                    custom_default: '陽光明媚的綠意森林景觀步道',
+                    template: '請把目前照片的背景更換成【CUSTOM】，主題人物保持完全不變。完整保留臉部五官、身形、服裝、髮型、姿勢、比例與細節，並重新調整光線方向、陰影、色溫與透視，讓人物自然無縫融入新環境中。'
+                },
+                {
+                    id: 'change_outfit',
+                    title: '自然更換穿搭服裝',
+                    desc: '換上指定西裝、風衣或運動裝，五官身型姿勢完美保留。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 想換上的新穿搭：',
+                    custom_placeholder: '輸入服裝描述，例如：深藍色英倫風格修身西裝搭配白襯衫',
+                    custom_default: '優雅俐落的深色商務休閒服飾',
+                    template: '請把人物目前的服裝更換成【CUSTOM】，並完整保留人物身分、臉部、髮型、身形、姿勢、手部、膚色、比例、表情與背景。新服裝必須完美符合身體結構與姿勢，布料材質、皺褶垂墜、光影反光都要自然真實。'
+                },
+                {
+                    id: 'change_time',
+                    title: '改變拍攝時間氛圍 (日落/夜景)',
+                    desc: '白天秒變黃昏黃金時刻或繁星雨夜，光影氛圍完全匹配。',
+                    source: 'ChatGPT 10大指令',
+                    custom_label: '✏️ 想變換的拍攝時間/氛圍：',
+                    custom_placeholder: '輸入目標時段，例如：日落黃金時刻 (Golden Hour) / 繁華夜景',
+                    custom_default: '夕陽西下的溫暖黃金時刻 (Golden Hour)',
+                    template: '請把場景拍攝時間改成【CUSTOM】。同步調整天空、光線方向、色溫、反射、陰影、窗戶與周遭環境，讓整個畫面符合新的時間氛圍與光影，同時保持人物五官身分和構圖完全不變。'
+                },
+                {
+                    id: 'travel_photo',
+                    title: '世界各地專業旅遊照',
+                    desc: '換旅遊目的地，光線、天氣、景深自然融合，不生硬摳圖。',
+                    source: 'Gemini 攝影師 6組提示詞',
+                    custom_label: '✏️ 想去的旅遊目的地：',
+                    custom_placeholder: '輸入旅遊目的地，例如：瑞士阿爾卑斯山雪峰前 / 日本富士山腳下',
+                    custom_default: '瑞士雪山下的美麗小鎮風景',
+                    template: '將我上傳的照片轉換成在【CUSTOM】拍攝的專業、真實旅遊照。保留我的臉部與身分特徵，並自然融入當地環境。請依照目的地合理調整光線、陰影、透視、天氣、服裝與周遭景物，使用專業旅遊攝影構圖、真實景深、自然色彩與柔和背景分離，避免人物像被直接貼到背景上。'
                 }
             ]
         },
@@ -9525,62 +9628,6 @@ python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_in
                     custom_placeholder: '',
                     custom_default: '',
                     template: '請以專業修圖方式優化這張照片，同時完整保留人物身分、五官特徵、自然膚質、身體比例、髮型、服裝與整體外觀。改善光線、清晰度、白平衡、色彩與曝光，成品必須自然、真實，不要出現過度磨皮或 AI 塑膠假人感。'
-                }
-            ]
-        },
-        {
-            id: 'scene',
-            name: '🌍 場景時空與穿搭變身',
-            items: [
-                {
-                    id: 'change_bg',
-                    title: '更換照片背景',
-                    desc: '光線、陰影、透視自然配合新背景，人物完全不失真。',
-                    source: 'ChatGPT 10大指令',
-                    custom_label: '✏️ 想更換的新背景：',
-                    custom_placeholder: '輸入新背景，例如：日本京都清水寺楓葉林 / 巴黎鐵塔前',
-                    custom_default: '陽光明媚的綠意森林步道',
-                    template: '請把目前背景更換成【CUSTOM】，主題人物保持完全不變。完整保留臉部、身形、服裝、髮型、姿勢、比例與細節，並重新調整光線方向、陰影、色溫與透視，讓人物自然無縫融入新環境中。'
-                },
-                {
-                    id: 'change_outfit',
-                    title: '自然更換穿搭服裝',
-                    desc: '換上指定西裝、風衣或運動裝，五官身型姿勢完美保留。',
-                    source: 'ChatGPT 10大指令',
-                    custom_label: '✏️ 想換上的新穿搭：',
-                    custom_placeholder: '輸入服裝描述，例如：深藍色英倫風格修身西裝搭配白襯衫',
-                    custom_default: '優雅俐落的深色商務休閒服飾',
-                    template: '請把人物目前的服裝更換成【CUSTOM】，並完整保留人物身分、臉部、髮型、身形、姿勢、手部、膚色、比例、表情與背景。新服裝必須完美符合身體結構與姿勢，布料材質、皺褶垂墜、光影反光都要自然真實。'
-                },
-                {
-                    id: 'change_time',
-                    title: '改變拍攝時間氛圍 (日落/夜景)',
-                    desc: '白天秒變黃昏黃金時刻或繁星雨夜，光影氛圍完全匹配。',
-                    source: 'ChatGPT 10大指令',
-                    custom_label: '✏️ 想變換的拍攝時間/氛圍：',
-                    custom_placeholder: '輸入目標時段，例如：日落黃金時刻 (Golden Hour) / 繁華夜景',
-                    custom_default: '夕陽西下的溫暖黃金時刻 (Golden Hour)',
-                    template: '請把場景拍攝時間改成【CUSTOM】。同步調整天空、光線方向、色溫、反射、陰影、窗戶與周遭環境，讓整個畫面符合新的時間氛圍與光影，同時保持人物五官身分和構圖完全不變。'
-                },
-                {
-                    id: 'outpaint',
-                    title: '自然延伸照片畫面 (外擴補景)',
-                    desc: '直照片延伸成寬螢幕桌布，自然補齊周圍景物無縫接合。',
-                    source: 'ChatGPT 10大指令',
-                    custom_label: '✏️ 延伸方向與比例：',
-                    custom_placeholder: '輸入延伸方向與比例，例如：橫向 16:9 比例 / 向左右自然延伸',
-                    custom_default: '橫向 16:9 比例',
-                    template: '請將這張照片向原本邊界以外自然延伸至【CUSTOM】，原始畫面中的人物、主體與物件嚴格保持不變。自然補齊周圍環境、地面、牆面、天空、景物、紋理與光影，使延伸區域與原始照片無縫銜接。'
-                },
-                {
-                    id: 'travel_photo',
-                    title: '世界各地專業旅遊照',
-                    desc: '換旅遊目的地，光線、天氣、景深自然融合，不生硬摳圖。',
-                    source: 'Gemini 攝影師 6組提示詞',
-                    custom_label: '✏️ 想去的旅遊目的地：',
-                    custom_placeholder: '輸入旅遊目的地，例如：瑞士阿爾卑斯山雪峰前 / 日本富士山腳下',
-                    custom_default: '瑞士雪山下的美麗小鎮風景',
-                    template: '將我上傳的照片轉換成在【CUSTOM】拍攝的專業、真實旅遊照。保留我的臉部與身分特徵，並自然融入當地環境。請依照目的地合理調整光線、陰影、透視、天氣、服裝與周遭景物，使用專業旅遊攝影構圖、真實景深、自然色彩與柔和背景分離，避免人物像被直接貼到背景上。'
                 }
             ]
         },
