@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今日靈修</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --tag-bg: #eff6ff;
+      --table-stripe: #f8fafc;
+      --gold: #d97706;
+      --gold-bg: #fffbeb;
+      --purple: #7c3aed;
+      --purple-bg: #f5f3ff;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f19;
+        --card: #151d2e;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --border: #243048;
+        --accent: #60a5fa;
+        --accent-soft: rgba(96, 165, 250, 0.12);
+        --tag-bg: #1e293b;
+        --table-stripe: #111827;
+        --gold: #fbbf24;
+        --gold-bg: rgba(251, 191, 36, 0.12);
+        --purple: #a78bfa;
+        --purple-bg: rgba(167, 139, 250, 0.12);
+        --green: #34d399;
+        --green-bg: rgba(52, 211, 153, 0.12);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 16px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .container { max-width: 920px; margin: 0 auto; }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+    .header-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .meta-quote {
+      margin: 6px 0 20px;
+      padding: 10px 16px;
+      background: var(--tag-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.92rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 36px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: left;
+    }
+    th {
+      background: var(--tag-bg);
+      font-weight: 700;
+      color: var(--text);
+    }
+    tr:nth-child(even) { background: var(--table-stripe); }
+    .callout {
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+    }
+    .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+    .callout-gold { background: var(--gold-bg); border-color: var(--gold); }
+    .callout-purple { background: var(--purple-bg); border-color: var(--purple); }
+    .callout-green { background: var(--green-bg); border-color: var(--green); }
+    
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    ul, ol { padding-left: 24px; }
+    li { margin-bottom: 10px; }
+    blockquote {
+      margin: 16px 0;
+      padding: 10px 18px;
+      background: var(--tag-bg);
+      border-left: 4px solid var(--border);
+      color: var(--text);
+      font-style: italic;
+      border-radius: 0 8px 8px 0;
+    }
+    hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+    a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    details {
+      background: var(--table-stripe);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 14px 0;
+    }
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    summary:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <article>
+      <div class="header-badge">教會靈修 ｜ 六書合一</div>
+      <h1>今日靈修</h1>
+      <div class="meta-quote">📅 靈修日期：2026-11-25（台北時間 GMT+8） ｜ 每日清晨自動抓取長老教會新眼光與大光五書最新信息</div>
+      <div class="meta-quote">📖 涵蓋經典：每日新眼光、荒漠甘泉、慕安德烈、信心的支票簿、司布真晨祭、司布真夜祭</div>
+
+      <h2>🌟 一、今日六書核心一覽表</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 8%;">序號</th>
+            <th style="width: 22%;">靈修書目</th>
+            <th style="width: 25%;">今日主題</th>
+            <th style="width: 18%;">經文出處</th>
+            <th style="width: 27%;">核心領受摘要</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">📰</td>
+            <td><strong>每日新眼光</strong></td>
+            <td>不妥協的忠誠</td>
+            <td><code>啟示錄2章12～17節</code></td>
+            <td>真理啟示我們：當環境越黑暗，見證越明亮。在面對利益衝突時，我會選擇見證主名或追求安逸？</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">1️⃣</td>
+            <td><strong>荒漠甘泉</strong></td>
+            <td>上帝的最好<br><small style="color:var(--muted);">God's Best</small></td>
+            <td><code>王下十三18~19</code></td>
+            <td>這幾句話的信息多麼警惕！約阿施自以為打了二次、三次，已經很有信心了。但是上帝和神人都大失望。 約阿施曾得到一些東西，並且得的不少─...</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">2️⃣</td>
+            <td><strong>慕安德烈</strong></td>
+            <td>君尊的祭司<br><small style="color:var(--muted);">A ROYAL PRIESTHOOD</small></td>
+            <td><code>彼得前書二：9</code></td>
+            <td>天國的觀念是舊約的中心思想，而祭司的地位卻是新約強調的重點。 教會荒涼、信徒靈命冷淡的主要原因之一，就是信徒誤認為上帝救贖的目的，...</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">3️⃣</td>
+            <td><strong>信心的支票簿</strong></td>
+            <td>大山夷為平地<br><small style="color:var(--muted);">Mountains Turned to Plains</small></td>
+            <td><code>撒迦利亞書四︰7</code></td>
+            <td>此刻在你的人生道路上，或許荊棘滿佈，困難重重，看不出有任何的亮光或出路，但憑信心仰望上帝，頭頂還有一片青天，你不會被困住的，所謂山...</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">4️⃣</td>
+            <td><strong>司布真每日靈修(日)</strong></td>
+            <td>十一月二十五日<br><small style="color:var(--muted);">Morning, November 25</small></td>
+            <td><code>路加福音四：18</code></td>
+            <td>除了耶穌以外，沒有人可以讓被擄的人得釋放。真正的自由是來自於耶穌，因為耶穌是上帝的兒子，祂有這樣的權柄，叫人得釋放；而這得自由的權...</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5️⃣</td>
+            <td><strong>司布真每日靈修(夜)</strong></td>
+            <td>十一月二十五日<br><small style="color:var(--muted);">Evening, November 25</small></td>
+            <td><code>羅馬書九：15</code></td>
+            <td>因為生死大權是操在君王手中，所有全地的審判者有權恕宥或定罪。罪惡使人喪失向上帝要求的權利。因為罪，世人應當滅亡。即使所有人都滅亡，...</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>🔑 二、今日共同主題脈絡（嚴格 1 對 1 對應）</h2>
+      <div class="callout callout-blue">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li><strong>不妥協的忠誠</strong>（新眼光）—— 不妥協的忠誠：在世俗洪流中立定根基，活出分別為聖的生命。</li>
+          <li><strong>追求神之最好</strong>（荒漠甘泉）—— 上帝的最好：不滿足於少數成就，憑信心擊打得勝的箭，得著上帝最美旨意。</li>
+          <li><strong>君尊祭司職分</strong>（慕安德烈）—— 君尊的祭司：體認聖潔國度子民身分，常在救主座前代求並事奉。</li>
+          <li><strong>高山平地之恩</strong>（信心的支票簿）—— 大山夷為平地：不靠勢力，不靠才能，倚靠耶和華的靈，大山必化為平原。</li>
+          <li><strong>釋放受壓心靈</strong>（司布真晨祭）—— 十一月二十五日：基督的福音傳給謙卑貧窮人，醫好傷心者，報告被擄得釋放。</li>
+          <li><strong>主權憐憫安息</strong>（司布真夜祭）—— 十一月二十五日：在神絕對的憐憫與恩典中安歇，深信祂必恩待屬祂的兒女。</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-purple">
+        <div class="callout-title" style="color: var(--purple);">🗝️ 一語貫穿金句</div>
+        <div style="font-size: 1.05rem; font-weight: 700; color: var(--purple);">「憑信心擊打得勝的箭，在黑暗處境守住忠誠；靠聖靈跨越大山阻礙，安歇於主永恆豐盛的恩典中。」</div>
+      </div>
+
+      <hr />
+
+      <h2>📖 三、六書完整信息與心靈祈禱</h2>
+
+      <!-- PCT -->
+      <h3>📰 每日新眼光 Daily New Eyes —— 不妥協的忠誠</h3>
+      <blockquote>
+        <strong>參考經文：</strong>啟示錄2章12～17節<br />
+        <strong>金句：</strong>我知道你的住處就是撒但稱王的地方。但你對我忠誠，甚至當我忠心的見證人安提帕在撒但的地盤被殺害時，你也沒有放棄對我的信心。（啟示錄2章13節）
+      </blockquote>
+      <div style="white-space: pre-line; margin: 16px 0;">我忠誠，甚至當我忠心的見證人安提帕在撒但的地盤被殺害時，你也沒有放棄對我的信心。（啟示錄2章13節）
+啟示錄提到別迦摩，這座曾被稱為「撒但座位之處」的城市，是當時羅馬帝國推行帝王崇拜的核心。別迦摩的偶像、廟宇林立，政權與異教勢力交織成一股黑暗的陰影，成為迫害信徒的溫床。在高壓且敵意的環境中，主耶穌對別迦摩教會發出了極高評價，稱讚他們在忠心的見證人安提帕殉道時，依然拒絕背棄信仰，沒有放棄對主的信心。安提帕的死，不僅是教會歷史上的哀傷，更是信心的極致考驗。這份信心並非源於環境的順遂，也不是建立在上帝「保證肉體無損」的應許上，而是在死亡的威脅面前，依然選擇信靠超越死亡的主。這群信徒深知，生命的終極意義不在於肉體的存續，而在於竭誠為主，守護作為上帝兒女的名分。
+從羅馬的競技場到今日世界的某些角落，無數信徒如安提帕般，在世俗權力的巨大壓力與威脅下，用信心表達對基督的效忠。這種力量的泉源，是看見生命主權的歸屬──他們堅信自己的生命是在上帝手中，而非在獨裁者的掌控下。對別迦摩的信徒而言，忠誠不單是宗教情感，更是生存姿態：在強迫所有人向權力低頭的城市，他們選擇抬頭仰望天上的君王。這不向黑暗屈服的意志，使他們在歷史中，成為真理的見證者。
+今日「撒但的座位」，以更幽微的形式存在於我們的生活中。當代社會的撒但座位，可能是充滿誘惑、將人商品化的消費主義，可能是凡事以利益為先、踐踏誠實的功利職場，也可能是漠視絕對真理、將信仰邊緣化的世俗文化。在這些領域中，雖然沒有血淋淋的殉道，卻有持續性的微型逼迫。當你因堅持信仰立場而顯得與世界格格不入時，是否感到被孤立的焦慮？
+信仰的省思挑戰我們，去辨識生命中的「假神」。我們是否在不知不覺中，為了追求社會的認同或生活的安逸，而向時代的偶像下拜？安提帕的榜樣提醒我們，真正的門徒職分在於見證，這意味我們要受召在不信的環境中，活出與世界價值觀不同的生命品質。願我們從別迦摩教會與安提帕的見證中得到勇氣，明白即使在最黑暗、最充滿敵意的撒但地盤中，我們依然擁有從上帝而來的權柄站立得穩。願這份不妥協的信心成為我們最堅實的盔甲，帶領我們走過每一個充滿挑戰的日子，直到與主同享榮耀的那一刻。</div>
+      <div class="callout callout-gold">
+        <div class="callout-title" style="color: var(--gold);">🤔 心靈默想</div>
+        <div>真理啟示我們：當環境越黑暗，見證越明亮。在面對利益衝突時，我會選擇見證主名或追求安逸？</div>
+      </div>
+      <div class="callout callout-green">
+        <div class="callout-title" style="color: var(--green);">🙏 誠心祈禱</div>
+        <div>親愛的主，感謝祢稱許安提帕的忠心。求祢賜我勇氣，在物慾橫流與價值混亂的世界中，不向偶像低頭，單單高舉祢的聖名。奉主耶穌基督的名求，阿們。</div>
+      </div>
+      <p>🔗 <a href="https://www.pct.org.tw/dailyneweyes.aspx?strDID=20261125" target="_blank">點此開啟台灣基督長老教會官方原文</a></p>
+
+      <hr />
+
+      <!-- 荒漠甘泉 -->
+      <h3>1️⃣ 荒漠甘泉 —— 上帝的最好 (God's Best)</h3>
+      <blockquote>取幾枝箭來….打地罷。他打了三次，便止住了。神人向他發怒，說，應當擊打五六次。」（王下十三18~19）</blockquote>
+      <div style="white-space: pre-line; margin: 16px 0;">這幾句話的信息多麼警惕！約阿施自以為打了二次、三次，已經很有信心了。但是上帝和神人都大失望。
+約阿施曾得到一些東西，並且得的不少──他所得的，和他所信的，適正相符；但是他沒有得到上帝所要給他的一切。他失了許多應許和祝福。他得了一些比別人好的東西，可是他沒有得到上帝的最好。
+親愛的，這是多麼嚴重的一件事！我們應當學習禱告得透切！──信宣（A. B. Simpson）
+充充足足的成就一切超過我們所求所想的。」（弗三20）
+讓我們看保羅所用的字句──「充充足足」、「一切」、「超過」….啊！每一個字裡面包含著上帝無限的愛和能力！──宣道會報（The Alliance）
+奉獻 Offering</div>
+      <details>
+        <summary>🔤 點擊展開英文原文 (English Original)</summary>
+        <blockquote style="margin-top:10px;">Take the arrows. . . . Smite upon the ground. And he smote twice and stayed. And the man of God was wroth with him, and said, Thou shouldest have smitten five or six times (2 Kings 13:18, 19)</blockquote>
+        <div style="white-space: pre-line; font-size: 0.95rem; color: var(--muted); margin-top:8px;">How striking and eloquent the message of these words! Jehoash thought he had done very well when he duplicated and triplicated what to him was certainly an extraordinary act of faith. But the Lord and the prophet were bitterly disappointed because he had stopped half way.
+He got something. He got much. He got exactly what he believed for in the final test, but he did not get all that the prophet meant and the Lord wanted to bestow. He missed much of the meaning of the promise and the fullness of the blessing. He got something better than the human, but he did not get God's best.
+Beloved, how solemn is the application! How heartsearching the message of God to us! How important that we should learn to pray through! Shall we claim all the fullness of the promise and all the possibilities of believing prayer? --A. B. Simpson
+"Unto him that is able to do exceeding abundantly above all that we ask or think" (Eph. 3:20).
+There is no other such piling up of words in Paul's writings as these, "exceeding abundantly above all," and each word is packed with infinite love and power to "do" for His praying saints. There is one limitation, "according to the power that worketh in us." He will do just as much for us as we let Him do in us. The power that saved us, washed us with His own blood, filled us with might by His Spirit, kept us in manifold temptations, will work for us, meeting every emergency, every crisis, every circumstance, and every adversary. --The Alliance</div>
+      </details>
+      <p>🔗 <a href="https://www.glorypress.com/devotional/FaithAndLifeOneYearBook.asp?bid=1&rdate=11/25" target="_blank">點此開啟大光官方頁面</a></p>
+
+      <hr />
+
+      <!-- 慕安德烈 -->
+      <h3>2️⃣ 慕安德烈每日靈修 —— 君尊的祭司 (A ROYAL PRIESTHOOD)</h3>
+      <blockquote>你們是被揀選的族類，是有君尊的祭司。」（彼得前書二：9）</blockquote>
+      <div style="white-space: pre-line; margin: 16px 0;">天國的觀念是舊約的中心思想，而祭司的地位卻是新約強調的重點。
+教會荒涼、信徒靈命冷淡的主要原因之一，就是信徒誤認為上帝救贖的目的，就是要基督徒得永生而已，這實在是大錯特錯。上帝恩典的目的，應該是更神聖、更長遠，祂拯救我們為的是要我們再去拯救別人，每個信徒都應該有還債的心態，要把白白得來的恩典，與他人分享，告訴別人如何得著新生命。
+蒙恩得救的基督徒，背著一個神聖的呼召，就是要做上帝恩典流通的管道，讓別人能藉我蒙福。得救不是意謂著拿到天國的護照，就等著死後上天堂。教會應該教導這真理：「得救乃是要服事上帝，帶領更多人認識主，因為你們是君尊的祭司。」
+君尊的祭司！這是怎樣一個慈悲為懷的心腸，滿腔奔騰的熱血，為要帶領更多人搭上福音列車，贏得更多人進入天國。我們傳福音有兩個動機：一是為了愛耶穌，所以我領人歸主，來取悅祂，尊榮祂。二是為了愛別人靈魂，不忍心看到他們到地獄受苦，所以我願犧牲一切，為要讓他們知道天堂的美好，與死後靈魂的去處。
+祭司的心是怎樣的呢？他一想到尚未得救的人，就心如火燒，迫使他常常來到上帝寶座前，為這些未得救的靈魂，流淚禱告，切切代求。在祭司的心中，有大祭司耶穌的生命在裡面，所以他有不斷為人代禱祈求的熱誠，也有結出福音果子的能力。
+喔！上帝的靈哪！求祢賜給我那樣火熱的心，且以慈愛的手，刻下那永不磨滅的囑咐在我心版上：『君尊的祭司。』奉主耶穌聖名，阿們！」
+奉獻 Offering</div>
+      <details>
+        <summary>🔤 點擊展開英文原文 (English Original)</summary>
+        <blockquote style="margin-top:10px;"> ()</blockquote>
+        <div style="white-space: pre-line; font-size: 0.95rem; color: var(--muted); margin-top:8px;">In the Old Testament the thought of the kingdom took the first place; in the New Testament prominence is given to that of Priesthood.
+One of the chief reasons for the feeble life in the Church is the mistaken idea that man's happiness is the main object of God's grace. A fatal error! God's aim is far holier and far higher. He saves men on purpose that they in turn shall carry out His purpose in saving their fellow-men. Each believer is appointed to be the means of imparting to others the new life he has received.
+Those who are saved have the holy calling of being channels of God's grace to others. The feeble state of the Church is largely due to the fact that most Christians imagine that their chief concern is to desire and receive sufficient grace to reach heaven after death. The Church must so proclaim the Gospel that each saved soul shall apprehend its message, "Saved to serve," "saved to save others." "Ye are a royal priesthood."
+A royal priesthood! The priestly heart is above all things a sympathetic heart, in which the love of Christ constrains us to win souls for Him. And that by virtue of two compelling motives : love to Christ, whom I shall please and honor in winning others to love Him; and love for souls, which will constrain me to sacrifice everything that others may share this heavenly life.
+A priestly heart! A heart that has access to God in prayer and intercession for those who are yet unconverted. A priestly heart that, having pleaded in prayer for souls, has courage to speak to them of Christ. A priestly heart—in which the life of Jesus, the Great High Priest who ever liveth to make intercession, is continued, and His power to save to the uttermost is manifested. O Spirit of God, write upon my hea'rt, with indelible letters, "A royal priesthood."</div>
+      </details>
+      <p>🔗 <a href="https://www.glorypress.com/devotional/FaithAndLifeOneYearBook.asp?bid=2&rdate=11/25" target="_blank">點此開啟大光官方頁面</a></p>
+
+      <hr />
+
+      <!-- 信心的支票簿 -->
+      <h3>3️⃣ 信心的支票簿 —— 大山夷為平地 (Mountains Turned to Plains)</h3>
+      <blockquote>大山哪，你算甚麼呢？在所羅巴伯面前，你必成為平地。他必搬出一塊石頭，安在殿頂上。人且大聲歡呼說：願恩惠歸與這殿。」（撒迦利亞書四︰7）</blockquote>
+      <div style="white-space: pre-line; margin: 16px 0;">此刻在你的人生道路上，或許荊棘滿佈，困難重重，看不出有任何的亮光或出路，但憑信心仰望上帝，頭頂還有一片青天，你不會被困住的，所謂山窮水盡疑無路，柳暗花明又一村，將需要與難處交託給上帝，上帝必要將山一般高大的攔阻挪開，為你開一條路。但信心來自於上帝的話︰「不是依靠才能，不是依靠勢力，乃是靠著聖靈的大能。」當我們遭遇人生風暴大浪時，這個顛撲不破的真理，將成為內心一個穩若磐石時的靈錨，讓我們可以求告，可以依靠，渡過一切的磨難與考驗。
+我知道我什麼都不能做，而且依靠人也是枉然。「不是依靠才能」，因為眼所能見的東西都不可靠，惟有眼不能見的聖靈才是可靠的。上帝單獨可以做成這事工，人的籌算計劃都屬虛空。既是如此，全能的上帝若插手管這件事，在祂是沒有難成的事，祂可以移動地球，像小孩踢足球一樣。上帝可以把這樣的能力賜給我們，若上帝要我們移動阿爾卑斯山，靠著祂的聖名，我們也能做到。它雖是世界的高峰，但靠著上帝我們可以征服它。因上帝說︰「若上帝站在我這邊，我還怕什麼嗎？」
+奉獻 Offering</div>
+      <details>
+        <summary>🔤 點擊展開英文原文 (English Original)</summary>
+        <blockquote style="margin-top:10px;">Who art thou, O great mountain? before Zerubbabel thou shalt become a plain; and he shall bring forth the headstone thereof with shoutings, crying, Grace, grace unto it (Zechariah 4:7)</blockquote>
+        <div style="white-space: pre-line; font-size: 0.95rem; color: var(--muted); margin-top:8px;">At this hour a mountain of difficulty, distress, or necessity may be in our way, and natural reason sees no path over it, or through it, or round it. Let faith come in, and straightway the mountain disappears and becomes a plain. But faith must first hear the word of the LORD--"Not by might, nor by power, but by my Spirit, saith the LORD of hosts." This grand truth is a prime necessity for meeting the insurmountable trials of life.
+I see that I can do nothing and that all reliance on man is vanity. "Not by might." I see that no visible means can be relied on, but the force is in the invisible Spirit. God alone must work, and men and means must be nothing accounted of. If it be so that the Almighty God takes up the concerns of His people, then great mountains are nothing. He can remove worlds as boys toss balls about or drive them with their foot. This power He can lend to me. If the LORD bids me move an Alp I can do it through His name. It may be a great mountain, but even before my feebleness it shall become a plain; for the LORD hath said it. What can I be afraid of with God on my side?</div>
+      </details>
+      <p>🔗 <a href="https://www.glorypress.com/devotional/FaithAndLifeOneYearBook.asp?bid=3&rdate=11/25" target="_blank">點此開啟大光官方頁面</a></p>
+
+      <hr />
+
+      <!-- 司布真晨 -->
+      <h3>4️⃣ 司布真每日靈修(日) —— 十一月二十五日 (Morning, November 25)</h3>
+      <blockquote>差遣我報告被擄的得釋放……。」（路加福音四：18）</blockquote>
+      <div style="white-space: pre-line; margin: 16px 0;">除了耶穌以外，沒有人可以讓被擄的人得釋放。真正的自由是來自於耶穌，因為耶穌是上帝的兒子，祂有這樣的權柄，叫人得釋放；而這得自由的權利，是耶穌用寶血重價買贖回來的。我們之所以可以不做撒旦的奴僕，可以無罪一身輕的自由出入，全是因為耶穌取代我們的位置，為我們還清罪債，使我們得自由。
+耶穌使我們得自由，並沒有向我們要求什麼，這救恩是白白賜給我們的。祂看我們衣裳襤褸地坐在灰塵土堆中，就動了慈心，救拔我們脫離卑賤，為我們披上金鏤衣，使我們有如乞丐變王子；這並不是因為我們有什麼優點或善良，可以誇口，實在是因為祂太愛我們。
+撒旦一定不甘心我們脫離祂的掌握，一定費盡心機想再俘擄我們，但只要耶穌站在我這一邊，我還怕誰呢？這世界充滿了誘惑，想要陷我們入牠的網羅，但我們的上帝，比那要害我們的大得多。我們本身詭詐的老我（舊生命）也極為頑強，它不斷要拉我們繼續墮落下去，但那在我們心中動了善工的主，必要茁壯這新生命，直到完全的地步。
+若我們不在律法底下，且脫離了律法的咒詛，讓這真自由，能表現在愛上帝愛眾人的服事上，並以感恩喜樂的心活出這新生命。「耶和華啊，我真是祢的僕人。我是祢的僕人，是祢婢女的兒子。祢已經解開我的綁索。」（詩一一六：16）上帝啊，祢要我做什麼？
+奉獻 Offering</div>
+      <details>
+        <summary>🔤 點擊展開英文原文 (English Original)</summary>
+        <blockquote style="margin-top:10px;"> ()</blockquote>
+        <div style="white-space: pre-line; font-size: 0.95rem; color: var(--muted); margin-top:8px;"></div>
+      </details>
+      <p>🔗 <a href="https://www.glorypress.com/devotional/FaithAndLifeOneYearBook.asp?bid=4&rdate=11/25" target="_blank">點此開啟大光官方頁面</a></p>
+
+      <hr />
+
+      <!-- 司布真夜 -->
+      <h3>5️⃣ 司布真每日靈修(夜) —— 十一月二十五日 (Evening, November 25)</h3>
+      <blockquote>因祂對摩西說：「我要憐憫誰就憐憫誰，要恩待誰就恩待誰。」（羅馬書九：15）</blockquote>
+      <div style="white-space: pre-line; margin: 16px 0;">因為生死大權是操在君王手中，所有全地的審判者有權恕宥或定罪。罪惡使人喪失向上帝要求的權利。因為罪，世人應當滅亡。即使所有人都滅亡，亦無抱怨之理由。主若要介入拯救任何人，就絕對可以作到，只要公義的目的不受阻撓即可。但是倘若祂決定最好讓定罪的人受到正義之判決，也沒有人能控告祂不公正。那些論及人有權利配受聖潔上帝體恤之言論是愚蠢、不知羞恥的。反對恩典有差別，也就是驕傲人性敵視耶和華的王權和王位的那些悖逆言論，別的不是，最起碼是無知的。當我們看到自己的邪惡，又看到上帝反對罪惡的公正裁決，我們就不會再對真理發怨言，認為上帝有義務要救我們了。祂若眷顧我們，那是祂對不配得仁慈的人所採取的自願行動，為此我們要永遠稱頌祂的名。蒙救贖的人如何能完全地崇拜上帝的恩典呢？惟有讓主的旨意得榮耀，摒棄人的功勳這一觀念。在聖經中最謙卑的教義就是藉恩典得救恩，那是最配受我們感激的事，並且也是最聖潔的事。信徒不應懼怕上帝的恩典，反應在恩典中更崇敬更喜樂。
+奉獻 Offering</div>
+      <details>
+        <summary>🔤 點擊展開英文原文 (English Original)</summary>
+        <blockquote style="margin-top:10px;"> ()</blockquote>
+        <div style="white-space: pre-line; font-size: 0.95rem; color: var(--muted); margin-top:8px;">How shall those who are the subjects of divine election sufficiently adore the grace of God? They have no room for boasting, for sovereignty most effectually excludes it. The Lord's will alone is glorified, and the very notion of human merit is cast out to everlasting contempt. There is no more humbling doctrine in Scripture than that of election, none more promotive of gratitude, and, consequently, none more sanctifying. Believers should not be afraid of it, but adoringly rejoice in it.</div>
+      </details>
+      <p>🔗 <a href="https://www.glorypress.com/devotional/FaithAndLifeOneYearBook.asp?bid=5&rdate=11/25" target="_blank">點此開啟大光官方頁面</a></p>
+
+    </article>
+  </div>
+</body>
+</html>
