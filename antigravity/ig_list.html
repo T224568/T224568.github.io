@@ -410,7 +410,7 @@
               ${isVid 
                 ? `<video src="${coverSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"></video>
                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center"><div class="w-12 h-12 rounded-full bg-pink-600/80 text-white flex items-center justify-center shadow-lg"><i class="fa-solid fa-play text-lg ml-0.5"></i></div></div>`
-                : `<img src="${coverSrc}" alt="${post.title}" loading="lazy" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(cover.filename);}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
+                : `<img src="${coverSrc}" alt="${post.title}" decoding="async" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(cover.filename);}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
               }
 
               <!-- Badges Overlay -->
@@ -479,7 +479,7 @@ IG 發布：${post.mtime_str}">
               <div class="w-12 h-14 rounded-lg bg-slate-900 border border-slate-700/80 overflow-hidden cursor-pointer mx-auto flex items-center justify-center" onclick="openLightbox('${post.code}', 0)">
                 ${isVid 
                   ? `<div class="relative w-full h-full flex items-center justify-center bg-slate-950"><i class="fa-solid fa-play text-xs text-rose-400"></i></div>`
-                  : `<img src="${coverSrc}" alt="${post.title}" class="w-full h-full object-cover" loading="lazy" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(cover.filename);}" />`
+                  : `<img src="${coverSrc}" alt="${post.title}" decoding="async" class="w-full h-full object-cover" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(cover.filename);}" />`
                 }
               </div>
             </td>
