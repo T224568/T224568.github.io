@@ -1344,6 +1344,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <button class="home-course-btn home-wide-btn" style="background:#00bcd4;" onclick="openExternalView('view-9204')">AI 繪本故事創作器</button>
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #06c755, #00b900); color: #fff; font-size:16px; font-weight:bold; box-shadow: 0 4px 12px rgba(6,199,85,0.35);" onclick="openExternalView('view-custom-stickers')">🎨 我的臉就是貼圖！AI 專屬 LINE 貼圖製作大師（3大風格・拍貼上架）</button>
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #0d47a1, #1976d2); color: #fff; font-size:16px; font-weight:bold; box-shadow: 0 4px 12px rgba(25,118,210,0.35);" onclick="openExternalView('view-google-flow')">🎬 Google Flow 第一次做 AI 影片（Veo 3.1 基礎教學・提示詞實戰）</button>
+        <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #be185d, #e11d48, #f43f5e); color: #fff; font-size:16px; font-weight:bold; box-shadow: 0 4px 12px rgba(225,29,72,0.35);" onclick="openExternalView('view-google-flow-music')">🎵 Google Flow Music 音樂工作站（Lyria 3 作曲・AI 製作人・分軌與片頭配樂）</button>
         <button class="home-course-btn home-wide-btn" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color:#fff; font-size:16px; font-weight:bold;" onclick="openExternalView('view-gemini-skills')">⚡ Google Gemini 專屬技能庫 (75款實戰指令與Gems)</button>
         <a href="https://class-photo-wall.aiedunpo.workers.dev/" target="_blank" rel="noopener" class="home-course-btn home-wide-btn" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); color: #334155; border: 1.5px solid #cbd5e1; font-size:15px; font-weight:bold; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: all 0.2s;" onmouseover="this.style.borderColor='#0284c7'; this.style.color='#0284c7'; this.style.background='#f0f9ff';" onmouseout="this.style.borderColor='#cbd5e1'; this.style.color='#334155'; this.style.background='linear-gradient(135deg, #f8fafc, #f1f5f9)';">
             🔗 原始參考連結 (class-photo-wall.aiedunpo.workers.dev) ↗
@@ -1371,6 +1372,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             class="home-full-width-btn"
             style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(37,99,235,0.4); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
         🎬 Google Flow 第一次做 AI 影片（Veo 3.1 基礎教學與提示詞實戰）
+    </button>
+
+    <button onclick="openExternalView('view-google-flow-music')"
+            class="home-full-width-btn"
+            style="background: linear-gradient(135deg, #881337 0%, #be185d 50%, #e11d48 100%); color:#ffffff; box-shadow: 0 4px 15px rgba(225,29,72,0.4); font-size:17.5px; font-weight:900; margin-bottom: 12px; padding: 15px 20px; border-radius: 16px; border:none; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        🎵 Google Flow Music 音樂工作站（Lyria 3 作曲・AI 製作人微調・分軌與片頭配樂）
     </button>
 
     <button onclick="openExternalView('view-gemini-skills')"
@@ -4808,6 +4815,378 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <button type="button" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_first_video_guide.jpg', '📖 6 步驟新手圖解')" style="background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:6px 14px; border-radius:8px; font-size:12.5px; cursor:pointer;">📖 6 步驟講義</button>
         <button type="button" onclick="openFlowImageLightbox('./GoogleFlow/google_flow_model_selection_guide.jpg', '⚖️ 影片模型怎麼選？')" style="background:#a855f7; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:bold; cursor:pointer;">⚖️ 模型對決圖解</button>
         <span style="color:#cbd5e1; font-size:12px;">（點擊 ✕ 或按 Esc 關閉）</span>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 🎵 Google Flow Music 音樂工作站（Lyria 3 作曲・Gemini AI 製作人・分軌與片頭配樂） -->
+<!-- ========================================== -->
+<div id="view-google-flow-music" class="view-section container travel-shell" style="max-width: 960px; padding: 18px;">
+    <button class="back-btn" onclick="switchView('view-upload')" style="margin-bottom: 20px;">回首頁</button>
+    <div style="clear: both;"></div>
+
+    <div class="google-flow-music-shell" style="text-align: left;">
+        <!-- 頂部 Hero 橫幅 -->
+        <div style="background: linear-gradient(135deg, #881337 0%, #be185d 55%, #e11d48 100%); color: #ffffff; border-radius: 18px; padding: 24px; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(190,24,93,0.3); position: relative; overflow: hidden;">
+            <div style="position: absolute; right: -15px; top: -15px; font-size: 110px; opacity: 0.14; pointer-events: none;">🎵</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+                <span style="background: rgba(255,255,255,0.22); color: #fff; font-size: 12.5px; font-weight: 900; padding: 4px 10px; border-radius: 12px; backdrop-filter: blur(4px);">Google Lyria 3 音樂模型</span>
+                <span style="background: #fbbf24; color: #78350f; font-size: 12.5px; font-weight: 900; padding: 4px 10px; border-radius: 12px;">Gemini 對話式 AI 製作人</span>
+                <span style="background: rgba(255,255,255,0.22); color: #fff; font-size: 12.5px; font-weight: 900; padding: 4px 10px; border-radius: 12px;">Stems 四軌分離・Veo MV</span>
+            </div>
+            <h1 style="margin: 0 0 8px; font-size: 26px; font-weight: 900; letter-spacing: -0.5px;">Google Flow Music：AI 音樂工作站完整教學</h1>
+            <p style="margin: 0 0 16px; font-size: 14.5px; opacity: 0.95; line-height: 1.5;">整合 Lyria 3 音樂引擎與 Gemini 智慧製作人！免重抽整首歌，直接用對話「微調單一樂器、替換副歌、拆解 Stems 四軌人聲伴奏」，一鍵產出教會片頭曲與 15% 黃金音量簡報配樂！</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="https://www.flowmusic.app" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #881337; padding: 10px 18px; border-radius: 12px; font-weight: 900; font-size: 14px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    🚀 前往 Flow Music 官網 (flowmusic.app) ↗
+                </a>
+                <button type="button" onclick="randomizeFlowMusicPrompt()" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: #fff; border: 1.5px solid rgba(255,255,255,0.4); padding: 10px 16px; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer;">
+                    🎲 隨機換作曲靈感
+                </button>
+                <button type="button" onclick="switchFlowMusicTab('unit-fm-builder', document.getElementById('tab-btn-fm-builder'))" style="display: inline-flex; align-items: center; gap: 6px; background: #fbbf24; color: #78350f; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 900; font-size: 14px; cursor: pointer;">
+                    🎹 開啟 AI 作曲提示詞組裝器
+                </button>
+            </div>
+        </div>
+
+        <!-- 導航分頁 Tabs -->
+        <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px;">
+            <button type="button" class="planner-tab-btn active" id="tab-btn-fm-steps" onclick="switchFlowMusicTab('unit-fm-steps', this)" style="flex: 1; min-width: 140px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #be185d; background: #be185d; color: #fff; cursor: pointer; transition: all 0.2s; white-space: nowrap;">📖 7 大實戰步驟</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-fm-producer" onclick="switchFlowMusicTab('unit-fm-producer', this)" style="flex: 1; min-width: 155px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🎛️ AI 製作人對話微調</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-fm-workflows" onclick="switchFlowMusicTab('unit-fm-workflows', this)" style="flex: 1; min-width: 165px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">⛪ 片頭與簡報配樂實戰</button>
+            <button type="button" class="planner-tab-btn" id="tab-btn-fm-builder" onclick="switchFlowMusicTab('unit-fm-builder', this)" style="flex: 1; min-width: 150px; padding: 12px 10px; font-size: 13.5px; font-weight: bold; border-radius: 12px; border: 2px solid #cbd5e1; background: #f8fafc; color: #475569; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🎹 作曲提示詞組裝器</button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元一：📖 7 大實戰步驟與繁中歌詞防呆 -->
+        <!-- ========================================== -->
+        <div id="unit-fm-steps" class="flow-music-unit-section" style="display: block;">
+            <!-- 四大底層模型生態系卡片 -->
+            <div style="background: #fff1f2; border: 2px solid #fecdd3; border-radius: 16px; padding: 18px; margin-bottom: 22px;">
+                <h3 style="margin: 0 0 10px; color: #881337; font-size: 18px; font-weight: 900;">🌟 Google Flow Music 四大核心 AI 引擎聯動</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <div style="background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #fda4af;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 14.5px; margin-bottom: 4px;">🎵 Lyria 3 / 3.5</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">Google DeepMind 旗艦音樂模型，支援文字轉音樂、圖片轉音樂與多國語言高擬真人聲。</p>
+                    </div>
+                    <div style="background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #fda4af;">
+                        <div style="font-weight: 900; color: #1d4ed8; font-size: 14.5px; margin-bottom: 4px;">🧠 Gemini AI 製作人</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">免整首重抽！直接用對話要求「加重副歌貝斯」、「換男聲」、「加吉他獨奏」。</p>
+                    </div>
+                    <div style="background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #fda4af;">
+                        <div style="font-weight: 900; color: #7e22ce; font-size: 14.5px; margin-bottom: 4px;">🎬 Veo 節拍同步 MV</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">歌曲完成後直接呼叫 Veo，依照音樂節奏與情緒自動生成電影級 AI MV。</p>
+                    </div>
+                    <div style="background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #fda4af;">
+                        <div style="font-weight: 900; color: #047857; font-size: 14.5px; margin-bottom: 4px;">🖼️ Imagen 專輯視覺</div>
+                        <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">自動為每首生成曲目設計專屬專輯封面，亦可上傳照片反向觸發 Image-to-Music。</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #881337; font-size: 19px; font-weight: 900; margin: 0 0 14px;">🎯 從零開始 7 大完整操作步驟</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 22px;">
+                <div style="background: #fff; border: 1.5px solid #cbd5e1; border-top: 4px solid #e11d48; border-radius: 14px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #ffe4e6; color: #be185d; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 8px;">Step 01 帳號連動</span>
+                        <span style="font-size: 20px;">🔑</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">登入並勾選 Google One 權益</div>
+                    <p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.55;">前往 <code>flowmusic.app</code> 登入（需滿18歲）。<b>若為 Google One / AI Pro 訂戶，首次登入務必勾選同步權益</b>，解鎖高額度與商業授權！</p>
+                </div>
+
+                <div style="background: #fff; border: 1.5px solid #cbd5e1; border-top: 4px solid #f59e0b; border-radius: 14px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #fef3c7; color: #b45309; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 8px;">Step 02 提示詞作曲</span>
+                        <span style="font-size: 20px;">✍️</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">輸入結構化作曲公式</div>
+                    <p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.55;">採用<b>「曲風 + 情緒場景 + 樂器編制 + 人聲特徵 + BPM速度」</b>公式描述，或上傳圖片讓 AI 依畫面配樂。</p>
+                </div>
+
+                <div style="background: #fff; border: 1.5px solid #cbd5e1; border-top: 4px solid #10b981; border-radius: 14px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #ecfdf5; color: #047857; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 8px;">Step 03 自訂繁中歌詞</span>
+                        <span style="font-size: 20px;">🎤</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">善用段落標籤與語言鎖定</div>
+                    <p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.55;">貼上歌詞並標註 <code>[Verse]</code>、<code>[Chorus]</code>。<b>防跑音秘訣：</b>在 Prompt 加上 <code>sung clearly in Traditional Chinese Mandarin</code>。</p>
+                </div>
+
+                <div style="background: #fff; border: 1.5px solid #cbd5e1; border-top: 4px solid #3b82f6; border-radius: 14px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #eff6ff; color: #1d4ed8; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 8px;">Step 04 AI 製作人微調</span>
+                        <span style="font-size: 20px;">🎛️</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">用自然語言分層修改</div>
+                    <p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.55;">不必整首重抽！直接對 AI Producer 說：「把副歌貝斯調大」、「Bridge 加一段電吉他 Solo」或框選局部段落替換。</p>
+                </div>
+
+                <div style="background: #fff; border: 1.5px solid #cbd5e1; border-top: 4px solid #8b5cf6; border-radius: 14px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #f5f3ff; color: #6d28d9; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 8px;">Step 05 分軌與延伸</span>
+                        <span style="font-size: 20px;">🎚️</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">Split Stems 四軌分離 & Extend</div>
+                    <p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.55;">一鍵拆出 <b>Vocals (人聲)、Drums (鼓)、Bass (貝斯)、Instruments (樂器)</b> 四軌獨立 WAV/MP3，輕鬆抽離純伴奏 BGM！</p>
+                </div>
+
+                <div style="background: #fff; border: 1.5px solid #cbd5e1; border-top: 4px solid #06b6d4; border-radius: 14px; padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="background: #ecfeff; color: #0e7490; font-weight: 900; font-size: 14px; padding: 3px 10px; border-radius: 8px;">Step 06 Veo MV 與 Spaces</span>
+                        <span style="font-size: 20px;">🎬</span>
+                    </div>
+                    <div style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 6px;">生成同步 MV 與互動音訊工具</div>
+                    <p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.55;">點擊 Create Music Video 由 Veo 對拍生成 MV；進階玩家還能在 <b>Flow Spaces</b> 用對話寫出專屬混音器與合成器外掛！</p>
+                </div>
+            </div>
+
+            <!-- 歌詞結構範本一鍵複製 -->
+            <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 16px; padding: 18px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <span style="background: #be185d; color: #fff; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 6px;">歌詞結構萬用模板</span>
+                        <h4 style="margin: 4px 0 0; color: #1e293b; font-size: 16.5px; font-weight: 900;">自訂華語／台語歌詞標準段落標籤範本</h4>
+                    </div>
+                    <button type="button" onclick="copyFlowPrompt('fm-lyrics-template', this)" style="padding: 8px 14px; font-size: 13px; font-weight: bold; background: #be185d; color: #fff; border: none; border-radius: 8px; cursor: pointer;">📋 複製歌詞結構範本</button>
+                </div>
+                <pre id="fm-lyrics-template" style="background: #0f172a; color: #e2e8f0; padding: 14px; border-radius: 10px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; margin: 0; font-family: monospace;">[Style: Warm Mandarin Indie Pop, clear Traditional Chinese vocals, acoustic guitar and piano, 95 BPM]
+
+[Intro - Gentle acoustic guitar fingerpicking, warm ambient pad]
+
+[Verse 1]
+走過清晨微涼的街角，陽光穿過樹梢
+手裡那杯熱咖啡，香氣還沒有散掉
+
+[Chorus - Full band enters, uplifting drums, soaring emotional vocals]
+我們在迎著風的地方奔跑
+把所有煩惱都留在昨天微笑
+
+[Bridge - Soft piano solo, stripped back arrangement, intimate vocal]
+就算偶爾有陣雨落下，也只是風景的一角
+
+[Outro - Smooth fade out on final warm acoustic chord]</pre>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元二：🎛️ Gemini AI 製作人對話微調指令大全 -->
+        <!-- ========================================== -->
+        <div id="unit-fm-producer" class="flow-music-unit-section" style="display: none;">
+            <div style="background: #ffffff; border: 2px solid #f43f5e; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(244,63,94,0.08);">
+                <h3 style="margin: 0 0 6px; color: #881337; font-size: 20px; font-weight: 900;">🎛️ 與 Gemini AI 製作人對話微調（點擊即可複製指令）</h3>
+                <p style="margin: 0 0 16px; font-size: 13.5px; color: #64748b;">生成初版歌曲後，不滿意某個段落千千萬萬別重抽！直接在右側 AI Producer 對話框貼上下列精準指令：</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+                    <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 15px; margin-bottom: 6px;">🎸 1. 強化單一樂器／調整混音</div>
+                        <div id="fm-prod-cmd-1" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #fda4af;">Make the bassline punchier and more prominent in the chorus, and add a warm Rhodes piano in the background.</div>
+                        <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">中文意思：讓副歌的貝斯更有力突出，並在背景加入溫暖的電鋼琴。</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-prod-cmd-1', this)" style="width: 100%; padding: 7px; font-size: 12.5px; font-weight: bold; background: #e11d48; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製微調指令</button>
+                    </div>
+
+                    <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 15px; margin-bottom: 6px;">🎙️ 2. 更換歌手聲線與唱腔</div>
+                        <div id="fm-prod-cmd-2" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #fda4af;">Change the vocal delivery from female to a deeper, warm and emotional male voice, keeping the exact same melody.</div>
+                        <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">中文意思：保留完全相同的旋律，將女聲改為深沉溫暖且富有感情的男聲。</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-prod-cmd-2', this)" style="width: 100%; padding: 7px; font-size: 12.5px; font-weight: bold; background: #e11d48; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製微調指令</button>
+                    </div>
+
+                    <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 15px; margin-bottom: 6px;">✂️ 3. 局部段落重製 (Replace Section)</div>
+                        <div id="fm-prod-cmd-3" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #fda4af;">Replace the bridge section with a soaring, melodic acoustic guitar solo, keeping the same tempo and key.</div>
+                        <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">中文意思：將 Bridge 橋段替換為優美高昂的木吉他獨奏，維持相同速度與調性。</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-prod-cmd-3', this)" style="width: 100%; padding: 7px; font-size: 12.5px; font-weight: bold; background: #e11d48; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製微調指令</button>
+                    </div>
+
+                    <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 15px; margin-bottom: 6px;">🔄 4. 曲風一鍵翻唱 (Style Cover)</div>
+                        <div id="fm-prod-cmd-4" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #fda4af;">Keep the vocal melody and lyrics, but remix the entire arrangement into a chill Bossa Nova cafe style.</div>
+                        <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">中文意思：保留人聲旋律與歌詞，但將整首編曲改編為慵懶的咖啡廳巴薩諾瓦風格。</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-prod-cmd-4', this)" style="width: 100%; padding: 7px; font-size: 12.5px; font-weight: bold; background: #e11d48; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製微調指令</button>
+                    </div>
+
+                    <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 15px; margin-bottom: 6px;">🔇 5. 簡化編曲（不搶旁白人聲 BGM 專用）</div>
+                        <div id="fm-prod-cmd-5" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #fda4af;">Simplify the arrangement, remove the lead melody and vocals, keep only the soft rhythm and warm chords for voiceover background.</div>
+                        <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">中文意思：簡化編曲、拿掉主旋律與人聲，只留柔和節奏與溫暖和弦襯底（最完美旁白配樂）。</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-prod-cmd-5', this)" style="width: 100%; padding: 7px; font-size: 12.5px; font-weight: bold; background: #e11d48; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製微調指令</button>
+                    </div>
+
+                    <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #be185d; font-size: 15px; margin-bottom: 6px;">⏱️ 6. 裁切長度與平滑結尾淡出 (Extend / Outro)</div>
+                        <div id="fm-prod-cmd-6" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #fda4af;">Trim to a clean 45-second intro track and add a smooth 3-second ambient piano fade-out on the final chord.</div>
+                        <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">中文意思：修剪為乾淨的 45 秒片頭曲，並在最後一個和弦加上平滑的 3 秒鋼琴漸弱淡出。</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-prod-cmd-6', this)" style="width: 100%; padding: 7px; font-size: 12.5px; font-weight: bold; background: #e11d48; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製微調指令</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元三：⛪ 延伸實戰（教會片頭音樂 & 15% 音量簡報/白板動畫 BGM） -->
+        <!-- ========================================== -->
+        <div id="unit-fm-workflows" class="flow-music-unit-section" style="display: none;">
+            <!-- 實戰應用 1：片頭音樂 -->
+            <div style="background: #ffffff; border: 2px solid #8b5cf6; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(139,92,246,0.08);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <span style="background: #7c3aed; color: #fff; font-weight: 900; font-size: 13px; padding: 3px 10px; border-radius: 6px;">延伸應用 1</span>
+                    <h3 style="margin: 0; color: #4c1d95; font-size: 19px; font-weight: 900;">教會禮拜／節目「片頭音樂」生成與雙雲端同步</h3>
+                </div>
+                <p style="margin: 0 0 14px; font-size: 13.5px; color: #475569; line-height: 1.6;">
+                    片頭音樂講究<b>「情緒漸強、不搶人聲、結尾乾淨」</b>。複製下方黃金 Prompt 到 Flow Music 生成純配樂後，即可一鍵同步至 Cloudflare R2 與 Dropbox 供 OBS 串流直連！
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 14px;">
+                    <div style="background: #f5f3ff; border: 1.5px solid #ddd6fe; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #5b21b6; font-size: 15px; margin-bottom: 6px;">⛪ 台語禮拜／溫馨莊嚴片頭 (選項 a)</div>
+                        <div id="fm-wf-intro-a" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #c4b5fd;">Warm acoustic folk and cinematic orchestral intro music, gentle fingerpicking acoustic guitar, uplifting cello and violin strings, peaceful Sunday morning sanctuary vibe, hopeful and reverent, building gently to a warm resolution, 30 seconds, pure instrumental, no vocals, 85 BPM</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-wf-intro-a', this)" style="width: 100%; padding: 8px; font-size: 13px; font-weight: bold; background: #7c3aed; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製台語片頭 Prompt</button>
+                    </div>
+
+                    <div style="background: #f5f3ff; border: 1.5px solid #ddd6fe; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #5b21b6; font-size: 15px; margin-bottom: 6px;">✨ 華語禮拜／現代敬拜片頭 (選項 b)</div>
+                        <div id="fm-wf-intro-b" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #c4b5fd;">Modern contemporary worship intro, bright grand piano arpeggios, ambient delay electric guitar swells, soft warm synth pad, uplifting and inspiring atmosphere, clean mix, pure instrumental, no vocals, 110 BPM</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-wf-intro-b', this)" style="width: 100%; padding: 8px; font-size: 13px; font-weight: bold; background: #7c3aed; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製華語片頭 Prompt</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 實戰應用 2：白板動畫與簡報 BGM (15% 預設音量) -->
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(2,132,199,0.08);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                    <span style="background: #0284c7; color: #fff; font-weight: 900; font-size: 13px; padding: 3px 10px; border-radius: 6px;">延伸應用 2</span>
+                    <h3 style="margin: 0; color: #0c4a6e; font-size: 19px; font-weight: 900;">白板手繪動畫 & HTML 互動簡報配樂（15% 黃金音量規範）</h3>
+                </div>
+                <p style="margin: 0 0 14px; font-size: 13.5px; color: #475569; line-height: 1.6;">
+                    教學簡報與白板動畫配樂最忌諱高頻干擾講者人聲！下方 Prompt 特別加入 <code>scooped midrange to leave room for voiceover</code>（中頻挖空留位給旁白），並搭配 **15% 預設音量** 聽感最舒適：
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 16px;">
+                    <div style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #0369a1; font-size: 15px; margin-bottom: 6px;">🎨 知識教學／白板動畫／財經速報 BGM</div>
+                        <div id="fm-wf-bgm-edu" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #7dd3fc;">Light upbeat corporate marimba and muted acoustic guitar background music, minimalist soft percussion, curious and educational tone, scooped midrange to leave room for voiceover, seamless loop, pure instrumental, no vocals, 105 BPM</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-wf-bgm-edu', this)" style="width: 100%; padding: 8px; font-size: 13px; font-weight: bold; background: #0284c7; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製白板教學 BGM Prompt</button>
+                    </div>
+
+                    <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 12px; padding: 14px;">
+                        <div style="font-weight: 900; color: #15803d; font-size: 15px; margin-bottom: 6px;">🥾 青松健行隊／戶外旅遊地圖導覽 BGM</div>
+                        <div id="fm-wf-bgm-hike" style="background: #fff; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12.5px; color: #1e293b; margin-bottom: 10px; border: 1px solid #86efac;">Breezy acoustic travel vlog background music, cheerful ukulele, light acoustic guitar strumming, subtle shaker and handclaps, sunny outdoor mountain hiking vibe, joyful and relaxing, pure instrumental, no vocals, 115 BPM</div>
+                        <button type="button" onclick="copyFlowPrompt('fm-wf-bgm-hike', this)" style="width: 100%; padding: 8px; font-size: 13px; font-weight: bold; background: #16a34a; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製健行旅遊 BGM Prompt</button>
+                    </div>
+                </div>
+
+                <!-- 15% 音量互動試聽展示器 (符合全域 el.volume = 0.15 規範) -->
+                <div style="background: #0f172a; color: #f8fafc; border-radius: 12px; padding: 16px; border: 1.5px solid #334155;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                        <div>
+                            <span style="background: #10b981; color: #052e16; font-size: 12px; font-weight: 900; padding: 2px 8px; border-radius: 6px;">15% 黃金預設音量規範</span>
+                            <h4 style="margin: 4px 0 0; font-size: 15.5px; color: #38bdf8;">🔊 本地端 BGM 素材庫批次正規化與網頁嵌入範例</h4>
+                        </div>
+                        <button type="button" onclick="testFlowMusic15PctTone()" style="background: #38bdf8; color: #0f172a; border: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 900; cursor: pointer;">
+                            🎵 點擊試聽 15% 柔和分解和弦音量
+                        </button>
+                    </div>
+                    <pre style="background: #1e293b; color: #cbd5e1; padding: 12px; border-radius: 8px; font-size: 12px; line-height: 1.55; overflow-x: auto; margin: 0; font-family: monospace;"># 1. 將 Flow Music 下載音檔自動壓至 15% 音量 + 頭尾淡入淡出並歸檔至 BGM_Library
+python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_track.wav -c 3
+
+# 2. 裁切前 45 秒作為台語片頭 (a) 或華語片頭 (b) 並直接同步至 Cloudflare R2 & Dropbox
+python3 /Volumes/512G/Antigravity/BGM_Library/process_bgm.py ~/Downloads/flow_intro.wav -c a -t 45 --sync-intro a</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 單元四：🎹 AI 作曲提示詞組裝器 (Lyria 3 雙語支援) -->
+        <!-- ========================================== -->
+        <div id="unit-fm-builder" class="flow-music-unit-section" style="display: none;">
+            <div style="background: #ffffff; border: 2px solid #f43f5e; border-radius: 16px; padding: 20px; box-shadow: 0 4px 18px rgba(244,63,94,0.08); margin-bottom: 20px;">
+                <h3 style="margin: 0 0 6px; color: #881337; font-size: 20px; font-weight: 900;">🎹 Google Flow Music 提示詞組裝器（Lyria 3 最佳化）</h3>
+                <p style="margin: 0 0 16px; color: #64748b; font-size: 13.5px;">自由挑選曲風、主奏樂器、人聲語言與節奏速度，一鍵生成最精準的 Lyria 3 雙語音樂指令！</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎼 音樂曲風與場景：</label>
+                        <select id="fm-genre-select" onchange="updateFlowMusicPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #f43f5e; border-radius: 8px; font-size: 13.5px; background: #fff; font-weight: bold; color: #881337;">
+                            <option value="taiwanese-worship" selected>⛪ 溫馨台語禮拜木吉他片頭</option>
+                            <option value="mandarin-worship">✨ 現代華語敬拜讚美鋼琴曲</option>
+                            <option value="whiteboard-edu">🎨 白板手繪動畫／教學輕快配樂</option>
+                            <option value="hiking-vlog">🥾 青松健行／陽光戶外旅遊 Vlog</option>
+                            <option value="lofi-study">☕ 深夜台北雨聲 Lo-Fi 讀書爵士</option>
+                            <option value="indie-pop">🌅 清晨兜風陽光獨立流行搖滾</option>
+                            <option value="cinematic-epic">🎬 電影預告片史詩交響弦樂</option>
+                            <option value="bossa-cafe">🥂 慵懶午後咖啡廳 Bossa Nova</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎸 主奏樂器編制：</label>
+                        <select id="fm-inst-select" onchange="updateFlowMusicPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="acoustic-strings" selected>木吉他指彈 + 溫暖大提琴弦樂</option>
+                            <option value="grand-piano-pad">平台鋼琴分解和弦 + 環境合成器</option>
+                            <option value="marimba-guitar">輕快木琴 Marimba + 悶音吉他</option>
+                            <option value="ukulele-shaker">陽光烏克麗麗 + 手鼓沙鈴</option>
+                            <option value="rhodes-vinyl">復古 Rhodes 電鋼琴 + 黑膠底噪</option>
+                            <option value="full-band">完整樂團 (電吉他/Punchy貝斯/爵士鼓)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">🎤 人聲與語言設定：</label>
+                        <select id="fm-vocal-select" onchange="updateFlowMusicPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="instrumental-vo" selected>🔇 純配樂・中頻挖空不搶旁白 (BGM首選)</option>
+                            <option value="instrumental-pure">🎻 純樂器演奏曲 (Pure Instrumental)</option>
+                            <option value="mandarin-female">👩 溫柔清亮華語女聲 (繁體中文咬字)</option>
+                            <option value="mandarin-male">👨 溫暖磁性華語男聲 (繁體中文咬字)</option>
+                            <option value="taiwanese-vocal">🌿 深情道地台語歌聲 (Taiwanese Hokkien)</option>
+                            <option value="choir-harmony">👼 溫暖教會詩班和聲 (Gospel Choir)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">⏱️ 節奏速度與結構：</label>
+                        <select id="fm-tempo-select" onchange="updateFlowMusicPrompt()" style="width: 100%; padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; background: #fff;">
+                            <option value="85bpm-intro" selected>85 BPM 舒緩漸強・45秒片頭淡出</option>
+                            <option value="105bpm-loop">105 BPM 輕快穩定・無縫循環 Loop</option>
+                            <option value="115bpm-upbeat">115 BPM 陽光活力・完整主副歌結構</option>
+                            <option value="75bpm-ballad">75 BPM 抒情慢板・深情鋪陳</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 13px; font-weight: bold; color: #334155; display: block; margin-bottom: 4px;">✍️ 自訂歌詞主題或額外細節（選填）：</label>
+                    <input type="text" id="fm-custom-detail" oninput="updateFlowMusicPrompt()" placeholder="例如：結尾加上 3 秒鐘的環境鳥鳴聲、副歌加入清脆風鈴..." style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13.5px; box-sizing: border-box;">
+                </div>
+
+                <!-- 輸出框：中文說明 -->
+                <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 13px; font-weight: 900; color: #be185d;">🗣️ 中文作曲描述（可直接對麥克風說或貼入對話）：</span>
+                        <button type="button" onclick="copyFlowPrompt('fm-prompt-zh', this)" style="padding: 4px 10px; font-size: 12px; font-weight: bold; background: #be185d; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📋 複製中文</button>
+                    </div>
+                    <div id="fm-prompt-zh" style="font-size: 14px; color: #1e293b; line-height: 1.6; white-space: pre-wrap;"></div>
+                </div>
+
+                <!-- 輸出框：英文專業 Prompt -->
+                <div style="background: #0f172a; border: 1.5px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 13px; font-weight: 900; color: #fb7185;">⚡ 英文專業 Prompt（Lyria 3 模型精準度最高）：</span>
+                        <button type="button" onclick="copyFlowPrompt('fm-prompt-en', this)" style="padding: 4px 10px; font-size: 12px; font-weight: bold; background: #fb7185; color: #0f172a; border: none; border-radius: 6px; cursor: pointer;">📋 複製英文</button>
+                    </div>
+                    <div id="fm-prompt-en" style="font-size: 13.5px; color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-family: monospace;"></div>
+                </div>
+
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="https://www.flowmusic.app" target="_blank" rel="noopener" style="flex: 1; min-width: 200px; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #be185d, #e11d48); color: #fff; padding: 12px 18px; border-radius: 10px; font-weight: 900; font-size: 15px; text-decoration: none; text-align: center; box-shadow: 0 4px 12px rgba(225,29,72,0.3);">
+                        🚀 複製後前往 Flow Music 貼上作曲 ↗
+                    </a>
+                    <button type="button" onclick="randomizeFlowMusicPrompt()" style="padding: 12px 20px; font-size: 14px; font-weight: bold; background: #f1f5f9; color: #334155; border: 1.5px solid #cbd5e1; border-radius: 10px; cursor: pointer;">
+                        🎲 隨機配置
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -10615,6 +10994,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         } else if (viewId === 'view-google-flow') {
             switchView('view-google-flow');
             initGoogleFlowView();
+        } else if (viewId === 'view-google-flow-music') {
+            switchView('view-google-flow-music');
+            initGoogleFlowMusicView();
         } else
         if (viewId === 'view-wall') {
             switchView('view-wall');
@@ -16213,6 +16595,229 @@ window.addEventListener('pageshow', (event) => {
         if (box) {
             box.style.display = 'none';
             document.body.style.overflow = '';
+        }
+    }
+
+    // ==========================================
+    // 🎵 Google Flow Music 音樂工作站邏輯
+    // ==========================================
+    const FLOW_MUSIC_GENRE_DATA = {
+        'taiwanese-worship': {
+            zh: '溫馨莊嚴的台語主日禮拜木吉他與弦樂片頭曲，充滿清晨禮拜堂的盼望與平安氛圍',
+            en: 'Warm acoustic folk and cinematic orchestral sanctuary intro music, peaceful Sunday morning vibe, hopeful and reverent'
+        },
+        'mandarin-worship': {
+            zh: '現代華語敬拜讚美風格，明亮溫暖、鼓舞人心的靈修氛圍',
+            en: 'Modern contemporary worship music, uplifting and inspiring spiritual atmosphere, clean studio mix'
+        },
+        'whiteboard-edu': {
+            zh: '輕快具知識好奇心的教學與白板手繪動畫背景配樂，簡約不搶戲',
+            en: 'Light upbeat corporate educational background music, minimalist and curious tone for whiteboard animation'
+        },
+        'hiking-vlog': {
+            zh: '陽光輕快的戶外山林健行與旅遊紀錄配樂，充滿大自然呼吸感與喜悅',
+            en: 'Breezy acoustic outdoor mountain hiking and travel vlog music, sunny, joyful and relaxing'
+        },
+        'lofi-study': {
+            zh: '深夜台北微雨的 Lo-Fi Chillhop 讀書工作配樂，放鬆療癒',
+            en: 'Late night rainy Taipei vibe Lo-Fi chillhop beat, relaxing study and focus atmosphere'
+        },
+        'indie-pop': {
+            zh: '陽光灑落的清晨兜風獨立流行搖滾，旋律朗朗上口',
+            en: 'Sunlit morning drive indie pop rock song, catchy and breezy melody'
+        },
+        'cinematic-epic': {
+            zh: '電影級史詩交響配樂，情緒層層推進，氣勢磅礡',
+            en: 'Cinematic epic orchestral soundtrack, building emotional tension to a grand resolution'
+        },
+        'bossa-cafe': {
+            zh: '慵懶愜意的午後咖啡廳 Bossa Nova 爵士風格',
+            en: 'Cozy afternoon cafe Bossa Nova jazz groove, warm and intimate'
+        }
+    };
+
+    const FLOW_MUSIC_INST_DATA = {
+        'acoustic-strings': {
+            zh: '細膩木吉他指彈搭配溫暖的大提琴與小提琴弦樂鋪陳',
+            en: 'gentle fingerpicking acoustic guitar accompanied by uplifting cello and violin strings'
+        },
+        'grand-piano-pad': {
+            zh: '明亮平台鋼琴分解和弦搭配空間感延遲電吉他與溫暖合成器襯底',
+            en: 'bright grand piano arpeggios, ambient delay electric guitar swells and soft warm synth pad'
+        },
+        'marimba-guitar': {
+            zh: '輕巧木琴 (Marimba) 搭配悶音木吉他與柔和極簡打擊樂',
+            en: 'playful marimba and muted acoustic guitar with minimalist soft percussion'
+        },
+        'ukulele-shaker': {
+            zh: '活潑烏克麗麗刷弦搭配輕快木吉他、沙鈴與拍手節奏',
+            en: 'cheerful ukulele, light acoustic guitar strumming, subtle shaker and handclaps'
+        },
+        'rhodes-vinyl': {
+            zh: '溫暖復古 Rhodes 電鋼琴和弦搭配微弱黑膠唱片底噪與柔和鼓組',
+            en: 'warm vintage Rhodes piano chords, dusty vinyl crackle and mellow boom-bap drums'
+        },
+        'full-band': {
+            zh: '完整樂團編制（清脆電吉他 Riff、有力 Punchy 貝斯與動感爵士鼓）',
+            en: 'full band arrangement with crisp electric guitar riffs, punchy bassline and driving drums'
+        }
+    };
+
+    const FLOW_MUSIC_VOCAL_DATA = {
+        'instrumental-vo': {
+            zh: '純器樂演奏無歌詞，特別將中頻挖空以保留旁白人聲空間（適合 15% 預設音量背景配樂）',
+            en: 'pure instrumental, no vocals, scooped midrange to leave clean room for voiceover narration'
+        },
+        'instrumental-pure': {
+            zh: '純樂器演奏曲，無人聲，旋律層次豐富',
+            en: 'pure instrumental track, no vocals, rich melodic arrangement'
+        },
+        'mandarin-female': {
+            zh: '溫柔清亮的華語女聲演唱，繁體中文咬字清晰自然',
+            en: 'clear and warm female vocal, sung clearly in Traditional Chinese Mandarin lyrics'
+        },
+        'mandarin-male': {
+            zh: '溫暖富磁性的華語男聲演唱，繁體中文咬字清晰富感情',
+            en: 'deep and emotional male vocal, sung clearly in Traditional Chinese Mandarin lyrics'
+        },
+        'taiwanese-vocal': {
+            zh: '深情道地的台語（Taiwanese Hokkien）歌聲演繹，韻味濃厚',
+            en: 'authentic and soulful Taiwanese Hokkien vocal delivery'
+        },
+        'choir-harmony': {
+            zh: '溫暖和諧的教會詩班多聲部和聲吟唱',
+            en: 'warm uplifting gospel choir harmonies'
+        }
+    };
+
+    const FLOW_MUSIC_TEMPO_DATA = {
+        '85bpm-intro': {
+            zh: '速度 85 BPM，約 45 秒片頭曲結構，結尾最後一個和弦平滑漸弱淡出 (3-second fade-out)',
+            en: '85 BPM, 45-second intro structure building gently to a smooth 3-second fade-out on the final chord'
+        },
+        '105bpm-loop': {
+            zh: '速度 105 BPM，節奏穩定流暢，支援無縫循環播放 (Seamless loop)',
+            en: '105 BPM, steady groove, seamless loop ready for background playback'
+        },
+        '115bpm-upbeat': {
+            zh: '速度 115 BPM，活力輕快，包含完整前奏、主歌、副歌與尾奏結構',
+            en: '115 BPM, upbeat energy, full structured arrangement with intro, verse, chorus and outro'
+        },
+        '75bpm-ballad': {
+            zh: '速度 75 BPM，抒情慢板，情緒細膩鋪陳',
+            en: '75 BPM, slow emotional ballad tempo, expressive dynamic range'
+        }
+    };
+
+    function initGoogleFlowMusicView() {
+        updateFlowMusicPrompt();
+    }
+
+    function switchFlowMusicTab(tabId, btn) {
+        document.querySelectorAll('.flow-music-unit-section').forEach(sec => {
+            sec.style.display = 'none';
+        });
+        const target = document.getElementById(tabId);
+        if (target) target.style.display = 'block';
+
+        document.querySelectorAll('#view-google-flow-music .planner-tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.borderColor = '#cbd5e1';
+            b.style.background = '#f8fafc';
+            b.style.color = '#475569';
+        });
+
+        if (btn) {
+            btn.classList.add('active');
+            btn.style.borderColor = '#be185d';
+            btn.style.background = '#be185d';
+            btn.style.color = '#fff';
+        }
+    }
+
+    function updateFlowMusicPrompt() {
+        const genreKey = document.getElementById('fm-genre-select')?.value || 'taiwanese-worship';
+        const instKey = document.getElementById('fm-inst-select')?.value || 'acoustic-strings';
+        const vocalKey = document.getElementById('fm-vocal-select')?.value || 'instrumental-vo';
+        const tempoKey = document.getElementById('fm-tempo-select')?.value || '85bpm-intro';
+        const customDetail = document.getElementById('fm-custom-detail')?.value.trim() || '';
+
+        const genre = FLOW_MUSIC_GENRE_DATA[genreKey] || FLOW_MUSIC_GENRE_DATA['taiwanese-worship'];
+        const inst = FLOW_MUSIC_INST_DATA[instKey] || FLOW_MUSIC_INST_DATA['acoustic-strings'];
+        const vocal = FLOW_MUSIC_VOCAL_DATA[vocalKey] || FLOW_MUSIC_VOCAL_DATA['instrumental-vo'];
+        const tempo = FLOW_MUSIC_TEMPO_DATA[tempoKey] || FLOW_MUSIC_TEMPO_DATA['85bpm-intro'];
+
+        let zhPrompt = `${genre.zh}。編曲採用${inst.zh}；${vocal.zh}。${tempo.zh}。`;
+        if (customDetail) {
+            zhPrompt += ` 額外細節要求：${customDetail}。`;
+        }
+
+        let enPrompt = `${genre.en}, featuring ${inst.en}, ${vocal.en}, ${tempo.en}`;
+        if (customDetail) {
+            enPrompt += `, additional details: ${customDetail}`;
+        }
+        enPrompt += `, high-fidelity stereo production powered by Lyria 3`;
+
+        const zhBox = document.getElementById('fm-prompt-zh');
+        if (zhBox) zhBox.textContent = zhPrompt;
+
+        const enBox = document.getElementById('fm-prompt-en');
+        if (enBox) enBox.textContent = enPrompt;
+    }
+
+    function randomizeFlowMusicPrompt() {
+        const genres = Object.keys(FLOW_MUSIC_GENRE_DATA);
+        const insts = Object.keys(FLOW_MUSIC_INST_DATA);
+        const vocals = Object.keys(FLOW_MUSIC_VOCAL_DATA);
+        const tempos = Object.keys(FLOW_MUSIC_TEMPO_DATA);
+
+        const selGenre = document.getElementById('fm-genre-select');
+        if (selGenre) selGenre.value = genres[Math.floor(Math.random() * genres.length)];
+
+        const selInst = document.getElementById('fm-inst-select');
+        if (selInst) selInst.value = insts[Math.floor(Math.random() * insts.length)];
+
+        const selVocal = document.getElementById('fm-vocal-select');
+        if (selVocal) selVocal.value = vocals[Math.floor(Math.random() * vocals.length)];
+
+        const selTempo = document.getElementById('fm-tempo-select');
+        if (selTempo) selTempo.value = tempos[Math.floor(Math.random() * tempos.length)];
+
+        const inpDetail = document.getElementById('fm-custom-detail');
+        if (inpDetail) inpDetail.value = '';
+
+        updateFlowMusicPrompt();
+        showToast('🎲 已隨機換好一組 Google Flow Music 作曲配樂靈感！');
+    }
+
+    function testFlowMusic15PctTone() {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            const ctx = new AudioCtx();
+            const masterGain = ctx.createGain();
+            // 嚴格遵守全域預設音量 15% 規範 (0.15)
+            masterGain.gain.value = 0.15;
+            masterGain.connect(ctx.destination);
+
+            const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+            notes.forEach((freq, idx) => {
+                const osc = ctx.createOscillator();
+                const noteGain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.18);
+
+                noteGain.gain.setValueAtTime(0.001, ctx.currentTime + idx * 0.18);
+                noteGain.gain.exponentialRampToValueAtTime(1.0, ctx.currentTime + idx * 0.18 + 0.05);
+                noteGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.18 + 1.1);
+
+                osc.connect(noteGain);
+                noteGain.connect(masterGain);
+                osc.start(ctx.currentTime + idx * 0.18);
+                osc.stop(ctx.currentTime + idx * 0.18 + 1.15);
+            });
+            showToast('🔊 正在以 15% 黃金預設音量 (Gain = 0.15) 播放溫暖分解和弦示範！');
+        } catch (err) {
+            showToast('您的瀏覽器暫不支援 Web Audio 試聽');
         }
     }
 
