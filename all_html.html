@@ -4134,6 +4134,13 @@
                item.rel.toLowerCase().includes(q) ||
                item.category.toLowerCase().includes(q);
       }).sort((a, b) => {
+        // ⭐ 我的最愛 item 一律先排在最前面
+        const aFav = favList.includes(a.rel) ? 1 : 0;
+        const bFav = favList.includes(b.rel) ? 1 : 0;
+        if (aFav !== bFav) {
+          return bFav - aFav;
+        }
+
         if (currentSort === 'mtime_desc') return b.mtime.localeCompare(a.mtime);
         if (currentSort === 'mtime_asc') return a.mtime.localeCompare(b.mtime);
         if (currentSort === 'title_asc') return a.title.localeCompare(b.title, 'zh-Hant');
