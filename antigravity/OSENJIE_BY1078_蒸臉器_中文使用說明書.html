@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>OSENJIE BY1078 蒸臉器 (嫩膚美容儀) 中文使用說明書</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg-primary: #faf8ff;
+      --bg-card: #ffffff;
+      --bg-accent: #f3efff;
+      --bg-warn: #fff8eb;
+      --bg-danger: #fff1f2;
+      --text-primary: #1e1b2e;
+      --text-secondary: #564f6d;
+      --brand-purple: #6d28d9;
+      --brand-purple-soft: #8b5cf6;
+      --border-color: #e4ddf7;
+      --warn-border: #f59e0b;
+      --danger-border: #e11d48;
+      --shadow: 0 10px 30px -10px rgba(109, 40, 217, 0.12);
+      --radius: 16px;
+
+      @media (prefers-color-scheme: dark) {
+        --bg-primary: #12101b;
+        --bg-card: #1d192b;
+        --bg-accent: #28223c;
+        --bg-warn: #2c2212;
+        --bg-danger: #2d1418;
+        --text-primary: #f2effa;
+        --text-secondary: #b8b1cf;
+        --brand-purple: #a78bfa;
+        --brand-purple-soft: #7c3aed;
+        --border-color: #332c4a;
+        --warn-border: #d97706;
+        --danger-border: #f43f5e;
+        --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
+      }
+
+      @supports (color: light-dark(white, black)) {
+        --bg-primary: light-dark(#faf8ff, #12101b);
+        --bg-card: light-dark(#ffffff, #1d192b);
+        --bg-accent: light-dark(#f3efff, #28223c);
+        --bg-warn: light-dark(#fff8eb, #2c2212);
+        --bg-danger: light-dark(#fff1f2, #2d1418);
+        --text-primary: light-dark(#1e1b2e, #f2effa);
+        --text-secondary: light-dark(#564f6d, #b8b1cf);
+        --brand-purple: light-dark(#6d28d9, #a78bfa);
+        --brand-purple-soft: light-dark(#8b5cf6, #7c3aed);
+        --border-color: light-dark(#e4ddf7, #332c4a);
+        --warn-border: light-dark(#f59e0b, #d97706);
+        --danger-border: light-dark(#e11d48, #f43f5e);
+        --shadow: 0 10px 30px -10px light-dark(rgba(109, 40, 217, 0.12), rgba(0, 0, 0, 0.45));
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
+      padding: 24px 16px 64px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Header / Hero */
+    header.hero {
+      background: linear-gradient(135deg, #5b21b6 0%, #8b5cf6 60%, #a855f7 100%);
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 36px 32px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(6px);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    header.hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    header.hero p.subtitle {
+      font-size: 1.02rem;
+      opacity: 0.92;
+      max-width: 680px;
+    }
+
+    .hero-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .hero-chip {
+      background: rgba(18, 16, 27, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Quick Nav / Print bar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-primary);
+      background: var(--bg-accent);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--brand-purple);
+      color: #fff;
+    }
+
+    .btn-print {
+      background: var(--brand-purple);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 9px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-print:hover {
+      opacity: 0.9;
+    }
+
+    /* Section Card */
+    section.card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--brand-purple);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-title span.en {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-left: auto;
+    }
+
+    /* Structure Grid & SVG diagram */
+    .structure-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .structure-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .diagram-box {
+      background: var(--bg-accent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      border: 1px dashed var(--border-color);
+    }
+
+    .diagram-box svg {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+    }
+
+    .diagram-note {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    .switch-desc {
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+    }
+
+    .switch-box p {
+      font-size: 0.9rem;
+    }
+
+    .part-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .part-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--bg-accent);
+      border-radius: 12px;
+      border-left: 4px solid var(--brand-purple);
+    }
+
+    .part-num {
+      background: var(--brand-purple);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .part-info h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .part-info h3 small {
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-left: 6px;
+    }
+
+    .part-info p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    /* Steps Timeline */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: var(--bg-accent);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      background: var(--brand-purple);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+
+    .step-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .step-card p {
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .step-card .en-ref {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      border-top: 1px dashed var(--border-color);
+      padding-top: 8px;
+      margin-top: auto;
+    }
+
+    /* Steam Switch Interactive Demo */
+    .switch-highlight {
+      margin-top: 20px;
+      background: linear-gradient(135deg, rgba(109, 40, 217, 0.08), rgba(168, 85, 247, 0.14));
+      border: 2px solid var(--brand-purple);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .switch-highlight h3 {
+      font-size: 1.1rem;
+      color: var(--brand-purple);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .switch-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .switch-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .switch-box {
+      background: var(--bg-card);
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .switch-box strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--brand-purple);
+    }
+
+    /* Warning & Maintenance Cards */
+    .alert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 720px) {
+      .alert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .alert-box {
+      padding: 18px 20px;
+      border-radius: 14px;
+    }
+
+    .alert-box.danger {
+      background: var(--bg-danger);
+      border: 1px solid var(--danger-border);
+    }
+
+    .alert-box.warn {
+      background: var(--bg-warn);
+      border: 1px solid var(--warn-border);
+    }
+
+    .alert-box h3 {
+      font-size: 1.08rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .alert-box ul {
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+      font-size: 0.92rem;
+    }
+
+    /* Specs Table */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .spec-item {
+      background: var(--bg-accent);
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .spec-label {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--brand-purple);
+    }
+
+    /* Original Manual Accordion */
+    details.en-manual {
+      margin-top: 16px;
+      background: var(--bg-accent);
+      border-radius: 12px;
+      padding: 14px 18px;
+      border: 1px solid var(--border-color);
+    }
+
+    details.en-manual summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--brand-purple);
+    }
+
+    details.en-manual .en-content {
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      display: grid;
+      gap: 8px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 36px;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #fff;
+        color: #000;
+      }
+      .toolbar {
+        display: none;
+      }
+      section.card {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="badge-row">
+        <span class="badge">品牌：OSENJIE</span>
+        <span class="badge">型號：BY1078</span>
+        <span class="badge">Professional Facial Steamer</span>
+      </div>
+      <h1>OSENJIE BY1078 專業蒸臉器 中文使用說明書</h1>
+      <p class="subtitle">深層臉部清潔・保濕桑拿・鼻部蒸氣護理（附全臉面罩、鼻罩與量水杯）</p>
+      <div class="hero-features">
+        <span class="hero-chip">✨ 臉罩 / 鼻罩雙模式切換</span>
+        <span class="hero-chip">🌬️ 貼心呼吸透氣孔設計</span>
+        <span class="hero-chip">🌡️ 恆溫加熱・快速出霧</span>
+        <span class="hero-chip">💧 男女皆適用・清潔保濕桑拿</span>
+      </div>
+    </header>
+
+    <!-- Quick Toolbar -->
+    <nav class="toolbar" aria-label="章節快速導覽">
+      <div class="nav-links">
+        <a href="#structure">1. 產品結構與配件</a>
+        <a href="#operation">2. 操作步驟 (7步上手)</a>
+        <a href="#steam-switch">3. 出霧大小調節</a>
+        <a href="#safety">4. 安全與保養須知</a>
+        <a href="#specs">5. 產品規格參數</a>
+      </div>
+      <button type="button" id="print-btn" class="btn-print">🖨️ 列印 / 存為 PDF</button>
+    </nav>
+
+    <main>
+    <!-- 1. Product Structure -->
+    <section id="structure" class="card">
+      <h2 class="section-title">
+        <span>一、產品結構與配件說明</span>
+        <span class="en">Product Structure</span>
+      </h2>
+      <div class="structure-layout">
+        <div class="diagram-box">
+          <svg viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="蒸臉器結構分解示意圖">
+            <!-- Facial Mask (Left) -->
+            <g transform="translate(20, 15)">
+              <path d="M15,15 Q60,25 105,15 C110,60 95,95 80,105 L40,105 C25,95 10,60 15,15 Z" fill="#dcd3ff" stroke="#6d28d9" stroke-width="2.5"/>
+              <path d="M40,105 L80,105 L78,120 L42,120 Z" fill="#c4b5fd" stroke="#6d28d9" stroke-width="2"/>
+              <circle cx="20" cy="22" r="11" fill="#6d28d9"/>
+              <text x="20" y="26" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">1</text>
+              <text x="60" y="138" text-anchor="middle" fill="currentColor" font-size="13" font-weight="bold">全臉蒸氣面罩</text>
+            </g>
+
+            <!-- Nasal Mask (Right) -->
+            <g transform="translate(175, 15)">
+              <path d="M20,25 Q60,10 100,25 C95,50 82,62 78,72 L82,115 L38,115 L42,72 C38,62 25,50 20,25 Z" fill="#dcd3ff" stroke="#6d28d9" stroke-width="2.5"/>
+              <ellipse cx="60" cy="52" rx="11" ry="9" fill="#faf8ff" stroke="#6d28d9" stroke-width="1.8"/>
+              <ellipse cx="43" cy="82" rx="4" ry="8" fill="#faf8ff" stroke="#6d28d9" stroke-width="1.5"/>
+              <ellipse cx="77" cy="82" rx="4" ry="8" fill="#faf8ff" stroke="#6d28d9" stroke-width="1.5"/>
+              <circle cx="22" cy="22" r="11" fill="#6d28d9"/>
+              <text x="22" y="26" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">2</text>
+              <text x="60" y="138" text-anchor="middle" fill="currentColor" font-size="13" font-weight="bold">鼻部蒸氣罩</text>
+            </g>
+
+            <!-- Fog-emitting plate (Middle) -->
+            <g transform="translate(95, 170)">
+              <ellipse cx="65" cy="22" rx="52" ry="16" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5"/>
+              <rect x="13" y="22" width="104" height="16" rx="4" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2"/>
+              <!-- Steam holes -->
+              <circle cx="45" cy="20" r="2.2" fill="#6d28d9"/>
+              <circle cx="58" cy="17" r="2.2" fill="#6d28d9"/>
+              <circle cx="72" cy="17" r="2.2" fill="#6d28d9"/>
+              <circle cx="85" cy="20" r="2.2" fill="#6d28d9"/>
+              <circle cx="65" cy="24" r="2.2" fill="#6d28d9"/>
+              <!-- Slider tab -->
+              <rect x="53" y="30" width="24" height="7" rx="2" fill="#5b21b6"/>
+              <circle cx="6" cy="25" r="11" fill="#6d28d9"/>
+              <text x="6" y="29" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">3</text>
+              <text x="155" y="30" fill="currentColor" font-size="13" font-weight="bold">出霧蓋板 (調節盤)</text>
+            </g>
+
+            <!-- Main Body & Steel Pot (Bottom) -->
+            <g transform="translate(80, 238)">
+              <!-- Steel pot rim -->
+              <ellipse cx="80" cy="24" rx="52" ry="13" fill="#e2e8f0" stroke="#475569" stroke-width="2.5"/>
+              <ellipse cx="80" cy="24" rx="42" ry="9" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+              <!-- Purple body -->
+              <path d="M28,24 L14,108 C14,126 146,126 146,108 L132,24 Z" fill="#7c3aed" stroke="#4c1d95" stroke-width="2.5"/>
+              <!-- Power button -->
+              <circle cx="80" cy="92" r="12" fill="#e2e8f0" stroke="#4c1d95" stroke-width="2"/>
+              <circle cx="80" cy="92" r="7" fill="#a78bfa"/>
+              <!-- Callout 4: Steel Pot -->
+              <circle cx="10" cy="24" r="11" fill="#6d28d9"/>
+              <text x="10" y="28" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">4</text>
+              <text x="-48" y="28" fill="currentColor" font-size="12" font-weight="bold">內鍋</text>
+              <!-- Callout 5: Body -->
+              <circle cx="158" cy="70" r="11" fill="#6d28d9"/>
+              <text x="158" y="74" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">5</text>
+              <text x="174" y="74" fill="currentColor" font-size="12" font-weight="bold">機身主體</text>
+              <!-- Callout 6: Button -->
+              <circle cx="10" cy="92" r="11" fill="#6d28d9"/>
+              <text x="10" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">6</text>
+              <text x="-48" y="96" fill="currentColor" font-size="12" font-weight="bold">開關</text>
+            </g>
+          </svg>
+          <p class="diagram-note">※ 另附透明量水杯 1 個（最大容量 60ml）</p>
+        </div>
+
+        <div class="part-list">
+          <div class="part-item">
+            <span class="part-num">1</span>
+            <div class="part-info">
+              <h3>全臉蒸氣面罩 <small>Facial mask</small></h3>
+              <p>大口徑弧形面罩，貼合臉部輪廓，集中熱蒸氣進行全臉毛孔清潔與保濕桑拿。</p>
+            </div>
+          </div>
+          <div class="part-item">
+            <span class="part-num">2</span>
+            <div class="part-info">
+              <h3>鼻部專用蒸氣罩 <small>Nasal mask</small></h3>
+              <p>針對鼻腔與T字部位設計，兩側設有呼吸透氣孔（Air-hole for breathing），蒸鼻舒適不悶氣。</p>
+            </div>
+          </div>
+          <div class="part-item">
+            <span class="part-num">3</span>
+            <div class="part-info">
+              <h3>多孔出霧蓋板（含出霧量撥桿） <small>Fog-emitting plate</small></h3>
+              <p>白色圓形多孔頂蓋，用於鎖定面罩並透過側邊撥桿調節蒸氣出霧量大小。</p>
+            </div>
+          </div>
+          <div class="part-item">
+            <span class="part-num">4</span>
+            <div class="part-info">
+              <h3>不鏽鋼加熱內鍋 <small>Steel pot</small></h3>
+              <p>位於機身頂部內部的不鏽鋼加熱水槽，具備最高水位刻度線（額定容量 60ml）。</p>
+            </div>
+          </div>
+          <div class="part-item">
+            <span class="part-num">5</span>
+            <div class="part-info">
+              <h3>機身主體與電源開關燈鍵 <small>Product body &amp; Button</small></h3>
+              <p>紫色防燙底座與前方一鍵式電源開關按鈕（內建加熱指示燈與缺水閃爍保護提示）。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Operation Method -->
+    <section id="operation" class="card">
+      <h2 class="section-title">
+        <span>二、操作使用步驟（7 步輕鬆上手）</span>
+        <span class="en">Operation Method</span>
+      </h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟 1</span>
+            <h3>逆時針旋開出霧蓋板</h3>
+          </div>
+          <p>左手握住紫色機身主體，右手抓住白色「出霧蓋板」，<strong>逆時針方向（Anti-clockwise）</strong>旋轉即可取下蓋板。</p>
+          <div class="en-ref">Hold product body with left hand, turn fog-emitting plate anti-clockwise to take it down.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟 2</span>
+            <h3>使用量水杯倒入約 8 分滿水</h3>
+          </div>
+          <p>使用隨附透明量水杯，將水倒入不鏽鋼加熱內鍋至約 <strong>4/5 容量（8分滿，切勿超過最高水位線 MAX）</strong>。建議使用純水或蒸餾水。</p>
+          <div class="en-ref">Use water cup to pour in water into the stainless steel pot about its four fifth volume.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟 3</span>
+            <h3>順時針鎖緊出霧蓋板</h3>
+          </div>
+          <p>左手扶穩機身，右手將白色「出霧蓋板」放回內鍋上方，<strong>順時針方向（Clockwise）</strong>旋轉扣緊安裝到位。</p>
+          <div class="en-ref">Turn the fog-emitting plate clockwise to install it onto the product body.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟 4</span>
+            <h3>安裝全臉面罩或鼻罩</h3>
+          </div>
+          <p>依您的需求選擇「全臉面罩」或「鼻部蒸氣罩」，對準白色出霧蓋板上的卡槽穩固裝上。</p>
+          <div class="en-ref">Select facial mask or nasal mask and install it on the fog-emitting plate.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟 5</span>
+            <h3>確認平放並插上電源</h3>
+          </div>
+          <p>將蒸臉器放置於平坦穩固的桌面上，插上電源插座（支援 AC 110V~240V 國際電壓，台灣 110V 可直接使用）。</p>
+          <div class="en-ref">Connect with power source, voltage is the same with the rated voltage of the product.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟 6</span>
+            <h3>按下開關按鈕開始加熱</h3>
+          </div>
+          <p>接通電源後，按下機身正前方的「電源按鈕」，指示燈亮起即開始恆溫加熱，稍待片刻待蒸氣穩定冒出即可開始蒸臉或蒸鼻。</p>
+          <div class="en-ref">Press product button after connecting with power source. Use after steam emits.</div>
+        </div>
+      </div>
+
+      <!-- Step 7: Steam Adjustment Highlight -->
+      <div id="steam-switch" class="switch-highlight">
+        <h3>🎛️ 步驟 7：出霧量大小調節（白色出霧蓋板側邊撥桿）</h3>
+        <p class="switch-desc">白色出霧蓋板側邊設有一個滑動撥鈕，可依您使用的是「全臉面罩」或「鼻部面罩」調整出霧強度：</p>
+        <div class="switch-cols">
+          <div class="switch-box">
+            <strong>⬅️ 撥桿推向【左邊】(To Left)：出霧量加大</strong>
+            <p>適用於<strong>「全臉面罩」蒸臉模式</strong>，提供豐沛飽滿的溫熱蒸氣覆蓋全臉肌膚。</p>
+          </div>
+          <div class="switch-box">
+            <strong>➡️ 撥桿推向【右邊】(To Right)：出霧量減小</strong>
+            <p>適用於<strong>「鼻部面罩」蒸鼻模式</strong>，使蒸氣柔和集中，避免鼻腔局部溫度過高。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Safety & Maintenance -->
+    <section id="safety" class="card">
+      <h2 class="section-title">
+        <span>三、安全注意事項與清潔保養</span>
+        <span class="en">Attention &amp; Maintenance</span>
+      </h2>
+      <div class="alert-grid">
+        <div class="alert-box danger">
+          <h3>⚠️ 安全警告（使用前必讀）</h3>
+          <ul>
+            <li><strong>必須平放且正確組裝：</strong>本產品必須放置在平坦且穩固的桌面上使用，唯有正確組裝後才能提供安全良好的蒸氣功能。</li>
+            <li><strong>水位限制與嚴禁乾燒：</strong>注水量切勿超過內鍋最高水位標示線（Maximum stage），且<strong>嚴禁在無水狀態下空燒加熱</strong>。</li>
+            <li><strong>無水防乾燒閃燈保護：</strong>正常使用中若水分蒸發完畢（無水加熱），<strong>按鈕指示燈會自動閃爍</strong>並進入保護狀態；若需繼續使用，請先加水後再按一次啟動鍵即可恢復運作。</li>
+            <li><strong>插座接觸檢查：</strong>若連接的電源插座接觸不良，會導致產品插頭發熱。請務必確保所連接的電源插座接觸良好。</li>
+            <li><strong>遠離水源與浴室：</strong>請勿在浴缸、淋浴間、洗手台（臉盆）或任何盛水容器附近使用本產品，以免觸電危險。</li>
+            <li><strong>禁止搭配化學噴劑：</strong>室內正在使用殺蟲劑（防蚊液）或揮發性化學物質時，請勿同時使用本產品。</li>
+            <li><strong>電源線損壞處理：</strong>若電源線損壞，請送至製造商指定維修處，並由專業人員進行更換，切勿自行拆解。</li>
+          </ul>
+        </div>
+
+        <div class="alert-box warn">
+          <h3>🧼 水質建議與日常保養</h3>
+          <ul>
+            <li><strong>建議使用純水或蒸餾水：</strong>強烈建議注入<strong>純淨水（Purified water）或蒸餾水（Distilled water）</strong>，可有效避免不鏽鋼內鍋產生水垢沉積（Incrustation）。</li>
+            <li><strong>每次使用後倒出殘水：</strong>使用完畢並拔除電源待冷卻後，<strong>必須將不鏽鋼內鍋中的剩餘水分倒出</strong>，並用柔軟布料擦拭乾淨，以延長產品使用壽命。</li>
+            <li><strong>定期清潔油脂與殘留物：</strong>請定期清潔面罩、鼻罩與出霧蓋板，避免臉部油脂或其他殘留物堆積阻塞出霧孔。</li>
+          </ul>
+        </div>
+      </div>
+
+      <details class="en-manual">
+        <summary>📄 展開檢視原裝英文說明書原文對照 (Original English Manual Text)</summary>
+        <div class="en-content">
+          <p><strong>Operation method:</strong></p>
+          <p>• Hold the product body with your left hand, use the right hand to grasp the fog-emitting plate and turn it anti-clockwise, take down the fog-emitting plate.</p>
+          <p>• Use water cup to pour in water into the stainless steel pot about its four fifth volume.</p>
+          <p>• Hold the product body with your left hand, use the right hand to grasp the fog-emitting plate and turn it clockwise, install the fog-emitting plate.</p>
+          <p>• Select facial mask or nasal mask and install it on the fog-emitting plate.</p>
+          <p>• Connect with power source, voltage is the same with the rated voltage of the product.</p>
+          <p>• Press product button after connecting with power source.</p>
+          <p>• It can be used after there is steam emitting from facial mask or nasal mask.</p>
+          <p>• When using facial mask steaming the face, fog-emitting increases while pushing the button on the fog-emitting plate to left; when using nasal mask steaming the nose, fog-emitting decreases while pushing the button on the fog-emitting plate to right.</p>
+          <p><strong>Attention:</strong></p>
+          <p>• The product must be used in a flat and secure place. The product can only provide good and safe steaming function when it is assembled correctly.</p>
+          <p>• If the electrical socket outlet connected with the product has a poor contact, it will lead to the plug of the product warmed up. Please ensure that the electrical socket outlet connected with the product is good.</p>
+          <p>• Please do not use the product while using insect repellant or chemical substances indoors.</p>
+          <p>• Please do not use the product near bath tub, shower, lavatory or any other vessels with water.</p>
+          <p>• While the product is heated without water in normal use, the button indication light will automatically flicker. The product is under protection, it can be restarted for normal use by pressing the start button after putting in some water.</p>
+          <p>• The product should be cleaned to avoid the accumulation of grease and other residues.</p>
+          <p>• It is recommended to use purified water or distilled water so as to avoid incrustation.</p>
+          <p>• The remnant water in the steel pot must be poured out after using the product and the product should be scrubbed clean with soft cloth so as to extend the service life.</p>
+          <p>• If the power line is damaged, please go to the repair place designated by the manufacturer and it should be replaced by professionals.</p>
+          <p>• The water injection volume of this appliance should not exceed the marking line of maximum stage and it is prohibited to heat the product without water.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- 4. Specifications -->
+    <section id="specs" class="card">
+      <h2 class="section-title">
+        <span>四、產品規格與技術參數</span>
+        <span class="en">Specification and Parameter</span>
+      </h2>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">產品型號 (Model)</div>
+          <div class="spec-value">OSENJIE BY1078</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">額定電壓 (Rated Voltage)</div>
+          <div class="spec-value">AC 110V ~ 240V</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">額定頻率 (Rated Frequency)</div>
+          <div class="spec-value">50Hz / 60Hz</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">額定功率 (Rated Power)</div>
+          <div class="spec-value">130W</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">水箱額定容量 (Rated Volume)</div>
+          <div class="spec-value">60 ml</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">額定出霧量 (Rated Steam)</div>
+          <div class="spec-value">218 ml/h</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">產品淨重 (Net Weight)</div>
+          <div class="spec-value">0.55 kg</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">防觸電保護等級 (Protection Class)</div>
+          <div class="spec-value">II 類電器 (II class)</div>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <footer>
+      <p>OSENJIE BY1078 專業蒸臉器 (嫩膚美容儀) 中文圖解使用說明書｜支援深淺色主題與 A4 列印</p>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
