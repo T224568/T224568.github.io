@@ -383,7 +383,10 @@
     }
 
     function getMediaUrl(item) {
-      return R2_BASE + encodeURIComponent(item.filename) + '?v=' + (item.mtime || Date.now());
+      if (window.location.protocol === 'file:') {
+        return BASE_PATH + encodeURIComponent(item.filename);
+      }
+      return R2_BASE + encodeURIComponent(item.filename);
     }
 
     function renderGrid(posts) {
@@ -394,7 +397,7 @@
 
         const thumbsHtml = post.items.slice(0, 5).map((it, idx) => `
           <button onclick="openLightbox('${post.code}', ${idx})" class="w-6 h-6 rounded border border-slate-700/80 overflow-hidden hover:scale-110 hover:border-pink-500 transition-all">
-            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-[8px] text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${getMediaUrl(it)}" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(it.filename)}';" class="w-full h-full object-cover" loading="lazy" />`}
+            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-800 flex items-center justify-center text-[8px] text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${getMediaUrl(it)}" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(it.filename);}" class="w-full h-full object-cover" loading="lazy" />`}
           </button>
         `).join('');
 
@@ -407,7 +410,7 @@
               ${isVid 
                 ? `<video src="${coverSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"></video>
                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center"><div class="w-12 h-12 rounded-full bg-pink-600/80 text-white flex items-center justify-center shadow-lg"><i class="fa-solid fa-play text-lg ml-0.5"></i></div></div>`
-                : `<img src="${coverSrc}" alt="${post.title}" loading="lazy" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(cover.filename)}';" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
+                : `<img src="${coverSrc}" alt="${post.title}" loading="lazy" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(cover.filename);}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" />`
               }
 
               <!-- Badges Overlay -->
@@ -476,7 +479,7 @@ IG 發布：${post.mtime_str}">
               <div class="w-12 h-14 rounded-lg bg-slate-900 border border-slate-700/80 overflow-hidden cursor-pointer mx-auto flex items-center justify-center" onclick="openLightbox('${post.code}', 0)">
                 ${isVid 
                   ? `<div class="relative w-full h-full flex items-center justify-center bg-slate-950"><i class="fa-solid fa-play text-xs text-rose-400"></i></div>`
-                  : `<img src="${coverSrc}" alt="${post.title}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(cover.filename)}';" />`
+                  : `<img src="${coverSrc}" alt="${post.title}" class="w-full h-full object-cover" loading="lazy" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(cover.filename);}" />`
                 }
               </div>
             </td>
@@ -581,7 +584,7 @@ IG 發布：${post.mtime_str}">
         modalThumbnails.classList.remove('hidden');
         modalThumbnails.innerHTML = activePost.items.map((it, idx) => `
           <button onclick="activeSlideIndex = ${idx}; updateLightboxSlide();" class="relative w-12 h-14 rounded-lg overflow-hidden border-2 transition-all ${idx === activeSlideIndex ? 'border-pink-500 scale-105 shadow-md shadow-pink-500/30' : 'border-slate-700 opacity-60 hover:opacity-100'}">
-            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-900 flex items-center justify-center text-xs text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${getMediaUrl(it)}" onerror="this.onerror=null;this.src='${BASE_PATH + encodeURIComponent(it.filename)}';" class="w-full h-full object-cover" />`}
+            ${it.ext in { 'mp4':1,'mov':1 } ? '<div class="w-full h-full bg-slate-900 flex items-center justify-center text-xs text-rose-400"><i class="fa-solid fa-play"></i></div>' : `<img src="${getMediaUrl(it)}" onerror="if(window.location.protocol==='file:'){this.onerror=null;this.src=BASE_PATH+encodeURIComponent(it.filename);}" class="w-full h-full object-cover" />`}
           </button>
         `).join('');
       } else {
