@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>每日開關機任務執行日誌</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f8fa;
+      --card: #ffffff;
+      --text: #1f2328;
+      --muted: #656d76;
+      --border: #d0d7de;
+      --accent: #0969da;
+      --tag-bg: #eff6ff;
+      --table-stripe: #f6f8fa;
+      --success: #1a7f37;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --card: #161b22;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --border: #30363d;
+        --accent: #58a6ff;
+        --tag-bg: #1f2937;
+        --table-stripe: #1c2128;
+        --success: #3fb950;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    h1 { font-size: 1.85rem; border-bottom: 2px solid var(--border); padding-bottom: 12px; margin-top: 0; }
+    h2 { font-size: 1.4rem; margin-top: 36px; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--accent); }
+    h3 { font-size: 1.15rem; margin-top: 22px; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th { background: var(--tag-bg); font-weight: 600; }
+    tr:nth-child(even) { background: var(--table-stripe); }
+    blockquote {
+      margin: 16px 0;
+      padding: 10px 16px;
+      background: var(--tag-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+      border-radius: 0 8px 8px 0;
+    }
+    code { background: rgba(175, 184, 193, 0.2); padding: 2px 6px; border-radius: 4px; font-size: 90%; }
+    hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <article id="content">
+<h1>🖥️ 每日開關機任務執行日誌</h1>
+<blockquote>本文件由 <code>task-logger</code> 自動於每次開機與手動維護時更新。</blockquote>
+<blockquote>記錄每日 macOS 前次關機安全清理作業與開機自動補跑 Task 執行狀態。</blockquote>
+<blockquote><strong>更新規則：最新的紀錄永遠置頂於最上方。</strong></blockquote>
+<hr />
+<h2>📅 2026-11-25 開關機 Task 彙整紀錄（記錄於 2026-11-25 10:03）</h2>
+<h3>🛑 前次關機任務（關機時間：<code>2026-11-24 22:28:39</code>）</h3>
+<table>
+  <thead><tr><th>檢查項目</th><th>執行狀態</th><th>詳細說明與安全處置</th></tr></thead>
+  <tbody>
+  <tr><td><strong>512G 雙重安全備份</strong></td><td>✅ 成功</td><td>1T_HDD_2 本機鏡像 ＋ Google Drive 核心備份安全封存</td></tr>
+  <tr><td><strong>Notion 日記會話梳理</strong></td><td>✅ 成功</td><td>conversation-summarizer 自動梳理當日會話並同步 Notion 日記</td></tr>
+  <tr><td><strong>全專案自動收工</strong></td><td>✅ 成功</td><td>L3 Obsidian 全專案同步 ＋ L1 handoff.md 更新活躍專案</td></tr>
+  <tr><td><strong>易阻擋程式清理</strong></td><td>✅ 成功</td><td>LINE (pkill -9) / Terminal 等 GUI 程序平穩終止，避免阻擋 macOS 關機</td></tr>
+  <tr><td><strong>磁碟快取落盤 (sync)</strong></td><td>✅ 成功</td><td>外接硬碟緩衝區雙重刷新完成，保護資料完整性</td></tr>
+  <tr><td><strong>記錄關機時間戳</strong></td><td>✅ 成功</td><td>成功寫入 ~/.task_state.json (2026-11-24 22:28:39)</td></tr>
+  </tbody>
+</table>
+<h3>🚀 本日開機補跑任務（檢查時間：<code>2026-11-25 10:03:39</code>）</h3>
+<table>
+  <thead><tr><th>任務名稱</th><th>狀態</th><th>執行摘要與備註</th></tr></thead>
+  <tbody>
+  <tr><td><strong>512G 鏡像備份</strong></td><td>✅ 成功</td><td>每日雙重安全備份 (1T_HDD_2 + Google Drive) (完成於 05:59:44)</td></tr>
+  <tr><td><strong>每日早安圖雙端同步與推播</strong></td><td>✅ 成功</td><td>雙圖已就緒 (早安_20261125.jpg, 信仰_20261125.jpg) 且雙端同步</td></tr>
+  <tr><td><strong>生成 Obsidian 每日筆記</strong></td><td>✅ 成功</td><td>自動彙整行程與當日 AI 追蹤至 secondbrain (完成於 06:04:43)</td></tr>
+  <tr><td><strong>同步全專案工作流程 (Obsidian)</strong></td><td>✅ 成功</td><td>跨專案歷史對話動作自動彙整至 專案工作流程.md (完成於 06:02:02)</td></tr>
+  <tr><td><strong>品陽缺失系統每日維護與鏡像</strong></td><td>✅ 成功</td><td>缺失系統資料庫備份與報表同步 (完成於 06:02:08)</td></tr>
+  <tr><td><strong>南門教會主日台語禮拜影片更新</strong></td><td>✅ 成功</td><td>YouTube 影片資料庫增量抓取與 Google Sheets 同步 (完成於 06:02:34)</td></tr>
+  <tr><td><strong>每日台股掃描</strong></td><td>✅ 成功</td><td>大盤技術面、籌碼面與強勢族群掃描分析 (完成於 06:02:35)</td></tr>
+  <tr><td><strong>JK 庫存 Yahoo 即時股價更新</strong></td><td>✅ 成功</td><td>個股報價.js 爬取 Yahoo 股市並寫入 Google Sheet (完成於 06:06:50)</td></tr>
+  <tr><td><strong>每日財經新聞速報</strong></td><td>✅ 成功</td><td>Gemini 2.5 Flash + Google 搜尋四大指數與即時財經速報 (完成於 06:18:08)</td></tr>
+  <tr><td><strong>今日靈修 (glorypress-devotion)</strong></td><td>✅ 成功</td><td>基督教今日報靈修內容擷取與語音摘要 (完成於 09:43:39)</td></tr>
+  </tbody>
+</table>
+<hr />
+
+    </article>
+  </div>
+</body>
+</html>
