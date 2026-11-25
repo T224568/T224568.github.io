@@ -519,9 +519,9 @@
 <body>
   <div class="container">
     <header>
-      <div class="badge-top">📚 7 大免費電子書與 PDF 資源庫</div>
+      <div class="badge-top">📚 13 大免費電子書與繁中資源庫（歐美原文 + 繁體中文）</div>
       <h1>Download <span>Books</span> for Free</h1>
-      <p class="subtitle">輸入書名、作者或關鍵字，一鍵跨站搜尋或直達各大免費電子書平台下載（支援 EPUB / PDF / Kindle）。</p>
+      <p class="subtitle">輸入書名（中文或英文）、作者或關鍵字，一鍵跨站搜尋或直達各大免費電子書平台下載（支援 EPUB / PDF / 直排 EPUB / 線上借閱）。</p>
     </header>
 
     <!-- 跨站搜尋中樞 -->
@@ -533,37 +533,44 @@
           <input
             type="text"
             id="bookQuery"
-            placeholder="輸入書名或作者（例如：Atomic Habits、Sherlock Holmes、Python）..."
+            placeholder="輸入繁中或英文書名/作者（例如：原子習慣、金庸、張愛玲、Atomic Habits）..."
             autocomplete="off"
           >
           <button type="button" id="clearBtn" class="clear-btn" title="清除關鍵字" aria-label="清除關鍵字">✕</button>
         </div>
         <div class="btn-group">
           <button type="submit" class="btn btn-primary" title="對下方篩選出的網站同步更新搜尋連結">
-            ⚡ 套用關鍵字至全站按鈕
+            ⚡ 套用關鍵字至全站
           </button>
-          <button type="button" id="openTop3Btn" class="btn btn-secondary" title="一次開啟前 3 大熱門站的搜尋結果">
-            🚀 一次搜前 3 站
+          <button type="button" id="openZhTop3Btn" class="btn btn-secondary" title="一次開啟前 3 大繁中書源搜尋結果">
+            🇹🇼 一次搜繁中 3 大站
+          </button>
+          <button type="button" id="openTop3Btn" class="btn btn-secondary" title="一次開啟前 3 大英文原文站搜尋結果">
+            🌎 一次搜原文 3 大站
           </button>
         </div>
       </form>
       <div class="quick-tags">
         <span>熱門試搜：</span>
+        <button type="button" class="tag-chip" data-q="原子習慣">原子習慣</button>
+        <button type="button" class="tag-chip" data-q="金庸">金庸</button>
+        <button type="button" class="tag-chip" data-q="魯迅">魯迅</button>
+        <button type="button" class="tag-chip" data-q="紅樓夢">紅樓夢</button>
+        <button type="button" class="tag-chip" data-q="被討厭的勇氣">被討厭的勇氣</button>
+        <button type="button" class="tag-chip" data-q="Atomic Habits">Atomic Habits</button>
         <button type="button" class="tag-chip" data-q="Psychology of Money">Psychology of Money</button>
-        <button type="button" class="tag-chip" data-q="Pride and Prejudice">Pride and Prejudice</button>
-        <button type="button" class="tag-chip" data-q="Machine Learning">Machine Learning</button>
-        <button type="button" class="tag-chip" data-q="The Little Prince">The Little Prince</button>
-        <button type="button" class="tag-chip" data-q="Rich Dad Poor Dad">Rich Dad Poor Dad</button>
       </div>
     </section>
 
     <!-- 篩選與工具列 -->
     <div class="toolbar">
       <div class="filter-tabs" role="tablist" aria-label="格式與分類篩選">
-        <button type="button" class="tab-btn active" data-filter="all">全部網站 (7)</button>
-        <button type="button" class="tab-btn" data-filter="pdf">📄 主打 PDF (3)</button>
-        <button type="button" class="tab-btn" data-filter="epub">📱 EPUB / Kindle (4)</button>
-        <button type="button" class="tab-btn" data-filter="no-login">⚡ 免註冊直下 (5)</button>
+        <button type="button" class="tab-btn active" data-filter="all">全部網站 (13)</button>
+        <button type="button" class="tab-btn" data-filter="zh-tw">🇹🇼 繁體中文書源 (6)</button>
+        <button type="button" class="tab-btn" data-filter="en-orig">🌎 圖片原始 7 大站 (7)</button>
+        <button type="button" class="tab-btn" data-filter="pdf">📄 主打 PDF (5)</button>
+        <button type="button" class="tab-btn" data-filter="epub">📱 EPUB / 直排 (9)</button>
+        <button type="button" class="tab-btn" data-filter="no-login">⚡ 免註冊直下 (10)</button>
       </div>
       <div class="toolbar-actions">
         <button type="button" id="copyAllBtn" class="tab-btn">📋 複製全部網址</button>
@@ -571,17 +578,26 @@
       </div>
     </div>
 
-    <!-- 7 大網站卡片區 -->
+    <!-- 網站卡片區 -->
     <main id="sitesGrid" class="sites-grid"></main>
 
     <!-- 原始清單快速複製區 -->
     <section class="bottom-panel">
       <div class="panel-card">
         <div class="panel-title">
-          <span>🔗 圖片原始 7 大網址清單（點擊即可全選複製）</span>
+          <span>🔗 13 大免費電子書網址總表（繁中 6 站 + 英文原始 7 站）</span>
           <button type="button" id="copyRawBtn" class="tab-btn">複製純文字清單</button>
         </div>
-        <pre id="rawList" class="raw-list">https://manybooks.net
+        <pre id="rawList" class="raw-list">【繁體中文精選 6 大書源】
+https://www.haodoo.net
+https://zh.annas-archive.li
+https://www.openbook.moe
+https://ctext.org/zh
+https://zh.wikisource.org
+https://ebook.hyread.com.tw
+
+【圖片原始 7 大外文書源】
+https://manybooks.net
 https://pdfdrive.com
 https://pdfcoffee.com
 https://pdfroom.com
@@ -596,80 +612,162 @@ https://standardebooks.org</pre>
 
   <script>
     const BOOK_SITES = [
+      // === 繁體中文精選 6 大書源 ===
       {
         id: 1,
-        name: "ManyBooks",
-        url: "https://manybooks.net",
-        searchUrl: (q) => `https://manybooks.net/search-book?search=${encodeURIComponent(q)}`,
-        icon: "📘",
-        formats: ["EPUB", "PDF", "MOBI", "線上讀"],
-        tags: ["epub"],
-        desc: "收錄超過 50,000 本免費電子書，介面現代化，分類齊全（小說、科幻、商業、經典文學），支援多種閱讀器格式。",
-        loginNote: "部分格式需免費登入"
-      },
-      {
-        id: 2,
-        name: "PDF Drive",
-        url: "https://pdfdrive.com",
-        searchUrl: (q) => `https://www.pdfdrive.com/search?q=${encodeURIComponent(q)}`,
-        icon: "📕",
-        formats: ["PDF", "EPUB", "MOBI"],
-        tags: ["pdf", "no-login"],
-        desc: "全球最大免費 PDF 搜尋引擎之一，收錄逾 7,500 萬份 PDF 書籍、教材、學術論文與雜誌，免註冊、無下載次數限制。",
+        name: "好讀 Haodoo",
+        url: "https://www.haodoo.net",
+        searchUrl: (q) => `https://www.google.com/search?q=site:haodoo.net+${encodeURIComponent(q)}`,
+        icon: "🏮",
+        langBadge: "🇹🇼 繁中直排首選",
+        formats: ["直排 EPUB", "橫排 EPUB", "MOBI", "PDB"],
+        tags: ["zh-tw", "epub", "no-login"],
+        desc: "華文界最經典的免費繁體中文電子書網站！專攻「繁體直排」精校排版，收錄大量武俠（金庸/古龍）、歷史、推理、奇幻與世紀百強名著。",
         loginNote: "免註冊直接下載"
       },
       {
+        id: 2,
+        name: "安娜的檔案 Anna's Archive",
+        url: "https://zh.annas-archive.li",
+        searchUrl: (q) => `https://zh.annas-archive.li/search?q=${encodeURIComponent(q)}`,
+        icon: "🏛️",
+        langBadge: "🇹🇼 繁中/全球最大",
+        formats: ["EPUB", "PDF", "MOBI", "AZW3"],
+        tags: ["zh-tw", "pdf", "epub", "no-login"],
+        desc: "全球最大開源影子圖書館搜尋引擎（整合 Z-Library、LibGen、Sci-Hub），繁體中文介面，收錄極大量台灣繁體出版暢銷書、現代新書與學術論文。",
+        loginNote: "免註冊慢速直下"
+      },
+      {
         id: 3,
-        name: "PDFCoffee",
-        url: "https://pdfcoffee.com",
-        searchUrl: (q) => `https://pdfcoffee.com/search.html?q=${encodeURIComponent(q)}`,
-        icon: "☕",
-        formats: ["PDF", "DOCX"],
-        tags: ["pdf", "no-login"],
-        desc: "由社群分享驅動的 PDF 文件與電子書資料庫，經常能找到冷門原文教科書、技術手冊、研究報告與講義。",
+        name: "開源書屋 OpenBook.moe",
+        url: "https://www.openbook.moe",
+        searchUrl: (q) => `https://www.google.com/search?q=site:openbook.moe+${encodeURIComponent(q)}`,
+        icon: "📖",
+        langBadge: "🇹🇼 繁中精排公版",
+        formats: ["EPUB", "線上閱讀"],
+        tags: ["zh-tw", "epub", "no-login"],
+        desc: "宛如中文版 Standard Ebooks！專注於華語公有領域名家作品（魯迅、林語堂、徐志摩、民國文學與外文名著中譯），具備極致現代字體與排版。",
         loginNote: "免註冊直接下載"
       },
       {
         id: 4,
+        name: "中國哲學書電子化計劃 CText",
+        url: "https://ctext.org/zh",
+        searchUrl: (q) => `https://ctext.org/zh?searchu=${encodeURIComponent(q)}`,
+        icon: "📜",
+        langBadge: "🇹🇼 繁中古籍經典",
+        formats: ["線上全文", "PDF 影印本", "API"],
+        tags: ["zh-tw", "pdf", "no-login"],
+        desc: "全球最權威的繁體中文古籍數位資料庫，完整收錄先秦兩漢至明清之經、史、子、集原典，提供全文檢索、字書字典對照與古籍掃描 PDF。",
+        loginNote: "免註冊免費閱覽"
+      },
+      {
+        id: 5,
+        name: "維基文庫 (繁體中文)",
+        url: "https://zh.wikisource.org",
+        searchUrl: (q) => `https://zh.wikisource.org/w/index.php?search=${encodeURIComponent(q)}`,
+        icon: "🪶",
+        langBadge: "🇹🇼 繁中公版文庫",
+        formats: ["EPUB", "PDF", "MOBI", "HTML"],
+        tags: ["zh-tw", "epub", "pdf", "no-login"],
+        desc: "維基媒體基金會旗下的自由圖書館，收錄數十萬篇繁體中文古典文學、近代名家著作、史料與譯作，右上角或側欄支援一鍵匯出 EPUB / PDF。",
+        loginNote: "免註冊一鍵匯出"
+      },
+      {
+        id: 6,
+        name: "HyRead 台灣公共圖書館",
+        url: "https://ebook.hyread.com.tw",
+        searchUrl: (q) => `https://ebook.hyread.com.tw/searchList.jsp?search_field=FullText&search_input=${encodeURIComponent(q)}`,
+        icon: "🇹🇼",
+        langBadge: "🇹🇼 台灣正版免費借",
+        formats: ["EPUB", "PDF", "有聲書", "雜誌"],
+        tags: ["zh-tw", "epub", "pdf"],
+        desc: "台灣人必備正版免費神器！只要有北市圖、國資圖、新北市圖等任一縣市公共圖書館借書證，即可免費借閱最新繁體中文暢銷書與當期雜誌。",
+        loginNote: "憑全台圖書館證免費借"
+      },
+
+      // === 圖片原始 7 大外文書源 ===
+      {
+        id: 7,
+        name: "ManyBooks",
+        url: "https://manybooks.net",
+        searchUrl: (q) => `https://manybooks.net/search-book?search=${encodeURIComponent(q)}`,
+        icon: "📘",
+        langBadge: "🌎 英文原文",
+        formats: ["EPUB", "PDF", "MOBI", "線上讀"],
+        tags: ["en-orig", "epub"],
+        desc: "收錄超過 50,000 本免費電子書，介面現代化，分類齊全（小說、科幻、商業、經典文學），支援多種閱讀器格式。",
+        loginNote: "部分格式需免費登入"
+      },
+      {
+        id: 8,
+        name: "PDF Drive",
+        url: "https://pdfdrive.com",
+        searchUrl: (q) => `https://www.pdfdrive.com/search?q=${encodeURIComponent(q)}`,
+        icon: "📕",
+        langBadge: "🌎 英文/多語 PDF",
+        formats: ["PDF", "EPUB", "MOBI"],
+        tags: ["en-orig", "pdf", "no-login"],
+        desc: "全球最大免費 PDF 搜尋引擎之一，收錄逾 7,500 萬份 PDF 書籍、教材、學術論文與雜誌，免註冊、無下載次數限制。",
+        loginNote: "免註冊直接下載"
+      },
+      {
+        id: 9,
+        name: "PDFCoffee",
+        url: "https://pdfcoffee.com",
+        searchUrl: (q) => `https://pdfcoffee.com/search.html?q=${encodeURIComponent(q)}`,
+        icon: "☕",
+        langBadge: "🌎 英文/多語文件",
+        formats: ["PDF", "DOCX"],
+        tags: ["en-orig", "pdf", "no-login"],
+        desc: "由社群分享驅動的 PDF 文件與電子書資料庫，經常能找到冷門原文教科書、技術手冊、研究報告與講義。",
+        loginNote: "免註冊直接下載"
+      },
+      {
+        id: 10,
         name: "PDF Room",
         url: "https://pdfroom.com",
         searchUrl: (q) => `https://pdfroom.com/books?q=${encodeURIComponent(q)}`,
         icon: "🏛️",
+        langBadge: "🌎 英文 PDF",
         formats: ["PDF"],
-        tags: ["pdf", "no-login"],
+        tags: ["en-orig", "pdf", "no-login"],
         desc: "專注於高畫質 PDF 書籍、漫畫與學術讀物的清爽型搜尋網站，版面乾淨無干擾，提供一鍵預覽與高速下載。",
         loginNote: "免註冊直接下載"
       },
       {
-        id: 5,
+        id: 11,
         name: "Project Gutenberg",
         url: "https://gutenberg.org",
         searchUrl: (q) => `https://www.gutenberg.org/ebooks/search/?query=${encodeURIComponent(q)}`,
         icon: "📜",
+        langBadge: "🌎 公版名著(含中文)",
         formats: ["EPUB", "Kindle", "HTML", "TXT"],
-        tags: ["epub", "no-login"],
-        desc: "全球歷史最悠久的數位圖書館（古騰堡計畫），擁有 70,000+ 本公有領域世界名著，完全合法、免註冊、零廣告。",
+        tags: ["en-orig", "epub", "no-login"],
+        desc: "全球歷史最悠久的數位圖書館（古騰堡計畫），擁有 70,000+ 本公有領域世界名著（亦收錄百餘本中文古典名著），免註冊、零廣告。",
         loginNote: "免註冊直接下載"
       },
       {
-        id: 6,
+        id: 12,
         name: "Open Library",
         url: "https://openlibrary.org",
         searchUrl: (q) => `https://openlibrary.org/search?q=${encodeURIComponent(q)}`,
         icon: "🌐",
+        langBadge: "🌎 全球開放圖書館",
         formats: ["PDF", "EPUB", "線上借閱"],
-        tags: ["epub"],
-        desc: "由網際網路檔案館 (Internet Archive) 營運的開放圖書館，收錄數百萬冊現代與經典圖書，支援公版書直下與現代書免費借閱。",
+        tags: ["en-orig", "epub"],
+        desc: "由網際網路檔案館 (Internet Archive) 營運的開放圖書館，收錄數百萬冊現代與經典圖書（含大量繁中掃描書），支援公版直下與現代書免費借閱。",
         loginNote: "公版直下 / 現代書免費借閱"
       },
       {
-        id: 7,
+        id: 13,
         name: "Standard Ebooks",
         url: "https://standardebooks.org",
         searchUrl: (q) => `https://standardebooks.org/ebooks?query=${encodeURIComponent(q)}`,
         icon: "✨",
+        langBadge: "🌎 英文精品重排",
         formats: ["EPUB", "AZW3", "Kepub", "進階EPUB"],
-        tags: ["epub", "no-login"],
+        tags: ["en-orig", "epub", "no-login"],
         desc: "針對公有領域經典名著進行「精品級重新排版與校對」，附帶高質感封面與完美字體排版，堪稱 Kindle / Kobo 閱讀體驗天花板。",
         loginNote: "免註冊直接下載"
       }
@@ -680,6 +778,7 @@ https://standardebooks.org</pre>
     const clearBtn = document.getElementById("clearBtn");
     const searchForm = document.getElementById("searchForm");
     const openTop3Btn = document.getElementById("openTop3Btn");
+    const openZhTop3Btn = document.getElementById("openZhTop3Btn");
     const toastEl = document.getElementById("toast");
 
     let currentFilter = "all";
@@ -715,8 +814,9 @@ https://standardebooks.org</pre>
       sitesGrid.innerHTML = filtered.map((site) => {
         const targetSearchUrl = query ? site.searchUrl(query) : site.url;
         const primaryLabel = query
-          ? `🔍 搜「${escapeHtml(query.length > 12 ? query.slice(0, 12) + "…" : query)}」`
+          ? `🔍 搜「${escapeHtml(query.length > 10 ? query.slice(0, 10) + "…" : query)}」`
           : "🚀 前往網站下載";
+        const numStr = site.id < 10 ? `#0${site.id}` : `#${site.id}`;
 
         return `
           <article class="site-card">
@@ -729,10 +829,11 @@ https://standardebooks.org</pre>
                     <a href="${site.url}" target="_blank" rel="noopener noreferrer" class="site-url">${site.url}</a>
                   </div>
                 </div>
-                <span class="number-badge">#0${site.id}</span>
+                <span class="number-badge">${numStr}</span>
               </div>
               <p class="site-desc" style="margin: 0.85rem 0;">${escapeHtml(site.desc)}</p>
               <div class="meta-badges">
+                <span class="meta-pill">${escapeHtml(site.langBadge)}</span>
                 ${site.formats.map((f) => `<span class="meta-pill format">${escapeHtml(f)}</span>`).join("")}
                 <span class="meta-pill">${escapeHtml(site.loginNote)}</span>
               </div>
@@ -804,14 +905,24 @@ https://standardebooks.org</pre>
       }
     });
 
+    openZhTop3Btn.addEventListener("click", () => {
+      const q = bookQueryInput.value.trim();
+      const zhTopSites = [BOOK_SITES[0], BOOK_SITES[1], BOOK_SITES[5]]; // 好讀, Anna's Archive, HyRead
+      zhTopSites.forEach((site) => {
+        const url = q ? site.searchUrl(q) : site.url;
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
+      showToast(q ? `已開啟繁中 3 大站搜尋「${q}」` : "已開啟繁體中文前 3 大電子書網站");
+    });
+
     openTop3Btn.addEventListener("click", () => {
       const q = bookQueryInput.value.trim();
-      const topSites = [BOOK_SITES[1], BOOK_SITES[0], BOOK_SITES[4]]; // PDF Drive, ManyBooks, Gutenberg
+      const topSites = [BOOK_SITES[7], BOOK_SITES[6], BOOK_SITES[10]]; // PDF Drive, ManyBooks, Gutenberg
       topSites.forEach((site) => {
         const url = q ? site.searchUrl(q) : site.url;
         window.open(url, "_blank", "noopener,noreferrer");
       });
-      showToast(q ? `已開啟前 3 大站搜尋「${q}」` : "已開啟前 3 大電子書網站");
+      showToast(q ? `已開啟原文 3 大站搜尋「${q}」` : "已開啟原文前 3 大電子書網站");
     });
 
     document.querySelectorAll(".tag-chip").forEach((chip) => {
@@ -834,7 +945,7 @@ https://standardebooks.org</pre>
     function copyAllUrls() {
       const text = BOOK_SITES.map((s) => s.url).join("\n");
       navigator.clipboard.writeText(text).then(() => {
-        showToast("已複製全部 7 個電子書網站網址！");
+        showToast("已複製全部 13 個電子書網站網址！");
       });
     }
 
@@ -844,14 +955,14 @@ https://standardebooks.org</pre>
     // 匯出瀏覽器書籤 HTML 檔方便一鍵匯入 Chrome / Edge / Safari
     document.getElementById("downloadBookmarksBtn").addEventListener("click", () => {
       const linksHtml = BOOK_SITES.map(
-        (s) => `        <DT><A HREF="${s.url}" ADD_DATE="${Math.floor(Date.now() / 1000)}">${s.name} - ${s.desc.slice(0, 30)}</A>`
+        (s) => `        <DT><A HREF="${s.url}" ADD_DATE="${Math.floor(Date.now() / 1000)}">[${s.langBadge}] ${s.name} - ${s.desc.slice(0, 32)}</A>`
       ).join("\n");
       const netscapeBookmark = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <TITLE>Bookmarks</TITLE>
 <H1>Bookmarks</H1>
 <DL><p>
-    <DT><H3 ADD_DATE="${Math.floor(Date.now() / 1000)}">Download Books for Free (7大免費電子書)</H3>
+    <DT><H3 ADD_DATE="${Math.floor(Date.now() / 1000)}">Download Books for Free (13大繁中+原文電子書)</H3>
     <DL><p>
 ${linksHtml}
     </DL><p>
@@ -860,10 +971,10 @@ ${linksHtml}
       const blob = new Blob([netscapeBookmark], { type: "text/html;charset=utf-8" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = "free_ebooks_bookmarks.html";
+      a.download = "free_ebooks_bookmarks_13sites.html";
       a.click();
       URL.revokeObjectURL(a.href);
-      showToast("已下載書籤檔 free_ebooks_bookmarks.html！");
+      showToast("已下載 13 站書籤檔 free_ebooks_bookmarks_13sites.html！");
     });
 
     renderSites();
