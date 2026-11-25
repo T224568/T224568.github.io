@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>67歲退休持股健診、1-12月領息日曆與目標價監控表 (2026-11-21)</title>
+<title>67歲退休持股健診、1-12月領息日曆與目標價監控表 (2026-11-26 最新收盤更新)</title>
 <style>
   :root {
     --bg: #f8fafc;
@@ -26,7 +26,7 @@
     padding: 24px 16px;
   }
   .container {
-    max-width: 1180px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   header {
@@ -43,7 +43,7 @@
   }
   header p {
     margin: 4px 0;
-    opacity: 0.9;
+    opacity: 0.92;
     font-size: 0.95rem;
   }
   .kpi-grid {
@@ -65,7 +65,7 @@
     font-weight: 600;
   }
   .kpi-val {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: var(--primary);
     margin: 6px 0;
@@ -86,15 +86,10 @@
   }
   h2 {
     color: var(--primary);
-    font-size: 1.3rem;
+    font-size: 1.28rem;
     margin-top: 0;
     border-left: 5px solid var(--accent);
     padding-left: 12px;
-  }
-  h3 {
-    color: #0f172a;
-    font-size: 1.1rem;
-    margin-top: 20px;
   }
   table {
     width: 100%;
@@ -132,12 +127,21 @@
   .b-buy { background: #dcfce7; color: #166534; }
   .b-def { background: #e0f2fe; color: #075985; }
   .b-hold { background: #f1f5f9; color: #475569; }
-  .b-swap { background: #fef3c7; color: #92400e; }
   .price-buy { color: #15803d; font-weight: 700; }
   .price-sell { color: #b91c1c; font-weight: 700; }
+  .up-val { color: #b91c1c; font-weight: 700; }
+  .dn-val { color: #15803d; font-weight: 700; }
   .alert-box {
     background: #eff6ff;
     border-left: 4px solid #2563eb;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 14px 0;
+    font-size: 0.92rem;
+  }
+  .success-box {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
     padding: 14px 18px;
     border-radius: 8px;
     margin: 14px 0;
@@ -147,7 +151,7 @@
     background: #e2e8f0;
     border-radius: 6px;
     height: 12px;
-    width: 120px;
+    width: 110px;
     display: inline-block;
     vertical-align: middle;
     overflow: hidden;
@@ -161,91 +165,90 @@
 <body>
 <div class="container">
   <header>
-    <h1>🛡️ 67歲退休持股健診：1～12月領息日曆 ＆ 目標價監控作戰表</h1>
-    <p>生成時間：2026-11-21 ｜ 整合《決勝關鍵》C波滿足點 32,394 點抄底策略與 Yahoo Finance 日線均線系統 (MA5/MA20/MA60)</p>
+    <h1>🛡️ 67歲退休持股健診：1～12月領息日曆 ＆ 目標價監控表（11/26 最新收盤版）</h1>
+    <p>最新更新：2026-11-26（採用 11/25 週三最新收盤價）｜ 3個交易日您的股債市值已逆勢大增 <strong>+281,989 元 (+2.07%)</strong>！</p>
   </header>
 
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="kpi-title">總資產 (股債1,363萬 + 定存300萬)</div>
-      <div class="kpi-val">1,663.3 萬元</div>
-      <div class="kpi-sub">保留180萬定存護體・動用120萬抄底</div>
+      <div class="kpi-title">最新總資產 (股債1,391.5萬 + 定存300萬)</div>
+      <div class="kpi-val">1,691.5 萬元</div>
+      <div class="kpi-sub">較 11/20 回升 +28.2 萬元 (+2.07%)</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-title">目前股債年息 / 月均現金流</div>
       <div class="kpi-val">58.86 萬/年</div>
-      <div class="kpi-sub">目前月均 49,048 元 (未含定存息)</div>
+      <div class="kpi-sub">目前月均 49,048 元 (77張00772B不賣)</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-title">120萬抄底+換股後總年息</div>
-      <div class="kpi-val">82.11 萬/年</div>
-      <div class="kpi-sub">股債 79.05 萬 + 180萬定存息 3.06 萬</div>
+      <div class="kpi-title">120萬定存加碼+換股後總年息</div>
+      <div class="kpi-val">81.85 萬/年</div>
+      <div class="kpi-sub">股債 78.79 萬 + 180萬定存息 3.06 萬</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-title">升級後月均被動收入</div>
-      <div class="kpi-val">68,430 元/月</div>
-      <div class="kpi-sub">每月保底 4.5 萬・7~8月領 27.1 萬大紅包</div>
+      <div class="kpi-val">68,205 元/月</div>
+      <div class="kpi-sub">每月保底 4.53 萬・7~8月領 27.0 萬大紅包</div>
     </div>
   </div>
 
   <div class="card">
-    <h2>零、 【300 萬定存動用策略】60% 留守保命 vs. 40% (120萬) 分三批金字塔抄底</h2>
+    <h2>零、 11/20 vs. 11/25 實戰驗證與「300萬定存」第二隻腳分批佈局計畫</h2>
+    <div class="success-box">
+      <strong>🎉 實戰驗證：遵守「週一不殺低」鐵律，3 天資產大增 +28.2 萬元！</strong><br>
+      ・<strong>大盤走勢回顧</strong>：11/23（週一）大盤最低殺至 35,442 點後立即開低走高收 36,811 點；11/24（週二）報復性狂飆逾 3,300 點衝上 40,180 點；11/25（週三）拉回至 <strong>38,195 點</strong>進行「打第二隻腳」測試支撐。<br>
+      ・<strong>您的持股表現</strong>：三檔債券（<code>00772B</code>、<code>00773B</code>、<code>00687B</code>）與 <code>9925 新保</code> 全面逆勢上漲突破月線與季線；<code>0050</code> 強彈 <strong>+6.93%</strong>（84.45 → 90.30元，單檔增值 +14.04 萬）、<code>00403A</code> 強彈 <strong>+6.55%</strong>（7.02 → 7.48元）雙雙站上 5 日線！
+    </div>
     <div class="alert-box">
-      <strong>💡 有 300 萬定存的最大優勢：您的 77 張 <code>00772B 中信公司債</code> 完全不用賣！</strong><br>
-      針對 67 歲退休族，建議<strong>保留 180 萬元定存（60%）絕對不動</strong>（作為 3 年以上生活與醫療緊急預備金，每年穩領 3.06 萬定存息）；僅撥出 <strong>120 萬元（40%）</strong> 分 3 批在週二（11/24）至 12 月初逢低買進超跌高股息與 0050：
+      <strong>🎯 300 萬定存最新動用策略（保留 180 萬定存護體・撥 120 萬趁「打第二隻腳」分三批低接）：</strong><br>
+      您的 <strong>77 張 <code>00772B 中信公司債</code> 一張都不用賣！</strong> 趁 11/26（週四）～12月初大盤在 38,000 點附近打第二隻腳時，將 120 萬定存按最新收盤價修正後之區間分三批掛單：
     </div>
     <table>
       <thead>
         <tr>
-          <th>批次與進場時機</th>
+          <th>批次與最新進場時機</th>
           <th>動用定存</th>
-          <th>抄底標的</th>
-          <th>目標掛單價區間</th>
+          <th>加碼標的 (11/25最新價)</th>
+          <th>最新建議掛單區間</th>
           <th>買進張數</th>
           <th>預估金額</th>
-          <th style="text-align:left;">戰略目的與鎖定殖利率</th>
+          <th style="text-align:left;">最新技術位階與鎖定殖利率</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>第一批 (約41萬)</strong><br>週二 (11/24) 見 32,400 點或爆量打開跌停</td>
-          <td>41 萬元</td>
-          <td><strong>00878 國泰永續高股息</strong><br><strong>00919 群益高股息</strong></td>
-          <td class="price-buy">26.50 ~ 27.00<br>25.80 ~ 26.30</td>
-          <td>+8 張<br>+8 張</td>
-          <td>21.4 萬<br>20.8 萬</td>
-          <td style="text-align:left;">趁週二融資斷頭非理性殺盤，直接鎖定 <strong>8.0% ~ 10.0%</strong> 破盤殖利率</td>
+          <td><strong>第一批 (約42萬)</strong><br>11/26~11/27 打第二隻腳回測 5 日線</td>
+          <td>42 萬元</td>
+          <td><strong>00878</strong> (現價 28.60)<br><strong>00919</strong> (現價 27.87)</td>
+          <td class="price-buy">27.80 ~ 28.50<br>27.10 ~ 27.80</td>
+          <td>+8 張<br>+7 張</td>
+          <td>22.6 萬<br>19.3 萬</td>
+          <td style="text-align:left;">兩檔距月線 (32.12 / 30.49) 仍有約 10% 折價，現價附近分批買即鎖定 <strong>7.5% ~ 9.4%</strong> 高息</td>
         </tr>
         <tr>
-          <td><strong>第二批 (約41萬)</strong><br>週三~週五 (11/25~27) 量縮打第二隻腳</td>
+          <td><strong>第二批 (約41萬)</strong><br>11月底前量縮整理區間</td>
           <td>41 萬元</td>
-          <td><strong>0056 元大高股息</strong><br><strong>00878 國泰永續高股息</strong></td>
-          <td class="price-buy">41.50 ~ 42.50<br>26.50 ~ 27.20</td>
-          <td>+6 張<br>+6 張</td>
-          <td>25.2 萬<br>16.1 萬</td>
-          <td style="text-align:left;">補齊 2、5、8、11 月配息低谷，把每個月保底現金流拉高至 4.5 萬以上</td>
+          <td><strong>0056</strong> (現價 45.66)<br><strong>00878</strong> (現價 28.60)</td>
+          <td class="price-buy">44.50 ~ 45.50<br>28.00 ~ 28.60</td>
+          <td>+6 張<br>+5 張</td>
+          <td>27.0 萬<br>14.2 萬</td>
+          <td style="text-align:left;">0056 距月線 (51.09) 折價逾 11%，趁低補齊 2、5、8、11 月配息主力</td>
         </tr>
         <tr>
-          <td><strong>第三批 (約39萬)</strong><br>12/1 聽證會前後或站上 5 日線右側確認</td>
-          <td>39 萬元</td>
-          <td><strong>0050 台灣50</strong><br><strong>0056 / 00919</strong></td>
-          <td class="price-buy">79.00 ~ 81.00<br>42.50 / 26.30</td>
-          <td>+3 張<br>+2張 / +2張</td>
-          <td>24.0 萬<br>13.8 萬</td>
-          <td style="text-align:left;">3 張 0050 參與反彈回月線 (99.5元) 價差；高息股湊齊整數張</td>
+          <td><strong>第三批 (約38萬)</strong><br>12/1 聽證會前後站穩 5 日線確認</td>
+          <td>38 萬元</td>
+          <td><strong>0050</strong> (現價 90.30)<br><strong>00919 / 0056</strong></td>
+          <td class="price-buy">87.50 ~ 89.50<br>27.60 / 45.20</td>
+          <td>+2 張<br>+4張 / +2張</td>
+          <td>17.8 萬<br>20.1 萬</td>
+          <td style="text-align:left;">0050 已站上 5 日線 (89.53)，回測 5 日線買 2 張賺取反彈回月線 (97.12) 價差</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="card">
-    <h2>一、 15 檔持股「週二爆量抄底 / 12月反彈至月線減碼」目標價監控表（已整合 120 萬定存方案）</h2>
-    <div class="alert-box">
-      <strong>🎯 兩階段價格觸發紀律（動用 120 萬定存・保留完整 77 張 00772B 不必賣）：</strong><br>
-      1. <strong>下週一（11/23）早盤不動</strong>：台指期夜盤跌 1,881 點，早盤必有融資斷頭殺盤，現股絕對不殺低、不盲目接刀。<br>
-      2. <strong>下週二（11/24）起分三批用 120 萬定存抄底</strong>：當大盤跌至 C 波滿足點（32,394 點）附近爆大量打開跌停時，<strong>不必賣出 <code>00772B</code>（77張完整保留領息）</strong>，直接動用 120 萬定存按下方<strong>綠色抄底價</strong>分批低接 <code>00878</code> (+14張)、<code>00919</code> (+10張)、<code>0056</code> (+8張)、<code>0050</code> (+3張)。<br>
-      3. <strong>12 月反彈至月線（MA20）減碼換防禦</strong>：待大盤與美股反彈觸及下方<strong>紅色月線目標區間</strong>，將高波動 <code>00403A</code> 出清，並將不配息的 <code>00662</code>、<code>00646</code> 減半（收回約 197 萬），全數轉入台灣大、中保科、新保、00687B 與高股息 ETF。
-    </div>
+    <h2>一、 15 檔持股最新收盤（11/25）、均線系統與「低接 / 月線減碼」目標價監控表</h2>
     <table>
       <thead>
         <tr>
@@ -254,12 +257,14 @@
           <th>股票名稱</th>
           <th>現有張數</th>
           <th>11/20收盤</th>
+          <th>11/25最新</th>
+          <th>3日漲跌</th>
+          <th>最新市值</th>
           <th>5日線(MA5)</th>
           <th>月線(MA20)</th>
-          <th>季線(MA60)</th>
-          <th>週二(11/24)爆量抄底價</th>
-          <th>12月反彈減碼/目標價</th>
-          <th style="text-align:left;">具體執行指令 (120萬定存抄底＋12月換股後目標張數)</th>
+          <th>🟢 第二隻腳低接價</th>
+          <th>🔴 12月月線減碼價</th>
+          <th style="text-align:left;">具體執行指令 (120萬定存＋12月換股後目標張數)</th>
         </tr>
       </thead>
       <tbody>
@@ -269,12 +274,14 @@
           <td>主動統一升級50</td>
           <td>86.0 張</td>
           <td>7.02</td>
-          <td>7.78</td>
-          <td>8.86</td>
-          <td>9.96</td>
+          <td><strong>7.48</strong></td>
+          <td class="up-val">+6.55%</td>
+          <td>643,280</td>
+          <td>7.48</td>
+          <td><strong>8.49</strong></td>
           <td>不加碼</td>
-          <td class="price-sell">8.30 ~ 8.85</td>
-          <td style="text-align:left;">反彈至月線<strong>全數出清 (-86張 → 0張)</strong>，收回約 72 萬轉收息股</td>
+          <td class="price-sell">8.20 ~ 8.55</td>
+          <td style="text-align:left;">已站上MA5！反彈至月線<strong>全數出清 (-86張 → 0張)</strong>，收回約 72 萬</td>
         </tr>
         <tr>
           <td><span class="badge b-sell">🔴 反彈減碼</span></td>
@@ -282,12 +289,14 @@
           <td>富邦NASDAQ</td>
           <td>45.9 張</td>
           <td>22.15</td>
-          <td>22.98</td>
-          <td>23.61</td>
-          <td>24.17</td>
+          <td><strong>21.86</strong></td>
+          <td class="dn-val">-1.31%</td>
+          <td>1,003,374</td>
+          <td>22.33</td>
+          <td><strong>23.24</strong></td>
           <td>不加碼</td>
-          <td class="price-sell">23.50 ~ 24.10</td>
-          <td style="text-align:left;">反彈回月線<strong>減碼一半 (-23張 → 22.9張)</strong>，收回約 55 萬轉收息股</td>
+          <td class="price-sell">23.20 ~ 23.80</td>
+          <td style="text-align:left;">反彈回月線<strong>減碼一半 (-23張 → 22.9張)</strong>，收回約 54 萬轉收息股</td>
         </tr>
         <tr>
           <td><span class="badge b-sell">🔴 反彈減碼</span></td>
@@ -295,51 +304,59 @@
           <td>元大S&amp;P500</td>
           <td>19.0 張</td>
           <td>74.05</td>
-          <td>76.50</td>
-          <td>77.84</td>
-          <td>77.51</td>
+          <td><strong>74.25</strong></td>
+          <td class="up-val">+0.27%</td>
+          <td>1,410,750</td>
+          <td>74.75</td>
+          <td><strong>77.16</strong></td>
           <td>不加碼</td>
-          <td class="price-sell">77.50 ~ 78.50</td>
-          <td style="text-align:left;">反彈回月線<strong>減碼 9 張 (-9張 → 10張)</strong>，收回約 70 萬轉收息股</td>
+          <td class="price-sell">77.00 ~ 77.80</td>
+          <td style="text-align:left;">反彈回月線<strong>減碼 9 張 (-9張 → 10張)</strong>，收回約 69 萬轉收息股</td>
         </tr>
         <tr>
-          <td><span class="badge b-buy">🟢 定存抄底</span></td>
+          <td><span class="badge b-buy">🟢 定存低接</span></td>
           <td><strong>00878</strong></td>
           <td>國泰永續高股息</td>
           <td>31.0 張</td>
           <td>28.03</td>
-          <td>30.35</td>
-          <td>33.07</td>
-          <td>34.03</td>
-          <td class="price-buy">26.50 ~ 27.20</td>
-          <td>33.00 (續抱)</td>
-          <td style="text-align:left;">定存抄底 <strong>+14張</strong> ＋ 12月換股 <strong>+15張 (→ 共 60張)</strong>，鎖定 8% 季配</td>
+          <td><strong>28.60</strong></td>
+          <td class="up-val">+2.03%</td>
+          <td>886,600</td>
+          <td>29.05</td>
+          <td>32.12</td>
+          <td class="price-buy">27.80 ~ 28.50</td>
+          <td>32.10 (續抱)</td>
+          <td style="text-align:left;">定存低接 <strong>+13張</strong> ＋ 12月換股 <strong>+16張 (→ 共 60張)</strong>，季配核心</td>
         </tr>
         <tr>
-          <td><span class="badge b-buy">🟢 定存抄底</span></td>
+          <td><span class="badge b-buy">🟢 定存低接</span></td>
           <td><strong>0056</strong></td>
           <td>元大高股息</td>
           <td>20.0 張</td>
           <td>44.31</td>
-          <td>48.34</td>
-          <td>52.55</td>
-          <td>55.13</td>
-          <td class="price-buy">41.50 ~ 42.80</td>
-          <td>52.50 (續抱)</td>
-          <td style="text-align:left;">定存抄底 <strong>+8張</strong> ＋ 12月換股 <strong>+7張 (→ 共 35張)</strong>，拉高 2/5/8/11 月息</td>
+          <td><strong>45.66</strong></td>
+          <td class="up-val">+3.05%</td>
+          <td>913,200</td>
+          <td>46.54</td>
+          <td>51.09</td>
+          <td class="price-buy">44.50 ~ 45.60</td>
+          <td>51.10 (續抱)</td>
+          <td style="text-align:left;">定存低接 <strong>+8張</strong> ＋ 12月換股 <strong>+7張 (→ 共 35張)</strong>，拉高 2/5/8/11 月息</td>
         </tr>
         <tr>
-          <td><span class="badge b-buy">🟢 定存抄底</span></td>
+          <td><span class="badge b-buy">🟢 定存低接</span></td>
           <td><strong>00919</strong></td>
           <td>群益高股息</td>
           <td>32.0 張</td>
           <td>27.49</td>
-          <td>29.50</td>
-          <td>31.17</td>
-          <td>31.83</td>
-          <td class="price-buy">25.80 ~ 26.50</td>
-          <td>31.20 (續抱)</td>
-          <td style="text-align:left;">定存抄底 <strong>+10張</strong> ＋ 12月換股 <strong>+6張 (→ 共 48張)</strong>，鎖定 9.5% 高息</td>
+          <td><strong>27.87</strong></td>
+          <td class="up-val">+1.38%</td>
+          <td>891,840</td>
+          <td>28.23</td>
+          <td>30.49</td>
+          <td class="price-buy">27.10 ~ 27.80</td>
+          <td>30.50 (續抱)</td>
+          <td style="text-align:left;">定存低接 <strong>+11張</strong> ＋ 12月換股 <strong>+5張 (→ 共 48張)</strong>，鎖定 9.3% 高息</td>
         </tr>
         <tr>
           <td><span class="badge b-def">🔵 防禦加碼</span></td>
@@ -347,12 +364,14 @@
           <td>台灣大</td>
           <td>2.0 張</td>
           <td>123.00</td>
-          <td>126.90</td>
-          <td>130.90</td>
-          <td>125.09</td>
-          <td class="price-buy">118.0 ~ 121.0</td>
-          <td>131.0 (收租)</td>
-          <td style="text-align:left;">換股資金轉入，<strong>加碼 +3張 (→ 共 5張)</strong> 電信防禦核心</td>
+          <td><strong>123.00</strong></td>
+          <td>0.00%</td>
+          <td>246,000</td>
+          <td>124.40</td>
+          <td>129.47</td>
+          <td class="price-buy">121.5 ~ 123.0</td>
+          <td>129.5 (收租)</td>
+          <td style="text-align:left;">股災完全零下跌！換股資金轉入<strong>加碼 +3張 (→ 共 5張)</strong></td>
         </tr>
         <tr>
           <td><span class="badge b-def">🔵 防禦加碼</span></td>
@@ -360,11 +379,13 @@
           <td>中保科</td>
           <td>3.35 張</td>
           <td>102.00</td>
-          <td>105.10</td>
-          <td>106.40</td>
-          <td>106.45</td>
-          <td class="price-buy">98.5 ~ 101.0</td>
-          <td>106.5 (收租)</td>
+          <td><strong>103.50</strong></td>
+          <td class="up-val">+1.47%</td>
+          <td>346,828</td>
+          <td>103.60</td>
+          <td>105.72</td>
+          <td class="price-buy">101.5 ~ 103.0</td>
+          <td>106.0 (收租)</td>
           <td style="text-align:left;">換股資金轉入，<strong>加碼 +2.65張 (→ 共 6張)</strong> 保全龍頭</td>
         </tr>
         <tr>
@@ -373,12 +394,14 @@
           <td>新保</td>
           <td>9.1 張</td>
           <td>39.00</td>
-          <td>39.52</td>
+          <td><strong>39.65</strong></td>
+          <td class="up-val">+1.67%</td>
+          <td>360,815</td>
+          <td>39.44</td>
           <td>39.45</td>
-          <td>39.55</td>
-          <td class="price-buy">38.00 ~ 38.60</td>
-          <td>39.80 (收租)</td>
-          <td style="text-align:left;">換股資金轉入，<strong>加碼 +5.9張 (→ 共 15張)</strong> 抗跌收息</td>
+          <td class="price-buy">39.00 ~ 39.50</td>
+          <td>40.00 (收租)</td>
+          <td style="text-align:left;">站上所有均線！換股資金轉入<strong>加碼 +5.9張 (→ 共 15張)</strong></td>
         </tr>
         <tr>
           <td><span class="badge b-hold">🛡️ 完整保留</span></td>
@@ -386,12 +409,14 @@
           <td>中信公司債</td>
           <td>77.0 張</td>
           <td>32.60</td>
-          <td>32.55</td>
-          <td>32.83</td>
-          <td>32.23</td>
+          <td><strong>32.93</strong></td>
+          <td class="up-val">+1.01%</td>
+          <td>2,535,610</td>
+          <td>32.78</td>
+          <td>32.87</td>
           <td><strong>續抱免賣 (改用定存)</strong></td>
-          <td>32.80 (續抱)</td>
-          <td style="text-align:left;"><strong>維持 77 張一張不賣！</strong>每月穩定領息約 10,010 元</td>
+          <td>33.20 (續抱)</td>
+          <td style="text-align:left;">突破月線與季線！<strong>維持 77 張一張不賣</strong>，月領約 10,010 元</td>
         </tr>
         <tr>
           <td><span class="badge b-hold">🛡️ 完整保留</span></td>
@@ -399,12 +424,14 @@
           <td>中信金融債</td>
           <td>27.0 張</td>
           <td>34.91</td>
-          <td>34.87</td>
-          <td>35.10</td>
-          <td>34.48</td>
+          <td><strong>35.21</strong></td>
+          <td class="up-val">+0.86%</td>
+          <td>950,670</td>
+          <td>35.07</td>
+          <td>35.17</td>
           <td><strong>續抱領月息</strong></td>
-          <td>35.20 (續抱)</td>
-          <td style="text-align:left;"><strong>維持 27 張不動</strong>，每月穩定領息約 3,850 元</td>
+          <td>35.50 (續抱)</td>
+          <td style="text-align:left;">突破月線與季線！<strong>維持 27 張不動</strong>，月領約 3,850 元</td>
         </tr>
         <tr>
           <td><span class="badge b-buy">🟢 債券加碼</span></td>
@@ -412,25 +439,29 @@
           <td>國泰20年美債</td>
           <td>18.0 張</td>
           <td>27.47</td>
-          <td>27.27</td>
-          <td>27.45</td>
-          <td>26.82</td>
-          <td class="price-buy">26.80 ~ 27.20</td>
+          <td><strong>27.88</strong></td>
+          <td class="up-val">+1.49%</td>
+          <td>501,840</td>
+          <td>27.65</td>
+          <td>27.54</td>
+          <td class="price-buy">27.40 ~ 27.70</td>
           <td>28.50 (續抱)</td>
-          <td style="text-align:left;">12月減碼科技股後<strong>加碼 +14張 (→ 共 32張)</strong> 鎖定公債息</td>
+          <td style="text-align:left;">站上所有均線！12月減碼科技後<strong>加碼 +14張 (→ 共 32張)</strong></td>
         </tr>
         <tr>
-          <td><span class="badge b-buy">🟢 定存抄底</span></td>
+          <td><span class="badge b-buy">🟢 定存低接</span></td>
           <td><strong>0050</strong></td>
           <td>台灣50</td>
           <td>24.0 張</td>
           <td>84.45</td>
-          <td>91.84</td>
-          <td>99.58</td>
-          <td>106.39</td>
-          <td class="price-buy">79.00 ~ 81.00</td>
-          <td>99.50 (續抱)</td>
-          <td style="text-align:left;">第三批定存<strong>逢低加碼 +3張 (→ 共 27張)</strong>，賺取反彈回月線價差</td>
+          <td><strong>90.30</strong></td>
+          <td class="up-val">+6.93%</td>
+          <td>2,167,200</td>
+          <td>89.53</td>
+          <td>97.12</td>
+          <td class="price-buy">87.50 ~ 89.50</td>
+          <td>97.12 (續抱)</td>
+          <td style="text-align:left;">強彈站上MA5 (+14萬)！回測買 <strong>+2張 (→ 共 26張)</strong> 攻月線</td>
         </tr>
         <tr>
           <td><span class="badge b-hold">⚖️ 核心續抱</span></td>
@@ -438,11 +469,13 @@
           <td>富邦金</td>
           <td>4.0 張</td>
           <td>136.50</td>
-          <td>147.20</td>
-          <td>154.95</td>
-          <td>152.61</td>
+          <td><strong>132.50</strong></td>
+          <td class="dn-val">-2.93%</td>
+          <td>530,000</td>
+          <td>138.20</td>
+          <td>151.20</td>
           <td class="price-buy">128.0 ~ 131.0</td>
-          <td>155.0 (續抱)</td>
+          <td>151.0 (續抱)</td>
           <td style="text-align:left;"><strong>維持 4 張不動</strong>，8 月領息主力 (約 2.45 萬)</td>
         </tr>
         <tr>
@@ -451,20 +484,21 @@
           <td>國泰金</td>
           <td>5.24 張</td>
           <td>96.90</td>
-          <td>106.28</td>
-          <td>111.27</td>
-          <td>111.25</td>
-          <td class="price-buy">91.00 ~ 93.50</td>
-          <td>111.0 (續抱)</td>
-          <td style="text-align:left;"><strong>維持 5.24 張不動</strong>，8 月領息主力 (約 2.28 萬)</td>
+          <td><strong>100.50</strong></td>
+          <td class="up-val">+3.72%</td>
+          <td>527,022</td>
+          <td>100.08</td>
+          <td>109.12</td>
+          <td class="price-buy">96.5 ~ 99.0</td>
+          <td>109.0 (續抱)</td>
+          <td style="text-align:left;">重返百元站上MA5！<strong>維持 5.24 張不動</strong>，8 月領息主力</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="card">
-    <h2>二、 1～12 月「月月領息退休現金流日曆表」（完整保留 77 張 00772B ＋ 120 萬定存抄底 ＋ 12 月換股）</h2>
-    <p>透過<strong>完整保留月配雙債（00772B 77張 + 00773B 27張，每月保底領 13,860 元債息）</strong>，搭配<strong>120 萬定存抄底與 12 月換股後的季配高股息三雄（00919 48張、0056 35張、00878 60張）</strong>及<strong>保全/金融/電信年配大紅包</strong>，一年 12 個月現金流全面躍升：</p>
+    <h2>二、 1～12 月「月月領息退休現金流日曆表」（完整保留 77 張 00772B ＋ 120 萬定存加碼 ＋ 12 月換股）</h2>
     <table>
       <thead>
         <tr>
@@ -481,23 +515,23 @@
           <td><strong>1 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00919(48張) + 00687B(32張)</td>
           <td>40,182 元</td>
-          <td>46,708 元</td>
+          <td>47,360 元</td>
           <td class="price-buy">54,858 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div> 農曆年前紅包與年菜採買 (+14,676元)</td>
         </tr>
         <tr>
           <td><strong>2 月</strong></td>
-          <td>00772B(77張) + 00773B(27張) + 0056(35張) + 0050(27張)</td>
+          <td>00772B(77張) + 00773B(27張) + 0056(35張) + 0050(26張)</td>
           <td>64,408 元</td>
-          <td>75,718 元</td>
-          <td class="price-buy">82,070 元</td>
-          <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:53%"></div></div> 0050 上半年配息入帳小高峰 (+17,662元)</td>
+          <td>74,368 元</td>
+          <td class="price-buy">80,720 元</td>
+          <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:53%"></div></div> 0050 上半年配息入帳小高峰 (+16,312元)</td>
         </tr>
         <tr>
           <td><strong>3 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00878(60張)</td>
           <td>35,422 元</td>
-          <td>42,772 元</td>
+          <td>42,247 元</td>
           <td class="price-buy">45,358 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:30%"></div></div> 春季日常家用穩健入帳 (+9,936元)</td>
         </tr>
@@ -505,7 +539,7 @@
           <td><strong>4 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00919(48張) + 00687B(32張)</td>
           <td>40,182 元</td>
-          <td>46,708 元</td>
+          <td>47,360 元</td>
           <td class="price-buy">54,858 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div> 牌照稅/房屋稅季無壓力 (+14,676元)</td>
         </tr>
@@ -521,7 +555,7 @@
           <td><strong>6 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00878(60張)</td>
           <td>35,422 元</td>
-          <td>42,772 元</td>
+          <td>42,247 元</td>
           <td class="price-buy">45,358 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:30%"></div></div> 端午節慶與日常開銷 (+9,936元)</td>
         </tr>
@@ -529,7 +563,7 @@
           <td><strong>7 月</strong></td>
           <td>00772B + 00773B + 00919 + 00687B + <strong>新保(15張) + 中保科(6張)</strong></td>
           <td>75,746 元</td>
-          <td>82,271 元</td>
+          <td>82,924 元</td>
           <td class="price-buy">115,908 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:75%"></div></div> 🔥 保全雙雄年配入帳 (+40,162元)</td>
         </tr>
@@ -537,15 +571,15 @@
           <td><strong>8 月</strong></td>
           <td>00772B + 00773B + 0056 + 0050 + <strong>富邦金 + 國泰金 + 台灣大(5張)</strong></td>
           <td>122,171 元</td>
-          <td>133,481 元</td>
-          <td class="price-buy">155,344 元</td>
-          <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div> 🏆 全年最高峰逾 15.5 萬 (+33,173元)</td>
+          <td>132,131 元</td>
+          <td class="price-buy">153,994 元</td>
+          <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div> 🏆 全年最高峰逾 15.3 萬 (+31,823元)</td>
         </tr>
         <tr>
           <td><strong>9 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00878(60張)</td>
           <td>35,422 元</td>
-          <td>42,772 元</td>
+          <td>42,247 元</td>
           <td class="price-buy">45,358 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:30%"></div></div> 中秋節慶與日常開銷 (+9,936元)</td>
         </tr>
@@ -553,7 +587,7 @@
           <td><strong>10 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00919(48張) + 00687B(32張)</td>
           <td>40,182 元</td>
-          <td>46,708 元</td>
+          <td>47,360 元</td>
           <td class="price-buy">54,858 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div> 秋季旅遊基金充裕 (+14,676元)</td>
         </tr>
@@ -569,7 +603,7 @@
           <td><strong>12 月</strong></td>
           <td>00772B(77張) + 00773B(27張) + 00878(60張)</td>
           <td>35,422 元</td>
-          <td>42,772 元</td>
+          <td>42,247 元</td>
           <td class="price-buy">45,358 元</td>
           <td style="text-align:left;"><div class="bar-wrap"><div class="bar-fill" style="width:30%"></div></div> 平安跨年與年終聚餐 (+9,936元)</td>
         </tr>
@@ -577,9 +611,9 @@
           <td><strong>股債年息合計</strong></td>
           <td><strong>12 個月無縫現金流（免賣股）</strong></td>
           <td><strong>588,573 元</strong><br><span style="font-size:0.8rem;color:#64748b;">(月均 49,048 元)</span></td>
-          <td><strong>681,213 元</strong><br><span style="font-size:0.8rem;color:#0284c7;">(月均 56,768 元)</span></td>
-          <td class="price-buy" style="font-size:1.05rem;"><strong>790,564 元</strong><br><span style="font-size:0.8rem;color:#15803d;">(月均 65,880 元)</span></td>
-          <td style="text-align:left;"><strong>加計 180 萬定存年息 30,600 元，全年總領息 821,164 元（月均 68,430 元）！</strong></td>
+          <td><strong>679,027 元</strong><br><span style="font-size:0.8rem;color:#0284c7;">(月均 56,586 元)</span></td>
+          <td class="price-buy" style="font-size:1.05rem;"><strong>787,864 元</strong><br><span style="font-size:0.8rem;color:#15803d;">(月均 65,655 元)</span></td>
+          <td style="text-align:left;"><strong>加計 180 萬定存年息 30,600 元，全年總領息 818,464 元（月均 68,205 元）！</strong></td>
         </tr>
       </tbody>
     </table>
