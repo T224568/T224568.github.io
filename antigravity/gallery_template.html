@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Drive 全目錄上傳照片與檔案總覽</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --surface-card: #162032;
+      --surface-hover: #1f2d45;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: #3b82f6;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --accent-red: #ef4444;
+      --accent-red-hover: #dc2626;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 24px 20px 80px;
+    }
+
+    .container { max-width: 1440px; margin: 0 auto; }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 14px; }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .logo-badge svg { width: 28px; height: 28px; fill: #fff; }
+
+    h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+    .header-desc { font-size: 0.88rem; color: var(--text-muted); }
+    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: var(--surface-hover); border-color: rgba(255, 255, 255, 0.2); }
+    .btn-primary { background: #2563eb; border-color: #3b82f6; color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-danger { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #f87171; }
+    .btn-danger:hover { background: #ef4444; border-color: #dc2626; color: #fff; }
+    .btn-success { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+    .btn-success:hover { background: #10b981; border-color: #059669; color: #fff; }
+
+    /* Stats Banner */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-blue);
+    }
+
+    .stat-card:nth-child(2)::after { background: var(--accent-green); }
+    .stat-card:nth-child(3)::after { background: var(--accent-amber); }
+    .stat-card:nth-child(4)::after { background: var(--accent-purple); }
+
+    .stat-info .stat-label { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; }
+    .stat-info .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-main);
+    }
+    .stat-icon { font-size: 1.8rem; opacity: 0.8; }
+
+    /* Toolbar */
+    .toolbar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box { flex: 1; min-width: 260px; position: relative; }
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .select-box {
+      background: var(--surface-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .view-btn {
+      padding: 8px 12px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+    }
+
+    .view-btn.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+
+    .filter-chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    .chip {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .chip:hover { background: var(--surface-hover); color: var(--text-main); }
+    .chip.active {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+      color: #60a5fa;
+      font-weight: 600;
+    }
+
+    .chip-trash {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    .chip-trash.active {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+
+    /* Batch Action Bar */
+    .batch-bar {
+      display: none;
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid #3b82f6;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .batch-bar.show { display: flex; }
+
+    /* Cards Grid */
+    .grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .card.selected {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px #3b82f6;
+    }
+
+    .card.in-trash {
+      border-color: rgba(239, 68, 68, 0.4);
+      opacity: 0.85;
+    }
+
+    .card-checkbox {
+      display: none;
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 22px;
+      height: 22px;
+      z-index: 10;
+      cursor: pointer;
+      accent-color: #2563eb;
+    }
+
+    body.batch-mode .card-checkbox { display: block; }
+    body.batch-mode .card-badges { left: 42px; }
+
+    .card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background: #0f172a;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-thumb { transform: scale(1.04); }
+
+    .file-icon-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .file-icon-placeholder .icon { font-size: 3.5rem; }
+    .file-icon-placeholder .ext { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: #60a5fa; }
+
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .card-thumb-wrap:hover .thumb-overlay { opacity: 1; }
+
+    .thumb-zoom-btn {
+      background: rgba(15, 23, 42, 0.85);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-badges {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      z-index: 2;
+      transition: left 0.2s;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(6px);
+    }
+
+    .badge-folder-1 { background: rgba(59, 130, 246, 0.9); color: #fff; }
+    .badge-folder-def { background: rgba(100, 116, 139, 0.9); color: #fff; }
+    .badge-folder-2 { background: rgba(16, 185, 129, 0.9); color: #fff; }
+
+    .badge-category {
+      background: rgba(15, 23, 42, 0.8);
+      color: #93c5fd;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .card-amount-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.95);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-actions .btn { justify-content: center; padding: 7px 10px; font-size: 0.78rem; }
+
+    .card-actions-row-bottom {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 8px;
+    }
+
+    .card-actions-row-bottom .btn { flex: 1; }
+
+    /* Table View */
+    .table-view {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; }
+    th {
+      background: var(--surface-card);
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:hover td { background: var(--surface-hover); }
+
+    .table-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+
+    .table-actions { display: flex; gap: 6px; }
+    .table-actions .btn { padding: 5px 9px; font-size: 0.75rem; }
+
+    /* Empty state */
+    .empty-state { display: none; text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .empty-state-icon { font-size: 3rem; margin-bottom: 12px; }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.94);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-modal.active { display: flex; }
+
+    .lightbox-header {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      padding-bottom: 14px;
+    }
+
+    .lightbox-title { font-size: 1.1rem; font-weight: 600; }
+    .lightbox-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .lightbox-close:hover { background: rgba(255, 255, 255, 0.1); }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 1200px;
+      max-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-nav:hover { background: #2563eb; }
+    .lightbox-prev { left: -60px; }
+    .lightbox-next { right: -60px; }
+
+    .lightbox-toolbar {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Confirm Delete Modal */
+    .confirm-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1500;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }}
+
+    .confirm-modal.active { display: flex; }
+
+    .confirm-card {
+      background: var(--surface);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .confirm-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .confirm-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .confirm-target-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .confirm-target-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .confirm-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #10b981;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 768px) {
+      body { padding: 16px 12px 60px; }
+      .lightbox-prev { left: 10px; }
+      .lightbox-next { right: 10px; }
+      .grid-view { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <div class="logo-badge">
+        <svg viewBox="0 0 24 24">
+          <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Google Drive 全目錄上傳照片與檔案總覽</h1>
+        <div class="header-desc">可直接刪除管理、全螢幕放大預覽、一鍵複製試算表公式與 1920 高清直連</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-danger" id="btnToggleBatch">☑️ 批次刪除管理</button>
+      <button class="btn" id="btnExportJson" title="下載已更新的歷史 JSON">💾 下載變更 JSON</button>
+      <a href="https://drive.google.com/drive/folders/1eFf86wQ5nK4ssDmVBHUIhH7Zm1BMWoww?usp=sharing" target="_blank" class="btn">📁 目錄 1</a>
+      <a href="https://drive.google.com/drive/folders/1kJ-rz9q1AzmaGEUBbsqL3NxAnvl4c7CB?usp=sharing" target="_blank" class="btn">📁 預設目錄</a>
+      <a href="https://drive.google.com/drive/folders/1_gMBEq35k8E2XN6S8SehDnqB2-zQQaPi?usp=sharing" target="_blank" class="btn">📁 目錄 2</a>
+      <button class="btn btn-primary" id="btnRefresh">🔄 重新整理</button>
+    </div>
+  </header>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">全目錄總檔案數</div>
+        <div class="stat-value" id="statTotalCount">0</div>
+      </div>
+      <div class="stat-icon">📦</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">目錄 1（教會核銷收據）</div>
+        <div class="stat-value" id="statFolder1Count">0</div>
+      </div>
+      <div class="stat-icon">📑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">預設目錄（生活/家庭/照護）</div>
+        <div class="stat-value" id="statDefaultCount">0</div>
+      </div>
+      <div class="stat-icon">🏠</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">已刪除 / 回收筒</div>
+        <div class="stat-value" id="statTrashCount" style="color:#f87171;">0</div>
+      </div>
+      <div class="stat-icon">🗑️</div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <!-- Batch Action Bar -->
+    <div class="batch-bar" id="batchBar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-weight:700;color:#60a5fa;">☑️ 批次選取模式</span>
+        <span id="selectedCountText" style="color:var(--text-muted);font-size:0.85rem;">已選取 0 項</span>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn" id="btnSelectAll">選取目前所有顯示項目</button>
+        <button class="btn" id="btnDeselectAll">取消全選</button>
+        <button class="btn btn-danger" id="btnBatchDelete">🗑️ 刪除所選項目</button>
+        <button class="btn" id="btnCloseBatch">❌ 退出批次</button>
+      </div>
+    </div>
+
+    <div class="toolbar-row">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜尋檔名、年份、店家、類別、金額或日期 (例: 3/14、便當、方舟、2024)...">
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;">
+        <select class="select-box" id="yearSelect">
+          <option value="all">📅 所有年份</option>
+          <option value="2026">2026 年</option>
+          <option value="2025">2025 年</option>
+          <option value="2024">2024 年</option>
+          <option value="2023">2023 年及以前</option>
+        </select>
+
+        <select class="select-box" id="sortSelect">
+          <option value="date-desc">📅 日期新到舊</option>
+          <option value="date-asc">📅 日期舊到新</option>
+          <option value="name-asc">🔤 檔名 A-Z</option>
+          <option value="amount-desc">💰 金額高到低</option>
+        </select>
+
+        <button class="view-btn active" id="btnGridView" title="網格檢視">🖼️ 網格</button>
+        <button class="view-btn" id="btnTableView" title="表格檢視">📋 表格</button>
+      </div>
+    </div>
+
+    <!-- Folder Filter Tabs -->
+    <div class="filter-chips" id="folderChips">
+      <span class="chip active" data-type="folder" data-val="all">📂 全部目錄 (146)</span>
+      <span class="chip" data-type="folder" data-val="1">📑 目錄 1 (教會核銷)</span>
+      <span class="chip" data-type="folder" data-val="default">🏠 預設目錄</span>
+      <span class="chip" data-type="folder" data-val="2">🥾 目錄 2 (健行)</span>
+      <span class="chip chip-trash" data-type="folder" data-val="trash" id="chipTrash">🗑️ 回收筒 (0)</span>
+    </div>
+
+    <!-- Category Chips -->
+    <div class="filter-chips" id="categoryChips">
+      <span class="chip active" data-type="cat" data-val="all">全部類別</span>
+      <span class="chip" data-type="cat" data-val="便當/餐飲收據">🍱 便當餐飲</span>
+      <span class="chip" data-type="cat" data-val="講師費領款收據">👨‍🏫 講師費</span>
+      <span class="chip" data-type="cat" data-val="長輩安養/照護">👵 長輩安養居服</span>
+      <span class="chip" data-type="cat" data-val="生活營養採買">🥛 生活營養採買</span>
+      <span class="chip" data-type="cat" data-val="家庭紀念照片">📸 家庭紀念照片</span>
+      <span class="chip" data-type="cat" data-val="醫療/掛號藥品">💊 醫療掛號</span>
+      <span class="chip" data-type="cat" data-val="健行軌跡路線">🗺️ 健行路線</span>
+    </div>
+  </div>
+
+  <!-- Cards Grid View -->
+  <div class="grid-view" id="cardsGrid"></div>
+
+  <!-- Table View -->
+  <div class="table-view" id="tableView">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px;"></th>
+          <th>縮圖</th>
+          <th>檔案名稱 / 備註</th>
+          <th>金額 / 大小</th>
+          <th>目錄歸屬</th>
+          <th>分類標籤</th>
+          <th>上傳 / 開立日期</th>
+          <th>快捷操作</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-state-icon">🔍</div>
+    <h3>找不到符合條件的照片或檔案</h3>
+    <p style="margin-top: 6px;">請更換關鍵字或將分類與年份設為「全部」。</p>
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightboxModal">
+  <div class="lightbox-header">
+    <div class="lightbox-title" id="lightboxTitle">圖片預覽</div>
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+  </div>
+  <div class="lightbox-content">
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+  </div>
+  <div class="lightbox-toolbar">
+    <button class="btn btn-primary" id="btnCopyFormulaLb">📋 複製試算表公式 =IMAGE()</button>
+    <button class="btn" id="btnCopyLh3Lb">🌟 複製 Google 1920 直連 (lh3)</button>
+    <a href="#" target="_blank" class="btn" id="btnOpenDriveLb">🔗 在 Google Drive 開啟</a>
+    <button class="btn btn-danger" id="btnDeleteCurrentLb">🗑️ 刪除此照片</button>
+  </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="confirm-modal" id="confirmModal">
+  <div class="confirm-card">
+    <div class="confirm-title">
+      <span>⚠️ 確認刪除</span>
+    </div>
+    <div class="confirm-body">
+      您確定要從總覽清單中移除此項目嗎？刪除後將移至「🗑️ 回收筒」，您可以隨時還原，或前往 Google Drive 雲端移至垃圾桶。
+    </div>
+    <div class="confirm-target-box" id="confirmTargetBox">
+      <img src="" alt="" class="confirm-target-thumb" id="confirmTargetThumb">
+      <div>
+        <div id="confirmTargetTitle" style="font-weight:600;font-size:0.9rem;color:var(--text-main);"></div>
+        <div id="confirmTargetMeta" style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;"></div>
+      </div>
+    </div>
+    <div class="confirm-actions">
+      <button class="btn" id="btnCancelDelete">取消</button>
+      <a href="#" target="_blank" class="btn btn-danger" id="btnDriveTrash" style="display:none;">🌐 前往 Drive 徹底刪除</a>
+      <button class="btn btn-danger" id="btnConfirmDelete">🗑️ 移至回收筒</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <span>✅</span>
+  <span id="toastMsg">已複製到剪貼簿</span>
+</div>
+
+<script>
+  let uploadHistory = /*__JSON_DATA__*/;
+
+  const STORAGE_KEY_DELETED = 'gdrive_gallery_deleted_ids';
+  let deletedIds = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_DELETED) || '[]'));
+
+  let currentFolder = 'all';
+  let currentCat = 'all';
+  let currentYear = 'all';
+  let currentSort = 'date-desc';
+  let searchQuery = '';
+  let activeLightboxIdx = -1;
+  let filteredItems = [];
+  let pendingDeleteId = null;
+  let selectedIds = new Set();
+  let isBatchMode = false;
+
+  const cardsGrid = document.getElementById('cardsGrid');
+  const tableView = document.getElementById('tableView');
+  const tableBody = document.getElementById('tableBody');
+  const emptyState = document.getElementById('emptyState');
+  const searchInput = document.getElementById('searchInput');
+  const yearSelect = document.getElementById('yearSelect');
+  const sortSelect = document.getElementById('sortSelect');
+  const folderChips = document.getElementById('folderChips');
+  const categoryChips = document.getElementById('categoryChips');
+  const chipTrash = document.getElementById('chipTrash');
+  const btnGridView = document.getElementById('btnGridView');
+  const btnTableView = document.getElementById('btnTableView');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+
+  const statTotalCount = document.getElementById('statTotalCount');
+  const statFolder1Count = document.getElementById('statFolder1Count');
+  const statDefaultCount = document.getElementById('statDefaultCount');
+  const statTrashCount = document.getElementById('statTrashCount');
+
+  const batchBar = document.getElementById('batchBar');
+  const btnToggleBatch = document.getElementById('btnToggleBatch');
+  const btnCloseBatch = document.getElementById('btnCloseBatch');
+  const btnSelectAll = document.getElementById('btnSelectAll');
+  const btnDeselectAll = document.getElementById('btnDeselectAll');
+  const btnBatchDelete = document.getElementById('btnBatchDelete');
+  const selectedCountText = document.getElementById('selectedCountText');
+
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const btnCopyFormulaLb = document.getElementById('btnCopyFormulaLb');
+  const btnCopyLh3Lb = document.getElementById('btnCopyLh3Lb');
+  const btnOpenDriveLb = document.getElementById('btnOpenDriveLb');
+  const btnDeleteCurrentLb = document.getElementById('btnDeleteCurrentLb');
+
+  const confirmModal = document.getElementById('confirmModal');
+  const confirmTargetTitle = document.getElementById('confirmTargetTitle');
+  const confirmTargetMeta = document.getElementById('confirmTargetMeta');
+  const confirmTargetThumb = document.getElementById('confirmTargetThumb');
+  const btnCancelDelete = document.getElementById('btnCancelDelete');
+  const btnConfirmDelete = document.getElementById('btnConfirmDelete');
+  const btnDriveTrash = document.getElementById('btnDriveTrash');
+
+  function saveDeletedIds() {
+    localStorage.setItem(STORAGE_KEY_DELETED, JSON.stringify(Array.from(deletedIds)));
+    updateStats();
+  }
+
+  function updateStats() {
+    const activeItems = uploadHistory.filter(i => !deletedIds.has(i.id));
+    statTotalCount.textContent = activeItems.length;
+    statFolder1Count.textContent = activeItems.filter(i => i.target === '1').length;
+    statDefaultCount.textContent = activeItems.filter(i => i.target === 'default').length;
+    statTrashCount.textContent = deletedIds.size;
+    chipTrash.textContent = `🗑️ 回收筒 (${deletedIds.size})`;
+  }
+
+  function isImage(fn) {
+    const lower = (fn || '').toLowerCase();
+    return lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.png') || lower.endsWith('.webp') || lower.endsWith('.gif');
+  }
+
+  function getFileIcon(fn) {
+    const lower = (fn || '').toLowerCase();
+    if (lower.endsWith('.gpx') || lower.endsWith('.kml')) return '🗺️';
+    if (lower.endsWith('.pdf')) return '📄';
+    if (lower.endsWith('.mp4')) return '🎬';
+    if (lower.endsWith('.txt')) return '📝';
+    return '📁';
+  }
+
+  function applyFilterAndSort() {
+    const inTrashView = currentFolder === 'trash';
+
+    filteredItems = uploadHistory.filter(item => {
+      const isDeleted = deletedIds.has(item.id);
+
+      if (inTrashView) {
+        if (!isDeleted) return false;
+      } else {
+        if (isDeleted) return false;
+        if (currentFolder !== 'all' && item.target !== currentFolder) return false;
+      }
+
+      if (currentCat !== 'all') {
+        if (currentCat === '便當/餐飲收據') {
+          if (!['便當收據', '便當/餐飲收據', '點餐明細'].includes(item.category)) return false;
+        } else if (currentCat === '講師費領款收據') {
+          if (!['講師費領款收據'].includes(item.category)) return false;
+        } else if (item.category !== currentCat) {
+          return false;
+        }
+      }
+
+      if (currentYear !== 'all') {
+        const itemYear = (item.receiptDate || item.date || '').slice(0, 4);
+        if (currentYear === '2023') {
+          if (parseInt(itemYear) > 2023) return false;
+        } else {
+          if (itemYear !== currentYear) return false;
+        }
+      }
+
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const text = `${item.title} ${item.filename} ${item.category} ${item.targetName} ${item.receiptDate} ${item.amount}`.toLowerCase();
+        if (!text.includes(q)) return false;
+      }
+
+      return true;
+    });
+
+    filteredItems.sort((a, b) => {
+      const da = a.receiptDate || a.date || '';
+      const db = b.receiptDate || b.date || '';
+      if (currentSort === 'date-desc') return db.localeCompare(da);
+      if (currentSort === 'date-asc') return da.localeCompare(db);
+      if (currentSort === 'name-asc') return (a.filename || '').localeCompare(b.filename || '', 'zh-Hant');
+      if (currentSort === 'amount-desc') return (b.amount || 0) - (a.amount || 0);
+      return 0;
+    });
+
+    render();
+  }
+
+  function render() {
+    if (filteredItems.length === 0) {
+      cardsGrid.style.display = 'none';
+      tableView.style.display = 'none';
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+
+    if (btnGridView.classList.contains('active')) {
+      cardsGrid.style.display = 'grid';
+      tableView.style.display = 'none';
+      renderGrid();
+    } else {
+      cardsGrid.style.display = 'none';
+      tableView.style.display = 'block';
+      renderTable();
+    }
+  }
+
+  function renderGrid() {
+    const inTrashView = currentFolder === 'trash';
+
+    cardsGrid.innerHTML = filteredItems.map((item, idx) => {
+      let badgeFolderClass = 'badge-folder-def';
+      if (item.target === '1') badgeFolderClass = 'badge-folder-1';
+      else if (item.target === '2') badgeFolderClass = 'badge-folder-2';
+
+      const imgFile = isImage(item.filename);
+      const thumbUrl = `https://lh3.googleusercontent.com/d/${item.id}=w600`;
+      const amountTag = item.amount ? `<div class="card-amount-tag">$${item.amount.toLocaleString()}</div>` : '';
+      const isChecked = selectedIds.has(item.id);
+
+      let thumbHtml = '';
+      if (imgFile) {
+        thumbHtml = `
+          <div class="card-thumb-wrap" onclick="handleCardThumbClick(event, ${idx}, '${item.id}')">
+            <div class="card-badges">
+              <span class="badge ${badgeFolderClass}">${item.targetName}</span>
+              ${item.category ? `<span class="badge badge-category">${item.category}</span>` : ''}
+            </div>
+            ${amountTag}
+            <img src="${thumbUrl}" alt="${item.title}" class="card-thumb" loading="lazy" onerror="this.onerror=null;this.src='https://drive.google.com/uc?id=${item.id}'">
+            <div class="thumb-overlay">
+              <span class="thumb-zoom-btn">🔍 放大檢視</span>
+            </div>
+          </div>
+        `;
+      } else {
+        const icon = getFileIcon(item.filename);
+        const ext = (item.filename || '').split('.').pop().toUpperCase();
+        thumbHtml = `
+          <div class="card-thumb-wrap" onclick="handleCardThumbClick(event, ${idx}, '${item.id}')">
+            <div class="card-badges">
+              <span class="badge ${badgeFolderClass}">${item.targetName}</span>
+              ${item.category ? `<span class="badge badge-category">${item.category}</span>` : ''}
+            </div>
+            <div class="file-icon-placeholder">
+              <div class="icon">${icon}</div>
+              <div class="ext">${ext} 檔案</div>
+            </div>
+            <div class="thumb-overlay">
+              <span class="thumb-zoom-btn">🔗 在 Drive 開啟</span>
+            </div>
+          </div>
+        `;
+      }
+
+      const actionButtons = inTrashView ? `
+        <div class="card-actions-row-bottom">
+          <button class="btn btn-success" onclick="restoreItem('${item.id}')">↩️ 還原</button>
+          <button class="btn btn-danger" onclick="promptPermanentDelete('${item.id}')">🔥 永久清空</button>
+        </div>
+      ` : `
+        <button class="btn" onclick="copyFormula('${item.id}')" title="複製試算表公式">📋 公式</button>
+        <button class="btn" onclick="copyLh3('${item.id}')" title="複製 1920 高清直連">🌟 lh3</button>
+        <div class="card-actions-row-bottom">
+          <a href="${item.fileUrl}" target="_blank" class="btn btn-open-drive">🔗 Drive</a>
+          <button class="btn btn-danger" onclick="promptDelete('${item.id}')" title="從清單刪除">🗑️ 刪除</button>
+        </div>
+      `;
+
+      return `
+        <div class="card ${isChecked ? 'selected' : ''} ${inTrashView ? 'in-trash' : ''}" id="card-${item.id}">
+          <input type="checkbox" class="card-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleSelect('${item.id}')">
+          ${thumbHtml}
+          <div class="card-body">
+            <div class="card-title" title="${item.filename}">${item.filename}</div>
+            <div class="card-meta">
+              <span>📅 ${item.receiptDate || item.date.split(' ')[0]}</span>
+              <span>${item.size || ''}</span>
+            </div>
+            <div class="card-actions">
+              ${actionButtons}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderTable() {
+    const inTrashView = currentFolder === 'trash';
+
+    tableBody.innerHTML = filteredItems.map((item, idx) => {
+      let badgeFolderClass = 'badge-folder-def';
+      if (item.target === '1') badgeFolderClass = 'badge-folder-1';
+      else if (item.target === '2') badgeFolderClass = 'badge-folder-2';
+
+      const imgFile = isImage(item.filename);
+      const thumbUrl = `https://lh3.googleusercontent.com/d/${item.id}=w120`;
+      const amountStr = item.amount ? `<strong style="color:#10b981;font-family:'JetBrains Mono',monospace;">$${item.amount.toLocaleString()}</strong>` : (item.size || '-');
+      const isChecked = selectedIds.has(item.id);
+
+      let thumbCell = '';
+      if (imgFile) {
+        thumbCell = `<img src="${thumbUrl}" alt="" class="table-thumb" onclick="openLightbox(${idx})" loading="lazy" onerror="this.onerror=null;this.src='https://drive.google.com/uc?id=${item.id}'">`;
+      } else {
+        const icon = getFileIcon(item.filename);
+        thumbCell = `<div style="font-size:1.8rem;text-align:center;cursor:pointer;" onclick="window.open('${item.fileUrl}','_blank')">${icon}</div>`;
+      }
+
+      const actionButtons = inTrashView ? `
+        <button class="btn btn-success" onclick="restoreItem('${item.id}')">↩️ 還原</button>
+        <button class="btn btn-danger" onclick="promptPermanentDelete('${item.id}')">🔥 清除</button>
+      ` : `
+        <button class="btn" onclick="copyFormula('${item.id}')">📋</button>
+        <button class="btn" onclick="copyLh3('${item.id}')">🌟</button>
+        <a href="${item.fileUrl}" target="_blank" class="btn">🔗</a>
+        <button class="btn btn-danger" onclick="promptDelete('${item.id}')">🗑️</button>
+      `;
+
+      return `
+        <tr class="${isChecked ? 'selected' : ''}">
+          <td><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleSelect('${item.id}')"></td>
+          <td>${thumbCell}</td>
+          <td>
+            <div style="font-weight:600;margin-bottom:2px;">${item.filename}</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);">${item.title || ''}</div>
+          </td>
+          <td>${amountStr}</td>
+          <td><span class="badge ${badgeFolderClass}">${item.targetName}</span></td>
+          <td><span class="badge badge-category">${item.category || '-'}</span></td>
+          <td style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;">${item.receiptDate || item.date.split(' ')[0]}</td>
+          <td>
+            <div class="table-actions">
+              ${actionButtons}
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Deletion Logic
+  window.promptDelete = function(id) {
+    const item = uploadHistory.find(i => i.id === id);
+    if (!item) return;
+
+    pendingDeleteId = id;
+    confirmTargetTitle.textContent = item.filename;
+    confirmTargetMeta.textContent = `${item.targetName}・${item.receiptDate || item.date.split(' ')[0]}・${item.category}`;
+    confirmTargetThumb.src = isImage(item.filename) ? `https://lh3.googleusercontent.com/d/${item.id}=w120` : '';
+    confirmTargetThumb.style.display = isImage(item.filename) ? 'block' : 'none';
+
+    btnDriveTrash.href = item.fileUrl;
+    btnDriveTrash.style.display = 'inline-flex';
+
+    confirmModal.classList.add('active');
+  };
+
+  btnCancelDelete.addEventListener('click', () => {
+    confirmModal.classList.remove('active');
+    pendingDeleteId = null;
+  });
+
+  btnConfirmDelete.addEventListener('click', () => {
+    if (pendingDeleteId) {
+      deletedIds.add(pendingDeleteId);
+      saveDeletedIds();
+      applyFilterAndSort();
+      confirmModal.classList.remove('active');
+      showToast('已將項目移至回收筒 🗑️');
+      pendingDeleteId = null;
+    }
+  });
+
+  window.restoreItem = function(id) {
+    deletedIds.delete(id);
+    saveDeletedIds();
+    applyFilterAndSort();
+    showToast('已還原照片！');
+  };
+
+  window.promptPermanentDelete = function(id) {
+    if (confirm('確定要永久從回收筒清除此項目紀錄嗎？')) {
+      uploadHistory = uploadHistory.filter(i => i.id !== id);
+      deletedIds.delete(id);
+      saveDeletedIds();
+      applyFilterAndSort();
+      showToast('已永久從總覽清除！');
+    }
+  };
+
+  // Batch Mode
+  btnToggleBatch.addEventListener('click', () => {
+    isBatchMode = !isBatchMode;
+    document.body.classList.toggle('batch-mode', isBatchMode);
+    batchBar.classList.toggle('show', isBatchMode);
+    btnToggleBatch.textContent = isBatchMode ? '❌ 關閉批次' : '☑️ 批次刪除管理';
+    if (!isBatchMode) {
+      selectedIds.clear();
+      updateSelectedCount();
+    }
+    render();
+  });
+
+  btnCloseBatch.addEventListener('click', () => {
+    isBatchMode = false;
+    document.body.classList.remove('batch-mode');
+    batchBar.classList.remove('show');
+    btnToggleBatch.textContent = '☑️ 批次刪除管理';
+    selectedIds.clear();
+    updateSelectedCount();
+    render();
+  });
+
+  window.toggleSelect = function(id) {
+    if (selectedIds.has(id)) selectedIds.delete(id);
+    else selectedIds.add(id);
+    updateSelectedCount();
+    render();
+  };
+
+  window.handleCardThumbClick = function(e, idx, id) {
+    if (isBatchMode) {
+      e.stopPropagation();
+      toggleSelect(id);
+    } else {
+      if (isImage(filteredItems[idx].filename)) {
+        openLightbox(idx);
+      } else {
+        window.open(filteredItems[idx].fileUrl, '_blank');
+      }
+    }
+  };
+
+  btnSelectAll.addEventListener('click', () => {
+    filteredItems.forEach(i => selectedIds.add(i.id));
+    updateSelectedCount();
+    render();
+  });
+
+  btnDeselectAll.addEventListener('click', () => {
+    selectedIds.clear();
+    updateSelectedCount();
+    render();
+  });
+
+  function updateSelectedCount() {
+    selectedCountText.textContent = `已選取 ${selectedIds.size} 項`;
+    btnBatchDelete.disabled = selectedIds.size === 0;
+  }
+
+  btnBatchDelete.addEventListener('click', () => {
+    if (selectedIds.size === 0) return;
+    if (confirm(`確定要將選取的 ${selectedIds.size} 個項目移至回收筒嗎？`)) {
+      selectedIds.forEach(id => deletedIds.add(id));
+      selectedIds.clear();
+      updateSelectedCount();
+      saveDeletedIds();
+      applyFilterAndSort();
+      showToast('已批次移至回收筒 🗑️');
+    }
+  });
+
+  // Export JSON
+  document.getElementById('btnExportJson').addEventListener('click', () => {
+    const active = uploadHistory.filter(i => !deletedIds.has(i.id));
+    const blob = new Blob([JSON.stringify(active, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'gdrive_upload_history.json';
+    a.click();
+    showToast('已下載更新後的 JSON 檔！');
+  });
+
+  // Copy Helpers
+  window.copyFormula = function(id) {
+    copyToClipboard(`=IMAGE("https://drive.google.com/uc?id=${id}")`, '已複製試算表公式 =IMAGE(...)');
+  };
+
+  window.copyLh3 = function(id) {
+    copyToClipboard(`https://lh3.googleusercontent.com/d/${id}=w1920`, '已複製 1920 高清直連 (lh3)');
+  };
+
+  function copyToClipboard(text, msg) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(msg);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(msg);
+    });
+  }
+
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => { toast.classList.remove('show'); }, 2200);
+  }
+
+  // Lightbox
+  window.openLightbox = function(idx) {
+    activeLightboxIdx = idx;
+    const item = filteredItems[idx];
+    if (!item) return;
+
+    lightboxTitle.textContent = `${item.filename} (${item.targetName}・${item.receiptDate || item.date.split(' ')[0]})`;
+    lightboxImg.src = `https://lh3.googleusercontent.com/d/${item.id}=w1920`;
+    lightboxImg.alt = item.filename;
+
+    btnCopyFormulaLb.onclick = () => copyFormula(item.id);
+    btnCopyLh3Lb.onclick = () => copyLh3(item.id);
+    btnOpenDriveLb.href = item.fileUrl;
+    btnDeleteCurrentLb.onclick = () => {
+      closeLightbox();
+      promptDelete(item.id);
+    };
+
+    lightboxModal.classList.add('active');
+  };
+
+  function closeLightbox() { lightboxModal.classList.remove('active'); }
+  function showPrev() {
+    if (activeLightboxIdx > 0) openLightbox(activeLightboxIdx - 1);
+    else openLightbox(filteredItems.length - 1);
+  }
+  function showNext() {
+    if (activeLightboxIdx < filteredItems.length - 1) openLightbox(activeLightboxIdx + 1);
+    else openLightbox(0);
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+  lightboxModal.addEventListener('click', (e) => { if (e.target === lightboxModal) closeLightbox(); });
+
+  window.addEventListener('keydown', (e) => {
+    if (!lightboxModal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim();
+    applyFilterAndSort();
+  });
+
+  yearSelect.addEventListener('change', (e) => {
+    currentYear = e.target.value;
+    applyFilterAndSort();
+  });
+
+  sortSelect.addEventListener('change', (e) => {
+    currentSort = e.target.value;
+    applyFilterAndSort();
+  });
+
+  folderChips.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    folderChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    currentFolder = chip.dataset.val;
+    applyFilterAndSort();
+  });
+
+  categoryChips.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    categoryChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    currentCat = chip.dataset.val;
+    applyFilterAndSort();
+  });
+
+  btnGridView.addEventListener('click', () => {
+    btnGridView.classList.add('active');
+    btnTableView.classList.remove('active');
+    render();
+  });
+
+  btnTableView.addEventListener('click', () => {
+    btnTableView.classList.add('active');
+    btnGridView.classList.remove('active');
+    render();
+  });
+
+  document.getElementById('btnRefresh').addEventListener('click', () => {
+    applyFilterAndSort();
+    showToast('已重新整理資料清單！');
+  });
+
+  updateStats();
+  applyFilterAndSort();
+</script>
+
+</body>
+</html>
