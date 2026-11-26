@@ -1,14 +1,931 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=https://fun.jktai123.com/antigravity/us_stock_20_rules_slides.html">
-  <title>股票交易鐵律 20 條</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>📈 股票交易鐵律 20 條｜高勝率紀律系統與部位風控互動簡報 (Reveal.js)</title>
+  
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;800&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+  
+  <!-- Reveal.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+
   <script>
-    window.location.replace("https://fun.jktai123.com/antigravity/us_stock_20_rules_slides.html");
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            serif: ['"Noto Serif TC"', 'serif'],
+          },
+          colors: {
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            bull: '#10b981',
+            bear: '#ef4444',
+          }
+        }
+      }
+    }
   </script>
+
+  <style>
+    /* 全域簡報客製美學 */
+    :root {
+      --r-background-color: #080c14;
+      --r-main-font: "Noto Sans TC", sans-serif;
+      --r-heading-font: "Noto Sans TC", sans-serif;
+      --r-heading-color: #f8fafc;
+      --r-main-color: #cbd5e1;
+      --r-link-color: #f59e0b;
+      --r-link-color-hover: #fbbf24;
+    }
+
+    body {
+      background-color: #080c14;
+      overflow: hidden;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -8px rgba(245, 158, 11, 0.15);
+    }
+
+    .glow-gold {
+      text-shadow: 0 0 24px rgba(245, 158, 11, 0.45);
+    }
+    .glow-cyan {
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    /* 隱藏 Reveal 預設底欄多餘空間 */
+    .reveal .slides section {
+      padding: 0;
+      height: 100%;
+    }
+
+    /* 自訂浮動控制按鈕 */
+    #nav-controls {
+      position: fixed;
+      bottom: 24px;
+      right: 28px;
+      z-index: 9999;
+    }
+
+    /* 電腦與大螢幕基礎字級 */
+    .card-body-text {
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    .card-title-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .card-subtext {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .checklist-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+    .checklist-icon {
+      font-size: 1.25rem;
+    }
+
+    /* 手機螢幕字體專屬倍率放大：抵消 Reveal.js 縮放，保證手機上最小字體 ≥ 15px~18px (完全匹配 all_html.html) */
+    @media (max-width: 768px) {
+      .reveal .text-xs,
+      .reveal .text-\[10px\],
+      .reveal .text-\[11px\],
+      .reveal .text-slate-400,
+      .reveal p,
+      .reveal li,
+      .reveal span.font-mono {
+        font-size: 2.15rem !important; /* ~34px -> 手機實際螢幕呈現約 17.5px */
+        line-height: 1.6 !important;
+      }
+      
+      .reveal p.font-mono,
+      .reveal .text-amber-300\/90,
+      .reveal .text-sky-300\/90,
+      .reveal .text-emerald-300\/90,
+      .reveal .text-rose-300\/90,
+      .reveal .text-purple-300\/90,
+      .reveal .text-indigo-300\/90,
+      .reveal .text-red-300\/90 {
+        font-size: 2.35rem !important; /* ~38px -> 金句與引言更顯著！ */
+        font-weight: 700 !important;
+        line-height: 1.5 !important;
+      }
+
+      .reveal h3 {
+        font-size: 2.7rem !important; /* ~43px */
+      }
+
+      .reveal .w-7.h-7,
+      .reveal .w-8.h-8 {
+        width: 3.4rem !important;
+        height: 3.4rem !important;
+        font-size: 2rem !important;
+      }
+
+      .reveal .px-3.py-1,
+      .reveal .px-4.py-1\.5 {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 1.85rem !important;
+      }
+
+      .reveal .checklist-text {
+        font-size: 2.5rem !important;
+        line-height: 1.85 !important;
+      }
+      .reveal .checklist-icon {
+        font-size: 2.2rem !important;
+      }
+      .reveal .card-body-text {
+        font-size: 2.3rem !important;
+        line-height: 1.65 !important;
+      }
+      .reveal .card-title-text {
+        font-size: 2.6rem !important;
+      }
+      .reveal .card-subtext {
+        font-size: 2.2rem !important;
+        line-height: 1.6 !important;
+      }
+    }
+  </style>
 </head>
-<body>
-  <p>正在前往 <a href="https://fun.jktai123.com/antigravity/us_stock_20_rules_slides.html">股票交易鐵律 20 條</a>...</p>
+<body class="text-slate-200 antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- 頂部常駐進度與快捷導航 -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between pointer-events-none">
+    <div class="flex items-center gap-3 pointer-events-auto">
+      <a href="https://fun.jktai123.com/all_html.html" class="px-3 py-1.5 rounded-lg glass-panel hover:border-amber-500/50 text-xs text-amber-400 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span class="font-medium">總目錄</span>
+      </a>
+      <span class="text-xs font-mono text-slate-400 hidden sm:inline-block">Stock Trading 20 Iron Rules</span>
+    </div>
+
+    <div class="flex items-center gap-2 pointer-events-auto">
+      <a href="https://media.jktai123.com/ig_videos/stock_20_rules_infographic.jpg" target="_blank" class="px-3 py-1.5 rounded-lg glass-panel hover:bg-slate-800 text-xs text-sky-400 flex items-center gap-1.5 transition-all">
+        <i class="fa-solid fa-image"></i>
+        <span>查看 9:16 資訊圖卡</span>
+      </a>
+      <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-lg glass-panel hover:bg-slate-800 flex items-center justify-center text-xs text-slate-300" title="全螢幕切換">
+        <i class="fa-solid fa-expand"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Reveal.js 主簡報視圖 -->
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ================= Slide 1: 封面 ================= -->
+      <section data-transition="fade" class="flex flex-col items-center justify-center h-full px-6 text-center">
+        <div class="max-w-4xl mx-auto space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-mono uppercase tracking-widest">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Systematic Risk & Position Blueprint</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight glow-gold font-serif">
+            股票交易鐵律 <span class="text-amber-500">20</span> 條
+          </h1>
+
+          <p class="text-lg sm:text-2xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+            記住它，你的交易會上一個檔次。<br class="hidden sm:inline">
+            <span class="text-amber-300 font-semibold">先保命，再談贏</span> —— 百年華爾街倖存者的紀律核心。
+          </p>
+
+          <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-slate-400">
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900/80 border border-slate-800">
+              <i class="fa-solid fa-layer-group text-amber-400"></i> 五大系統模組
+            </span>
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900/80 border border-slate-800">
+              <i class="fa-solid fa-chart-line text-emerald-400"></i> 正期望值交易思維
+            </span>
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900/80 border border-slate-800">
+              <i class="fa-solid fa-keyboard text-sky-400"></i> 按空白鍵或方向鍵瀏覽
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 2: 核心思維導論 ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-6">
+          <div class="border-l-4 border-amber-500 pl-4">
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Core Mindset</span>
+            <h2 class="text-2xl sm:text-4xl font-bold text-white mt-1">交易的本質：不是比誰賺得猛，是比誰活得久</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-red-500/80 space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-skull-crossbones"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">散戶盲點與數學陷阱</h3>
+              </div>
+              <p class="text-slate-300 leading-relaxed card-body-text">
+                凹單攤平、重倉賭財報、聽信明牌。數學上虧損 <span class="text-amber-300 font-mono font-bold">8%</span> 需賺 <span class="text-emerald-400 font-mono">8.7%</span> 回本；但若虧損達 <span class="text-red-400 font-mono font-bold">50%</span>，必須翻倍 <span class="text-emerald-400 font-mono font-bold">100%</span> 才能回本！停損延遲幾秒，代價指數級暴增。
+              </p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-emerald-500/80 space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-chess-knight"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">職業交易者生存哲學</h3>
+              </div>
+              <p class="text-slate-300 leading-relaxed card-body-text">
+                把交易當作概率遊戲。在勝率與盈虧比有利時順勢進場，截斷虧損讓利潤奔跑，嚴格遵循不二法門的 20 條鐵律，保留充足本金擁有無限選擇權。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 3: 01 資金與部位 (鐵律 1 - 2) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Module 01</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">資金與部位管理（鐵律 1 - 2）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">守住命根子</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">01</span>
+                <h3 class="text-xl font-bold text-white">永遠留現金</h3>
+              </div>
+              <p class="text-amber-300/90 font-mono font-bold">「現金是膽，部位是命」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">滿倉是恐懼的開始。唯有手握充足流動性，在極端大回檔時你才有底氣撿便宜，而不是被強制平倉。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-sky-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-mono font-bold text-sm">02</span>
+                <h3 class="text-xl font-bold text-white">持股不超過 5 檔</h3>
+              </div>
+              <p class="text-sky-300/90 font-mono font-bold">「熟的都賺不到，別貪陌生臉」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">過度分散只會把注意力稀釋成無效噪音。精通並深耕 3~5 檔核心龍頭，遠勝盲目持有 20 檔雜牌軍。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 4: 01 資金與部位 (鐵律 3 - 4) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Module 01</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">資金與部位管理（鐵律 3 - 4）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">順勢與槓桿風控</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-emerald-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">03</span>
+                <h3 class="text-xl font-bold text-white">只加碼賺錢的部位</h3>
+              </div>
+              <p class="text-emerald-300/90 font-mono font-bold">「虧錢的單攤平，只會越攤越平」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">市場已經用虧損證明你看錯了，絕不順著錯局加碼。只在市場驗證正確、獲利墊底時採金字塔式向上推升。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-rose-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono font-bold text-sm">04</span>
+                <h3 class="text-xl font-bold text-white">融資是慢性跳樓</h3>
+              </div>
+              <p class="text-rose-300/90 font-mono font-bold">「賺了笑嘻嘻，虧了沒人替」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">借錢借槓桿會嚴重扭曲交易心態。任何一次 20% 的短期突發黑天鵝震盪，都足以讓融資帳戶面臨灰飛煙滅。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 5: 02 選股策略 (鐵律 5 - 6) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Module 02</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">選股策略（鐵律 5 - 6）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">趨勢與強者恆強</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-emerald-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">05</span>
+                <h3 class="text-xl font-bold text-white">只做站上 200 日線的股票</h3>
+              </div>
+              <p class="text-emerald-300/90 font-mono font-bold">「趨勢不轉，手不伸」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">年線（200MA）是機構法人牛熊分水嶺。股票在年線下方代表沉重套牢賣壓，永不在空頭下降通道浪費時間。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">06</span>
+                <h3 class="text-xl font-bold text-white">只跟板塊龍頭</h3>
+              </div>
+              <p class="text-amber-300/90 font-mono font-bold">「跟風股跌起來，比龍頭還瘟」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">龍頭股享有最高估值溢價與最強主力鎖碼。板塊上漲時龍頭漲最兇，行情回檔時二三線雜牌跌最慘。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 6: 02 選股策略 (鐵律 7 - 8) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Module 02</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">選股策略（鐵律 7 - 8）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">避開流動性黑洞</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-slate-500 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-slate-500/20 text-slate-300 flex items-center justify-center font-mono font-bold text-sm">07</span>
+                <h3 class="text-xl font-bold text-white">沒量的股票別碰</h3>
+              </div>
+              <p class="text-slate-300/90 font-mono font-bold">「像沒人的商場，遲早關門」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">沒有成交量就沒有流動性。遇到突發利空想停損賣不掉，只能任由滑價吞噬本金，成交量是行情的氧氣。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-red-500 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center font-mono font-bold text-sm">08</span>
+                <h3 class="text-xl font-bold text-white">雞蛋水餃股看都不看</h3>
+              </div>
+              <p class="text-red-300/90 font-mono font-bold">「垃圾堆裡沒有金項鍊」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">仙股與雞蛋水餃股多伴隨財務造假、合股下市等致命黑天鵝。別把賭博心態當成撿便宜，專注於優質企業。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 7: 03 進場時機 (鐵律 9 - 10) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">Module 03</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">進場時機抉擇（鐵律 9 - 10）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-sky-500/10 text-sky-300 border border-sky-500/20">雜訊過濾與耐性</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-sky-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-mono font-bold text-sm">09</span>
+                <h3 class="text-xl font-bold text-white">開盤前 30 分鐘只看不動</h3>
+              </div>
+              <p class="text-sky-300/90 font-mono font-bold">「開盤演給你看，別入戲」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">開盤前半小時是散戶情緒宣洩與主力誘多誘空的混亂期。讓子彈飛一會兒，待市場走出清晰方向再行定奪。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-red-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center font-mono font-bold text-sm">10</span>
+                <h3 class="text-xl font-bold text-white">打死不接飛刀</h3>
+              </div>
+              <p class="text-red-300/90 font-mono font-bold">「跌深不是便宜，是有原因」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">無支撐的急挫暴跌背後多有機構未公開的深層危機。不做左側猜底英雄，耐心等待右側底部型態確立再出手。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 8: 03 進場時機 (鐵律 11 - 12) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">Module 03</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">進場時機抉擇（鐵律 11 - 12）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-sky-500/10 text-sky-300 border border-sky-500/20">主升段與抗跌新龍頭</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-emerald-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">11</span>
+                <h3 class="text-xl font-bold text-white">量縮整理，放量突破</h3>
+              </div>
+              <p class="text-emerald-300/90 font-mono font-bold">「主力就這兩招」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">極致縮量代表浮動籌碼沉澱、賣壓枯竭；隨後伴隨數倍成交量的放量大陽線突破頸線，就是勝率最高的主升發動點。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">12</span>
+                <h3 class="text-xl font-bold text-white">大跌是最好的選股器</h3>
+              </div>
+              <p class="text-amber-300/90 font-mono font-bold">「大盤跌它不跌，就是下一個龍頭」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">真金不怕火煉。指數暴跌時能抗跌甚至逆勢收紅的股票，代表內部有超強法人主力護盤，大盤回穩時必然率先噴出。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 9: 04 停損停利 (鐵律 13 - 14) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-rose-400 uppercase tracking-wider">Module 04</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">停損停利機制（鐵律 13 - 14）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">保命機制・利潤落袋</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-rose-500 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono font-bold text-sm">13</span>
+                <h3 class="text-xl font-bold text-white">虧 7 到 8% 閉眼砍</h3>
+              </div>
+              <p class="text-rose-300/90 font-mono font-bold">「你猶豫的那幾秒，又少一個點」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">歐尼爾經典風控鐵則。小停損是一筆微不足道的交易成本，猶豫拖延只會讓小傷口演變成毀滅性的截肢重創。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-emerald-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">14</span>
+                <h3 class="text-xl font-bold text-white">賺一段先賣一半</h3>
+              </div>
+              <p class="text-emerald-300/90 font-mono font-bold">「落袋的笑，格局的哭」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">波段達成預期報酬後先將一半利潤入袋為安，並將停損移至成本價。零風險的持股才能讓你從容參與後續大行情。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 10: 04 停損停利 (鐵律 15 - 16) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-rose-400 uppercase tracking-wider">Module 04</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">停損停利機制（鐵律 15 - 16）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">風險二元性・耐性空手</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">15</span>
+                <h3 class="text-xl font-bold text-white">財報前別滿倉</h3>
+              </div>
+              <p class="text-amber-300/90 font-mono font-bold">「跳空的黑天鵝，專吃滿倉人」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">重大財報公佈帶有非線性二元賭局性質，隔夜直接跳空 -25% 連停損單都無法發揮作用。財報前務必控制或減半倉位。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-sky-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-mono font-bold text-sm">16</span>
+                <h3 class="text-xl font-bold text-white">沒機會就空手</h3>
+              </div>
+              <p class="text-sky-300/90 font-mono font-bold">「空手的人，才有子彈等好球」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">交易不是打卡上班，頻繁交易只會給券商繳手續費。耐得住寂寞等待肥美的好球揮棒，才是最高級的交易修養。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 11: 05 交易心態 (鐵律 17 - 18) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-purple-400 uppercase tracking-wider">Module 05</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">交易心態與紀律（鐵律 17 - 18）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">克服人性弱點</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-mono font-bold text-sm">17</span>
+                <h3 class="text-xl font-bold text-white">消息越猛，越要反著看</h3>
+              </div>
+              <p class="text-purple-300/90 font-mono font-bold">「好事輪不到你」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">鋪天蓋地的大利多往往是主力出貨的掩護；散戶人人恐慌的大利空則經常是洗盤結束的終局，學會逆向思考。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-indigo-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-mono font-bold text-sm">18</span>
+                <h3 class="text-xl font-bold text-white">一年重倉沒幾次</h3>
+              </div>
+              <p class="text-indigo-300/90 font-mono font-bold">「重倉是結婚，別天天結」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">大級別的高確定性機會非常稀少。平時輕倉試單尋找手感，唯有天時地利盈虧比極佳時才果斷傾注重兵。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 12: 05 交易心態 (鐵律 19 - 20) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-5xl mx-auto">
+        <div class="space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-mono text-purple-400 uppercase tracking-wider">Module 05</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">交易心態與終極真諦（鐵律 19 - 20）</h2>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">終極真諦</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-rose-400 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono font-bold text-sm">19</span>
+                <h3 class="text-xl font-bold text-white">不聽明牌</h3>
+              </div>
+              <p class="text-rose-300/90 font-mono font-bold">「你虧了，會恨他一輩子」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">盲信明牌無法建立個人獨立交易系統。沒有出場依據與風控計畫的聽信跟單，本質上就是在把命運交給陌生人。</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-400 space-y-3 bg-gradient-to-br from-amber-950/30 to-slate-900/80">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">20</span>
+                <h3 class="text-xl font-bold text-amber-300">先保命，再談贏</h3>
+              </div>
+              <p class="text-amber-300 font-mono font-bold">「交易是一場倖存者遊戲」</p>
+              <p class="text-slate-300 leading-relaxed card-body-text">股票市場天天都在，暴富機會年年都有。唯一的致命錯誤就是在牛市抵達前子彈打光。本金在，翻盤機會永遠都在！</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 13: 系統架構心智圖 (上篇) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-diagram-project text-amber-400"></i>
+              <h2 class="text-xl sm:text-2xl font-bold text-white font-serif">交易系統架構心智圖・上篇 (Mindmap Part 1)</h2>
+            </div>
+            <span class="text-xs font-mono text-slate-400">系統全景架構</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
+            <div class="glass-card rounded-2xl p-5 border-l-4 border-amber-400 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-lg flex items-center gap-2">
+                  <i class="fa-solid fa-wallet text-amber-400"></i> 01 資金與部位管理
+                </span>
+                <span class="font-mono text-xs text-amber-400">R.1 ~ R.4</span>
+              </div>
+              <ul class="space-y-2 text-slate-300 card-body-text">
+                <li>・常態留現金防禦極端行情</li>
+                <li>・上限 5 檔，拒絕無效分散</li>
+                <li>・只加碼獲利單，絕不攤平</li>
+                <li>・嚴禁融資槓桿慢性跳樓</li>
+              </ul>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border-l-4 border-emerald-400 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-lg flex items-center gap-2">
+                  <i class="fa-solid fa-filter text-emerald-400"></i> 02 選股策略核心
+                </span>
+                <span class="font-mono text-xs text-emerald-400">R.5 ~ R.8</span>
+              </div>
+              <ul class="space-y-2 text-slate-300 card-body-text">
+                <li>・年線 200MA 上多頭強勢股</li>
+                <li>・聚焦板塊龍頭享有溢價</li>
+                <li>・避開無量流動性枯竭股</li>
+                <li>・絕不碰水餃仙股垃圾堆</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 14: 系統架構心智圖 (下篇) ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-6 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-diagram-project text-sky-400"></i>
+              <h2 class="text-xl sm:text-2xl font-bold text-white font-serif">交易系統架構心智圖・下篇 (Mindmap Part 2)</h2>
+            </div>
+            <span class="text-xs font-mono text-slate-400">系統全景架構</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
+            <div class="glass-card rounded-2xl p-5 border-l-4 border-sky-400 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-lg flex items-center gap-2">
+                  <i class="fa-solid fa-stopwatch text-sky-400"></i> 03 進場時機抉擇
+                </span>
+                <span class="font-mono text-xs text-sky-400">R.9 ~ R.12</span>
+              </div>
+              <ul class="space-y-2 text-slate-300 card-body-text">
+                <li>・開盤前 30 分鐘觀望避陷阱</li>
+                <li>・不接無支撐自由落體飛刀</li>
+                <li>・縮量沉澱＋放量突破才出手</li>
+                <li>・大跌日挑選逆勢抗跌新龍頭</li>
+              </ul>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border-l-4 border-rose-400 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-lg flex items-center gap-2">
+                  <i class="fa-solid fa-shield-virus text-rose-400"></i> 04 風控停損機制
+                </span>
+                <span class="font-mono text-xs text-rose-400">R.13 ~ R.16</span>
+              </div>
+              <ul class="space-y-2 text-slate-300 card-body-text">
+                <li>・虧損 7~8% 毫不猶豫閉眼砍</li>
+                <li>・達成預期賺一段先出脫一半</li>
+                <li>・財報前嚴禁盲賭重倉滿倉</li>
+                <li>・無確定性訊號甘願耐心空手</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 15: 真實性審計（🟢 綠燈實證 上） ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-circle-check"></i>
+              </span>
+              <div>
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider block">Fact-Check Part 1</span>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">官方已驗證・實證鐵律（上篇）</h2>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">🟢 均線與風控</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-emerald-500 space-y-5 bg-gradient-to-b from-emerald-950/25 to-slate-900/70 text-left">
+            <ul class="space-y-5 card-body-text text-slate-300">
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-1">・鐵律 5（200MA 年線均線法則）：</strong>
+                站上200MA屬於經典技術大師（Paul Tudor Jones、Stan Weinstein）長期實證之牛熊分野，統計上處於200MA上方股票具顯著正向動能延續性。
+              </li>
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-1">・鐵律 13（7~8% 嚴格停損鐵律）：</strong>
+                傳奇投資大師威廉·歐尼爾（CANSLIM創辦人）經典風控鐵律，數學上虧8%只需賺8.7%即可回本，若虧損50%則需翻倍（100%）才能回本，風控邏輯嚴密。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 16: 真實性審計（🟢 綠燈實證 下） ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-shield-halved"></i>
+              </span>
+              <div>
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider block">Fact-Check Part 1</span>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">官方已驗證・實證鐵律（下篇）</h2>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">🟢 事件與保命</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-emerald-500 space-y-5 bg-gradient-to-b from-emerald-950/25 to-slate-900/70 text-left">
+            <ul class="space-y-5 card-body-text text-slate-300">
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-1">・鐵律 15（重大財報公佈前減倉）：</strong>
+                重大財報公佈時隱含波動率（IV）崩跌且常伴隨 10%~30% 斷崖式跳空，重倉賭財報等同賭博，降倉符合機構風控標準。
+              </li>
+              <li>
+                <strong class="text-emerald-300 block font-mono card-title-text mb-1">・鐵律 10、11、20（不接飛刀、保命第一）：</strong>
+                順勢交易與資本存活原則在百年華爾街投機史中反覆驗證為長青真理。先保命，才有資格談贏。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 17: 真實性審計（🟡 黃燈邊界） ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </span>
+              <div>
+                <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block">Fact-Check Part 2</span>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">產業待觀察・不同交易流派適用邊界</h2>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-300">🟡 情境限制</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-amber-500 space-y-5 bg-gradient-to-b from-amber-950/25 to-slate-900/70 text-left">
+            <ul class="space-y-5 card-body-text text-slate-300">
+              <li>
+                <strong class="text-amber-300 block font-mono card-title-text mb-1">・鐵律 2（持股不超過5檔）：</strong>
+                高度適用於「主動集中波段動量交易者」，能極大化資金爆發力；然而對於指數化被動投資、定期定額或大型退休基金而言，5檔持股缺乏分散性（非系統性風險過高），不宜全盤照搬。
+              </li>
+              <li>
+                <strong class="text-amber-300 block font-mono card-title-text mb-1">・鐵律 9（開盤前30分只看不動）：</strong>
+                開盤前半小時確實是散戶情緒與造市商摩擦成本最高階段，對一般趨勢交易者適合成熟觀望；但對專業日內動量沖銷者（Day Trader）而言，前30分也是波動度最大、利潤最豐厚時段，需視交易時間架構而定。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 18: 真實性審計（🔴 紅燈避坑） ================= -->
+      <section data-transition="slide" class="flex flex-col justify-center h-full px-4 sm:px-10 max-w-5xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-ban"></i>
+              </span>
+              <div>
+                <span class="text-xs font-mono text-rose-400 uppercase tracking-wider block">Fact-Check Part 3</span>
+                <h2 class="text-xl sm:text-3xl font-bold text-white font-serif">社群引流與行銷套路辨析</h2>
+              </div>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-400">🔴 避坑指南</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border-t-4 border-rose-500 space-y-4 bg-gradient-to-b from-rose-950/25 to-slate-900/70 text-left">
+            <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-2">
+              <strong class="text-rose-300 block font-mono card-title-text">
+                ・第 8 頁之「留言送AI系統」行銷模式：
+              </strong>
+              <p class="text-slate-300 card-body-text leading-relaxed">
+                屬於標準社群媒體引流轉化漏斗（Lead Generation）。此類文案往往借用普遍正確的交易箴言吸引高黏性流量，再將學員導入後續收費課程或跟單服務。
+              </p>
+            </div>
+
+            <div class="p-5 rounded-xl bg-rose-500/10 border-2 border-rose-500/30 text-rose-200 space-y-2">
+              <div class="flex items-center gap-2 text-rose-400 font-bold card-title-text">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>專家客觀風控提醒</span>
+              </div>
+              <p class="card-subtext leading-relaxed text-slate-200">
+                真正穩健的獲利來自「個人心理紀律」與「正期望值風控數學」，市場上絕不存在躺贏致富的「AI 神奇黑盒黑科技」。保持獨立思考與嚴格風控，才是唯一的長青之道。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Slide 19: 封底與檢查清單 ================= -->
+      <section data-transition="fade" class="flex flex-col justify-center h-full px-6 sm:px-12 max-w-4xl mx-auto text-center space-y-6">
+        <div class="space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>Daily Execution Checklist</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-serif">
+            將鐵律刻進本能，建立你的長青系統
+          </h2>
+
+          <div class="glass-panel p-6 sm:p-8 rounded-2xl text-left space-y-4 max-w-2xl mx-auto font-mono text-slate-200">
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
+              <span>進場前：是否站上 200MA？是否為板塊龍頭？</span>
+            </div>
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
+              <span>下單時：是否已設定 7~8% 硬性止損價？</span>
+            </div>
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
+              <span>部位面：持股是否 ≤ 5 檔？現金是否充裕？</span>
+            </div>
+            <div class="flex items-center gap-3 checklist-text">
+              <i class="fa-solid fa-square-check text-emerald-400 checklist-icon"></i>
+              <span>事件面：本週是否有重大財報？有無融資槓桿？</span>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+            <a href="https://is.gd/Czgpbv" target="_blank" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-lg shadow-amber-500/20">
+              <i class="fa-brands fa-instagram"></i>
+              <span>查看原始 IG 圖卡</span>
+            </a>
+            <a href="https://fun.jktai123.com/all_html.html" class="px-5 py-2.5 rounded-xl glass-panel hover:bg-slate-800 text-slate-300 text-xs sm:text-sm flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-house"></i>
+              <span>回到 HTML 總目錄</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- 浮動操控提示 -->
+  <div id="nav-controls" class="hidden sm:flex items-center gap-2">
+    <button onclick="Reveal.prev()" class="w-9 h-9 rounded-xl glass-panel hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 flex items-center justify-center transition-all" title="上一頁">
+      <i class="fa-solid fa-chevron-left text-xs"></i>
+    </button>
+    <button onclick="Reveal.next()" class="w-9 h-9 rounded-xl glass-panel hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 flex items-center justify-center transition-all" title="下一頁">
+      <i class="fa-solid fa-chevron-right text-xs"></i>
+    </button>
+  </div>
+
+  <!-- Reveal.js 初始化腳本 -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    const isMobilePortrait = window.innerWidth < 768 && window.innerHeight > window.innerWidth;
+    Reveal.initialize({
+      hash: true,
+      history: true,
+      center: true,
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      backgroundTransition: 'fade',
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      overview: true,
+      touch: true,
+      loop: false,
+      autoSlide: 0,
+      width: isMobilePortrait ? 760 : 1200,
+      height: isMobilePortrait ? 1080 : 700,
+      margin: isMobilePortrait ? 0.03 : 0.06,
+      minScale: 0.2,
+      maxScale: 2.0
+    });
+
+    // 全螢幕切換
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
 </body>
 </html>
