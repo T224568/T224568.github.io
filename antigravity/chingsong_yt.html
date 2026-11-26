@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🥾 青松健行隊（輕鬆健行隊）｜YouTube 健行影音典藏館（全 79 部・含影片長度與觀看數）</title>
+  <style>
+    :root {
+      --bg: #0b1310;
+      --surface: #13201b;
+      --surface-hover: #1a2c25;
+      --border: #233b31;
+      --text: #f0fdf4;
+      --text-muted: #94a3b8;
+      --emerald: #10b981;
+      --emerald-soft: rgba(16, 185, 129, 0.16);
+      --accent: #f59e0b;
+      --accent-soft: rgba(245, 158, 11, 0.15);
+      --primary: #38bdf8;
+      --primary-soft: rgba(56, 189, 248, 0.15);
+      --danger: #f43f5e;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 64px;
+    }
+    a { color: var(--emerald); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d1f18 0%, #142e24 50%, #13232e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 20px 22px;
+    }
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .title-group h1 {
+      font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ecfdf5;
+    }
+    .title-badge {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--emerald-soft);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #34d399;
+      font-weight: 700;
+    }
+    .title-group p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 4px;
+    }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn:hover {
+      background: var(--surface-hover);
+      border-color: var(--emerald);
+      text-decoration: none;
+    }
+    .btn-emerald {
+      background: var(--emerald-soft);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #34d399;
+    }
+    .btn-emerald:hover {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: var(--emerald);
+    }
+    .btn-accent {
+      background: var(--accent-soft);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+    .btn-accent:hover {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: var(--accent);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      background: rgba(19, 32, 27, 0.82);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-top: 2px;
+      color: var(--text);
+    }
+    .stat-value.emerald { color: #34d399; }
+    .stat-value.accent { color: #fbbf24; }
+    .stat-value.primary { color: var(--primary); }
+
+    .toolbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(11, 19, 16, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .search-box {
+      flex: 1 1 280px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 36px 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-box input:focus {
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 3px var(--emerald-soft);
+    }
+    .clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      display: none;
+    }
+    .controls-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    select {
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+    select:focus { border-color: var(--emerald); }
+
+    .view-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .view-toggle button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 13px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .view-toggle button[aria-pressed="true"] {
+      background: var(--emerald-soft);
+      color: #34d399;
+    }
+
+    .chips-section {
+      padding: 14px 20px 6px;
+    }
+    .chips-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chip:hover {
+      color: var(--text);
+      border-color: var(--emerald);
+    }
+    .chip[aria-pressed="true"] {
+      background: var(--emerald-soft);
+      border-color: var(--emerald);
+      color: #34d399;
+    }
+    .chip-count {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+    }
+
+    main {
+      padding: 16px 20px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+    }
+    .video-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+      content-visibility: auto;
+      contain-intrinsic-size: 310px;
+    }
+    .video-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--emerald);
+      box-shadow: 0 12px 26px -10px rgba(16, 185, 129, 0.25);
+    }
+    .thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #070d0a;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .video-card:hover .thumb-wrap img {
+      transform: scale(1.04);
+    }
+    .rank-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(11, 19, 16, 0.86);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.76rem;
+      padding: 3px 9px;
+      border-radius: 8px;
+    }
+    .duration-badge {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(11, 19, 16, 0.9);
+      backdrop-filter: blur(4px);
+      color: #38bdf8;
+      font-weight: 700;
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      padding: 3px 9px;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .views-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(11, 19, 16, 0.88);
+      backdrop-filter: blur(4px);
+      color: #fbbf24;
+      font-weight: 700;
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      padding: 3px 9px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.28);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .thumb-wrap:hover .play-overlay {
+      opacity: 1;
+    }
+    .play-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.94);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+    }
+    .card-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 10px;
+    }
+    .card-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.42;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .card-title:hover { color: #34d399; }
+    .card-meta {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .yr-tag {
+      background: var(--emerald-soft);
+      color: #34d399;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .table-wrap {
+      display: none;
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: #0e1915;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    tbody tr {
+      content-visibility: auto;
+      contain-intrinsic-size: 52px;
+    }
+    tbody tr:hover {
+      background: var(--surface-hover);
+    }
+    .td-rank {
+      font-weight: 800;
+      color: var(--text-muted);
+      width: 64px;
+    }
+    .td-views {
+      font-weight: 700;
+      color: #fbbf24;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .td-dur {
+      font-weight: 700;
+      color: #38bdf8;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .td-date {
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .is-hidden {
+      display: none !important;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 56px 20px;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      margin-top: 16px;
+    }
+
+    dialog#playerDialog {
+      margin: auto;
+      width: min(94vw, 960px);
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.78);
+    }
+    dialog#playerDialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+    .dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dialog-header h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .dialog-close {
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .dialog-close:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+    .player-aspect {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      background: #000;
+    }
+    .player-aspect iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .dialog-footer {
+      padding: 12px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .dialog-nav-btns {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <p id="reorder-status" role="status" class="visually-hidden"></p>
+
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <div class="title-group">
+          <h1>
+            🥾 青松健行隊｜專屬 YouTube 影音典藏館
+            <span class="title-badge">輕鬆健行・全 79 部完整紀錄</span>
+          </h1>
+          <p>收錄 2024–2026 歷次健行活動紀錄短片・100% 補齊影片長度與實時觀看人數・預設播放音量 15%</p>
+        </div>
+        <div class="header-actions">
+          <a class="btn btn-emerald" href="https://fun.jktai123.com/antigravity/%E9%9D%92%E6%9D%BE%E5%81%A5%E8%A1%8C%E9%9A%8A_%E5%9C%B0%E5%9C%96%E5%B0%8E%E8%A6%BD.html" target="_blank" rel="noopener">
+            🗺️ 青松 GPX 地圖導覽
+          </a>
+          <a class="btn btn-accent" href="https://docs.google.com/spreadsheets/d/1xAZ810fin7AY4azNgN-sPr4fuIx0a77ASFOymfvxTXk/edit" target="_blank" rel="noopener">
+            📊 原始 Google Sheet
+          </a>
+          <a class="btn" href="https://fun.jktai123.com/antigravity/yt_gallery.html" target="_blank" rel="noopener">
+            🎬 返回 YT 總圖庫
+          </a>
+          <button class="btn" id="exportCsvBtn" type="button">⬇️ 匯出 CSV</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">健行影片總數</div>
+          <div class="stat-value emerald" id="statVisibleCount">79 / 79</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">累計影片總時長</div>
+          <div class="stat-value primary" id="statVisibleDur">8小時 26分</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">累計總觀看次數</div>
+          <div class="stat-value accent" id="statVisibleViews">4,834</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">最高單部觀看</div>
+          <div class="stat-value accent">632 次</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar-wrap">
+    <div class="container toolbar">
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="🔍 搜尋健行路線、步道名稱、日期（如：大湖公園、寶藏巖、農禪寺、三峽、202610）..." aria-label="搜尋健行影片標題或日期" />
+        <button type="button" class="clear-btn" id="clearSearchBtn" aria-label="清除搜尋">✕</button>
+      </div>
+      <div class="controls-group">
+        <label for="sortSelect" class="visually-hidden">排序方式</label>
+        <select id="sortSelect" aria-label="排序方式">
+          <option value="date-desc" selected>📅 健行日期：最新 → 最舊（預設）</option>
+          <option value="date-asc">📅 健行日期：最舊 → 最新</option>
+          <option value="views-desc">🔥 觀看次數：高 → 低</option>
+          <option value="views-asc">觀看次數：低 → 高</option>
+          <option value="dur-desc">⏱️ 影片長度：長 → 短</option>
+          <option value="dur-asc">⏱️ 影片長度：短 → 長</option>
+          <option value="title-asc">🔤 標題名稱：A → Z</option>
+        </select>
+
+        <div class="view-toggle" role="group" aria-label="檢視模式切換">
+          <button type="button" id="gridViewBtn" aria-pressed="true">🖼️ 卡片檢視</button>
+          <button type="button" id="tableViewBtn" aria-pressed="false">📋 表格檢視</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="chips-section">
+    <div class="container">
+      <div class="chips-bar" id="yearChips" role="group" aria-label="年份與類別快速篩選"></div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="video-grid" id="videoGrid"></div>
+
+    <div class="table-wrap" id="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">編號</th>
+            <th scope="col">觀看次數</th>
+            <th scope="col">影片長度</th>
+            <th scope="col">健行影片標題</th>
+            <th scope="col">年份</th>
+            <th scope="col">發布日期</th>
+            <th scope="col">操作</th>
+          </tr>
+        </thead>
+        <tbody id="videoTbody"></tbody>
+      </table>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <h3>找不到符合條件的健行影片</h3>
+      <p style="margin-top:6px;">請嘗試更換路線關鍵字，或點選上方「全部年份」重置篩選。</p>
+    </div>
+  </main>
+
+  <dialog id="playerDialog" closedby="any" aria-labelledby="dialogVideoTitle">
+    <div class="dialog-header">
+      <h2 id="dialogVideoTitle">影片播放</h2>
+      <form method="dialog">
+        <button type="submit" class="dialog-close">✕ 關閉 (Esc)</button>
+      </form>
+    </div>
+    <div class="player-aspect">
+      <iframe id="ytIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="YouTube 影片播放器"></iframe>
+    </div>
+    <div class="dialog-footer">
+      <span id="dialogMetaInfo"></span>
+      <div class="dialog-nav-btns">
+        <button type="button" class="btn" id="prevVidBtn" style="padding:5px 11px;font-size:0.8rem;">⏮ 上一部</button>
+        <button type="button" class="btn" id="nextVidBtn" style="padding:5px 11px;font-size:0.8rem;">下一部 ⏭</button>
+        <a id="dialogYtLink" href="#" target="_blank" rel="noopener" style="margin-left:6px;">↗ 在 YouTube 開啟</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const VIDEOS = [{"Item": "79", "ViewCount": "9", "Title": "20261113大湖公園白鷺鷥山步道健行", "href": "https://www.youtube.com/watch?v=r7ryBQ0uufU", "UploadDate": "2026-11-15", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "r7ryBQ0uufU", "Duration": "6:25", "viewsNum": 9, "durSec": 385, "actDate": "2026-11-13", "year": "2026"}, {"Item": "78", "ViewCount": "15", "Title": "20261030寶藏巖永福橋川端橋健行", "href": "https://www.youtube.com/watch?v=lZozw2RAFnY", "UploadDate": "2026-11-01", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "lZozw2RAFnY", "Duration": "4:15", "viewsNum": 15, "durSec": 255, "actDate": "2026-10-30", "year": "2026"}, {"Item": "77", "ViewCount": "25", "Title": "20261016農禪寺基隆河關渡健行（加戲）", "href": "https://www.youtube.com/watch?v=yZu0mzHTrAg", "UploadDate": "2026-10-18", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "yZu0mzHTrAg", "Duration": "8:21", "viewsNum": 25, "durSec": 501, "actDate": "2026-10-16", "year": "2026"}, {"Item": "76", "ViewCount": "16", "Title": "20261016農禪寺基隆河關渡健行", "href": "https://www.youtube.com/watch?v=szAClMMeSaY", "UploadDate": "2026-10-18", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "szAClMMeSaY", "Duration": "8:09", "viewsNum": 16, "durSec": 489, "actDate": "2026-10-16", "year": "2026"}, {"Item": "75", "ViewCount": "12", "Title": "20261002民權天際之眼美麗華健行側寫", "href": "https://www.youtube.com/watch?v=ByHQnOHMe6I", "UploadDate": "2026-10-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "ByHQnOHMe6I", "Duration": "5:31", "viewsNum": 12, "durSec": 331, "actDate": "2026-10-02", "year": "2026"}, {"Item": "74", "ViewCount": "11", "Title": "20260911深坑老街行側寫", "href": "https://www.youtube.com/watch?v=U0OhGBF9V0A", "UploadDate": "2026-09-13", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "U0OhGBF9V0A", "Duration": "4:44", "viewsNum": 11, "durSec": 284, "actDate": "2026-09-11", "year": "2026"}, {"Item": "73", "ViewCount": "19", "Title": "20260828碧潭陽光公園央北健行", "href": "https://www.youtube.com/watch?v=0xqb_Xk8vwY", "UploadDate": "2026-08-29", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "0xqb_Xk8vwY", "Duration": "6:28", "viewsNum": 19, "durSec": 388, "actDate": "2026-08-28", "year": "2026"}, {"Item": "72", "ViewCount": "228", "Title": "三峽老街健行-青松健行隊 2026.08.14", "href": "https://www.youtube.com/watch?v=0O4Lf7Hxr_w", "UploadDate": "2026-08-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "0O4Lf7Hxr_w", "Duration": "12:38", "viewsNum": 228, "durSec": 758, "actDate": "2026-08-14", "year": "2026"}, {"Item": "71", "ViewCount": "23", "Title": "20260814三峽老街健行", "href": "https://www.youtube.com/watch?v=ubYu9vwwXpA", "UploadDate": "2026-08-15", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "ubYu9vwwXpA", "Duration": "9:39", "viewsNum": 23, "durSec": 579, "actDate": "2026-08-14", "year": "2026"}, {"Item": "70", "ViewCount": "28", "Title": "20260731士林芝山巖健行", "href": "https://www.youtube.com/watch?v=rJ5MxQnuYxw", "UploadDate": "2026-08-01", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "rJ5MxQnuYxw", "Duration": "6:20", "viewsNum": 28, "durSec": 380, "actDate": "2026-07-31", "year": "2026"}, {"Item": "69", "ViewCount": "21", "Title": "20260717松山成美橋右岸內湖健行", "href": "https://www.youtube.com/watch?v=PH8onI6ulx8", "UploadDate": "2026-07-18", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "PH8onI6ulx8", "Duration": "3:51", "viewsNum": 21, "durSec": 231, "actDate": "2026-07-17", "year": "2026"}, {"Item": "68", "ViewCount": "10", "Title": "20260717成美橋松山河濱公園健行", "href": "https://www.youtube.com/watch?v=jxCGa16oDYw", "UploadDate": "2026-07-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "jxCGa16oDYw", "Duration": "5:47", "viewsNum": 10, "durSec": 347, "actDate": "2026-07-17", "year": "2026"}, {"Item": "67", "ViewCount": "9", "Title": "20260703竹圍關渡淡水河岸健行側寫", "href": "https://www.youtube.com/watch?v=tTMZxvnvBNI", "UploadDate": "2026-07-06", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "tTMZxvnvBNI", "Duration": "5:51", "viewsNum": 9, "durSec": 351, "actDate": "2026-07-03", "year": "2026"}, {"Item": "66", "ViewCount": "36", "Title": "竹圍關渡健行-青松健行隊20260703", "href": "https://www.youtube.com/watch?v=-j4cmLyFqw0", "UploadDate": "2026-07-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "-j4cmLyFqw0", "Duration": "7:18", "viewsNum": 36, "durSec": 438, "actDate": "2026-07-03", "year": "2026"}, {"Item": "65", "ViewCount": "30", "Title": "20260612淡水紅毛城淡江大學健行", "href": "https://www.youtube.com/watch?v=BZ6a5fYNYOY", "UploadDate": "2026-06-13", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "BZ6a5fYNYOY", "Duration": "5:44", "viewsNum": 30, "durSec": 344, "actDate": "2026-06-12", "year": "2026"}, {"Item": "64", "ViewCount": "14", "Title": "20260605雙連中山台北地下街健行", "href": "https://www.youtube.com/watch?v=kqRK8gfDT5g", "UploadDate": "2026-06-06", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "kqRK8gfDT5g", "Duration": "4:54", "viewsNum": 14, "durSec": 294, "actDate": "2026-06-05", "year": "2026"}, {"Item": "63", "ViewCount": "21", "Title": "20260515淡江大橋八里左岸健行_照片", "href": "https://www.youtube.com/watch?v=WysrMu2iTVg", "UploadDate": "2026-05-19", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "WysrMu2iTVg", "Duration": "1:54", "viewsNum": 21, "durSec": 114, "actDate": "2026-05-15", "year": "2026"}, {"Item": "62", "ViewCount": "13", "Title": "20260515_PWdir_淡江大橋", "href": "https://www.youtube.com/watch?v=MWXeR0vshUw", "UploadDate": "2026-05-19", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "MWXeR0vshUw", "Duration": "6:13", "viewsNum": 13, "durSec": 373, "actDate": "2026-05-15", "year": "2026"}, {"Item": "61", "ViewCount": "20", "Title": "20260515淡江大橋八里左岸健行", "href": "https://www.youtube.com/watch?v=bq-MuKUkwgA", "UploadDate": "2026-05-18", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "bq-MuKUkwgA", "Duration": "6:22", "viewsNum": 20, "durSec": 382, "actDate": "2026-05-15", "year": "2026"}, {"Item": "60", "ViewCount": "113", "Title": "雙溪河濱公園.基隆河右岸.三角渡 --青松健行隊 2026.04.30", "href": "https://www.youtube.com/watch?v=9p8q_zrSKmE", "UploadDate": "2026-05-07", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "9p8q_zrSKmE", "Duration": "6:30", "viewsNum": 113, "durSec": 390, "actDate": "2026-04-30", "year": "2026"}, {"Item": "59", "ViewCount": "20", "Title": "20260430芝山雙溪百齡河濱北藝中心健行", "href": "https://www.youtube.com/watch?v=FmRx60TZyPY", "UploadDate": "2026-05-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "FmRx60TZyPY", "Duration": "5:16", "viewsNum": 20, "durSec": 316, "actDate": "2026-04-30", "year": "2026"}, {"Item": "58", "ViewCount": "8", "Title": "20260410龍山寺華江雁鴨公園健行", "href": "https://www.youtube.com/watch?v=7x4bqNmJ4-Q", "UploadDate": "2026-04-16", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "7x4bqNmJ4-Q", "Duration": "3:10", "viewsNum": 8, "durSec": 190, "actDate": "2026-04-10", "year": "2026"}, {"Item": "57", "ViewCount": "7", "Title": "20260320陽明山瀑布青春嶺竹子湖健行", "href": "https://www.youtube.com/watch?v=c9GjefkITjk", "UploadDate": "2026-03-22", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "c9GjefkITjk", "Duration": "9:42", "viewsNum": 7, "durSec": 582, "actDate": "2026-03-20", "year": "2026"}, {"Item": "56", "ViewCount": "16", "Title": "20260320陽明山瀑布青春嶺竹子湖健行", "href": "https://www.youtube.com/watch?v=be-bVYshQbc", "UploadDate": "2026-03-21", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "be-bVYshQbc", "Duration": "9:09", "viewsNum": 16, "durSec": 549, "actDate": "2026-03-20", "year": "2026"}, {"Item": "55", "ViewCount": "18", "Title": "20260306嗄嘮別三層崎貴子坑健行", "href": "https://www.youtube.com/watch?v=CNsK8Rc7ibs", "UploadDate": "2026-03-10", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "CNsK8Rc7ibs", "Duration": "5:41", "viewsNum": 18, "durSec": 341, "actDate": "2026-03-06", "year": "2026"}, {"Item": "54", "ViewCount": "14", "Title": "20260206陽交大軍艦岩新北投健行", "href": "https://www.youtube.com/watch?v=tqkjWQhzjnI", "UploadDate": "2026-02-08", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "tqkjWQhzjnI", "Duration": "10:52", "viewsNum": 14, "durSec": 652, "actDate": "2026-02-06", "year": "2026"}, {"Item": "53", "ViewCount": "21", "Title": "（小樂）20260123大坪林台大春天台北城健行", "href": "https://www.youtube.com/watch?v=w5_NkN8vxrA", "UploadDate": "2026-01-25", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "w5_NkN8vxrA", "Duration": "7:47", "viewsNum": 21, "durSec": 467, "actDate": "2026-01-23", "year": "2026"}, {"Item": "52", "ViewCount": "33", "Title": "20260123大坪林台大春天台北城健行", "href": "https://www.youtube.com/watch?v=CUedMKNKCQM", "UploadDate": "2026-01-23", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "CUedMKNKCQM", "Duration": "7:47", "viewsNum": 33, "durSec": 467, "actDate": "2026-01-23", "year": "2026"}, {"Item": "51", "ViewCount": "17", "Title": "20260109內湖白石湖社區健行", "href": "https://www.youtube.com/watch?v=3TtEZ6sh9Hw", "UploadDate": "2026-01-10", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "3TtEZ6sh9Hw", "Duration": "8:06", "viewsNum": 17, "durSec": 486, "actDate": "2026-01-09", "year": "2026"}, {"Item": "50", "ViewCount": "125", "Title": "內湖白石湖健行--青松健行隊", "href": "https://www.youtube.com/watch?v=veBeuH4IeqU", "UploadDate": "2026-01-10", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "veBeuH4IeqU", "Duration": "6:30", "viewsNum": 125, "durSec": 390, "actDate": "2026-01-10", "year": "2026"}, {"Item": "49", "ViewCount": "22", "Title": "20251212內湖劍南蝶園外雙溪健行", "href": "https://www.youtube.com/watch?v=_nRhw54I974", "UploadDate": "2025-12-14", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "_nRhw54I974", "Duration": "6:06", "viewsNum": 22, "durSec": 366, "actDate": "2025-12-12", "year": "2025"}, {"Item": "48", "ViewCount": "75", "Title": "劍南路到外雙溪--青松健行隊 2025.12.12", "href": "https://www.youtube.com/watch?v=Yx-IULIkQXc", "UploadDate": "2025-12-13", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "Yx-IULIkQXc", "Duration": "6:04", "viewsNum": 75, "durSec": 364, "actDate": "2025-12-12", "year": "2025"}, {"Item": "47", "ViewCount": "20", "Title": "20251129士林官邸故宮原民館健行（英雄篇）", "href": "https://www.youtube.com/watch?v=7y7Zbd2zWBE", "UploadDate": "2025-11-29", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "7y7Zbd2zWBE", "Duration": "3:32", "viewsNum": 20, "durSec": 212, "actDate": "2025-11-29", "year": "2025"}, {"Item": "46", "ViewCount": "23", "Title": "20251129士林官邸故宮原民館健行（風景篇）", "href": "https://www.youtube.com/watch?v=PMOLvP7MCm4", "UploadDate": "2025-11-29", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "PMOLvP7MCm4", "Duration": "2:32", "viewsNum": 23, "durSec": 152, "actDate": "2025-11-29", "year": "2025"}, {"Item": "45", "ViewCount": "26", "Title": "20251114松山南港成美河濱公園", "href": "https://www.youtube.com/watch?v=pVlCrrnpnyU", "UploadDate": "2025-11-15", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "pVlCrrnpnyU", "Duration": "7:06", "viewsNum": 26, "durSec": 426, "actDate": "2025-11-14", "year": "2025"}, {"Item": "44", "ViewCount": "9", "Title": "20251102台北市立動物園", "href": "https://www.youtube.com/watch?v=AqtkPMWxOMk", "UploadDate": "2025-11-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "AqtkPMWxOMk", "Duration": "6:17", "viewsNum": 9, "durSec": 377, "actDate": "2025-11-02", "year": "2025"}, {"Item": "43", "ViewCount": "11", "Title": "20251031圓山大佳河濱大直橋美麗華健行", "href": "https://www.youtube.com/watch?v=9BvUwmuLP_Y", "UploadDate": "2025-11-02", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "9BvUwmuLP_Y", "Duration": "7:39", "viewsNum": 11, "durSec": 459, "actDate": "2025-10-31", "year": "2025"}, {"Item": "42", "ViewCount": "22", "Title": "20251002故宮美國大都會博物館名畫展", "href": "https://www.youtube.com/watch?v=i2oH96pm8wc", "UploadDate": "2025-10-02", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "i2oH96pm8wc", "Duration": "5:45", "viewsNum": 22, "durSec": 345, "actDate": "2025-10-02", "year": "2025"}, {"Item": "41", "ViewCount": "19", "Title": "20250926陽明山橫嶺古道湖底步道六窟健行", "href": "https://www.youtube.com/watch?v=J_7-My8TMmc", "UploadDate": "2025-09-28", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "J_7-My8TMmc", "Duration": "6:21", "viewsNum": 19, "durSec": 381, "actDate": "2025-09-26", "year": "2025"}, {"Item": "40", "ViewCount": "14", "Title": "20250912鶯歌新美館陶博館老街健行", "href": "https://www.youtube.com/watch?v=_Yjeea5TWUI", "UploadDate": "2025-09-15", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "_Yjeea5TWUI", "Duration": "12:03", "viewsNum": 14, "durSec": 723, "actDate": "2025-09-12", "year": "2025"}, {"Item": "39", "ViewCount": "267", "Title": "Yingge Ceramics Museum & Old Street, New Taipei City 鶯歌陶瓷博物館.鶯歌老街 -- 青松健行隊(4K.HDR)", "href": "https://www.youtube.com/watch?v=NHkwRfSaJ-4", "UploadDate": "2025-09-13", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "NHkwRfSaJ-4", "Duration": "19:48", "viewsNum": 267, "durSec": 1188, "actDate": "2025-09-13", "year": "2025"}, {"Item": "38", "ViewCount": "11", "Title": "20250829關渡北藝大健行", "href": "https://www.youtube.com/watch?v=ousdVEFnAP4", "UploadDate": "2025-08-31", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "ousdVEFnAP4", "Duration": "5:32", "viewsNum": 11, "durSec": 332, "actDate": "2025-08-29", "year": "2025"}, {"Item": "37", "ViewCount": "27", "Title": "20250815文山森林公園健行", "href": "https://www.youtube.com/watch?v=sq6_UtFJ7kY", "UploadDate": "2025-08-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "sq6_UtFJ7kY", "Duration": "6:03", "viewsNum": 27, "durSec": 363, "actDate": "2025-08-15", "year": "2025"}, {"Item": "36", "ViewCount": "4", "Title": "20250801捷運文德站碧湖健行", "href": "https://www.youtube.com/watch?v=9k9qULWchEQ", "UploadDate": "2025-08-05", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "9k9qULWchEQ", "Duration": "4:34", "viewsNum": 4, "durSec": 274, "actDate": "2025-08-01", "year": "2025"}, {"Item": "35", "ViewCount": "114", "Title": "碧湖公園健行--青松健行隊 2025.08.01 (4K.HDR)", "href": "https://www.youtube.com/watch?v=aGWRgdBlpdg", "UploadDate": "2025-08-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "aGWRgdBlpdg", "Duration": "10:48", "viewsNum": 114, "durSec": 648, "actDate": "2025-08-01", "year": "2025"}, {"Item": "34", "ViewCount": "15", "Title": "20250711大坪林-古亭客家園區", "href": "https://www.youtube.com/watch?v=wANX04_BgD8", "UploadDate": "2025-07-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "wANX04_BgD8", "Duration": "1:48", "viewsNum": 15, "durSec": 108, "actDate": "2025-07-11", "year": "2025"}, {"Item": "33", "ViewCount": "419", "Title": "內湖大溝溪生態公園健行（4K HDR).青松健行隊.2025.06.27", "href": "https://www.youtube.com/watch?v=gOLIxNi5-H0", "UploadDate": "2025-07-03", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "gOLIxNi5-H0", "Duration": "8:09", "viewsNum": 419, "durSec": 489, "actDate": "2025-06-27", "year": "2025"}, {"Item": "32", "ViewCount": "12", "Title": "20250627內湖大溝溪生態公園健行", "href": "https://www.youtube.com/watch?v=w5T8bBWYfUc", "UploadDate": "2025-06-28", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "w5T8bBWYfUc", "Duration": "3:03", "viewsNum": 12, "durSec": 183, "actDate": "2025-06-27", "year": "2025"}, {"Item": "31", "ViewCount": "632", "Title": "內湖大溝溪.青松健行隊.2025.06.27", "href": "https://www.youtube.com/watch?v=tBE18_Wi-Mc", "UploadDate": "2025-06-27", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "tBE18_Wi-Mc", "Duration": "9:11", "viewsNum": 632, "durSec": 551, "actDate": "2025-06-27", "year": "2025"}, {"Item": "30", "ViewCount": "25", "Title": "20250613士林雙溪公園芝山岩健行", "href": "https://www.youtube.com/watch?v=Cn73Wb4exuw", "UploadDate": "2025-06-14", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "Cn73Wb4exuw", "Duration": "8:21", "viewsNum": 25, "durSec": 501, "actDate": "2025-06-13", "year": "2025"}, {"Item": "29", "ViewCount": "11", "Title": "20250516_貓空樟樹步道指南宮", "href": "https://www.youtube.com/watch?v=BEutCPbnMXU", "UploadDate": "2025-05-30", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "BEutCPbnMXU", "Duration": "2:53", "viewsNum": 11, "durSec": 173, "actDate": "2025-05-16", "year": "2025"}, {"Item": "28", "ViewCount": "198", "Title": "貓空纜車.樟樹樟湖步道-青松健行隊2025.05.16", "href": "https://www.youtube.com/watch?v=x6e5IpsRQPc", "UploadDate": "2025-05-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "x6e5IpsRQPc", "Duration": "15:25", "viewsNum": 198, "durSec": 925, "actDate": "2025-05-16", "year": "2025"}, {"Item": "27", "ViewCount": "69", "Title": "20250503_致敬 秀蓮姐", "href": "https://www.youtube.com/watch?v=AL40SmlfD50", "UploadDate": "2025-05-03", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "AL40SmlfD50", "Duration": "2:43", "viewsNum": 69, "durSec": 163, "actDate": "2025-05-03", "year": "2025"}, {"Item": "26", "ViewCount": "30", "Title": "20250502捷運淡水站漁人碼頭半日遊", "href": "https://www.youtube.com/watch?v=cL_yXlZc-MA", "UploadDate": "2025-05-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "cL_yXlZc-MA", "Duration": "7:04", "viewsNum": 30, "durSec": 424, "actDate": "2025-05-02", "year": "2025"}, {"Item": "25", "ViewCount": "111", "Title": "青松健行隊-淡水捷運站健走到漁人碼頭 2025.05.02", "href": "https://www.youtube.com/watch?v=Kcxa1SiPV9k", "UploadDate": "2025-05-03", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "Kcxa1SiPV9k", "Duration": "9:56", "viewsNum": 111, "durSec": 596, "actDate": "2025-05-02", "year": "2025"}, {"Item": "24", "ViewCount": "30", "Title": "20250411松山彩虹橋美堤美麗華健行", "href": "https://www.youtube.com/watch?v=oc1Y9Ta8c3U", "UploadDate": "2025-04-12", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "oc1Y9Ta8c3U", "Duration": "7:49", "viewsNum": 30, "durSec": 469, "actDate": "2025-04-11", "year": "2025"}, {"Item": "23", "ViewCount": "26", "Title": "20250321新店碧潭陽光公園央北小碧潭站", "href": "https://www.youtube.com/watch?v=e9TaN9pljHw", "UploadDate": "2025-03-22", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "e9TaN9pljHw", "Duration": "8:53", "viewsNum": 26, "durSec": 533, "actDate": "2025-03-21", "year": "2025"}, {"Item": "22", "ViewCount": "47", "Title": "20250307台北玫瑰園林安泰大佳河濱之遊", "href": "https://www.youtube.com/watch?v=-EXoI7EQnDc", "UploadDate": "2025-03-08", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "-EXoI7EQnDc", "Duration": "10:12", "viewsNum": 47, "durSec": 612, "actDate": "2025-03-07", "year": "2025"}, {"Item": "21", "ViewCount": "63", "Title": "台北玫瑰園.林安泰古厝.大佳河濱公園- 青松健行隊2025.03.07", "href": "https://www.youtube.com/watch?v=2QC58MbRXbg", "UploadDate": "2025-03-23", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "2QC58MbRXbg", "Duration": "8:46", "viewsNum": 63, "durSec": 526, "actDate": "2025-03-07", "year": "2025"}, {"Item": "20", "ViewCount": "6", "Title": "20250224內湖大溝溪踩線團", "href": "https://www.youtube.com/watch?v=-pn3rjFCiVI", "UploadDate": "2025-03-09", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "-pn3rjFCiVI", "Duration": "1:06", "viewsNum": 6, "durSec": 66, "actDate": "2025-02-24", "year": "2025"}, {"Item": "19", "ViewCount": "10", "Title": "20250207新店河濱公園古亭花海", "href": "https://www.youtube.com/watch?v=X1hn2C8f8Vw", "UploadDate": "2025-03-09", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "X1hn2C8f8Vw", "Duration": "1:50", "viewsNum": 10, "durSec": 110, "actDate": "2025-02-07", "year": "2025"}, {"Item": "18", "ViewCount": "17", "Title": "20250113_陳哥吳哥金曲大全", "href": "https://www.youtube.com/watch?v=kaHiXP9fkZY", "UploadDate": "2025-01-15", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "kaHiXP9fkZY", "Duration": "3:34", "viewsNum": 17, "durSec": 214, "actDate": "2025-01-13", "year": "2025"}, {"Item": "17", "ViewCount": "122", "Title": "20250110蘆洲大都會公園", "href": "https://www.youtube.com/watch?v=pppxNSbUir8", "UploadDate": "2025-01-10", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "pppxNSbUir8", "Duration": "7:07", "viewsNum": 122, "durSec": 427, "actDate": "2025-01-10", "year": "2025"}, {"Item": "16", "ViewCount": "13", "Title": "20250103_竹圍關渡河岸遊2版", "href": "https://www.youtube.com/watch?v=rsapLQRFiaY", "UploadDate": "2025-01-04", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "rsapLQRFiaY", "Duration": "6:46", "viewsNum": 13, "durSec": 406, "actDate": "2025-01-03", "year": "2025"}, {"Item": "15", "ViewCount": "17", "Title": "20250103_竹圍關渡河岸遊_原味錄音", "href": "https://www.youtube.com/watch?v=avkOWCBFx2c", "UploadDate": "2025-01-03", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "avkOWCBFx2c", "Duration": "6:30", "viewsNum": 17, "durSec": 390, "actDate": "2025-01-03", "year": "2025"}, {"Item": "14", "ViewCount": "22", "Title": "20250103_竹圍關渡河岸遊", "href": "https://www.youtube.com/watch?v=JwouBpF64mk", "UploadDate": "2025-01-03", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "JwouBpF64mk", "Duration": "5:26", "viewsNum": 22, "durSec": 326, "actDate": "2025-01-03", "year": "2025"}, {"Item": "13", "ViewCount": "13", "Title": "20241213士林官邸菊展", "href": "https://www.youtube.com/watch?v=8VULHH6sdrk", "UploadDate": "2024-12-20", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "8VULHH6sdrk", "Duration": "2:00", "viewsNum": 13, "durSec": 120, "actDate": "2024-12-13", "year": "2024"}, {"Item": "12", "ViewCount": "66", "Title": "20241213青松士林官邸菊展", "href": "https://www.youtube.com/watch?v=tdAKsTqSYNk", "UploadDate": "2024-12-15", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "tdAKsTqSYNk", "Duration": "2:50", "viewsNum": 66, "durSec": 170, "actDate": "2024-12-13", "year": "2024"}, {"Item": "11", "ViewCount": "42", "Title": "20241129公館寶藏嚴", "href": "https://www.youtube.com/watch?v=Uu0zgU6FOOg", "UploadDate": "2024-12-03", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "Uu0zgU6FOOg", "Duration": "2:49", "viewsNum": 42, "durSec": 169, "actDate": "2024-11-29", "year": "2024"}, {"Item": "10", "ViewCount": "33", "Title": "20241115青松南港公園", "href": "https://www.youtube.com/watch?v=Y81uKHzrLqc", "UploadDate": "2024-12-16", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "Y81uKHzrLqc", "Duration": "4:54", "viewsNum": 33, "durSec": 294, "actDate": "2024-11-15", "year": "2024"}, {"Item": "9", "ViewCount": "41", "Title": "20241011士林官邸遊", "href": "https://www.youtube.com/watch?v=4xwcvKsDdl8", "UploadDate": "2024-12-16", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "4xwcvKsDdl8", "Duration": "1:52", "viewsNum": 41, "durSec": 112, "actDate": "2024-10-11", "year": "2024"}, {"Item": "8", "ViewCount": "30", "Title": "20240927台北植物園", "href": "https://www.youtube.com/watch?v=iMIzPYEwl0A", "UploadDate": "2024-12-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "iMIzPYEwl0A", "Duration": "3:33", "viewsNum": 30, "durSec": 213, "actDate": "2024-09-27", "year": "2024"}, {"Item": "7", "ViewCount": "30", "Title": "20240913景美仙跡岩", "href": "https://www.youtube.com/watch?v=uZnJk-H2tP0", "UploadDate": "2024-12-18", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "uZnJk-H2tP0", "Duration": "6:00", "viewsNum": 30, "durSec": 360, "actDate": "2024-09-13", "year": "2024"}, {"Item": "6", "ViewCount": "526", "Title": "台北市富陽自然生態公園.福州山公園 健行", "href": "https://www.youtube.com/watch?v=C4kAnidgKlc", "UploadDate": "2024-09-01", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "C4kAnidgKlc", "Duration": "10:01", "viewsNum": 526, "durSec": 601, "actDate": "2024-09-01", "year": "2024"}, {"Item": "5", "ViewCount": "248", "Title": "士林官邸花園.雙溪公園健行 — 老佛爺行腳俱樂部 2024.08.16", "href": "https://www.youtube.com/watch?v=uRxYjtdhgd0", "UploadDate": "2024-08-16", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "uRxYjtdhgd0", "Duration": "10:48", "viewsNum": 248, "durSec": 648, "actDate": "2024-08-16", "year": "2024"}, {"Item": "4", "ViewCount": "214", "Title": "新北投 健行  -  青松健行隊 2024.08.02", "href": "https://www.youtube.com/watch?v=6yLR364TR2c", "UploadDate": "2024-08-02", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "6yLR364TR2c", "Duration": "9:20", "viewsNum": 214, "durSec": 560, "actDate": "2024-08-02", "year": "2024"}, {"Item": "3", "ViewCount": "12", "Title": "20240712新店和美山步道健行", "href": "https://www.youtube.com/watch?v=-ONNyN5c9So", "UploadDate": "2025-09-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "-ONNyN5c9So", "Duration": "2:48", "viewsNum": 12, "durSec": 168, "actDate": "2024-07-12", "year": "2024"}, {"Item": "2", "ViewCount": "47", "Title": "20240628大安森林公園-青松健行隊", "href": "https://www.youtube.com/watch?v=ZzFZuwPqlRk", "UploadDate": "2025-05-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "ZzFZuwPqlRk", "Duration": "1:07", "viewsNum": 47, "durSec": 67, "actDate": "2024-06-28", "year": "2024"}, {"Item": "1", "ViewCount": "21", "Title": "20240419竹圍到淡水 - 青松健行隊", "href": "https://www.youtube.com/watch?v=Hd1Gk7A8leQ", "UploadDate": "2025-05-17", "MembersOnly": "", "ListName": "青松YT聯結", "Cat": "播放清單精選", "vid": "Hd1Gk7A8leQ", "Duration": "0:40", "viewsNum": 21, "durSec": 40, "actDate": "2024-04-19", "year": "2024"}];
+    const YEARS = [["2026", 30], ["2025", 36], ["2024", 13]];
+
+    let activeYear = 'ALL';
+    let searchQuery = '';
+    let currentSort = 'date-desc';
+    let currentView = 'grid';
+    let currentPlayingHref = '';
+
+    const gridEl = document.getElementById('videoGrid');
+    const tbodyEl = document.getElementById('videoTbody');
+    const tableWrapEl = document.getElementById('tableWrap');
+    const emptyStateEl = document.getElementById('emptyState');
+    const statusEl = document.getElementById('reorder-status');
+    const statCountEl = document.getElementById('statVisibleCount');
+    const statViewsEl = document.getElementById('statVisibleViews');
+    const statDurEl = document.getElementById('statVisibleDur');
+
+    const cardMap = new Map();
+    const rowMap = new Map();
+
+    function reorder(container, orderedNodes) {
+      const move = Object.hasOwn(Element.prototype, 'moveBefore')
+        ? (node) => container.moveBefore(node, null)
+        : (node) => container.append(node);
+      for (const node of orderedNodes) move(node);
+    }
+
+    function initChips() {
+      const bar = document.getElementById('yearChips');
+      const allBtn = document.createElement('button');
+      allBtn.type = 'button';
+      allBtn.className = 'chip';
+      allBtn.dataset.yr = 'ALL';
+      allBtn.setAttribute('aria-pressed', 'true');
+      allBtn.innerHTML = `🥾 全部健行影片 <span class="chip-count">${VIDEOS.length}</span>`;
+      allBtn.addEventListener('click', () => selectYear('ALL'));
+      bar.appendChild(allBtn);
+
+      for (const [yr, count] of YEARS) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'chip';
+        btn.dataset.yr = yr;
+        btn.setAttribute('aria-pressed', 'false');
+        btn.innerHTML = `📅 ${yr} 年 <span class="chip-count">${count}</span>`;
+        btn.addEventListener('click', () => selectYear(yr));
+        bar.appendChild(btn);
+      }
+    }
+
+    function selectYear(yr) {
+      activeYear = yr;
+      for (const btn of document.querySelectorAll('#yearChips .chip')) {
+        btn.setAttribute('aria-pressed', btn.dataset.yr === yr ? 'true' : 'false');
+      }
+      applyFilterAndSort(false);
+    }
+
+    function initDOMItems() {
+      const gridFrag = document.createDocumentFragment();
+      const tbodyFrag = document.createDocumentFragment();
+
+      for (const v of VIDEOS) {
+        const card = document.createElement('article');
+        card.className = 'video-card';
+        card.dataset.href = v.href;
+        const thumbUrl = `https://i.ytimg.com/vi/${v.vid}/hqdefault.jpg`;
+        const durBadge = v.Duration ? `<span class="duration-badge">⏱ ${v.Duration}</span>` : '';
+
+        card.innerHTML = `
+          <div class="thumb-wrap" data-play="${v.vid}">
+            <img src="${thumbUrl}" alt="${v.Title.replace(/"/g, '&quot;')}" loading="lazy" decoding="async" />
+            <span class="rank-badge">#${v.Item}</span>
+            ${durBadge}
+            <span class="views-badge">👁️ ${v.ViewCount}</span>
+            <div class="play-overlay"><div class="play-icon">▶</div></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title" data-play="${v.vid}">${v.Title}</h3>
+            <div class="card-meta">
+              <span class="yr-tag" title="點擊篩選 ${v.year} 年" data-filter-yr="${v.year}">🥾 青松健行・${v.year}</span>
+              <span>${v.UploadDate || ''}</span>
+            </div>
+          </div>
+        `;
+        card.querySelectorAll('[data-play]').forEach(el => {
+          el.addEventListener('click', () => openPlayer(v));
+        });
+        card.querySelector('[data-filter-yr]').addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectYear(e.currentTarget.dataset.filterYr);
+        });
+        cardMap.set(v.href, card);
+        gridFrag.appendChild(card);
+
+        const tr = document.createElement('tr');
+        tr.dataset.href = v.href;
+        tr.innerHTML = `
+          <td class="td-rank">#${v.Item}</td>
+          <td class="td-views">${v.ViewCount}</td>
+          <td class="td-dur">⏱ ${v.Duration || '--:--'}</td>
+          <td>
+            <a href="${v.href}" class="row-play-link" style="font-weight:600;color:var(--text);">${v.Title}</a>
+          </td>
+          <td><span class="yr-tag" data-filter-yr="${v.year}">${v.year} 年</span></td>
+          <td class="td-date">${v.UploadDate || ''}</td>
+          <td>
+            <button type="button" class="btn" style="padding:4px 10px;font-size:0.78rem;">▶ 播放</button>
+          </td>
+        `;
+        tr.querySelector('.row-play-link').addEventListener('click', (e) => {
+          e.preventDefault();
+          openPlayer(v);
+        });
+        tr.querySelector('button').addEventListener('click', () => openPlayer(v));
+        tr.querySelector('[data-filter-yr]').addEventListener('click', (e) => {
+          selectYear(e.currentTarget.dataset.filterYr);
+        });
+        rowMap.set(v.href, tr);
+        tbodyFrag.appendChild(tr);
+      }
+
+      gridEl.appendChild(gridFrag);
+      tbodyEl.appendChild(tbodyFrag);
+    }
+
+    function getFilteredAndSorted() {
+      const q = searchQuery.trim().toLowerCase();
+      const filtered = VIDEOS.filter(v => {
+        if (activeYear !== 'ALL' && v.year !== activeYear) return false;
+        if (q) {
+          const hay = `${v.Title} ${v.UploadDate} ${v.Duration} ${v.year}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const sorted = [...filtered].sort((a, b) => {
+        if (currentSort === 'date-desc') return (Number(b.Item) - Number(a.Item)) || (b.UploadDate || '').localeCompare(a.UploadDate || '');
+        if (currentSort === 'date-asc') return (Number(a.Item) - Number(b.Item)) || (a.UploadDate || '').localeCompare(b.UploadDate || '');
+        if (currentSort === 'views-desc') return (b.viewsNum - a.viewsNum) || (Number(b.Item) - Number(a.Item));
+        if (currentSort === 'views-asc') return (a.viewsNum - b.viewsNum) || (Number(b.Item) - Number(a.Item));
+        if (currentSort === 'dur-desc') return (b.durSec - a.durSec) || (b.viewsNum - a.viewsNum);
+        if (currentSort === 'dur-asc') return (a.durSec - b.durSec) || (b.viewsNum - a.viewsNum);
+        if (currentSort === 'title-asc') return a.Title.localeCompare(b.Title, 'zh-Hant');
+        return 0;
+      });
+
+      return { filtered, sorted };
+    }
+
+    function applyFilterAndSort(announceSort = false) {
+      const { sorted } = getFilteredAndSorted();
+      const visibleSet = new Set(sorted.map(v => v.href));
+
+      let sumViews = 0;
+      let sumSec = 0;
+      for (const v of sorted) {
+        sumViews += v.viewsNum;
+        sumSec += v.durSec;
+      }
+
+      for (const v of VIDEOS) {
+        const isVis = visibleSet.has(v.href);
+        cardMap.get(v.href).classList.toggle('is-hidden', !isVis);
+        rowMap.get(v.href).classList.toggle('is-hidden', !isVis);
+      }
+
+      const orderedCards = sorted.map(v => cardMap.get(v.href));
+      const orderedRows = sorted.map(v => rowMap.get(v.href));
+      reorder(gridEl, orderedCards);
+      reorder(tbodyEl, orderedRows);
+
+      statCountEl.textContent = `${sorted.length} / ${VIDEOS.length}`;
+      statViewsEl.textContent = sumViews.toLocaleString();
+      const hrs = Math.floor(sumSec / 3600);
+      const mins = Math.floor((sumSec % 3600) / 60);
+      statDurEl.textContent = hrs > 0 ? `${hrs}小時 ${mins}分` : `${mins}分鐘`;
+      emptyStateEl.style.display = sorted.length === 0 ? 'block' : 'none';
+
+      if (announceSort) {
+        const sortLabel = document.getElementById('sortSelect').selectedOptions[0].textContent;
+        statusEl.textContent = `已依 ${sortLabel} 排序，共顯示 ${sorted.length} 部健行影片`;
+      }
+    }
+
+    const dialog = document.getElementById('playerDialog');
+    const ytIframe = document.getElementById('ytIframe');
+
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      dialog.addEventListener('click', (event) => {
+        if (event.target !== dialog) return;
+        const rect = dialog.getBoundingClientRect();
+        const isDialogContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+        if (isDialogContent) return;
+        dialog.close();
+      });
+    }
+
+    dialog.addEventListener('close', () => {
+      ytIframe.src = '';
+    });
+
+    const DEFAULT_VOLUME = 15;
+    function setYtVolume15() {
+      if (!ytIframe || !ytIframe.contentWindow) return;
+      const msg = JSON.stringify({ event: 'command', func: 'setVolume', args: [DEFAULT_VOLUME] });
+      ytIframe.contentWindow.postMessage(msg, '*');
+    }
+    ytIframe.addEventListener('load', () => {
+      ytIframe.contentWindow?.postMessage(JSON.stringify({ event: 'listening', id: 'ytIframe' }), '*');
+      for (const delay of [100, 300, 700, 1200, 2000]) {
+        setTimeout(setYtVolume15, delay);
+      }
+    });
+    window.addEventListener('message', (e) => {
+      if (typeof e.data === 'string' && (e.data.includes('onReady') || e.data.includes('infoDelivery'))) {
+        setYtVolume15();
+      }
+    });
+
+    function openPlayer(v) {
+      currentPlayingHref = v.href;
+      document.getElementById('dialogVideoTitle').textContent = `#${v.Item} ${v.Title}`;
+      document.getElementById('dialogMetaInfo').textContent = `⏱ 長度：${v.Duration || '--:--'} ｜ 👁️ 觀看次數：${v.ViewCount} ｜ 🔉 預設音量：15% ｜ 📅 發布：${v.UploadDate}`;
+      document.getElementById('dialogYtLink').href = v.href;
+      ytIframe.src = `https://www.youtube.com/embed/${v.vid}?autoplay=1&rel=0&enablejsapi=1`;
+      if (!dialog.open) dialog.showModal();
+    }
+
+    document.getElementById('prevVidBtn').addEventListener('click', () => {
+      const { sorted } = getFilteredAndSorted();
+      const idx = sorted.findIndex(v => v.href === currentPlayingHref);
+      if (idx > 0) openPlayer(sorted[idx - 1]);
+    });
+    document.getElementById('nextVidBtn').addEventListener('click', () => {
+      const { sorted } = getFilteredAndSorted();
+      const idx = sorted.findIndex(v => v.href === currentPlayingHref);
+      if (idx >= 0 && idx < sorted.length - 1) openPlayer(sorted[idx + 1]);
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      clearBtn.style.display = searchQuery ? 'block' : 'none';
+      applyFilterAndSort(false);
+    });
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearBtn.style.display = 'none';
+      applyFilterAndSort(false);
+      searchInput.focus();
+    });
+
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      currentSort = e.target.value;
+      applyFilterAndSort(true);
+    });
+
+    const gridViewBtn = document.getElementById('gridViewBtn');
+    const tableViewBtn = document.getElementById('tableViewBtn');
+    gridViewBtn.addEventListener('click', () => {
+      currentView = 'grid';
+      gridViewBtn.setAttribute('aria-pressed', 'true');
+      tableViewBtn.setAttribute('aria-pressed', 'false');
+      gridEl.style.display = 'grid';
+      tableWrapEl.style.display = 'none';
+    });
+    tableViewBtn.addEventListener('click', () => {
+      currentView = 'table';
+      tableViewBtn.setAttribute('aria-pressed', 'true');
+      gridViewBtn.setAttribute('aria-pressed', 'false');
+      gridEl.style.display = 'none';
+      tableWrapEl.style.display = 'block';
+    });
+
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      const { sorted } = getFilteredAndSorted();
+      const headers = ['Item', 'ViewCount', 'Duration', 'Title', 'href', 'UploadDate'];
+      const rows = [headers.join(',')];
+      for (const v of sorted) {
+        const row = headers.map(h => `"${String(v[h] ?? '').replace(/"/g, '""')}"`);
+        rows.push(row.join(','));
+      }
+      const blob = new Blob(['\uFEFF' + rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `青松健行隊_YouTube影片清單_${sorted.length}筆.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    initChips();
+    initDOMItems();
+  </script>
+</body>
+</html>
