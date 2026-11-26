@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎹 鋼琴自學・和弦伴奏與敬拜司琴旗艦總入口 (All-in-One Piano Hub)</title>
+<style>
+  :root {
+    --bg: #0b0f19;
+    --surface: #151c2c;
+    --surface-hover: #1e293b;
+    --border: #2a364f;
+    --gold: #f59e0b;
+    --gold-light: #fde68a;
+    --purple: #8b5cf6;
+    --cyan: #38bdf8;
+    --green: #10b981;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1340px; margin: 0 auto; padding: 28px 24px 60px; }
+  .hero {
+    background: linear-gradient(135deg, #1e1b4b 0%, #31104b 50%, #0f172a 100%);
+    border: 1px solid #4c1d95;
+    border-radius: 20px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .hero h1 {
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #fff, #fde68a, #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p { margin: 0; color: #cbd5e1; font-size: 1rem; max-width: 880px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .btn-gold { background: var(--gold); color: #0f172a; }
+  .btn-gold:hover { background: #fbbf24; transform: translateY(-1px); }
+  .btn-purple { background: #7c3aed; color: #fff; }
+  .btn-purple:hover { background: #6d28d9; transform: translateY(-1px); }
+  .btn-outline { background: rgba(255,255,255,0.06); color: #e2e8f0; border-color: var(--border); }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: var(--cyan); }
+
+  /* Interactive Mini Piano Chord Bar */
+  .piano-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 30px;
+  }
+  .piano-header {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
+    margin-bottom: 14px;
+  }
+  .piano-title { font-size: 1.1rem; font-weight: 700; color: var(--gold-light); display: flex; align-items: center; gap: 8px; }
+  .vol-badge { font-size: 0.8rem; background: rgba(16,185,129,0.15); color: #6ee7b7; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(16,185,129,0.3); }
+  .chord-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chord-btn {
+    background: #1e293b; border: 1px solid #334155; color: #f8fafc;
+    padding: 10px 16px; border-radius: 10px; cursor: pointer;
+    font-size: 0.92rem; font-weight: 600; transition: all 0.15s;
+    display: flex; flex-direction: column; align-items: center; min-width: 110px;
+  }
+  .chord-btn:hover, .chord-btn.playing {
+    background: #312e81; border-color: var(--purple); transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139,92,246,0.3);
+  }
+  .chord-btn span.sub { font-size: 0.75rem; color: var(--muted); font-weight: 400; margin-top: 3px; }
+
+  .section-title {
+    font-size: 1.35rem; font-weight: 700; margin: 32px 0 16px;
+    display: flex; align-items: center; gap: 10px; color: #fff;
+    border-bottom: 1px solid var(--border); padding-bottom: 10px;
+  }
+  .section-title span.count {
+    font-size: 0.82rem; background: rgba(56,189,248,0.15); color: var(--cyan);
+    padding: 3px 10px; border-radius: 999px; font-weight: 600;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 18px;
+  }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.18s;
+  }
+  .card:hover {
+    background: var(--surface-hover);
+    border-color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+  }
+  .card-top { margin-bottom: 14px; }
+  .card-badges { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.78rem; }
+  .tag { padding: 3px 9px; border-radius: 6px; font-weight: 600; }
+  .tag-web { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  .tag-obs { background: rgba(139,92,246,0.22); color: #c4b5fd; }
+  .tag-worship { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+  .date { color: var(--muted); }
+  .card h3 { margin: 0 0 8px 0; font-size: 1.1rem; color: #fff; line-height: 1.4; }
+  .card p { margin: 0; font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+  .card-links { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  /* Quick Reference Cheatsheet Table */
+  .cheatsheet {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin-top: 32px;
+  }
+  .cheatsheet h3 { margin-top: 0; color: var(--gold-light); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 10px; }
+  th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  th { background: rgba(0,0,0,0.25); color: var(--cyan); }
+  code { background: rgba(0,0,0,0.4); color: var(--gold-light); padding: 2px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🎹 鋼琴自學・和弦伴奏與敬拜司琴旗艦總入口</h1>
+    <p>整合你所有的互動鋼琴練習網頁 (fun.jktai123.com)、Obsidian 第二大腦知識庫與 Notion 司琴筆記。一頁掌握「去延遲滿足 10 倍速學琴法」、「12 大調順階和弦」、「4536251 萬能進行」與「教會敬拜司琴譜庫」。</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#sec-web">🌐 7 大互動鋼琴網頁工具</a>
+      <a class="btn btn-purple" href="#sec-notes">💎 11 篇 Obsidian / Notion 鋼琴核心筆記</a>
+      <a class="btn btn-outline" href="#sec-cheatsheet">⚡ C大調順階和弦 & 4536251 速查表</a>
+      <a class="btn btn-outline" href="obsidian://open?vault=secondbrain&file=%E7%9F%A5%E8%AD%98%E5%BA%AB%2F%E9%8B%BC%E7%90%B4%E8%87%AA%E5%AD%B8%E8%88%87%E6%95%AC%E6%8B%9C%E5%8F%B8%E7%90%B4%E7%B8%BD%E5%85%A5%E5%8F%A3">🧠 在 Obsidian 開啟總入口筆記</a>
+    </div>
+  </header>
+
+  <!-- Web Audio 15% Volume Chord Previewer -->
+  <div class="piano-box">
+    <div class="piano-header">
+      <div class="piano-title">🔊 C 大調順階七和弦 & 4536251 即時聽音辨位器（點擊試聽和弦色彩）</div>
+      <span class="vol-badge">🔉 預設舒適音量：15% (Gain 0.15)</span>
+    </div>
+    <div class="chord-buttons">
+      <button class="chord-btn" onclick="playChord([261.63, 329.63, 392.00], this)">
+        <span>Ⅰ 級：C</span><span class="sub">1 - 3 - 5 (Do Mi Sol)</span>
+      </button>
+      <button class="chord-btn" onclick="playChord([293.66, 349.23, 440.00], this)">
+        <span>Ⅱm 級：Dm</span><span class="sub">2 - 4 - 6 (Re Fa La)</span>
+      </button>
+      <button class="chord-btn" onclick="playChord([329.63, 392.00, 493.88], this)">
+        <span>Ⅲm 級：Em</span><span class="sub">3 - 5 - 7 (Mi Sol Si)</span>
+      </button>
+      <button class="chord-btn" onclick="playChord([349.23, 440.00, 523.25], this)">
+        <span>Ⅳ 級：F</span><span class="sub">4 - 6 - 1' (Fa La Do)</span>
+      </button>
+      <button class="chord-btn" onclick="playChord([392.00, 493.88, 587.33], this)">
+        <span>Ⅴ 級：G</span><span class="sub">5 - 7 - 2' (Sol Si Re)</span>
+      </button>
+      <button class="chord-btn" onclick="playChord([440.00, 523.25, 659.25], this)">
+        <span>Ⅵm 級：Am</span><span class="sub">6 - 1' - 3' (La Do Mi)</span>
+      </button>
+      <button class="chord-btn" onclick="playProgression(this)" style="border-color:var(--gold);background:#272015;">
+        <span style="color:var(--gold-light);">▶ 播放 4536251 進行</span><span class="sub">F → G → Em → Am → Dm → G → C</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Section 1: Interactive Web Apps -->
+  <h2 class="section-title" id="sec-web">🌐 一、互動式鋼琴教學網頁、電子書與琴譜庫 <span class="count">共 8 套線上系統</span></h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-web">🎹 和弦百科</span><span class="date">2026-11-24</span></div>
+        <h3>鋼琴和弦全攻略：命名規則・12大調順階總表・流行黃金進行與伴奏手冊</h3>
+        <p>完整收錄三和弦/七和弦推導公式、12 大調順階級數對照表、萬能和弦進行（1645 / 4536251 / 卡農進行）與雙手伴奏織體。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/piano_chord_master_guide.html" target="_blank">🌐 開啟線上網頁</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-web">🎼 五線譜＋原聲</span><span class="date">2026-11-24</span></div>
+        <h3>鋼琴常用十組和弦：五線譜與指法對照表｜Eunyu 美麗和弦進行影音教學</h3>
+        <p>精選 Eunyu 最優美的 10 組流行與敬拜和弦進行，附雙手五線譜、指法標註與原聲示範播放。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/eunyu_piano_chords_guide.html" target="_blank">🌐 開啟線上網頁</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-web">🎬 頻道檢索器</span><span class="date">2026-11-23</span></div>
+        <h3>小暉鋼琴｜全頻道 19 個播放清單互動檢索器（依觀看數排序・含影片長度）</h3>
+        <p>一鍵檢索小暉鋼琴全頻道 19 個主題播放清單，自動去重並依熱門觀看數排序，快速找到即興伴奏與指法教學影片。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/xiaohui_piano_playlists.html" target="_blank">🌐 開啟線上檢索器</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-web">📖 33頁完整電子書</span><span class="date">2026-11-23</span></div>
+        <h3>Phoebe Piano｜《成年人鋼琴必勝秘籍》33頁完整電子書（離線典藏版）</h3>
+        <p>專為成年人設計的鋼琴學習必勝秘籍 33 頁圖文完整典藏版，支援離線翻閱與重點章節導覽。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/phoebe_piano_ebook.html" target="_blank">🌐 開啟電子書</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-worship">⛪ 敬拜名曲琴譜</span><span class="date">2026-11-23</span></div>
+        <h3>🎼 如鹿切慕溪水 (As the Deer) 完整鋼琴演奏琴譜與指法精解｜A大調雙手對照</h3>
+        <p>經典敬拜詩歌《如鹿切慕溪水》A 大調雙手完整演奏譜、段落指法詳解與原聲串流示範。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/as_the_deer_piano_sheet.html" target="_blank">🌐 開啟演奏琴譜</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-worship">⛪ 敬拜司琴練習庫</span><span class="date">2026-11-21</span></div>
+        <h3>新手萬用司琴法 2：三首熱門詩歌 C 大調互動教學練習庫｜韋燁老師 CWY</h3>
+        <p>韋燁老師 CWY 敬拜學院《新手萬用司琴法 2》互動練習網頁，將三首熱門敬拜詩歌統一轉為 C 大調級數與拍點分解練習。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/2026-11-21_新手萬用司琴法2_互動教學練習庫.html" target="_blank">🌐 開啟互動練習庫</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-web">👨‍👩‍👧 親子簡譜百科</span><span class="date">2026-11-09</span></div>
+        <h3>🎹 親子鋼琴簡譜大百科（10 首完整原曲不刪減版：瑪利歐 / BINGO / 頑皮豹等）</h3>
+        <p>10 首大人小孩最愛的經典名曲（超級瑪利歐、頑皮豹、BINGO 等）完整原曲簡譜與雙手彈奏指引。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/親子鋼琴簡譜_瑪利歐_BINGO_頑皮豹.html" target="_blank">🌐 開啟簡譜大百科</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-worship">🎵 聖歌隊首調簡譜</span><span class="date">2026-11-04</span></div>
+        <h3>《往伯利恆之路》全曲 1~8 首 SATB 四部首調簡譜總目錄</h3>
+        <p>南門教會聖歌隊聖誕清唱劇《往伯利恆之路》1~8 首 Soprano / Alto / Tenor / Bass 分部首調簡譜與練唱總入口。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-gold" href="https://fun.jktai123.com/antigravity/0_往伯利恆之路_首調簡譜總目錄.html" target="_blank">🌐 開啟簡譜總目錄</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Obsidian & Notion Notes -->
+  <h2 class="section-title" id="sec-notes">💎 二、Obsidian 第二大腦 & Notion 鋼琴與司琴核心筆記 <span class="count">共 11 篇深度筆記（雙端已同步）</span></h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">🧠 Obsidian 知識庫總綱</span><span class="date">2026-09-25</span></div>
+        <h3>成人流行鋼琴即興伴奏與和弦模組化實戰指南</h3>
+        <p>整合冬冬應用鋼琴、小曄鋼琴與好和弦 NiceChord：破除延遲滿足、C大調七級和弦功能矩陣、4536251 進行與延音踏板清潔切換心法。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=%E7%9F%A5%E8%AD%98%E5%BA%AB%2F%E6%88%90%E4%BA%BA%E6%B5%81%E8%A1%8C%E9%8B%BC%E7%90%B4%E5%8D%B3%E8%88%88%E4%BC%B4%E5%A5%8F%E8%88%87%E5%92%8C%E5%BC%A6%E6%A8%A1%E7%B5%84%E5%8C%96%E5%AF%A6%E6%88%B0%E6%8C%87%E5%8D%97">💎 在 Obsidian 開啟</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">✍️ Obsidian 創作庫</span><span class="date">2026-09-02</span></div>
+        <h3>《一週就能學會鋼琴（純乾貨）少走90%彎路！》深度教學解析（小曄鋼琴）</h3>
+        <p>44 分鐘純乾貨拆解：三和弦快速推導（大三度+小三度）、4536251 萬能骨架、左手 4 大萬能伴奏手型（柱狀 / 1-5-8 / 1-5-8-9 / 切分）。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=%E5%89%B5%E4%BD%9C%E5%BA%AB%2F%E4%B8%80%E9%80%B1%E5%AD%B8%E6%9C%83%E9%8B%BC%E7%90%B4_%E7%B4%94%E4%B9%BE%E8%B2%A8%E6%95%99%E5%AD%B8%E8%A7%A3%E6%9E%90">💎 在 Obsidian 開啟</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-worship">⛪ Notion + Obsidian</span><span class="date">2026-11-21</span></div>
+        <h3>新手萬用司琴法 2：解鎖全新 3 首熱門詩歌｜韋燁老師 (CWY 敬拜學院)</h3>
+        <p>4.1 萬字超詳盡直播逐字稿與司琴伴奏拆解，詳列三首熱門詩歌的和弦級數轉換、拍點切分與敬拜司琴過門技巧。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-11-21%20%E6%96%B0%E6%89%8B%E8%90%AC%E7%94%A8%E5%8F%B8%E7%90%B4%E6%B3%95%202_%E8%A7%A3%E9%8E%96%E5%85%A8%E6%96%B0%203%20%E9%A6%96%E7%86%B1%E9%96%80%E8%A9%A9%E6%AD%8C_%E9%9F%8B%E7%87%81%E8%80%81%E5%B8%AB%20(CWY%20%E6%95%AC%E6%8B%9C%E5%AD%B8%E9%99%A2)">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/2-3-CWY-41f5e6741c4d81608927cf0fbbfd1db4" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://www.youtube.com/live/7IcnRwpXxGI?si=rpHlkTY9sngXNvqJ" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Notion + Obsidian</span><span class="date">2026-09-03</span></div>
+        <h3>【piano即興伴奏鋼琴教程】全流程保姆級教學，10分鐘入門</h3>
+        <p>零基礎小白直接上手的即興伴奏與和弦編配全流程教程，含完整語音逐字稿與練習步驟。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-09-03%20piano%E5%8D%B3%E8%88%88%E4%BC%B4%E5%A5%8F%E9%8B%BC%E7%90%B4%E6%95%99%E7%A8%8B%20%E5%85%A8%E6%B5%81%E7%A8%8B%E4%BF%9D%E5%A7%86%E7%B4%9A%E6%95%99%E5%AD%B8%2010%E5%88%86%E9%90%98%E5%85%A5%E9%96%80">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/piano-3d05e6741c4d81418841c97e0181a579" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://youtu.be/HND6ORciC1g" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Obsidian Clippings</span><span class="date">2026-09-02</span></div>
+        <h3>這樣學，快10倍！學鋼琴不是延遲滿足，而是你走錯了路（冬冬應用鋼琴）</h3>
+        <p>剖析成人學琴常見誤區，以「和弦底層邏輯、雙手模組化伴奏、聽力與樂理融合」讓練琴效率提升 10 倍。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-09-02%20%E9%80%99%E6%A8%A3%E5%AD%B8%E5%BF%AB10%E5%80%8D%20%E5%AD%B8%E9%8B%BC%E7%90%B4%E4%B8%8D%E6%98%AF%E5%BB%B6%E9%81%B2%E6%BA%BF%E8%B6%B3%20%E8%80%8C%E6%98%AF%E4%BD%A0%E8%B5%B0%E9%8C%AF%E4%BA%86%E8%B7%AF">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://youtu.be/9K9CZlJNzek" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Notion + Obsidian</span><span class="date">2026-08-23</span></div>
+        <h3>別再死記和弦！學會這個方法，流行鋼琴和弦真的可以隨便彈！</h3>
+        <p>1.2 萬字深度筆記，解析如何擺脫死背和弦指型，掌握順階和弦推導與轉位連接技巧。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-08-23%20%E5%88%A5%E5%86%8D%E6%AD%BB%E8%A8%98%E5%92%8C%E5%BC%A6%EF%BC%81%E5%AD%B8%E6%9C%83%E9%80%99%E5%80%8B%E6%96%B9%E6%B3%95%EF%BC%8C%E6%B5%81%E8%A1%8C%E9%8B%BC%E7%90%B4%E5%92%8C%E5%BC%A6%E7%9C%9F%E7%9A%84%E5%8F%AF%E4%BB%A5%E9%9A%A8%E4%BE%BF%E5%BD%88%EF%BC%81">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/3c55e6741c4d8114be4cd0938cd28e8d" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://youtu.be/98OmWF2yOws" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Notion + Obsidian</span><span class="date">2026-08-20</span></div>
+        <h3>鋼琴老師從不告訴你的秘密：和弦原理——自由彈奏的基石</h3>
+        <p>1.6 萬字完整解析和弦構成底層邏輯，徹底搞懂大三、小三、七和弦與掛留和弦 (sus2/sus4) 的音響色彩。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-08-20%20%E9%8B%BC%E7%90%B4%E8%80%81%E5%B8%AB%E5%BE%9E%E4%B8%8D%E5%91%8A%E8%A8%B4%E4%BD%A0%E7%9A%84%E7%A7%98%E5%AF%86_%E5%92%8C%E5%BC%A6%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94%E8%87%AA%E7%94%B1%E5%BD%88%E5%A5%8F%E7%9A%84%E5%9F%BA%E7%9F%B3">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/3bd5e6741c4d81ea900ad72d32fb11e0" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://youtu.be/8z6-aK4opMk" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Notion + Obsidian</span><span class="date">2026-08-15</span></div>
+        <h3>你不是沒天賦，是方法錯了！成人鋼琴雙手配合最快的方法</h3>
+        <p>針對成人學琴最卡關的「左右手不協調」問題，提供模組化對位與節奏拆解練習法。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-08-15%20%E4%BD%A0%E4%B8%8D%E6%98%AF%E6%B2%92%E5%A4%A9%E8%B3%A6%EF%BC%8C%E6%98%AF%E6%96%B9%E6%B3%95%E9%8C%AF%E4%BA%86%EF%BC%81%E6%88%90%E4%BA%BA%E9%8B%BC%E7%90%B4%E9%9B%99%E6%89%8B%E9%85%8D%E5%90%88%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88%E6%B2%92%E4%BA%BA%E5%91%8A%E8%A8%B4%E4%BD%A0%E7%9A%84%E7%9C%9F%E7%9B%B8%EF%BC%89">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/3bd5e6741c4d8105a2e4c35883e25435" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://youtu.be/04D8iHQaulo" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Notion + Obsidian</span><span class="date">2026-08-14</span></div>
+        <h3>學會這 7 個萬能和弦，家人都驚訝你鋼琴突然變厲害了！</h3>
+        <p>快速掌握 C 大調 7 個順階萬能和弦與伴奏套路，輕鬆彈奏流行歌曲。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-08-14%20%E5%AD%B8%E6%9C%83%E9%80%99%207%20%E5%80%8B%E8%90%AC%E8%83%BD%E5%92%8C%E5%BC%A6%EF%BC%8C%E5%AE%B6%E4%BA%BA%E9%83%BD%E9%A9%9A%E8%A8%9D%E4%BD%A0%E9%8B%BC%E7%90%B4%E7%AA%81%E7%84%B6%E8%AE%8A%E5%8E%B2%E5%AE%B3%E4%BA%86%EF%BC%81">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/7-3bc5e6741c4d8195b636e516903dccd1" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://www.youtube.com/watch?v=bAQ19VpjpuY" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-worship">⛪ Notion + Obsidian</span><span class="date">2026-08-13</span></div>
+        <h3>搞懂級數觀念的高效練習法：CWI敬拜學院流行鋼琴即興伴奏深度教學</h3>
+        <p>敬拜司琴必備的「級數思維（Roman Numerals）」，讓你遇到任何移調都能一秒反映出正確和弦。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-08-13%20%E6%90%9E%E6%87%82%E7%B4%9A%E6%95%B8%E8%A7%80%E5%BF%B5%E7%9A%84%E9%AB%98%E6%95%88%E7%B7%B4%E7%BF%92%E6%B3%95_CWI%E6%95%AC%E6%8B%9C%E5%AD%B8%E9%99%A2%E6%B5%81%E8%A1%8C%E9%8B%BC%E7%90%B4%E5%8D%B3%E8%88%88%E4%BC%B4%E5%A5%8F%E6%B7%B1%E5%BA%A6%E6%95%99%E5%AD%B8">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/CWI-3bb5e6741c4d81e3be7bf69c0b6894ee" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://youtu.be/sICMItLD0ug" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-badges"><span class="tag tag-obs">📚 Notion + Obsidian</span><span class="date">2026-08-13</span></div>
+        <h3>譜上只有旋律，要彈什麼和弦？怎樣配和弦正確又好聽？</h3>
+        <p>單旋律簡譜配和弦的黃金法則：看小節強拍旋律音、判斷調性功能組（主功能 136 / 下屬 24 / 屬功能 57）。</p>
+      </div>
+      <div class="card-links">
+        <a class="btn btn-purple" href="obsidian://open?vault=secondbrain&file=Clippings%2F2026-08-13%20%E8%AD%9C%E4%B8%8A%E5%8F%AA%E6%9C%89%E6%97%8B%E5%BE%8B%EF%BC%8C%E8%A6%81%E5%BD%88%E4%BB%80%E9%BA%BC%E5%92%8C%E5%BC%A6%EF%BC%9F%E6%80%8E%E6%A8%A3%E9%85%8D%E5%92%8C%E5%BC%A6%E6%AD%A3%E7%A2%BA%E5%8F%88%E5%A5%BD%E8%81%BD%EF%BC%9F">💎 Obsidian</a>
+        <a class="btn btn-outline" href="https://app.notion.com/p/2-0-3bb5e6741c4d81fabd09d889cd732863" target="_blank">📓 Notion</a>
+        <a class="btn btn-outline" href="https://youtu.be/0tRl3Uz9m2c" target="_blank">🎬 YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Quick Reference Cheatsheet -->
+  <div class="cheatsheet" id="sec-cheatsheet">
+    <h3>⚡ 三、練琴桌邊速查表：4 大流行與敬拜萬能和弦進行 + 左手 4 大伴奏手型</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>進行名稱 / 伴奏手型</th>
+          <th>級數公式 (Roman)</th>
+          <th>C 大調實際和弦</th>
+          <th>適用曲風與實戰口訣</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🔥 4536251 萬能進行</strong></td>
+          <td><code>Ⅳ → Ⅴ → Ⅲm → Ⅵm → Ⅱm → Ⅴ → Ⅰ</code></td>
+          <td><code>F → G → Em → Am → Dm → G → C</code></td>
+          <td>華語流行金曲與現代敬拜詩歌副歌最愛（涵蓋 80% 抒情歌高潮段落）</td>
+        </tr>
+        <tr>
+          <td><strong>🌟 1645 黃金四和弦</strong></td>
+          <td><code>Ⅰ → Ⅵm → Ⅳ → Ⅴ</code></td>
+          <td><code>C → Am → F → G</code></td>
+          <td>最適合零基礎第一天上手自彈自唱的萬用循環</td>
+        </tr>
+        <tr>
+          <td><strong>🎻 卡農進行 (Canon)</strong></td>
+          <td><code>Ⅰ → Ⅴ → Ⅵm → Ⅲm → Ⅳ → Ⅰ → Ⅳ → Ⅴ</code></td>
+          <td><code>C → G → Am → Em → F → C → F → G</code></td>
+          <td>層次感最豐富、情感鋪陳最流暢的經典敘事進行</td>
+        </tr>
+        <tr>
+          <td><strong>⛪ 敬拜詩歌溫柔結尾 (251)</strong></td>
+          <td><code>Ⅱm7 → Ⅴ7sus4 → Ⅴ7 → Ⅰmaj7</code></td>
+          <td><code>Dm7 → G7sus4 → G7 → Cmaj7</code></td>
+          <td>詩歌句尾與禱告墊樂必備，利用 sus4 製造期待感再解決回主和弦</td>
+        </tr>
+        <tr>
+          <td><strong>🖐️ 左手 4 大萬能伴奏模組</strong></td>
+          <td><code>① 柱狀齊彈</code> ｜ <code>② 1-5-8 根五八</code></td>
+          <td><code>③ 1-5-8-9/10 流水分解</code> ｜ <code>④ 切分律動</code></td>
+          <td>主歌用「柱狀或 1-5-8」，進入副歌改用「1-5-8-10 流水分解或切分」推進情緒</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Web Audio API Synthesizer with strict 15% default volume (Gain 0.15)
+let audioCtx = null;
+
+function getAudioCtx() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playChord(freqs, btnEl) {
+  const ctx = getAudioCtx();
+  const now = ctx.currentTime;
+  const masterGain = ctx.createGain();
+  // Default volume strictly set to 15% (0.15) per user global rule
+  masterGain.gain.setValueAtTime(0.15, now);
+  masterGain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
+  masterGain.connect(ctx.destination);
+
+  freqs.forEach((f, idx) => {
+    const osc = ctx.createOscillator();
+    const noteGain = ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(f, now);
+    noteGain.gain.setValueAtTime(1 / freqs.length, now);
+    osc.connect(noteGain);
+    noteGain.connect(masterGain);
+    osc.start(now + idx * 0.03);
+    osc.stop(now + 1.85);
+  });
+
+  if (btnEl) {
+    btnEl.classList.add("playing");
+    setTimeout(() => btnEl.classList.remove("playing"), 600);
+  }
+}
+
+let progTimer = [];
+function playProgression(btnEl) {
+  progTimer.forEach(t => clearTimeout(t));
+  progTimer = [];
+  const seq = [
+    [349.23, 440.00, 523.25], // F (4)
+    [392.00, 493.88, 587.33], // G (5)
+    [329.63, 392.00, 493.88], // Em (3m)
+    [440.00, 523.25, 659.25], // Am (6m)
+    [293.66, 349.23, 440.00], // Dm (2m)
+    [392.00, 493.88, 587.33], // G (5)
+    [261.63, 329.63, 392.00]  // C (1)
+  ];
+  seq.forEach((chord, i) => {
+    progTimer.push(setTimeout(() => playChord(chord, btnEl), i * 750));
+  });
+}
+</script>
+</body>
+</html>
