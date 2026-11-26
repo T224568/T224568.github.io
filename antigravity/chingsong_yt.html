@@ -579,16 +579,13 @@
     <div class="container">
       <div class="header-top">
         <div class="title-group">
-          <h1>
-            🥾 青松健行隊｜專屬 YouTube 影音典藏館
-            <span class="title-badge">輕鬆健行・全 79 部完整紀錄</span>
+          <h1 style="flex-wrap:wrap;">
+            <span>🥾 青松健行隊｜專屬 YouTube 影音典藏館</span>
+            <a class="btn btn-emerald" href="https://youtube.com/playlist?list=PLEkxGUl_9XRYiPqAtV4lxKKKyQ42jD3H6&si=xmZgn6VRmx09inow" target="_blank" rel="noopener" style="margin-left:4px;">
+              📺 開啟 YouTube 播放清單（青松YT聯結）
+            </a>
           </h1>
           <p>收錄 2024–2026 歷次健行活動紀錄短片・100% 補齊影片長度與實時觀看人數・預設播放音量 15%</p>
-        </div>
-        <div class="header-actions">
-          <a class="btn btn-emerald" href="https://youtube.com/playlist?list=PLEkxGUl_9XRYiPqAtV4lxKKKyQ42jD3H6&si=xmZgn6VRmx09inow" target="_blank" rel="noopener">
-            📺 開啟 YouTube 播放清單（青松YT聯結）
-          </a>
         </div>
 
       </div>
@@ -1075,7 +1072,7 @@
         YEARS.length = 0;
         YEARS.push(...Array.from(yrMap.entries()).sort((a, b) => b[0].localeCompare(a[0])));
 
-        document.querySelector('.title-badge').textContent = `輕鬆健行・全 ${VIDEOS.length} 部完整紀錄・已即時同步 Sheet`;
+        
         document.getElementById('yearChips').innerHTML = '';
         gridEl.innerHTML = '';
         tbodyEl.innerHTML = '';
