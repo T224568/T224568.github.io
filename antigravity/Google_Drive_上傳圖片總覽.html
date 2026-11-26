@@ -22,6 +22,8 @@
       --accent-green: #10b981;
       --accent-amber: #f59e0b;
       --accent-purple: #8b5cf6;
+      --accent-red: #ef4444;
+      --accent-red-hover: #dc2626;
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
@@ -68,7 +70,7 @@
 
     h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
     .header-desc { font-size: 0.88rem; color: var(--text-muted); }
-    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
     .btn {
       display: inline-flex;
@@ -84,11 +86,16 @@
       cursor: pointer;
       transition: all 0.2s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn:hover { background: var(--surface-hover); border-color: rgba(255, 255, 255, 0.2); }
     .btn-primary { background: #2563eb; border-color: #3b82f6; color: #fff; }
     .btn-primary:hover { background: #1d4ed8; }
+    .btn-danger { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #f87171; }
+    .btn-danger:hover { background: #ef4444; border-color: #dc2626; color: #fff; }
+    .btn-success { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+    .btn-success:hover { background: #10b981; border-color: #059669; color: #fff; }
 
     /* Stats Banner */
     .stats-grid {
@@ -232,6 +239,33 @@
       font-weight: 600;
     }
 
+    .chip-trash {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    .chip-trash.active {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+
+    /* Batch Action Bar */
+    .batch-bar {
+      display: none;
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid #3b82f6;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .batch-bar.show { display: flex; }
+
     /* Cards Grid */
     .grid-view {
       display: grid;
@@ -255,6 +289,31 @@
       box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
       border-color: rgba(59, 130, 246, 0.4);
     }
+
+    .card.selected {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px #3b82f6;
+    }
+
+    .card.in-trash {
+      border-color: rgba(239, 68, 68, 0.4);
+      opacity: 0.85;
+    }
+
+    .card-checkbox {
+      display: none;
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 22px;
+      height: 22px;
+      z-index: 10;
+      cursor: pointer;
+      accent-color: #2563eb;
+    }
+
+    body.batch-mode .card-checkbox { display: block; }
+    body.batch-mode .card-badges { left: 42px; }
 
     .card-thumb-wrap {
       position: relative;
@@ -325,6 +384,7 @@
       gap: 6px;
       flex-wrap: wrap;
       z-index: 2;
+      transition: left 0.2s;
     }
 
     .badge {
@@ -398,18 +458,13 @@
 
     .card-actions .btn { justify-content: center; padding: 7px 10px; font-size: 0.78rem; }
 
-    .btn-open-drive {
+    .card-actions-row-bottom {
       grid-column: 1 / -1;
-      justify-content: center;
-      background: transparent;
-      border-color: rgba(255, 255, 255, 0.1);
-      color: #93c5fd;
+      display: flex;
+      gap: 8px;
     }
 
-    .btn-open-drive:hover {
-      background: rgba(59, 130, 246, 0.1);
-      border-color: rgba(59, 130, 246, 0.3);
-    }
+    .card-actions-row-bottom .btn { flex: 1; }
 
     /* Table View */
     .table-view {
@@ -536,6 +591,74 @@
       justify-content: center;
     }
 
+    /* Confirm Delete Modal */
+    .confirm-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1500;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }}
+
+    .confirm-modal.active { display: flex; }
+
+    .confirm-card {
+      background: var(--surface);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .confirm-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .confirm-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .confirm-target-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .confirm-target-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .confirm-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
     /* Toast */
     .toast {
       position: fixed;
@@ -580,13 +703,15 @@
       </div>
       <div>
         <h1>Google Drive 全目錄上傳照片與檔案總覽</h1>
-        <div class="header-desc">涵蓋目錄 1 (教會核銷)、預設目錄 (生活醫療) 與目錄 2 (健行路線)，支援檔名與上傳日期精確分類</div>
+        <div class="header-desc">可直接刪除管理、全螢幕放大預覽、一鍵複製試算表公式與 1920 高清直連</div>
       </div>
     </div>
     <div class="header-actions">
+      <button class="btn btn-danger" id="btnToggleBatch">☑️ 批次刪除管理</button>
+      <button class="btn" id="btnExportJson" title="下載已更新的歷史 JSON">💾 下載變更 JSON</button>
       <a href="https://drive.google.com/drive/folders/1eFf86wQ5nK4ssDmVBHUIhH7Zm1BMWoww?usp=sharing" target="_blank" class="btn">📁 目錄 1</a>
       <a href="https://drive.google.com/drive/folders/1kJ-rz9q1AzmaGEUBbsqL3NxAnvl4c7CB?usp=sharing" target="_blank" class="btn">📁 預設目錄</a>
-      <a href="https://drive.google.com/drive/folders/1_gMBEq35k8E2XN6S8SehDnqB2-zQQaPi?usp=sharing" target="_blank" class="btn">📁 目錄 2 (健行)</a>
+      <a href="https://drive.google.com/drive/folders/1_gMBEq35k8E2XN6S8SehDnqB2-zQQaPi?usp=sharing" target="_blank" class="btn">📁 目錄 2</a>
       <button class="btn btn-primary" id="btnRefresh">🔄 重新整理</button>
     </div>
   </header>
@@ -616,15 +741,29 @@
     </div>
     <div class="stat-card">
       <div class="stat-info">
-        <div class="stat-label">目錄 2（健行 GPX/圖資）</div>
-        <div class="stat-value" id="statFolder2Count">0</div>
+        <div class="stat-label">已刪除 / 回收筒</div>
+        <div class="stat-value" id="statTrashCount" style="color:#f87171;">0</div>
       </div>
-      <div class="stat-icon">🥾</div>
+      <div class="stat-icon">🗑️</div>
     </div>
   </div>
 
   <!-- Toolbar -->
   <div class="toolbar">
+    <!-- Batch Action Bar -->
+    <div class="batch-bar" id="batchBar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-weight:700;color:#60a5fa;">☑️ 批次選取模式</span>
+        <span id="selectedCountText" style="color:var(--text-muted);font-size:0.85rem;">已選取 0 項</span>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn" id="btnSelectAll">選取目前所有顯示項目</button>
+        <button class="btn" id="btnDeselectAll">取消全選</button>
+        <button class="btn btn-danger" id="btnBatchDelete">🗑️ 刪除所選項目</button>
+        <button class="btn" id="btnCloseBatch">❌ 退出批次</button>
+      </div>
+    </div>
+
     <div class="toolbar-row">
       <div class="search-box">
         <span class="search-icon">🔍</span>
@@ -655,9 +794,10 @@
     <!-- Folder Filter Tabs -->
     <div class="filter-chips" id="folderChips">
       <span class="chip active" data-type="folder" data-val="all">📂 全部目錄 (146)</span>
-      <span class="chip" data-type="folder" data-val="1">📑 目錄 1 (教會核銷 64)</span>
-      <span class="chip" data-type="folder" data-val="default">🏠 預設目錄 (53)</span>
-      <span class="chip" data-type="folder" data-val="2">🥾 目錄 2 (健行 29)</span>
+      <span class="chip" data-type="folder" data-val="1">📑 目錄 1 (教會核銷)</span>
+      <span class="chip" data-type="folder" data-val="default">🏠 預設目錄</span>
+      <span class="chip" data-type="folder" data-val="2">🥾 目錄 2 (健行)</span>
+      <span class="chip chip-trash" data-type="folder" data-val="trash" id="chipTrash">🗑️ 回收筒 (0)</span>
     </div>
 
     <!-- Category Chips -->
@@ -681,13 +821,14 @@
     <table>
       <thead>
         <tr>
+          <th style="width:40px;"></th>
           <th>縮圖</th>
           <th>檔案名稱 / 備註</th>
           <th>金額 / 大小</th>
           <th>目錄歸屬</th>
           <th>分類標籤</th>
           <th>上傳 / 開立日期</th>
-          <th>快捷複製</th>
+          <th>快捷操作</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -717,6 +858,31 @@
     <button class="btn btn-primary" id="btnCopyFormulaLb">📋 複製試算表公式 =IMAGE()</button>
     <button class="btn" id="btnCopyLh3Lb">🌟 複製 Google 1920 直連 (lh3)</button>
     <a href="#" target="_blank" class="btn" id="btnOpenDriveLb">🔗 在 Google Drive 開啟</a>
+    <button class="btn btn-danger" id="btnDeleteCurrentLb">🗑️ 刪除此照片</button>
+  </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="confirm-modal" id="confirmModal">
+  <div class="confirm-card">
+    <div class="confirm-title">
+      <span>⚠️ 確認刪除</span>
+    </div>
+    <div class="confirm-body">
+      您確定要從總覽清單中移除此項目嗎？刪除後將移至「🗑️ 回收筒」，您可以隨時還原，或前往 Google Drive 雲端移至垃圾桶。
+    </div>
+    <div class="confirm-target-box" id="confirmTargetBox">
+      <img src="" alt="" class="confirm-target-thumb" id="confirmTargetThumb">
+      <div>
+        <div id="confirmTargetTitle" style="font-weight:600;font-size:0.9rem;color:var(--text-main);"></div>
+        <div id="confirmTargetMeta" style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;"></div>
+      </div>
+    </div>
+    <div class="confirm-actions">
+      <button class="btn" id="btnCancelDelete">取消</button>
+      <a href="#" target="_blank" class="btn btn-danger" id="btnDriveTrash" style="display:none;">🌐 前往 Drive 徹底刪除</a>
+      <button class="btn btn-danger" id="btnConfirmDelete">🗑️ 移至回收筒</button>
+    </div>
   </div>
 </div>
 
@@ -729,6 +895,9 @@
 <script>
   let uploadHistory = [{"id": "1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl", "filename": "Img20261126_150651.png", "title": "升客雞肉餐坊・便當 35 個", "amount": 3500, "date": "2026-11-26 15:06:51", "receiptDate": "2026-11-26", "target": "1", "targetName": "目錄 1", "category": "便當收據", "fileUrl": "https://drive.google.com/file/d/1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl\")"}, {"id": "1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds", "filename": "Img20261126_150640.png", "title": "長青樂活講師費・許育慈老師", "amount": 3000, "date": "2026-11-26 15:06:40", "receiptDate": "2026-11-26", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "fileUrl": "https://drive.google.com/file/d/1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds\")"}, {"id": "1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM", "filename": "Img20261126_144927.png", "title": "戴任詔 LINE 核銷截圖（交通1000/午餐840/飲料70）", "amount": 1910, "date": "2026-11-26 14:49:27", "receiptDate": "2026-11-26", "target": "default", "targetName": "預設目錄", "category": "LINE核銷截圖", "fileUrl": "https://drive.google.com/file/d/1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM\")"}, {"id": "1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime", "filename": "Img20261126_150628.png", "title": "大台北便當・便當 43 個", "amount": 4300, "date": "2026-11-26 15:06:28", "receiptDate": "2026-11-24", "target": "1", "targetName": "目錄 1", "category": "便當收據", "fileUrl": "https://drive.google.com/file/d/1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime\")"}, {"id": "1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr", "filename": "Img20261123_162955.png", "title": "松岡小吃店・便當 34 個", "amount": 3740, "date": "2026-11-23 16:29:55", "receiptDate": "2026-11-19", "target": "1", "targetName": "目錄 1", "category": "便當收據", "fileUrl": "https://drive.google.com/file/d/1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr\")"}, {"id": "1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D", "filename": "Img20261123_162944.png", "title": "長青樂活講師費・王淑惠老師", "amount": 3000, "date": "2026-11-23 16:29:44", "receiptDate": "2026-11-19", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "fileUrl": "https://drive.google.com/file/d/1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D\")"}, {"id": "1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t", "filename": "Img20261123_163006.png", "title": "大台北便當・便當 40 個", "amount": 4000, "date": "2026-11-23 16:30:06", "receiptDate": "2026-11-17", "target": "1", "targetName": "目錄 1", "category": "便當收據", "fileUrl": "https://drive.google.com/file/d/1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t\")"}, {"id": "1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG", "filename": "Img20261112_153332.png", "title": "LINE 訊息截圖（便當37個實報 3145元，1自費）", "amount": 3145, "date": "2026-11-12 15:33:32", "receiptDate": "2026-11-12", "target": "1", "targetName": "目錄 1", "category": "LINE核銷截圖", "fileUrl": "https://drive.google.com/file/d/1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG\")"}, {"id": "1iltU3EjoMElYtdvuvyizydhdAJh6qO0f", "filename": "Img20261112_153319.png", "title": "兆順便當店・便當 38 個", "amount": 3230, "date": "2026-11-12 15:33:19", "receiptDate": "2026-11-12", "target": "1", "targetName": "目錄 1", "category": "便當收據", "fileUrl": "https://drive.google.com/file/d/1iltU3EjoMElYtdvuvyizydhdAJh6qO0f/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1iltU3EjoMElYtdvuvyizydhdAJh6qO0f=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1iltU3EjoMElYtdvuvyizydhdAJh6qO0f\")"}, {"id": "1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi", "filename": "Img20261112_153308.png", "title": "長青樂活講師費・陳玉娟醫師", "amount": 3000, "date": "2026-11-12 15:33:08", "receiptDate": "2026-11-12", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "fileUrl": "https://drive.google.com/file/d/1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi\")"}, {"id": "1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO", "filename": "Img20261110_143247.png", "title": "阿文日本料理 2桌 點餐單", "amount": 500, "date": "2026-11-10 14:32:47", "receiptDate": "2026-11-10", "target": "default", "targetName": "預設目錄", "category": "點餐明細", "fileUrl": "https://drive.google.com/file/d/1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO\")"}, {"id": "1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy", "filename": "Img20261110_142809.png", "title": "電子發票證明聯 HV-95383918", "amount": 4305, "date": "2026-11-10 14:28:09", "receiptDate": "2026-11-10", "target": "1", "targetName": "目錄 1", "category": "電子發票", "fileUrl": "https://drive.google.com/file/d/1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy\")"}, {"id": "1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C", "filename": "Img20261015_140038.png", "title": "免用統一發票收據（吉利餐盒店 便當 34個）", "amount": 3740, "date": "2026-10-15 14:00:38", "receiptDate": "2026-10-15", "target": "1", "targetName": "目錄 1", "category": "便當收據", "fileUrl": "https://drive.google.com/file/d/1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C\")"}, {"id": "16WtDGZs6a4ySZaUC285rEhlHntU7SSJz", "filename": "Img20261015_140029.png", "title": "長青樂活講師費・王淑惠老師", "amount": 3000, "date": "2026-10-15 14:00:29", "receiptDate": "2026-10-15", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "fileUrl": "https://drive.google.com/file/d/16WtDGZs6a4ySZaUC285rEhlHntU7SSJz/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/16WtDGZs6a4ySZaUC285rEhlHntU7SSJz=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=16WtDGZs6a4ySZaUC285rEhlHntU7SSJz\")"}, {"id": "17AMEszgXBzBg2B1S9y8Buqb04H5iZP55", "filename": "信仰_20261013.jpg", "title": "信仰早安圖 20261013", "amount": 0, "date": "2026-10-15 15:14:42", "receiptDate": "2026-10-13", "target": "1", "targetName": "目錄 1", "category": "早安圖", "fileUrl": "https://drive.google.com/file/d/17AMEszgXBzBg2B1S9y8Buqb04H5iZP55/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/17AMEszgXBzBg2B1S9y8Buqb04H5iZP55=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=17AMEszgXBzBg2B1S9y8Buqb04H5iZP55\")"}, {"id": "1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ", "filename": "Img20261013_162124.jpg", "title": "一級小吃店電子發票 (3500+500) & 日王來小吃店收據 (900)", "amount": 4900, "date": "2026-10-13 16:21:24", "receiptDate": "2026-10-13", "target": "1", "targetName": "目錄 1", "category": "電子發票/收據", "fileUrl": "https://drive.google.com/file/d/1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ\")"}, {"id": "1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2", "filename": "IMG20250307141428.jpg", "title": "南門教會影音設備與多媒體照片", "amount": 0, "date": "2026-10-15 15:21:24", "receiptDate": "2025-03-07", "target": "default", "targetName": "預設目錄", "category": "照片素材", "fileUrl": "https://drive.google.com/file/d/1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2\")"}, {"id": "1Ecr5U5vjwhVRKWQX9aSvetjvSbsikxgx", "filename": "2025_2月方舟安養費.jpg", "title": "2025_2月方舟安養費", "amount": 0, "date": "2025-02-20 12:00:00", "receiptDate": "2025-02-20", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "52 KB", "fileUrl": "https://drive.google.com/file/d/1Ecr5U5vjwhVRKWQX9aSvetjvSbsikxgx/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Ecr5U5vjwhVRKWQX9aSvetjvSbsikxgx=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Ecr5U5vjwhVRKWQX9aSvetjvSbsikxgx\")"}, {"id": "1QalNpV2Pf8VHlzSnJ99p4mFwSZkOBqkF", "filename": "202501優洛乳.jpg", "title": "202501優洛乳", "amount": 0, "date": "2025-02-20 12:00:00", "receiptDate": "2025-02-20", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "34 KB", "fileUrl": "https://drive.google.com/file/d/1QalNpV2Pf8VHlzSnJ99p4mFwSZkOBqkF/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1QalNpV2Pf8VHlzSnJ99p4mFwSZkOBqkF=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1QalNpV2Pf8VHlzSnJ99p4mFwSZkOBqkF\")"}, {"id": "15mz_ZIEcFThZUhD6sLEdq2IbgHExyC9U", "filename": "202502媽媽個人清潔用品.jpg", "title": "202502媽媽個人清潔用品", "amount": 0, "date": "2025-02-04 12:00:00", "receiptDate": "2025-02-04", "target": "default", "targetName": "預設目錄", "category": "醫療/掛號藥品", "size": "69 KB", "fileUrl": "https://drive.google.com/file/d/15mz_ZIEcFThZUhD6sLEdq2IbgHExyC9U/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/15mz_ZIEcFThZUhD6sLEdq2IbgHExyC9U=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=15mz_ZIEcFThZUhD6sLEdq2IbgHExyC9U\")"}, {"id": "1cC6eXmU2j4B8JDx9rSs15cldRaEja1nc", "filename": "2025圓山圍爐餐.jpg", "title": "2025圓山圍爐餐", "amount": 0, "date": "2025-02-01 12:00:00", "receiptDate": "2025-02-01", "target": "default", "targetName": "預設目錄", "category": "便當/餐飲收據", "size": "152 KB", "fileUrl": "https://drive.google.com/file/d/1cC6eXmU2j4B8JDx9rSs15cldRaEja1nc/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1cC6eXmU2j4B8JDx9rSs15cldRaEja1nc=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1cC6eXmU2j4B8JDx9rSs15cldRaEja1nc\")"}, {"id": "1RsS7DCCpCzXIqQQdCHfe8aedgpq4mu-i", "filename": "2025哥家全體.jpg", "title": "2025哥家全體", "amount": 0, "date": "2025-01-30 12:00:00", "receiptDate": "2025-01-30", "target": "default", "targetName": "預設目錄", "category": "生活雜項", "size": "1.5 MB", "fileUrl": "https://drive.google.com/file/d/1RsS7DCCpCzXIqQQdCHfe8aedgpq4mu-i/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1RsS7DCCpCzXIqQQdCHfe8aedgpq4mu-i=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1RsS7DCCpCzXIqQQdCHfe8aedgpq4mu-i\")"}, {"id": "1iZv1ReyZkgambN99WPfSANF-MzRFAkvq", "filename": "2025高雄圓山.jpg", "title": "2025高雄圓山", "amount": 0, "date": "2025-01-30 12:00:00", "receiptDate": "2025-01-30", "target": "default", "targetName": "預設目錄", "category": "生活雜項", "size": "279 KB", "fileUrl": "https://drive.google.com/file/d/1iZv1ReyZkgambN99WPfSANF-MzRFAkvq/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1iZv1ReyZkgambN99WPfSANF-MzRFAkvq=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1iZv1ReyZkgambN99WPfSANF-MzRFAkvq\")"}, {"id": "19M3dr9JV7PvFH7Z4ozQQ4IUwuAtDJbzy", "filename": "2025_1月方舟安養費.jpg", "title": "2025_1月方舟安養費", "amount": 0, "date": "2025-01-06 12:00:00", "receiptDate": "2025-01-06", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "51 KB", "fileUrl": "https://drive.google.com/file/d/19M3dr9JV7PvFH7Z4ozQQ4IUwuAtDJbzy/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/19M3dr9JV7PvFH7Z4ozQQ4IUwuAtDJbzy=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=19M3dr9JV7PvFH7Z4ozQQ4IUwuAtDJbzy\")"}, {"id": "16gVudKwo-WtYuPQq9kQJsoZNWMzR2YSM", "filename": "202412優洛乳.jpg", "title": "202412優洛乳", "amount": 0, "date": "2025-01-03 12:00:00", "receiptDate": "2025-01-03", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "35 KB", "fileUrl": "https://drive.google.com/file/d/16gVudKwo-WtYuPQq9kQJsoZNWMzR2YSM/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/16gVudKwo-WtYuPQq9kQJsoZNWMzR2YSM=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=16gVudKwo-WtYuPQq9kQJsoZNWMzR2YSM\")"}, {"id": "1J53yjchSi9xy3xnYD5Fp7hJvdv7_pkDk", "filename": "2024_12月方舟安養費.jpg", "title": "2024_12月方舟安養費", "amount": 0, "date": "2024-12-05 12:00:00", "receiptDate": "2024-12-05", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "51 KB", "fileUrl": "https://drive.google.com/file/d/1J53yjchSi9xy3xnYD5Fp7hJvdv7_pkDk/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1J53yjchSi9xy3xnYD5Fp7hJvdv7_pkDk=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1J53yjchSi9xy3xnYD5Fp7hJvdv7_pkDk\")"}, {"id": "1x6OBbUPskGcn9lLSVuoD2r8yBlq5u8mH", "filename": "202411優洛乳.jpg", "title": "202411優洛乳", "amount": 0, "date": "2024-12-05 12:00:00", "receiptDate": "2024-12-05", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "37 KB", "fileUrl": "https://drive.google.com/file/d/1x6OBbUPskGcn9lLSVuoD2r8yBlq5u8mH/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1x6OBbUPskGcn9lLSVuoD2r8yBlq5u8mH=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1x6OBbUPskGcn9lLSVuoD2r8yBlq5u8mH\")"}, {"id": "1RObIX8KpKhEjIHz-kk_H2vd7OPjL5GOB", "filename": "中庄吊橋左岸-月眉人工濕地-山豬湖.gpx", "title": "中庄吊橋左岸-月眉人工濕地-山豬湖.gpx", "amount": 0, "date": "2024-11-17 12:00:00", "receiptDate": "2024-11-17", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "96 KB", "fileUrl": "https://drive.google.com/file/d/1RObIX8KpKhEjIHz-kk_H2vd7OPjL5GOB/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1RObIX8KpKhEjIHz-kk_H2vd7OPjL5GOB=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1RObIX8KpKhEjIHz-kk_H2vd7OPjL5GOB\")"}, {"id": "1E5RUDd1RSYs-ib1XZxJ1GCxZK1o15_z2", "filename": "猴坎古道海芋水車寮步道3.72KM.gpx", "title": "猴坎古道海芋水車寮步道3.72KM.gpx", "amount": 0, "date": "2024-11-16 12:00:00", "receiptDate": "2024-11-16", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "25 KB", "fileUrl": "https://drive.google.com/file/d/1E5RUDd1RSYs-ib1XZxJ1GCxZK1o15_z2/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1E5RUDd1RSYs-ib1XZxJ1GCxZK1o15_z2=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1E5RUDd1RSYs-ib1XZxJ1GCxZK1o15_z2\")"}, {"id": "1TvT7d3Pqd6vtRkd-kKJJmFuNMxRk_wGx", "filename": "2024_11月方舟安養費.jpg", "title": "2024_11月方舟安養費", "amount": 0, "date": "2024-11-06 12:00:00", "receiptDate": "2024-11-06", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "56 KB", "fileUrl": "https://drive.google.com/file/d/1TvT7d3Pqd6vtRkd-kKJJmFuNMxRk_wGx/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1TvT7d3Pqd6vtRkd-kKJJmFuNMxRk_wGx=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1TvT7d3Pqd6vtRkd-kKJJmFuNMxRk_wGx\")"}, {"id": "1ym1mhSN-2eIGhR4W7StmV_UJFVJj0HJJ", "filename": "202410優洛乳.jpg", "title": "202410優洛乳", "amount": 0, "date": "2024-11-04 12:00:00", "receiptDate": "2024-11-04", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "41 KB", "fileUrl": "https://drive.google.com/file/d/1ym1mhSN-2eIGhR4W7StmV_UJFVJj0HJJ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1ym1mhSN-2eIGhR4W7StmV_UJFVJj0HJJ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ym1mhSN-2eIGhR4W7StmV_UJFVJj0HJJ\")"}, {"id": "1pnp6FTijHusAj9ig0ClK3dzzDF6qEMW0", "filename": "公館永福橋川端橋客家文化園區5.3-km.gpx", "title": "公館永福橋川端橋客家文化園區5.3-km.gpx", "amount": 0, "date": "2024-10-19 12:00:00", "receiptDate": "2024-10-19", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "11 KB", "fileUrl": "https://drive.google.com/file/d/1pnp6FTijHusAj9ig0ClK3dzzDF6qEMW0/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1pnp6FTijHusAj9ig0ClK3dzzDF6qEMW0=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1pnp6FTijHusAj9ig0ClK3dzzDF6qEMW0\")"}, {"id": "14fC0Or2akKKl1HavnoGrChZxrtjdkrlT", "filename": "公館永福橋川端橋客家文化園區5.3-km.gpx", "title": "公館永福橋川端橋客家文化園區5.3-km.gpx", "amount": 0, "date": "2024-10-19 12:00:00", "receiptDate": "2024-10-19", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "11 KB", "fileUrl": "https://drive.google.com/file/d/14fC0Or2akKKl1HavnoGrChZxrtjdkrlT/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/14fC0Or2akKKl1HavnoGrChZxrtjdkrlT=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=14fC0Or2akKKl1HavnoGrChZxrtjdkrlT\")"}, {"id": "1f4pUt8KEsnDv1ELqdX1eZsiD12I9uiRZ", "filename": "公館永福橋川端橋客家文化園區5.3-km.gpx", "title": "公館永福橋川端橋客家文化園區5.3-km.gpx", "amount": 0, "date": "2024-10-19 12:00:00", "receiptDate": "2024-10-19", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "11 KB", "fileUrl": "https://drive.google.com/file/d/1f4pUt8KEsnDv1ELqdX1eZsiD12I9uiRZ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1f4pUt8KEsnDv1ELqdX1eZsiD12I9uiRZ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1f4pUt8KEsnDv1ELqdX1eZsiD12I9uiRZ\")"}, {"id": "1dCi3Iu5mkk2hbo--4qjDqGYO8NSIoLW-", "filename": "公館福和橋川端橋客家文化園區5.6-km.gpx", "title": "公館福和橋川端橋客家文化園區5.6-km.gpx", "amount": 0, "date": "2024-10-19 12:00:00", "receiptDate": "2024-10-19", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "10 KB", "fileUrl": "https://drive.google.com/file/d/1dCi3Iu5mkk2hbo--4qjDqGYO8NSIoLW-/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1dCi3Iu5mkk2hbo--4qjDqGYO8NSIoLW-=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1dCi3Iu5mkk2hbo--4qjDqGYO8NSIoLW-\")"}, {"id": "128gu1yMKXvo7xb9Kskbu7As2PhQ0Wuh1", "filename": "公館福和橋川端橋客家文化園區5.6-km.gpx", "title": "公館福和橋川端橋客家文化園區5.6-km.gpx", "amount": 0, "date": "2024-10-19 12:00:00", "receiptDate": "2024-10-19", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "10 KB", "fileUrl": "https://drive.google.com/file/d/128gu1yMKXvo7xb9Kskbu7As2PhQ0Wuh1/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/128gu1yMKXvo7xb9Kskbu7As2PhQ0Wuh1=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=128gu1yMKXvo7xb9Kskbu7As2PhQ0Wuh1\")"}, {"id": "1WNqVywljC3_fHfoXV-z31D5XKFA0ZrcH", "filename": "公館福和橋川端橋客家文化園區5.6-km.gpx", "title": "公館福和橋川端橋客家文化園區5.6-km.gpx", "amount": 0, "date": "2024-10-19 12:00:00", "receiptDate": "2024-10-19", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "10 KB", "fileUrl": "https://drive.google.com/file/d/1WNqVywljC3_fHfoXV-z31D5XKFA0ZrcH/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1WNqVywljC3_fHfoXV-z31D5XKFA0ZrcH=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1WNqVywljC3_fHfoXV-z31D5XKFA0ZrcH\")"}, {"id": "18aQVJPngfsMW9yPeXHZgtpTeQnc2NRUG", "filename": "公館永福橋川端橋客家文化園區5.3-km.gpx", "title": "公館永福橋川端橋客家文化園區5.3-km.gpx", "amount": 0, "date": "2024-10-18 12:00:00", "receiptDate": "2024-10-18", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "11 KB", "fileUrl": "https://drive.google.com/file/d/18aQVJPngfsMW9yPeXHZgtpTeQnc2NRUG/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/18aQVJPngfsMW9yPeXHZgtpTeQnc2NRUG=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=18aQVJPngfsMW9yPeXHZgtpTeQnc2NRUG\")"}, {"id": "1mJIEVuXdTuVErqqyvtLhcNTKLxCtYQMY", "filename": "公館福和橋川端橋客家文化園區5.6-km.gpx", "title": "公館福和橋川端橋客家文化園區5.6-km.gpx", "amount": 0, "date": "2024-10-18 12:00:00", "receiptDate": "2024-10-18", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "10 KB", "fileUrl": "https://drive.google.com/file/d/1mJIEVuXdTuVErqqyvtLhcNTKLxCtYQMY/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1mJIEVuXdTuVErqqyvtLhcNTKLxCtYQMY=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1mJIEVuXdTuVErqqyvtLhcNTKLxCtYQMY\")"}, {"id": "1EpuU0Kbuvx7icHg1oCVMHjEGr_9qUlAb", "filename": "20261014-健行路線合集-5條.kml", "title": "20261014-健行路線合集-5條.kml", "amount": 0, "date": "2024-10-14 12:00:00", "receiptDate": "2024-10-14", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "26 KB", "fileUrl": "https://drive.google.com/file/d/1EpuU0Kbuvx7icHg1oCVMHjEGr_9qUlAb/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1EpuU0Kbuvx7icHg1oCVMHjEGr_9qUlAb=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1EpuU0Kbuvx7icHg1oCVMHjEGr_9qUlAb\")"}, {"id": "1YUcXsmfaMvgjn86ROPtT4qoGi4KlBeFn", "filename": "木柵河濱動物園-6-km.gpx", "title": "木柵河濱動物園-6-km.gpx", "amount": 0, "date": "2024-10-14 12:00:00", "receiptDate": "2024-10-14", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "12 KB", "fileUrl": "https://drive.google.com/file/d/1YUcXsmfaMvgjn86ROPtT4qoGi4KlBeFn/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1YUcXsmfaMvgjn86ROPtT4qoGi4KlBeFn=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1YUcXsmfaMvgjn86ROPtT4qoGi4KlBeFn\")"}, {"id": "1Kqbspl95FwFVBI0CpCG15CYHUl0QZQtV", "filename": "亞東醫院、浮州、樹林-6.3-km.gpx", "title": "亞東醫院、浮州、樹林-6.3-km.gpx", "amount": 0, "date": "2024-10-14 12:00:00", "receiptDate": "2024-10-14", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "10 KB", "fileUrl": "https://drive.google.com/file/d/1Kqbspl95FwFVBI0CpCG15CYHUl0QZQtV/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Kqbspl95FwFVBI0CpCG15CYHUl0QZQtV=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Kqbspl95FwFVBI0CpCG15CYHUl0QZQtV\")"}, {"id": "1GdSijxoGdk1t0ebgNGLNR2ymKMysyfkG", "filename": "亞東醫院、浮洲、新月橋、新莊-7-km.gpx", "title": "亞東醫院、浮洲、新月橋、新莊-7-km.gpx", "amount": 0, "date": "2024-10-14 12:00:00", "receiptDate": "2024-10-14", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "13 KB", "fileUrl": "https://drive.google.com/file/d/1GdSijxoGdk1t0ebgNGLNR2ymKMysyfkG/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1GdSijxoGdk1t0ebgNGLNR2ymKMysyfkG=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1GdSijxoGdk1t0ebgNGLNR2ymKMysyfkG\")"}, {"id": "1n22sZXOEMxaCR4rXcFpGue7Pg4gvkCIG", "filename": "浮州新莊-5.2-km.gpx", "title": "浮州新莊-5.2-km.gpx", "amount": 0, "date": "2024-10-14 12:00:00", "receiptDate": "2024-10-14", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "10 KB", "fileUrl": "https://drive.google.com/file/d/1n22sZXOEMxaCR4rXcFpGue7Pg4gvkCIG/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1n22sZXOEMxaCR4rXcFpGue7Pg4gvkCIG=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1n22sZXOEMxaCR4rXcFpGue7Pg4gvkCIG\")"}, {"id": "1YeW9f_PIpC_D_3sAhFW-bMZFOMNOd4X-", "filename": "浮州樹林-6.6-km.gpx", "title": "浮州樹林-6.6-km.gpx", "amount": 0, "date": "2024-10-14 12:00:00", "receiptDate": "2024-10-14", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "12 KB", "fileUrl": "https://drive.google.com/file/d/1YeW9f_PIpC_D_3sAhFW-bMZFOMNOd4X-/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1YeW9f_PIpC_D_3sAhFW-bMZFOMNOd4X-=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1YeW9f_PIpC_D_3sAhFW-bMZFOMNOd4X-\")"}, {"id": "1mx01fbB0MamTXc_7jUS0F1IJSRIPDD-94VBm_7av1eQ", "filename": "# 兒童財商啟蒙書單", "title": "# 兒童財商啟蒙書單", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "2 KB", "fileUrl": "https://drive.google.com/file/d/1mx01fbB0MamTXc_7jUS0F1IJSRIPDD-94VBm_7av1eQ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1mx01fbB0MamTXc_7jUS0F1IJSRIPDD-94VBm_7av1eQ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1mx01fbB0MamTXc_7jUS0F1IJSRIPDD-94VBm_7av1eQ\")"}, {"id": "17ClZDqottk-oBELCOMgws46evPH_9AJJ", "filename": "check_folder_id.txt", "title": "check_folder_id.txt", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "5 個位元組", "fileUrl": "https://drive.google.com/file/d/17ClZDqottk-oBELCOMgws46evPH_9AJJ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/17ClZDqottk-oBELCOMgws46evPH_9AJJ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=17ClZDqottk-oBELCOMgws46evPH_9AJJ\")"}, {"id": "1s4HASv5PKMi1lFkGnZ2QHeJdnMoWnb-nXNtWDLtBfI0", "filename": "Gemini Gems 15 款 AI 助理", "title": "Gemini Gems 15 款 AI 助理", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "4 KB", "fileUrl": "https://drive.google.com/file/d/1s4HASv5PKMi1lFkGnZ2QHeJdnMoWnb-nXNtWDLtBfI0/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1s4HASv5PKMi1lFkGnZ2QHeJdnMoWnb-nXNtWDLtBfI0=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1s4HASv5PKMi1lFkGnZ2QHeJdnMoWnb-nXNtWDLtBfI0\")"}, {"id": "1WjKQU1vxTGuvYOgR4AcNVOBdD3F8Etti", "filename": "KUMON_別讓平板偷走孩子的競爭力.mp4", "title": "KUMON_別讓平板偷走孩子的競爭力.mp4", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "3.5 MB", "fileUrl": "https://drive.google.com/file/d/1WjKQU1vxTGuvYOgR4AcNVOBdD3F8Etti/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1WjKQU1vxTGuvYOgR4AcNVOBdD3F8Etti=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1WjKQU1vxTGuvYOgR4AcNVOBdD3F8Etti\")"}, {"id": "1tqM_VPVn3qpfv85w3JiOzxB2Wa6J1_uS", "filename": "KUMON_別讓平板偷走孩子的競爭力.mp4", "title": "KUMON_別讓平板偷走孩子的競爭力.mp4", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "11.1 MB", "fileUrl": "https://drive.google.com/file/d/1tqM_VPVn3qpfv85w3JiOzxB2Wa6J1_uS/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1tqM_VPVn3qpfv85w3JiOzxB2Wa6J1_uS=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1tqM_VPVn3qpfv85w3JiOzxB2Wa6J1_uS\")"}, {"id": "1YYvcJHjBn8y5mouzYpb3A7CF5WUpM64_", "filename": "test_1mb.mp4", "title": "test_1mb.mp4", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "1 MB", "fileUrl": "https://drive.google.com/file/d/1YYvcJHjBn8y5mouzYpb3A7CF5WUpM64_/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1YYvcJHjBn8y5mouzYpb3A7CF5WUpM64_=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1YYvcJHjBn8y5mouzYpb3A7CF5WUpM64_\")"}, {"id": "1B1ZbItfebQei0zfIo7kfFaRzOyblEZoW", "filename": "test_4mb.mp4", "title": "test_4mb.mp4", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "4 MB", "fileUrl": "https://drive.google.com/file/d/1B1ZbItfebQei0zfIo7kfFaRzOyblEZoW/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1B1ZbItfebQei0zfIo7kfFaRzOyblEZoW=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1B1ZbItfebQei0zfIo7kfFaRzOyblEZoW\")"}, {"id": "1xlcSVMX1V2FU3EdaTYsvVr44YYsj4cYO", "filename": "test.txt", "title": "test.txt", "amount": 0, "date": "2024-10-13 12:00:00", "receiptDate": "2024-10-13", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "5 個位元組", "fileUrl": "https://drive.google.com/file/d/1xlcSVMX1V2FU3EdaTYsvVr44YYsj4cYO/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1xlcSVMX1V2FU3EdaTYsvVr44YYsj4cYO=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1xlcSVMX1V2FU3EdaTYsvVr44YYsj4cYO\")"}, {"id": "1MQKe2mduJCjYQX6OiJPW8r2Ijaay9_xA", "filename": "南港生技隧道胡適公園-5.4-km-route.gpx", "title": "南港生技隧道胡適公園-5.4-km-route.gpx", "amount": 0, "date": "2024-10-10 12:00:00", "receiptDate": "2024-10-10", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "18 KB", "fileUrl": "https://drive.google.com/file/d/1MQKe2mduJCjYQX6OiJPW8r2Ijaay9_xA/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1MQKe2mduJCjYQX6OiJPW8r2Ijaay9_xA=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1MQKe2mduJCjYQX6OiJPW8r2Ijaay9_xA\")"}, {"id": "1-YZE8rzm1w9FsOEH9hBgkeGgFW16YayP", "filename": "南港生技隧道國家生技研究園區北側步道.gpx", "title": "南港生技隧道國家生技研究園區北側步道.gpx", "amount": 0, "date": "2024-10-10 12:00:00", "receiptDate": "2024-10-10", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "13 KB", "fileUrl": "https://drive.google.com/file/d/1-YZE8rzm1w9FsOEH9hBgkeGgFW16YayP/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1-YZE8rzm1w9FsOEH9hBgkeGgFW16YayP=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1-YZE8rzm1w9FsOEH9hBgkeGgFW16YayP\")"}, {"id": "1ehuHOuBNbl3yEP2OLb9GpIdRrpGCqh-Y", "filename": "造鎮，南天母路二-6-km-route.gpx", "title": "造鎮，南天母路二-6-km-route.gpx", "amount": 0, "date": "2024-10-10 12:00:00", "receiptDate": "2024-10-10", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "31 KB", "fileUrl": "https://drive.google.com/file/d/1ehuHOuBNbl3yEP2OLb9GpIdRrpGCqh-Y/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1ehuHOuBNbl3yEP2OLb9GpIdRrpGCqh-Y=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ehuHOuBNbl3yEP2OLb9GpIdRrpGCqh-Y\")"}, {"id": "1eE0N7Xj3quZjZihIfYOtjTujfmhgHuCh", "filename": "造鎮，南天母路二-onthegomap-5.6-km-route.gpx", "title": "造鎮，南天母路二-onthegomap-5.6-km-route.gpx", "amount": 0, "date": "2024-10-10 12:00:00", "receiptDate": "2024-10-10", "target": "2", "targetName": "目錄 2 (健行)", "category": "健行軌跡路線", "size": "31 KB", "fileUrl": "https://drive.google.com/file/d/1eE0N7Xj3quZjZihIfYOtjTujfmhgHuCh/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1eE0N7Xj3quZjZihIfYOtjTujfmhgHuCh=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1eE0N7Xj3quZjZihIfYOtjTujfmhgHuCh\")"}, {"id": "1T7gZwyeJxt6K7_bdTOofi3URBl6QF6jy", "filename": "基隆海岸岬角健行一日遊_免開車公車串聯全攻略.pdf", "title": "基隆海岸岬角健行一日遊_免開車公車串聯全攻略.pdf", "amount": 0, "date": "2024-10-08 12:00:00", "receiptDate": "2024-10-08", "target": "2", "targetName": "目錄 2 (健行)", "category": "生活雜項", "size": "1.2 MB", "fileUrl": "https://drive.google.com/file/d/1T7gZwyeJxt6K7_bdTOofi3URBl6QF6jy/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1T7gZwyeJxt6K7_bdTOofi3URBl6QF6jy=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1T7gZwyeJxt6K7_bdTOofi3URBl6QF6jy\")"}, {"id": "1rWngDOrbOo1Ne0CVnwFtMjQKvtt9kf7r", "filename": "2024_10月方舟安養費.jpg", "title": "2024_10月方舟安養費", "amount": 0, "date": "2024-10-07 12:00:00", "receiptDate": "2024-10-07", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "52 KB", "fileUrl": "https://drive.google.com/file/d/1rWngDOrbOo1Ne0CVnwFtMjQKvtt9kf7r/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1rWngDOrbOo1Ne0CVnwFtMjQKvtt9kf7r=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1rWngDOrbOo1Ne0CVnwFtMjQKvtt9kf7r\")"}, {"id": "1sl4eJEeHlYd9oC1mVgR8_VWCqFoU9kcG", "filename": "202409優洛乳.jpg", "title": "202409優洛乳", "amount": 0, "date": "2024-10-07 12:00:00", "receiptDate": "2024-10-07", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "34 KB", "fileUrl": "https://drive.google.com/file/d/1sl4eJEeHlYd9oC1mVgR8_VWCqFoU9kcG/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1sl4eJEeHlYd9oC1mVgR8_VWCqFoU9kcG=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1sl4eJEeHlYd9oC1mVgR8_VWCqFoU9kcG\")"}, {"id": "1JOLqatViBOfJ-w3iZwp-KBKqonrP6JWW", "filename": "90歲生日合照.jpeg", "title": "90歲生日合照", "amount": 0, "date": "2024-10-03 12:00:00", "receiptDate": "2024-10-03", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "487 KB", "fileUrl": "https://drive.google.com/file/d/1JOLqatViBOfJ-w3iZwp-KBKqonrP6JWW/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1JOLqatViBOfJ-w3iZwp-KBKqonrP6JWW=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1JOLqatViBOfJ-w3iZwp-KBKqonrP6JWW\")"}, {"id": "19IwVYOFwDhpk7Kv1am-BXqjrleIcT0a6", "filename": "90歲生日宴包車.png", "title": "90歲生日宴包車", "amount": 0, "date": "2024-10-03 12:00:00", "receiptDate": "2024-10-03", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "44 KB", "fileUrl": "https://drive.google.com/file/d/19IwVYOFwDhpk7Kv1am-BXqjrleIcT0a6/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/19IwVYOFwDhpk7Kv1am-BXqjrleIcT0a6=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=19IwVYOFwDhpk7Kv1am-BXqjrleIcT0a6\")"}, {"id": "1Y-drd_kTwWDE3HSurPq51sPv688oZmGq", "filename": "90歲生日宴珍珠板.jpeg", "title": "90歲生日宴珍珠板", "amount": 0, "date": "2024-10-03 12:00:00", "receiptDate": "2024-10-03", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "197 KB", "fileUrl": "https://drive.google.com/file/d/1Y-drd_kTwWDE3HSurPq51sPv688oZmGq/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Y-drd_kTwWDE3HSurPq51sPv688oZmGq=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Y-drd_kTwWDE3HSurPq51sPv688oZmGq\")"}, {"id": "1bG72YffHTIUScctfY1hh-sRBeueoCTt2", "filename": "90歲生日珍珠板_詔.jpg", "title": "90歲生日珍珠板_詔", "amount": 0, "date": "2024-09-29 12:00:00", "receiptDate": "2024-09-29", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "145 KB", "fileUrl": "https://drive.google.com/file/d/1bG72YffHTIUScctfY1hh-sRBeueoCTt2/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1bG72YffHTIUScctfY1hh-sRBeueoCTt2=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1bG72YffHTIUScctfY1hh-sRBeueoCTt2\")"}, {"id": "1Hs8Swgie1YYAL9QayFKWLJ6lPiVWfDbx", "filename": "90歲生日宴餐費.jpg", "title": "90歲生日宴餐費", "amount": 0, "date": "2024-09-29 12:00:00", "receiptDate": "2024-09-29", "target": "default", "targetName": "預設目錄", "category": "便當/餐飲收據", "size": "73 KB", "fileUrl": "https://drive.google.com/file/d/1Hs8Swgie1YYAL9QayFKWLJ6lPiVWfDbx/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Hs8Swgie1YYAL9QayFKWLJ6lPiVWfDbx=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Hs8Swgie1YYAL9QayFKWLJ6lPiVWfDbx\")"}, {"id": "1luaEZFUztqdMDRgqIM8EK-2LNqu8IxDu", "filename": "90歲生日團體照.jpg", "title": "90歲生日團體照", "amount": 0, "date": "2024-09-29 12:00:00", "receiptDate": "2024-09-29", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "283 KB", "fileUrl": "https://drive.google.com/file/d/1luaEZFUztqdMDRgqIM8EK-2LNqu8IxDu/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1luaEZFUztqdMDRgqIM8EK-2LNqu8IxDu=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1luaEZFUztqdMDRgqIM8EK-2LNqu8IxDu\")"}, {"id": "17ZyM8bQpJuTbXivjvSlA3jPG46jIGK82", "filename": "202409共餐恭.jpg", "title": "202409共餐恭", "amount": 0, "date": "2024-09-29 12:00:00", "receiptDate": "2024-09-29", "target": "default", "targetName": "預設目錄", "category": "便當/餐飲收據", "size": "190 KB", "fileUrl": "https://drive.google.com/file/d/17ZyM8bQpJuTbXivjvSlA3jPG46jIGK82/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/17ZyM8bQpJuTbXivjvSlA3jPG46jIGK82=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=17ZyM8bQpJuTbXivjvSlA3jPG46jIGK82\")"}, {"id": "16gRH2t2buVq69D4i6dVjf-XHCka_xFYK", "filename": "9:5長青樂活.jpg", "title": "9:5長青樂活", "amount": 0, "date": "2024-09-11 12:00:00", "receiptDate": "2024-09-11", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "382 KB", "fileUrl": "https://drive.google.com/file/d/16gRH2t2buVq69D4i6dVjf-XHCka_xFYK/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/16gRH2t2buVq69D4i6dVjf-XHCka_xFYK=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=16gRH2t2buVq69D4i6dVjf-XHCka_xFYK\")"}, {"id": "1KJBRhYYj1rRlhvfbX7A8dvbuIiFhZG_i", "filename": "2024_9月方舟安養費.jpg", "title": "2024_9月方舟安養費", "amount": 0, "date": "2024-09-05 12:00:00", "receiptDate": "2024-09-05", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "60 KB", "fileUrl": "https://drive.google.com/file/d/1KJBRhYYj1rRlhvfbX7A8dvbuIiFhZG_i/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1KJBRhYYj1rRlhvfbX7A8dvbuIiFhZG_i=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1KJBRhYYj1rRlhvfbX7A8dvbuIiFhZG_i\")"}, {"id": "1-E-ZuIePifOovgPsASWAGQiMoMyzxG1D", "filename": "202408優洛乳.png", "title": "202408優洛乳", "amount": 0, "date": "2024-08-30 12:00:00", "receiptDate": "2024-08-30", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "145 KB", "fileUrl": "https://drive.google.com/file/d/1-E-ZuIePifOovgPsASWAGQiMoMyzxG1D/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1-E-ZuIePifOovgPsASWAGQiMoMyzxG1D=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1-E-ZuIePifOovgPsASWAGQiMoMyzxG1D\")"}, {"id": "13iYvGQk8z1-Qyv5QSjEOK9POUt5XQCAD", "filename": "202407優洛乳發票.jpg", "title": "202407優洛乳發票", "amount": 0, "date": "2024-08-06 12:00:00", "receiptDate": "2024-08-06", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "40 KB", "fileUrl": "https://drive.google.com/file/d/13iYvGQk8z1-Qyv5QSjEOK9POUt5XQCAD/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/13iYvGQk8z1-Qyv5QSjEOK9POUt5XQCAD=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=13iYvGQk8z1-Qyv5QSjEOK9POUt5XQCAD\")"}, {"id": "13UzOhMOr4zZuvtbb-jgmDGdvMXUSwRxM", "filename": "2024_8月方舟安養費.jpg", "title": "2024_8月方舟安養費", "amount": 0, "date": "2024-08-05 12:00:00", "receiptDate": "2024-08-05", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "61 KB", "fileUrl": "https://drive.google.com/file/d/13UzOhMOr4zZuvtbb-jgmDGdvMXUSwRxM/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/13UzOhMOr4zZuvtbb-jgmDGdvMXUSwRxM=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=13UzOhMOr4zZuvtbb-jgmDGdvMXUSwRxM\")"}, {"id": "1pMmpAP4qfmzjG_gcISR46mbYceTXseHm", "filename": "202407優洛乳.jpg", "title": "202407優洛乳", "amount": 0, "date": "2024-08-05 12:00:00", "receiptDate": "2024-08-05", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "43 KB", "fileUrl": "https://drive.google.com/file/d/1pMmpAP4qfmzjG_gcISR46mbYceTXseHm/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1pMmpAP4qfmzjG_gcISR46mbYceTXseHm=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1pMmpAP4qfmzjG_gcISR46mbYceTXseHm\")"}, {"id": "1y9LtNwZw4GXBIi7Pwv94yZQbbEVL7ASP", "filename": "2024_7月方舟安養費.jpg", "title": "2024_7月方舟安養費", "amount": 0, "date": "2024-07-05 12:00:00", "receiptDate": "2024-07-05", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "50 KB", "fileUrl": "https://drive.google.com/file/d/1y9LtNwZw4GXBIi7Pwv94yZQbbEVL7ASP/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1y9LtNwZw4GXBIi7Pwv94yZQbbEVL7ASP=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1y9LtNwZw4GXBIi7Pwv94yZQbbEVL7ASP\")"}, {"id": "167YkIV8iL2d2A2ZFZCKCGt3VekqzfTSK", "filename": "202406優洛乳.jpg", "title": "202406優洛乳", "amount": 0, "date": "2024-06-28 12:00:00", "receiptDate": "2024-06-28", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "36 KB", "fileUrl": "https://drive.google.com/file/d/167YkIV8iL2d2A2ZFZCKCGt3VekqzfTSK/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/167YkIV8iL2d2A2ZFZCKCGt3VekqzfTSK=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=167YkIV8iL2d2A2ZFZCKCGt3VekqzfTSK\")"}, {"id": "1pIqx5LRAE7bRMMPcVkhyROMh83Pj2slL", "filename": "5/2長青樂活.jpg", "title": "5/2長青樂活", "amount": 0, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "379 KB", "fileUrl": "https://drive.google.com/file/d/1pIqx5LRAE7bRMMPcVkhyROMh83Pj2slL/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1pIqx5LRAE7bRMMPcVkhyROMh83Pj2slL=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1pIqx5LRAE7bRMMPcVkhyROMh83Pj2slL\")"}, {"id": "1rh-CJVw74rgRFzmxLv22TV7s68SAJsGQ", "filename": "5/2長青樂活講師.jpg", "title": "5/2長青樂活講師", "amount": 3000, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "341 KB", "fileUrl": "https://drive.google.com/file/d/1rh-CJVw74rgRFzmxLv22TV7s68SAJsGQ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1rh-CJVw74rgRFzmxLv22TV7s68SAJsGQ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1rh-CJVw74rgRFzmxLv22TV7s68SAJsGQ\")"}, {"id": "1LXF7r3WI9PZbUxgTWoba9eRg8ErguDuQ", "filename": "5/7手機班.jpg", "title": "5/7手機班", "amount": 0, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "374 KB", "fileUrl": "https://drive.google.com/file/d/1LXF7r3WI9PZbUxgTWoba9eRg8ErguDuQ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1LXF7r3WI9PZbUxgTWoba9eRg8ErguDuQ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1LXF7r3WI9PZbUxgTWoba9eRg8ErguDuQ\")"}, {"id": "1qLCigh1GhxGu7FO_P9zEsKpMvKTQ6Zyu", "filename": "5/9長青樂活.jpg", "title": "5/9長青樂活", "amount": 0, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "333 KB", "fileUrl": "https://drive.google.com/file/d/1qLCigh1GhxGu7FO_P9zEsKpMvKTQ6Zyu/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1qLCigh1GhxGu7FO_P9zEsKpMvKTQ6Zyu=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1qLCigh1GhxGu7FO_P9zEsKpMvKTQ6Zyu\")"}, {"id": "11T2hqjlPNYX40H5bhoSVdi8eDp7ngGmb", "filename": "5/14手機班餐費.jpg", "title": "5/14手機班餐費", "amount": 0, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "440 KB", "fileUrl": "https://drive.google.com/file/d/11T2hqjlPNYX40H5bhoSVdi8eDp7ngGmb/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/11T2hqjlPNYX40H5bhoSVdi8eDp7ngGmb=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=11T2hqjlPNYX40H5bhoSVdi8eDp7ngGmb\")"}, {"id": "1XoJnUjbhnFmVUZfrTWszg1MByD6U60dn", "filename": "5/16樂活餐費.jpg", "title": "5/16樂活餐費", "amount": 0, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "417 KB", "fileUrl": "https://drive.google.com/file/d/1XoJnUjbhnFmVUZfrTWszg1MByD6U60dn/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1XoJnUjbhnFmVUZfrTWszg1MByD6U60dn=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1XoJnUjbhnFmVUZfrTWszg1MByD6U60dn\")"}, {"id": "1nVHhLxw2Kyb-2Kag9fypp0lCIX455W7a", "filename": "5/16樂活講師費.jpg", "title": "5/16樂活講師費", "amount": 3000, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "403 KB", "fileUrl": "https://drive.google.com/file/d/1nVHhLxw2Kyb-2Kag9fypp0lCIX455W7a/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1nVHhLxw2Kyb-2Kag9fypp0lCIX455W7a=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1nVHhLxw2Kyb-2Kag9fypp0lCIX455W7a\")"}, {"id": "1aXWftz6PWurmTOHg68BS5Kr3YFpJG6oP", "filename": "5/23長青樂活講師.jpg", "title": "5/23長青樂活講師", "amount": 3000, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "313 KB", "fileUrl": "https://drive.google.com/file/d/1aXWftz6PWurmTOHg68BS5Kr3YFpJG6oP/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1aXWftz6PWurmTOHg68BS5Kr3YFpJG6oP=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1aXWftz6PWurmTOHg68BS5Kr3YFpJG6oP\")"}, {"id": "1nVHmoYuJwkTQcRxh0o1bFhGmjlvkfihv", "filename": "202406手機講師.jpg", "title": "202406手機講師", "amount": 3000, "date": "2024-06-27 12:00:00", "receiptDate": "2024-06-27", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "337 KB", "fileUrl": "https://drive.google.com/file/d/1nVHmoYuJwkTQcRxh0o1bFhGmjlvkfihv/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1nVHmoYuJwkTQcRxh0o1bFhGmjlvkfihv=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1nVHmoYuJwkTQcRxh0o1bFhGmjlvkfihv\")"}, {"id": "18Rb4Pz0Bm8YANXsvLOgGyVF1Fb7lZRVn", "filename": "202405手機講師.jpg", "title": "202405手機講師", "amount": 3000, "date": "2024-06-20 12:00:00", "receiptDate": "2024-06-20", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "407 KB", "fileUrl": "https://drive.google.com/file/d/18Rb4Pz0Bm8YANXsvLOgGyVF1Fb7lZRVn/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/18Rb4Pz0Bm8YANXsvLOgGyVF1Fb7lZRVn=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=18Rb4Pz0Bm8YANXsvLOgGyVF1Fb7lZRVn\")"}, {"id": "1tWRJ2Tvd58ZmMzgUf-zT-q0t9B9SFsFs", "filename": "202306_10車資.jpg", "title": "202306_10車資", "amount": 0, "date": "2024-06-13 12:00:00", "receiptDate": "2024-06-13", "target": "default", "targetName": "預設目錄", "category": "生活雜項", "size": "573 KB", "fileUrl": "https://drive.google.com/file/d/1tWRJ2Tvd58ZmMzgUf-zT-q0t9B9SFsFs/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1tWRJ2Tvd58ZmMzgUf-zT-q0t9B9SFsFs=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1tWRJ2Tvd58ZmMzgUf-zT-q0t9B9SFsFs\")"}, {"id": "1YYDpnH8gMiwWlPIdK50FL8EqYRcz7Y3g", "filename": "20221114居服.jpg", "title": "20221114居服", "amount": 0, "date": "2024-06-13 12:00:00", "receiptDate": "2024-06-13", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "343 KB", "fileUrl": "https://drive.google.com/file/d/1YYDpnH8gMiwWlPIdK50FL8EqYRcz7Y3g/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1YYDpnH8gMiwWlPIdK50FL8EqYRcz7Y3g=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1YYDpnH8gMiwWlPIdK50FL8EqYRcz7Y3g\")"}, {"id": "188lIo_dWf7dQ10nO-aDD0_GudAFe4Hu_", "filename": "20230303_06居服.jpg", "title": "20230303_06居服", "amount": 0, "date": "2024-06-13 12:00:00", "receiptDate": "2024-06-13", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "410 KB", "fileUrl": "https://drive.google.com/file/d/188lIo_dWf7dQ10nO-aDD0_GudAFe4Hu_/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/188lIo_dWf7dQ10nO-aDD0_GudAFe4Hu_=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=188lIo_dWf7dQ10nO-aDD0_GudAFe4Hu_\")"}, {"id": "1sbCZcjyJCPcIPKOhZCxWzJ783OnJKklE", "filename": "20230306高醫.jpg", "title": "20230306高醫", "amount": 0, "date": "2024-06-13 12:00:00", "receiptDate": "2024-06-13", "target": "default", "targetName": "預設目錄", "category": "生活雜項", "size": "237 KB", "fileUrl": "https://drive.google.com/file/d/1sbCZcjyJCPcIPKOhZCxWzJ783OnJKklE/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1sbCZcjyJCPcIPKOhZCxWzJ783OnJKklE=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1sbCZcjyJCPcIPKOhZCxWzJ783OnJKklE\")"}, {"id": "1Imx_o9OqH7o1VGLYEX8L6sPCjcSEEnMC", "filename": "20230324車資.jpg", "title": "20230324車資", "amount": 0, "date": "2024-06-13 12:00:00", "receiptDate": "2024-06-13", "target": "default", "targetName": "預設目錄", "category": "生活雜項", "size": "227 KB", "fileUrl": "https://drive.google.com/file/d/1Imx_o9OqH7o1VGLYEX8L6sPCjcSEEnMC/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Imx_o9OqH7o1VGLYEX8L6sPCjcSEEnMC=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Imx_o9OqH7o1VGLYEX8L6sPCjcSEEnMC\")"}, {"id": "1YWJGd33_WaLzjjO5yyo6NLPUULuLeEww", "filename": "20230324居服.jpg", "title": "20230324居服", "amount": 0, "date": "2024-06-13 12:00:00", "receiptDate": "2024-06-13", "target": "default", "targetName": "預設目錄", "category": "長輩安養/照護", "size": "356 KB", "fileUrl": "https://drive.google.com/file/d/1YWJGd33_WaLzjjO5yyo6NLPUULuLeEww/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1YWJGd33_WaLzjjO5yyo6NLPUULuLeEww=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1YWJGd33_WaLzjjO5yyo6NLPUULuLeEww\")"}, {"id": "1X69_Nd0GjmXbdyOBE20HYQdumnr0bPk1", "filename": "6月網購洗髮精等.jpg", "title": "6月網購洗髮精等", "amount": 0, "date": "2024-06-04 12:00:00", "receiptDate": "2024-06-04", "target": "default", "targetName": "預設目錄", "category": "生活雜項", "size": "524 KB", "fileUrl": "https://drive.google.com/file/d/1X69_Nd0GjmXbdyOBE20HYQdumnr0bPk1/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1X69_Nd0GjmXbdyOBE20HYQdumnr0bPk1=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1X69_Nd0GjmXbdyOBE20HYQdumnr0bPk1\")"}, {"id": "1dACsx-MvArDZNej2RCbll9_3OSqp70Df", "filename": "2024-5月優酪乳.jpg", "title": "2024-5月優酪乳", "amount": 0, "date": "2024-06-02 12:00:00", "receiptDate": "2024-06-02", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "69 KB", "fileUrl": "https://drive.google.com/file/d/1dACsx-MvArDZNej2RCbll9_3OSqp70Df/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1dACsx-MvArDZNej2RCbll9_3OSqp70Df=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1dACsx-MvArDZNej2RCbll9_3OSqp70Df\")"}, {"id": "11aRyew9EODihMvJ7SYvMp7S5DR92VUzp", "filename": "5/21手機班.jpg", "title": "5/21手機班", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "405 KB", "fileUrl": "https://drive.google.com/file/d/11aRyew9EODihMvJ7SYvMp7S5DR92VUzp/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/11aRyew9EODihMvJ7SYvMp7S5DR92VUzp=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=11aRyew9EODihMvJ7SYvMp7S5DR92VUzp\")"}, {"id": "1phWUsQor6GEJvkKP4Ovxxjf_qWqQZ-BG", "filename": "5/23長青樂活_文具_1.jpg", "title": "5/23長青樂活_文具_1", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "3.4 MB", "fileUrl": "https://drive.google.com/file/d/1phWUsQor6GEJvkKP4Ovxxjf_qWqQZ-BG/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1phWUsQor6GEJvkKP4Ovxxjf_qWqQZ-BG=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1phWUsQor6GEJvkKP4Ovxxjf_qWqQZ-BG\")"}, {"id": "1C8QSc_EI1y33om5ce8rKEYZZ65nQ_AMO", "filename": "5/23長青樂活_文具.jpg", "title": "5/23長青樂活_文具", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "342 KB", "fileUrl": "https://drive.google.com/file/d/1C8QSc_EI1y33om5ce8rKEYZZ65nQ_AMO/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1C8QSc_EI1y33om5ce8rKEYZZ65nQ_AMO=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1C8QSc_EI1y33om5ce8rKEYZZ65nQ_AMO\")"}, {"id": "11hA0yyOQ861O91s_4C2o7BTVuuXaQgzF", "filename": "5/23長青樂活_便當_1.jpg", "title": "5/23長青樂活_便當_1", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "3.7 MB", "fileUrl": "https://drive.google.com/file/d/11hA0yyOQ861O91s_4C2o7BTVuuXaQgzF/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/11hA0yyOQ861O91s_4C2o7BTVuuXaQgzF=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=11hA0yyOQ861O91s_4C2o7BTVuuXaQgzF\")"}, {"id": "1kRLmsoWXYbdDg9L7QYMNIJiYS3XkPe50", "filename": "5/23長青樂活_便當_2.jpg", "title": "5/23長青樂活_便當_2", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "3.2 MB", "fileUrl": "https://drive.google.com/file/d/1kRLmsoWXYbdDg9L7QYMNIJiYS3XkPe50/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1kRLmsoWXYbdDg9L7QYMNIJiYS3XkPe50=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1kRLmsoWXYbdDg9L7QYMNIJiYS3XkPe50\")"}, {"id": "1-54WocbniC-z7LxXJB2JlWm5xoFERaNN", "filename": "5/23長青樂活_便當_3.jpg", "title": "5/23長青樂活_便當_3", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "3.1 MB", "fileUrl": "https://drive.google.com/file/d/1-54WocbniC-z7LxXJB2JlWm5xoFERaNN/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1-54WocbniC-z7LxXJB2JlWm5xoFERaNN=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1-54WocbniC-z7LxXJB2JlWm5xoFERaNN\")"}, {"id": "1HSQhJb2YA8UORqzZEIfI9iYu_4Y-XUhf", "filename": "5/23長青樂活_便當.jpg", "title": "5/23長青樂活_便當", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "3.5 MB", "fileUrl": "https://drive.google.com/file/d/1HSQhJb2YA8UORqzZEIfI9iYu_4Y-XUhf/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1HSQhJb2YA8UORqzZEIfI9iYu_4Y-XUhf=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1HSQhJb2YA8UORqzZEIfI9iYu_4Y-XUhf\")"}, {"id": "1UM6vAqogVCIX4Mp3iIvAcjdNTBTl--rl", "filename": "5/23長青樂活_便當.jpg", "title": "5/23長青樂活_便當", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "3.5 MB", "fileUrl": "https://drive.google.com/file/d/1UM6vAqogVCIX4Mp3iIvAcjdNTBTl--rl/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1UM6vAqogVCIX4Mp3iIvAcjdNTBTl--rl=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1UM6vAqogVCIX4Mp3iIvAcjdNTBTl--rl\")"}, {"id": "1dAC1wgtS1_XOm5c6rXkOXM1zoYBBicyZ", "filename": "5/23長青樂活講師.jpg", "title": "5/23長青樂活講師", "amount": 3000, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "313 KB", "fileUrl": "https://drive.google.com/file/d/1dAC1wgtS1_XOm5c6rXkOXM1zoYBBicyZ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1dAC1wgtS1_XOm5c6rXkOXM1zoYBBicyZ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1dAC1wgtS1_XOm5c6rXkOXM1zoYBBicyZ\")"}, {"id": "1JoJzj2hLQkeDSeb80vy3t-x7WTrvzljE", "filename": "5/28手機班.jpg", "title": "5/28手機班", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "399 KB", "fileUrl": "https://drive.google.com/file/d/1JoJzj2hLQkeDSeb80vy3t-x7WTrvzljE/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1JoJzj2hLQkeDSeb80vy3t-x7WTrvzljE=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1JoJzj2hLQkeDSeb80vy3t-x7WTrvzljE\")"}, {"id": "1gpFaPUxXp2syYlq9aXh8RuzD4PcrgfjL", "filename": "5/30長青樂活便當.jpg", "title": "5/30長青樂活便當", "amount": 0, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "357 KB", "fileUrl": "https://drive.google.com/file/d/1gpFaPUxXp2syYlq9aXh8RuzD4PcrgfjL/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1gpFaPUxXp2syYlq9aXh8RuzD4PcrgfjL=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1gpFaPUxXp2syYlq9aXh8RuzD4PcrgfjL\")"}, {"id": "1n-mZZut1fvff06UahldwJZI6VrurjORJ", "filename": "5/30長青樂活講師.jpg", "title": "5/30長青樂活講師", "amount": 3000, "date": "2024-06-01 12:00:00", "receiptDate": "2024-06-01", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "320 KB", "fileUrl": "https://drive.google.com/file/d/1n-mZZut1fvff06UahldwJZI6VrurjORJ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1n-mZZut1fvff06UahldwJZI6VrurjORJ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1n-mZZut1fvff06UahldwJZI6VrurjORJ\")"}, {"id": "1Qr5-5JYJI3OuqJA6K3Fy2scvO2VNhcWl", "filename": "2024母親節.jpg", "title": "2024母親節", "amount": 0, "date": "2024-05-20 12:00:00", "receiptDate": "2024-05-20", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "7.7 MB", "fileUrl": "https://drive.google.com/file/d/1Qr5-5JYJI3OuqJA6K3Fy2scvO2VNhcWl/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Qr5-5JYJI3OuqJA6K3Fy2scvO2VNhcWl=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Qr5-5JYJI3OuqJA6K3Fy2scvO2VNhcWl\")"}, {"id": "1KGBaHCkbK1lf8T-nfKQbi4RdbFYxF5bl", "filename": "2024母親節2.jpg", "title": "2024母親節2", "amount": 0, "date": "2024-05-20 12:00:00", "receiptDate": "2024-05-20", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "6.2 MB", "fileUrl": "https://drive.google.com/file/d/1KGBaHCkbK1lf8T-nfKQbi4RdbFYxF5bl/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1KGBaHCkbK1lf8T-nfKQbi4RdbFYxF5bl=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1KGBaHCkbK1lf8T-nfKQbi4RdbFYxF5bl\")"}, {"id": "1MsQRpZLFp1-fGayuFFEzSheWRKT07ziC", "filename": "2024母親節餐費收據.jpg", "title": "2024母親節餐費收據", "amount": 0, "date": "2024-05-20 12:00:00", "receiptDate": "2024-05-20", "target": "default", "targetName": "預設目錄", "category": "便當/餐飲收據", "size": "669 KB", "fileUrl": "https://drive.google.com/file/d/1MsQRpZLFp1-fGayuFFEzSheWRKT07ziC/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1MsQRpZLFp1-fGayuFFEzSheWRKT07ziC=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1MsQRpZLFp1-fGayuFFEzSheWRKT07ziC\")"}, {"id": "1PFFb4Xu66aDszd6mcBnGgeJdHCLNyZtp", "filename": "4/25許美麗報名費.jpg", "title": "4/25許美麗報名費", "amount": 0, "date": "2024-05-09 12:00:00", "receiptDate": "2024-05-09", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "276 KB", "fileUrl": "https://drive.google.com/file/d/1PFFb4Xu66aDszd6mcBnGgeJdHCLNyZtp/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1PFFb4Xu66aDszd6mcBnGgeJdHCLNyZtp=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1PFFb4Xu66aDszd6mcBnGgeJdHCLNyZtp\")"}, {"id": "19mQ-ZT3az99aI3uSUQO_zhI_y0joMFAF", "filename": "4/30手機班.jpg", "title": "4/30手機班", "amount": 0, "date": "2024-05-09 12:00:00", "receiptDate": "2024-05-09", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "415 KB", "fileUrl": "https://drive.google.com/file/d/19mQ-ZT3az99aI3uSUQO_zhI_y0joMFAF/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/19mQ-ZT3az99aI3uSUQO_zhI_y0joMFAF=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=19mQ-ZT3az99aI3uSUQO_zhI_y0joMFAF\")"}, {"id": "1el1y9zdVALIpk9TxdQLEHhzSOU6UzXf7", "filename": "4月手機班講師費.jpg", "title": "4月手機班講師費", "amount": 3000, "date": "2024-05-09 12:00:00", "receiptDate": "2024-05-09", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "408 KB", "fileUrl": "https://drive.google.com/file/d/1el1y9zdVALIpk9TxdQLEHhzSOU6UzXf7/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1el1y9zdVALIpk9TxdQLEHhzSOU6UzXf7=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1el1y9zdVALIpk9TxdQLEHhzSOU6UzXf7\")"}, {"id": "1DXk5GAu0G0L48P5B3gDtjZnSlRjzTani", "filename": "5/9長青樂活講師.jpg", "title": "5/9長青樂活講師", "amount": 3000, "date": "2024-05-09 12:00:00", "receiptDate": "2024-05-09", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "396 KB", "fileUrl": "https://drive.google.com/file/d/1DXk5GAu0G0L48P5B3gDtjZnSlRjzTani/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1DXk5GAu0G0L48P5B3gDtjZnSlRjzTani=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1DXk5GAu0G0L48P5B3gDtjZnSlRjzTani\")"}, {"id": "1t68apKOJrhAUTlrlinKjyu41Z5Zs8d6m", "filename": "4/16手機班.jpg", "title": "4/16手機班", "amount": 0, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "347 KB", "fileUrl": "https://drive.google.com/file/d/1t68apKOJrhAUTlrlinKjyu41Z5Zs8d6m/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1t68apKOJrhAUTlrlinKjyu41Z5Zs8d6m=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1t68apKOJrhAUTlrlinKjyu41Z5Zs8d6m\")"}, {"id": "1h8FCx34O3EIIzGsUyp6jfVNO-wP7PT5Q", "filename": "4/18長青樂活.jpg", "title": "4/18長青樂活", "amount": 0, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "374 KB", "fileUrl": "https://drive.google.com/file/d/1h8FCx34O3EIIzGsUyp6jfVNO-wP7PT5Q/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1h8FCx34O3EIIzGsUyp6jfVNO-wP7PT5Q=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1h8FCx34O3EIIzGsUyp6jfVNO-wP7PT5Q\")"}, {"id": "1B7LQU-Q_RJp6Ik7JhP4sxJ4dOVm_BZjt", "filename": "4/18長青樂活楊美娟.jpg", "title": "4/18長青樂活楊美娟", "amount": 0, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "316 KB", "fileUrl": "https://drive.google.com/file/d/1B7LQU-Q_RJp6Ik7JhP4sxJ4dOVm_BZjt/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1B7LQU-Q_RJp6Ik7JhP4sxJ4dOVm_BZjt=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1B7LQU-Q_RJp6Ik7JhP4sxJ4dOVm_BZjt\")"}, {"id": "1wSeQrtPi8ve7psR9kXhJTMKxtPUj6V3F", "filename": "4/18長青樂活講師.jpg", "title": "4/18長青樂活講師", "amount": 3000, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "319 KB", "fileUrl": "https://drive.google.com/file/d/1wSeQrtPi8ve7psR9kXhJTMKxtPUj6V3F/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1wSeQrtPi8ve7psR9kXhJTMKxtPUj6V3F=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1wSeQrtPi8ve7psR9kXhJTMKxtPUj6V3F\")"}, {"id": "17aMSgRzKp7I0W5AbaDZcYDM9EKGrKH9A", "filename": "4/23手機.jpg", "title": "4/23手機", "amount": 0, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "360 KB", "fileUrl": "https://drive.google.com/file/d/17aMSgRzKp7I0W5AbaDZcYDM9EKGrKH9A/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/17aMSgRzKp7I0W5AbaDZcYDM9EKGrKH9A=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=17aMSgRzKp7I0W5AbaDZcYDM9EKGrKH9A\")"}, {"id": "1G95bdqS2YWeAanGNcKrd7Uy8SLNOHNc4", "filename": "4/25長青樂活.jpg", "title": "4/25長青樂活", "amount": 0, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "327 KB", "fileUrl": "https://drive.google.com/file/d/1G95bdqS2YWeAanGNcKrd7Uy8SLNOHNc4/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1G95bdqS2YWeAanGNcKrd7Uy8SLNOHNc4=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1G95bdqS2YWeAanGNcKrd7Uy8SLNOHNc4\")"}, {"id": "1CCR45JPQAZoG5rJWbakq2UsDakxiz52z", "filename": "4/25長青樂活講師.jpg", "title": "4/25長青樂活講師", "amount": 3000, "date": "2024-05-01 12:00:00", "receiptDate": "2024-05-01", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "328 KB", "fileUrl": "https://drive.google.com/file/d/1CCR45JPQAZoG5rJWbakq2UsDakxiz52z/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1CCR45JPQAZoG5rJWbakq2UsDakxiz52z=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1CCR45JPQAZoG5rJWbakq2UsDakxiz52z\")"}, {"id": "149uJYzmqCoqQCozZ_FMcbrTOLsSSNujj", "filename": "4/9手機班午餐.jpg", "title": "4/9手機班午餐", "amount": 0, "date": "2024-04-24 12:00:00", "receiptDate": "2024-04-24", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "365 KB", "fileUrl": "https://drive.google.com/file/d/149uJYzmqCoqQCozZ_FMcbrTOLsSSNujj/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/149uJYzmqCoqQCozZ_FMcbrTOLsSSNujj=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=149uJYzmqCoqQCozZ_FMcbrTOLsSSNujj\")"}, {"id": "1wjw9XvXzp9JqFkS6PGDjbL7uJJJBazPJ", "filename": "4/11 長青樂活午餐.jpg", "title": "4/11 長青樂活午餐", "amount": 0, "date": "2024-04-24 12:00:00", "receiptDate": "2024-04-24", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "399 KB", "fileUrl": "https://drive.google.com/file/d/1wjw9XvXzp9JqFkS6PGDjbL7uJJJBazPJ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1wjw9XvXzp9JqFkS6PGDjbL7uJJJBazPJ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1wjw9XvXzp9JqFkS6PGDjbL7uJJJBazPJ\")"}, {"id": "1CNVcxpOdhdaaTx3Bd_mwqjHbyCD0yqNH", "filename": "4/11 長青樂活講師.jpg", "title": "4/11 長青樂活講師", "amount": 3000, "date": "2024-04-24 12:00:00", "receiptDate": "2024-04-24", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "379 KB", "fileUrl": "https://drive.google.com/file/d/1CNVcxpOdhdaaTx3Bd_mwqjHbyCD0yqNH/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1CNVcxpOdhdaaTx3Bd_mwqjHbyCD0yqNH=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1CNVcxpOdhdaaTx3Bd_mwqjHbyCD0yqNH\")"}, {"id": "1Gf1cnUixpNmsct5o3bbtACd1__nCtMox", "filename": "3/26手機班餐費.jpg", "title": "3/26手機班餐費", "amount": 0, "date": "2024-04-02 12:00:00", "receiptDate": "2024-04-02", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "375 KB", "fileUrl": "https://drive.google.com/file/d/1Gf1cnUixpNmsct5o3bbtACd1__nCtMox/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1Gf1cnUixpNmsct5o3bbtACd1__nCtMox=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1Gf1cnUixpNmsct5o3bbtACd1__nCtMox\")"}, {"id": "1ebiHtgpS3q-ySvg0p1VuwOkDtOERYM-_", "filename": "3/28樂活餐費.jpg", "title": "3/28樂活餐費", "amount": 0, "date": "2024-04-02 12:00:00", "receiptDate": "2024-04-02", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "389 KB", "fileUrl": "https://drive.google.com/file/d/1ebiHtgpS3q-ySvg0p1VuwOkDtOERYM-_/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1ebiHtgpS3q-ySvg0p1VuwOkDtOERYM-_=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ebiHtgpS3q-ySvg0p1VuwOkDtOERYM-_\")"}, {"id": "1wHBAkk5c2JUxznERfvWf1Zu-Vs8gTb8i", "filename": "3/28樂活講師費.jpg", "title": "3/28樂活講師費", "amount": 3000, "date": "2024-04-02 12:00:00", "receiptDate": "2024-04-02", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "305 KB", "fileUrl": "https://drive.google.com/file/d/1wHBAkk5c2JUxznERfvWf1Zu-Vs8gTb8i/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1wHBAkk5c2JUxznERfvWf1Zu-Vs8gTb8i=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1wHBAkk5c2JUxznERfvWf1Zu-Vs8gTb8i\")"}, {"id": "1pg42vZ-ms8MgmB1L90vq0orYzWNO_L7N", "filename": "3月手機班講師費.jpg", "title": "3月手機班講師費", "amount": 3000, "date": "2024-04-02 12:00:00", "receiptDate": "2024-04-02", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "324 KB", "fileUrl": "https://drive.google.com/file/d/1pg42vZ-ms8MgmB1L90vq0orYzWNO_L7N/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1pg42vZ-ms8MgmB1L90vq0orYzWNO_L7N=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1pg42vZ-ms8MgmB1L90vq0orYzWNO_L7N\")"}, {"id": "1DCHdM0I0dU7W5LJFJfwx3yNgu9OKg1no", "filename": "4/2手機班餐費.jpg", "title": "4/2手機班餐費", "amount": 0, "date": "2024-04-02 12:00:00", "receiptDate": "2024-04-02", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "368 KB", "fileUrl": "https://drive.google.com/file/d/1DCHdM0I0dU7W5LJFJfwx3yNgu9OKg1no/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1DCHdM0I0dU7W5LJFJfwx3yNgu9OKg1no=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1DCHdM0I0dU7W5LJFJfwx3yNgu9OKg1no\")"}, {"id": "1tqP380eEUzExXxHnXwobdkpHmLHUIkiF", "filename": "3/22高醫自費藥品.jpg", "title": "3/22高醫自費藥品", "amount": 0, "date": "2024-03-22 12:00:00", "receiptDate": "2024-03-22", "target": "default", "targetName": "預設目錄", "category": "醫療/掛號藥品", "size": "1.7 MB", "fileUrl": "https://drive.google.com/file/d/1tqP380eEUzExXxHnXwobdkpHmLHUIkiF/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1tqP380eEUzExXxHnXwobdkpHmLHUIkiF=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1tqP380eEUzExXxHnXwobdkpHmLHUIkiF\")"}, {"id": "1trfqS7zsBCyVs7ey6t4PZ34UeK5vNVDZ", "filename": "3/22高醫掛號費.jpg", "title": "3/22高醫掛號費", "amount": 0, "date": "2024-03-22 12:00:00", "receiptDate": "2024-03-22", "target": "default", "targetName": "預設目錄", "category": "醫療/掛號藥品", "size": "1.7 MB", "fileUrl": "https://drive.google.com/file/d/1trfqS7zsBCyVs7ey6t4PZ34UeK5vNVDZ/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1trfqS7zsBCyVs7ey6t4PZ34UeK5vNVDZ=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1trfqS7zsBCyVs7ey6t4PZ34UeK5vNVDZ\")"}, {"id": "1rrC9Pmk9abGo2960157pey-7N8YrUwbC", "filename": "3/19手機班餐費.jpg", "title": "3/19手機班餐費", "amount": 0, "date": "2024-03-21 12:00:00", "receiptDate": "2024-03-21", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "423 KB", "fileUrl": "https://drive.google.com/file/d/1rrC9Pmk9abGo2960157pey-7N8YrUwbC/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1rrC9Pmk9abGo2960157pey-7N8YrUwbC=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1rrC9Pmk9abGo2960157pey-7N8YrUwbC\")"}, {"id": "1rt3BDqQzQCngNfTt95f0o5ZGfjzm3mCd", "filename": "3/21長青樂活餐費.jpg", "title": "3/21長青樂活餐費", "amount": 0, "date": "2024-03-21 12:00:00", "receiptDate": "2024-03-21", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "373 KB", "fileUrl": "https://drive.google.com/file/d/1rt3BDqQzQCngNfTt95f0o5ZGfjzm3mCd/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1rt3BDqQzQCngNfTt95f0o5ZGfjzm3mCd=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1rt3BDqQzQCngNfTt95f0o5ZGfjzm3mCd\")"}, {"id": "1rwxSQeFVOq4hSsn7_wwjit7C1mEaZRTv", "filename": "3/21長青樂活講師費.jpg", "title": "3/21長青樂活講師費", "amount": 3000, "date": "2024-03-21 12:00:00", "receiptDate": "2024-03-21", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "334 KB", "fileUrl": "https://drive.google.com/file/d/1rwxSQeFVOq4hSsn7_wwjit7C1mEaZRTv/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1rwxSQeFVOq4hSsn7_wwjit7C1mEaZRTv=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1rwxSQeFVOq4hSsn7_wwjit7C1mEaZRTv\")"}, {"id": "1awZuPLdnXQzDyN4dTwlQ4V7L4udR51u4", "filename": "3/20長青樂活林賽萍退費.jpg", "title": "3/20長青樂活林賽萍退費", "amount": 0, "date": "2024-03-20 12:00:00", "receiptDate": "2024-03-20", "target": "1", "targetName": "目錄 1", "category": "生活雜項", "size": "233 KB", "fileUrl": "https://drive.google.com/file/d/1awZuPLdnXQzDyN4dTwlQ4V7L4udR51u4/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1awZuPLdnXQzDyN4dTwlQ4V7L4udR51u4=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1awZuPLdnXQzDyN4dTwlQ4V7L4udR51u4\")"}, {"id": "1q5_0yfIUaCZMthB-vOWjDb8nE5fhVFlT", "filename": "3/14長青樂活講師費.jpg", "title": "3/14長青樂活講師費", "amount": 3000, "date": "2024-03-14 12:00:00", "receiptDate": "2024-03-14", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "360 KB", "fileUrl": "https://drive.google.com/file/d/1q5_0yfIUaCZMthB-vOWjDb8nE5fhVFlT/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1q5_0yfIUaCZMthB-vOWjDb8nE5fhVFlT=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1q5_0yfIUaCZMthB-vOWjDb8nE5fhVFlT\")"}, {"id": "1pe_UD9zQ7JTFly3z7_K0mzHUP7zXgRPb", "filename": "3/7長青樂活講師費.jpg", "title": "3/7長青樂活講師費", "amount": 3000, "date": "2024-03-13 12:00:00", "receiptDate": "2024-03-13", "target": "1", "targetName": "目錄 1", "category": "講師費領款收據", "size": "350 KB", "fileUrl": "https://drive.google.com/file/d/1pe_UD9zQ7JTFly3z7_K0mzHUP7zXgRPb/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1pe_UD9zQ7JTFly3z7_K0mzHUP7zXgRPb=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1pe_UD9zQ7JTFly3z7_K0mzHUP7zXgRPb\")"}, {"id": "1pfAOKb0HwyWH1Z13sm5luvMmcIofTRku", "filename": "3/12手機班午餐.jpg", "title": "3/12手機班午餐", "amount": 0, "date": "2024-03-13 12:00:00", "receiptDate": "2024-03-13", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "425 KB", "fileUrl": "https://drive.google.com/file/d/1pfAOKb0HwyWH1Z13sm5luvMmcIofTRku/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1pfAOKb0HwyWH1Z13sm5luvMmcIofTRku=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1pfAOKb0HwyWH1Z13sm5luvMmcIofTRku\")"}, {"id": "1ph9hQ7tdNiWqS40weWXpSyUAZahkqMoj", "filename": "3/14長青樂活午餐.jpg", "title": "3/14長青樂活午餐", "amount": 0, "date": "2024-03-13 12:00:00", "receiptDate": "2024-03-13", "target": "1", "targetName": "目錄 1", "category": "便當/餐飲收據", "size": "354 KB", "fileUrl": "https://drive.google.com/file/d/1ph9hQ7tdNiWqS40weWXpSyUAZahkqMoj/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1ph9hQ7tdNiWqS40weWXpSyUAZahkqMoj=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ph9hQ7tdNiWqS40weWXpSyUAZahkqMoj\")"}, {"id": "1gGsGDmWHkmamN_7Dqk6DMN4-WOH9zu4q", "filename": "2月優酪乳(230*3).jpg", "title": "2月優酪乳(230*3)", "amount": 690, "date": "2024-03-02 12:00:00", "receiptDate": "2024-03-02", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "38 KB", "fileUrl": "https://drive.google.com/file/d/1gGsGDmWHkmamN_7Dqk6DMN4-WOH9zu4q/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1gGsGDmWHkmamN_7Dqk6DMN4-WOH9zu4q=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1gGsGDmWHkmamN_7Dqk6DMN4-WOH9zu4q\")"}, {"id": "19y93ddOZ3U-IEznzZTx2xEIai6MZa_hw", "filename": "2024圍爐.jpg", "title": "2024圍爐", "amount": 0, "date": "2024-02-09 12:00:00", "receiptDate": "2024-02-09", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "1.2 MB", "fileUrl": "https://drive.google.com/file/d/19y93ddOZ3U-IEznzZTx2xEIai6MZa_hw/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/19y93ddOZ3U-IEznzZTx2xEIai6MZa_hw=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=19y93ddOZ3U-IEznzZTx2xEIai6MZa_hw\")"}, {"id": "1XGfAWwtRYrBqIoyj61bHcgh1qruYIIrz", "filename": "2024圍爐哥家.jpg", "title": "2024圍爐哥家", "amount": 0, "date": "2024-02-09 12:00:00", "receiptDate": "2024-02-09", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "922 KB", "fileUrl": "https://drive.google.com/file/d/1XGfAWwtRYrBqIoyj61bHcgh1qruYIIrz/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1XGfAWwtRYrBqIoyj61bHcgh1qruYIIrz=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1XGfAWwtRYrBqIoyj61bHcgh1qruYIIrz\")"}, {"id": "1QNEveP0jqjRL5zwE1Bgrwz0jUs5jq4OY", "filename": "2024圍爐哥家.jpg", "title": "2024圍爐哥家", "amount": 0, "date": "2024-02-09 12:00:00", "receiptDate": "2024-02-09", "target": "default", "targetName": "預設目錄", "category": "家庭紀念照片", "size": "922 KB", "fileUrl": "https://drive.google.com/file/d/1QNEveP0jqjRL5zwE1Bgrwz0jUs5jq4OY/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1QNEveP0jqjRL5zwE1Bgrwz0jUs5jq4OY=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1QNEveP0jqjRL5zwE1Bgrwz0jUs5jq4OY\")"}, {"id": "15C9KOoY4EGA6sTLh0A83TaqjnqFY4Ioa", "filename": "1/8媽媽看診費用與兩瓶乳液(恭).jpg", "title": "1/8媽媽看診費用與兩瓶乳液(恭)", "amount": 0, "date": "2024-02-03 12:00:00", "receiptDate": "2024-02-03", "target": "default", "targetName": "預設目錄", "category": "醫療/掛號藥品", "size": "14 KB", "fileUrl": "https://drive.google.com/file/d/15C9KOoY4EGA6sTLh0A83TaqjnqFY4Ioa/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/15C9KOoY4EGA6sTLh0A83TaqjnqFY4Ioa=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=15C9KOoY4EGA6sTLh0A83TaqjnqFY4Ioa\")"}, {"id": "1jGkNTfDnMJZkNeezuO3JWPoVUIkwGWSo", "filename": "11月優酪乳(230*4).jpg", "title": "11月優酪乳(230*4)", "amount": 920, "date": "2024-02-03 12:00:00", "receiptDate": "2024-02-03", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "62 KB", "fileUrl": "https://drive.google.com/file/d/1jGkNTfDnMJZkNeezuO3JWPoVUIkwGWSo/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1jGkNTfDnMJZkNeezuO3JWPoVUIkwGWSo=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1jGkNTfDnMJZkNeezuO3JWPoVUIkwGWSo\")"}, {"id": "1QilGE-WvH-vzLGzxSpcqY0HjXYgcQHnh", "filename": "12/29媽媽看診費用(真).jpg", "title": "12/29媽媽看診費用(真)", "amount": 0, "date": "2024-02-03 12:00:00", "receiptDate": "2024-02-03", "target": "default", "targetName": "預設目錄", "category": "醫療/掛號藥品", "size": "11 KB", "fileUrl": "https://drive.google.com/file/d/1QilGE-WvH-vzLGzxSpcqY0HjXYgcQHnh/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1QilGE-WvH-vzLGzxSpcqY0HjXYgcQHnh=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1QilGE-WvH-vzLGzxSpcqY0HjXYgcQHnh\")"}, {"id": "10e5nzs8vebLdTaQ4fkWU9g_dlegtnNqY", "filename": "12月優酪乳(230*4).jpg", "title": "12月優酪乳(230*4)", "amount": 920, "date": "2024-02-03 12:00:00", "receiptDate": "2024-02-03", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "62 KB", "fileUrl": "https://drive.google.com/file/d/10e5nzs8vebLdTaQ4fkWU9g_dlegtnNqY/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/10e5nzs8vebLdTaQ4fkWU9g_dlegtnNqY=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=10e5nzs8vebLdTaQ4fkWU9g_dlegtnNqY\")"}, {"id": "1ICEoZUDTt6sNLRY821FYbdEehr3H7_Uf", "filename": "12月優酪乳(230*4).jpg", "title": "12月優酪乳(230*4)", "amount": 920, "date": "2024-02-03 12:00:00", "receiptDate": "2024-02-03", "target": "default", "targetName": "預設目錄", "category": "生活營養採買", "size": "62 KB", "fileUrl": "https://drive.google.com/file/d/1ICEoZUDTt6sNLRY821FYbdEehr3H7_Uf/view?usp=drivesdk", "lh3Url": "https://lh3.googleusercontent.com/d/1ICEoZUDTt6sNLRY821FYbdEehr3H7_Uf=w1920", "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ICEoZUDTt6sNLRY821FYbdEehr3H7_Uf\")"}];
 
+  const STORAGE_KEY_DELETED = 'gdrive_gallery_deleted_ids';
+  let deletedIds = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_DELETED) || '[]'));
+
   let currentFolder = 'all';
   let currentCat = 'all';
   let currentYear = 'all';
@@ -736,6 +905,9 @@
   let searchQuery = '';
   let activeLightboxIdx = -1;
   let filteredItems = [];
+  let pendingDeleteId = null;
+  let selectedIds = new Set();
+  let isBatchMode = false;
 
   const cardsGrid = document.getElementById('cardsGrid');
   const tableView = document.getElementById('tableView');
@@ -746,6 +918,7 @@
   const sortSelect = document.getElementById('sortSelect');
   const folderChips = document.getElementById('folderChips');
   const categoryChips = document.getElementById('categoryChips');
+  const chipTrash = document.getElementById('chipTrash');
   const btnGridView = document.getElementById('btnGridView');
   const btnTableView = document.getElementById('btnTableView');
   const toast = document.getElementById('toast');
@@ -754,7 +927,15 @@
   const statTotalCount = document.getElementById('statTotalCount');
   const statFolder1Count = document.getElementById('statFolder1Count');
   const statDefaultCount = document.getElementById('statDefaultCount');
-  const statFolder2Count = document.getElementById('statFolder2Count');
+  const statTrashCount = document.getElementById('statTrashCount');
+
+  const batchBar = document.getElementById('batchBar');
+  const btnToggleBatch = document.getElementById('btnToggleBatch');
+  const btnCloseBatch = document.getElementById('btnCloseBatch');
+  const btnSelectAll = document.getElementById('btnSelectAll');
+  const btnDeselectAll = document.getElementById('btnDeselectAll');
+  const btnBatchDelete = document.getElementById('btnBatchDelete');
+  const selectedCountText = document.getElementById('selectedCountText');
 
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxTitle = document.getElementById('lightboxTitle');
@@ -765,15 +946,28 @@
   const btnCopyFormulaLb = document.getElementById('btnCopyFormulaLb');
   const btnCopyLh3Lb = document.getElementById('btnCopyLh3Lb');
   const btnOpenDriveLb = document.getElementById('btnOpenDriveLb');
+  const btnDeleteCurrentLb = document.getElementById('btnDeleteCurrentLb');
+
+  const confirmModal = document.getElementById('confirmModal');
+  const confirmTargetTitle = document.getElementById('confirmTargetTitle');
+  const confirmTargetMeta = document.getElementById('confirmTargetMeta');
+  const confirmTargetThumb = document.getElementById('confirmTargetThumb');
+  const btnCancelDelete = document.getElementById('btnCancelDelete');
+  const btnConfirmDelete = document.getElementById('btnConfirmDelete');
+  const btnDriveTrash = document.getElementById('btnDriveTrash');
+
+  function saveDeletedIds() {
+    localStorage.setItem(STORAGE_KEY_DELETED, JSON.stringify(Array.from(deletedIds)));
+    updateStats();
+  }
 
   function updateStats() {
-    statTotalCount.textContent = uploadHistory.length;
-    const f1 = uploadHistory.filter(i => i.target === '1').length;
-    const fdef = uploadHistory.filter(i => i.target === 'default').length;
-    const f2 = uploadHistory.filter(i => i.target === '2').length;
-    statFolder1Count.textContent = f1;
-    statDefaultCount.textContent = fdef;
-    statFolder2Count.textContent = f2;
+    const activeItems = uploadHistory.filter(i => !deletedIds.has(i.id));
+    statTotalCount.textContent = activeItems.length;
+    statFolder1Count.textContent = activeItems.filter(i => i.target === '1').length;
+    statDefaultCount.textContent = activeItems.filter(i => i.target === 'default').length;
+    statTrashCount.textContent = deletedIds.size;
+    chipTrash.textContent = `🗑️ 回收筒 (${deletedIds.size})`;
   }
 
   function isImage(fn) {
@@ -791,11 +985,18 @@
   }
 
   function applyFilterAndSort() {
-    filteredItems = uploadHistory.filter(item => {
-      // Folder filter
-      if (currentFolder !== 'all' && item.target !== currentFolder) return false;
+    const inTrashView = currentFolder === 'trash';
 
-      // Category filter
+    filteredItems = uploadHistory.filter(item => {
+      const isDeleted = deletedIds.has(item.id);
+
+      if (inTrashView) {
+        if (!isDeleted) return false;
+      } else {
+        if (isDeleted) return false;
+        if (currentFolder !== 'all' && item.target !== currentFolder) return false;
+      }
+
       if (currentCat !== 'all') {
         if (currentCat === '便當/餐飲收據') {
           if (!['便當收據', '便當/餐飲收據', '點餐明細'].includes(item.category)) return false;
@@ -806,7 +1007,6 @@
         }
       }
 
-      // Year filter
       if (currentYear !== 'all') {
         const itemYear = (item.receiptDate || item.date || '').slice(0, 4);
         if (currentYear === '2023') {
@@ -816,7 +1016,6 @@
         }
       }
 
-      // Search
       if (searchQuery) {
         const q = searchQuery.toLowerCase();
         const text = `${item.title} ${item.filename} ${item.category} ${item.targetName} ${item.receiptDate} ${item.amount}`.toLowerCase();
@@ -826,7 +1025,6 @@
       return true;
     });
 
-    // Sorting
     filteredItems.sort((a, b) => {
       const da = a.receiptDate || a.date || '';
       const db = b.receiptDate || b.date || '';
@@ -862,6 +1060,8 @@
   }
 
   function renderGrid() {
+    const inTrashView = currentFolder === 'trash';
+
     cardsGrid.innerHTML = filteredItems.map((item, idx) => {
       let badgeFolderClass = 'badge-folder-def';
       if (item.target === '1') badgeFolderClass = 'badge-folder-1';
@@ -870,11 +1070,12 @@
       const imgFile = isImage(item.filename);
       const thumbUrl = `https://lh3.googleusercontent.com/d/${item.id}=w600`;
       const amountTag = item.amount ? `<div class="card-amount-tag">$${item.amount.toLocaleString()}</div>` : '';
+      const isChecked = selectedIds.has(item.id);
 
       let thumbHtml = '';
       if (imgFile) {
         thumbHtml = `
-          <div class="card-thumb-wrap" onclick="openLightbox(${idx})">
+          <div class="card-thumb-wrap" onclick="handleCardThumbClick(event, ${idx}, '${item.id}')">
             <div class="card-badges">
               <span class="badge ${badgeFolderClass}">${item.targetName}</span>
               ${item.category ? `<span class="badge badge-category">${item.category}</span>` : ''}
@@ -890,7 +1091,7 @@
         const icon = getFileIcon(item.filename);
         const ext = (item.filename || '').split('.').pop().toUpperCase();
         thumbHtml = `
-          <div class="card-thumb-wrap" onclick="window.open('${item.fileUrl}','_blank')">
+          <div class="card-thumb-wrap" onclick="handleCardThumbClick(event, ${idx}, '${item.id}')">
             <div class="card-badges">
               <span class="badge ${badgeFolderClass}">${item.targetName}</span>
               ${item.category ? `<span class="badge badge-category">${item.category}</span>` : ''}
@@ -906,8 +1107,23 @@
         `;
       }
 
+      const actionButtons = inTrashView ? `
+        <div class="card-actions-row-bottom">
+          <button class="btn btn-success" onclick="restoreItem('${item.id}')">↩️ 還原</button>
+          <button class="btn btn-danger" onclick="promptPermanentDelete('${item.id}')">🔥 永久清空</button>
+        </div>
+      ` : `
+        <button class="btn" onclick="copyFormula('${item.id}')" title="複製試算表公式">📋 公式</button>
+        <button class="btn" onclick="copyLh3('${item.id}')" title="複製 1920 高清直連">🌟 lh3</button>
+        <div class="card-actions-row-bottom">
+          <a href="${item.fileUrl}" target="_blank" class="btn btn-open-drive">🔗 Drive</a>
+          <button class="btn btn-danger" onclick="promptDelete('${item.id}')" title="從清單刪除">🗑️ 刪除</button>
+        </div>
+      `;
+
       return `
-        <div class="card">
+        <div class="card ${isChecked ? 'selected' : ''} ${inTrashView ? 'in-trash' : ''}" id="card-${item.id}">
+          <input type="checkbox" class="card-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleSelect('${item.id}')">
           ${thumbHtml}
           <div class="card-body">
             <div class="card-title" title="${item.filename}">${item.filename}</div>
@@ -916,9 +1132,7 @@
               <span>${item.size || ''}</span>
             </div>
             <div class="card-actions">
-              <button class="btn" onclick="copyFormula('${item.id}')" title="複製試算表公式">📋 公式</button>
-              <button class="btn" onclick="copyLh3('${item.id}')" title="複製 1920 高清直連">🌟 lh3</button>
-              <a href="${item.fileUrl}" target="_blank" class="btn btn-open-drive">🔗 在 Drive 開啟</a>
+              ${actionButtons}
             </div>
           </div>
         </div>
@@ -927,6 +1141,8 @@
   }
 
   function renderTable() {
+    const inTrashView = currentFolder === 'trash';
+
     tableBody.innerHTML = filteredItems.map((item, idx) => {
       let badgeFolderClass = 'badge-folder-def';
       if (item.target === '1') badgeFolderClass = 'badge-folder-1';
@@ -935,6 +1151,7 @@
       const imgFile = isImage(item.filename);
       const thumbUrl = `https://lh3.googleusercontent.com/d/${item.id}=w120`;
       const amountStr = item.amount ? `<strong style="color:#10b981;font-family:'JetBrains Mono',monospace;">$${item.amount.toLocaleString()}</strong>` : (item.size || '-');
+      const isChecked = selectedIds.has(item.id);
 
       let thumbCell = '';
       if (imgFile) {
@@ -944,8 +1161,19 @@
         thumbCell = `<div style="font-size:1.8rem;text-align:center;cursor:pointer;" onclick="window.open('${item.fileUrl}','_blank')">${icon}</div>`;
       }
 
+      const actionButtons = inTrashView ? `
+        <button class="btn btn-success" onclick="restoreItem('${item.id}')">↩️ 還原</button>
+        <button class="btn btn-danger" onclick="promptPermanentDelete('${item.id}')">🔥 清除</button>
+      ` : `
+        <button class="btn" onclick="copyFormula('${item.id}')">📋</button>
+        <button class="btn" onclick="copyLh3('${item.id}')">🌟</button>
+        <a href="${item.fileUrl}" target="_blank" class="btn">🔗</a>
+        <button class="btn btn-danger" onclick="promptDelete('${item.id}')">🗑️</button>
+      `;
+
       return `
-        <tr>
+        <tr class="${isChecked ? 'selected' : ''}">
+          <td><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleSelect('${item.id}')"></td>
           <td>${thumbCell}</td>
           <td>
             <div style="font-weight:600;margin-bottom:2px;">${item.filename}</div>
@@ -957,9 +1185,7 @@
           <td style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;">${item.receiptDate || item.date.split(' ')[0]}</td>
           <td>
             <div class="table-actions">
-              <button class="btn" onclick="copyFormula('${item.id}')">📋 公式</button>
-              <button class="btn" onclick="copyLh3('${item.id}')">🌟 lh3</button>
-              <a href="${item.fileUrl}" target="_blank" class="btn">🔗</a>
+              ${actionButtons}
             </div>
           </td>
         </tr>
@@ -967,6 +1193,140 @@
     }).join('');
   }
 
+  // Deletion Logic
+  window.promptDelete = function(id) {
+    const item = uploadHistory.find(i => i.id === id);
+    if (!item) return;
+
+    pendingDeleteId = id;
+    confirmTargetTitle.textContent = item.filename;
+    confirmTargetMeta.textContent = `${item.targetName}・${item.receiptDate || item.date.split(' ')[0]}・${item.category}`;
+    confirmTargetThumb.src = isImage(item.filename) ? `https://lh3.googleusercontent.com/d/${item.id}=w120` : '';
+    confirmTargetThumb.style.display = isImage(item.filename) ? 'block' : 'none';
+
+    btnDriveTrash.href = item.fileUrl;
+    btnDriveTrash.style.display = 'inline-flex';
+
+    confirmModal.classList.add('active');
+  };
+
+  btnCancelDelete.addEventListener('click', () => {
+    confirmModal.classList.remove('active');
+    pendingDeleteId = null;
+  });
+
+  btnConfirmDelete.addEventListener('click', () => {
+    if (pendingDeleteId) {
+      deletedIds.add(pendingDeleteId);
+      saveDeletedIds();
+      applyFilterAndSort();
+      confirmModal.classList.remove('active');
+      showToast('已將項目移至回收筒 🗑️');
+      pendingDeleteId = null;
+    }
+  });
+
+  window.restoreItem = function(id) {
+    deletedIds.delete(id);
+    saveDeletedIds();
+    applyFilterAndSort();
+    showToast('已還原照片！');
+  };
+
+  window.promptPermanentDelete = function(id) {
+    if (confirm('確定要永久從回收筒清除此項目紀錄嗎？')) {
+      uploadHistory = uploadHistory.filter(i => i.id !== id);
+      deletedIds.delete(id);
+      saveDeletedIds();
+      applyFilterAndSort();
+      showToast('已永久從總覽清除！');
+    }
+  };
+
+  // Batch Mode
+  btnToggleBatch.addEventListener('click', () => {
+    isBatchMode = !isBatchMode;
+    document.body.classList.toggle('batch-mode', isBatchMode);
+    batchBar.classList.toggle('show', isBatchMode);
+    btnToggleBatch.textContent = isBatchMode ? '❌ 關閉批次' : '☑️ 批次刪除管理';
+    if (!isBatchMode) {
+      selectedIds.clear();
+      updateSelectedCount();
+    }
+    render();
+  });
+
+  btnCloseBatch.addEventListener('click', () => {
+    isBatchMode = false;
+    document.body.classList.remove('batch-mode');
+    batchBar.classList.remove('show');
+    btnToggleBatch.textContent = '☑️ 批次刪除管理';
+    selectedIds.clear();
+    updateSelectedCount();
+    render();
+  });
+
+  window.toggleSelect = function(id) {
+    if (selectedIds.has(id)) selectedIds.delete(id);
+    else selectedIds.add(id);
+    updateSelectedCount();
+    render();
+  };
+
+  window.handleCardThumbClick = function(e, idx, id) {
+    if (isBatchMode) {
+      e.stopPropagation();
+      toggleSelect(id);
+    } else {
+      if (isImage(filteredItems[idx].filename)) {
+        openLightbox(idx);
+      } else {
+        window.open(filteredItems[idx].fileUrl, '_blank');
+      }
+    }
+  };
+
+  btnSelectAll.addEventListener('click', () => {
+    filteredItems.forEach(i => selectedIds.add(i.id));
+    updateSelectedCount();
+    render();
+  });
+
+  btnDeselectAll.addEventListener('click', () => {
+    selectedIds.clear();
+    updateSelectedCount();
+    render();
+  });
+
+  function updateSelectedCount() {
+    selectedCountText.textContent = `已選取 ${selectedIds.size} 項`;
+    btnBatchDelete.disabled = selectedIds.size === 0;
+  }
+
+  btnBatchDelete.addEventListener('click', () => {
+    if (selectedIds.size === 0) return;
+    if (confirm(`確定要將選取的 ${selectedIds.size} 個項目移至回收筒嗎？`)) {
+      selectedIds.forEach(id => deletedIds.add(id));
+      selectedIds.clear();
+      updateSelectedCount();
+      saveDeletedIds();
+      applyFilterAndSort();
+      showToast('已批次移至回收筒 🗑️');
+    }
+  });
+
+  // Export JSON
+  document.getElementById('btnExportJson').addEventListener('click', () => {
+    const active = uploadHistory.filter(i => !deletedIds.has(i.id));
+    const blob = new Blob([JSON.stringify(active, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'gdrive_upload_history.json';
+    a.click();
+    showToast('已下載更新後的 JSON 檔！');
+  });
+
+  // Copy Helpers
   window.copyFormula = function(id) {
     copyToClipboard(`=IMAGE("https://drive.google.com/uc?id=${id}")`, '已複製試算表公式 =IMAGE(...)');
   };
@@ -995,6 +1355,7 @@
     setTimeout(() => { toast.classList.remove('show'); }, 2200);
   }
 
+  // Lightbox
   window.openLightbox = function(idx) {
     activeLightboxIdx = idx;
     const item = filteredItems[idx];
@@ -1007,6 +1368,10 @@
     btnCopyFormulaLb.onclick = () => copyFormula(item.id);
     btnCopyLh3Lb.onclick = () => copyLh3(item.id);
     btnOpenDriveLb.href = item.fileUrl;
+    btnDeleteCurrentLb.onclick = () => {
+      closeLightbox();
+      promptDelete(item.id);
+    };
 
     lightboxModal.classList.add('active');
   };
