@@ -585,18 +585,7 @@
           </h1>
           <p>收錄 2024–2026 歷次健行活動紀錄短片・100% 補齊影片長度與實時觀看人數・預設播放音量 15%</p>
         </div>
-        <div class="header-actions">
-          <a class="btn btn-emerald" href="https://fun.jktai123.com/antigravity/%E9%9D%92%E6%9D%BE%E5%81%A5%E8%A1%8C%E9%9A%8A_%E5%9C%B0%E5%9C%96%E5%B0%8E%E8%A6%BD.html" target="_blank" rel="noopener">
-            🗺️ 青松 GPX 地圖導覽
-          </a>
-          <a class="btn btn-accent" href="https://docs.google.com/spreadsheets/d/1xAZ810fin7AY4azNgN-sPr4fuIx0a77ASFOymfvxTXk/edit" target="_blank" rel="noopener">
-            📊 原始 Google Sheet
-          </a>
-          <a class="btn" href="https://fun.jktai123.com/antigravity/yt_gallery.html" target="_blank" rel="noopener">
-            🎬 返回 YT 總圖庫
-          </a>
-          <button class="btn" id="exportCsvBtn" type="button">⬇️ 匯出 CSV</button>
-        </div>
+
       </div>
 
       <div class="stats-grid">
@@ -983,22 +972,7 @@
       tableWrapEl.style.display = 'block';
     });
 
-    document.getElementById('exportCsvBtn').addEventListener('click', () => {
-      const { sorted } = getFilteredAndSorted();
-      const headers = ['Item', 'ViewCount', 'Duration', 'Title', 'href', 'UploadDate'];
-      const rows = [headers.join(',')];
-      for (const v of sorted) {
-        const row = headers.map(h => `"${String(v[h] ?? '').replace(/"/g, '""')}"`);
-        rows.push(row.join(','));
-      }
-      const blob = new Blob(['\uFEFF' + rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `青松健行隊_YouTube影片清單_${sorted.length}筆.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-    });
+
 
     initChips();
     initDOMItems();
