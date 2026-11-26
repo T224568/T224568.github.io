@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 Obsidian 第二大腦與 Antigravity 全自動化整合標準 SOP 教學手冊</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface2: #0b1120;
+    --border: #334155;
+    --primary: #8b5cf6;
+    --primary-light: #c4b5fd;
+    --accent: #38bdf8;
+    --success: #10b981;
+    --warn: #f59e0b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static !important; height: auto !important; border-right: none !important; border-bottom: 1px solid var(--border); }
+  }
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 28px 20px;
+    background: var(--surface2);
+    border-right: 1px solid var(--border);
+  }
+  .brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; }
+  .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .nav-list a {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: all 0.15s;
+  }
+  .nav-list a:hover { background: var(--surface); color: #fff; }
+  .quick-links { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+  .btn-link {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 9px 14px; border-radius: 8px; font-size: 0.86rem; font-weight: 600;
+    text-decoration: none; color: #fff; background: var(--primary);
+  }
+  .btn-link.secondary { background: #334155; }
+  .main { padding: 36px 44px; max-width: 1060px; }
+  @media (max-width: 640px) { .main { padding: 20px; } }
+  .hero {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #1e293b 100%);
+    border: 1px solid #4338ca;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+  .hero h1 { margin: 0 0 10px 0; font-size: 1.85rem; }
+  .hero p { margin: 0; color: #c7d2fe; font-size: 0.98rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .badge {
+    padding: 4px 11px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+    background: rgba(139, 92, 246, 0.25); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.4);
+  }
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 30px;
+    margin-bottom: 28px;
+  }
+  section h2 {
+    margin-top: 0;
+    font-size: 1.35rem;
+    color: #fff;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+  section h3 { color: var(--accent); font-size: 1.08rem; margin: 20px 0 10px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th { background: rgba(15, 23, 42, 0.6); color: var(--primary-light); font-weight: 600; }
+  code {
+    background: rgba(15, 23, 42, 0.8);
+    color: #38bdf8;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+  }
+  pre {
+    background: #090d16;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    color: #e2e8f0;
+  }
+  pre code { background: transparent; padding: 0; color: inherit; }
+  .callout {
+    border-left: 4px solid var(--primary);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 0.93rem;
+  }
+  .callout.warn { border-left-color: var(--warn); background: rgba(245, 158, 11, 0.1); }
+  .callout.success { border-left-color: var(--success); background: rgba(16, 185, 129, 0.1); }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .card h4 { margin: 0 0 8px 0; color: var(--primary-light); font-size: 1.02rem; }
+  .card p { margin: 0; font-size: 0.88rem; color: var(--muted); }
+  .copy-btn {
+    float: right;
+    background: #334155;
+    color: #e2e8f0;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: var(--primary); color: #fff; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">💎 Obsidian 第二大腦</div>
+    <div class="brand-sub">標準作業流程 (SOP) 教學手冊</div>
+    <ul class="nav-list">
+      <li><a href="#sec1">📂 一、筆記庫架構與雙端同步</a></li>
+      <li><a href="#sec2">📅 二、每日筆記三段式自動化</a></li>
+      <li><a href="#sec3">📚 三、Clippings 網頁剪藏 SOP</a></li>
+      <li><a href="#sec4">🔄 四、三層級專案管理 (L1~L3)</a></li>
+      <li><a href="#sec5">🔌 五、AI 對話操控口令速查表</a></li>
+      <li><a href="#sec6">🛠️ 六、常見故障排除 SOP</a></li>
+    </ul>
+    <div class="quick-links">
+      <a class="btn-link" href="obsidian://open?vault=secondbrain&file=Obsidian_%E4%BD%BF%E7%94%A8%E8%AA%AA%E6%98%8E%E8%88%87SOP">💎 在 Obsidian 開啟本 SOP</a>
+      <a class="btn-link secondary" href="obsidian://open?vault=secondbrain&file=%F0%9F%93%9A%20Clippings%20%E5%89%AA%E8%97%8F%E7%9F%A5%E8%AD%98%E5%BA%AB%E7%B8%BD%E8%A6%BD">📚 開啟 Clippings 總覽筆記</a>
+      <a class="btn-link secondary" href="https://fun.jktai123.com/antigravity/obsidian_clippings_hub.html" target="_blank">🌐 線上 Clippings 搜尋入口</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="hero">
+      <h1>🧠 Obsidian 第二大腦與 Antigravity 全自動化標準 SOP</h1>
+      <p>涵蓋雙端雲端鏡像同步、每日筆記「昨日回填＋今日建檔＋關機刷新」三段式閉環、168+ 篇 Clippings 剪藏知識庫管理，以及 L1~L3 全專案記憶連動。</p>
+      <div class="hero-badges">
+        <span class="badge">最後更新：2026-11-26</span>
+        <span class="badge">主力筆記庫：secondbrain</span>
+        <span class="badge">雙端同步：Google Drive ⇄ iCloud ⇄ 1T_HDD</span>
+      </div>
+    </div>
+
+    <section id="sec1">
+      <h2>📂 一、Obsidian 筆記庫 (Vault) 架構與儲存位置</h2>
+      <p>你的 Obsidian 唯一主力筆記庫為 <strong><code>secondbrain</code></strong>，由背景排程 <code>com.jktai.obsidian.sync</code> 每 5 分鐘自動執行 <code>~/.config/obsidian_sync/sync_vaults.py</code> 維持三端鏡像：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>儲存端點</th>
+            <th>絕對路徑</th>
+            <th>角色定位與設定重點</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Google Drive (Mac 主力)</strong></td>
+            <td><code>~/Library/CloudStorage/GoogleDrive-jktai123@gmail.com/我的雲端硬碟/secondbrain</code></td>
+            <td>Mac 版 Obsidian 直接開啟的路徑。<br>✅ <strong>必做設定</strong>：在 Finder 右鍵點選 <code>secondbrain</code> ➔ <strong>「永遠保留在此裝置上」</strong>（保持實心綠點 🟢）。</td>
+          </tr>
+          <tr>
+            <td><strong>2. iCloud Drive (行動端)</strong></td>
+            <td><code>~/Library/Mobile Documents/iCloud~md~obsidian/Documents/secondbrain</code></td>
+            <td>供 iPhone / iPad 行動端 Obsidian 同步閱覽，同時作為本機自動化腳本的第一優先實體讀取快取。</td>
+          </tr>
+          <tr>
+            <td><strong>3. 1T_HDD (本地冷備份)</strong></td>
+            <td><code>/Volumes/1T_HDD/ObsidianBackup</code></td>
+            <td>外接硬碟連接時自動透過 <code>rsync</code> 鏡像備份。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <strong>⚠️ 防呆提醒（哪個資料夾要開？）：</strong><br>
+        Google Drive 下的 <code>Vault/</code>（裡面只有 2 份舊 Google 簡報捷徑）與 <code>Obsidian/</code>（空資料夾）<strong>皆不是你的筆記庫，不需要開啟</strong>！只需要把 <strong><code>secondbrain</code></strong> 設為離線保留即可。
+      </div>
+
+      <h3>🗂️ secondbrain 核心目錄地圖</h3>
+      <pre><code>secondbrain/
+├── 📚 Clippings 剪藏知識庫總覽.md   # 【剪藏 MOC 總入口】168+ 篇網頁剪藏自動分成 6 大主題表格
+├── Obsidian_使用說明與SOP.md      # 【本手冊】Obsidian 標準作業流程與指令速查表
+├── 每日筆記/                      # 【自動化日記】每日三大欄位自動提煉 + 本地活動與工作摘要
+│   ├── 2026-11-26.md             # 每日自動生成與回填之日記
+│   └── 2026-W39 知識重整.md       # 每週知識重整週報
+├── Clippings/                    # 【外部網頁剪藏】Chrome Web Clipper 剪藏的 168+ 篇筆記
+├── Antigravity/                  # 【L3 專案記憶庫】全系統 36+ 個專案的 專案工作流程.md
+├── 知識庫/                        # 【永久知識卡片】提煉後的 Evergreen Notes
+├── 創作庫/                        # 【原創產出】原創文章、簡報講義與實戰手冊
+└── Templates/每日筆記.md           # 【模板】每日筆記標準結構</code></pre>
+    </section>
+
+    <section id="sec2">
+      <h2>📅 二、每日筆記 (<code>每日筆記/YYYY-MM-DD.md</code>) 三段式自動化 SOP</h2>
+      <p>每日筆記由 <code>generate_daily_note.py</code> 整合 <code>agy-today</code> 與 <code>daily-summary (dz)</code> 自動產生，<strong>所有欄位皆由腳本自動抓取填入，不再出現空白欄位</strong>（且不嵌入早安圖，保持版面乾淨）。</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h4>1️⃣ 🏫 教學（含備課進度）</h4>
+          <p>自動提取當日發佈至 <code>fun.jktai123.com</code> 的互動網頁與教材連結（或教學對話、今日行程），並統計當日發佈件數。</p>
+        </div>
+        <div class="card">
+          <h4>2️⃣ 💡 今日反思</h4>
+          <p>自動統計當日 AI 協作會話場次、累計互動訊息數、發佈網頁數，並條列當日核心完成的任務摘要。</p>
+        </div>
+        <div class="card">
+          <h4>3️⃣ 明日優先事項</h4>
+          <p>自動查詢 <strong>隔天（明日）的 Google Calendar 行事曆行程</strong> 排入第一優先，並附加上專案延續與每日巡檢待辦。</p>
+        </div>
+      </div>
+
+      <h3>🔄 三段式自動閉環排程（免手動干預）</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>時段 / 觸發點</th>
+            <th>排程服務 / 腳本</th>
+            <th>自動執行邏輯</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Step 1：凌晨 00:05 / 開機補跑</strong></td>
+            <td><code>com.jktai.generate_daily_note</code><br><code>task_catchup.py</code></td>
+            <td><strong>【昨日自動回填】</strong> 針對 <code>昨天 (today - 1)</code> 執行完整掃描，把昨天一整天的對話、網頁發布、相片與 Screen Time 回填至昨日筆記。</td>
+          </tr>
+          <tr>
+            <td><strong>Step 2：凌晨 00:05 / 開機補跑</strong></td>
+            <td><code>generate_daily_note.py</code></td>
+            <td><strong>【今日自動建檔】</strong> 建立 <code>今天 (today)</code> 的每日筆記，寫入今日 Google Calendar 行程與早盤進度。</td>
+          </tr>
+          <tr>
+            <td><strong>Step 3：關機前收工</strong></td>
+            <td><code>safe-shutdown</code></td>
+            <td><strong>【關機前自動刷新】</strong> 執行 <code>safe-shutdown</code> 或午夜 00:00 自動關機時，自動刷新今日筆記，確保當日完整成果落盤。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>💻 手動執行或批量回填 CLI 指令</h3>
+      <pre><button class="copy-btn" onclick="copyCode(this)">複製指令</button><code># 1. 預設執行（自動回填「昨天」+ 建立/更新「今天」）
+python3 /Volumes/1T_HDD_2/Antigravity/20260730SecondBrain/.agents/skills/daily-ai-tracker/scripts/generate_daily_note.py
+
+# 2. 指定特定日期或多個日期批量回填
+python3 /Volumes/1T_HDD_2/Antigravity/20260730SecondBrain/.agents/skills/daily-ai-tracker/scripts/generate_daily_note.py 2026-11-25 2026-11-26</code></pre>
+    </section>
+
+    <section id="sec3">
+      <h2>📚 三、<code>Clippings</code> 網頁剪藏知識庫 SOP</h2>
+      <p><code>secondbrain/Clippings/</code> 存放你從 Chrome 剪藏的技術文章、YouTube 影片攻略與 GitHub 專案（目前共 168+ 篇）。</p>
+
+      <h3>步驟 1：從 Chrome 剪藏新網頁</h3>
+      <ol>
+        <li>在 Chrome 打開想收藏的網頁或 YouTube 影片，點擊右上角 <strong>Obsidian Web Clipper</strong> 圖示。</li>
+        <li>確認 Vault 為 <code>secondbrain</code>，Folder 為 <code>Clippings</code>，點擊 <strong>Add to Obsidian</strong>。</li>
+      </ol>
+
+      <h3>步驟 2：檢索與閱讀剪藏的 3 種方式</h3>
+      <ul>
+        <li><strong>方式 A（Obsidian 內分類總覽）</strong>：直接開啟根目錄的 <code>📚 Clippings 剪藏知識庫總覽.md</code>，168+ 篇剪藏已按 6 大主題排好表格，點 <code>[[筆記名稱]]</code> 即在右側分頁展開。</li>
+        <li><strong>方式 B（線上互動搜尋入口）</strong>：開啟 <a href="https://fun.jktai123.com/antigravity/obsidian_clippings_hub.html" target="_blank" style="color:var(--accent);">Obsidian Clippings 剪藏知識庫總覽網頁</a>，可按分類膠囊或關鍵字即時過濾，點擊 <strong>「💎 在 Obsidian 開啟」</strong> 直接喚醒本機 Obsidian。</li>
+        <li><strong>方式 C（請 AI 直接提煉成簡報或圖卡）</strong>：直接對 AI 說：<em>「把 Obsidian Clippings 裡的《AI生成影片攻略》做成互動簡報（或 /d-infographic-notes）」</em>。</li>
+      </ul>
+
+      <h3>步驟 3：一鍵更新 Clippings 分類總覽索引</h3>
+      <pre><button class="copy-btn" onclick="copyCode(this)">複製指令</button><code>python3 /Volumes/512G/Antigravity/build_clippings_moc.py && python3 /Volumes/512G/Antigravity/generate_all_html.py</code></pre>
+    </section>
+
+    <section id="sec4">
+      <h2>🔄 四、三層級專案管理 SOP（L1 本地 + L2 GitHub + L3 Obsidian）</h2>
+      <div class="callout success">
+        <strong>💡 冷熱資料分離原則：</strong><br>
+        • <strong>L1 熱資料 (本地 <code>AGENTS.md</code> + <code>handoff.md</code>)</strong>：只放一頁讀得完的最新交接狀態與下一步，開工必讀。<br>
+        • <strong>L2 程式碼版控 (GitHub)</strong>：保存程式碼變更歷史。<br>
+        • <strong>L3 冷資料百科 (Obsidian <code>Antigravity/&lt;專案名&gt;/專案工作流程.md</code>)</strong>：保存全歷史對話 ID 表格、長篇決策與 <strong>🕳️ 踩坑筆記</strong>。
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>作業階段</th>
+            <th>對 AI 說的口令</th>
+            <th>系統自動執行的動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. 新專案初始化</strong></td>
+            <td><code>初始化專案</code> / <code>project-init</code></td>
+            <td>建立本地 <code>AGENTS.md</code> + <code>handoff.md</code> (L1)、初始化 GitHub (L2)、在 Obsidian 建立 <code>專案工作流程.md</code> (L3)。</td>
+          </tr>
+          <tr>
+            <td><strong>2. 日常開工</strong></td>
+            <td><code>開工</code> / <code>我來了</code> / <code>上次做到哪</code></td>
+            <td>讀取 L1 交接檔、檢查 Git 狀態、列出 L3 Obsidian 踩坑筆記路徑並建議下一步。</td>
+          </tr>
+          <tr>
+            <td><strong>3. 同步對話清單</strong></td>
+            <td><code>同步對話摘要到 Obsidian</code></td>
+            <td>執行 <code>sync_workflow.py</code> 掃描歷史對話，更新 Obsidian <code>專案工作流程.md</code> 的對話紀錄表格。</td>
+          </tr>
+          <tr>
+            <td><strong>4. 收工 / 安全關機</strong></td>
+            <td><code>收工</code> / <code>關機</code> / <code>safe-shutdown</code></td>
+            <td>執行 512G 雙重備份、Notion 日記同步、<code>sync_workflow.py --all</code> 全專案同步至 Obsidian (L3)、更新今日活躍專案 <code>handoff.md</code> (L1)、刷新今日 Obsidian 每日筆記。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sec5">
+      <h2>🔌 五、日常在對話中直接操控 Obsidian（口令速查表）</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>你想做的事</th>
+            <th>直接對 Antigravity AI 說的口令範例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>搜尋剪藏或筆記</strong></td>
+            <td>「在 Obsidian 搜尋有關『Nano Banana』或『公仔』的筆記」</td>
+          </tr>
+          <tr>
+            <td><strong>將剪藏轉為教材</strong></td>
+            <td>「把 Obsidian Clippings 裡的《AI生成影片攻略》轉成 HTML 互動簡報」</td>
+          </tr>
+          <tr>
+            <td><strong>將對話存為知識卡</strong></td>
+            <td>「把剛剛整理的內容存進 Obsidian <code>知識庫/YouTube爬蟲規範.md</code>」</td>
+          </tr>
+          <tr>
+            <td><strong>記錄 Bug 踩坑解法</strong></td>
+            <td>「把這個解法補到 Obsidian <code>20260714Church/專案工作流程.md</code> 的踩坑筆記」</td>
+          </tr>
+          <tr>
+            <td><strong>手動更新每日筆記</strong></td>
+            <td>「幫我更新今天（或某幾天）的 Obsidian 每日筆記」</td>
+          </tr>
+          <tr>
+            <td><strong>更新剪藏總覽目錄</strong></td>
+            <td>「幫我重新掃描更新 Obsidian Clippings 總覽」</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sec6">
+      <h2>🛠️ 六、常見問題與故障排除 SOP (Troubleshooting)</h2>
+
+      <h3>Q1：在 Obsidian 左側點選筆記時，右側打不開或預覽空白？</h3>
+      <ul>
+        <li><strong>根因</strong>：Google Drive 桌面版將檔案變成了雲端虛擬佔位檔 (<code>compressed, dataless</code>)，導致讀取逾時 (<code>Operation timed out</code>)。</li>
+        <li><strong>標準解法</strong>：在 Finder 的 <code>Google Drive/我的雲端硬碟</code> 右鍵點擊 <code>secondbrain</code> ➔ 選擇 <strong>「永遠保留在此裝置上 (Make available offline)」</strong>（出現綠點 🟢）。若仍有個別檔案被鎖定，直接請 AI 從 iCloud <code>secondbrain</code> 實體鏡像一鍵還原即可。</li>
+      </ul>
+
+      <h3>Q2：某幾天的每日筆記上方三個欄位（教學 / 今日反思 / 明日優先事項）是空白的？</h3>
+      <ul>
+        <li><strong>標準解法</strong>：直接對 AI 說 <em>「幫我回填 YYYY-MM-DD 的每日筆記」</em>，或執行 <code>generate_daily_note.py YYYY-MM-DD</code>，腳本會自動抓取當日行程、網頁發布與對話摘要填滿三大欄位。</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<script>
+function copyCode(btn) {
+  const code = btn.parentElement.querySelector("code").innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    const old = btn.innerText;
+    btn.innerText = "✅ 已複製";
+    setTimeout(() => btn.innerText = old, 1500);
+  });
+}
+</script>
+</body>
+</html>
