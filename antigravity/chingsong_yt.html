@@ -974,8 +974,120 @@
 
 
 
+    function parseDurSec(dStr) {
+      if (!dStr) return 0;
+      const parts = String(dStr).split(':').map(x => parseInt(x, 10)).filter(n => !isNaN(n));
+      if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+      if (parts.length === 2) return parts[0] * 60 + parts[1];
+      if (parts.length === 1) return parts[0];
+      return 0;
+    }
+
+    function normalizeDateStr(val) {
+      if (!val) return '';
+      const s = String(val);
+      if (s.includes('T')) {
+        const d = new Date(s);
+        if (!isNaN(d.getTime())) {
+          // Convert UTC ISO from GAS back to Asia/Taipei YYYY-MM-DD
+          const tw = new Date(d.getTime() + 8 * 3600 * 1000);
+          return tw.toISOString().slice(0, 10);
+        }
+      }
+      return s.slice(0, 10);
+    }
+
+    async function syncLiveFromGoogleSheet() {
+      const DOC_URL = 'https://docs.google.com/spreadsheets/d/1xAZ810fin7AY4azNgN-sPr4fuIx0a77ASFOymfvxTXk/edit';
+      const GAS_DATA_API = 'https://script.google.com/macros/s/AKfycbwHEV0Wa8IBd9oL4yEoEdg4CSmx1Ry3FVTcgm93TU-89Ns8C_kQD6jqR2EW-2tESgKkEA/exec';
+      const url = `${GAS_DATA_API}?sheetUrl=${encodeURIComponent(DOC_URL)}&sheetTag=${encodeURIComponent('青松YT聯結')}`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return;
+        const rows = await res.json();
+        if (!Array.isArray(rows) || rows.length < 2) return;
+
+        const header = rows[0].map(h => String(h || '').trim().toLowerCase());
+        const colItem = header.findIndex(h => h === 'item' || h.includes('編號'));
+        const colViews = header.findIndex(h => h.includes('view') || h.includes('觀看'));
+        const colTitle = header.findIndex(h => h.includes('title') || h.includes('標題'));
+        const colHref = header.findIndex(h => h === 'href' || h.includes('url') || h.includes('link'));
+        const colDur = header.findIndex(h => h.includes('duration') || h.includes('長度') || h.includes('時長'));
+        const colDate = header.findIndex(h => h.includes('date') || h.includes('日期'));
+
+        const fallbackDurMap = new Map(VIDEOS.map(v => [v.vid, v.Duration]));
+        const liveVideos = [];
+
+        for (let r = 1; r < rows.length; r++) {
+          const row = rows[r];
+          if (!Array.isArray(row)) continue;
+          const rawHref = colHref !== -1 && row[colHref] ? String(row[colHref]).trim() : '';
+          const rawTitle = colTitle !== -1 && row[colTitle] ? String(row[colTitle]).trim() : '';
+          const mVid = rawHref.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+          if (!mVid || !rawTitle) continue;
+          const vid = mVid[1];
+          const href = `https://www.youtube.com/watch?v=${vid}`;
+          const vcNum = colViews !== -1 && row[colViews] ? (parseInt(String(row[colViews]).replace(/,/g, ''), 10) || 0) : 0;
+          let durStr = colDur !== -1 && row[colDur] ? String(row[colDur]).trim() : '';
+          if (durStr.includes('1899-12-') || !durStr) {
+            durStr = fallbackDurMap.get(vid) || '';
+          }
+          const upDate = normalizeDateStr(colDate !== -1 ? row[colDate] : '');
+          const mAct = rawTitle.match(/(202\d)[./-]?(\d{2})[./-]?(\d{2})/);
+          const yr = mAct ? mAct[1] : (upDate.slice(0, 4) || '其他');
+
+          liveVideos.push({
+            Item: colItem !== -1 && row[colItem] ? String(row[colItem]) : String(rows.length - r),
+            ViewCount: vcNum.toLocaleString(),
+            viewsNum: vcNum,
+            Title: rawTitle,
+            href,
+            vid,
+            Duration: durStr,
+            durSec: parseDurSec(durStr),
+            UploadDate: upDate,
+            year: yr,
+            ListName: '青松YT聯結'
+          });
+        }
+
+        if (liveVideos.length === 0) return;
+
+        // Check if there are new videos or updated counts compared to static snapshot
+        const oldHrefs = new Set(VIDEOS.map(v => v.href));
+        const hasNewOrChanged = liveVideos.length !== VIDEOS.length || liveVideos.some(v => !oldHrefs.has(v.href));
+
+        // Replace VIDEOS contents and rebuild DOM if needed
+        VIDEOS.length = 0;
+        VIDEOS.push(...liveVideos);
+
+        const yrMap = new Map();
+        let maxViews = 0;
+        for (const v of VIDEOS) {
+          yrMap.set(v.year, (yrMap.get(v.year) || 0) + 1);
+          if (v.viewsNum > maxViews) maxViews = v.viewsNum;
+        }
+        YEARS.length = 0;
+        YEARS.push(...Array.from(yrMap.entries()).sort((a, b) => b[0].localeCompare(a[0])));
+
+        document.querySelector('.title-badge').textContent = `輕鬆健行・全 ${VIDEOS.length} 部完整紀錄・已即時同步 Sheet`;
+        document.getElementById('yearChips').innerHTML = '';
+        gridEl.innerHTML = '';
+        tbodyEl.innerHTML = '';
+        cardMap.clear();
+        rowMap.clear();
+
+        initChips();
+        initDOMItems();
+        selectYear(activeYear);
+      } catch (err) {
+        console.warn('[Chingsong YT] Live Google Sheet sync skipped:', err);
+      }
+    }
+
     initChips();
     initDOMItems();
+    syncLiveFromGoogleSheet();
   </script>
 </body>
 </html>
