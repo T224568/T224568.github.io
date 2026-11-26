@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Drive 上傳圖片與收據總覽</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --surface-card: #162032;
+      --surface-hover: #1f2d45;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: #3b82f6;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --badge-bg: rgba(59, 130, 246, 0.15);
+      --badge-border: rgba(59, 130, 246, 0.3);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 24px 20px 80px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .logo-badge svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .header-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--surface-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    /* Stats Banner */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-blue);
+    }
+
+    .stat-card:nth-child(2)::after { background: var(--accent-green); }
+    .stat-card:nth-child(3)::after { background: var(--accent-amber); }
+    .stat-card:nth-child(4)::after { background: var(--accent-purple); }
+
+    .stat-info .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-info .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-main);
+    }
+
+    .stat-icon {
+      font-size: 1.8rem;
+      opacity: 0.8;
+    }
+
+    /* Toolbar: Search, Filters & View Toggle */
+    .toolbar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .toolbar-row-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .view-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .sort-select {
+      background: var(--surface-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .view-btn {
+      padding: 8px 12px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+    }
+
+    .view-btn.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chip {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .chip:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .chip.active {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+      color: #60a5fa;
+      font-weight: 600;
+    }
+
+    /* Cards Grid */
+    .grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background: #0f172a;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-thumb {
+      transform: scale(1.04);
+    }
+
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .card-thumb-wrap:hover .thumb-overlay {
+      opacity: 1;
+    }
+
+    .thumb-zoom-btn {
+      background: rgba(15, 23, 42, 0.85);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-badges {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(6px);
+    }
+
+    .badge-folder-1 {
+      background: rgba(59, 130, 246, 0.85);
+      color: #fff;
+    }
+
+    .badge-folder-def {
+      background: rgba(100, 116, 139, 0.85);
+      color: #fff;
+    }
+
+    .badge-category {
+      background: rgba(15, 23, 42, 0.75);
+      color: #93c5fd;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .card-amount-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.9);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-actions .btn {
+      justify-content: center;
+      padding: 7px 10px;
+      font-size: 0.78rem;
+    }
+
+    .btn-open-drive {
+      grid-column: 1 / -1;
+      justify-content: center;
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #93c5fd;
+    }
+
+    .btn-open-drive:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    /* Table View */
+    .table-view {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-card);
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    .table-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .table-actions .btn {
+      padding: 5px 9px;
+      font-size: 0.75rem;
+    }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-header {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      padding-bottom: 14px;
+    }
+
+    .lightbox-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .lightbox-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 1200px;
+      max-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-nav:hover {
+      background: #2563eb;
+    }
+
+    .lightbox-prev { left: -60px; }
+    .lightbox-next { right: -60px; }
+
+    .lightbox-toolbar {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #10b981;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 16px 12px 60px; }
+      .lightbox-prev { left: 10px; }
+      .lightbox-next { right: 10px; }
+      .grid-view { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <div class="logo-badge">
+        <svg viewBox="0 0 24 24">
+          <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Google Drive 上傳圖片與收據總覽</h1>
+        <div class="header-desc">快速預覽圖片、點擊即放大、一鍵複製試算表公式與 1920 高清直連</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="https://drive.google.com/drive/folders/1eFf86wQ5nK4ssDmVBHUIhH7Zm1BMWoww?usp=sharing" target="_blank" class="btn">📁 開啟目錄 1</a>
+      <a href="https://drive.google.com/drive/folders/1kJ-rz9q1AzmaGEUBbsqL3NxAnvl4c7CB?usp=sharing" target="_blank" class="btn">📁 開啟預設目錄</a>
+      <button class="btn btn-primary" id="btnRefresh">🔄 重新整理</button>
+    </div>
+  </header>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">總上傳筆數</div>
+        <div class="stat-value" id="statTotalCount">0</div>
+      </div>
+      <div class="stat-icon">📸</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">目錄 1（教會核銷收據）</div>
+        <div class="stat-value" id="statFolder1Count">0</div>
+      </div>
+      <div class="stat-icon">📑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">預設目錄 (Default)</div>
+        <div class="stat-value" id="statDefaultCount">0</div>
+      </div>
+      <div class="stat-icon">🗂️</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">已登記核銷總金額</div>
+        <div class="stat-value" id="statTotalAmount">$0</div>
+      </div>
+      <div class="stat-icon">💰</div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-row-top">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜尋檔名、店家、品名、金額或關鍵字...">
+      </div>
+
+      <div class="view-controls">
+        <select class="sort-select" id="sortSelect">
+          <option value="newest">📅 最新上傳優先</option>
+          <option value="oldest">📅 最早開立優先</option>
+          <option value="amount-high">💰 金額最高優先</option>
+          <option value="amount-low">💰 金額最低優先</option>
+        </select>
+        <button class="view-btn active" id="btnGridView" title="網格檢視">🖼️ 網格</button>
+        <button class="view-btn" id="btnTableView" title="表格檢視">📋 表格</button>
+      </div>
+    </div>
+
+    <div class="filter-chips" id="filterChips">
+      <span class="chip active" data-filter="all">全部 (0)</span>
+      <span class="chip" data-filter="folder-1">目錄 1</span>
+      <span class="chip" data-filter="folder-default">預設目錄</span>
+      <span class="chip" data-filter="category-便當收據">便當收據</span>
+      <span class="chip" data-filter="category-講師費領款收據">講師費收據</span>
+      <span class="chip" data-filter="category-電子發票">電子發票</span>
+      <span class="chip" data-filter="category-LINE核銷截圖">LINE 核銷</span>
+    </div>
+  </div>
+
+  <!-- Cards Grid View -->
+  <div class="grid-view" id="cardsGrid"></div>
+
+  <!-- Table View -->
+  <div class="table-view" id="tableView">
+    <table>
+      <thead>
+        <tr>
+          <th>縮圖</th>
+          <th>收據明細 / 標題</th>
+          <th>金額</th>
+          <th>目標目錄</th>
+          <th>開立 / 上傳時間</th>
+          <th>快捷操作</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-state-icon">🔍</div>
+    <h3>找不到符合條件的圖片</h3>
+    <p style="margin-top: 6px;">請嘗試更換搜尋關鍵字或點選「全部」標籤。</p>
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightboxModal">
+  <div class="lightbox-header">
+    <div class="lightbox-title" id="lightboxTitle">圖片預覽</div>
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+  </div>
+  <div class="lightbox-content">
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+  </div>
+  <div class="lightbox-toolbar">
+    <button class="btn btn-primary" id="btnCopyFormulaLb">📋 複製試算表公式 =IMAGE()</button>
+    <button class="btn" id="btnCopyLh3Lb">🌟 複製 Google 1920 直連 (lh3)</button>
+    <a href="#" target="_blank" class="btn" id="btnOpenDriveLb">🔗 在 Google Drive 開啟</a>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <span>✅</span>
+  <span id="toastMsg">已複製到剪貼簿</span>
+</div>
+
+<script>
+  // 初始內嵌資料集（確保免伺服器也能 100% 離線秒開）
+  let uploadHistory = [
+    {
+      "id": "1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl",
+      "filename": "Img20261126_150651.png",
+      "title": "升客雞肉餐坊・便當 35 個",
+      "amount": 3500,
+      "date": "2026-11-26 15:06:51",
+      "receiptDate": "2026-11-26",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "便當收據",
+      "fileUrl": "https://drive.google.com/file/d/1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1h0VAT_mN0eqJsU-S6py0V5hTEyyk1uEl\")"
+    },
+    {
+      "id": "1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds",
+      "filename": "Img20261126_150640.png",
+      "title": "長青樂活講師費・許育慈老師",
+      "amount": 3000,
+      "date": "2026-11-26 15:06:40",
+      "receiptDate": "2026-11-26",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "講師費領款收據",
+      "fileUrl": "https://drive.google.com/file/d/1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1wt9eXgduBZ1rLqBpzfP-7E8M4NaATHds\")"
+    },
+    {
+      "id": "1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime",
+      "filename": "Img20261126_150628.png",
+      "title": "大台北便當・便當 43 個",
+      "amount": 4300,
+      "date": "2026-11-26 15:06:28",
+      "receiptDate": "2026-11-24",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "便當收據",
+      "fileUrl": "https://drive.google.com/file/d/1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1bytTGmp5DB8jJ0rAyaCI9AXG-aa3aime\")"
+    },
+    {
+      "id": "1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM",
+      "filename": "Img20261126_144927.png",
+      "title": "戴任詔 LINE 核銷截圖（交通1000/午餐840/飲料70）",
+      "amount": 1910,
+      "date": "2026-11-26 14:49:27",
+      "receiptDate": "2026-11-26",
+      "target": "default",
+      "targetName": "預設目錄",
+      "category": "LINE核銷截圖",
+      "fileUrl": "https://drive.google.com/file/d/1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1SvUGxIVcE3KLXEwbW3tSX28URIsjlMRM\")"
+    },
+    {
+      "id": "1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t",
+      "filename": "Img20261123_163006.png",
+      "title": "大台北便當・便當 40 個",
+      "amount": 4000,
+      "date": "2026-11-23 16:30:06",
+      "receiptDate": "2026-11-17",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "便當收據",
+      "fileUrl": "https://drive.google.com/file/d/1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1ZCce74j3Sug5-Kr-_kMrTdCbVXPtxD9t\")"
+    },
+    {
+      "id": "1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr",
+      "filename": "Img20261123_162955.png",
+      "title": "松岡小吃店・便當 34 個",
+      "amount": 3740,
+      "date": "2026-11-23 16:29:55",
+      "receiptDate": "2026-11-19",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "便當收據",
+      "fileUrl": "https://drive.google.com/file/d/1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1_Aq1F7fGjnFZbeHOJOEia55PtL0AS6Tr\")"
+    },
+    {
+      "id": "1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D",
+      "filename": "Img20261123_162944.png",
+      "title": "長青樂活講師費・王淑惠老師",
+      "amount": 3000,
+      "date": "2026-11-23 16:29:44",
+      "receiptDate": "2026-11-19",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "講師費領款收據",
+      "fileUrl": "https://drive.google.com/file/d/1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1z8fPA4cS3WPaPYS0IMXdxBkSHWcArL5D\")"
+    },
+    {
+      "id": "1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG",
+      "filename": "Img20261112_153332.png",
+      "title": "LINE 訊息截圖（便當37個實報 3145元，1自費）",
+      "amount": 3145,
+      "date": "2026-11-12 15:33:32",
+      "receiptDate": "2026-11-12",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "LINE核銷截圖",
+      "fileUrl": "https://drive.google.com/file/d/1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1GOZH-Iybzx2WkQ3XN_GbekVskliR7ZpG\")"
+    },
+    {
+      "id": "1iltU3EjoMElYtdvuvyizydhdAJh6qO0f",
+      "filename": "Img20261112_153319.png",
+      "title": "兆順便當店・便當 38 個",
+      "amount": 3230,
+      "date": "2026-11-12 15:33:19",
+      "receiptDate": "2026-11-12",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "便當收據",
+      "fileUrl": "https://drive.google.com/file/d/1iltU3EjoMElYtdvuvyizydhdAJh6qO0f/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1iltU3EjoMElYtdvuvyizydhdAJh6qO0f=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1iltU3EjoMElYtdvuvyizydhdAJh6qO0f\")"
+    },
+    {
+      "id": "1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi",
+      "filename": "Img20261112_153308.png",
+      "title": "長青樂活講師費・陳玉娟醫師",
+      "amount": 3000,
+      "date": "2026-11-12 15:33:08",
+      "receiptDate": "2026-11-12",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "講師費領款收據",
+      "fileUrl": "https://drive.google.com/file/d/1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1kVDA5BvBijbg7amm4mj7lvmLPYcgTmQi\")"
+    },
+    {
+      "id": "1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO",
+      "filename": "Img20261110_143247.png",
+      "title": "阿文日本料理 2桌 點餐單",
+      "amount": 500,
+      "date": "2026-11-10 14:32:47",
+      "receiptDate": "2026-11-10",
+      "target": "default",
+      "targetName": "預設目錄",
+      "category": "點餐明細",
+      "fileUrl": "https://drive.google.com/file/d/1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1F1S9vaWPP8rANAyXgRe4ceCuUjgTCnsO\")"
+    },
+    {
+      "id": "1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy",
+      "filename": "Img20261110_142809.png",
+      "title": "電子發票證明聯 HV-95383918",
+      "amount": 4305,
+      "date": "2026-11-10 14:28:09",
+      "receiptDate": "2026-11-10",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "電子發票",
+      "fileUrl": "https://drive.google.com/file/d/1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1BnSqb-fUGVszqi_LwAcs6mZFPM2ORuQy\")"
+    },
+    {
+      "id": "1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2",
+      "filename": "IMG20250307141428.jpg",
+      "title": "南門教會影音設備與多媒體照片",
+      "amount": 0,
+      "date": "2026-10-15 15:21:24",
+      "receiptDate": "2025-03-07",
+      "target": "default",
+      "targetName": "預設目錄",
+      "category": "照片素材",
+      "fileUrl": "https://drive.google.com/file/d/1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1o4AlDl4u3-2vjsFIzDNf7UndTbP51Qy2\")"
+    },
+    {
+      "id": "17AMEszgXBzBg2B1S9y8Buqb04H5iZP55",
+      "filename": "信仰_20261013.jpg",
+      "title": "信仰早安圖 20261013",
+      "amount": 0,
+      "date": "2026-10-15 15:14:42",
+      "receiptDate": "2026-10-13",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "早安圖",
+      "fileUrl": "https://drive.google.com/file/d/17AMEszgXBzBg2B1S9y8Buqb04H5iZP55/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/17AMEszgXBzBg2B1S9y8Buqb04H5iZP55=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=17AMEszgXBzBg2B1S9y8Buqb04H5iZP55\")"
+    },
+    {
+      "id": "1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C",
+      "filename": "Img20261015_140038.png",
+      "title": "免用統一發票收據（吉利餐盒店 便當 34個）",
+      "amount": 3740,
+      "date": "2026-10-15 14:00:38",
+      "receiptDate": "2026-10-15",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "便當收據",
+      "fileUrl": "https://drive.google.com/file/d/1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1s3-VzAZLYky0oM5pGYp63izFCOfkkB-C\")"
+    },
+    {
+      "id": "16WtDGZs6a4ySZaUC285rEhlHntU7SSJz",
+      "filename": "Img20261015_140029.png",
+      "title": "長青樂活講師費・王淑惠老師",
+      "amount": 3000,
+      "date": "2026-10-15 14:00:29",
+      "receiptDate": "2026-10-15",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "講師費領款收據",
+      "fileUrl": "https://drive.google.com/file/d/16WtDGZs6a4ySZaUC285rEhlHntU7SSJz/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/16WtDGZs6a4ySZaUC285rEhlHntU7SSJz=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=16WtDGZs6a4ySZaUC285rEhlHntU7SSJz\")"
+    },
+    {
+      "id": "1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ",
+      "filename": "Img20261013_162124.jpg",
+      "title": "一級小吃店電子發票 (3500+500) & 日王來小吃店收據 (900)",
+      "amount": 4900,
+      "date": "2026-10-13 16:21:24",
+      "receiptDate": "2026-10-13",
+      "target": "1",
+      "targetName": "目錄 1",
+      "category": "電子發票/收據",
+      "fileUrl": "https://drive.google.com/file/d/1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ/view?usp=drivesdk",
+      "lh3Url": "https://lh3.googleusercontent.com/d/1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ=w1920",
+      "formula": "=IMAGE(\"https://drive.google.com/uc?id=1vMPY7jXZKX319MXQIxWSIDz5r1ZpeOnZ\")"
+    }
+  ];
+
+  let currentFilter = 'all';
+  let currentSort = 'newest';
+  let searchQuery = '';
+  let activeLightboxIdx = -1;
+  let filteredItems = [];
+
+  // DOM Elements
+  const cardsGrid = document.getElementById('cardsGrid');
+  const tableView = document.getElementById('tableView');
+  const tableBody = document.getElementById('tableBody');
+  const emptyState = document.getElementById('emptyState');
+  const searchInput = document.getElementById('searchInput');
+  const sortSelect = document.getElementById('sortSelect');
+  const filterChips = document.getElementById('filterChips');
+  const btnGridView = document.getElementById('btnGridView');
+  const btnTableView = document.getElementById('btnTableView');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+
+  // Stats
+  const statTotalCount = document.getElementById('statTotalCount');
+  const statFolder1Count = document.getElementById('statFolder1Count');
+  const statDefaultCount = document.getElementById('statDefaultCount');
+  const statTotalAmount = document.getElementById('statTotalAmount');
+
+  // Lightbox
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const btnCopyFormulaLb = document.getElementById('btnCopyFormulaLb');
+  const btnCopyLh3Lb = document.getElementById('btnCopyLh3Lb');
+  const btnOpenDriveLb = document.getElementById('btnOpenDriveLb');
+
+  // Fetch dynamic JSON if available
+  async function reloadData() {
+    try {
+      const res = await fetch('gdrive_upload_history.json?t=' + Date.now());
+      if (res.ok) {
+        const json = await res.json();
+        if (Array.isArray(json) && json.length > 0) {
+          uploadHistory = json;
+        }
+      }
+    } catch (e) {
+      console.log('Using embedded history dataset');
+    }
+    updateStats();
+    applyFilterAndSort();
+  }
+
+  function updateStats() {
+    statTotalCount.textContent = uploadHistory.length;
+    const f1 = uploadHistory.filter(item => item.target === '1').length;
+    const def = uploadHistory.filter(item => item.target !== '1').length;
+    statFolder1Count.textContent = f1;
+    statDefaultCount.textContent = def;
+
+    const totalAmt = uploadHistory.reduce((sum, item) => sum + (item.amount || 0), 0);
+    statTotalAmount.textContent = '$' + totalAmt.toLocaleString();
+
+    // 更新 Chip 筆數
+    const chipAll = document.querySelector('.chip[data-filter="all"]');
+    if (chipAll) chipAll.textContent = `全部 (${uploadHistory.length})`;
+  }
+
+  function applyFilterAndSort() {
+    filteredItems = uploadHistory.filter(item => {
+      // Filter Chip
+      if (currentFilter === 'folder-1' && item.target !== '1') return false;
+      if (currentFilter === 'folder-default' && item.target === '1') return false;
+      if (currentFilter.startsWith('category-')) {
+        const cat = currentFilter.replace('category-', '');
+        if (item.category !== cat) return false;
+      }
+
+      // Search Query
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const text = `${item.title} ${item.filename} ${item.category} ${item.targetName} ${item.amount}`.toLowerCase();
+        if (!text.includes(q)) return false;
+      }
+      return true;
+    });
+
+    // Sorting
+    filteredItems.sort((a, b) => {
+      if (currentSort === 'newest') return new Date(b.date) - new Date(a.date);
+      if (currentSort === 'oldest') return new Date(a.receiptDate || a.date) - new Date(b.receiptDate || b.date);
+      if (currentSort === 'amount-high') return (b.amount || 0) - (a.amount || 0);
+      if (currentSort === 'amount-low') return (a.amount || 0) - (b.amount || 0);
+      return 0;
+    });
+
+    render();
+  }
+
+  function render() {
+    if (filteredItems.length === 0) {
+      cardsGrid.style.display = 'none';
+      tableView.style.display = 'none';
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+
+    if (btnGridView.classList.contains('active')) {
+      cardsGrid.style.display = 'grid';
+      tableView.style.display = 'none';
+      renderGrid();
+    } else {
+      cardsGrid.style.display = 'none';
+      tableView.style.display = 'block';
+      renderTable();
+    }
+  }
+
+  function renderGrid() {
+    cardsGrid.innerHTML = filteredItems.map((item, idx) => {
+      const isFolder1 = item.target === '1';
+      const badgeFolderClass = isFolder1 ? 'badge-folder-1' : 'badge-folder-def';
+      const thumbUrl = `https://lh3.googleusercontent.com/d/${item.id}=w600`;
+      const amountTag = item.amount ? `<div class="card-amount-tag">$${item.amount.toLocaleString()}</div>` : '';
+
+      return `
+        <div class="card" data-idx="${idx}">
+          <div class="card-thumb-wrap" onclick="openLightbox(${idx})">
+            <div class="card-badges">
+              <span class="badge ${badgeFolderClass}">${item.targetName}</span>
+              ${item.category ? `<span class="badge badge-category">${item.category}</span>` : ''}
+            </div>
+            ${amountTag}
+            <img src="${thumbUrl}" alt="${item.title}" class="card-thumb" loading="lazy" onerror="this.src='https://drive.google.com/uc?id=${item.id}'">
+            <div class="thumb-overlay">
+              <span class="thumb-zoom-btn">🔍 點擊查看大圖</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-title" title="${item.title}">${item.title}</div>
+            <div class="card-meta">
+              <span>📅 ${item.receiptDate || item.date.split(' ')[0]}</span>
+              <span>${item.filename}</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn" onclick="copyFormula('${item.id}')" title="複製 Google 試算表公式">📋 複製 =IMAGE</button>
+              <button class="btn" onclick="copyLh3('${item.id}')" title="複製 Google 官方 1920 高清直連">🌟 複製 lh3</button>
+              <a href="${item.fileUrl}" target="_blank" class="btn btn-open-drive">🔗 在 Drive 開啟</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderTable() {
+    tableBody.innerHTML = filteredItems.map((item, idx) => {
+      const isFolder1 = item.target === '1';
+      const badgeFolderClass = isFolder1 ? 'badge-folder-1' : 'badge-folder-def';
+      const thumbUrl = `https://lh3.googleusercontent.com/d/${item.id}=w120`;
+      const amountStr = item.amount ? `<strong style="color:#10b981;font-family:'JetBrains Mono',monospace;">$${item.amount.toLocaleString()}</strong>` : '-';
+
+      return `
+        <tr>
+          <td>
+            <img src="${thumbUrl}" alt="" class="table-thumb" onclick="openLightbox(${idx})" loading="lazy" onerror="this.src='https://drive.google.com/uc?id=${item.id}'">
+          </td>
+          <td>
+            <div style="font-weight:600;margin-bottom:4px;">${item.title}</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;">${item.filename}</div>
+          </td>
+          <td>${amountStr}</td>
+          <td><span class="badge ${badgeFolderClass}">${item.targetName}</span></td>
+          <td style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;">${item.receiptDate || item.date.split(' ')[0]}</td>
+          <td>
+            <div class="table-actions">
+              <button class="btn" onclick="copyFormula('${item.id}')">📋 公式</button>
+              <button class="btn" onclick="copyLh3('${item.id}')">🌟 lh3</button>
+              <a href="${item.fileUrl}" target="_blank" class="btn">🔗</a>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Copy Helpers
+  window.copyFormula = function(id) {
+    const text = `=IMAGE("https://drive.google.com/uc?id=${id}")`;
+    copyToClipboard(text, '已複製試算表公式 =IMAGE(...)');
+  };
+
+  window.copyLh3 = function(id) {
+    const text = `https://lh3.googleusercontent.com/d/${id}=w1920`;
+    copyToClipboard(text, '已複製 1920 高清直連 (lh3)');
+  };
+
+  function copyToClipboard(text, msg) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(msg);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(msg);
+    });
+  }
+
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2200);
+  }
+
+  // Lightbox
+  window.openLightbox = function(idx) {
+    activeLightboxIdx = idx;
+    const item = filteredItems[idx];
+    if (!item) return;
+
+    lightboxTitle.textContent = `${item.title} (${item.targetName}・${item.filename})`;
+    lightboxImg.src = `https://lh3.googleusercontent.com/d/${item.id}=w1920`;
+    lightboxImg.alt = item.title;
+
+    btnCopyFormulaLb.onclick = () => copyFormula(item.id);
+    btnCopyLh3Lb.onclick = () => copyLh3(item.id);
+    btnOpenDriveLb.href = item.fileUrl;
+
+    lightboxModal.classList.add('active');
+  };
+
+  function closeLightbox() {
+    lightboxModal.classList.remove('active');
+  }
+
+  function showPrev() {
+    if (activeLightboxIdx > 0) {
+      openLightbox(activeLightboxIdx - 1);
+    } else {
+      openLightbox(filteredItems.length - 1);
+    }
+  }
+
+  function showNext() {
+    if (activeLightboxIdx < filteredItems.length - 1) {
+      openLightbox(activeLightboxIdx + 1);
+    } else {
+      openLightbox(0);
+    }
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+  lightboxModal.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) closeLightbox();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (!lightboxModal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+
+  // Filter & Search Events
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim();
+    applyFilterAndSort();
+  });
+
+  sortSelect.addEventListener('change', (e) => {
+    currentSort = e.target.value;
+    applyFilterAndSort();
+  });
+
+  filterChips.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    currentFilter = chip.dataset.filter;
+    applyFilterAndSort();
+  });
+
+  // View toggle
+  btnGridView.addEventListener('click', () => {
+    btnGridView.classList.add('active');
+    btnTableView.classList.remove('active');
+    render();
+  });
+
+  btnTableView.addEventListener('click', () => {
+    btnTableView.classList.add('active');
+    btnGridView.classList.remove('active');
+    render();
+  });
+
+  document.getElementById('btnRefresh').addEventListener('click', () => {
+    reloadData();
+    showToast('已重新整理資料清單！');
+  });
+
+  // Init
+  updateStats();
+  applyFilterAndSort();
+  reloadData();
+</script>
+
+</body>
+</html>
