@@ -142,6 +142,69 @@
       border-radius: 12px;
       padding: 16px;
     }
+    .stat-card-link {
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .stat-card-link:hover {
+      border-color: #38bdf8;
+      background: #182236;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(56, 189, 248, 0.15);
+    }
+    .link-hint {
+      font-size: 13px;
+      color: #38bdf8;
+      margin-left: 4px;
+    }
+    .header-action-bar {
+      margin: 16px 0 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-external-tracker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(30, 64, 175, 0.4));
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+    .btn-external-tracker:hover {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(30, 64, 175, 0.6));
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(56, 189, 248, 0.25);
+    }
+    .sidebar-quick-btn {
+      display: block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 6px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .sidebar-quick-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      color: #fff;
+    }
     .stat-label {
       font-size: 12px;
       color: var(--text-muted);
@@ -300,6 +363,7 @@
     <div class="sidebar-header">
       <div class="sidebar-title">🏢 品陽大苑巡檢</div>
       <div class="sidebar-subtitle">2026 第四季 (Q4) 彙整長存檔</div>
+      <a href="https://www.jktai123.com/Gemini/pinyang_defect_tracker/index.html" target="_blank" rel="noopener noreferrer" class="sidebar-quick-btn">🛠️ 公設缺失追蹤系統 ↗</a>
     </div>
     <nav class="nav-list" id="navList">
       
@@ -426,15 +490,22 @@
       <h1 class="main-title">📊 品陽大苑社區 LINE 每日掃描與公設裝修追蹤</h1>
       <p class="main-desc">本系統採用單一檔案季累加 (Push) 架構，所有定時巡檢、重大水電缺失與管委會進度自動歸檔於 2026Q4 專冊。</p>
       
+      <div class="header-action-bar">
+        <a href="https://www.jktai123.com/Gemini/pinyang_defect_tracker/index.html" target="_blank" rel="noopener noreferrer" class="btn-external-tracker">
+          <span>🛠️ 開啟社區公設缺失與修繕追蹤系統 (DEF-001 ~ DEF-093)</span>
+          <span style="font-size: 16px; color: #38bdf8;">↗</span>
+        </a>
+      </div>
+
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-label">當季累計巡檢</div>
           <div class="stat-value">19 <span style="font-size:14px; color:var(--text-muted)">期</span></div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">系統總立案數</div>
+        <a href="https://www.jktai123.com/Gemini/pinyang_defect_tracker/index.html" target="_blank" rel="noopener noreferrer" class="stat-card stat-card-link" title="點擊開啟線上公設缺失追蹤系統">
+          <div class="stat-label">系統總立案數 <span class="link-hint">↗</span></div>
           <div class="stat-value">93 <span style="font-size:14px; color:var(--text-muted)">筆 (DEF-093)</span></div>
-        </div>
+        </a>
         <div class="stat-card">
           <div class="stat-label">最新巡檢日期</div>
           <div class="stat-value" style="font-size:17px;">2026-11-25 ~ 2026-11-28</div>
@@ -469,6 +540,7 @@
 <li><strong>掃描時間</strong>：2026-11-28 06:30</li>
 <li><strong>目標社群</strong>：品陽大苑社區｜公告與通知（102人）</li>
 <li><strong>檢閱區間</strong>：2026-11-25 23:30 至 2026-11-28 06:30（第 19 期・深夜至清晨深度巡檢與跨日綜合維運）</li>
+<li><strong>公設缺失系統</strong>：[社區公設缺失與修繕追蹤系統 (DEF-001 ~ DEF-093)](https://www.jktai123.com/Gemini/pinyang_defect_tracker/index.html)</li>
 <li><strong>關鍵事件分類</strong>：全棟公共燈控系統線路異常毀損疑慮且非專業無法自主復歸（全新立案 <code>DEF-092</code>）、地下室停車場公共區域死老鼠病媒衛生問題與車位雜物堆放（全新立案 <code>DEF-093</code>）、全區給排水制水閥異音水錘聲進展（<code>DEF-090</code> 16之一陳宅追問國霖估價進度並強烈要求管委會「寄發存證信函正式催告建商」）、曬衣架吊桿換新登記截止（<code>DEF-084</code> 登記截止轉入安排施工排程）、後陽台濃烈燒焦味排查完畢（烹煮氣味）、區權會前置作業籌備中（總幹事隋志宏致歉並改進會議記錄發布效率）、選舉公報信箱投遞完畢、記事本財務報表盤點（管委會最新維持 9 月份，10 月份待發布，已歸檔 06~09 月原圖共 4 期至 <code>/Volumes/512G/Antigravity/品陽財報/</code>）</li>
 </ul>
 <hr class="divider">
