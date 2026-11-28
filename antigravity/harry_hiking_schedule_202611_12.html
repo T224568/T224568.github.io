@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈利天天免費徒步遊｜11/27～12/24 行程路線與常態公益課表</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7f4;
+      --surface: #ffffff;
+      --surface-alt: #edf3ee;
+      --primary: #1f6f43;
+      --primary-dark: #155231;
+      --primary-light: #e3f2e8;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #dce5de;
+      --shadow: 0 4px 20px -2px rgba(21, 82, 49, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding-bottom: 60px;
+    }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #155231 0%, #1f6f43 55%, #2d8a56 100%);
+      color: #fff;
+      padding: 36px 20px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.14) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(6px);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      font-size: 0.98rem;
+      opacity: 0.9;
+      max-width: 680px;
+      margin: 0 auto 18px;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .stat-pill {
+      background: rgba(0, 0, 0, 0.22);
+      padding: 6px 15px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Controls */
+    .controls-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-top: -18px;
+      position: relative;
+      z-index: 10;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(31, 111, 67, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text-muted);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .chip.active, .chip:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-color: var(--primary);
+    }
+
+    /* Cards Grid */
+    .section-title {
+      margin: 26px 0 14px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px -4px rgba(21, 82, 49, 0.15);
+    }
+
+    .card.today-highlight {
+      border: 2px solid var(--accent);
+      background: linear-gradient(to bottom, #fffdf7, #ffffff);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.92rem;
+      padding: 5px 12px;
+      border-radius: 8px;
+    }
+
+    .today-tag {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 4px;
+    }
+
+    .type-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .type-easy { background: var(--primary-light); color: var(--primary-dark); }
+    .type-hike { background: var(--accent-light); color: #b45309; }
+    .type-coast { background: var(--blue-light); color: #1d4ed8; }
+    .type-visit { background: var(--purple-light); color: #6d28d9; }
+
+    .card-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 0.9rem;
+      background: var(--surface-alt);
+      padding: 11px 13px;
+      border-radius: 11px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      color: var(--primary-dark);
+      min-width: 72px;
+      flex-shrink: 0;
+    }
+
+    /* Route stops */
+    .route-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 0;
+    }
+
+    .stop-node {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 10px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .stop-node.start {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .stop-arrow {
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .notes-box {
+      font-size: 0.86rem;
+      color: #475569;
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 8px 11px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .card-actions {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .action-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-map {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .btn-tel {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .btn-line {
+      background: #06c755;
+      color: #fff;
+    }
+
+    /* Regular Classes Table / Cards */
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+
+    .class-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .class-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Disclaimer */
+    .disclaimer-card {
+      margin-top: 28px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      color: #92400e;
+      font-size: 0.88rem;
+    }
+
+    .disclaimer-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .disclaimer-card ul {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-badge">🌿 哈利慈善公益團 · 天天免費徒步遊</div>
+    <h1>11/27 ～ 12/24 行程路線導覽</h1>
+    <p>免團費・免報名費・自由參加・自由離開・風雨無阻（颱風停班課除外）</p>
+    <div class="stats-bar">
+      <div class="stat-pill">🥾 <strong>16 場</strong> 精選徒步健行</div>
+      <div class="stat-pill">🧘 <strong>12 項</strong> 常態免費運動/課程</div>
+      <div class="stat-pill">📞 電話已轉標準號碼，手機點擊可直接撥號</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls-card">
+      <div class="top-controls">
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('trips', this)">🥾 徒步遊行程 (16)</button>
+          <button class="tab-btn" onclick="switchTab('classes', this)">🧘 常態免費運動與社大 (12)</button>
+          <button class="tab-btn" onclick="switchTab('all', this)">📋 全部顯示</button>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="搜尋地點、捷運站、領隊、電話（例：輔大、北投、平路）..." oninput="renderTrips()">
+        </div>
+      </div>
+
+      <div class="filter-chips" id="tripFilters">
+        <span style="font-size:0.83rem;font-weight:700;color:var(--text-muted);">路線篩選：</span>
+        <button class="chip active" onclick="setFilter('all', this)">全部行程 (16)</button>
+        <button class="chip" onclick="setFilter('easy', this)">🟢 平路老街 / 公園漫步</button>
+        <button class="chip" onclick="setFilter('hike', this)">🟠 古道健行 / 登山步道</button>
+        <button class="chip" onclick="setFilter('coast', this)">🔵 追風看海 / 鐵道隧道</button>
+        <button class="chip" onclick="setFilter('visit', this)">🟣 文化導覽 / 室內參訪</button>
+      </div>
+    </section>
+
+    <!-- 徒步遊行程區 -->
+    <section id="tripsSection">
+      <div class="section-title">
+        <span>📅 每日徒步健行路線表</span>
+        <span id="tripCount" style="font-size:0.9rem;color:var(--text-muted);font-weight:500;">共 16 場活動</span>
+      </div>
+      <div class="grid" id="tripsGrid"></div>
+    </section>
+
+    <!-- 常態免費課程區 -->
+    <section id="classesSection" class="hidden">
+      <div class="section-title">
+        <span>🧘 常態免費運動・氣功・社大公益資源</span>
+        <span style="font-size:0.9rem;color:var(--text-muted);font-weight:500;">點擊電話可直接撥號</span>
+      </div>
+      <div class="class-grid" id="classesGrid"></div>
+    </section>
+
+    <!-- 免責聲明區 -->
+    <section class="disclaimer-card">
+      <h3>⚠️ 哈利免費郊遊團隊・活動須知與免責聲明重點</h3>
+      <ul>
+        <li><strong>完全免費・自由參加</strong>：志工與愛心老師全程無償義務帶隊，不收任何費用、不推銷商品，不用報名（特定餐飲/便當除外），自由參加、自由離開。</li>
+        <li><strong>天候原則</strong>：下雨不取消（可能視天候微調路線），僅遇颱風且政府宣布停班停課時配合取消。</li>
+        <li><strong>安全與保險自理</strong>：本活動非商業旅行團、無投保團體保險。請自行衡量體能並自理意外險/旅平險，活動中若發生任何意外傷亡，領隊、志工與同行者不負法律及經濟賠償責任。</li>
+        <li><strong>肖像權同意</strong>：活動中志工會拍照或錄影上傳網路分享，參加者視同同意授權團體照與影片予哈利團隊（笑長）使用。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const tripsData = [
+      {
+        date: "2026-11-27",
+        dateLabel: "11/27 (五)",
+        time: "下午 14:00",
+        title: "輔大校園～明志書院生態古蹟漫步",
+        type: "easy",
+        typeLabel: "🟢 校園古蹟漫步",
+        meetup: "輔大捷運站 1號出口",
+        mapQuery: "捷運輔大站1號出口",
+        stops: ["輔大捷運站1號出口", "輔大校園", "貴子路後門", "應化大排生態園區", "頂泰山巖", "明志書院", "明志里公車站牌(解散)"],
+        leaders: [],
+        notes: "輕鬆散步行程，終點於明志里公車站牌解散。"
+      },
+      {
+        date: "2026-11-28",
+        dateLabel: "11/28 (六)",
+        time: "下午 13:35",
+        title: "晴天輕鬆爬象山／雨天漫步台北曼哈頓",
+        type: "hike",
+        typeLabel: "🟠 晴爬山/雨漫步",
+        meetup: "象山捷運站 2號出口",
+        mapQuery: "捷運象山站2號出口",
+        stops: ["象山捷運站2號出口", "晴天：象山親山步道", "雨天：信義計畫區(台北曼哈頓)漫步"],
+        leaders: [{ name: "真善美", phone: "" }],
+        notes: "依當日晴雨彈性切換路線，晴雨皆宜。"
+      },
+      {
+        date: "2026-11-29",
+        dateLabel: "11/29 (日)",
+        time: "下午 14:00",
+        title: "板橋江子翠多公園平路漫遊",
+        type: "easy",
+        typeLabel: "🟢 全程平路無階梯",
+        meetup: "江子翠捷運站 3號出口",
+        mapQuery: "捷運江子翠站3號出口",
+        stops: ["江子翠捷運站3號出口", "周邊多座特色公園串聯漫步"],
+        leaders: [{ name: "阿淇", phone: "" }],
+        notes: "全程平路、完全沒有台階，適合全齡踴躍參與。"
+      },
+      {
+        date: "2026-11-30",
+        dateLabel: "11/30 (一) 早場",
+        time: "上午 10:50",
+        title: "三坑～石門大草坪環走（約7公里）",
+        type: "hike",
+        typeLabel: "🟠 古道鐵馬道健行",
+        meetup: "中壢後火車站",
+        mapQuery: "中壢火車站後站",
+        stops: ["中壢後火車站(搭11:00桃客5055)", "十一份/石門國小站", "挑擔石板古道", "石門大圳三坑鐵馬道/油桐花徑", "三坑青錢第/永福宮/老街/黑白洗", "三坑自然生態公園", "三坑子自行車道", "大平紅橋", "千層瀑布", "林埤古道", "石門大草坪", "北水局站(搭車賦歸)"],
+        leaders: [{ name: "祝娟", phone: "0922-147-056" }],
+        notes: "請備飲水、午餐、雨具、登山杖。回程於北水局站搭 5050/5055 回中壢、5044 回桃園，或至龍潭轉 709A(往永寧) / 1728(往新店公館)。"
+      },
+      {
+        date: "2026-11-30",
+        dateLabel: "11/30 (一) 傍晚場",
+        time: "下午 17:33",
+        title: "昆陽社宅空中跑道＆生技隧道體驗＋南港路易莎",
+        type: "easy",
+        typeLabel: "🟢 傍晚漫步＋聚餐",
+        meetup: "昆陽捷運站 4號出口",
+        mapQuery: "捷運昆陽站4號出口",
+        stops: ["昆陽捷運站4號出口", "社會住宅跑道", "生技隧道體驗", "南港捷運站美食街晚餐", "19:00南港蔦屋路易莎"],
+        leaders: [{ name: "小林", phone: "0968-717-217" }],
+        lineUrl: "https://line.me/R/ti/g/2FDFjQxSxz",
+        lineLabel: "路易莎報名群",
+        notes: "19:00後南港蔦屋路易莎咖啡喝到飽＋零食吃到飽（限時1小時90元，限7位，須先加LINE群並匯款）。"
+      },
+      {
+        date: "2026-12-01",
+        dateLabel: "12/01 (二)",
+        time: "下午 13:00",
+        title: "福隆草嶺舊隧道鐵道漫遊",
+        type: "coast",
+        typeLabel: "🔵 鐵道舊隧道",
+        meetup: "福隆火車站",
+        mapQuery: "福隆火車站",
+        stops: ["台北車站(11:23搭4178區間車)", "福隆火車站(13:00集合)", "草嶺舊隧道"],
+        leaders: [{ name: "小櫻桃", phone: "0963-002-602" }],
+        notes: "建議搭台鐵 4178 區間車（台北 11:23 開 ➔ 12:43 抵達福隆）。請盡量先在火車上如廁，避免福隆站排隊耗時。"
+      },
+      {
+        date: "2026-12-02",
+        dateLabel: "12/02 (三)",
+        time: "中午 12:00",
+        title: "頂泰山巖・瓊仔湖私房路線（約7.5K / 3.5~4hr）",
+        type: "hike",
+        typeLabel: "🟠 雙分隊：賞花/登山",
+        meetup: "輔大捷運站 1號出口",
+        mapQuery: "捷運輔大站1號出口",
+        stops: ["輔大捷運站1號出口", "輔大園區/中美堂", "頂泰山巖(250年古廟)", "應化大排生態園區", "崎頂福德宮", "山頂公園", "瓊仔湖", "明志路下山", "義學里站"],
+        leaders: [
+          { name: "曉娟", phone: "0930-120-232" },
+          { name: "阿義", phone: "0972-230-281" }
+        ],
+        notes: "可分二隊（賞花健行隊／登山石階隊）。公車可搭 99, 235, 639, 799, 802, 842, 845, 藍2。請備登山杖、茶水、行動糧、雨具。"
+      },
+      {
+        date: "2026-12-04",
+        dateLabel: "12/04 (五)",
+        time: "下午 14:00",
+        title: "大稻埕老街・迪化街十連棟文化漫遊",
+        type: "easy",
+        typeLabel: "🟢 老街古蹟平路",
+        meetup: "大橋頭捷運站 1號出口",
+        mapQuery: "捷運大橋頭站1號出口",
+        stops: ["大橋頭站1號出口", "太平國小/永樂國小", "慈聖宮", "十連棟", "迪化街特色老店", "霞海城隍廟", "大稻埕遊客中心/戲苑", "海關博物館(不入內)", "北門捷運站3號出口(賦歸)"],
+        leaders: [],
+        notes: "建議攜帶帽子、雨具、太陽眼鏡、飲水、購物袋。"
+      },
+      {
+        date: "2026-12-05",
+        dateLabel: "12/05 (六)",
+        time: "上午 11:00",
+        title: "林口國家檔案館・新寮步道・師大林口校園",
+        type: "easy",
+        typeLabel: "🟢 全程平路好撤退",
+        meetup: "國家檔案館正門",
+        mapQuery: "林口國家檔案館",
+        stops: ["國家檔案館正門", "林口老街", "新寮休閒步道", "師大林口校園", "中油九龍壁"],
+        leaders: [],
+        notes: "公車下車站名「世貿芳鄰」或「運動公園」（路線 786, 858, 920, 925, 936, 945, 946, 966, 967）。全程平路，撤退方便。"
+      },
+      {
+        date: "2026-12-06",
+        dateLabel: "12/06 (日)",
+        time: "上午 09:40",
+        title: "關渡慈濟靜思堂免費導覽參訪",
+        type: "visit",
+        typeLabel: "🟣 室內導覽參訪",
+        meetup: "關渡捷運站 1號出口",
+        mapQuery: "捷運關渡站1號出口",
+        stops: ["關渡捷運站1號出口(09:40)", "關渡慈濟靜思堂(10:00~12:30免費導覽)"],
+        leaders: [],
+        lineUrl: "https://line.me/ti/g2/yc6EJiJkl1T-dgeYAKIPqb75dl326vMTY5T3kg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default",
+        lineLabel: "入群報名訂便當",
+        notes: "統計人數訂便當（60元/個），務必點選LINE社群連結報名才有便當！"
+      },
+      {
+        date: "2026-12-08",
+        dateLabel: "12/08 (二)",
+        time: "中午 12:30",
+        title: "北投寺院秘境・少帥禪園・地熱谷漫遊（3.5hr）",
+        type: "hike",
+        typeLabel: "🟠 溫泉古寺秘境",
+        meetup: "北投捷運站 2號出口",
+        mapQuery: "捷運北投站2號出口",
+        stops: ["北投捷運站2號出口", "普濟寺", "北投文物館", "少帥禪園", "不動明王石窟", "天竺寺秘境", "龍雲寺秘境", "曹洞寺", "地熱谷", "北投捷運站"],
+        leaders: [{ name: "Julie", phone: "0901-012-550" }],
+        notes: "原路均可撤退，全程約 3.5 小時。請自備水、雨具、午餐、登山杖。"
+      },
+      {
+        date: "2026-12-09",
+        dateLabel: "12/09 (三)",
+        time: "下午 13:30",
+        title: "新北市府32樓景觀台・萬坪公園・林家花園",
+        type: "visit",
+        typeLabel: "🟣 景觀台＋花園漫步",
+        meetup: "板橋捷運站 2號出口",
+        mapQuery: "捷運板橋站2號出口",
+        stops: ["板橋捷運站2號出口", "新北市政府32樓免費景觀台", "板橋萬坪公園", "板橋林家花園"],
+        leaders: [],
+        notes: "下雨不取消（若下雨可能微調行程）。另註：12/9~12/19 有哈利智工專屬雲南自由行。"
+      },
+      {
+        date: "2026-12-10",
+        dateLabel: "12/10 (四)",
+        time: "下午 13:30",
+        title: "圓山自然景觀公園・林安泰古厝・台北玫瑰園",
+        type: "easy",
+        typeLabel: "🟢 賞花古厝漫遊",
+        meetup: "圓山捷運站 1號出口",
+        mapQuery: "捷運圓山站1號出口",
+        stops: ["圓山捷運站1號出口", "圓山自然景觀公園區", "摩天輪(兒童育樂中心舊址)", "林安泰古厝", "台北玫瑰園", "圓山捷運站"],
+        leaders: [{ name: "Lily", phone: "" }],
+        notes: "平緩好走的市區古蹟與玫瑰花海路線。"
+      },
+      {
+        date: "2026-12-11",
+        dateLabel: "12/11 (五)",
+        time: "13:40 紅樹林 / 14:20 崁頂",
+        title: "淡海輕軌追風看海・淡水夕陽漫遊（約5公里）",
+        type: "coast",
+        typeLabel: "🔵 海岸輕軌全齡平路",
+        meetup: "13:40 輕軌紅樹林站 / 14:20 輕軌崁頂站",
+        mapQuery: "淡海輕軌崁頂站",
+        stops: ["輕軌紅樹林站(13:40搭13:47班次)", "輕軌崁頂站(14:20出發)", "國家新都", "藍海大道", "海尾子海灘", "觀海長堤大道", "淡水夕陽", "水管公園"],
+        leaders: [],
+        notes: "請先在紅樹林站如廁；海邊東北季風強，請戴有繫繩帽子、防風保暖衣物、太陽眼鏡。回程於「海上皇宮站」搭紅37公車或輕軌台北海洋大學站。"
+      },
+      {
+        date: "2026-12-22",
+        dateLabel: "12/22 (二)",
+        time: "中午 12:25",
+        title: "東澳灣・粉鳥林奇岩海灣健行",
+        type: "coast",
+        typeLabel: "🔵 奇岩海岸健行",
+        meetup: "東澳火車站",
+        mapQuery: "東澳火車站",
+        stops: ["東澳火車站(12:25集合)", "東澳灣", "粉鳥林漁港", "粉鳥林奇岩海灣"],
+        leaders: [{ name: "黑貓", phone: "0953-546-866" }],
+        notes: "去程建議搭台鐵區間快 4026（台北 10:05 ➔ 東澳 12:14，或提早至瑞芳美食廣場午餐再搭 4026）。回程東澳發車：16:27 莒光653 / 16:54 區間4207 / 17:33 區間快4033。需跨越大岩石，請穿防滑鞋、防風外套、備午餐與登山杖。"
+      },
+      {
+        date: "2026-12-24",
+        dateLabel: "12/24 (四)",
+        time: "下午 13:00",
+        title: "陽明山前山公園・紗帽山健行",
+        type: "hike",
+        typeLabel: "🟠 陽明山登山健行",
+        meetup: "陽明山公車總站",
+        mapQuery: "陽明山公車總站",
+        stops: ["陽明山公車總站(13:00)", "陽明山前山公園", "紗帽山步道"],
+        leaders: [],
+        notes: "山區氣溫較低，請備妥保暖防風衣物、飲水、雨具與登山杖。"
+      }
+    ];
+
+    const classesData = [
+      {
+        title: "🥋 免費太極拳教學",
+        time: "每天 07:00 ～ 09:00",
+        location: "中興公園太極拳教練場（景安捷運站）",
+        contacts: [{ name: "吳彩鳳", phone: "0935-770-668" }],
+        note: "需先電話通知愛心聯絡人"
+      },
+      {
+        title: "🌬️ 國父紀念館免費氣功",
+        time: "每天 07:00 開始",
+        location: "國父紀念館",
+        contacts: [
+          { name: "聯絡人A", phone: "0933-704-827" },
+          { name: "聯絡人B", phone: "0908-696-290" }
+        ],
+        note: "請先電話聯絡愛心聯絡人"
+      },
+      {
+        title: "👏 免費拍打功",
+        time: "每天 08:45 集合",
+        location: "國父紀念館捷運站 3號出口",
+        contacts: [
+          { name: "聯絡人1", phone: "0910-232-325" },
+          { name: "聯絡人2", phone: "0973-837-393" },
+          { name: "聯絡人3", phone: "0920-089-108" }
+        ],
+        note: "請先聯絡免費拍打功公益聯絡人"
+      },
+      {
+        title: "🪭 免費元極舞・扇子舞",
+        time: "每天 07:00 ～ 10:00",
+        location: "榮星花園噴水池（靠近龍江路）",
+        contacts: [{ name: "湖姊", phone: "0915-233-618" }],
+        note: "需先報名成功後再前往"
+      },
+      {
+        title: "🏊 滿65歲免費游泳＋健身房 (中正)",
+        time: "每天 08:00 ～ 10:00",
+        location: "中正運動中心 1樓服務台集合（東門國小隔壁）",
+        contacts: [{ name: "愛心聯絡人", phone: "0975-517-528" }],
+        note: "首次請帶身分證＋敬老悠遊卡，自備泳衣褲泳帽毛巾"
+      },
+      {
+        title: "🏊 滿65歲免費游泳＋健身房 (土城)",
+        time: "每天 08:00 ～ 10:00",
+        location: "土城運動中心",
+        contacts: [],
+        note: "滿 65 歲憑敬老卡免費入場使用游泳池與健身房"
+      },
+      {
+        title: "🧼 免學費免材料費手工香皂",
+        time: "電洽預約",
+        location: "電洽愛心老師",
+        contacts: [{ name: "手工皂老師", phone: "0953-728-428" }],
+        note: "免學費、免材料費公益教學"
+      },
+      {
+        title: "🧘 免費拉筋班 ＆ 返老還童氣功",
+        time: "電洽查詢",
+        location: "電洽班長/教練",
+        contacts: [
+          { name: "拉筋班曾班長", phone: "0981-735-636" },
+          { name: "返老還童氣功", phone: "0939-568-183" }
+        ],
+        note: "免費公益健康教學"
+      },
+      {
+        title: "🎓 哈利免費社大・國文・家政顧問",
+        time: "電洽查詢",
+        location: "哈利免費社大",
+        contacts: [
+          { name: "社大許老師", phone: "0920-320-287" },
+          { name: "國文林老師", phone: "0918-987-388" },
+          { name: "家政課顧問", phone: "0910-853-983" }
+        ],
+        note: "免費社大系列公益課程"
+      },
+      {
+        title: "🏸 苗栗徒步遊 ＆ 免費羽球/游泳",
+        time: "電洽查詢",
+        location: "各區公益教學點",
+        contacts: [
+          { name: "苗栗徒步老師", phone: "0976-045-637" },
+          { name: "羽球/游泳安老師", phone: "0912-763-509" }
+        ],
+        note: "慈善公益免費運動與徒步"
+      },
+      {
+        title: "💖 每日低收入戶愛心補助 300 元",
+        time: "每日 1 位名額",
+        location: "哈利天天免團費慈善公益活動",
+        contacts: [{ name: "申請專線", phone: "0920-888-870" }],
+        note: "每天1位低收入戶憑政府核發證明可領 300 元"
+      }
+    ];
+
+    let currentFilter = 'all';
+    const todayStr = new Date().toISOString().slice(0, 10);
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      renderTrips();
+    }
+
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const tripsSec = document.getElementById('tripsSection');
+      const classesSec = document.getElementById('classesSection');
+      const filtersBar = document.getElementById('tripFilters');
+
+      if (tab === 'trips') {
+        tripsSec.classList.remove('hidden');
+        classesSec.classList.add('hidden');
+        filtersBar.classList.remove('hidden');
+      } else if (tab === 'classes') {
+        tripsSec.classList.add('hidden');
+        classesSec.classList.remove('hidden');
+        filtersBar.classList.add('hidden');
+      } else {
+        tripsSec.classList.remove('hidden');
+        classesSec.classList.remove('hidden');
+        filtersBar.classList.remove('hidden');
+      }
+    }
+
+    function renderTrips() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const grid = document.getElementById('tripsGrid');
+      grid.innerHTML = '';
+
+      const filtered = tripsData.filter(item => {
+        const matchType = currentFilter === 'all' || item.type === currentFilter;
+        const textBlob = [
+          item.dateLabel, item.title, item.meetup,
+          item.stops.join(' '), item.notes,
+          item.leaders.map(l => l.name + ' ' + l.phone).join(' ')
+        ].join(' ').toLowerCase();
+        const matchQuery = !q || textBlob.includes(q);
+        return matchType && matchQuery;
+      });
+
+      document.getElementById('tripCount').textContent = `顯示 ${filtered.length} / ${tripsData.length} 場活動`;
+
+      filtered.forEach(item => {
+        const isToday = item.date === todayStr;
+        const card = document.createElement('article');
+        card.className = 'card' + (isToday ? ' today-highlight' : '');
+
+        const stopsHtml = item.stops.map((s, idx) => {
+          const node = `<span class="stop-node ${idx === 0 ? 'start' : ''}">${s}</span>`;
+          return idx < item.stops.length - 1 ? `${node}<span class="stop-arrow">➔</span>` : node;
+        }).join('');
+
+        const leadersText = item.leaders.length
+          ? item.leaders.map(l => l.phone ? `${l.name} (${l.phone})` : l.name).join('、')
+          : '哈利愛心志工團（現場集合出發）';
+
+        const telButtons = item.leaders
+          .filter(l => l.phone)
+          .map(l => `<a class="action-btn btn-tel" href="tel:${l.phone.replace(/-/g, '')}">📞 撥給${l.name} ${l.phone}</a>`)
+          .join('');
+
+        const lineButton = item.lineUrl
+          ? `<a class="action-btn btn-line" href="${item.lineUrl}" target="_blank" rel="noopener">💬 ${item.lineLabel}</a>`
+          : '';
+
+        const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`;
+
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="date-badge">
+              📅 ${item.dateLabel}
+              ${isToday ? '<span class="today-tag">今日行程</span>' : ''}
+            </div>
+            <span class="type-badge type-${item.type}">${item.typeLabel}</span>
+          </div>
+
+          <h2 class="card-title">${item.title}</h2>
+
+          <div class="meta-list">
+            <div class="meta-item">
+              <span class="meta-label">⏰ 集合時間</span>
+              <span><strong>${item.time}</strong></span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">📍 集合地點</span>
+              <span><strong>${item.meetup}</strong></span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">🚩 帶隊聯絡</span>
+              <span>${leadersText}</span>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:0.82rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;">🗺️ 途經路線節點：</div>
+            <div class="route-flow">${stopsHtml}</div>
+          </div>
+
+          <div class="notes-box">💡 ${item.notes}</div>
+
+          <div class="card-actions">
+            <a class="action-btn btn-map" href="${mapUrl}" target="_blank" rel="noopener">🗺️ 集合點 Google 地圖</a>
+            ${telButtons}
+            ${lineButton}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderClasses() {
+      const grid = document.getElementById('classesGrid');
+      grid.innerHTML = '';
+      classesData.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'class-card';
+        const telBtns = c.contacts.map(ct =>
+          `<a class="action-btn btn-tel" href="tel:${ct.phone.replace(/-/g, '')}">📞 ${ct.name} ${ct.phone}</a>`
+        ).join('');
+        card.innerHTML = `
+          <div class="class-title">${c.title}</div>
+          <div style="font-size:0.88rem;"><strong>⏰ 時間：</strong>${c.time}</div>
+          <div style="font-size:0.88rem;"><strong>📍 地點：</strong>${c.location}</div>
+          <div style="font-size:0.84rem;color:var(--text-muted);">💡 ${c.note}</div>
+          ${telBtns ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">${telBtns}</div>` : ''}
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    renderTrips();
+    renderClasses();
+  </script>
+</body>
+</html>
